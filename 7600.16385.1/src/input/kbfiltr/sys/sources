@@ -1,0 +1,27 @@
+TARGETNAME=kbfiltr
+TARGETTYPE=DRIVER
+
+
+KMDF_VERSION_MAJOR=1
+
+#
+# Set the warning level high
+#
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+TARGETLIBS=$(TARGETLIBS) \
+           $(DDK_LIB_PATH)\wdmsec.lib \
+           $(DDK_LIB_PATH)\ntstrsafe.lib \
+           $(DDK_LIB_PATH)\rtlver.lib
+
+INF_NAME=kbfiltr
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+PASS0_BINPLACE=$(NTTARGETFILE0)
+
+SOURCES=kbfiltr.c  \
+        kbfiltr.rc \
+        rawpdo.c   \
+
+TARGET_DESTINATION=wdf
+

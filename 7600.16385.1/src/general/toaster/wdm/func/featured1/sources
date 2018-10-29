@@ -1,0 +1,19 @@
+TARGETNAME=toaster
+TARGETTYPE=DRIVER
+
+NTTARGETFILE0 = $(OBJ_PATH)\$(O)\toaster.bmf
+
+TARGETLIBS= $(DDK_LIB_PATH)\ntstrsafe.lib
+
+INCLUDES = ..\..\inc;..\shared
+
+MSC_WARNING_LEVEL= /W4 /WX
+
+SOURCES= toaster.rc \
+         toaster.c  \
+         power.c \
+         wmi.c 
+
+# Temporarily excuse usage of serviceability impairing macros in code...
+ALLOW_DATE_TIME=1
+

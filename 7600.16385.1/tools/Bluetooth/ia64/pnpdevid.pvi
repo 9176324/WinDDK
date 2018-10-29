@@ -1,0 +1,37 @@
+[Version]
+Name=PnP Device Identification
+Service={00001200-0000-1000-8000-00805F9B34FB}
+
+[0x200]
+Name=PNP DI Specification ID
+Required=1
+Format=UINT16
+
+[0x201]
+Name=PNP DI Vendor ID
+Required=1
+Format=UINT16
+
+[0x202]
+Name=PNP DI Product ID
+Required=1
+Format=UINT16
+
+[0x203]
+Name=PNP DI Version
+Required=1
+Format=UINT16
+
+[0x204]
+Name=PNP DI Primary Record
+Required=1
+Format=BOOLEAN
+
+[0x205]
+Name=PNP DI Vendor ID Source
+Required=1
+Format=UINT16{1,2}
+
+
+
+

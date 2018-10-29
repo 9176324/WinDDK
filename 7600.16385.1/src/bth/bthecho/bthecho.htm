@@ -1,0 +1,768 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>BTHECHO</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:18.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;
+	font-weight:bold;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:13.5pt;
+	font-family:"Times New Roman","serif";
+	color:black;
+	font-weight:bold;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-link:"Comment Text Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+pre
+	{mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	color:black;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	color:black;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;
+	color:black;}
+span.CommentTextChar
+	{mso-style-name:"Comment Text Char";
+	mso-style-link:"Comment Text";
+	font-family:"Calibri","sans-serif";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";
+	color:black;}
+p.msolistparagraphcxspfirst, li.msolistparagraphcxspfirst, div.msolistparagraphcxspfirst
+	{mso-style-name:msolistparagraphcxspfirst;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+p.msolistparagraphcxspmiddle, li.msolistparagraphcxspmiddle, div.msolistparagraphcxspmiddle
+	{mso-style-name:msolistparagraphcxspmiddle;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+p.msolistparagraphcxsplast, li.msolistparagraphcxsplast, div.msolistparagraphcxsplast
+	{mso-style-name:msolistparagraphcxsplast;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{mso-style-name:msochpdefault;
+	margin-right:0in;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+<meta name=Template content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+</head>
+
+<body bgcolor=white lang=EN-US link=blue vlink=purple leftmargin=8>
+
+<div class=Section1>
+
+<h2><span style='font-family:"Verdana","sans-serif"'>Bluetooth Echo Sample </span></h2>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>SUMMARY</span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+sample demonstrates developing Bluetooth L2CAP profile drivers using Bluetooth
+L2CAP DDIs.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The sample
+includes two drivers. One for a device that acts as an L2CAP server and another
+for the device that acts as an L2CAP client. Server simply echoes back any data
+that it receives from client on the same L2CA channel.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>These
+drivers can be used with devices that can be installed with bth.inf. Such
+devices get installed as ‘Generic Bluetooth Radio’. Examples of such devices
+are Bluetooth USB dongles such as (but not limited to):</span></p>
+
+<p style='margin-left:.5in'><span style='font-size:8.0pt;font-family:"Courier New"'>Generic
+Bluetooth
+Radio=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+BthUsb, USB\Vid_0a12&amp;Pid_0001</span></p>
+
+<p style='margin-left:.5in'><span style='font-size:8.0pt;font-family:"Courier New"'>CSR
+Nanosira=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+BthUsb, USB\Vid_0a12&amp;Pid_0003</span></p>
+
+<p style='margin-left:.5in'><span style='font-size:8.0pt;font-family:"Courier New"'>CSR
+Nanosira WHQL Reference
+Radio=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+BthUsb, USB\Vid_0a12&amp;Pid_0004</span></p>
+
+<p style='margin-left:.5in'><span style='font-size:8.0pt;font-family:"Courier New"'>CSR
+Nanosira-Multimedia=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+BthUsb, USB\Vid_0a12&amp;Pid_0005</span></p>
+
+<p style='margin-left:.5in'><span style='font-size:8.0pt;font-family:"Courier New"'>CSR
+Nanosira-Multimedia WHQL Reference Radio=&nbsp;&nbsp;&nbsp; BthUsb,
+USB\Vid_0a12&amp;Pid_0006</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Please
+refer to bth.inf for the complete list of devices.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+installation steps below describe how to install echo server and client with
+such a device.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Please
+note that RFCOMM based profiles must be developed and accessed using user-mode
+socket APIs. </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+sample is applicable to Windows® Vista and Windows® 7 operating systems.</span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>BUILDING THE SAMPLE</span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To build
+the sample drivers and exe, you must first set up the WDK environment on your
+host machine.<b> </b>Please open the <b>Windows Win7</b> build environment.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Run the <i>build
+–ceZ</i> command in the <b>bthecho</b> directory. It will build the following 4
+binaries:</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>1.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>BthEchoSampleSrv.sys
+(driver for Bluetooth Echo Server device)</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>2.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>BthSrvInst.exe
+(Bluetooth echo sever installation utility)</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>3.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>BthEchoSampleCli.sys
+(driver for Bluetooth Echo client device)</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>4.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>BthEcho.exe
+(Bluetooth echo application used to exercise client device)</span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>INSTALLATION </span></h3>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Note:
+</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Bluetooth
+echo server device and echo client device must be installed on two different
+machines.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Server
+Installation</span></b></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>1.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Copy <i>KMDF
+coinstaller (wdfcoinstallerMMmmm.dll, </i>from redist\wdf\<i> )</i>, <i>BthEchoSampleSrv.Sys,
+BthEchoSampleSrv.inf and bthsrvinst.exe</i> on a temporary directory on the
+target machine.</span></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>2.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Run <i>bthsrvinst.exe
+/i</i> to install the echo server device. This enables the Bluetooth Enumerator
+(BthEnum.sys) to enumerate echo server device and create a PDO for the device
+(please refer to the device tree below).</span></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>2.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Step
+#2 causes BthEnum.sys to create a PDO. Consequently hardware installation
+wizard gets launched. Either go through the UI (Device Manager – Update Driver
+Software in Windows® 7, ‘Found New Hardware’ wizard in Windows® Vista) and
+point it to the temporary directory where you copied the binaries in step #1,
+or using devcon.exe from the tools\devcon folder, run the following command from
+the temporary directory:</span></p>
+
+<p style='margin-left:1.5in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>devcon.exe<i>
+</i>update<i> BthEchoSampleSrv.inf</i>
+BTHENUM\{c07508f2-b970-43ca-b5dd-cc4f2391bef4}</span></p>
+
+<p style='margin-left:1.0in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>If
+devcon.exe fails check the error level using: </span></p>
+
+<p style='margin-left:1.5in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>echo
+%errorlevel%</span></p>
+
+<p style='margin-left:1.0in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>If
+errorlevel is 1, you need to reboot the machine for KMDF update to take effect.
+If errorlevel is 2, please make sure that you have the driver files described
+in #1 available in the current directory. For more information on installation
+failure please check setup logs.</span></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>4.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Upon
+successful installation you will see ‘Bluetooth Echo Sample Server’ in Device
+Manager under Bluetooth devices.</span></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>5.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+(</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+steps in needed only on Windows® Vista) Navigate to the system tray, right
+click on the Bluetooth icon, and select ‘Open Settings’. This launches the
+‘Bluetooth Settings’ dialog. On the ‘Options’ tab, check ‘Allow Bluetooth
+devices to find this Computer’. Note that this will make your computer
+discoverable to other Bluetooth devices, and should be disabled again when no
+longer required.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-left:.5in'><b><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>Device tree for Echo Server device</span></b></p>
+
+<p class=MsoNormal style='margin-left:.5in'><b><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-left:.5in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>(Drivers for FDOs are shown for each
+devnode in the tree.)</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></b></p>
+
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ---------------------</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |BthEchoSampleSrv.sys |&lt;---------------Function driver for PDO ejected by BthEnum.sys</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ---------------------</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^</pre><pre> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ---------------------</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |Bluetooth Enumerator |</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--------- |&nbsp;&nbsp;&nbsp; (BthEnum.SYS)&nbsp;&nbsp; &nbsp;| </pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---------------------</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</pre><pre> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ---------------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;---------------------</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;----------|&nbsp;&nbsp;&nbsp;&nbsp; bthport.SYS&nbsp;&nbsp;&nbsp;&nbsp; |&lt;--------&gt;|&nbsp;&nbsp;&nbsp;&nbsp; bthusb.SYS&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---------------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;---------------------</pre>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Bth port driver loaded by bthusb.sys
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^ </span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| </span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+---------------------</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; USB Stack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;|</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+---------------------</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|&nbsp;&nbsp;&nbsp; </span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+----------------------</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| USB Bluetooth Dongle |</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;----------------------</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Client
+Installation</span></b></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>1.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Important</span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>: This must be done
+on a separate machine from the one where echo server device was installed.</span></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>2.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Copy <i>KMDF
+coinstaller (wdfcoinstallerMMmmm.dll, </i>from redist\wdf\<i>)</i>, <i>BthEchoSampleCli.Sys,
+BthEchoSampleCli.inf and bthecho.exe</i> on a temporary directory on the target
+machine.</span></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>3.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Run bthprops.cpl
+from a command line or right click on the Bluetooth icon in the system tray and
+select ‘Show Devices' to bring up a list of installed Bluetooth devices.</span></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>4.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;</span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Windows® 7: </span><span
+style='font-size:7.0pt'>&nbsp;</span><span style='font-size:10.0pt;font-family:
+"Verdana","sans-serif"'>In the ‘Bluetooth Devices’ window click the ‘Add a
+device’ button. Windows® Vista: In the ‘Devices’ tab, click Add button.</span></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>5.</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>In the
+Add a Device wizard select the server machine (the machine where you installed
+the echo server) as a Bluetooth device. If the server machine does not appear,
+please check the echo server installation and make sure that you have enabled
+‘Allow Bluetooth device to find this computer’ on the server machine as
+explained above. When the server machine is correctly displayed, select it and
+pick ‘Next’.</span></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>6. The wizard should default to a numeric
+compare ceremony for pairing the machines. When this happens, ensure the
+numbers match on both the client and the server, select ‘Yes’ on both machines
+to indicate they match, and click ‘Next’ on both machines to complete the
+pairing.</span></p>
+
+<p style='margin-left:1.0in;text-indent:-.25in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>7. The ‘Found New Hardware’ wizard will be
+launched on Windows® Vista. On Windows® 7 you will need to go through Device
+Manager and update driver software for it. Either point the wizard to the
+temporary directory created in step #2, or use devcon.exe from the tools\devcon
+folder to install the client device:</span></p>
+
+<p style='margin-left:1.5in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Devcon.exe
+update<i> BthEchoSampleCli.inf</i>
+BTHENUM\{c07508f2-b970-43ca-b5dd-cc4f2391bef4}</span></p>
+
+<p style='margin-left:1.0in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Check
+for any error from devcon.exe as described in server installation. </span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>If
+the installation is successful, you will see ‘Bluetooth Echo Sample Client’ in
+Device Manager under Bluetooth devices. </span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+device tree for echo client device is similar to the one shown for the echo
+server device, since both client and server are enumerated by BthEnum.sys
+(although the installation mechanism and properties of client and server are
+different).</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Uninstalling
+Server</span></b></p>
+
+<p style='margin-left:.5in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>1.&nbsp;&nbsp;Uninstall
+the device and delete driver software using the Bluetooth Devices window by
+running bthprops.cpl, right clicking on the device, and selecting ‘Remove
+Device’ </span></p>
+
+<p style='margin-left:.5in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>2.&nbsp;&nbsp;Run
+<i>bthsrvinst.exe /u</i> to uninstall the echo server. This would make
+bthenum.sys stop enumerating the echo server. Without this step ‘Found New
+Hardware’ wizard will be launched again when you reconnect the device.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Uninstalling
+Client</span></b></p>
+
+<p style='margin-left:.5in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>1.&nbsp;&nbsp;Uninstall
+the device and delete driver software using the Bluetooth Devices window by
+running bthprops.cpl, right clicking on the device, and selecting ‘Remove
+Device’ </span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>TESTING</span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Run
+BthEcho.exe on the client machine. You should see client sending data to the
+server and receiving the same data echoed back. Press Ctrl+c to terminate the
+application. You will see output similar to below:</span></p>
+
+<p style='margin-left:.5in'><span style='font-size:8.0pt;font-family:"Courier New"'>D:\bth\wdfcli&gt;BthEcho.exe</span></p>
+
+<p style='margin-left:.5in'><span style='font-size:8.0pt;font-family:"Courier New"'>DevicePath:
+\\?\bthenum#{c07508f2-b970-43ca-b5dd-cc4f2391bef4}_localmfg&amp;000a#7&amp;3</span></p>
+
+<p style='margin-left:.5in'><span style='font-size:8.0pt;font-family:"Courier New"'>62d0a3&amp;0&amp;000c55ff727a_c00000001#{fc71b33d-d528-4763-a86c-78777c7bcd7b}</span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt'><span style='font-size:8.0pt;font-family:"Courier New"'>Opened
+device successfully</span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt'><span style='font-size:8.0pt;font-family:"Courier New"'>Written&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+26 bytes: WDF Bluetooth Sample Echo</span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt'><span style='font-size:8.0pt;font-family:"Courier New"'>Reply
+from server&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 26 bytes: WDF Bluetooth Sample
+Echo</span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt'><span style='font-size:8.0pt;font-family:"Courier New"'>Written&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+26 bytes: WDF Bluetooth Sample Echo</span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt'><span style='font-size:8.0pt;font-family:"Courier New"'>Reply
+from server &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;26 bytes: WDF Bluetooth Sample
+Echo</span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt'><span style='font-size:8.0pt;font-family:"Courier New"'>Written&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+26 bytes: WDF Bluetooth Sample Echo</span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt'><span style='font-size:8.0pt;font-family:"Courier New"'>Reply
+from server&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 26 bytes: WDF Bluetooth Sample
+Echo</span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt'><span style='font-size:8.0pt;font-family:"Courier New"'>Written&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+26 bytes: WDF Bluetooth Sample Echo</span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt'><span style='font-size:8.0pt;font-family:"Courier New"'>Reply
+from server&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 26 bytes: WDF Bluetooth Sample
+Echo</span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt'><span style='font-size:8.0pt;font-family:"Courier New"'>Written&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+26 bytes: WDF Bluetooth Sample Echo</span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt'><span style='font-size:8.0pt;font-family:"Courier New"'>^C</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>You can
+launch multiple instances of BthEcho.exe. Each client application would cause
+echo client device to have an independent connection to the echo server and
+thereby have an independent echo session. You can also have echo client devices
+and apps installed on multiple machines and talking to a single echo server.</span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>DIRECTORY MANIFEST </span></h3>
+
+<pre><u>File&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description</u></pre><pre>&nbsp;</pre><pre>bthcli &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains files for Bluetooth echo sample client</pre><pre>bthcli\sys&nbsp;&nbsp;&nbsp;&nbsp; contains driver code for echo client (produces <i>BthEchoSampleCli.sys</i> and <i>BthEchoSampleCli.inf</i>)</pre><pre>bthcli\app&nbsp;&nbsp;&nbsp;&nbsp; contains code for echo test application (produces <i>BthEcho.exe</i>)</pre><pre>bthsrv&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;contains files for Bluetooth echo sample server</pre><pre>bthsrv\sys&nbsp;&nbsp;&nbsp;&nbsp; contains driver code for echo server (produces <i>BthEchoSampleSrv.sys</i> and <i>BthEchoSampleSrv.inf</i>)</pre><pre>bthsrv\inst&nbsp;&nbsp;&nbsp; contains code for server installation utility (produces bthsrvinst.exe)</pre><pre>common&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contains headers and code shared by client and server</pre><pre>common\inc&nbsp;&nbsp;&nbsp;&nbsp; contains common headers</pre><pre>common\lib&nbsp;&nbsp;&nbsp;&nbsp; contains common code (produces bthecho.lib used while building <i>BthEchoSampleSrv.sys</i> and <i>BthEchoSampleCli.sys</i>)</pre>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>FILE MANIFEST</span></h3>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>(build
+related files and inx files omitted for brevity)</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>bthcli\sys</span></b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<pre><u>File&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description</u></pre><pre>&nbsp;</pre><pre>driver.* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains WDF driver functionality</pre><pre>device.*&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains Bluetooth echo client device functionality</pre><pre>client.*&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains reusable code for Bluetooth L2CAP client, this code is used by device.*</pre><pre>queue.*&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;contains code for WDF queue used for read/write operations</pre><pre>&nbsp;</pre>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>bthcli\app</span></b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<pre><u>File&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description</u></pre><pre>&nbsp;</pre><pre>main.cpp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains code for writing to and reading from Bluetooth echo client</pre><pre><b>&nbsp;</b></pre><pre><b>bthsrv\sys</b></pre><pre><b>&nbsp;</b></pre><pre><u>File&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description</u></pre><pre>&nbsp;</pre><pre>driver.* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WDF driver functionality</pre><pre>device.*&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains Bluetooth echo server device functionality</pre><pre>server.*&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains reusable code for Bluetooth L2CAP server, this code is used by device.*</pre><pre>echo.*&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains functionality for sending echo to the client</pre><pre>sdp.*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contains code for building server SDP record</pre><pre>&nbsp;</pre><pre><b>bthsrv\inst</b></pre><pre><b>&nbsp;</b></pre><pre><u>File&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description</u></pre><pre>&nbsp;</pre><pre>main.cpp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains code for installing and uninstalling echo sample server</pre><pre>&nbsp;</pre><pre><b>common\inc</b></pre><pre><b>&nbsp;</b></pre><pre><u>File&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description</u></pre><pre>&nbsp;</pre><pre>clisrv.h &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;header for common functions used by both echo client and echo server drivers</pre><pre>connection.h&nbsp; &nbsp;contains header for connection object used by both echo client and echo server drivers</pre><pre>public.h&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;definitions used by echo client and server drivers as well as install and echo apps</pre><pre>trace.h&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tracing related definitions</pre><pre>&nbsp;</pre><pre><b>common\lib</b></pre><pre><b>&nbsp;</b></pre><pre><u>File&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description</u></pre><pre>&nbsp;</pre><pre>clisrv.c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code for common functions used by both echo client and echo server drivers</pre><pre>connection.c&nbsp; &nbsp;contains code for connection object used by both echo client and echo server drivers</pre>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>CODE TOUR</span></h3>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Common
+code</span></b></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Connection
+     object: </span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+     common code contains implementation of a connection object (in
+     connection.*) that is utilized by both client and the server. Client uses
+     this object to maintain the information about opened connection and the
+     server uses this object to maintain information about the accepted
+     connection. Connection object also supports continuous reader which is
+     utilized by server to read the data sent by client. Connection object is
+     implemented as a WDF user object. Connection details are maintained in
+     BTHECHO_CONNECTION structure. This structure is used as the context for
+     WDF user object. Passive dispose is used to make the connection object cleanup
+     wait for disconnect completion and continuous reader rundown. Please see
+     WDF documentation for WDF user object and passive dispose (see
+     WdfObjectCreate).</span></li>
+</ul>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Server</span></b></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+10.0pt;font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Startup:
+</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Server
+registers PSM and L2CA server and published SDP record on startup in
+BthEchoSrvEvtDeviceSelfManagedIoInit (this callback is invoked by WDF during
+device start). While registering the L2CA server it passes
+BthEchoSrvIndicationCallback as the callback for incoming connection
+notifications.</span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+10.0pt;font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Server
+SDP record creation:</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+The sample uses dynamic creation of server SDP record using Bluetooth DDIs.
+Please note that for your particular device you may be able to use static data
+for the SDP record.</span> </p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+10.0pt;font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Incoming
+connections: </span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Bluetooth
+stack invokes BthEchoSrvIndicationCallback for the incoming connections from
+clients. In response server accepts the connection and passes
+BthEchoSrvConnectionIndicationCallback callback to Bluetooth stack for
+disconnect notification. It is possible to use the same indication callback for
+server and connection but the sample uses different callbacks for clarity.
+Server adds the accepted connection to the connection list it maintains. Please
+see below for connection rundown details.</span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+10.0pt;font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Connection
+rundown:</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+Server maintains a list of all the connections it has accepted. This allows
+server to properly close down these connections on orderly removal. On surprise
+removal bthport.sys itself gets removed and takes care of running down the
+connections, but in case of orderly removal driver has to make sure to rundown
+the connections.</span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+10.0pt;font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Connection
+state machine:</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></b><span
+style='font-size:10.0pt;font-family:"Courier New"'>ConnectFailed</span></p>
+
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;|</pre><pre> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| (connection failure)</pre>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;Uninitialized&nbsp;&nbsp; ------&gt; Connecting ------&gt; Connected</span></p>
+
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;| (disconnect) &nbsp;/&nbsp; ^ </pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;/</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp; /</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;V&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; V &nbsp;/ (connection complete)</pre>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Disconnecting&nbsp;&nbsp;&nbsp; </span></p>
+
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;| (disconnect complete)</pre><pre> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </pre>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Disconnected</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.5in'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>One transition to note here is that if
+disconnect is received in the connecting state (i.e. when the connection is not
+completed) we wait for connection to completed (transition to connected state)
+and then invoke disconnect.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><b><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-left:.5in'><b><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>Important: </span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Such state machine
+is needed only if Disconnect is initiated by something other than Bluetooth
+stack (for example device removal in our case). Bluetooth stack itself would
+not send disconnect before connect completion. If you adapt this sample for
+your device please evaluate whether your driver would require such state
+machine. For example, the echo client device does not need such state machine
+(although we use common connection code for client and the server).</span></p>
+
+<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Shutdown:
+     </span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Server
+     removes the SDP record and unregisters L2CAP server and PSM in
+     BthEchoSrvEvtDeviceSelfManagedIoCleanup (this callback is invoked by WDF
+     during device removal). It also disconnects any open connections (see
+     Connection rundown above).</span></li>
+</ul>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Client</span></b></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Startup:
+     </span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Client
+     retrieves local and server Bluetooth address in
+     BthEchoSrvEvtDeviceSelfManagedIoInit (this callback is invoked by WDF
+     during device start). Please note that server Bluetooth address would be
+     available regardless of presence of the server. Thus echo client device
+     start doesn’t fail even if echo server is not available.</span></li>
+ <li class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Connecting
+     to server: </span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Client
+     connects to echo server when application opens a handle to it
+     (BthEchoCliEvtDeviceFileCreate) and closes the connection on file close
+     (BthEchoCliEvtFileClose).</span></li>
+ <li class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Sending
+     and receiving data from server: </span></b><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif"'>When application writes data to the
+     client, client sends this data to server on the connection opened for the
+     given handle. Server would echo back this data. This data is retrieved by
+     the application using a read operation. Echo Sample Client doesn’t do any
+     draining of echoed data on its own. Application read/write are handled
+     using a parallel WDF I/O queue.</span></li>
+ <li class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Shutdown:
+     </span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Client
+     doesn’t need any specific shutdown code as connection open/close and read/write
+     are done within the context of application’s handle open.</span></li>
+</ul>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>RESOURCES</span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>For the
+latest release of the Windows device Driver Development Kit, see <a
+href="http://www.microsoft.com/whdc/">http://www.microsoft.com/whdc/</a>. For Bluetooth
+user mode APIs used in BthSrvInst.exe please see MSDN (<a
+href="http://msdn.microsoft.com">http://msdn.microsoft.com</a>).</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Please see
+the latest WDK release for documentation on Bluetooth and WDF.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>If you
+have questions on using or adapting this sample for your project, you can post
+your questions in the <a
+href="http://msdn.microsoft.com/newsgroups/default.asp?url=/newsgroups/loadframes.asp?icp=msdn&amp;slcid=us&amp;newsgroup=microsoft.public.development.device.drivers">Microsoft
+driver development newsgroup</a>. </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></p>
+
+<p align=center style='text-align:center'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a href="#top">Top of page</a> </span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in'>
+ <tr style='height:1.5pt'>
+  <td style='background:aqua;padding:.75pt .75pt .75pt .75pt;height:1.5pt'></td>
+ </tr>
+</table>
+
+<p><span style='font-size:7.5pt;font-family:"MS Sans Serif"'>© 2009 Microsoft Corporation.
+All rights reserved.</span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+</span></p>
+
+</div>
+
+</body>
+
+</html>
+

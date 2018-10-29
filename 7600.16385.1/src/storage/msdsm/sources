@@ -1,0 +1,47 @@
+MSC_WARNING_LEVEL=/W4 /WX
+
+TARGETNAME=msdsm
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(DDK_LIB_PATH)\mpio.lib \
+           $(DDK_LIB_PATH)\Rtlver.lib
+
+PRECOMPILED_INCLUDE=precomp.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj
+
+PASS0_PUBLISH=    \
+    {$(OBJ_PATH)\$O\msdsmwmi.h=$(DRIVERS_INC_PATH)\msdsmwmi.h}	\
+    {$(OBJ_PATH)\$O\msdsmdsm.h=$(DRIVERS_INC_PATH)\msdsmdsm.h}
+
+INCLUDES=..\inc;
+
+TARGET_DESTINATION=retail
+
+C_DEFINES=$(C_DEFINES) -D_WIN2K_COMPAT_SLIST_USAGE
+
+SOURCES= msdsm.rc       \
+         intrface.c     \
+         dsmmain.c      \
+         utils.c        \
+         wmi.c          \
+         msdsm.mof	\
+         msdsmdsm.mof
+
+RUN_WPP= $(SOURCES) -km
+
+NTTARGETFILE0= \
+    $(OBJ_PATH)\$(O)\msdsmwmi.h \
+    $(OBJ_PATH)\$(O)\msdsm.vbs	\
+    $(OBJ_PATH)\$(O)\msdsmdsm.h \
+    $(OBJ_PATH)\$(O)\msdsmdsm.vbs
+
+# Macro to create marker for Boot Driver embedded signing.
+BOOT_LOADER_CRITICAL=1
+
+RUN_WPP=$(SOURCES) -km -func:TracePrint((LEVEL,FLAGS,MSG,...))
+
+LOC_DRIVER_INFS=\
+ msdsm.inf \
+
+MISCFILES=dsmtrace.mof

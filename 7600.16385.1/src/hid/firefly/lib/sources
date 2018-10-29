@@ -1,0 +1,18 @@
+TARGETNAME=Luminous
+TARGETTYPE=LIBRARY 
+
+UMTYPE=windows
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+C_DEFINES= $(C_DEFINES) -DUNICODE -D_UNICODE
+
+SOURCES=\
+    luminous.cpp 
+
+INCLUDES=..\shared
+
+
+TARGETLIBS= $(SDK_LIB_PATH)\ole32.lib \
+            $(SDK_LIB_PATH)\oleaut32.lib 
+            

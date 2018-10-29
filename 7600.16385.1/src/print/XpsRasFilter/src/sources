@@ -1,0 +1,77 @@
+#   THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+#   ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+#   THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+#   PARTICULAR PURPOSE.
+#
+#   Copyright (c) Microsoft Corporation. All rights reserved
+#
+#   File Name:
+#
+#      sources
+#
+#   Abstract:
+#
+#      This file specifies how the Xps Rasterization Service sample
+#      filter is built.
+#
+
+TARGETNAME=xpsrasfilter
+TARGETTYPE=DYNLINK
+
+DLLENTRY=_DllMainCRTStartup
+
+SOURCES= \
+    dllentry.cpp \
+    xpsrasfilter.cpp \
+    omconvertor.cpp \
+    Exception.cpp \
+    WppTrace.cpp \
+    rasinterface.cpp \
+    PThandler.cpp \
+    BitmapHandler.cpp \
+    xpsrasfilter.rc \
+
+
+
+INCLUDES= \
+    $(DDK_INC_PATH); \
+
+TARGETLIBS= \
+    $(SDK_LIB_PATH)\uuid.lib \
+    $(SDK_LIB_PATH)\prntvpt.lib \
+    $(SDK_LIB_PATH)\Kernel32.lib \
+    $(SDK_LIB_PATH)\winspool.lib \
+    $(SDK_LIB_PATH)\ole32.lib \
+    $(SDK_LIB_PATH)\oleaut32.lib \
+    $(SDK_LIB_PATH)\Advapi32.lib \
+
+USE_OBJECT_ROOT=1
+
+USE_ATL=1
+USE_STL=1
+
+ATL_VER=70
+STL_VER=70
+
+#
+# The following flag prevents catch(...) blocks from catching
+# structural exceptions.
+#
+USE_NATIVE_EH=1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+USE_MSVCRT=1
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.h
+
+WPPHEADERSOURCES= \
+    WppTrace.h    \
+
+RUN_WPP=-ext:.cpp.cxx.h.hxx.inl -preserveext:.h.hxx.inl \
+    -p:XpsRasFilter $(SOURCES) -dll                     \
+
+!IF "$(BUILD_PASS)" == "PASS2" || "$(BUILD_PASS)" == "PASSALL"
+NTTARGETFILES=COPYDLL
+!ENDIF

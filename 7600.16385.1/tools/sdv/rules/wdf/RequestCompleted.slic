@@ -1,0 +1,133 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	Each request presented to the driver's default I/O queue must be completed 
+	unless the request is deferred or forwarded, or if WdfRequestStopAcknowledge is called.
+
+	Description: 
+        A request presented to the driver's default queue through one of the queue callback functions
+        must be completed before exit from the request scoping callback functions, 
+        except in the following cases:
+         1. The request was deferred (to DPC, WorkItem, etc.).
+         2. The request was forwarded to an I/O target or to another queue; 
+         3. The request was delivered to the framework (by calling WdfDeviceEnqueueRequest);
+         4. WdfRequestStopAcknowledge was called.
+
+         Request scoping callbacks are: EvtIoStop, EvtCleanupCallback or EvtDestroyCallback for 
+         the queue, EvtCleanupCallback or EvtDestroyCallback for the file object, EvtFileClose,
+         EvtFileCleanup, EvtDeviceSelfManagedIoSuspend, EvtDeviceSelfManagedIoFlush, 
+         EvtDeviceSelfManagedIoCleanup,EvtDeviceShutdownNotification, 
+         EvtDeviceSurpriseRemoval, EvtCleanupCallback or EvtDestroyCallback for the device,
+         EvtDriverUnload.
+
+         I/O queue callback functions for request presentation are: EvtIoDefault, EvtIoRead, EvtIoWrite, 
+         EvtIoDeviceControl, EvtIoInternalDeviceControl
+
+	Rule diagnostics:
+	"Request was not completed before exit from <Name of the callback>." 
+	
+	Rule applicability: 
+	  1. The rule only applies to the default Io queue.
+	  2. The rule only applies to non-filter drivers. 
+	  3. The rule only applies to the drivers that have at least one default Io Queue Event
+	     callback and at least one of the Request scoping callbacks registered.
+	  4. Only the requests that the Framework presented to driver’s Io Queue event 
+	     callbacks are considered (requests forwarded to the Io queue are not).
+	  5. If a Request is deferred, then the call of WdfRequestMarkCancelable or
+	     WdfDmaTransactionInitializeUsingRequest/WdfDmaTransactionInitialize
+	or WdfWorkItemEnqueue is used as an indication that the Request is being
+	deferred, and hence, the rule will always pass for such drivers. 
+	Another rule DeferredRequestCompleted checks that deferred requests
+	get completed.
+
+	Related rules: 
+	ReqNotCanceled, ReqIsNotCancelable, 
+	DeferredRequestCompleted, RequestCompletedLocal.
+
+*/
+
+
+
+#include "ntddk_slic.h"
+
+
+state{
+     enum {INIT1, REQPRESENTED} s = INIT1;
+} with guard (sdv_main, hrequest)
+
+[fun_WDF_IO_QUEUE_IO_DEFAULT
+,fun_WDF_IO_QUEUE_IO_READ
+,fun_WDF_IO_QUEUE_IO_WRITE
+,fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL
+,fun_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL
+].entry[guard $2]
+{
+   s = REQPRESENTED;
+}
+[ sdv_WdfRequestComplete
+, sdv_WdfRequestCompleteWithInformation
+, sdv_WdfRequestCompleteWithPriorityBoost  
+].entry[guard $1]
+{
+	halt;
+}
+[sdv_WdfRequestMarkCancelable
+,sdv_WdfRequestSend
+].entry[guard $1]
+{
+	halt;
+}
+[sdv_WdfIoTargetSendReadSynchronously  
+, sdv_WdfIoTargetSendWriteSynchronously
+, sdv_WdfIoTargetSendIoctlSynchronously 
+, sdv_WdfIoTargetSendInternalIoctlSynchronously 
+, sdv_WdfIoTargetSendInternalIoctlOthersSynchronously  
+, sdv_WdfDeviceEnqueueRequest
+, sdv_WdfDmaTransactionInitializeUsingRequest
+].entry[guard $2]
+{
+	halt;
+}
+[sdv_WdfDmaTransactionInitialize,
+sdv_WdfWorkItemEnqueue
+].entry
+{
+	halt;
+} 
+sdv_WdfRequestForwardToIoQueue.entry[guard $1]
+{
+	halt;
+}
+sdv_WdfRequestStopAcknowledge.entry[guard $1]
+{
+	  halt;
+}
+select one {
+  case: 
+   [  fun_WDF_IO_QUEUE_IO_STOP
+     | fun_WDF_IO_QUEUE_CONTEXT_CLEANUP_CALLBACK
+     | fun_WDF_IO_QUEUE_CONTEXT_DESTROY_CALLBACK
+     | fun_WDF_FILE_CONTEXT_CLEANUP_CALLBACK
+     | fun_WDF_FILE_CONTEXT_DESTROY_CALLBACK
+     | fun_WDF_FILE_CLOSE
+     | fun_WDF_FILE_CLEANUP
+     | fun_WDF_DEVICE_SELF_MANAGED_IO_SUSPEND
+     | fun_WDF_DEVICE_SELF_MANAGED_IO_FLUSH
+     | fun_WDF_DEVICE_SELF_MANAGED_IO_CLEANUP
+     | fun_WDF_DEVICE_SHUTDOWN_NOTIFICATION
+     | fun_WDF_DEVICE_SURPRISE_REMOVAL
+     | fun_WDF_DEVICE_CONTEXT_CLEANUP
+     | fun_WDF_DEVICE_CONTEXT_DESTROY
+     | fun_WDF_DRIVER_UNLOAD
+   ].exit
+{
+   if (s == REQPRESENTED)
+   {
+     abort "Request was not completed before exit from $fname.";
+   }
+   
+} 
+}
+
+

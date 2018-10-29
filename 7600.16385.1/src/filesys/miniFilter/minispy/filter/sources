@@ -1,0 +1,18 @@
+TARGETNAME=minispy
+TARGETTYPE=DRIVER
+DRIVERTYPE=FS
+LINKER_FLAGS=/map
+
+
+INCLUDES=$(INCLUDES);..\inc
+
+TARGETLIBS=$(TARGETLIBS) \
+           $(IFSKIT_LIB_PATH)\fltMgr.lib
+
+C_DEFINES=$(C_DEFINES) -D_WIN2K_COMPAT_SLIST_USAGE
+
+SOURCES=minispy.c   \
+        mspyLib.c   \
+        RegistrationData.c \
+        minispy.rc
+

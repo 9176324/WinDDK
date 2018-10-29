@@ -1,0 +1,41 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+	Summary: Checks that the driver does not complete canceled requests.
+	
+	Description: 
+	If the request has already been canceled, then it is no longer valid and the 
+	driver may not complete it. If the request was previously marked cancelable,
+	while unmarking it the driver must check that the request has not already been canceled. 
+	If this check is not made the driver may complete a request that has been freed.
+    
+	Rule diagnostics:
+	If WdfRequestUnmarkCancelable returns STATUS_CANCELLED and the driver
+	completes the request, this rule finds a defect.
+	
+*/
+
+#include "ntddk_slic.h"
+#define STATUS_CANCELLED    -1073741536
+
+ state{
+}
+
+watch sdv_WdfRequestUnmarkCancelable.entry.$1;
+
+sdv_WdfRequestUnmarkCancelable.exit[guard $1]
+{
+	if ($return !=STATUS_CANCELLED)
+	{
+		halt;
+	}
+}
+
+[sdv_WdfRequestComplete,
+sdv_WdfRequestCompleteWithInformation,
+sdv_WdfRequestCompleteWithPriorityBoost].entry[guard $1]
+ {
+	abort "$fname called with a request that may have status STATUS_CANCELLED.";
+ }
+		 

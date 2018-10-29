@@ -1,0 +1,14 @@
+TARGETNAME=fmm
+TARGETTYPE=DRIVER
+DRIVERTYPE=FS
+
+
+TARGETLIBS= $(TARGETLIBS) \
+            $(IFSKIT_LIB_PATH)\fltMgr.lib
+
+SOURCES=DataStore.c \
+        MetadataManagerInit.c \
+        operations.c \
+        support.c \
+        MetadataManager.rc
+

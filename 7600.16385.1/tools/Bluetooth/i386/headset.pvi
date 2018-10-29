@@ -1,0 +1,7 @@
+[Version]
+Name=Headset
+Service={00001108-0000-1000-8000-00805F9B34FB}
+
+[0x302]
+Name=Remove Audio Volume Control
+Format=BOOLEAN

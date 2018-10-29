@@ -1,0 +1,20 @@
+;BUILD Version 0000;
+;
+;Copyright (c) Microsoft Corporation. All rights reserved.
+;
+;Module Name:
+;
+;   SoftUSBLoopback.def 
+;
+;Abstract:
+;    Declares the module parameters
+;
+
+LIBRARY      "SoftUSBLoopback.DLL"
+
+EXPORTS
+    DllCanUnloadNow     PRIVATE
+    DllGetClassObject   PRIVATE
+    DllRegisterServer   PRIVATE
+    DllUnregisterServer PRIVATE
+

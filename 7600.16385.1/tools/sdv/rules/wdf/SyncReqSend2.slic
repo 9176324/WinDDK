@@ -1,0 +1,118 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+	Summary: This rule verifies that synchronous request sends have a non-zero timeout value set.
+
+	Description: If the driver calls WdfRequestSend without setting a valid timeout
+	 in the request options, the thread can be stalled if hardware does not respond promptly. 
+	 Depending on the dispatch level at which the thread is running, this can cause various 
+	 other issues for the OS.
+	
+	Rule diagnostics:
+	If the synchronous send flag is set in the request options:
+		The timeout value in the request options must be non-zero
+		The timeout flag must be set in the request options to indicate the timeout value is valid
+	If the above conditions are not satisfied, this rule reports a defect.
+
+*/
+
+#include "ntddk_slic.h"
+
+state{
+}
+
+
+
+/*
+Note:
+
+WDF_REQUEST_SEND_OPTION_TIMEOUT = 0x0000001
+WDF_REQUEST_SEND_OPTION_SYNCHRONOUS = 0x0000002
+WDF_REQUEST_SEND_OPTION_IGNORE_TARGET_STATE = 0x0000004 
+WDF_REQUEST_SEND_OPTION_SEND_AND_FORGET = 0x0000008
+ 
+
+ 
+let S=WDF_REQUEST_SEND_OPTION_SYNCHRONOUS is set 
+Let T=WDF_REQUEST_SEND_OPTION_TIMEOUT is  set 
+Let Z= options->Timeout ==0
+
+We are intereted in the case where the timeout is infinite:
+infinite wait= ST' + STZ
+		=S(T'+TZ)
+		=S(T'+Z)
+
+Let's consider the ST' part first:
+		Differnet possibilities:
+		Synchronous:    Timeout:    
+		0010			0001
+		0011			0011
+		0110			0101
+		0111			0111
+		1010			1001
+		1011			1011
+		1110			1101
+		1111			1111
+
+		 Intersection such that we have Synchronous&&(!Timeout):
+		 (we ignore all cases where bit 4 and any other bits are set
+		 since Send and forget flag cannot be se with any other flag)
+		 
+		 Options left over:
+		 0010		=2
+		 0101		=5
+		 
+Now Consider SZ:
+
+		I see no convenient way to simplify this down other than to
+		check sendOptions->Timeout and hope it's  not 0 in which case we 
+		don't need to worry about S.
+		Otherwise, we have to go check all cases where S.
+		We once again ignore all 1xxx leaving:
+		Options left over:
+			0010		=2 (we already covered this one above, so let's skip it)
+			0011		=3
+			0110		=6
+			0111		=7
+
+ */
+
+ 
+sdv_WdfRequestSend.entry
+{
+	if ($3!=NULL )
+	{
+	    if ($3->Flags==2 || $3->Flags==6)
+	    {	
+		abort "$fname used to forward a request synchronously without setting a timeout value.";
+	    }
+	    else if (($3->Timeout)==0)
+	    {	
+		if ($3->Flags==3 || $3->Flags==5 ||	$3->Flags==7 )	
+		{
+		    abort "$fname used to forward a request synchronously without setting a timeout value.";
+		}
+	    }
+	}
+
+}
+
+ 
+/*
+sdv_WdfRequestSend.entry
+{
+	if ($3!=NULL )
+	{
+	    if (getBit($3->Flags, syncBit))
+	    {	
+	        if ( !getBit($3->Flags, timeOutBit) && ($3->Timeout)==0)
+		{
+		    abort "$fname used to forward a request synchronously without timeout";
+		}
+	     }
+	}
+
+}
+
+*/	 

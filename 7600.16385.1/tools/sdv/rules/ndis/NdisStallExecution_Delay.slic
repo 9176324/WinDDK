@@ -1,0 +1,21 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    This rules checks that NdisStallExecution is venevr called with a delay greater that 50 millesec.
+	
+	  Description:
+    
+    Related Rule:
+    
+*/
+
+#include "ntddk_slic.h"
+
+sdv_NdisStallExecution.entry
+{  
+	
+        if ( $1 > 50) {
+            abort "The number of millisecond for $fname should be <= 50. Consider to use NdisMSleep instead.";
+        }
+}

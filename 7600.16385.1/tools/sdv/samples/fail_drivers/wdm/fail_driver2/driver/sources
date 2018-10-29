@@ -1,0 +1,14 @@
+TARGETNAME=driver
+TARGETTYPE=DRIVER
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+SOURCES = fail_driver2.c
+
+INCLUDES=..\Library;
+
+TARGETLIBS=$(OBJ_PATH)\..\library\$(O)\fail_library2.lib
+
+!IF "$(SDV_BUILD_AS_CPP)" != ""
+USER_C_FLAGS=$(USER_C_FLAGS) /TP
+!ENDIF

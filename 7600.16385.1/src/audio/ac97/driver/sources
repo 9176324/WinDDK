@@ -1,0 +1,23 @@
+TARGETNAME = ac97smpl
+TARGETTYPE = DRIVER
+
+TARGETLIBS= $(DDK_LIB_PATH)\portcls.lib  \
+            $(DDK_LIB_PATH)\stdunk.lib   \
+            $(SDK_LIB_PATH)\libcntpr.lib
+
+INCLUDES = ..
+
+MSC_WARNING_LEVEL = -W4 -WX
+
+C_DEFINES = $(CFASTFLAGS) $(C_DEFINES) -DUNICODE -D_UNICODE -DUNDER_NT -DINCLUDE_PRIVATE_PROPERTY -DPROPERTY_SHOW_SET
+
+SOURCES = adapter.cpp  \
+          common.cpp   \
+          mintopo.cpp  \
+          prophnd.cpp  \
+          ac97smpl.rc  \
+          wavepciminiport.cpp \
+          wavepcistream.cpp   \
+          rtminiport.cpp      \
+          rtstream.cpp
+

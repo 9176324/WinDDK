@@ -1,0 +1,27 @@
+TARGETNAME=StatBus
+TARGETTYPE=DRIVER
+
+
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\busenum.bmf
+
+INCLUDES=$(INCLUDES);..\..\inc\
+
+KMDF_VERSION_MAJOR=1
+
+INF_NAME=statbus
+
+TARGETLIBS=$(TARGETLIBS) \
+           $(DDK_LIB_PATH)\ntstrsafe.lib
+
+NTTARGETFILE1=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+
+PASS1_BINPLACE=$(NTTARGETFILE1)
+
+SOURCES= busenum.rc \
+         busenum.c \
+         buspdo.c \
+         wmi.c
+
+TARGET_DESTINATION=wdf
+

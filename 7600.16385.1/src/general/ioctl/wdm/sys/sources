@@ -1,0 +1,9 @@
+TARGETNAME=sioctl
+TARGETTYPE=DRIVER
+
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+
+SOURCES=sioctl.c sioctl.rc
+

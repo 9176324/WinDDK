@@ -1,0 +1,29 @@
+TARGETNAME = sampcpl
+TARGETTYPE = DYNLINK
+TARGETEXT  = cpl
+USE_MSVCRT=1
+
+DLLENTRY = _DllMainCRTStartup
+
+TARGETLIBS = $(TARGETLIBS)                \
+             $(SDK_LIB_PATH)\sti.lib      \
+             $(SDK_LIB_PATH)\comdlg32.lib \
+             $(SDK_LIB_PATH)\kernel32.lib \
+             $(SDK_LIB_PATH)\ole32.lib    \
+             $(SDK_LIB_PATH)\comctl32.lib \
+             $(SDK_LIB_PATH)\user32.lib   \
+
+INCLUDES = \
+           $(INCLUDES)     \
+           $(DDK_INC_PATH)
+
+SOURCES = \
+          sampcpl.rc \
+          sampcpl.cpp \
+
+MUI = 0
+MUI_COMMENT = TEMP_DISABLE, DDK sample
+
+
+
+

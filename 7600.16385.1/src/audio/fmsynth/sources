@@ -1,0 +1,24 @@
+TARGETNAME=fmsynth
+TARGETTYPE=LIBRARY
+
+
+C_DEFINES= $(C_DEFINES) -D_WIN32 -DUNICODE -D_UNICODE -DUNDER_NT
+
+#
+# Different levels of debug printage.  First is nothing but
+# catastrophic errors, last is everything under the sun.
+#
+#C_DEFINES= $(C_DEFINES) -DDEBUG_LEVEL=DEBUGLVL_ERROR
+C_DEFINES= $(C_DEFINES) -DDEBUG_LEVEL=DEBUGLVL_TERSE
+#C_DEFINES= $(C_DEFINES) -DDEBUG_LEVEL=DEBUGLVL_VERBOSE
+#C_DEFINES= $(C_DEFINES) -DDEBUG_LEVEL=DEBUGLVL_BLAB
+
+INCLUDES=                 \
+         ..\inc;          \
+         $(DDK_INC_PATH); \
+         $(WDM_INC_PATH);
+
+MSC_WARNING_LEVEL=-W4 -WX
+
+SOURCES= miniport.cpp
+

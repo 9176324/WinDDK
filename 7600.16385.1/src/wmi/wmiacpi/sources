@@ -1,0 +1,11 @@
+TARGETNAME=acpimof
+TARGETTYPE=DYNLINK
+
+SOURCES=\
+    acpimof.mof \
+    acpimof.rc
+	
+RESOURCE_ONLY_DLL=1
+
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\acpimof.vbs
+

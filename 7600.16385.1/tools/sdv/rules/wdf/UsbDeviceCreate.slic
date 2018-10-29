@@ -1,0 +1,39 @@
+
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	This rule verifies that WdfUsbTargetDeviceCreate is not called outside of EvtDevicePrepareHardware.
+	
+	Summary: This rule verifies WdfUsbTargetDeviceCreate is not called outside of EVT_WDF_DEVICE_PREPARE_HARDWARE.
+
+	Description: This rule verifies WdfUsbTargetDeviceCreate is not called outside of EVT_WDF_DEVICE_PREPARE_HARDWARE.
+    
+	Rule diagnostics:
+	This rule verifies WdfUsbTargetDeviceCreate is not called outside of EVT_WDF_DEVICE_PREPARE_HARDWARE.
+	
+*/
+
+
+#include "ntddk_slic.h"
+
+	state{
+		enum {inPrepHardware, INIT} s = INIT;
+	}
+
+	fun_WDF_DEVICE_PREPARE_HARDWARE.entry
+	{
+		s=inPrepHardware;
+	}
+	fun_WDF_DEVICE_PREPARE_HARDWARE.exit
+	{
+		s=INIT;
+	}
+
+	sdv_WdfUsbTargetDeviceCreate.entry
+	{	
+               if (s!=inPrepHardware)
+               {
+			abort "Cannot call WdfUsbTargetDeviceCreate outside of WDF_DEVICE_PREPARE_HARDWARE.";
+	       }
+	}

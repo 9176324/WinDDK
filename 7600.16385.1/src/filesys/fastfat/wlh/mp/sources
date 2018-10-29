@@ -1,0 +1,9 @@
+NT_UP=0
+
+TARGETNAME=fastfat
+TARGETTYPE=DRIVER
+DRIVERTYPE=FS
+
+!include ..\sources.inc
+
+

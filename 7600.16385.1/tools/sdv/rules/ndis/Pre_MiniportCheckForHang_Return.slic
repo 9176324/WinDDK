@@ -1,0 +1,21 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+    
+    Summary:
+    This property is satisfied if the MiniportCheckForHang returns TRUE.
+    
+    Description:
+    
+    Related Rule:
+    MiniportCheckForHang_Return.
+    
+*/
+
+#include "ntddk_slic.h"
+
+sdv_MINIPORT_CHECK_FOR_HANG.exit
+{
+    if ($return == TRUE) {
+        abort "This property is satisfied as the MiniportCheckForHang returns TRUE.";
+    }
+}

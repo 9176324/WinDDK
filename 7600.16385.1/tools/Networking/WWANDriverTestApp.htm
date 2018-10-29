@@ -1,0 +1,376 @@
+<html>
+
+<head>
+<!-- saved from url=(0014)about:internet -->
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<base target="_self">
+<title>WWAN DriverTestApp Development Tool</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	color:#365F91;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";
+	color:#4F81BD;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";
+	color:#4F81BD;}
+h4
+	{mso-style-link:"Heading 4 Char";
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-style:italic;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-link:"Comment Text Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:15.0pt;
+	margin-left:0in;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:15.0pt;
+	margin-left:0in;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
+	{mso-style-link:"Comment Subject Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Cambria","serif";
+	color:#17365D;
+	letter-spacing:.25pt;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;
+	font-style:italic;}
+span.CommentTextChar
+	{mso-style-name:"Comment Text Char";
+	mso-style-link:"Comment Text";}
+span.CommentSubjectChar
+	{mso-style-name:"Comment Subject Char";
+	mso-style-link:"Comment Subject";
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>WWAN DriverTestApp Development Tool </p>
+
+</div>
+
+<h1>Description</h1>
+
+<p class=MsoNormal style='text-align:justify'>The Wireless WAN DriverTestApp tool
+is an application to help developers verify that their WWAN miniport driver is providing
+correct responses to various WWAN operations. The application allows developers
+to progressively test their WWAN miniport driver by selecting its device interface
+and displaying the values and data structures of all Wireless WAN OIDs sent to
+the driver.</p>
+
+<h1>Installation</h1>
+
+<p class=MsoNormal style='text-align:justify'>The application is a single
+executable and does not require any special installation or un-installation
+procedure. </p>
+
+<p class=MsoNormal style='text-align:justify'>Note that launching the
+application will automatically stop the Wireless Wan Service (Wwansvc). The application
+will automatically restart the Wwansvc when you exit.</p>
+
+<h1>Using WwanDriverTestApp</h1>
+
+<p class=MsoNormal>Use the following procedure to test your WWAN miniport
+driver:</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Double-click on the <b>WwanDriverTestApp</b> icon to launch the
+application. Note that WwanDriverTestApp requires administrative privileges.
+Therefore allow it to run at the appropriate level of privilege, if you are
+prompted.</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Click the <b>GetInterfaces</b> button to refresh the list of WWAN
+interfaces. Note that you must manually click the <b>GetInterfaces</b> button
+to refresh the list every time you add or remove a WWAN device to the system.</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Select the interface on which you want to perform test operations by
+double-clicking on it in the center-pane.</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>To test QUERY/SET operations, double-click on the individual <b>QUERY
+OID_Xxx</b> or <b>SET OID_Xxx</b> operation from the list in left-side pane. WwanDriverTestApp
+then displays the request it sends to the miniport driver and the miniport
+driver's response in right-side pane. Note:<b> </b>For SET operations, WwanDriverTestApp
+prompts you for input parameters to pass with the SET request. Also note that no
+QUERY operations prompt you for any input parameters except for QUERY OID_WWAN_SMS_READ.
+</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>To test PIN operations, double-click on the individual <b>PIN1</b> or <b>PIN2</b>
+operation from the list in the left-side pane. </p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>To collect log information, select the text of the WWAN miniport driver's
+response from the right-side pane and save it into a text editor, such as
+Notepad.</p>
+
+<h1>Notes</h1>
+
+<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify'>By default, all QUERY/SET/PIN1/PIN2 operations performed by
+WwanDriverTestApp are time-stamped. You can disable time-stamping by unselecting
+<b>Show TimeStamps</b> from the Options menu.</p>
+
+<h1>File Manifest</h1>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=175 valign=top style='width:131.4pt;border:solid black 1.0pt;
+  background:#BFBFBF;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>File</p>
+  </td>
+  <td width=463 valign=top style='width:347.4pt;border:solid black 1.0pt;
+  border-left:none;background:#BFBFBF;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>Description</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=175 valign=top style='width:131.4pt;border:solid black 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>WwanDriverTestApp.exe</p>
+  </td>
+  <td width=463 valign=top style='width:347.4pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>The development test tool.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=175 valign=top style='width:131.4pt;border:solid black 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>readme.htm</p>
+  </td>
+  <td width=463 valign=top style='width:347.4pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'>This file.</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

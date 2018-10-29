@@ -1,0 +1,53 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that DDIs are only called at proper IRQL levels.
+*/
+
+#include "ntddk_slic.h"
+
+
+PsGetVersion.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+PsSetCreateProcessNotifyRoutine.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+PsSetCreateThreadNotifyRoutine.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+PsSetLoadImageNotifyRoutine.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+PsTerminateSystemThread.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+PsCreateSystemThread.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+

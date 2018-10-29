@@ -1,0 +1,25 @@
+TARGETNAME=firefly
+TARGETTYPE=DRIVER
+
+
+
+KMDF_VERSION_MAJOR=1
+
+INF_NAME=firefly
+
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\firefly.bmf
+NTTARGETFILE1=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+MISCFILES=$(NTTARGETFILE1)
+
+TARGETLIBS=$(TARGETLIBS) $(DDK_LIB_PATH)\hidparse.lib
+
+C_DEFINES= 
+
+SOURCES=driver.c   \
+        device.c   \
+        wmi.c      \
+        vfeature.c \
+        firefly.rc
+
+

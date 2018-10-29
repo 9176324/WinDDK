@@ -1,0 +1,31 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    Vendor's should not call NdisAllocateMemoryWithTag(Priority) with Tag parameter = 0;
+    
+    Description:
+    According to the documentation : 
+        "Specifies the pool tag for the allocated memory. Specify the pool tag as a character 
+         literal of up to four characters delimited by single quotation marks (for example, 'Tag1'). 
+         The string is usually specified in reverse order (for example, 'Tag1'). The ASCII value 
+         of each character in the tag must be between 0 and 127. Every allocation code path should 
+         use a unique pool tag to ensure that debuggers and verifiers identify a distinct allocated block."
+    
+    Moreover the underlying kernel call will assert.
+    
+    Related Rule:
+      
+*/
+
+#include "ntddk_slic.h"
+
+[sdv_NdisAllocateMemoryWithTagPriority].entry
+{  
+        if ($3 == 0) 
+        {
+            abort "WARNING: You are calling $fname with Tag==0. This is not a best practice. Please see WDK doc for more information.";
+        }
+}
+
+

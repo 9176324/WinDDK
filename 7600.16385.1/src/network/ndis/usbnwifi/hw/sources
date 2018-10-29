@@ -1,0 +1,31 @@
+!include ..\sources.inc
+
+TARGETNAME=hwextsta
+TARGETTYPE=LIBRARY
+KMDF_VERSION_MAJOR=1
+
+PRECOMPILED_INCLUDE=hw_pcomp.h
+PRECOMPILED_PCH=Hw_precomp.pch
+PRECOMPILED_OBJ=Hw_precomp.obj
+
+INCLUDES= $(INCLUDES)  ;      \
+    ..;                     \
+    ..\inc;               \
+    $(DDK_INC_PATH) ;       \
+    $(DDK_INC_PATH)\wdm
+
+SOURCES=                     \
+    hw_80211.c            \
+    hw_main.c              \
+    hw_nic.c               \
+    hw_oids.c              \
+    hw_Recv.c              \
+    hw_Send.c              \
+    hw_ccmp.c              \
+    Usb_main.c          \
+    usb_reg.c      \
+    bus_intf.c      \
+    usb_xmit.c        \
+    usb_recv.c         
+        
+

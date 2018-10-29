@@ -1,0 +1,11 @@
+TARGETNAME=cancel
+TARGETTYPE=DRIVER
+
+TARGETLIBS= \
+ $(DDK_LIB_PATH)\wdmsec.lib\
+ $(DDK_LIB_PATH)\csq.lib
+	
+   
+SOURCES=cancel.c cancel.rc
+
+MSC_WARNING_LEVEL=/W4 /WX

@@ -1,0 +1,2695 @@
+// PDB:  d:\5359.obj.ia64fre\drivers\wdf\kmdf\tests\tools\wdftester\driver\objfre\ia64\wdftester.pdb
+// PDB:  Last Updated :2010-2-9:4:37:54:917 (UTC) [tracepdb]
+3316a148-c5fb-384b-2a19-7effbc7ec6c0 driver // SRC=DdiFiProviderHooks.cpp MJ= MN=
+#typev  DdiFiProviderHooks_cpp45 10 "%0%10!s!: FI failing WdfChildListCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfChildListCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp103 11 "%0%10!s!: FI failing WdfChildListRetrieveAddressDescription with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfChildListRetrieveAddressDescription
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp168 12 "%0%10!s!: FI failing WdfChildListRetrieveNextDevice with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfChildListRetrieveNextDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp214 13 "%0%10!s!: FI failing WdfChildListAddOrUpdateChildDescriptionAsPresent with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfChildListAddOrUpdateChildDescriptionAsPresent
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp249 14 "%0%10!s!: FI failing WdfChildListUpdateChildDescriptionAsMissing with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfChildListUpdateChildDescriptionAsMissing
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp304 15 "%0%10!s!: FI failing WdfCollectionCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfCollectionCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp349 16 "%0%10!s!: FI failing WdfCollectionAdd with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfCollectionAdd
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp437 17 "%0%10!s!: FI failing WdfCommonBufferCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfCommonBufferCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp475 18 "%0%10!s!: FI failing WdfCommonBufferCreateWithConfig with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfCommonBufferCreateWithConfig
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp632 19 "%0%10!s!: FI failing WdfDeviceWdmDispatchPreprocessedIrp with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceWdmDispatchPreprocessedIrp
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp667 20 "%0%10!s!: FI failing WdfDeviceAddDependentUsageDeviceObject with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceAddDependentUsageDeviceObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp712 21 "%0%10!s!: FI failing WdfDeviceAddRemovalRelationsPhysicalDevice with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceAddRemovalRelationsPhysicalDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp776 22 "%0%10!s!: FI failing WdfDeviceRetrieveDeviceName with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceRetrieveDeviceName
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp811 23 "%0%10!s!: FI failing WdfDeviceAssignMofResourceName with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceAssignMofResourceName
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp886 24 "%0%10!s!: FI failing WdfDeviceAssignS0IdleSettings with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceAssignS0IdleSettings
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp921 25 "%0%10!s!: FI failing WdfDeviceAssignSxWakeSettings with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceAssignSxWakeSettings
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp959 26 "%0%10!s!: FI failing WdfDeviceOpenRegistryKey with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceOpenRegistryKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1086 27 "%0%10!s!: FI failing WdfDeviceInitRegisterPnpStateChangeCallback with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceInitRegisterPnpStateChangeCallback
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1123 28 "%0%10!s!: FI failing WdfDeviceInitRegisterPowerStateChangeCallback with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceInitRegisterPowerStateChangeCallback
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1160 29 "%0%10!s!: FI failing WdfDeviceInitRegisterPowerPolicyStateChangeCallback with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceInitRegisterPowerPolicyStateChangeCallback
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1252 30 "%0%10!s!: FI failing WdfDeviceInitAssignName with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceInitAssignName
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1287 31 "%0%10!s!: FI failing WdfDeviceInitAssignSDDLString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceInitAssignSDDLString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1367 32 "%0%10!s!: FI failing WdfDeviceInitAssignWdmIrpPreprocessCallback with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceInitAssignWdmIrpPreprocessCallback
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1413 33 "%0%10!s!: FI failing WdfDeviceCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1459 34 "%0%10!s!: FI failing WdfDeviceCreateDeviceInterface with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceCreateDeviceInterface
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1508 35 "%0%10!s!: FI failing WdfDeviceRetrieveDeviceInterfaceString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceRetrieveDeviceInterfaceString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1543 36 "%0%10!s!: FI failing WdfDeviceCreateSymbolicLink with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceCreateSymbolicLink
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1581 37 "%0%10!s!: FI failing WdfDeviceQueryProperty with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceQueryProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1619 38 "%0%10!s!: FI failing WdfDeviceAllocAndQueryProperty with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceAllocAndQueryProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1684 39 "%0%10!s!: FI failing WdfDeviceIndicateWakeStatus with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceIndicateWakeStatus
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1729 40 "%0%10!s!: FI failing WdfDeviceStopIdle with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceStopIdle
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1784 41 "%0%10!s!: FI failing WdfDeviceEnqueueRequest with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceEnqueueRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1830 42 "%0%10!s!: FI failing WdfDeviceConfigureRequestDispatching with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceConfigureRequestDispatching
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1877 43 "%0%10!s!: FI failing WdfDmaEnablerCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDmaEnablerCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp1965 44 "%0%10!s!: FI failing WdfDmaTransactionCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDmaTransactionCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2004 45 "%0%10!s!: FI failing WdfDmaTransactionInitialize with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDmaTransactionInitialize
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2041 46 "%0%10!s!: FI failing WdfDmaTransactionInitializeUsingRequest with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDmaTransactionInitializeUsingRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2076 47 "%0%10!s!: FI failing WdfDmaTransactionExecute with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDmaTransactionExecute
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2110 48 "%0%10!s!: FI failing WdfDmaTransactionRelease with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDmaTransactionRelease
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2231 49 "%0%10!s!: FI failing WdfDpcCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDpcCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2310 50 "%0%10!s!: FI failing WdfDriverCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDriverCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2367 51 "%0%10!s!: FI failing WdfDriverOpenParametersRegistryKey with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDriverOpenParametersRegistryKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2413 52 "%0%10!s!: FI failing WdfDriverRegisterTraceInfo with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDriverRegisterTraceInfo
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2448 53 "%0%10!s!: FI failing WdfDriverRetrieveVersionString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDriverRetrieveVersionString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2508 54 "%0%10!s!: FI failing WdfFdoInitOpenRegistryKey with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfFdoInitOpenRegistryKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2546 55 "%0%10!s!: FI failing WdfFdoInitQueryProperty with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfFdoInitQueryProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2584 56 "%0%10!s!: FI failing WdfFdoInitAllocAndQueryProperty with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfFdoInitAllocAndQueryProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2653 57 "%0%10!s!: FI failing WdfFdoQueryForInterface with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfFdoQueryForInterface
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2698 58 "%0%10!s!: FI failing WdfFdoAddStaticChild with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfFdoAddStaticChild
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2806 59 "%0%10!s!: FI failing WdfInterruptCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfInterruptCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp2954 60 "%0%10!s!: FI failing WdfIoQueueCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoQueueCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3040 61 "%0%10!s!: FI failing WdfIoQueueRetrieveNextRequest with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoQueueRetrieveNextRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3076 62 "%0%10!s!: FI failing WdfIoQueueRetrieveRequestByFileObject with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoQueueRetrieveRequestByFileObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3114 63 "%0%10!s!: FI failing WdfIoQueueFindRequest with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoQueueFindRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3150 64 "%0%10!s!: FI failing WdfIoQueueRetrieveFoundRequest with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoQueueRetrieveFoundRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3226 65 "%0%10!s!: FI failing WdfIoQueueReadyNotify with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoQueueReadyNotify
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3261 66 "%0%10!s!: FI failing WdfIoQueueAssignForwardProgressPolicy with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoQueueAssignForwardProgressPolicy
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3297 67 "%0%10!s!: FI failing WdfIoTargetCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3332 68 "%0%10!s!: FI failing WdfIoTargetOpen with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetOpen
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3384 69 "%0%10!s!: FI failing WdfIoTargetStart with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetStart
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3452 70 "%0%10!s!: FI failing WdfIoTargetQueryTargetProperty with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetQueryTargetProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3490 71 "%0%10!s!: FI failing WdfIoTargetAllocAndQueryTargetProperty with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetAllocAndQueryTargetProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3529 72 "%0%10!s!: FI failing WdfIoTargetQueryForInterface with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetQueryForInterface
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3608 73 "%0%10!s!: FI failing WdfIoTargetSendReadSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetSendReadSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3646 74 "%0%10!s!: FI failing WdfIoTargetFormatRequestForRead with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetFormatRequestForRead
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3685 75 "%0%10!s!: FI failing WdfIoTargetSendWriteSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetSendWriteSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3723 76 "%0%10!s!: FI failing WdfIoTargetFormatRequestForWrite with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetFormatRequestForWrite
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3763 77 "%0%10!s!: FI failing WdfIoTargetSendIoctlSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetSendIoctlSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3803 78 "%0%10!s!: FI failing WdfIoTargetFormatRequestForIoctl with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetFormatRequestForIoctl
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3843 79 "%0%10!s!: FI failing WdfIoTargetSendInternalIoctlSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetSendInternalIoctlSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3883 80 "%0%10!s!: FI failing WdfIoTargetFormatRequestForInternalIoctl with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetFormatRequestForInternalIoctl
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3924 81 "%0%10!s!: FI failing WdfIoTargetSendInternalIoctlOthersSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetSendInternalIoctlOthersSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp3966 82 "%0%10!s!: FI failing WdfIoTargetFormatRequestForInternalIoctlOthers with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoTargetFormatRequestForInternalIoctlOthers
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4005 83 "%0%10!s!: FI failing WdfMemoryCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfMemoryCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4042 84 "%0%10!s!: FI failing WdfMemoryCreatePreallocated with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfMemoryCreatePreallocated
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4089 85 "%0%10!s!: FI failing WdfMemoryAssignBuffer with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfMemoryAssignBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4126 86 "%0%10!s!: FI failing WdfMemoryCopyToBuffer with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfMemoryCopyToBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4163 87 "%0%10!s!: FI failing WdfMemoryCopyFromBuffer with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfMemoryCopyFromBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4202 88 "%0%10!s!: FI failing WdfLookasideListCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfLookasideListCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4237 89 "%0%10!s!: FI failing WdfMemoryCreateFromLookaside with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfMemoryCreateFromLookaside
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4276 90 "%0%10!s!: FI failing WdfDeviceMiniportCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceMiniportCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4332 91 "%0%10!s!: FI failing WdfObjectAllocateContext with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfObjectAllocateContext
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4402 92 "%0%10!s!: FI failing WdfObjectCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfObjectCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4448 93 "%0%10!s!: FI failing WdfObjectQuery with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfObjectQuery
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4504 94 "%0%10!s!: FI failing WdfPdoInitAssignDeviceID with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoInitAssignDeviceID
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4539 95 "%0%10!s!: FI failing WdfPdoInitAssignInstanceID with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoInitAssignInstanceID
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4574 96 "%0%10!s!: FI failing WdfPdoInitAddHardwareID with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoInitAddHardwareID
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4609 97 "%0%10!s!: FI failing WdfPdoInitAddCompatibleID with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoInitAddCompatibleID
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4644 98 "%0%10!s!: FI failing WdfPdoInitAssignContainerID with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoInitAssignContainerID
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4681 99 "%0%10!s!: FI failing WdfPdoInitAddDeviceText with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoInitAddDeviceText
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4726 100 "%0%10!s!: FI failing WdfPdoInitAssignRawDevice with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoInitAssignRawDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4769 101 "%0%10!s!: FI failing WdfPdoMarkMissing with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoMarkMissing
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4823 102 "%0%10!s!: FI failing WdfPdoRetrieveIdentificationDescription with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoRetrieveIdentificationDescription
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4858 103 "%0%10!s!: FI failing WdfPdoRetrieveAddressDescription with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoRetrieveAddressDescription
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4893 104 "%0%10!s!: FI failing WdfPdoUpdateAddressDescription with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoUpdateAddressDescription
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4928 105 "%0%10!s!: FI failing WdfPdoAddEjectionRelationsPhysicalDevice with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfPdoAddEjectionRelationsPhysicalDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp4982 106 "%0%10!s!: FI failing WdfDeviceAddQueryInterface with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfDeviceAddQueryInterface
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5020 107 "%0%10!s!: FI failing WdfRegistryOpenKey with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryOpenKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5060 108 "%0%10!s!: FI failing WdfRegistryCreateKey with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryCreateKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5113 109 "%0%10!s!: FI failing WdfRegistryRemoveKey with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryRemoveKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5148 110 "%0%10!s!: FI failing WdfRegistryRemoveValue with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryRemoveValue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5187 111 "%0%10!s!: FI failing WdfRegistryQueryValue with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryQueryValue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5226 112 "%0%10!s!: FI failing WdfRegistryQueryMemory with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryQueryMemory
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5263 113 "%0%10!s!: FI failing WdfRegistryQueryMultiString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryQueryMultiString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5300 114 "%0%10!s!: FI failing WdfRegistryQueryUnicodeString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryQueryUnicodeString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5336 115 "%0%10!s!: FI failing WdfRegistryQueryString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryQueryString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5372 116 "%0%10!s!: FI failing WdfRegistryQueryULong with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryQueryULong
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5410 117 "%0%10!s!: FI failing WdfRegistryAssignValue with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryAssignValue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5448 118 "%0%10!s!: FI failing WdfRegistryAssignMemory with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryAssignMemory
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5484 119 "%0%10!s!: FI failing WdfRegistryAssignMultiString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryAssignMultiString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5520 120 "%0%10!s!: FI failing WdfRegistryAssignUnicodeString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryAssignUnicodeString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5556 121 "%0%10!s!: FI failing WdfRegistryAssignString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryAssignString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5592 122 "%0%10!s!: FI failing WdfRegistryAssignULong with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRegistryAssignULong
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5628 123 "%0%10!s!: FI failing WdfRequestCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5665 124 "%0%10!s!: FI failing WdfRequestCreateFromIrp with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestCreateFromIrp
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5699 125 "%0%10!s!: FI failing WdfRequestReuse with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestReuse
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5734 126 "%0%10!s!: FI failing WdfRequestChangeTarget with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestChangeTarget
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5800 127 "%0%10!s!: FI failing WdfRequestGetStatus with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestGetStatus
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5845 128 "%0%10!s!: FI failing WdfRequestMarkCancelableEx with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestMarkCancelableEx
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5879 129 "%0%10!s!: FI failing WdfRequestUnmarkCancelable with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestUnmarkCancelable
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp5966 130 "%0%10!s!: FI failing WdfRequestAllocateTimer with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestAllocateTimer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6043 131 "%0%10!s!: FI failing WdfRequestRetrieveInputMemory with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestRetrieveInputMemory
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6078 132 "%0%10!s!: FI failing WdfRequestRetrieveOutputMemory with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestRetrieveOutputMemory
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6115 133 "%0%10!s!: FI failing WdfRequestRetrieveInputBuffer with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestRetrieveInputBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6152 134 "%0%10!s!: FI failing WdfRequestRetrieveOutputBuffer with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestRetrieveOutputBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6187 135 "%0%10!s!: FI failing WdfRequestRetrieveInputWdmMdl with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestRetrieveInputWdmMdl
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6222 136 "%0%10!s!: FI failing WdfRequestRetrieveOutputWdmMdl with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestRetrieveOutputWdmMdl
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6259 137 "%0%10!s!: FI failing WdfRequestRetrieveUnsafeUserInputBuffer with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestRetrieveUnsafeUserInputBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6296 138 "%0%10!s!: FI failing WdfRequestRetrieveUnsafeUserOutputBuffer with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestRetrieveUnsafeUserOutputBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6363 139 "%0%10!s!: FI failing WdfRequestProbeAndLockUserBufferForRead with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestProbeAndLockUserBufferForRead
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6400 140 "%0%10!s!: FI failing WdfRequestProbeAndLockUserBufferForWrite with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestProbeAndLockUserBufferForWrite
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6445 141 "%0%10!s!: FI failing WdfRequestForwardToIoQueue with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestForwardToIoQueue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6489 142 "%0%10!s!: FI failing WdfRequestRequeue with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestRequeue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6555 143 "%0%10!s!: FI failing WdfRequestForwardToParentDeviceIoQueue with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfRequestForwardToParentDeviceIoQueue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6610 144 "%0%10!s!: FI failing WdfIoResourceRequirementsListAppendIoResList with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoResourceRequirementsListAppendIoResList
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6646 145 "%0%10!s!: FI failing WdfIoResourceRequirementsListInsertIoResList with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoResourceRequirementsListInsertIoResList
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6723 146 "%0%10!s!: FI failing WdfIoResourceListCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoResourceListCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6758 147 "%0%10!s!: FI failing WdfIoResourceListAppendDescriptor with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoResourceListAppendDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6794 148 "%0%10!s!: FI failing WdfIoResourceListInsertDescriptor with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfIoResourceListInsertDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6881 149 "%0%10!s!: FI failing WdfCmResourceListAppendDescriptor with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfCmResourceListAppendDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6917 150 "%0%10!s!: FI failing WdfCmResourceListInsertDescriptor with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfCmResourceListInsertDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp6994 151 "%0%10!s!: FI failing WdfStringCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfStringCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7057 152 "%0%10!s!: FI failing WdfWaitLockCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfWaitLockCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7091 153 "%0%10!s!: FI failing WdfWaitLockAcquire with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfWaitLockAcquire
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7135 154 "%0%10!s!: FI failing WdfSpinLockCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfSpinLockCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7190 155 "%0%10!s!: FI failing WdfTimerCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfTimerCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7258 156 "%0%10!s!: FI failing WdfUsbTargetDeviceCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7293 157 "%0%10!s!: FI failing WdfUsbTargetDeviceRetrieveInformation with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceRetrieveInformation
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7339 158 "%0%10!s!: FI failing WdfUsbTargetDeviceRetrieveConfigDescriptor with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceRetrieveConfigDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7379 159 "%0%10!s!: FI failing WdfUsbTargetDeviceQueryString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceQueryString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7418 160 "%0%10!s!: FI failing WdfUsbTargetDeviceAllocAndQueryString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceAllocAndQueryString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7457 161 "%0%10!s!: FI failing WdfUsbTargetDeviceFormatRequestForString with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceFormatRequestForString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7503 162 "%0%10!s!: FI failing WdfUsbTargetDeviceSelectConfig with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceSelectConfig
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7548 163 "%0%10!s!: FI failing WdfUsbTargetDeviceRetrieveCurrentFrameNumber with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceRetrieveCurrentFrameNumber
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7587 164 "%0%10!s!: FI failing WdfUsbTargetDeviceSendControlTransferSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceSendControlTransferSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7625 165 "%0%10!s!: FI failing WdfUsbTargetDeviceFormatRequestForControlTransfer with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceFormatRequestForControlTransfer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7659 166 "%0%10!s!: FI failing WdfUsbTargetDeviceIsConnectedSynchronous with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceIsConnectedSynchronous
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7693 167 "%0%10!s!: FI failing WdfUsbTargetDeviceResetPortSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceResetPortSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7727 168 "%0%10!s!: FI failing WdfUsbTargetDeviceCyclePortSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceCyclePortSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7762 169 "%0%10!s!: FI failing WdfUsbTargetDeviceFormatRequestForCyclePort with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceFormatRequestForCyclePort
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7799 170 "%0%10!s!: FI failing WdfUsbTargetDeviceSendUrbSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceSendUrbSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7836 171 "%0%10!s!: FI failing WdfUsbTargetDeviceFormatRequestForUrb with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetDeviceFormatRequestForUrb
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7923 172 "%0%10!s!: FI failing WdfUsbTargetPipeWriteSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetPipeWriteSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7960 173 "%0%10!s!: FI failing WdfUsbTargetPipeFormatRequestForWrite with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetPipeFormatRequestForWrite
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp7998 174 "%0%10!s!: FI failing WdfUsbTargetPipeReadSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetPipeReadSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8035 175 "%0%10!s!: FI failing WdfUsbTargetPipeFormatRequestForRead with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetPipeFormatRequestForRead
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8070 176 "%0%10!s!: FI failing WdfUsbTargetPipeConfigContinuousReader with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetPipeConfigContinuousReader
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8106 177 "%0%10!s!: FI failing WdfUsbTargetPipeAbortSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetPipeAbortSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8141 178 "%0%10!s!: FI failing WdfUsbTargetPipeFormatRequestForAbort with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetPipeFormatRequestForAbort
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8177 179 "%0%10!s!: FI failing WdfUsbTargetPipeResetSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetPipeResetSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8212 180 "%0%10!s!: FI failing WdfUsbTargetPipeFormatRequestForReset with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetPipeFormatRequestForReset
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8249 181 "%0%10!s!: FI failing WdfUsbTargetPipeSendUrbSynchronously with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetPipeSendUrbSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8286 182 "%0%10!s!: FI failing WdfUsbTargetPipeFormatRequestForUrb with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbTargetPipeFormatRequestForUrb
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8364 183 "%0%10!s!: FI failing WdfUsbInterfaceSelectSetting with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfUsbInterfaceSelectSetting
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8487 184 "%0%10!s!: FI failing WdfWmiProviderCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfWmiProviderCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8555 185 "%0%10!s!: FI failing WdfWmiInstanceCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfWmiInstanceCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8589 186 "%0%10!s!: FI failing WdfWmiInstanceRegister with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfWmiInstanceRegister
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8654 187 "%0%10!s!: FI failing WdfWmiInstanceFireEvent with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfWmiInstanceFireEvent
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+#typev  DdiFiProviderHooks_cpp8690 188 "%0%10!s!: FI failing WdfWorkItemCreate with status: 0x%11!x! (STATUS_UNSUCCESSFUL)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIFIHOOK FUNC=FiHookWdfWorkItemCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+STATUS_UNSUCCESSFUL, ItemLong -- 11
+}
+// PDB:  d:\5359.obj.ia64fre\drivers\wdf\kmdf\tests\tools\wdftester\driver\objfre\ia64\wdftester.pdb
+// PDB:  Last Updated :2010-2-9:4:37:54:917 (UTC) [tracepdb]
+59f90a80-1e4d-f66a-e594-e0a537a798fa driver // SRC=wmi.cpp MJ= MN=
+#typev  wmi_cpp1668 13 "%0Driver %10!s! already registered with WdfTester" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_WMI FUNC=RegisterDriver
+{
+DriverName->Buffer, ItemWString -- 10
+}
+#typev  wmi_cpp1966 14 "%0Driver %10!s! not registered with WdfTester" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_WMI FUNC=UnregisterDriver
+{
+DriverName->Buffer, ItemWString -- 10
+}
+#typev  wmi_cpp1499 10 "%0ERROR: Failed to get DDI Call Info for driver %10!s! (status:0x%11!x!)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_WMI FUNC=WmiMethodGetDdiCallInfo
+{
+driverName.Buffer, ItemWString -- 10
+status, ItemLong -- 11
+}
+#typev  wmi_cpp2258 22 "%0Input driver name size of %10!d! exceeds max allowable string size of %11!d!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_WMI FUNC=WmiMethodGetDdiCallInfo
+{
+String->CbSize, ItemLong -- 10
+MAX_DRIVER_NAME_CB_SIZE, ItemLong -- 11
+}
+#typev  wmi_cpp2250 21 "%0WMI string %10!p!, Length %11!d! is odd, 0x%12!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_WMI FUNC=WmiMethodGetDdiCallInfo
+{
+String, ItemPtr -- 10
+String->CbSize, ItemLong -- 11
+status, ItemLong -- 12
+}
+#typev  wmi_cpp1636 12 "%0ERROR: Failed to register driver %10!s! with WdfTester (status:0x%11!x!)" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_WMI FUNC=WmiMethodRegisterDriver
+{
+driverName.Buffer, ItemWString -- 10
+status, ItemLong -- 11
+}
+#typev  wmi_cpp1629 11 "%0Driver %10!s! registered with WdfTester" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_WMI FUNC=WmiMethodRegisterDriver
+{
+driverName.Buffer, ItemWString -- 10
+}
+#typev  wmi_cpp2258 22 "%0Input driver name size of %10!d! exceeds max allowable string size of %11!d!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_WMI FUNC=WmiMethodRegisterDriver
+{
+String->CbSize, ItemLong -- 10
+MAX_DRIVER_NAME_CB_SIZE, ItemLong -- 11
+}
+#typev  wmi_cpp2250 21 "%0WMI string %10!p!, Length %11!d! is odd, 0x%12!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_WMI FUNC=WmiMethodRegisterDriver
+{
+String, ItemPtr -- 10
+String->CbSize, ItemLong -- 11
+status, ItemLong -- 12
+}
+#typev  wmi_cpp2258 22 "%0Input driver name size of %10!d! exceeds max allowable string size of %11!d!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_WMI FUNC=WmiMethodUnregisterDriver
+{
+String->CbSize, ItemLong -- 10
+MAX_DRIVER_NAME_CB_SIZE, ItemLong -- 11
+}
+#typev  wmi_cpp2250 21 "%0WMI string %10!p!, Length %11!d! is odd, 0x%12!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_WMI FUNC=WmiMethodUnregisterDriver
+{
+String, ItemPtr -- 10
+String->CbSize, ItemLong -- 11
+status, ItemLong -- 12
+}
+#typev  wmi_cpp2110 15 "%0Incorrect ddiIndex parameter %10!d!" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_WMI FUNC=WmiMethodConfigureDdiFi
+{
+faultData->DdiIndex, ItemLong -- 10
+}
+#typev  wmi_cpp2128 17 "%0Incorrect ddiIndex %10!d! (reason: You should not fail this DDI even though it returns NTSTATUS)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_WMI FUNC=WmiMethodConfigureDdiFi
+{
+faultData->DdiIndex, ItemLong -- 10
+}
+#typev  wmi_cpp2218 20 "%0FI disabled for Ddi: %10!s! (%11!d!), Driver: %12!s!" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_WMI FUNC=WmiMethodConfigureDdiFi
+{
+DdiInfoTable[faultData->DdiIndex].Name, ItemWString -- 10
+faultData->DdiIndex, ItemLong -- 11
+driverName.Buffer, ItemWString -- 12
+}
+#typev  wmi_cpp2211 19 "%0FI enabled for Ddi: %10!s! (%11!d!), Driver: %12!s!" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_WMI FUNC=WmiMethodConfigureDdiFi
+{
+DdiInfoTable[faultData->DdiIndex].Name, ItemWString -- 10
+faultData->DdiIndex, ItemLong -- 11
+driverName.Buffer, ItemWString -- 12
+}
+#typev  wmi_cpp2189 18 "%0Driver was either unregistered or unloaded" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_WMI FUNC=WmiMethodConfigureDdiFi
+{
+}
+#typev  wmi_cpp2258 22 "%0Input driver name size of %10!d! exceeds max allowable string size of %11!d!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_WMI FUNC=WmiMethodConfigureDdiFi
+{
+String->CbSize, ItemLong -- 10
+MAX_DRIVER_NAME_CB_SIZE, ItemLong -- 11
+}
+#typev  wmi_cpp2250 21 "%0WMI string %10!p!, Length %11!d! is odd, 0x%12!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_WMI FUNC=WmiMethodConfigureDdiFi
+{
+String, ItemPtr -- 10
+String->CbSize, ItemLong -- 11
+status, ItemLong -- 12
+}
+#typev  wmi_cpp2117 16 "%0Incorrect ddiIndex %10!d! (reason: This DDI does not return NTSTATUS)" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_WMI FUNC=WmiMethodConfigureDdiFi
+{
+faultData->DdiIndex, ItemLong -- 10
+}
+// PDB:  d:\5359.obj.ia64fre\drivers\wdf\kmdf\tests\tools\wdftester\driver\objfre\ia64\wdftester.pdb
+// PDB:  Last Updated :2010-2-9:4:37:54:917 (UTC) [tracepdb]
+5f3eb36b-a09d-33cb-a0a6-c404973f57d8 driver // SRC=iat.cpp MJ= MN=
+#typev  iat_cpp554 12 "%0ERROR: WdfLdr imports not found in driver %10!s!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_BIND FUNC=HookImports
+{
+ImageName->Buffer, ItemWString -- 10
+}
+#typev  iat_cpp174 11 "%0SUCCESS: WdfTester Enabled for driver %10!s!" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_BIND FUNC=LoadImageCallback
+{
+ImageName->Buffer, ItemWString -- 10
+}
+#typev  iat_cpp165 10 "%0ERROR: Failed to enable WdfTester for driver %10!s!, (one possible reason: driver not a KMDF driver) " //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_BIND FUNC=LoadImageCallback
+{
+ImageName->Buffer, ItemWString -- 10
+}
+// PDB:  d:\5359.obj.ia64fre\drivers\wdf\kmdf\tests\tools\wdftester\driver\objfre\ia64\wdftester.pdb
+// PDB:  Last Updated :2010-2-9:4:37:54:917 (UTC) [tracepdb]
+ad3dcdbb-346a-e23d-ab2d-ef5906defed1 driver // SRC=driver.cpp MJ= MN=
+#typev  driver_cpp1311 31 "%0driver name provided with Module registry value is invalid: 0x%10!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_INIT FUNC=CvQueryData
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp1272 30 "%0failed to open handle to parameters subkey, status: 0x%10!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_INIT FUNC=CvQueryData
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp1253 29 "%0failed to open handle to RegistryPath, status: 0x%10!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_INIT FUNC=CvQueryData
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp1368 32 "%0Invalid MULTI_SZ type string" //   LEVEL=TRACE_LEVEL_WARNING FLAGS=DBG_INIT FUNC=CvValidateMultiString
+{
+}
+#typev  driver_cpp1380 33 "%0Invalid MULTI_SZ type string" //   LEVEL=TRACE_LEVEL_WARNING FLAGS=DBG_INIT FUNC=CvValidateMultiString
+{
+}
+#typev  driver_cpp1152 25 "%0ERROR: Failed to register driver, status=0x%10!x!" //   LEVEL=TRACE_LEVEL_WARNING FLAGS=DBG_INIT FUNC=HookAtBootTime
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp1144 24 "%0ERROR: CheckSysExtension Failed, status=0x%10!x!" //   LEVEL=TRACE_LEVEL_WARNING FLAGS=DBG_INIT FUNC=HookAtBootTime
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp1137 23 "%0ERROR: RtlStringCbCopyNW Failed, status=0x%10!x!" //   LEVEL=TRACE_LEVEL_WARNING FLAGS=DBG_INIT FUNC=HookAtBootTime
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp1187 28 "%0SUCCESS: WdfTester Enabled for driver %10!s!" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_BIND FUNC=HookAtBootTime
+{
+driverName.Buffer, ItemWString -- 10
+}
+#typev  driver_cpp1178 27 "%0ERROR: Failed to enable WdfTester for driver %10!s!, (one possible reason: driver not a KMDF driver) " //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_BIND FUNC=HookAtBootTime
+{
+driverName.Buffer, ItemWString -- 10
+}
+#typev  driver_cpp1164 26 "%0ERROR: failed to get image base address: status: 0x%10!08x!" //   LEVEL=TRACE_LEVEL_WARNING FLAGS=DBG_INIT FUNC=HookAtBootTime
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp1121 22 "%0Invalid string at Module registry value, status: 0x%10!x!" //   LEVEL=TRACE_LEVEL_WARNING FLAGS=DBG_INIT FUNC=HookAtBootTime
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp1110 21 "%0failed to read Module registry value, status: 0x%10!x!" //   LEVEL=TRACE_LEVEL_WARNING FLAGS=DBG_INIT FUNC=HookAtBootTime
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp225 18 "%0DriverEntry failed, status: 0x%10!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_INIT FUNC=DriverEntry
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp199 17 "%0ERROR: failed to register load image callback, status: 0x%10!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_INIT FUNC=DriverEntry
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp181 16 "%0failed to get loader function addresses during driverentry(wdfldr may not be loaded for downlevel platforms), status: 0x%10!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_INIT FUNC=DriverEntry
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp154 15 "%0failed to create work item, status: 0x%10!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_INIT FUNC=DriverEntry
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp142 14 "%0failed WMI registraion in DriverEntry status: 0x%10!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_INIT FUNC=DriverEntry
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp122 13 "%0failed IoCreateDevice status: 0x%10!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_INIT FUNC=DriverEntry
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp106 12 "%0failed to initilaize global data, status: 0x%10!x!" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_INIT FUNC=DriverEntry
+{
+status, ItemLong -- 10
+}
+#typev  driver_cpp96 11 "%0Failing DriverEntry (DoNotLoadDriver set)" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_INIT FUNC=DriverEntry
+{
+}
+// PDB:  d:\5359.obj.ia64fre\drivers\wdf\kmdf\tests\tools\wdftester\driver\objfre\ia64\wdftester.pdb
+// PDB:  Last Updated :2010-2-9:4:37:54:917 (UTC) [tracepdb]
+#typev  driver_cpp91 10 "%0WdfTester DriverEntry Built %10!s! %11!s!" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_INIT FUNC=DriverEntry
+{
+__DATE__, ItemString -- 10
+__TIME__, ItemString -- 11
+}
+#typev  driver_cpp485 19 "%0ERROR: KMDF version used by %10!s! is incompatible with WdfTester version" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_BIND FUNC=CvHookWdfVersionBind
+{
+serviceName.Buffer, ItemWString -- 10
+}
+#typev  driver_cpp502 20 "%0ERROR: Failed to get critical WdfLoader Info" //   LEVEL=TRACE_LEVEL_ERROR FLAGS=DBG_BIND FUNC=CvHookWdfVersionBind
+{
+}
+// PDB:  d:\5359.obj.ia64fre\drivers\wdf\kmdf\tests\tools\wdftester\driver\objfre\ia64\wdftester.pdb
+// PDB:  Last Updated :2010-2-9:4:37:54:917 (UTC) [tracepdb]
+db646930-a308-690b-8bb1-88c7450d49ec driver // SRC=BaseHookStubs.cpp MJ= MN=
+#typev  BaseHookStubs_cpp58 10 "%0%10!s! calling WdfChildListCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp183 11 "%0%10!s! calling WdfChildListGetDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListGetDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp298 12 "%0%10!s! calling WdfChildListRetrievePdo" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListRetrievePdo
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp418 13 "%0%10!s! calling WdfChildListRetrieveAddressDescription" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListRetrieveAddressDescription
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp538 14 "%0%10!s! calling WdfChildListBeginScan" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListBeginScan
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp648 15 "%0%10!s! calling WdfChildListEndScan" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListEndScan
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp759 16 "%0%10!s! calling WdfChildListBeginIteration" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListBeginIteration
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp878 17 "%0%10!s! calling WdfChildListRetrieveNextDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListRetrieveNextDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp1003 18 "%0%10!s! calling WdfChildListEndIteration" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListEndIteration
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp1121 19 "%0%10!s! calling WdfChildListAddOrUpdateChildDescriptionAsPresent" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListAddOrUpdateChildDescriptionAsPresent
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp1244 20 "%0%10!s! calling WdfChildListUpdateChildDescriptionAsMissing" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListUpdateChildDescriptionAsMissing
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp1360 21 "%0%10!s! calling WdfChildListUpdateAllChildDescriptionsAsPresent" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListUpdateAllChildDescriptionsAsPresent
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp1472 22 "%0%10!s! calling WdfChildListRequestChildEject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfChildListRequestChildEject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp1591 23 "%0%10!s! calling WdfCollectionCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCollectionCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp1708 24 "%0%10!s! calling WdfCollectionGetCount" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCollectionGetCount
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp1823 25 "%0%10!s! calling WdfCollectionAdd" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCollectionAdd
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp1940 26 "%0%10!s! calling WdfCollectionRemove" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCollectionRemove
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp2055 27 "%0%10!s! calling WdfCollectionRemoveItem" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCollectionRemoveItem
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp2171 28 "%0%10!s! calling WdfCollectionGetItem" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCollectionGetItem
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp2288 29 "%0%10!s! calling WdfCollectionGetFirstItem" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCollectionGetFirstItem
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp2401 30 "%0%10!s! calling WdfCollectionGetLastItem" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCollectionGetLastItem
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp2518 31 "%0%10!s! calling WdfCommonBufferCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCommonBufferCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp2648 32 "%0%10!s! calling WdfCommonBufferCreateWithConfig" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCommonBufferCreateWithConfig
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp2777 33 "%0%10!s! calling WdfCommonBufferGetAlignedVirtualAddress" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCommonBufferGetAlignedVirtualAddress
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp2890 34 "%0%10!s! calling WdfCommonBufferGetAlignedLogicalAddress" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCommonBufferGetAlignedLogicalAddress
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp3003 35 "%0%10!s! calling WdfCommonBufferGetLength" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCommonBufferGetLength
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp3118 36 "%0%10!s! calling WdfControlDeviceInitAllocate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfControlDeviceInitAllocate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp3236 37 "%0%10!s! calling WdfControlDeviceInitSetShutdownNotification" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfControlDeviceInitSetShutdownNotification
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp3354 38 "%0%10!s! calling WdfControlFinishInitializing" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfControlFinishInitializing
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp3465 39 "%0%10!s! calling WdfDeviceGetDeviceState" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceGetDeviceState
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp3580 40 "%0%10!s! calling WdfDeviceSetDeviceState" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceSetDeviceState
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp3695 41 "%0%10!s! calling WdfWdmDeviceGetWdfDeviceHandle" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWdmDeviceGetWdfDeviceHandle
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp3808 42 "%0%10!s! calling WdfDeviceWdmGetDeviceObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceWdmGetDeviceObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp3921 43 "%0%10!s! calling WdfDeviceWdmGetAttachedDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceWdmGetAttachedDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp4034 44 "%0%10!s! calling WdfDeviceWdmGetPhysicalDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceWdmGetPhysicalDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp4149 45 "%0%10!s! calling WdfDeviceWdmDispatchPreprocessedIrp" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceWdmDispatchPreprocessedIrp
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp4268 46 "%0%10!s! calling WdfDeviceAddDependentUsageDeviceObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceAddDependentUsageDeviceObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp4385 47 "%0%10!s! calling WdfDeviceRemoveDependentUsageDeviceObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceRemoveDependentUsageDeviceObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp4502 48 "%0%10!s! calling WdfDeviceAddRemovalRelationsPhysicalDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceAddRemovalRelationsPhysicalDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp4619 49 "%0%10!s! calling WdfDeviceRemoveRemovalRelationsPhysicalDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceRemoveRemovalRelationsPhysicalDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp4733 50 "%0%10!s! calling WdfDeviceClearRemovalRelationsDevices" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceClearRemovalRelationsDevices
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp4844 51 "%0%10!s! calling WdfDeviceGetDriver" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceGetDriver
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp4959 52 "%0%10!s! calling WdfDeviceRetrieveDeviceName" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceRetrieveDeviceName
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp5078 53 "%0%10!s! calling WdfDeviceAssignMofResourceName" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceAssignMofResourceName
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp5195 54 "%0%10!s! calling WdfDeviceGetIoTarget" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceGetIoTarget
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp5308 55 "%0%10!s! calling WdfDeviceGetDevicePnpState" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceGetDevicePnpState
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp5421 56 "%0%10!s! calling WdfDeviceGetDevicePowerState" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceGetDevicePowerState
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp5534 57 "%0%10!s! calling WdfDeviceGetDevicePowerPolicyState" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceGetDevicePowerPolicyState
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp5649 58 "%0%10!s! calling WdfDeviceAssignS0IdleSettings" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceAssignS0IdleSettings
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp5768 59 "%0%10!s! calling WdfDeviceAssignSxWakeSettings" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceAssignSxWakeSettings
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp5890 60 "%0%10!s! calling WdfDeviceOpenRegistryKey" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceOpenRegistryKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp6020 61 "%0%10!s! calling WdfDeviceSetSpecialFileSupport" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceSetSpecialFileSupport
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp6139 62 "%0%10!s! calling WdfDeviceSetCharacteristics" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceSetCharacteristics
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp6254 63 "%0%10!s! calling WdfDeviceGetCharacteristics" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceGetCharacteristics
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp6367 64 "%0%10!s! calling WdfDeviceGetAlignmentRequirement" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceGetAlignmentRequirement
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp6480 65 "%0%10!s! calling WdfDeviceSetAlignmentRequirement" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceSetAlignmentRequirement
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp6594 66 "%0%10!s! calling WdfDeviceInitFree" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitFree
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp6705 67 "%0%10!s! calling WdfDeviceInitSetPnpPowerEventCallbacks" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetPnpPowerEventCallbacks
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp6820 68 "%0%10!s! calling WdfDeviceInitSetPowerPolicyEventCallbacks" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetPowerPolicyEventCallbacks
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp6935 69 "%0%10!s! calling WdfDeviceInitSetPowerPolicyOwnership" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetPowerPolicyOwnership
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp7054 70 "%0%10!s! calling WdfDeviceInitRegisterPnpStateChangeCallback" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitRegisterPnpStateChangeCallback
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp7183 71 "%0%10!s! calling WdfDeviceInitRegisterPowerStateChangeCallback" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitRegisterPowerStateChangeCallback
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp7312 72 "%0%10!s! calling WdfDeviceInitRegisterPowerPolicyStateChangeCallback" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitRegisterPowerPolicyStateChangeCallback
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp7437 73 "%0%10!s! calling WdfDeviceInitSetIoType" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetIoType
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp7552 74 "%0%10!s! calling WdfDeviceInitSetExclusive" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetExclusive
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp7666 75 "%0%10!s! calling WdfDeviceInitSetPowerNotPageable" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetPowerNotPageable
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp7776 76 "%0%10!s! calling WdfDeviceInitSetPowerPageable" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetPowerPageable
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp7886 77 "%0%10!s! calling WdfDeviceInitSetPowerInrush" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetPowerInrush
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp7997 78 "%0%10!s! calling WdfDeviceInitSetDeviceType" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetDeviceType
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp8114 79 "%0%10!s! calling WdfDeviceInitAssignName" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitAssignName
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp8233 80 "%0%10!s! calling WdfDeviceInitAssignSDDLString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitAssignSDDLString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp8350 81 "%0%10!s! calling WdfDeviceInitSetDeviceClass" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetDeviceClass
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp8466 82 "%0%10!s! calling WdfDeviceInitSetCharacteristics" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetCharacteristics
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp8586 83 "%0%10!s! calling WdfDeviceInitSetFileObjectConfig" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetFileObjectConfig
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp8705 84 "%0%10!s! calling WdfDeviceInitSetRequestAttributes" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetRequestAttributes
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp8825 85 "%0%10!s! calling WdfDeviceInitAssignWdmIrpPreprocessCallback" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitAssignWdmIrpPreprocessCallback
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp8954 86 "%0%10!s! calling WdfDeviceInitSetIoInCallerContextCallback" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceInitSetIoInCallerContextCallback
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp9072 87 "%0%10!s! calling WdfDeviceCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp9193 88 "%0%10!s! calling WdfDeviceSetStaticStopRemove" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceSetStaticStopRemove
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp9311 89 "%0%10!s! calling WdfDeviceCreateDeviceInterface" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceCreateDeviceInterface
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp9434 90 "%0%10!s! calling WdfDeviceSetDeviceInterfaceState" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceSetDeviceInterfaceState
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp9561 91 "%0%10!s! calling WdfDeviceRetrieveDeviceInterfaceString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceRetrieveDeviceInterfaceString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp9688 92 "%0%10!s! calling WdfDeviceCreateSymbolicLink" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceCreateSymbolicLink
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp9810 93 "%0%10!s! calling WdfDeviceQueryProperty" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceQueryProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp9944 94 "%0%10!s! calling WdfDeviceAllocAndQueryProperty" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceAllocAndQueryProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp10073 95 "%0%10!s! calling WdfDeviceSetPnpCapabilities" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceSetPnpCapabilities
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp10188 96 "%0%10!s! calling WdfDeviceSetPowerCapabilities" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceSetPowerCapabilities
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp10303 97 "%0%10!s! calling WdfDeviceSetBusInformationForChildren" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceSetBusInformationForChildren
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp10420 98 "%0%10!s! calling WdfDeviceIndicateWakeStatus" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceIndicateWakeStatus
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp10537 99 "%0%10!s! calling WdfDeviceSetFailed" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceSetFailed
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp10655 100 "%0%10!s! calling WdfDeviceStopIdle" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceStopIdle
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp10771 101 "%0%10!s! calling WdfDeviceResumeIdle" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceResumeIdle
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp10883 102 "%0%10!s! calling WdfDeviceGetFileObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceGetFileObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp11002 103 "%0%10!s! calling WdfDeviceEnqueueRequest" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceEnqueueRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp11119 104 "%0%10!s! calling WdfDeviceGetDefaultQueue" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceGetDefaultQueue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp11235 105 "%0%10!s! calling WdfDeviceConfigureRequestDispatching" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceConfigureRequestDispatching
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp11356 106 "%0%10!s! calling WdfDeviceGetSystemPowerAction" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceGetSystemPowerAction
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp11473 107 "%0%10!s! calling WdfDmaEnablerCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaEnablerCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp11598 108 "%0%10!s! calling WdfDmaEnablerGetMaximumLength" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaEnablerGetMaximumLength
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp11711 109 "%0%10!s! calling WdfDmaEnablerGetMaximumScatterGatherElements" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaEnablerGetMaximumScatterGatherElements
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp11824 110 "%0%10!s! calling WdfDmaEnablerSetMaximumScatterGatherElements" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaEnablerSetMaximumScatterGatherElements
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp11940 111 "%0%10!s! calling WdfDmaEnablerGetFragmentLength" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaEnablerGetFragmentLength
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp12058 112 "%0%10!s! calling WdfDmaEnablerWdmGetDmaAdapter" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaEnablerWdmGetDmaAdapter
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp12178 113 "%0%10!s! calling WdfDmaTransactionCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp12305 114 "%0%10!s! calling WdfDmaTransactionInitialize" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionInitialize
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp12442 115 "%0%10!s! calling WdfDmaTransactionInitializeUsingRequest" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionInitializeUsingRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp12569 116 "%0%10!s! calling WdfDmaTransactionExecute" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionExecute
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp12687 117 "%0%10!s! calling WdfDmaTransactionRelease" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionRelease
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp12801 118 "%0%10!s! calling WdfDmaTransactionDmaCompleted" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionDmaCompleted
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp12920 119 "%0%10!s! calling WdfDmaTransactionDmaCompletedWithLength" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionDmaCompletedWithLength
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp13043 120 "%0%10!s! calling WdfDmaTransactionDmaCompletedFinal" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionDmaCompletedFinal
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp13164 121 "%0%10!s! calling WdfDmaTransactionGetBytesTransferred" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionGetBytesTransferred
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp13277 122 "%0%10!s! calling WdfDmaTransactionSetMaximumLength" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionSetMaximumLength
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp13392 123 "%0%10!s! calling WdfDmaTransactionGetRequest" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionGetRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp13505 124 "%0%10!s! calling WdfDmaTransactionGetCurrentDmaTransferLength" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionGetCurrentDmaTransferLength
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp13618 125 "%0%10!s! calling WdfDmaTransactionGetDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDmaTransactionGetDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp13734 126 "%0%10!s! calling WdfDpcCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDpcCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp13845 127 "%0%10!s! calling WdfDpcEnqueue" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDpcEnqueue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp13950 128 "%0%10!s! calling WdfDpcCancel" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDpcCancel
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp14057 129 "%0%10!s! calling WdfDpcGetParentObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDpcGetParentObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp14160 130 "%0%10!s! calling WdfDpcWdmGetDpc" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDpcWdmGetDpc
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp14278 131 "%0%10!s! calling WdfDriverCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDriverCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp14407 132 "%0%10!s! calling WdfDriverGetRegistryPath" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDriverGetRegistryPath
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp14520 133 "%0%10!s! calling WdfDriverWdmGetDriverObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDriverWdmGetDriverObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp14637 134 "%0%10!s! calling WdfDriverOpenParametersRegistryKey" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDriverOpenParametersRegistryKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp14762 135 "%0%10!s! calling WdfWdmDriverGetWdfDriverHandle" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWdmDriverGetWdfDriverHandle
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp14878 136 "%0%10!s! calling WdfDriverRegisterTraceInfo" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDriverRegisterTraceInfo
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp15001 137 "%0%10!s! calling WdfDriverRetrieveVersionString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDriverRetrieveVersionString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp15120 138 "%0%10!s! calling WdfDriverIsVersionAvailable" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDriverIsVersionAvailable
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp15237 139 "%0%10!s! calling WdfFdoInitWdmGetPhysicalDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoInitWdmGetPhysicalDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp15355 140 "%0%10!s! calling WdfFdoInitOpenRegistryKey" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoInitOpenRegistryKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp15489 141 "%0%10!s! calling WdfFdoInitQueryProperty" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoInitQueryProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp15623 142 "%0%10!s! calling WdfFdoInitAllocAndQueryProperty" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoInitAllocAndQueryProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp15752 143 "%0%10!s! calling WdfFdoInitSetEventCallbacks" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoInitSetEventCallbacks
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp15866 144 "%0%10!s! calling WdfFdoInitSetFilter" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoInitSetFilter
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp15978 145 "%0%10!s! calling WdfFdoInitSetDefaultChildListConfig" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoInitSetDefaultChildListConfig
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp16103 146 "%0%10!s! calling WdfFdoQueryForInterface" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoQueryForInterface
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp16236 147 "%0%10!s! calling WdfFdoGetDefaultChildList" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoGetDefaultChildList
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp16351 148 "%0%10!s! calling WdfFdoAddStaticChild" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoAddStaticChild
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp16467 149 "%0%10!s! calling WdfFdoLockStaticChildListForIteration" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoLockStaticChildListForIteration
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp16581 150 "%0%10!s! calling WdfFdoRetrieveNextStaticChild" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoRetrieveNextStaticChild
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp16701 151 "%0%10!s! calling WdfFdoUnlockStaticChildListFromIteration" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFdoUnlockStaticChildListFromIteration
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp16812 152 "%0%10!s! calling WdfFileObjectGetFileName" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFileObjectGetFileName
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp16925 153 "%0%10!s! calling WdfFileObjectGetFlags" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFileObjectGetFlags
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp17038 154 "%0%10!s! calling WdfFileObjectGetDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFileObjectGetDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp17151 155 "%0%10!s! calling WdfFileObjectWdmGetFileObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfFileObjectWdmGetFileObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp17268 156 "%0%10!s! calling WdfInterruptCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp17392 157 "%0%10!s! calling WdfInterruptQueueDpcForIsr" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptQueueDpcForIsr
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp17507 158 "%0%10!s! calling WdfInterruptSynchronize" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptSynchronize
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp17628 159 "%0%10!s! calling WdfInterruptAcquireLock" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptAcquireLock
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp17739 160 "%0%10!s! calling WdfInterruptReleaseLock" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptReleaseLock
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp17849 161 "%0%10!s! calling WdfInterruptEnable" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptEnable
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp17959 162 "%0%10!s! calling WdfInterruptDisable" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptDisable
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp18071 163 "%0%10!s! calling WdfInterruptWdmGetInterrupt" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptWdmGetInterrupt
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp18184 164 "%0%10!s! calling WdfInterruptGetInfo" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptGetInfo
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp18301 165 "%0%10!s! calling WdfInterruptSetPolicy" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptSetPolicy
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp18424 166 "%0%10!s! calling WdfInterruptSetExtendedPolicy" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptSetExtendedPolicy
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp18538 167 "%0%10!s! calling WdfInterruptGetDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfInterruptGetDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp18655 168 "%0%10!s! calling WdfIoQueueCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp18782 169 "%0%10!s! calling WdfIoQueueGetState" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueGetState
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp18902 170 "%0%10!s! calling WdfIoQueueStart" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueStart
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp19014 171 "%0%10!s! calling WdfIoQueueStop" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueStop
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp19132 172 "%0%10!s! calling WdfIoQueueStopSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueStopSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp19243 173 "%0%10!s! calling WdfIoQueueGetDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueGetDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp19358 174 "%0%10!s! calling WdfIoQueueRetrieveNextRequest" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueRetrieveNextRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp19478 175 "%0%10!s! calling WdfIoQueueRetrieveRequestByFileObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueRetrieveRequestByFileObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp19604 176 "%0%10!s! calling WdfIoQueueFindRequest" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueFindRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp19736 177 "%0%10!s! calling WdfIoQueueRetrieveFoundRequest" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueRetrieveFoundRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp19856 178 "%0%10!s! calling WdfIoQueueDrainSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueDrainSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp19968 179 "%0%10!s! calling WdfIoQueueDrain" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueDrain
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp20086 180 "%0%10!s! calling WdfIoQueuePurgeSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueuePurgeSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp20198 181 "%0%10!s! calling WdfIoQueuePurge" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueuePurge
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp20320 182 "%0%10!s! calling WdfIoQueueReadyNotify" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueReadyNotify
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp20443 183 "%0%10!s! calling WdfIoQueueAssignForwardProgressPolicy" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoQueueAssignForwardProgressPolicy
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp20563 184 "%0%10!s! calling WdfIoTargetCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp20686 185 "%0%10!s! calling WdfIoTargetOpen" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetOpen
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp20802 186 "%0%10!s! calling WdfIoTargetCloseForQueryRemove" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetCloseForQueryRemove
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp20912 187 "%0%10!s! calling WdfIoTargetClose" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetClose
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp21024 188 "%0%10!s! calling WdfIoTargetStart" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetStart
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp21138 189 "%0%10!s! calling WdfIoTargetStop" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetStop
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp21253 190 "%0%10!s! calling WdfIoTargetGetState" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetGetState
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp21366 191 "%0%10!s! calling WdfIoTargetGetDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetGetDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp21484 192 "%0%10!s! calling WdfIoTargetQueryTargetProperty" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetQueryTargetProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp21618 193 "%0%10!s! calling WdfIoTargetAllocAndQueryTargetProperty" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetAllocAndQueryTargetProperty
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp21753 194 "%0%10!s! calling WdfIoTargetQueryForInterface" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetQueryForInterface
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp21886 195 "%0%10!s! calling WdfIoTargetWdmGetTargetDeviceObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetWdmGetTargetDeviceObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp21999 196 "%0%10!s! calling WdfIoTargetWdmGetTargetPhysicalDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetWdmGetTargetPhysicalDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp22112 197 "%0%10!s! calling WdfIoTargetWdmGetTargetFileObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetWdmGetTargetFileObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp22225 198 "%0%10!s! calling WdfIoTargetWdmGetTargetFileHandle" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetWdmGetTargetFileHandle
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp22344 199 "%0%10!s! calling WdfIoTargetSendReadSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetSendReadSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp22482 200 "%0%10!s! calling WdfIoTargetFormatRequestForRead" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetFormatRequestForRead
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp22617 201 "%0%10!s! calling WdfIoTargetSendWriteSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetSendWriteSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp22755 202 "%0%10!s! calling WdfIoTargetFormatRequestForWrite" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetFormatRequestForWrite
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp22891 203 "%0%10!s! calling WdfIoTargetSendIoctlSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetSendIoctlSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp23035 204 "%0%10!s! calling WdfIoTargetFormatRequestForIoctl" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetFormatRequestForIoctl
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp23179 205 "%0%10!s! calling WdfIoTargetSendInternalIoctlSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetSendInternalIoctlSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp23323 206 "%0%10!s! calling WdfIoTargetFormatRequestForInternalIoctl" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetFormatRequestForInternalIoctl
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp23468 207 "%0%10!s! calling WdfIoTargetSendInternalIoctlOthersSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetSendInternalIoctlOthersSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp23618 208 "%0%10!s! calling WdfIoTargetFormatRequestForInternalIoctlOthers" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoTargetFormatRequestForInternalIoctlOthers
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp23770 209 "%0%10!s! calling WdfMemoryCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfMemoryCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp23907 210 "%0%10!s! calling WdfMemoryCreatePreallocated" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfMemoryCreatePreallocated
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp24033 211 "%0%10!s! calling WdfMemoryGetBuffer" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfMemoryGetBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp24153 212 "%0%10!s! calling WdfMemoryAssignBuffer" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfMemoryAssignBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp24278 213 "%0%10!s! calling WdfMemoryCopyToBuffer" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfMemoryCopyToBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp24407 214 "%0%10!s! calling WdfMemoryCopyFromBuffer" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfMemoryCopyFromBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp24539 215 "%0%10!s! calling WdfLookasideListCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfLookasideListCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp24674 216 "%0%10!s! calling WdfMemoryCreateFromLookaside" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfMemoryCreateFromLookaside
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp24797 217 "%0%10!s! calling WdfDeviceMiniportCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceMiniportCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp24928 218 "%0%10!s! calling WdfDriverMiniportUnload" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDriverMiniportUnload
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp25040 219 "%0%10!s! calling WdfObjectGetTypedContextWorker" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfObjectGetTypedContextWorker
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp25158 220 "%0%10!s! calling WdfObjectAllocateContext" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfObjectAllocateContext
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp25279 221 "%0%10!s! calling WdfObjectContextGetObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfObjectContextGetObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp25393 222 "%0%10!s! calling WdfObjectReferenceActual" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfObjectReferenceActual
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp25517 223 "%0%10!s! calling WdfObjectDereferenceActual" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfObjectDereferenceActual
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp25642 224 "%0%10!s! calling WdfObjectCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfObjectCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp25758 225 "%0%10!s! calling WdfObjectDelete" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfObjectDelete
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp25873 226 "%0%10!s! calling WdfObjectQuery" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfObjectQuery
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp25999 227 "%0%10!s! calling WdfPdoInitAllocate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoInitAllocate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp26112 228 "%0%10!s! calling WdfPdoInitSetEventCallbacks" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoInitSetEventCallbacks
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp26229 229 "%0%10!s! calling WdfPdoInitAssignDeviceID" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoInitAssignDeviceID
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp26348 230 "%0%10!s! calling WdfPdoInitAssignInstanceID" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoInitAssignInstanceID
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp26467 231 "%0%10!s! calling WdfPdoInitAddHardwareID" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoInitAddHardwareID
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp26586 232 "%0%10!s! calling WdfPdoInitAddCompatibleID" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoInitAddCompatibleID
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp26705 233 "%0%10!s! calling WdfPdoInitAssignContainerID" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoInitAssignContainerID
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp26826 234 "%0%10!s! calling WdfPdoInitAddDeviceText" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoInitAddDeviceText
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp26951 235 "%0%10!s! calling WdfPdoInitSetDefaultLocale" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoInitSetDefaultLocale
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp27068 236 "%0%10!s! calling WdfPdoInitAssignRawDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoInitAssignRawDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp27184 237 "%0%10!s! calling WdfPdoInitAllowForwardingRequestToParent" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoInitAllowForwardingRequestToParent
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp27296 238 "%0%10!s! calling WdfPdoMarkMissing" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoMarkMissing
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp27408 239 "%0%10!s! calling WdfPdoRequestEject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoRequestEject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp27519 240 "%0%10!s! calling WdfPdoGetParent" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoGetParent
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp27634 241 "%0%10!s! calling WdfPdoRetrieveIdentificationDescription" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoRetrieveIdentificationDescription
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp27753 242 "%0%10!s! calling WdfPdoRetrieveAddressDescription" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoRetrieveAddressDescription
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp27872 243 "%0%10!s! calling WdfPdoUpdateAddressDescription" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoUpdateAddressDescription
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp27991 244 "%0%10!s! calling WdfPdoAddEjectionRelationsPhysicalDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoAddEjectionRelationsPhysicalDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp28108 245 "%0%10!s! calling WdfPdoRemoveEjectionRelationsPhysicalDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoRemoveEjectionRelationsPhysicalDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp28222 246 "%0%10!s! calling WdfPdoClearEjectionRelationsDevices" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfPdoClearEjectionRelationsDevices
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp28335 247 "%0%10!s! calling WdfDeviceAddQueryInterface" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfDeviceAddQueryInterface
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp28457 248 "%0%10!s! calling WdfRegistryOpenKey" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryOpenKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp28593 249 "%0%10!s! calling WdfRegistryCreateKey" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryCreateKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp28729 250 "%0%10!s! calling WdfRegistryClose" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryClose
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp28840 251 "%0%10!s! calling WdfRegistryWdmGetHandle" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryWdmGetHandle
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp28954 252 "%0%10!s! calling WdfRegistryRemoveKey" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryRemoveKey
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp29069 253 "%0%10!s! calling WdfRegistryRemoveValue" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryRemoveValue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp29192 254 "%0%10!s! calling WdfRegistryQueryValue" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryQueryValue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp29331 255 "%0%10!s! calling WdfRegistryQueryMemory" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryQueryMemory
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp29468 256 "%0%10!s! calling WdfRegistryQueryMultiString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryQueryMultiString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp29597 257 "%0%10!s! calling WdfRegistryQueryUnicodeString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryQueryUnicodeString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp29725 258 "%0%10!s! calling WdfRegistryQueryString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryQueryString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp29849 259 "%0%10!s! calling WdfRegistryQueryULong" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryQueryULong
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp29975 260 "%0%10!s! calling WdfRegistryAssignValue" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryAssignValue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp30109 261 "%0%10!s! calling WdfRegistryAssignMemory" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryAssignMemory
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp30241 262 "%0%10!s! calling WdfRegistryAssignMultiString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryAssignMultiString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp30365 263 "%0%10!s! calling WdfRegistryAssignUnicodeString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryAssignUnicodeString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp30489 264 "%0%10!s! calling WdfRegistryAssignString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryAssignString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp30613 265 "%0%10!s! calling WdfRegistryAssignULong" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRegistryAssignULong
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp30737 266 "%0%10!s! calling WdfRequestCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp30862 267 "%0%10!s! calling WdfRequestCreateFromIrp" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestCreateFromIrp
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp30988 268 "%0%10!s! calling WdfRequestReuse" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestReuse
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp31107 269 "%0%10!s! calling WdfRequestChangeTarget" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestChangeTarget
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp31223 270 "%0%10!s! calling WdfRequestFormatRequestUsingCurrentType" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestFormatRequestUsingCurrentType
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp31334 271 "%0%10!s! calling WdfRequestWdmFormatUsingStackLocation" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestWdmFormatUsingStackLocation
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp31452 272 "%0%10!s! calling WdfRequestSend" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestSend
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp31574 273 "%0%10!s! calling WdfRequestGetStatus" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestGetStatus
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp31687 274 "%0%10!s! calling WdfRequestMarkCancelable" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestMarkCancelable
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp31804 275 "%0%10!s! calling WdfRequestMarkCancelableEx" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestMarkCancelableEx
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp31922 276 "%0%10!s! calling WdfRequestUnmarkCancelable" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestUnmarkCancelable
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp32036 277 "%0%10!s! calling WdfRequestIsCanceled" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestIsCanceled
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp32149 278 "%0%10!s! calling WdfRequestCancelSentRequest" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestCancelSentRequest
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp32263 279 "%0%10!s! calling WdfRequestIsFrom32BitProcess" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestIsFrom32BitProcess
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp32377 280 "%0%10!s! calling WdfRequestSetCompletionRoutine" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestSetCompletionRoutine
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp32496 281 "%0%10!s! calling WdfRequestGetCompletionParams" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestGetCompletionParams
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp32612 282 "%0%10!s! calling WdfRequestAllocateTimer" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestAllocateTimer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp32725 283 "%0%10!s! calling WdfRequestComplete" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestComplete
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp32841 284 "%0%10!s! calling WdfRequestCompleteWithPriorityBoost" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestCompleteWithPriorityBoost
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp32961 285 "%0%10!s! calling WdfRequestCompleteWithInformation" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestCompleteWithInformation
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp33080 286 "%0%10!s! calling WdfRequestGetParameters" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestGetParameters
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp33197 287 "%0%10!s! calling WdfRequestRetrieveInputMemory" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestRetrieveInputMemory
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp33316 288 "%0%10!s! calling WdfRequestRetrieveOutputMemory" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestRetrieveOutputMemory
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp33437 289 "%0%10!s! calling WdfRequestRetrieveInputBuffer" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestRetrieveInputBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp33566 290 "%0%10!s! calling WdfRequestRetrieveOutputBuffer" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestRetrieveOutputBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp33693 291 "%0%10!s! calling WdfRequestRetrieveInputWdmMdl" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestRetrieveInputWdmMdl
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp33812 292 "%0%10!s! calling WdfRequestRetrieveOutputWdmMdl" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestRetrieveOutputWdmMdl
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp33933 293 "%0%10!s! calling WdfRequestRetrieveUnsafeUserInputBuffer" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestRetrieveUnsafeUserInputBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp34062 294 "%0%10!s! calling WdfRequestRetrieveUnsafeUserOutputBuffer" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestRetrieveUnsafeUserOutputBuffer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp34187 295 "%0%10!s! calling WdfRequestSetInformation" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestSetInformation
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp34302 296 "%0%10!s! calling WdfRequestGetInformation" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestGetInformation
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp34415 297 "%0%10!s! calling WdfRequestGetFileObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestGetFileObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp34532 298 "%0%10!s! calling WdfRequestProbeAndLockUserBufferForRead" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestProbeAndLockUserBufferForRead
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp34661 299 "%0%10!s! calling WdfRequestProbeAndLockUserBufferForWrite" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestProbeAndLockUserBufferForWrite
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp34786 300 "%0%10!s! calling WdfRequestGetRequestorMode" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestGetRequestorMode
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp34901 301 "%0%10!s! calling WdfRequestForwardToIoQueue" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestForwardToIoQueue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp35018 302 "%0%10!s! calling WdfRequestGetIoQueue" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestGetIoQueue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp35132 303 "%0%10!s! calling WdfRequestRequeue" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestRequeue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp35245 304 "%0%10!s! calling WdfRequestStopAcknowledge" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestStopAcknowledge
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp35360 305 "%0%10!s! calling WdfRequestWdmGetIrp" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestWdmGetIrp
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp35473 306 "%0%10!s! calling WdfRequestIsReserved" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestIsReserved
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp35589 307 "%0%10!s! calling WdfRequestForwardToParentDeviceIoQueue" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfRequestForwardToParentDeviceIoQueue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp35710 308 "%0%10!s! calling WdfIoResourceRequirementsListSetSlotNumber" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceRequirementsListSetSlotNumber
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp35825 309 "%0%10!s! calling WdfIoResourceRequirementsListSetInterfaceType" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceRequirementsListSetInterfaceType
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp35942 310 "%0%10!s! calling WdfIoResourceRequirementsListAppendIoResList" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceRequirementsListAppendIoResList
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp36062 311 "%0%10!s! calling WdfIoResourceRequirementsListInsertIoResList" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceRequirementsListInsertIoResList
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp36183 312 "%0%10!s! calling WdfIoResourceRequirementsListGetCount" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceRequirementsListGetCount
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp36297 313 "%0%10!s! calling WdfIoResourceRequirementsListGetIoResList" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceRequirementsListGetIoResList
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp36414 314 "%0%10!s! calling WdfIoResourceRequirementsListRemove" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceRequirementsListRemove
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp36529 315 "%0%10!s! calling WdfIoResourceRequirementsListRemoveByIoResList" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceRequirementsListRemoveByIoResList
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp36647 316 "%0%10!s! calling WdfIoResourceListCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceListCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp36770 317 "%0%10!s! calling WdfIoResourceListAppendDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceListAppendDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp36890 318 "%0%10!s! calling WdfIoResourceListInsertDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceListInsertDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp37012 319 "%0%10!s! calling WdfIoResourceListUpdateDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceListUpdateDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp37131 320 "%0%10!s! calling WdfIoResourceListGetCount" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceListGetCount
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp37245 321 "%0%10!s! calling WdfIoResourceListGetDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceListGetDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp37362 322 "%0%10!s! calling WdfIoResourceListRemove" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceListRemove
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp37477 323 "%0%10!s! calling WdfIoResourceListRemoveByDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfIoResourceListRemoveByDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp37594 324 "%0%10!s! calling WdfCmResourceListAppendDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCmResourceListAppendDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp37714 325 "%0%10!s! calling WdfCmResourceListInsertDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCmResourceListInsertDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp37835 326 "%0%10!s! calling WdfCmResourceListGetCount" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCmResourceListGetCount
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp37949 327 "%0%10!s! calling WdfCmResourceListGetDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCmResourceListGetDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp38066 328 "%0%10!s! calling WdfCmResourceListRemove" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCmResourceListRemove
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp38181 329 "%0%10!s! calling WdfCmResourceListRemoveByDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfCmResourceListRemoveByDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp38299 330 "%0%10!s! calling WdfStringCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfStringCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp38420 331 "%0%10!s! calling WdfStringGetUnicodeString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfStringGetUnicodeString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp38534 332 "%0%10!s! calling WdfObjectAcquireLock" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfObjectAcquireLock
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp38644 333 "%0%10!s! calling WdfObjectReleaseLock" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfObjectReleaseLock
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp38757 334 "%0%10!s! calling WdfWaitLockCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWaitLockCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp38878 335 "%0%10!s! calling WdfWaitLockAcquire" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWaitLockAcquire
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp38994 336 "%0%10!s! calling WdfWaitLockRelease" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWaitLockRelease
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp39107 337 "%0%10!s! calling WdfSpinLockCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfSpinLockCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp39224 338 "%0%10!s! calling WdfSpinLockAcquire" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfSpinLockAcquire
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp39335 339 "%0%10!s! calling WdfSpinLockRelease" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfSpinLockRelease
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp39449 340 "%0%10!s! calling WdfTimerCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfTimerCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp39571 341 "%0%10!s! calling WdfTimerStart" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfTimerStart
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp39690 342 "%0%10!s! calling WdfTimerStop" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfTimerStop
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp39807 343 "%0%10!s! calling WdfTimerGetParentObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfTimerGetParentObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp39923 344 "%0%10!s! calling WdfUsbTargetDeviceCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp40046 345 "%0%10!s! calling WdfUsbTargetDeviceRetrieveInformation" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceRetrieveInformation
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp40163 346 "%0%10!s! calling WdfUsbTargetDeviceGetDeviceDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceGetDeviceDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp40281 347 "%0%10!s! calling WdfUsbTargetDeviceRetrieveConfigDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceRetrieveConfigDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp40409 348 "%0%10!s! calling WdfUsbTargetDeviceQueryString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceQueryString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp40552 349 "%0%10!s! calling WdfUsbTargetDeviceAllocAndQueryString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceAllocAndQueryString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp40691 350 "%0%10!s! calling WdfUsbTargetDeviceFormatRequestForString" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceFormatRequestForString
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp40824 351 "%0%10!s! calling WdfUsbTargetDeviceGetNumInterfaces" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceGetNumInterfaces
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp40940 352 "%0%10!s! calling WdfUsbTargetDeviceSelectConfig" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceSelectConfig
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp41061 353 "%0%10!s! calling WdfUsbTargetDeviceWdmGetConfigurationHandle" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceWdmGetConfigurationHandle
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp41176 354 "%0%10!s! calling WdfUsbTargetDeviceRetrieveCurrentFrameNumber" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceRetrieveCurrentFrameNumber
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp41299 355 "%0%10!s! calling WdfUsbTargetDeviceSendControlTransferSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceSendControlTransferSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp41437 356 "%0%10!s! calling WdfUsbTargetDeviceFormatRequestForControlTransfer" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceFormatRequestForControlTransfer
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp41567 357 "%0%10!s! calling WdfUsbTargetDeviceIsConnectedSynchronous" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceIsConnectedSynchronous
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp41681 358 "%0%10!s! calling WdfUsbTargetDeviceResetPortSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceResetPortSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp41795 359 "%0%10!s! calling WdfUsbTargetDeviceCyclePortSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceCyclePortSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp41910 360 "%0%10!s! calling WdfUsbTargetDeviceFormatRequestForCyclePort" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceFormatRequestForCyclePort
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp42031 361 "%0%10!s! calling WdfUsbTargetDeviceSendUrbSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceSendUrbSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp42160 362 "%0%10!s! calling WdfUsbTargetDeviceFormatRequestForUrb" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceFormatRequestForUrb
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp42285 363 "%0%10!s! calling WdfUsbTargetPipeGetInformation" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeGetInformation
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp42400 364 "%0%10!s! calling WdfUsbTargetPipeIsInEndpoint" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeIsInEndpoint
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp42513 365 "%0%10!s! calling WdfUsbTargetPipeIsOutEndpoint" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeIsOutEndpoint
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp42626 366 "%0%10!s! calling WdfUsbTargetPipeGetType" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeGetType
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp42738 367 "%0%10!s! calling WdfUsbTargetPipeSetNoMaximumPacketSizeCheck" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeSetNoMaximumPacketSizeCheck
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp42854 368 "%0%10!s! calling WdfUsbTargetPipeWriteSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeWriteSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp42987 369 "%0%10!s! calling WdfUsbTargetPipeFormatRequestForWrite" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeFormatRequestForWrite
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp43117 370 "%0%10!s! calling WdfUsbTargetPipeReadSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeReadSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp43250 371 "%0%10!s! calling WdfUsbTargetPipeFormatRequestForRead" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeFormatRequestForRead
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp43377 372 "%0%10!s! calling WdfUsbTargetPipeConfigContinuousReader" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeConfigContinuousReader
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp43497 373 "%0%10!s! calling WdfUsbTargetPipeAbortSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeAbortSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp43620 374 "%0%10!s! calling WdfUsbTargetPipeFormatRequestForAbort" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeFormatRequestForAbort
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp43740 375 "%0%10!s! calling WdfUsbTargetPipeResetSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeResetSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp43863 376 "%0%10!s! calling WdfUsbTargetPipeFormatRequestForReset" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeFormatRequestForReset
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp43984 377 "%0%10!s! calling WdfUsbTargetPipeSendUrbSynchronously" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeSendUrbSynchronously
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp44113 378 "%0%10!s! calling WdfUsbTargetPipeFormatRequestForUrb" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeFormatRequestForUrb
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp44238 379 "%0%10!s! calling WdfUsbInterfaceGetInterfaceNumber" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbInterfaceGetInterfaceNumber
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp44352 380 "%0%10!s! calling WdfUsbInterfaceGetNumEndpoints" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbInterfaceGetNumEndpoints
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp44470 381 "%0%10!s! calling WdfUsbInterfaceGetDescriptor" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbInterfaceGetDescriptor
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp44589 382 "%0%10!s! calling WdfUsbInterfaceGetNumSettings" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbInterfaceGetNumSettings
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp44705 383 "%0%10!s! calling WdfUsbInterfaceSelectSetting" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbInterfaceSelectSetting
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp44828 384 "%0%10!s! calling WdfUsbInterfaceGetEndpointInformation" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbInterfaceGetEndpointInformation
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp44952 385 "%0%10!s! calling WdfUsbTargetDeviceGetInterface" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetDeviceGetInterface
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp45069 386 "%0%10!s! calling WdfUsbInterfaceGetConfiguredSettingIndex" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbInterfaceGetConfiguredSettingIndex
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp45182 387 "%0%10!s! calling WdfUsbInterfaceGetNumConfiguredPipes" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbInterfaceGetNumConfiguredPipes
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp45297 388 "%0%10!s! calling WdfUsbInterfaceGetConfiguredPipe" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbInterfaceGetConfiguredPipe
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp45418 389 "%0%10!s! calling WdfUsbTargetPipeWdmGetPipeHandle" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfUsbTargetPipeWdmGetPipeHandle
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp45528 390 "%0%10!s! calling WdfVerifierDbgBreakPoint" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfVerifierDbgBreakPoint
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp45637 391 "%0%10!s! calling WdfVerifierKeBugCheck" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfVerifierKeBugCheck
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp45768 392 "%0%10!s! calling WdfWmiProviderCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWmiProviderCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp45893 393 "%0%10!s! calling WdfWmiProviderGetDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWmiProviderGetDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp46007 394 "%0%10!s! calling WdfWmiProviderIsEnabled" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWmiProviderIsEnabled
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp46124 395 "%0%10!s! calling WdfWmiProviderGetTracingHandle" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWmiProviderGetTracingHandle
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp46241 396 "%0%10!s! calling WdfWmiInstanceCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWmiInstanceCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp46367 397 "%0%10!s! calling WdfWmiInstanceRegister" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWmiInstanceRegister
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp46479 398 "%0%10!s! calling WdfWmiInstanceDeregister" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWmiInstanceDeregister
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp46590 399 "%0%10!s! calling WdfWmiInstanceGetDevice" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWmiInstanceGetDevice
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp46703 400 "%0%10!s! calling WdfWmiInstanceGetProvider" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWmiInstanceGetProvider
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp46819 401 "%0%10!s! calling WdfWmiInstanceFireEvent" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWmiInstanceFireEvent
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp46943 402 "%0%10!s! calling WdfWorkItemCreate" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWorkItemCreate
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp47063 403 "%0%10!s! calling WdfWorkItemEnqueue" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWorkItemEnqueue
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp47174 404 "%0%10!s! calling WdfWorkItemGetParentObject" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWorkItemGetParentObject
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+#typev  BaseHookStubs_cpp47286 405 "%0%10!s! calling WdfWorkItemFlush" //   LEVEL=TRACE_LEVEL_INFORMATION FLAGS=DBG_DDIHOOK FUNC=wdftester_WdfWorkItemFlush
+{
+clientData->ClientImageName.Buffer, ItemWString -- 10
+}
+

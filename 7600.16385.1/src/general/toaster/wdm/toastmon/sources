@@ -1,0 +1,12 @@
+TARGETNAME=toastmon
+TARGETTYPE=DRIVER
+
+INCLUDES = ..\inc
+
+MSC_WARNING_LEVEL= /W4 /WX 
+
+SOURCES= toastmon.rc \
+         toastmon.c  \
+         wmi.c
+
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)

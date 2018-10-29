@@ -1,0 +1,86 @@
+!IF 0
+
+Author:
+
+    created  12-Apr-1990
+
+    02-Apr-1995 Sun 11:26:22 updated  
+        Add libprt.lib to the linklib list
+
+!ENDIF
+
+
+TARGETNAME=plotter
+TARGETLIBS=$(OBJ_PATH)\../lib/km/$(_OBJ_DIR)/*/plotlib.lib
+
+INCLUDES=./;../inc;../lib;../../lib;../../../inc
+
+C_DEFINES=$(C_DEFINES) -DSTRICT -DUNICODE
+
+!ifndef KM_DRIVER
+
+C_DEFINES=$(C_DEFINES) -DUSERMODE_DRIVER
+
+TARGETTYPE=DYNLINK
+
+USE_MSVCRT=1
+DLLENTRY=_DllMainCRTStartup
+
+TARGETLIBS=$(TARGETLIBS)                \
+           $(SDK_LIB_PATH)\winspool.lib \
+           $(SDK_LIB_PATH)\user32.lib   \
+           $(SDK_LIB_PATH)\kernel32.lib \
+           $(SDK_LIB_PATH)\advapi32.lib \
+           $(DDK_LIB_PATH)\umpdddi.lib  \
+           $(SDK_LIB_PATH)\ntdll.lib
+
+
+USE_NOLIBS=1
+
+!else
+
+TARGETTYPE=GDI_DRIVER
+
+TARGETLIBS=$(TARGETLIBS) \
+           $(SDK_LIB_PATH)\libcntpr.lib
+
+!endif
+
+!IFNDEF MSC_WARNING_LEVEL
+MSC_WARNING_LEVEL=/W3
+!ENDIF
+MSC_WARNING_LEVEL=$(MSC_WARNING_LEVEL) /WX
+
+SOURCES=pdevinfo.c  \
+        enable.c    \
+        plotform.c  \
+        bitblt.c    \
+        ropblt.c    \
+        htblt.c     \
+        transpos.c  \
+        htbmp1.c    \
+        htbmp4.c    \
+        compress.c  \
+        brush.c     \
+        pencolor.c  \
+        output.c    \
+        page.c      \
+        path.c      \
+        polygon.c   \
+        textout.c   \
+        escape.c    \
+        plotter.rc
+
+#UMRES=obj\*\plotter.res
+
+PRECOMPILED_INCLUDE=precomp.h
+
+!IF "$(BUILD_PASS)" == "PASS2" || "$(BUILD_PASS)" == "PASSALL"
+NTTARGETFILES=COPYDLL
+!ENDIF
+
+# Build with Vista libs but make sure sample can still run downlevel
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+WIN32_WINNT_VERSION =$(LATEST_WIN32_WINNT_VERSION)
+NTDDI_VERSION=$(LATEST_NTDDI_VERSION)
+

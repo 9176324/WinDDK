@@ -1,0 +1,22 @@
+TARGETNAME=flicker
+TARGETTYPE=PROGRAM
+USE_MSVCRT=1
+
+UMTYPE=console
+UMENTRY=main
+UMBASE=0x400000
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+C_DEFINES= $(C_DEFINES) -DUNICODE -D_UNICODE
+
+INCLUDES=..\shared
+
+TARGETLIBS= $(OBJ_PATH)\..\lib\$O\luminous.lib \
+            $(SDK_LIB_PATH)\ole32.lib \
+            $(SDK_LIB_PATH)\oleaut32.lib \
+            $(SDK_LIB_PATH)\wbemuuid.lib   
+
+SOURCES= firefly.cpp 
+
+_NT_TARGET_VERSION= $(_NT_TARGET_VERSION_WINXP)

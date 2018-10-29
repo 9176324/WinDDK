@@ -1,0 +1,30 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule specifies that dispatch routines must return at the
+	exact same IRQL level at which they were called.
+*/
+
+
+#include "ntddk_slic.h"
+
+/* Records the IRQL at the start of a dispatch routine: */
+state {
+    int start_irql = 0;
+}
+
+/* Latch the IRQL at dispatch start: */
+sdv_RunDispatchFunction.entry
+{
+    start_irql = sdv_irql_current;
+}
+
+/* Make sure that the IRQL has been restored: */
+sdv_RunDispatchFunction.exit
+{
+    if (start_irql != sdv_irql_current) {
+        abort "The dispatch routine does not return at the same IRQL level at which it was called";
+    }
+}

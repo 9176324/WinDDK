@@ -1,0 +1,88 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that DDIs are only called at proper IRQL levels.
+*/
+
+#include "ntddk_slic.h"
+
+
+MmAllocateNonCachedMemory.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+MmFreeNonCachedMemory.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+MmAllocatePagesForMdl.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+MmFreePagesFromMdl.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+MmLockPagableDataSection.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+MmLockPagableSectionByHandle.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+MmPageEntireDriver.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+MmResetDriverPaging.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+MmSecureVirtualMemory.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+MmUnlockPagableImageSection.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+MmUnsecureVirtualMemory.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+

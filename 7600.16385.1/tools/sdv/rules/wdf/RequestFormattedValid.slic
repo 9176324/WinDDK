@@ -1,0 +1,177 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	This rule verifies that the driver formats all requests before sending them to an I/O target,
+	and appropriately completes/deletes the request if the format fails.
+	
+	Description:
+	Before a request is sent, it must be appropriately formatted. If this fails then
+	the driver must handle this failure and complete the request with an error status.
+	
+	Rule diagnostics:
+	If WdfXxxFormatRequestForXXX fails, the driver must complete the request
+	or delete it and not pass it to WdfRequestSend. Otherwise, this rule reports a defect.
+	
+	
+*/
+
+#include "ntddk_slic.h"
+
+state 
+{
+	WDFREQUEST	req=NULL;
+}
+
+
+[sdv_WdfUsbTargetPipeFormatRequestForAbort,
+sdv_WdfUsbTargetPipeFormatRequestForRead,
+sdv_WdfUsbTargetPipeFormatRequestForReset,
+sdv_WdfUsbTargetPipeFormatRequestForUrb,
+sdv_WdfUsbTargetPipeFormatRequestForWrite,
+sdv_WdfUsbTargetDeviceFormatRequestForControlTransfer,
+sdv_WdfUsbTargetDeviceFormatRequestForCyclePort,
+sdv_WdfUsbTargetDeviceFormatRequestForString,
+sdv_WdfUsbTargetDeviceFormatRequestForUrb,
+sdv_WdfIoTargetFormatRequestForWrite,
+sdv_WdfIoTargetFormatRequestForIoctl,
+sdv_WdfIoTargetFormatRequestForInternalIoctl,
+sdv_WdfIoTargetFormatRequestForRead,
+sdv_WdfIoTargetFormatRequestForInternalIoctlOthers
+].exit
+{
+	if (NT_SUCCESS($return))
+	{
+		halt;
+	}
+}
+
+
+[sdv_WdfUsbTargetPipeFormatRequestForAbort,
+sdv_WdfUsbTargetPipeFormatRequestForRead,
+sdv_WdfUsbTargetPipeFormatRequestForReset,
+sdv_WdfUsbTargetPipeFormatRequestForUrb,
+sdv_WdfUsbTargetPipeFormatRequestForWrite,
+sdv_WdfUsbTargetDeviceFormatRequestForControlTransfer,
+sdv_WdfUsbTargetDeviceFormatRequestForCyclePort,
+sdv_WdfUsbTargetDeviceFormatRequestForString,
+sdv_WdfUsbTargetDeviceFormatRequestForUrb,
+sdv_WdfIoTargetFormatRequestForWrite,
+sdv_WdfIoTargetFormatRequestForIoctl,
+sdv_WdfIoTargetFormatRequestForInternalIoctl,
+sdv_WdfIoTargetFormatRequestForRead,
+sdv_WdfIoTargetFormatRequestForInternalIoctlOthers
+].entry 
+{	
+	if (req==NULL)
+	{
+		req=$2;
+	}
+}
+ 
+
+[sdv_WdfRequestComplete,
+ sdv_WdfRequestCompleteWithInformation,
+ sdv_WdfRequestCompleteWithPriorityBoost,
+ sdv_WdfObjectDelete].entry
+ {
+	if ($1==req && req!=NULL)
+	{
+		halt;
+	}
+ }
+ 
+[fun_WDF_IO_QUEUE_IO_WRITE,
+fun_WDF_IO_QUEUE_IO_READ,
+fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL,
+fun_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL,
+fun_WDF_IO_QUEUE_IO_DEFAULT].exit
+{
+	if (req!=NULL)
+	{
+		abort "WdfXxxFormatRequestForXxx failed. The request should be completed/deleted before exiting $fname.";
+	}
+}
+ 
+
+sdv_WdfRequestSend.entry
+{
+	if ($1==req)
+	{
+		if ($1==NULL)
+		{
+			abort "Cannot call $fname with request==NULL.";
+		}
+		else
+		{
+			abort "$fname called when the call to WdfXxxFormatRequestForXxx failed.";
+		}
+	}
+ 
+}
+
+
+ 
+ /*
+ 
+watch  sdv_WdfRequestSend.entry.$1;
+
+[sdv_WdfUsbTargetPipeFormatRequestForAbort,
+sdv_WdfUsbTargetPipeFormatRequestForRead,
+sdv_WdfUsbTargetPipeFormatRequestForReset,
+sdv_WdfUsbTargetPipeFormatRequestForUrb,
+sdv_WdfUsbTargetPipeFormatRequestForWrite,
+sdv_WdfUsbTargetDeviceFormatRequestForControlTransfer,
+sdv_WdfUsbTargetDeviceFormatRequestForCyclePort,
+sdv_WdfUsbTargetDeviceFormatRequestForString,
+sdv_WdfUsbTargetDeviceFormatRequestForUrb,
+sdv_WdfIoTargetFormatRequestForWrite,
+sdv_WdfIoTargetFormatRequestForIoctl,
+sdv_WdfIoTargetFormatRequestForInternalIoctl,
+sdv_WdfIoTargetFormatRequestForRead,
+sdv_WdfIoTargetFormatRequestForInternalIoctlOthers
+].exit[guard $2]
+{
+	if (NT_SUCCESS($return))
+	{
+		halt;
+	}
+	else
+	{
+		s=CALLED;
+	}
+}
+ 
+ 
+
+[sdv_WdfRequestComplete,
+ sdv_WdfRequestCompleteWithInformation,
+ sdv_WdfRequestCompleteWithPriorityBoost,
+ sdv_WdfObjectDelete].entry[guard $1]
+ {
+		halt;
+ }
+ 
+[fun_WDF_IO_QUEUE_IO_WRITE,
+fun_WDF_IO_QUEUE_IO_READ,
+fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL,
+fun_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL,
+fun_WDF_IO_QUEUE_IO_DEFAULT].exit
+ {
+	if (s==CALLED)
+	{
+		abort "WdfXxxFormatRequestForXxx failed, request not completed/deleted in $fname";
+	}
+ }
+
+ sdv_WdfRequestSend.entry[guard $1]
+ {
+		abort "$fname called when WdfXxxFormatRequestForXxx failed"; 
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ */

@@ -1,0 +1,51 @@
+
+TARGETNAME=WUDFToastMon
+TARGETTYPE=DYNLINK
+
+USE_MSVCRT=1
+
+USE_ATL=1
+ATL_VER=71
+
+UMDF_VERSION_MAJOR = 1
+
+INCLUDES=$(INCLUDES);$(ATL_INC_PATH)\atl30
+
+C_DEFINES = $(C_DEFINES)  /D_UNICODE /DUNICODE
+
+WIN32_WINNT_VERSION=$(LATEST_WIN32_WINNT_VERSION)
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+NTDDI_VERSION=$(LATEST_NTDDI_VERSION)
+
+DLLENTRY=_DllMainCRTStartup
+DLLDEF=exports.def
+
+SOURCES=\
+    ToastMon.rc \
+    comsup.cpp \
+    dllsup.cpp \
+    driver.cpp \
+    device.cpp \
+    remotetarget.cpp \
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+TARGETLIBS=\
+        $(SDK_LIB_PATH)\strsafe.lib     \
+        $(SDK_LIB_PATH)\kernel32.lib    \
+        $(SDK_LIB_PATH)\advapi32.lib    \
+        $(SDK_LIB_PATH)\oleaut32.lib
+
+
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\WUDFToastMon.inf
+
+TARGET_DESTINATION=wudf
+PASS0_BINPLACE=$(NTTARGETFILE0)
+
+#
+# This sets up the WPP preprocessor and tells it to scan internal.h to find
+# the trace function definition that's in there.
+#
+
+RUN_WPP= $(SOURCES) -dll -scan:internal.h
+

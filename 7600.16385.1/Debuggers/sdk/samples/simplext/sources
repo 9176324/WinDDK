@@ -1,0 +1,25 @@
+TARGETNAME=simple
+TARGETTYPE=DYNLINK
+
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+
+DLLENTRY=_DllMainCRTStartup
+
+!if "$(DBGSDK_INC_PATH)" != ""
+INCLUDES = $(DBGSDK_INC_PATH);$(INCLUDES)
+!endif
+!if "$(DBGSDK_LIB_PATH)" == ""
+DBGSDK_LIB_PATH = $(SDK_LIB_PATH)
+!else
+DBGSDK_LIB_PATH = $(DBGSDK_LIB_PATH)\$(TARGET_DIRECTORY)
+!endif
+
+TARGETLIBS=$(SDK_LIB_PATH)\kernel32.lib 
+
+USE_MSVCRT=1
+
+UMTYPE=windows
+
+SOURCES= simple.c   \
+         exts.c     \
+         simple.rc

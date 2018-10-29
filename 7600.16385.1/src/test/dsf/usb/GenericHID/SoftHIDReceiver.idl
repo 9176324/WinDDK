@@ -1,0 +1,124 @@
+/*++BUILD Version 0000
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Module Name:
+
+    SoftHIDReceiver.idl
+
+Abstract:
+    Library definition for SoftHIDReceiver
+
+--*/
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+    uuid(08A7504F-0F34-405f-BBAD-B8DCD994A9AD),
+    version(1.0),
+    helpstring("SoftHIDReceiver 1.0 Type Library")
+]
+library SoftHIDReceiver
+{
+    importlib("stdole2.tlb");
+    importlib("dsfif.tlb");
+
+    [
+        object,
+        uuid(80579B43-D7A8-4b30-BE3D-E968181B6D9A),
+        oleautomation,
+        dual,
+        nonextensible,
+        helpstring("IHIDDevice Interface"),
+        pointer_default(unique)
+    ]
+    interface IHIDDevice : IDispatch
+    {
+        [
+            propget, 
+            id(1), 
+            helpstring("Property: DSFDevice - get DSFDevice object")
+        ]
+        HRESULT DSFDevice([out, retval] DSFDevice** ppDSFDevice);
+        [
+            propget,
+            id(2), 
+            helpstring("Property: get_Logging - returns whether the device logging is on or not")
+        ]
+        HRESULT Logging( [out, retval]VARIANT_BOOL* logLevel );
+        [
+            propput,
+            id(2), 
+            helpstring("Property: put_Logging - Changes the device logging state")
+        ]
+        HRESULT Logging( [in]VARIANT_BOOL logLevel );
+        [
+            propget,
+            id(3), 
+            helpstring("Property: get_IdleTimeout - returns the default amount of time the device spends in between sending Input Reports")
+        ]
+        HRESULT IdleTimeout( [out, retval]UINT* IdleTimeout );
+        [
+            propput,
+            id(3), 
+            helpstring("Property: put_IdleTimeout - Changes the default amount of time the device spends in between sending Input Reports")
+        ]
+        HRESULT IdleTimeout( [in]UINT IdleTimeout );
+        [
+            id(4), 
+            helpstring("Method: Sets the endpoint diagnostics for the device")
+        ]
+        HRESULT SetEndpointDiagnostics( BYTE endpointNum, ULONG diagnosticType );
+        [
+            id(5),
+            helpstring("Method: Queues up an Input Report to Send")
+        ]
+        HRESULT QueueInputReport( [in]SAFEARRAY(VARIANT) psaInputReport, [in]UINT timeoutDuration );
+        [
+            id(6),
+            helpstring("Method: Starts processing Queue'd Input reports")
+        ]
+        HRESULT StartProcessing();
+        [
+            id(7),
+            helpstring("Method: Stops processing Queue'd Input Reports")
+        ]
+        HRESULT StopProcessing();
+        [
+            id(8),
+            helpstring("Method: Frees resources - call when you are finished with the simulation")
+        ]
+        HRESULT Destroy();
+        [
+            id(9),
+            helpstring("Method: Creates HID Descriptor based on input")
+        ]
+        HRESULT CreateCustomHIDDescriptor( [in]SAFEARRAY(VARIANT) psaHIDDescriptor );
+        [
+            id(10),
+            helpstring("Method: Creates Report Descriptor based on input")
+        ]
+        HRESULT CreateCustomReportDescriptor( [in]SAFEARRAY(VARIANT) psaReportDescriptor );
+        [
+            id(11),
+            helpstring("Method: Load the custom or default HID and Report Descriptors - call after creating descriptors")
+        ]
+        HRESULT ConfigureDevice();
+        [
+            id(12),
+            helpstring("Method: Creates the default HID and Report Descriptors")
+        ]
+        HRESULT BuildHIDDescriptors();        
+    };
+
+    [
+        uuid(8EE96FB6-E423-40f8-A321-4436D7D8CE49),
+        helpstring("HIDDevice Class")
+    ]
+    coclass HIDDevice
+    {
+        [default] interface IHIDDevice;
+    };
+};
+

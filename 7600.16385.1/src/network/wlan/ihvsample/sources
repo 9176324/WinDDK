@@ -1,0 +1,41 @@
+TARGETNAME=ihvsample
+TARGETTYPE=DYNLINK
+DLLDEF=ihvsample.def
+DLLENTRY=_DllMainCRTStartup
+
+C_DEFINES   = -DRPC_NO_WINDOWS_H -DUNICODE -D_UNICODE -DNO_STRICT -DWIN32
+
+USE_MSVCRT          = 1
+USE_STL             = 1
+
+PRECOMPILED_INCLUDE = precomp.h
+
+
+TARGETLIBS          =                                   \
+    $(SDK_LIB_PATH)\kernel32.lib                        \
+    $(SDK_LIB_PATH)\ntdll.lib                           \
+    $(SDK_LIB_PATH)\advapi32.lib                        \
+    $(SDK_LIB_PATH)\rpcrt4.lib                          \
+    $(SDK_LIB_PATH)\uuid.lib                            \
+    $(SDK_LIB_PATH)\user32.lib                          \
+    $(SDK_LIB_PATH)\wmip.lib                            \
+    $(SDK_LIB_PATH)\ole32.lib                           \
+    $(SDK_LIB_PATH)\oleaut32.lib                        \
+    $(SDK_LIB_PATH)\ws2_32.lib                          \
+    ..\ihvfrm\$(_BUILDARCH)\rc4utils.lib                \
+
+
+
+INCLUDES            =                                 \
+    $(BASEDIR)\net\wlan\ihvfrm\test\rc4utils;         \
+
+
+SOURCES             =               \
+    ihvsample.cpp                   \
+    utils.cpp                       \
+    adapters.cpp                    \
+    profile.cpp                     \
+    ihvwep.cpp                      \
+    ihvonexext.cpp                  \
+
+

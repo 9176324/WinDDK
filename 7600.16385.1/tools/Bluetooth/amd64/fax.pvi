@@ -1,0 +1,19 @@
+[Version]
+Name=FAX
+Service={00001111-0000-1000-8000-00805F9B34FB}
+
+[0x302]
+Name=FAX Class 1 Support
+Format=BOOLEAN
+
+[0x303]
+Name=FAX Class 2.0 Support
+Format=BOOLEAN
+
+[0x304]
+Name=FAX Class 2 Support
+Format=BOOLEAN
+
+[0x305]
+Name=FAX Audio Feedback Support
+Format=BOOLEAN

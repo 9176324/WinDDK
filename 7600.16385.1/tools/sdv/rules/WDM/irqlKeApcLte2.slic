@@ -1,0 +1,67 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that DDIs are only called at proper IRQL levels.
+*/
+
+#include "ntddk_slic.h"
+
+
+KeAreAllApcsDisabled.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+KeAreApcsDisabled.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+KeDeregisterNmiCallback.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+KeEnterCriticalRegion.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+KeEnterGuardedRegion.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+KeLeaveCriticalRegion.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+KeLeaveGuardedRegion.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+KeRegisterNmiCallback.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+

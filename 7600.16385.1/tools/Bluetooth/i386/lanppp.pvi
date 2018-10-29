@@ -1,0 +1,7 @@
+[Version]
+Name=LAN Access using PPP
+Service={00001102-0000-1000-8000-00805F9B34FB}
+
+[0x200]
+Name=LAN Access lpSubnet
+Format=STRING

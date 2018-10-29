@@ -1,0 +1,19 @@
+!include ..\..\sources.inc
+!include ..\sources.inc
+
+
+TARGETNAME=athwfpci
+TARGET_DESTINATION=wlan
+TARGETTYPE=DRIVER
+
+PRECOMPILED_INCLUDE=precomp.h
+
+SOURCES=$(SOURCES)            \
+    athwfpci.rc
+
+MISCFILES=$(OBJ_PATH)\$(O)\netawifi.inf
+NTTARGETFILES=$(OBJ_PATH)\$(O)\netawifi.inf
+
+TARGETLIBS=$(TARGETLIBS)      \
+    $(OBJ_PATH)\..\..\hw\atheros\$O\ath_hwpci.lib \
+    ..\..\lib\*\athhal.lib

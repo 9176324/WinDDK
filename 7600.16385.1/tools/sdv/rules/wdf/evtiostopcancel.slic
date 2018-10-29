@@ -1,0 +1,63 @@
+/*
+  Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+  Summary: This rule checks that WdfRequestComplete,WdfRequestCompleteWithInformation,WdfRequestCompleteWithPriorityBoost,WdfRequestCancelSentRequest or WdfRequestStopAcknowledge
+           should not be called from within EvtIoStop callback for requests that are marked cancelable.
+
+  Rule diagnostics:
+  "WdfRequestComplete,WdfRequestCompleteWithInformation,WdfRequestCompleteWithPriorityBoost,WdfRequestCancelSentRequest or WdfRequestStopAcknowledge 
+   should not be called from within EvtIoStop if the requests are marked cancelable."
+
+  Description: WdfRequestComplete,WdfRequestCompleteWithInformation,WdfRequestCompleteWithPriorityBoost,WdfRequestCancelSentRequest or WdfRequestStopAcknowledge 
+               should not be called from within EvtIoStop if the requests are marked cancelable.
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT, INSTOP} s = INIT;
+     enum {INIT1, REQISCANC} r = INIT1;
+}with guard (sdv_main, hrequest)
+[fun_WDF_IO_QUEUE_IO_STOP].entry[guard $2]
+{
+    s = INSTOP;               
+}
+[fun_WDF_IO_QUEUE_IO_STOP].exit[guard $2]
+{   
+	s= INIT;
+}
+sdv_WdfRequestMarkCancelable.entry[guard $1]
+{
+	r = REQISCANC; 
+}
+[ sdv_WdfRequestComplete
+, sdv_WdfRequestCompleteWithInformation
+, sdv_WdfRequestCompleteWithPriorityBoost
+, sdv_WdfRequestStopAcknowledge
+, sdv_WdfRequestCancelSentRequest
+].entry[guard $1]
+{
+   if((s == INSTOP)&&(r==REQISCANC))
+   {
+      abort "WdfRequestComplete,WdfRequestCompleteWithInformation,WdfRequestCompleteWithPriorityBoost or WdfRequestStopAcknowledge should not be called from within EvtIoStop if the request is marked cancelable.";
+   }
+   else
+   {
+      halt;
+   }
+}
+
+sdv_WdfRequestUnmarkCancelable.exit[guard $1]
+{
+	   
+    if(s == INSTOP) 
+    {
+      r = INIT1;        
+    }
+}
+
+
+
+

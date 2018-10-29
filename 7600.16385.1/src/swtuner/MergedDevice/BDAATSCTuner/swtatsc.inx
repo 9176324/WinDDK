@@ -1,0 +1,105 @@
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+[Version]
+signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Msft%
+DriverVer=06/21/2006,6.0.5752.0
+CatalogFile=SWTATSC.cat
+
+[ControlFlags]
+;ExcludeFromSelect=*
+
+[SourceDisksNames]
+1 = %BDA_DISK%,"",
+
+[SourceDisksFiles]
+SWTATSC.sys     = 1
+
+[DestinationDirs]
+SWTATSC.CopyFiles=10,system32\drivers
+
+[Manufacturer]
+%Msft%=Microsoft,NTx86,NTamd64
+
+[Microsoft.NTx86]
+%SWTATSC.DeviceDesc%=SWTATSC,ms_swtatsc
+
+[Microsoft.NTamd64]
+%SWTATSC.DeviceDesc%=SWTATSC,ms_swtatsc
+
+
+[SWTATSC.NTx86]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTATSC.inf
+CopyFiles=SWTATSC.CopyFiles
+
+[SWTATSC.NTamd64]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTATSC.inf
+CopyFiles=SWTATSC.CopyFiles
+
+;---------------------------------------------------------------
+;                I n t e r f a c e s
+;---------------------------------------------------------------
+
+[SWTATSC.NTx86.Interfaces]
+AddInterface=%KSCATEGORY_SWTATSC%,%KSSTRING_SWTATSCFilter%,TunerInterface.NT,
+
+[SWTATSC.NTamd64.Interfaces]
+AddInterface=%KSCATEGORY_SWTATSC%,%KSSTRING_SWTATSCFilter%,TunerInterface.NT,
+
+[TunerInterface.NT]
+AddReg=SWTATSC.Reader.AddReg
+
+
+
+;---------------------------------------------------------------
+;                A d d R e g
+;---------------------------------------------------------------
+[SWTATSC.Reader.AddReg]
+;HKR,,DevLoader,,*NTKERN
+;HKR,,NTMPDriver,,SWTATSC.sys
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%SWTATSC.FriendlyName%
+
+[SWTATSC.CopyFiles]
+SWTATSC.sys
+
+[SWTATSC.NTx86.Services]
+AddService=SWTATSC, 0x00000002, SWTATSC.ServiceInstall
+
+[SWTATSC.NTamd64.Services]
+AddService=SWTATSC, 0x00000002, SWTATSC.ServiceInstall
+
+[SWTATSC.ServiceInstall]
+DisplayName=%SWTATSC.DeviceDesc%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%10%\system32\drivers\SWTATSC.sys
+LoadOrderGroup=Extended Base
+
+[Strings]
+; non-localizeable
+RunOnce="SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce"
+SWTATSC.DeviceId="{0E7E99D3-8A1C-11DB-BDA1-00123F758252}"
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSSTRING_SWTATSCFilter="{0E7E99D4-8A1C-11DB-BDA1-00123F758252}"
+KSCATEGORY_SWTATSC="{71985F48-1CA1-11d3-9CC8-00C04F7971E0}"
+
+
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+
+;localizeable
+Msft="Microsoft"
+SWTATSC.DeviceDesc="BDA ATSC Sample Tuner Device"
+SWTATSC.FilterDesc="BDA ATSC Sample Tuner Filter"
+BDA_DISK = "S/W BDA ATSC Sample Tuner Drivers disk"
+SWTATSC.FriendlyName="BDA ATSC Sample Tuner"
+
+

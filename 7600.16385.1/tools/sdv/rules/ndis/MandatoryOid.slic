@@ -1,0 +1,43 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    This rule checks that the driver supports all of the mandatory OIDs
+    
+    Description:
+    List of manadtory OIDS:
+         Mandatory OIDs for Query:
+            OID_GEN_INTERRUPT_MODERATION
+            OID_GEN_LINK_PARAMETERS
+            OID_GEN_MAXIMUM_FRAME_SIZE
+            OID_GEN_MAXIMUM_TOTAL_SIZE
+            OID_GEN_RCV_OK
+            OID_GEN_RECEIVE_BLOCK_SIZE
+            OID_GEN_RECEIVE_BUFFER_SPACE
+            OID_GEN_STATISTICS
+            OID_GEN_TRANSMIT_BLOCK_SIZE
+            OID_GEN_TRANSMIT_BUFFER_SPACE
+            OID_GEN_VENDOR_DESCRIPTION
+            OID_GEN_VENDOR_DRIVER_VERSION
+            OID_GEN_VENDOR_ID
+            OID_GEN_XMIT_OK
+    
+          Mandatory OIDs for Set:
+            OID_GEN_CURRENT_LOOKAHEAD
+            OID_GEN_CURRENT_PACKET_FILTER
+            OID_GEN_INTERRUPT_MODERATION
+            OID_GEN_LINK_PARAMETERS
+    
+    Related Rule:
+    
+*/
+
+#include "ntddk_slic.h"
+
+sdv_MINIPORT_OID_REQUEST.exit
+{
+    if ($return == NDIS_STATUS_INVALID_OID || $return == NDIS_STATUS_NOT_SUPPORTED) 
+    {
+        abort "$fname does not implement all of the required OIDs";
+    }
+}

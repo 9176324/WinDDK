@@ -1,0 +1,14 @@
+TARGETNAME=sfloppy
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(DDK_LIB_PATH)\classpnp.lib
+
+INCLUDES=..\..\..\inc;..\inc
+
+SOURCES=sfloppy.rc  \
+        floppy.c
+
+MSC_WARNING_LEVEL = /W4 /WX
+
+TARGET_DESTINATION=retail
+

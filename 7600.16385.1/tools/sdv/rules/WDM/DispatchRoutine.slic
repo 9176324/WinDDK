@@ -1,0 +1,22 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	The property is satisfied if the driver defines a dispatch routine.
+    
+*/
+
+#include "ntddk_slic.h"
+		 
+[sdv_CheckDispatchRoutines].exit
+{
+  if($return)
+  {
+    abort "The property is satisfied as the driver defines a dispatch routine.";
+  }
+}
+
+		 
+       
+

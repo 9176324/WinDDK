@@ -1,0 +1,59 @@
+TARGETNAME= InputKbd
+TARGETTYPE=DYNLINK
+
+DLLENTRY=_DllMainCRTStartup
+
+DLLDEF=InputKbd.def
+
+USE_NATIVE_EH=ASYNC
+
+MUI = 0
+MUI_COMMENT=TEST_TOOL, Device Simulation Framework
+
+PRECOMPILED_CXX = 1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+USE_ATL = 1
+ATL_VER = 70
+
+USE_MSVCRT = 1
+
+
+BUILD_PASS0_PRODUCES=BaseToolDsfInputKbdIdl
+
+
+
+C_DEFINES = $(C_DEFINES) -DUNICODE
+
+PRECOMPILED_CXX=1
+
+TARGETLIBS= \
+           $(SDK_LIB_PATH)\kernel32.lib \
+           $(SDK_LIB_PATH)\user32.lib \
+           $(SDK_LIB_PATH)\advapi32.lib \
+           $(SDK_LIB_PATH)\ole32.lib \
+           $(SDK_LIB_PATH)\oleaut32.lib \
+           $(SDK_LIB_PATH)\uuid.lib \
+           $(SDK_LIB_PATH)\shlwapi.lib \
+
+
+INCLUDES=\
+        $(INCLUDES); \
+        ..\inc; \
+    
+	
+SOURCES= \
+	InputKbd.idl \
+	InputKbd.cpp \
+        SoftKbdTranslator.cpp \
+        SoftKeyboard.cpp \
+	messagetask.cpp \
+        task.cpp \
+        InputKbd.rc \
+        $(OBJ_PATH)\$(O)\InputKbd_i.c \
+
+
+TARGET_DESTINATION=retail:DSF\Test\USBHid:DSF\ProgramFiles\dsf\USBHid
+
+

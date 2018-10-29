@@ -1,0 +1,22 @@
+TARGETNAME=genport
+TARGETTYPE=DRIVER
+
+KMDF_VERSION_MAJOR=1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+INF_NAME=genport
+
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+MISCFILES=$(NTTARGETFILE0)
+
+
+C_DEFINES= 
+
+SOURCES=driver.c  \
+        device.c  \
+        queue.c
+
+
+

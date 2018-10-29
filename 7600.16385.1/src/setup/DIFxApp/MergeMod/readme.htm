@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>DIFxApp MergeMod</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2900.2802" name=GENERATOR><!-- #BeginEditable "doctitle" --><!-- #EndEditable --></HEAD>
+<BODY link=#0000FF><FONT face=Verdana size=5>
+<H2>Driver Install Frameworks for Applications (DIFxApp) </H2></FONT><FONT face=Verdana size=2>
+<P style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px"><a href="#Note">Note </a> 
+
+<P style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px"><a href="#Intro">Introduction to the DIFXAPP Toaster Driver Installation Sample
+</a> 
+<P style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px"><a href="#Create">Creating the Setup Package</a> 
+<P style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px"><a href="#Install">Installing the Setup Package</a> 
+<H3><A name=Note></A>Note</H3>
+<P>This sample works only on an x86 Windows operating system. However, the techniques illustrated in this sample apply to  Windows operating systems for other architectures as well.<BR>&nbsp; 
+<H3><A name=Intro></A>Introduction to the Toaster PnP Installation Sample</H3>
+<P>This sample demonstrates how to use the DIFxApp merge module (DIFxApp.msm) to install a driver package that is included in a Microsoft Windows Installer (Windows Installer) installation package for an application. This sample uses the sample Plug and Play driver package that is provided in the Windows Driver Development Kit (DDK). The src\setup\DIFxSampleDriverPackages\x86\PlugAndPlay directory in the DDK contains the files that make up the Plug and Play driver package sample. </P>
+<H3><a name="Create"></a>Creating the Setup Package</H3>
+<P>DIFxApp.msm can be added to the Windows Installer installation package either while the package is being created or after it has been created.
+
+</P>
+<P>Method 1: Adding DIFxApp.msm to the installation package after it has been created.
+
+</P>
+<P>The DIFxAppSample.msi file in the directory src\setup\UsingDIFxApp\MergeModule is an installation package that contains the Plug and Play driver package. To add DIFxApp.msm to DIFxAppSample.msi, do the following steps:
+
+</P>
+<P>1. Use the orca.exe tool to merge the merge module DIFxApp.msm with DIFxAppSample.msi. DIFxApp.msm is located in the DIFxApp directory. The orca.exe tool is included with the Windows Installer software development kit (SDK). </P>
+<P>For example, type the following at the command-line prompt:
+     </P>
+<P>&nbsp;&nbsp;&nbsp; orca -m DIFxApp.msm -f DefaultFeature -! DIFxAppSample.msi </P>
+
+<P>(The option -! will suppress any warnings and errors. There are some default values that are set by some MSI editors that might conflict with the merge module. Those errors can be ignored. To investigate the errors use the Orca user interface instead of the command line.)</P>
+
+<P>2. Edit the MsiDriverPackages table in DIFxAppSample.msi as described in the section titled "MsiDriverPackages Custom Table Schema" in the DIFxApp white paper. This white paper is included in the Documentation directory that is provided with the Driver Install Frameworks tools package.
+
+</P>
+<P>Method 2: Adding DIFxApp.msm to the installation package while it is being created.
+
+</P>
+<P>The exact steps for this method depend on the software being used to create the installation package. The basic idea is to add the DIFxApp merge module (DIFxApp.msm) to your project just as you would add any other merge module.
+
+For example, if you are using Visual Studio .NET, then the steps are as follows:</P>
+<P>1. Create a new Visual Studio setup project.
+</P>
+<P>2. Add the Plug and Play driver package files to the project such that they get copied to Application Folder in the file system on the target machine.
+</P>
+<P>3. Add DIFxApp.msm to the project by choosing Project->Add->Merge Module from the menu. 
+</P>
+<P>4. Build the project by choosing Build->Build Solution from the menu. A new DIFxAppSample.msi file is created in the Debug or Retail directory, depending on whether Visual Studio was configured to build the Debug or the Retail version.
+</P>
+<P>5. Edit the MsiDriverPackages table in DIFxAppSample.msi as described in the section titled "Authoring an MSI Installation Package That Uses DIFxApp" in the DIFxApp white paper. This white paper is included in the Documentation directory that is provided with the Driver Install Frameworks tools package.</P>
+<H3><a name="Install"></a>Installing the Setup Package</H3>
+<P>To install the toaster driver package, run DIFxAppSample.msi.</P>
+<P align=center><A 
+href="file:///C:/Documents%20and%20Settings/tstone/My%20Documents/DIFx%20Readmes/DPInst/readme.htm#top"><FONT 
+face=Verdana size=2>Top of page</FONT></A><FONT face=Verdana size=2> 
+</P></FONT><FONT face="MS Sans Serif" size=1>
+<P>© Microsoft Corporation 2002</FONT> </FONT></P></BODY></HTML>
+

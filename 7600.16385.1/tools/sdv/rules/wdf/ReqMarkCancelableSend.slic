@@ -1,0 +1,41 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	This rule verifies that requests forwarded by the driver are not marked CANCELABLE by calling WdfRequestMarkCancelable.
+	
+	Description:
+	In order to mark the request as cancelable, the driver must own the request.
+	Once the request is sent to another driver, it no longer has ownership and must
+	call WdfRequestUnmarkCancelable on the request if it was previously marked cancelable.
+	
+	Rule diagnostics:
+	If a request is sent while still marked cancelable, this rule finds a defect.
+*/
+
+#include "ntddk_slic.h"
+#define STATUS_CANCELLED    -1073741536
+
+state 
+{
+	enum {CANCELABLE, NOTCANCELABLE} s=NOTCANCELABLE;
+}with guard(sdv_main,hrequest)
+
+sdv_WdfRequestMarkCancelable.entry[guard $1]
+{
+	s=CANCELABLE;
+}
+sdv_WdfRequestUnmarkCancelable.exit[guard $1]
+{
+	if ($return !=STATUS_CANCELLED)
+	{
+		s=NOTCANCELABLE;
+	}
+}
+sdv_WdfRequestSend.entry[guard $1]
+{	
+	if (s==CANCELABLE)
+	{
+		abort "Cannot call $fname on a Request that is marked CANCELABLE.";
+	}
+}

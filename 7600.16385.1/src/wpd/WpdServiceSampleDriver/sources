@@ -1,0 +1,71 @@
+TARGETNAME=WpdServiceSampleDriver
+TARGETTYPE=DYNLINK
+DLLENTRY   = _DllMainCRTStartup
+
+
+UMDF_VERSION_MAJOR=1
+UMDF_VERSION_MINOR=9
+
+# The KMDF version numbers are required by stampinf
+KMDF_VERSION_MAJOR=1
+KMDF_MINOR_VERSION=9
+
+USE_MSVCRT   = 1
+UMTYPE       = windows
+USE_ATL      = 1
+ATL_VER      = 70
+UNICODE      = 1
+MSC_WARNING_LEVEL= /W4 /WX
+
+INCLUDES= $(INCLUDES);                  \
+          $(SDK_INC_PATH);              \
+          $(DDK_INC_PATH);              \
+
+SOURCES=\
+    WpdServiceSampleDriver.rc           \
+    WpdServiceSampleDriver.idl          \
+    WpdServiceSampleDriver.cpp          \
+    Driver.cpp                          \
+    Device.cpp                          \
+    Queue.cpp                           \
+    WpdBaseDriver.cpp                   \
+    WpdObjectEnum.cpp                   \
+    WpdObjectManagement.cpp             \
+    WpdObjectProperties.cpp             \
+    WpdObjectPropertiesBulk.cpp         \
+    WpdObjectResources.cpp              \
+    WpdCapabilities.cpp                 \
+    WpdService.cpp                      \
+    WpdServiceMethods.cpp               \
+    WpdServiceCapabilities.cpp          \
+    helpers.cpp                         \
+    FakeContent.cpp                     \
+    FakeContactsService.cpp             \
+    FakeContactsServiceContent.cpp      \
+    FakeStorage.cpp                     \
+    FakeContactContent.cpp              \
+    FakeDeviceContent.cpp               \
+    FakeDevice.cpp                      \
+
+TARGETLIBS=\
+        $(SDK_LIB_PATH)\strsafe.lib     \
+        $(SDK_LIB_PATH)\kernel32.lib    \
+        $(SDK_LIB_PATH)\ole32.lib       \
+        $(SDK_LIB_PATH)\oleaut32.lib    \
+        $(SDK_LIB_PATH)\uuid.lib        \
+        $(SDK_LIB_PATH)\user32.lib      \
+        $(SDK_LIB_PATH)\advapi32.lib    \
+        $(SDK_LIB_PATH)\shlwapi.lib     \
+        $(SDK_LIB_PATH)\PortableDeviceGuids.lib \
+
+PRECOMPILED_CXX     = 1
+PRECOMPILED_INCLUDE = Stdafx.h
+
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(TARGETNAME).inf
+
+#
+# This sets up the WPP preprocessor and tells it to scan stdafx.h to find
+# the trace function definition that's in there.
+#
+RUN_WPP= $(SOURCES) -dll -scan:stdafx.h
+

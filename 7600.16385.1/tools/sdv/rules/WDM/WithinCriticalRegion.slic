@@ -1,0 +1,48 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	The WithinCriticalRegion rule specifies that the driver's
+	calls to particular synchronization functions appear only
+	after calling KeEnterCriticalRegion and before calling
+	KeLeaveCriticalRegion.
+
+	The affected synchronization functions are the following:
+	  ExAcquireResourceSharedLite 
+	  ExAcquireResourceExclusiveLite 
+	  ExAcquireSharedStarveExclusive 
+	  ExAcquireSharedWaitForExclusive 
+	  ExReleaseResourceLite 
+	  ExReleaseResourceForThreadLite 
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+    int regionDepth = 0;
+}
+
+KeEnterCriticalRegion.entry
+{
+    regionDepth = regionDepth + 1 ;
+}
+
+KeLeaveCriticalRegion.entry
+{
+    regionDepth = regionDepth - 1;
+}
+
+[ExAcquireResourceSharedLite,
+ ExAcquireResourceExclusiveLite,
+ ExAcquireSharedStarveExclusive,
+ ExAcquireSharedWaitForExclusive,
+ ExReleaseResourceLite,
+ ExReleaseResourceForThreadLite
+].entry
+{
+    if (regionDepth == 0 && sdv_irql_current == PASSIVE_LEVEL) {      
+       abort "The driver is calling $fname without first disabling normal kernel APC delivery by calling KeEnterCriticalRegion or raising IRQL to APC_LEVEL.";
+    }
+}

@@ -1,0 +1,37 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+ 
+	Description:
+
+	This rule verifies that IoAttachDeviceToDeviceStack is only
+	called after IoCreateDevice is called.  For non filter
+	drivers.
+*/
+
+#include "ntddk_slic.h"
+
+state{
+    enum {INIT, ENTERED, CREATED, ATTACHED} s = INIT;
+}
+
+fun_AddDevice.entry
+{
+    s = ENTERED;
+}
+
+[IoCreateDevice
+,IoCreateDeviceSecure].entry 
+{
+    if (s == ENTERED) {
+        s = CREATED;
+    }
+}
+
+IoAttachDeviceToDeviceStack.entry 
+{
+    if (s == CREATED) {
+         s = ATTACHED;
+    } else {
+        abort "The driver is calling IoAttachDeviceToDeviceStack, but it has not first called IoCreateDevice.";
+    }       
+}

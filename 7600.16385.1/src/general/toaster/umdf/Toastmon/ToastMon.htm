@@ -1,0 +1,168 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>UMDF ToastMon Sample Driver</title>
+</head>
+
+<body>
+
+<h1><font face="Verdana" size="2">UMDF TOASTMON</font></h1>
+<h2><font face="Verdana" size="2">SUMMARY</font></h2>
+<p><font face="Verdana" size="2">This sample is a simple UMDF port of the KMDF ToastMon sample. 
+It demonstrates how to use the Driver Framework to write a minimal driver with the User-Mode Driver Framework and 
+shows best practices. The driver will successfully load on a device 
+(either root enumerated or a real hardware device) but has the minimum PnP 
+functionality and does not support receiving any I/O operations.</font></p>
+<p><font face="Verdana" size="2">It is intended to serve 
+as a learning tool for other UMDF drivers that you may write.</font></p>
+<h2><font face="Verdana" size="2">BUILDING THE SAMPLE</font></h2>
+<p><font face="Verdana" size="2">Start a build environment window as described 
+under<b> <a href="../readme.htm#buildenv">Building and Testing the Samples</a>
+</b>the UMDF Readme file.</font></p>
+<p><font face="Verdana" size="2">Change to the directory containing the device 
+source code.</font></p>
+<p><font face="Verdana" size="2">Run build -ceZ, or use the macro BLD. This 
+command invokes the Microsoft make routines to build the components. If the 
+build succeeds, you will find the driver, UMDFToastMon.dll in the binary output directory specified for the build environment. You can get the output path from the buildxxx.log file.. If it fails you can find errors and 
+warnings in the build error (.err) and warning (.wrn) log files respectively 
+(buildfre_wlh_x86.err for example). </font>
+</p>
+<p><font face="Verdana" size="2">INSTALLATION</font></p>
+<p><font face="Verdana" size="2">To test the sample you will need to setup your 
+test system as described <b><a href="../readme.htm#buildenv">Building and 
+Testing the Samples</a> </b>the UMDF Readme file.</font></p>
+<p><font face="Verdana" size="2">The sample provides an INF file that allows for the driver to be installed on a root-enumerated device:</font></p><font face="Verdana">
+<blockquote>
+    <p><font face="Verdana" size="2">To install the driver on Windows XP (SP2 and above), Vista and later operating systems:</font></p>
+    <ol style="font-family: Verdana; font-size: 10pt">
+        <li><font face="Verdana" size="2">Copy the driver binary and the 
+        UMDFToastMon.inf file to a directory on your test machine (for 
+        example c:\Samples.)</font></li>
+        <li>Copy the UMDF coinstaller WUDFUpdate_01009.dll from c:\winddk\&lt;bld&gt;\redist\wdf\&lt;arch&gt; to
+        the same directory (for example c:\Samples).</li>
+        <li>Change to the directory containing the inf and binaries (for example
+        <b>cd /d c:\Samples</b>.)</li>
+        <li><font size="2">Next run devcon.exe as follows:</font></li>
+    </ol>
+                                </font>
+    <blockquote>
+        <p><font size="2" face="Courier New">devcon.exe install 
+        UMDFToastMon.inf UMDFSamples\ToastMon</font></p>
+        <p><font face="Verdana" size="2">DevCon can be found in the tools 
+        directory of your WDK enlistment (for example: d:\winddk\5048\tools\devcon\i386\devcon.exe.)</font></p>
+    </blockquote>
+    <p><font face="Verdana" size="2">To update the driver after making 
+    any changes:</font></p><font face="Verdana">
+    <ol style="font-family: Verdana; font-size: 10pt">
+        <li>Increment the version number found in the INF.&nbsp; While this is 
+        not strictly necessary, it will help ensure PnP selects your new driver 
+        as a better match for the device.</li>
+        <li><font face="Verdana" size="2">Copy the updated driver binary and the 
+        UMDFToastMon.inf file to a directory on your test machine (for 
+        example c:\Samples.)</font></li>
+        <li>Change to the directory containing the inf and binaries (for example
+        <b>cd /d c:\Samples</b>.)</li>
+        <li><font size="2">Next run devcon.exe as follows:</font></li>
+    </ol>
+    </font>
+    <blockquote>
+        <p><font size="2" face="Courier New">devcon.exe update 
+        UMDFToastMon.inf UMDFSamples\ToastMon</font></p>
+    </blockquote>
+</blockquote>
+<h2><font face="Verdana" size="2">CODE TOUR</font></h2>
+<h3><font face="Verdana" size="2">File Manifest</font></h3>
+<table border="1" width="62%" id="table1">
+    <tr>
+        <td align="center" width="161"><b><font face="Verdana" size="2">File</font></b></td>
+        <td width="604" align="center"><b><font face="Verdana" size="2">
+        Description</font></b></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">ToastMon.htm</font></td>
+        <td width="604"><font face="Verdana" size="2">Documentation for this 
+        sample (this file).</font></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">comsup.cpp &amp; comsup.h</font></td>
+        <td width="604"><font face="Verdana" size="2">Boilerplate COM Support code - 
+        specifically base classes which provide implementations for the standard 
+        COM interfaces IUnknown and IClassFactory which are used throughout the 
+        sample.</font><p>
+        <font face="Verdana" size="2">The implementation of IClassFactory is designed to create instances of 
+        the CMyDriver class. If you should change the name of your base driver 
+        class, you would also need to modify this file.</font></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">dllsup.cpp</font></td>
+        <td width="604"><font face="Verdana" size="2">Boilerplate DLL Support code - 
+        provides the DLL's entry point as well as the single required export 
+        (DllGetClassObject).</font><p><font face="Verdana" size="2">These depend on comsup.cpp to perform the necessary 
+        class creation.</font></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">exports.def</font></td>
+        <td width="604"><font face="Verdana" size="2">This file lists the 
+        functions that the driver DLL exports.</font></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">makefile</font></td>
+        <td width="604"><font face="Verdana" size="2">This file redirects to 
+        the real makefile, which is shared by all the driver components of the 
+        Windows Driver Kit.</font></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">internal.h</font></td>
+        <td width="604"><font face="Verdana" size="2">This is the main header 
+        file for the ToastMon driver. </font></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">driver.cpp &amp; driver.h</font></td>
+        <td width="604"><font face="Verdana" size="2">Boilerplate: Definition and 
+        implementation of the driver callback class for the ToastMon sample.
+        </font></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">device.cpp &amp; device.h</font></td>
+        <td width="604"><font face="Verdana" size="2">Definition and 
+        implementation of the device callback class for the ToastMon sample. This is mostly boilerplate, 
+        but also registers for RemoteInterface Arrival notifications. When a RemoteInterface arrival
+        callback occurs, it calls CreateRemoteInterface and creates a CMyRemoteTarget callback object
+        to handle I/O on that RemoteInterface.</font></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">RemoteTarget.cpp &amp; RemoteTarget.h</font></td>
+        <td width="604"><font face="Verdana" size="2">Definition and 
+        implementation of the remote target callback class for the ToastMon sample. This is the
+        meat of this sample.</font></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">list.h</font></td>
+        <td width="604"><font face="Verdana" size="2">Boilerplate doubly-linked-list code</td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">ToastMon.rc</font></td>
+        <td width="604"><font face="Verdana" size="2">This file defines resource 
+        information for the ToastMon sample driver.</font></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">sources</font></td>
+        <td width="604"><font face="Verdana" size="2">Generic file that lists 
+        source files and all the build options</font></td>
+    </tr>
+    <tr>
+        <td width="161"><font face="Verdana" size="2">UMDFToastMon.inf</font></td>
+        <td width="604"><font face="Verdana" size="2">Sample INF for installing 
+        the Skeleton driver to control a root enumerated device with a hardware 
+        ID of UMDFSamples\ToastMon</font></td>
+    </tr>
+</table>
+
+<p align="center"><font face="Verdana" size="2"><a href="#top">Top of Page</a></font></p>
+<p><font face="Verdana" size="2">© 2009 Microsoft Corporation</font></p>
+
+</body>
+
+</html>
+

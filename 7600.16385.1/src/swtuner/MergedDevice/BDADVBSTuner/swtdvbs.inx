@@ -1,0 +1,101 @@
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+[Version]
+signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Msft%
+DriverVer=03/06/2007,6.0.5753.0
+CatalogFile=SWTDVBS.cat
+
+[ControlFlags]
+;ExcludeFromSelect=*
+
+[SourceDisksNames]
+1 = %BDA_DISK%,"",
+
+[SourceDisksFiles]
+SWTDVBS.sys     = 1
+
+[DestinationDirs]
+SWTDVBS.CopyFiles=10,system32\drivers
+
+[Manufacturer]
+%Msft%=Microsoft,NTx86,NTamd64
+
+[Microsoft.NTx86]
+%SWTDVBS.DeviceDesc%=SWTDVBS,ms_swtdvbs
+
+[Microsoft.NTamd64]
+%SWTDVBS.DeviceDesc%=SWTDVBS,ms_swtdvbs
+
+[SWTDVBS.NTx86]
+Include = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTDVBS.inf
+CopyFiles=SWTDVBS.CopyFiles
+
+[SWTDVBS.NTamd64]
+Include = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTDVBS.inf
+CopyFiles=SWTDVBS.CopyFiles
+
+;---------------------------------------------------------------
+;                I n t e r f a c e s
+;---------------------------------------------------------------
+
+[SWTDVBS.NTx86.Interfaces]
+AddInterface=%KSCATEGORY_SWTDVBS%,%KSSTRING_SWTDVBSFilter%,TunerInterface.NT,
+
+[SWTDVBS.NTamd64.Interfaces]
+AddInterface=%KSCATEGORY_SWTDVBS%,%KSSTRING_SWTDVBSFilter%,TunerInterface.NT,
+
+[TunerInterface.NT]
+AddReg=SWTDVBS.Reader.AddReg
+
+;---------------------------------------------------------------
+;                A d d R e g
+;---------------------------------------------------------------
+
+[SWTDVBS.Reader.AddReg]
+;HKR,,DevLoader,,*NTKERN
+;HKR,,NTMPDriver,,SWTDVBS.sys
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%SWTDVBS.FriendlyName%
+
+[SWTDVBS.CopyFiles]
+SWTDVBS.sys
+
+[SWTDVBS.NTx86.Services]
+AddService=SWTDVBS, 0x00000002, SWTDVBS.ServiceInstall
+
+[SWTDVBS.NTamd64.Services]
+AddService=SWTDVBS, 0x00000002, SWTDVBS.ServiceInstall
+
+[SWTDVBS.ServiceInstall]
+DisplayName=%SWTDVBS.DeviceDesc%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%10%\system32\drivers\SWTDVBS.sys
+LoadOrderGroup=Extended Base
+
+[Strings]
+; non-localizeable
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSSTRING_SWTDVBSFilter="{0E7E99DA-8A1C-11DB-BDA1-00123F758252}"
+KSCATEGORY_SWTDVBS="{71985F48-1CA1-11d3-9CC8-00C04F7971E0}"
+
+
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+
+;localizeable
+Msft="Microsoft"
+SWTDVBS.DeviceDesc="BDA DVBS Sample Tuner Device"
+SWTDVBS.FilterDesc="BDA DVBS Sample Tuner Filter"
+BDA_DISK = "S/W BDA DVBS Tuners Drivers disk"
+SWTDVBS.FriendlyName="BDA DVBS Sample Tuner"
+
+

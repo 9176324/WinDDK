@@ -1,0 +1,11 @@
+TARGETNAME=lsi_u3
+TARGETTYPE=MINIPORT
+
+INCLUDES=..\inc
+
+TARGETLIBS=$(DDK_LIB_PATH)\storport.lib
+
+SOURCES= lsi_u3.c \
+         lsi_u3.rc
+
+

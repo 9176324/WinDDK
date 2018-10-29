@@ -1,0 +1,8 @@
+ALT_PROJECT=DAYTONA
+ALT_PROJECT_TARGET=.
+LAYOUTNAME=kbd106
+
+!include ..\japan.inc
+
+
+

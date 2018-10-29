@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<WindowsInfo xmlns="http://schemas.microsoft.com/windows/DeviceMetadata/WindowsInfo/2007/11/">
+  <ShowDeviceInDisconnectedState>false</ShowDeviceInDisconnectedState>
+  <LaunchDeviceStageOnDeviceConnect>false</LaunchDeviceStageOnDeviceConnect>
+  <LaunchDeviceStageFromExplorer>false</LaunchDeviceStageFromExplorer>
+</WindowsInfo>

@@ -1,0 +1,20 @@
+TARGETNAME=mirror
+TARGETTYPE=GDI_DRIVER
+
+TARGETLIBS=$(TARGETLIBS) $(SDK_LIB_PATH)\libcntpr.lib
+
+!IFNDEF MSC_WARNING_LEVEL
+MSC_WARNING_LEVEL=/W4
+!ENDIF
+
+MSC_WARNING_LEVEL=$(MSC_WARNING_LEVEL) /WX
+
+INCLUDES=..\inc;..\..\inc;..\..\..\inc;$(DDK_INC_PATH)
+
+SOURCES=debug.c     \
+        enable.c    \
+        screen.c    \
+        mirror.rc
+
+TARGET_DESTINATION=retail
+

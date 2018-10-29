@@ -1,0 +1,39 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    Verify the correct usage of Spinlock DDIs.
+    
+    Description:
+    This rule verifies that a Spinlock is being release twice.  
+    
+    Related Rule:
+    SpinLockDprRelease
+	
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+   enum {initial,unlocked,locked} s = initial;
+}
+watch sdv_NdisAllocateSpinLock.exit.$1;
+
+
+[sdv_NdisReleaseSpinLock,sdv_NdisDprReleaseSpinLock].exit[guard $1]
+{
+    if ((s == unlocked) || (s == initial))
+    {
+        abort "The driver is calling $fname without first acquiring the spinlock.";
+    } 
+    else 
+    {
+        s = unlocked;
+    }
+}
+
+[sdv_NdisAcquireSpinLock,sdv_NdisDprAcquireSpinLock].exit[guard $1]
+{
+    s = locked;
+}

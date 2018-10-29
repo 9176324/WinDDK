@@ -1,0 +1,742 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="pnpdtest-readme_files/filelist.xml">
+<title>Plug and Play Driver Test</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>James Moe</o:Author>
+  <o:LastAuthor>vivekg</o:LastAuthor>
+  <o:Revision>14</o:Revision>
+  <o:TotalTime>88</o:TotalTime>
+  <o:Created>2001-04-04T21:20:00Z</o:Created>
+  <o:LastSaved>2005-08-18T22:19:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>2143</o:Words>
+  <o:Characters>12217</o:Characters>
+  <o:Company>Microsoft Internal</o:Company>
+  <o:Lines>101</o:Lines>
+  <o:Paragraphs>28</o:Paragraphs>
+  <o:CharactersWithSpaces>14332</o:CharactersWithSpaces>
+  <o:Version>11.6408</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotOptimizeForBrowser/>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{margin:0in;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:widow-orphan;
+	font-size:14.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=EN-US style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=MsoTitle>Plug and Play Driver Test</p>
+
+<p class=MsoNormal align=center style='text-align:center'><b><span
+style='font-size:14.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b>Overview:<o:p></o:p></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>The
+purpose <span class=GramE>of<span style='mso-spacerun:yes'>  </span>the</span>
+Plug and Play Driver test is to provide driver writers with a tool which exercises
+various PnP related codes paths in the driver and user mode components. If used
+in conjunction with Driver Verifier, driver writers can feel more confident
+that their code is performing properly. This tool is for use on Windows 2000,
+Windows XP, and Windows Server 2003.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Although
+by using this tool a driver will be forced to handle almost all the PNP IRPs,
+there are three areas that are stressed specifically – Removal, Rebalance, and
+Surprise Removal. The test provides a mechanism to test each of these
+separately or all together (i.e, stress). This is accomplished using a
+combination of user mode API calls (via the test app) and kernel mode API calls
+(via an upper filter driver).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>The
+first time the test is run, you will be prompted with UI for the location of
+the test filter driver (pnpfiltr.sys). After pointing to the proper location
+for the filter driver, its service will be installed and the driver copied. If
+you have run an older version of the test previously, you may need to reboot
+after the new filter driver is copied if the old driver is currently loaded. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b>Removal:<o:p></o:p></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Device
+removal is tested by selecting the target device and clicking the “Test
+Removal” button. This encompasses IRP_MN_QUERY_REMOVE_DEVICE, IRP_MN_CANCEL_REMOVE_DEVICE,
+and IRP_MN_REMOVE_DEVICE.<span style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>The
+test will attempt to install its upper filter driver on the target device
+stack. This results in a query-remove IRP – <span class=GramE>if<span
+style='mso-spacerun:yes'>  </span>this</span> query-remove is failed the
+machine may need to be rebooted in order to get the filter driver onto the
+device stack. If the remove request is not vetoed, the device stack will be
+removed and restarted with the filter driver on the device stack.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>The
+test, using Setup APIs will cause a query-remove to be sent to the device stack.
+The filter driver will fail this remove request thus causing a cancel-remove
+IRP to be sent. The filter driver will assert that the cancel-remove was
+successful. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Next,
+the test app calls the appropriate class installer and any registered co-installers
+to disable/enable and remove/reenumerate the device (this tests the
+class/co-installers handling of DIF_PROPERTYCHANGE with DICS_DISABLE,
+DICS_ENABLE, and DICS_PROPCHANGE). When receiving an IRP_MN_REMOVE_DEVICE, the
+filter driver will assert that the lower drivers completed it successfully.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>The
+test will again call the class/co-installers this time with DIF_REMOVE and then
+will reenumerate the device’s parent to attempt to restart the device. This
+step essentially uninstalls the device as if you had used Device Manager.<span
+style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Of
+course, each of these steps involves a preliminary remove request. If that
+request if vetoed, the device will not be removed. It is up to the driver
+writer’s discretion to veto a remove request when appropriate, such as while
+streaming video on a USB camera or if the target device is in the boot/paging
+path. Bear in mind that simply failing all remove requests is generally not
+good practice – it will not guarantee that driver will never receive a remove
+since a remove IRP will still be issued after a surprise removal or if anyone
+in the device stack fails a start IRP.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b>Rebalance:<o:p></o:p></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Rebalance
+is tested by selecting the target device and clicking the “Test Rebalance”
+button.<span style='mso-spacerun:yes'>  </span>On pressing this button, a separate
+window will come up. The desired mode of rebalance should be pressed from this
+window.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>As
+with the removal test, the test application will attempt to add an upper filter
+to the target device stack and then restart the device stack using SetupDiCallClassInstaller
+with DIF_PROPERTYCHANGE. If this is not successful (i.e., if someone on the
+target device stack failed the query-remove IRP) the machine may need to be
+rebooted in order to test rebalance. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Depending
+on the mode of rebalance chosen, the following test may take the following
+possibilities:</span><b style='mso-bidi-font-weight:normal'><span
+style='font-size:11.0pt'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt'>1) Simple: <o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>This option initiates a
+rebalance procedure which results in the following <span class=SpellE>Irps</span>
+to the device driver:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_QUERY_STOP_DEVICE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_QUERY_RESOURCE_REQUIREMENTS<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_FILTER_RESOURCE_REQUIREMENTS<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:49.5pt'><span style='font-size:10.0pt;
+mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:49.5pt'><span style='font-size:10.0pt;
+mso-bidi-font-size:12.0pt'>After this point, two different paths are possible: <o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:49.5pt'><span style='font-size:10.0pt;
+mso-bidi-font-size:12.0pt'><span style='mso-tab-count:1'>                      </span></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>a) If the device has no
+resources (or if some driver in the stack fails the query stop), the cancel
+stop is sent and rebalance is cancelled.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_CANCEL_STOP_DEVICE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>b) If the device actually
+consumes resources, the rebalance procedure is completed.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_STOP_DEVICE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_START_DEVICE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>With this option, the
+resources of the device do not change.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt'>2) <span class=SpellE>FailQueryStop</span>:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>This option initiates a
+rebalance procedure but the filter driver deliberately fails the query stop. So
+the order of <span class=SpellE>Irps</span> looks like<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_QUERY_STOP_DEVICE:
+</span><span style='mso-spacerun:yes'> </span><span style='font-size:10.0pt'>(<span
+class=GramE>which is failed by the filter driver while coming up).</span> This
+results in cancellation of rebalance.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_CANCEL_STOP_DEVICE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>With this option, the resources
+of the device do not change</span><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt'>3) <span class=SpellE>NewResources</span>:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>This
+option initiates a rebalance and also manipulates the resource requirement of
+the device to maximize the chances that actually new resources are allocated to
+the device. It also helps a device with no resources to actually go through the
+complete rebalance procedure:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>First
+the simple rebalance is started which results in following <span class=SpellE>Irps</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_QUERY_STOP_DEVICE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_QUERY_RESOURCE_REQUIREMENTS<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_FILTER_RESOURCE_REQUIREMENTS<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>In response to this <span
+class=SpellE>Irp</span>, while going up, filter driver takes action based on
+whether the device consumes any resources or not:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>a) If the device has no
+resource requirement, filter assigns a fake resource.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>b) If the device has resource
+requirement:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>Then it tries to restructure
+the resource requirement list in such a way that maximizes the probability of
+changing the current assignment. For <span class=SpellE>eg</span> if a device
+needs 2 bytes of memory anywhere between 00 to FF and currently is assigned
+3A-3B, then modify such that the new resource requirement (in order of
+preference) looks like 00-39 or 3C-FF or 3A-3B. Similarly if the device
+resource requirement list has any alternate requirements, it will change their
+order so the alternate requirement comes earlier in the list.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Now
+the device should always complete the rebalance procedure.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_STOP_DEVICE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_START_DEVICE
+</span><span style='font-size:10.0pt'>(Here we get the new allocated resources.
+If fake requirements were created, we mask the new resources from the actual
+drivers</span><b style='mso-bidi-font-weight:normal'><span style='font-size:
+10.0pt;mso-bidi-font-size:12.0pt'>)<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt'>4) Fail Restart:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>This option initiates a
+rebalance but when the filter driver gets the start after the rebalance, it
+deliberately fails it –which causes surprise removal <span class=SpellE>Irp</span>
+followed by Removal <span class=SpellE>Irp</span>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><span
+style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>First it starts the rebalance
+procedure and makes sure that the driver gets a stop and a start by generating
+fake resource requirement for a device which does not consume any resources.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_QUERY_STOP_DEVICE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_QUERY_RESOURCE_REQUIREMENTS<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_FILTER_RESOURCE_REQUIREMENTS
+</span><span style='font-size:10.0pt'>(If they are null, filter assign fake resource
+requirement, so we get a stop and a start)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_STOP_DEVICE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_START_DEVICE:
+</span><span style='font-size:10.0pt'>Filter fails this while going up. This
+causes surprise remove <span class=SpellE>irp</span></span>.</p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_SURPRISE_REMOVAL<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_REMOVE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>After
+the rebalance test is complete, the device will be uninstalled and
+reenumerated, also removing the filter driver from the stack.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:11.0pt'>Double Start (<i style='mso-bidi-font-style:normal'>Note:</i>
+<i style='mso-bidi-font-style:normal'>Not supported by all devices</i>):<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Double
+Start is tested by selecting the target device and clicking “Test Double
+Start”.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>As
+with the removal test, the test application will attempt to add an upper filter
+to the target device stack and then restart the device stack using <span
+class=SpellE>SetupDiCallClassInstaller</span> with DIF_PROPERTYCHANGE. If this
+is not successful (i.e., if someone on the target device stack failed the
+query-remove IRP) the machine may need to be rebooted in order to test
+rebalance. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>This option creates a
+scenario in which a driver gets two start <span class=SpellE>IRPs</span>
+without getting a stop in between. This option is not included as part of
+stress. This test should be <span class=GramE>run,</span> if you think your
+driver should be capable of handling this case. In this case, the filter driver
+tells the <span class=SpellE><span class=GramE>pnp</span></span> manager that
+resources have changed but does not want the device stack to be stopped.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>This will result in <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>(IRP_MN_START – When device
+started, it must have got this)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_QUERY_RESOURCE_REQUIREMENTS<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_FILTER_RESOURCE_REQUIREMENTS<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>IRP_MN_START_DEVICE</span><span
+style='font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>After
+the double start test is complete, the device will be uninstalled and <span
+class=SpellE>reenumerated</span>, also removing the filter driver from the
+stack.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>NOTE</span></b><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>:<span
+style='mso-spacerun:yes'>  </span>‘Double Start’ is not included it as part of
+stress. Driver writers should run this test separately if they want to test the
+driver for such a scenario.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b>Surprise Removal:<o:p></o:p></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Surprise
+removal is tested by selecting the target device and clicking “Test Surprise
+Removal”.<span style='mso-spacerun:yes'>  </span>This encompasses
+IRP_MN_SURPRISE_REMOVAL followed by IRP_MN_REMOVE_DEVICE. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>As
+with the previous tests, the test application will attempt to add an upper
+filter to the target device stack and then restart the stack. If this is not successful
+the machine may need to be rebooted in order to test surprise removal.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>When
+triggered by the test application, the filter driver will cause the system to
+send an IRP_MN_SURPRISE_REMOVAL to the device stack<span class=GramE>,<span
+style='mso-spacerun:yes'>  </span>followed</span> by an IRP_MN_REMOVE_DEVICE.
+The filter driver will assert that both of these IRPs are completed
+successfully by lower drivers.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>NOTE</span></b><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>: On Windows 2000 <i
+style='mso-bidi-font-style:normal'>only</i>, after handling the surprise
+removal IRP, the device will be marked by the system with the status code
+DN_HAS_PRIVATE_PROBLEM. The device will still appear in the device tree in
+Device Manager because, since it has not actually been physically removed, it
+will still be reported by its bus driver in response to an
+IRP_MN_QUERY_DEVICE_RELATIONS for BusRelations. In order to restore the device
+to working order, the PDO for the device must be deleted. This can be
+accomplished by rebooting the system, removing and reenumerating the device’s
+parent, or physically removing the device and reattaching it. On Windows XP and
+above, the OS can handle this properly and the test should be able restart the
+device successfully, unless an error occurred.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>After
+the surprise removal test is complete, the device will be uninstalled and
+reenumerated, also removing the filter driver from the stack.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b>Stress:<o:p></o:p></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>All
+of the above scenarios (except for ‘Double Start’) can be tested together by
+selecting the target device and clicking “Start Stress”). The test application
+will keep choosing one of the above tests (</span><span style='font-size:10.0pt'>remove,
+surprise remove or one of the rebalance tests) and running it on the selected
+device for five minutes.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Automation:<o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt'>Pnpdtest</span></span><span
+style='font-size:10.0pt'> offers command line options to run all the above
+options and some other extra options for stress.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt'>Pnpdtest</span></span><span
+style='font-size:10.0pt'><span style='mso-tab-count:1'>                </span><span
+class=GramE>[ /</span>device<span style='mso-spacerun:yes'> 
+</span>&lt;service&gt; | &lt;HW ID&gt; | &lt;Device Instance&gt; | &lt;All&gt;
+]<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:.5in'><span class=GramE><span
+style='font-size:10.0pt'>[ /</span></span><span class=SpellE><span
+style='font-size:10.0pt'>driverpath</span></span><span style='font-size:10.0pt'>
+&lt;Filter driver directory&gt; ]<span style='mso-spacerun:yes'>  </span><span
+class=GramE>[ /</span>stress ] <span class=GramE>[ /</span>rebalance [mode] ]
+[/log &lt;<span class=SpellE>LogFile</span>&gt;]<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:.5in'><span
+style='font-size:10.0pt'>[/surprise] [/remove] [/<span class=SpellE>doublestart</span>]
+<span class=GramE>[ /</span><span class=SpellE>timedstress</span>
+&lt;minutes&gt; ] <span class=GramE>[ /</span><span class=SpellE>NoDbgBreak</span>
+] [ /? ]<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+class=SpellE><span style='font-size:10.0pt'>Pnpdtest</span></span><span
+style='font-size:10.0pt'><span style='mso-tab-count:1'>                </span>/cleanup<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'>/device:<span style='mso-tab-count:1'>                  </span>Specifies
+the device by <span class=GramE>either its</span> Service name, Hardware ID, or
+Device instance Id, on which to carry out the tests. If “All” is given as the
+device name, then the selected test is run on all the devices on the system.
+This parameter is necessary for automation.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'>/<span class=SpellE>driverpath</span>:<span
+style='mso-tab-count:1'>           </span>Specified the path of the directory
+where filter driver file is present. The driver file name should not be
+included in the path. If the path is not correct the test will look in the
+system32\drivers directory – and if it can not find the driver there also, then
+it will popup the open file dialog. <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'>/log:<span style='mso-tab-count:1'>                        </span>Create
+the log file with the name specified. The name should contain the full path.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'>/<span class=SpellE>nodbgbreak</span>:<span
+style='mso-tab-count:1'>        </span>If this parameter is used, then the test
+does not break into the debugger when the filter driver detects that a PnP IRP has
+failed, which should have been succeeded. It just logs in the <span
+class=SpellE>logfile</span>.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>/remove:<span
+style='mso-tab-count:2'>                 </span>Run Remove Test<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>/surprise:<span
+style='mso-tab-count:1'>               </span>Run Surprise Remove Test<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'>/ rebalance:<span style='mso-tab-count:1'>            </span>Run
+Rebalance Test, where optional mode can be: <o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span style='font-size:10.0pt'><span
+style='mso-tab-count:1'>                </span><span class=SpellE>FailQueryStop</span>:<span
+style='mso-tab-count:1'>     </span>Fail the Query Stop <span class=SpellE>Irp</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><span style='mso-tab-count:
+2'>                                </span><span class=SpellE>NewResources</span>:<span
+style='mso-tab-count:1'>    </span>Try to change allocated resources or create
+fake requirement<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><span style='mso-tab-count:
+2'>                                </span><span class=SpellE>FailRestart</span>:<span
+style='mso-tab-count:1'>            </span>Fail the start <span class=SpellE>irp</span>
+which comes after stop<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>/<span class=SpellE>doublestart</span>:<span
+style='mso-tab-count:1'>         </span>Run Double Start Test <span
+class=GramE>( This</span> option is not run as part of the stress ).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'>/stress:<span style='mso-tab-count:1'>                   </span>Run
+the stress option. It will run different tests (remove, surprise remove or one
+of the rebalance tests) on the selected device for five minutes. If “All” is
+used as an <span class=GramE>option ,</span> it will go through the device list
+and run stress (5 minutes on each device) on those devices , on which filter
+driver can be installed without requiring a reboot. <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'>/ <span class=SpellE><span class=GramE>timedstress</span></span>:<span
+style='mso-tab-count:1'>        </span>Run stress for the specified amount of
+time in minutes. With this option, first creates a list of devices on which
+filter driver can be installed without a reboot. This can take some time, depending
+on the number of devices in the system. Then it continuously selects a random
+device from that pruned list and runs a random test on it. The only other
+options that can be used with this option are /<span class=SpellE>driverpath</span>
+and /<span class=SpellE>nodbgbreak</span>.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'>/cleanup:<span style='mso-tab-count:1'>                </span>Remove
+the test filter driver from all the devices on the system. This should be
+typically used to cleanup after all the tests have been run, especially for
+cases where test terminated in an unexpected fashion. If this parameter is used
+– then no other parameters should be used.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'><span
+style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>/<span class=GramE>?:</span><span
+style='mso-tab-count:2'>                            </span>Display help<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt'>Pnpdtest</span></span><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt'> uses <span class=SpellE>WTTLogging</span> to log results. It creates
+two log files – one in plain text format called pnpdtest-log.txt and another
+one in xml formal called <span class=SpellE>pnpdtest-log.xml.trace</span> to be
+used with WTT.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Some
+examples are:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=SpellE><span class=GramE><span style='font-size:
+10.0pt;mso-bidi-font-size:12.0pt'>pnpdtest</span></span></span><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt'> /stress /device All /<span
+class=SpellE>nodbgbreak</span> /<span class=SpellE>driverpath</span>
+c:\pnpdstress<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Run
+stress on all devices one by one, copying filter driver from c:\pnpdstress and
+will not break in the debugger when a wrong PnP IRP is failed by the driver.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=SpellE><span class=GramE><span style='font-size:
+10.0pt;mso-bidi-font-size:12.0pt'>pnpdtest</span></span></span><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt'> /remove /device “<span
+class=SpellE>flpydisk</span>” <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Run
+the remove test on all devices which have service name as <span class=SpellE>flpydisk</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=SpellE><span class=GramE><span style='font-size:
+10.0pt;mso-bidi-font-size:12.0pt'>pnpdtest</span></span></span><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt'> /<span class=SpellE>timedstress</span>
+120 /<span class=SpellE>nodbgbreak</span> /<span class=SpellE>driverpath</span>
+c:\pnpdstress<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Run
+random tests on random devices for two hours, copying filter driver from
+c:\pnpdstress and will not break in the debugger when a wrong PnP IRP is failed
+by the driver.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=SpellE><span class=GramE><span style='font-size:
+10.0pt;mso-bidi-font-size:12.0pt'>pnpdtest</span></span></span><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt'> /rebalance </span><span
+class=SpellE><span style='font-size:10.0pt'>NewResources</span></span><span
+style='font-size:10.0pt'> /device
+“FDC\GENERIC_FLOPPY_DRIVE\5&amp;c4ae404&amp;1&amp;0” <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt'>Run the rebalance test with <span
+class=SpellE>newresources</span> option on device with the</span><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>NOTE: <span class=SpellE>pnpdtest</span>
+assumes that wttlog.dll exists in the path. It won’t run without it.<o:p></o:p></span></b></p>
+
+</div>
+
+</body>
+
+</html>

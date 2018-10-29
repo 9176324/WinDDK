@@ -1,0 +1,68 @@
+INCLUDES=$(INCLUDES);        \
+    .\;                      \
+    .\..\inc;                \
+    .\..\debug;              \
+    $(DDK_INC_PATH);         \
+    $(SDK_INC_PATH)\gdiplus; \
+
+USE_ATL=1
+USE_STL=1
+
+ATL_VER=70
+STL_VER=70
+
+# We use STL 7.0, which is not available pre-Vista. We therefore set USE_LIBCMT=1
+# If STL 7.0 is not necessary, USE_MSVCRT=1 is recommended
+USE_LIBCMT=1
+
+USE_IDLBASED_DLLDATA=1
+USE_OBJECT_ROOT=1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+USE_NATIVE_EH=1
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.h
+
+# To remove debug code remove -DDBG from the line below
+C_DEFINES=$(C_DEFINES) -D_UNICODE -DUNICODE
+
+SOURCES=\
+    bkpchndlr.cpp       \
+    bkpthndlr.cpp       \
+    bkschema.cpp        \
+    cmpthndlr.cpp       \
+    cmprofpthndlr.cpp   \
+    cmprofpchndlr.cpp   \
+    cmintpthndlr.cpp    \
+    cmschema.cpp        \
+    cmprofileschema.cpp \
+    cmintentsschema.cpp \
+    globals.cpp         \
+    nupschema.cpp       \
+    nupchndlr.cpp       \
+    nupthndlr.cpp       \
+    pchndlr.cpp         \
+    pgscpchndlr.cpp     \
+    pgscpthndlr.cpp     \
+    pgscschema.cpp      \
+    porientpthndlr.cpp  \
+    porientschema.cpp   \
+    psizepthndlr.cpp    \
+    psizeschema.cpp     \
+    pimagepthndlr.cpp   \
+    pimageschema.cpp    \
+    pshndlr.cpp         \
+    pthndlr.cpp         \
+    ptquerybld.cpp      \
+    schema.cpp          \
+    wmpchndlr.cpp       \
+    wmpthndlr.cpp       \
+    wmschema.cpp        \
+    workbuff.cpp
+
+TARGETNAME=xdsmplcmn
+TARGETTYPE=LIBRARY
+
+

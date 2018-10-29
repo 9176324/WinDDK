@@ -1,0 +1,36 @@
+TARGETNAME= SoftHIDReceiver
+TARGETTYPE=DYNLINK
+
+DLLENTRY=_DllMainCRTStartup
+
+DLLDEF=SoftHIDReceiver.def
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+USE_ATL = 1
+ATL_VER = 70
+
+USE_MSVCRT = 1
+
+C_DEFINES = $(C_DEFINES) -DDSF_USER_MODE -DUNICODE
+
+TARGETLIBS= \
+           $(SDK_LIB_PATH)\kernel32.lib  \
+           $(SDK_LIB_PATH)\user32.lib    \
+           $(SDK_LIB_PATH)\advapi32.lib  \
+           $(SDK_LIB_PATH)\ole32.lib     \
+           $(SDK_LIB_PATH)\oleaut32.lib  \
+           $(SDK_LIB_PATH)\uuid.lib      \
+           $(SDK_LIB_PATH)\shlwapi.lib   \
+           $(DDK_LIB_PATH)\SoftUSBIf.lib \
+
+SOURCES= \
+    SoftHIDReceiver.idl \
+    HIDDevice.cpp       \
+    SoftHIDReceiver.cpp \
+    SoftHIDReceiver.rc  \
+
+INCLUDES=\
+    $(INCLUDES);       \
+    $(DDK_LIB_PATH)\;  \
+    $(DDK_INC_PATH);   \

@@ -1,0 +1,22 @@
+;BUILD Version: 0000    
+;
+;Copyright (c) Microsoft Corporation. All rights reserved.
+;
+;Module Name:
+;
+;    SoftHIDDevice.defp
+;
+;Abstract:
+;	Declares the module parameters.
+; 
+;Revision History:
+;
+; 
+LIBRARY      "SoftHIDDevice.DLL"
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE
+

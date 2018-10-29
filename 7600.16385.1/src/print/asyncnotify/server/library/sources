@@ -1,0 +1,20 @@
+TARGETNAME=ServerSampleLib
+TARGETTYPE=LIBRARY
+
+INCLUDES= \
+        .; \
+        $(DDK_INC_PATH); \
+        ..\..\common;\
+
+
+SOURCES= acallback.cpp \
+         notifydata.cpp\
+         asyncnotify.cpp\
+
+USECXX_FLAG=1
+
+C_DEFINES=-DUNICODE -D_UNICODE
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.h
+

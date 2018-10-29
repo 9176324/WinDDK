@@ -1,0 +1,40 @@
+TARGETTYPE=DYNLINK
+TARGETNAME=SwapAPO
+
+DLLENTRY=_DllMainCRTStartup
+DLLDEF = SwapAPODll.def
+
+USE_NOLIBS=1
+USE_ATL=1
+ATL_VER=70
+USE_MSVCRT=1
+
+MSC_WARNING_LEVEL=-W4 -WX
+
+C_DEFINES=$(C_DEFINES) -D_WINDLL -D_USRDLL -DUNICODE -D_UNICODE
+
+INCLUDES= $(DDK_INC_PATH);..\inc
+
+SOURCES = \
+    SwapAPOInterface.idl \
+    SwapAPOGFX.cpp \
+    SwapAPOLFX.cpp \
+    Swap.cpp \
+    SwapAPODll.idl \
+    SwapAPODll.rc \
+    SwapAPODll.cpp
+
+TARGETLIBS = \
+    $(ATL_LIB_PATH)\atls.lib \
+    $(SDK_LIB_PATH)\Kernel32.lib \
+    $(SDK_LIB_PATH)\ole32.lib \
+    $(SDK_LIB_PATH)\oleaut32.lib \
+    $(SDK_LIB_PATH)\advapi32.lib \
+    $(SDK_LIB_PATH)\user32.lib \
+    $(SDK_LIB_PATH)\uuid.lib \
+    $(SDK_LIB_PATH)\AudioBaseProcessingObject.lib \
+    $(SDK_LIB_PATH)\audiomediatypecrt.lib \
+    $(SDK_LIB_PATH)\AudioEng.lib
+
+NO_PUBLIC_EXPORTS=1
+

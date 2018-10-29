@@ -1,0 +1,4 @@
+TARGETNAME=kbdus
+!INCLUDE ..\sources.inc
+
+

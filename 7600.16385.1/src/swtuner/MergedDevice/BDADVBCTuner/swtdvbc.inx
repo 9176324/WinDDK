@@ -1,0 +1,107 @@
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+[Version]
+signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Msft%
+DriverVer=07/07/2008,6.0.5754.0
+CatalogFile=SWTDVBC.cat
+
+[ControlFlags]
+;ExcludeFromSelect=*
+
+[SourceDisksNames]
+1 = %BDA_DISK%,"",
+
+[SourceDisksFiles]
+SWTDVBC.sys     = 1
+
+[DestinationDirs]
+SWTDVBC.CopyFiles=10,system32\drivers
+
+[Manufacturer]
+%Msft%=Microsoft,NTx86,NTamd64
+
+[Microsoft.NTx86]
+;;%SWTDVBC.DeviceDesc%=SWTDVBC,SW\{0E7E99DB-8A1C-11DB-BDA1-00123F758252}
+%SWTDVBC.DeviceDesc%=SWTDVBC,ms_swtdvbc
+
+[Microsoft.NTamd64]
+;;%SWTDVBC.DeviceDesc%=SWTDVBC,SW\{0E7E99DB-8A1C-11DB-BDA1-00123F758252}
+%SWTDVBC.DeviceDesc%=SWTDVBC,ms_swtdvbc
+
+
+[SWTDVBC.NTx86]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTDVBC.inf
+CopyFiles=SWTDVBC.CopyFiles
+
+[SWTDVBC.NTamd64]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTDVBC.inf
+CopyFiles=SWTDVBC.CopyFiles
+
+;---------------------------------------------------------------
+;                I n t e r f a c e s
+;---------------------------------------------------------------
+
+[SWTDVBC.NTx86.Interfaces]
+AddInterface=%KSCATEGORY_SWTDVBC%,%KSSTRING_SWTDVBCFilter%,TunerInterface.NT,
+
+[SWTDVBC.NTamd64.Interfaces]
+AddInterface=%KSCATEGORY_SWTDVBC%,%KSSTRING_SWTDVBCFilter%,TunerInterface.NT,
+
+[TunerInterface.NT]
+AddReg=SWTDVBC.Reader.AddReg
+
+
+
+;---------------------------------------------------------------
+;                A d d R e g
+;---------------------------------------------------------------
+[SWTDVBC.Reader.AddReg]
+;HKR,,DevLoader,,*NTKERN
+;HKR,,NTMPDriver,,SWTDVBC.sys
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%SWTDVBC.FriendlyName%
+
+[SWTDVBC.CopyFiles]
+SWTDVBC.sys
+
+[SWTDVBC.NTx86.Services]
+AddService=SWTDVBC, 0x00000002, SWTDVBC.ServiceInstall
+
+[SWTDVBC.NTamd64.Services]
+AddService=SWTDVBC, 0x00000002, SWTDVBC.ServiceInstall
+
+[SWTDVBC.ServiceInstall]
+DisplayName=%SWTDVBC.DeviceDesc%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%10%\system32\drivers\SWTDVBC.sys
+LoadOrderGroup=Extended Base
+
+[Strings]
+; non-localizeable
+RunOnce="SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce"
+SWTDVBC.DeviceId="{0E7E99DB-8A1C-11DB-BDA1-00123F758252}"
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSSTRING_SWTDVBCFilter="{0E7E99DB-8A1C-11DB-BDA1-00123F758252}"
+KSCATEGORY_SWTDVBC="{71985F48-1CA1-11d3-9CC8-00C04F7971E0}"
+
+
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+
+;localizeable
+Msft="Microsoft"
+SWTDVBC.DeviceDesc="BDA DVBC Sample Tuner Device"
+SWTDVBC.FilterDesc="BDA DVBC Sample Tuner Filter"
+BDA_DISK = "S/W BDA DVBC Sample Tuner Drivers disk"
+SWTDVBC.FriendlyName="BDA DVBC Sample Tuner"
+
+

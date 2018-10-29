@@ -1,0 +1,253 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    This rule verifies that NetBuffer related DDIs are only called at proper IRQL levels.
+    
+    Description:
+    Check for the proper IRQL when the function is entering.
+    
+    Related Rule:
+    
+*/
+
+#include "ntddk_slic.h"
+
+sdv_NdisAdvanceNetBufferDataStart.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAdvanceNetBufferListDataStart.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateCloneNetBufferList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateFragmentNetBufferList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateMdl.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateNetBuffer.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateNetBufferAndNetBufferList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateNetBufferList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateNetBufferListContext.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateNetBufferListPool.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateNetBufferMdlAndData.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateNetBufferPool.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateReassembledNetBufferList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisCopyFromNetBufferToNetBuffer.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisCopyReceiveNetBufferListInfo.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisCopySendNetBufferListInfo.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeCloneNetBufferList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeFragmentNetBufferList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeMdl.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeNetBuffer.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeNetBufferList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeNetBufferListContext.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeNetBufferListPool.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeNetBufferPool.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeReassembledNetBufferList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisGetDataBuffer.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisGetMdlPhysicalArraySize.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisGetPoolFromNetBuffer.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisGetPoolFromNetBufferList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisQueryMdl.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisQueryMdlOffset.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisQueryNetBufferPhysicalCount.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisRetreatNetBufferDataStart.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisRetreatNetBufferListDataStart.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+

@@ -1,0 +1,76 @@
+;=-------------------------------------------------------------------------=
+; Copyright (c) 2002-2003, Microsoft Corp.
+;                 All Rights Reserved
+; Information Contained Herein Is Proprietary and Confidential.
+;---------------------------------------------------------------------------
+;
+; Driver Coverage Installer File
+;
+;=--------------------------------------------------------------------------=
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%MSFT%
+LayoutFile=layout.inf
+DriverVer=01/02/2005, 5.00.2064
+CatalogFile=drvcov.cat    
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[Manufacturer]
+%DRVCOV_MFG%=DRVCOV_SYS,NT
+%DRVCOV_MFG%=DRVCOV_SYS,NTamd64
+%DRVCOV_MFG%=DRVCOV_SYS,NTia64
+
+[DRVCOV_SYS.NT]
+%DRVCOV.DeviceDesc% = DRVCOV_DRV, ROOT\DRVCOV
+
+[DRVCOV_SYS.NTia64]
+%DRVCOV.DeviceDesc% = DRVCOV_DRV, ROOT\DRVCOV
+
+[DRVCOV_SYS.NTamd64]
+%DRVCOV.DeviceDesc% = DRVCOV_DRV, ROOT\DRVCOV
+
+
+[DRVCOV.Install.HW]
+AddReg=DRVCOV.AddReg
+ 
+[DRVCOV.AddReg] 
+HKR,,"UpperFilters",0x00010000,"drvcov" ; REG_MULTI_SZ value 
+
+
+[DRVCOV.AddService]
+DisplayName    = %DRVCOV.DeviceDesc%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_CRITICAL%
+ServiceBinary  = %12%\drvCov.sys
+LoadOrderGroup = Boot Bus Extender
+
+
+[DRVCOV.Files]
+CopyFiles=@drvcov.sys
+
+[DRVCOV.Service]
+AddService=%SERVICE_NAME%,0x1,DRVCOV.AddService
+
+[SourceDisksNames]
+1 = %DRVCOV_DIR%
+
+[SourceDisksFiles]
+drvCov.sys = 1
+
+;------------------------------------------------------------------------------
+;  String Definitions
+;------------------------------------------------------------------------------
+[Strings]
+MSFT                   = "Microsoft"
+DRVCOV_MFG           = "(Standard system devices)"
+DRVCOV.DeviceDesc    = "Driver Coverage driver"
+DRVCOV_DIR           = "In the current directory!"
+SERVICE_NAME           = "Drvcov"
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_CRITICAL = 3

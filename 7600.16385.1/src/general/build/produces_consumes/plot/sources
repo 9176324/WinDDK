@@ -1,0 +1,21 @@
+# This is a minimal sample code meant to demonstrate the usage of the synchronization macros.
+# Plot.dll will be generated on build Pass2 that links with drawlib.lib.
+# No need of synchronization PRODUCES/CONSUMES macros here since drawlib.lib is generated during 
+# the build Pass1 and the plot.dll is generated on build Pass2.
+
+
+TARGETNAME=plot
+TARGETTYPE=DYNLINK
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+INCLUDES = ..\inc;
+
+SOURCES= plot.cpp
+
+TARGETLIBS=\
+        $(OBJ_PATH)\..\drawlib\$(O)\drawlib.lib \
+        $(SDK_LIB_PATH)\kernel32.lib    \
+        $(SDK_LIB_PATH)\user32.lib      \
+        $(SDK_LIB_PATH)\advapi32.lib    \
+ 

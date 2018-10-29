@@ -1,0 +1,23 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    This rule checks that MiniportPause returns only SUCCESS or PENDING state.
+	
+	  Description:
+    
+    Related Rule:
+    
+*/
+
+#include "ntddk_slic.h"
+
+
+sdv_MINIPORT_PAUSE.exit
+{  
+	if ( !NDIS_SUCCESS($return) && !NDIS_PENDING($return))
+	{
+    abort "MiniportPause cannot return a value different from SUCCESS or PENDING.";
+  }
+}
+

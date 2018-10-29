@@ -1,0 +1,212 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	This rule verifies that a driver handles the cases where WdfRequestSend may fail by setting the correct completion STATUS.
+	
+	Description:
+	WdfRequestSend can return FALSE if it failed to send the request, even if the send and 
+	forget flag is set in the options. In such a case, the driver should complete the request with
+	an appropriate completion status.
+	
+	Rule diagnostics:
+	If the driver fails to call one of three request completiton routines or WdfObjectDelete on a request after it 
+	failed to be sent, this rule finds a defect.
+	
+*/
+
+
+
+#include "ntddk_slic.h"
+#define FALSE 0
+state 
+{
+	enum {CALLED, NOTCALLED} s=NOTCALLED;
+}
+
+watch sdv_WdfRequestSend.entry.$1;
+
+sdv_WdfRequestSend.entry[guard $1]
+{	
+	s=CALLED;
+}
+sdv_WdfRequestSend.exit[guard $1]
+{
+	if ($return != FALSE)
+	{
+		halt;
+	}
+}
+[sdv_WdfRequestComplete,
+ sdv_WdfRequestCompleteWithInformation,
+ sdv_WdfRequestCompleteWithPriorityBoost,
+ sdv_WdfObjectDelete].entry[guard $1]
+ {
+		halt;
+ }
+ 
+[fun_WDF_IO_QUEUE_IO_WRITE
+,fun_WDF_IO_QUEUE_IO_READ
+,fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL
+,fun_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL
+,fun_WDF_IO_QUEUE_IO_DEFAULT
+,fun_WDF_CHILD_LIST_CREATE_DEVICE
+,fun_WDF_CHILD_LIST_SCAN_FOR_CHILDREN
+,fun_WDF_DEVICE_FILE_CREATE
+,fun_WDF_FILE_CLOSE
+,fun_WDF_DEVICE_PNP_STATE_CHANGE_NOTIFICATION
+,fun_WDF_DEVICE_POWER_STATE_CHANGE_NOTIFICATION
+,fun_WDF_DEVICE_POWER_POLICY_STATE_CHANGE_NOTIFICATION
+,fun_WDF_DEVICE_SELF_MANAGED_IO_FLUSH
+,fun_WDF_DEVICE_SELF_MANAGED_IO_INIT
+,fun_WDF_DEVICE_SELF_MANAGED_IO_SUSPEND
+,fun_WDF_DEVICE_SELF_MANAGED_IO_RESTART
+,fun_WDF_DEVICE_QUERY_STOP
+,fun_WDF_DEVICE_QUERY_REMOVE
+,fun_WDF_DEVICE_SURPRISE_REMOVAL
+,fun_WDF_DEVICE_USAGE_NOTIFICATION
+,fun_WDF_IO_IN_CALLER_CONTEXT
+,fun_WDF_INTERRUPT_ISR
+,fun_WDF_INTERRUPT_DPC
+,fun_WDF_IO_QUEUE_IO_CANCELED_ON_QUEUE
+,fun_WDF_REQUEST_CANCEL_1
+,fun_WDF_REQUEST_CANCEL_2
+,fun_WDF_REQUEST_CANCEL_3
+,fun_WDF_REQUEST_CANCEL_4
+,fun_WDF_REQUEST_CANCEL_5
+,fun_WDF_REQUEST_CANCEL_6
+,fun_WDF_REQUEST_COMPLETION_ROUTINE_1
+,fun_WDF_REQUEST_COMPLETION_ROUTINE_2
+,fun_WDF_REQUEST_COMPLETION_ROUTINE_3
+,fun_WDF_REQUEST_COMPLETION_ROUTINE_4
+,fun_WDF_REQUEST_COMPLETION_ROUTINE_5
+,fun_WDF_REQUEST_COMPLETION_ROUTINE_6
+,fun_WDF_USB_READERS_FAILED_1
+,fun_WDF_USB_READERS_FAILED_2
+,fun_WDF_USB_READERS_FAILED_3
+,fun_WDF_USB_READER_COMPLETION_ROUTINE_1
+,fun_WDF_USB_READER_COMPLETION_ROUTINE_2
+,fun_WDF_USB_READER_COMPLETION_ROUTINE_3
+].exit
+ {
+	if (s==CALLED)
+	{
+		abort "Warning: WdfRequestSend failed and the request was not completed correctly in $fname.";
+	}
+ }
+
+
+
+
+
+
+
+
+
+/*
+
+
+select all {
+  case fun_WDF_IO_QUEUE_IO_WRITE: 
+
+  case fun_WDF_IO_QUEUE_IO_READ: 
+		sdv_WdfRequestSend.entry[guard $1]
+		{	
+			s=CALLED;
+		}
+		sdv_WdfRequestSend.exit[guard $1]
+		{
+			if ($return != FALSE)
+			{
+				halt;
+			}
+		}
+		[sdv_WdfRequestComplete,
+		 sdv_WdfRequestCompleteWithInformation,
+		 sdv_WdfRequestCompleteWithPriorityBoost].entry[guard $1]
+		 {
+				halt;
+		 }
+		 fun_WDF_IO_QUEUE_IO_READ.exit
+		 {
+			if (s==CALLED)
+			{
+				abort "WdfRequestSend failed, request not completed in $fname";
+			}
+		 }
+  case fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL: 
+		sdv_WdfRequestSend.entry[guard $1]
+		{	
+			s=CALLED;
+		}
+		sdv_WdfRequestSend.exit[guard $1]
+		{
+			if ($return != FALSE)
+			{
+				halt;
+			}
+		}
+		[sdv_WdfRequestComplete,
+		 sdv_WdfRequestCompleteWithInformation,
+		 sdv_WdfRequestCompleteWithPriorityBoost].entry[guard $1]
+		 {
+				halt;
+		 }
+		 fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL.exit
+		 {
+			if (s==CALLED)
+			{
+				abort "WdfRequestSend failed, request not completed in $fname";
+			}
+		 }
+  case fun_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL: 
+		sdv_WdfRequestSend.entry[guard $1]
+		{	
+			s=CALLED;
+		}
+		sdv_WdfRequestSend.exit[guard $1]
+		{
+			if ($return != FALSE)
+			{
+				halt;
+			}
+		}
+		[sdv_WdfRequestComplete,
+		 sdv_WdfRequestCompleteWithInformation,
+		 sdv_WdfRequestCompleteWithPriorityBoost].entry[guard $1]
+		 {
+				halt;
+		 }
+		 fun_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL.exit
+		 {
+			if (s==CALLED)
+			{
+				abort "WdfRequestSend failed, request not completed in $fname";
+			}
+		 }
+  case fun_WDF_IO_QUEUE_IO_DEFAULT: 
+		sdv_WdfRequestSend.entry[guard $1]
+		{	
+			s=CALLED;
+		}
+		sdv_WdfRequestSend.exit[guard $1]
+		{
+			if ($return != FALSE)
+			{
+				halt;
+			}
+		}
+		[sdv_WdfRequestComplete,
+		 sdv_WdfRequestCompleteWithInformation,
+		 sdv_WdfRequestCompleteWithPriorityBoost].entry[guard $1]
+		 {
+				halt;
+		 }
+		 fun_WDF_IO_QUEUE_IO_DEFAULT.exit
+		 {aticdv
+			if (s==CALLED)
+			{
+				abort "WdfRequestSend failed, request not completed in $fname";
+			}
+		 }
+}*/

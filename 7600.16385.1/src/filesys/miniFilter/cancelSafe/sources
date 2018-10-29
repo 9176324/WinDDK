@@ -1,0 +1,14 @@
+TARGETNAME=cancelSafe
+TARGETTYPE=DRIVER
+DRIVERTYPE=FS
+LINKER_FLAGS=/map
+
+
+TARGETLIBS= $(TARGETLIBS) \
+            $(IFSKIT_LIB_PATH)\fltMgr.lib
+
+C_DEFINES=$(C_DEFINES) -D_WIN2K_COMPAT_SLIST_USAGE
+
+SOURCES=cancelSafe.c \
+        cancelSafe.rc
+

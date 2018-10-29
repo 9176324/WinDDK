@@ -1,0 +1,74 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that DDIs are only called at proper IRQL levels.
+*/
+
+#include "ntddk_slic.h"
+
+
+IoCreateFile.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoCreateNotificationEvent.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoCreateSymbolicLink.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoCreateSynchronizationEvent.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoCreateUnprotectedSymbolicLink.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoDeassignArcName.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoDeleteController.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoDeleteSymbolicLink.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoDisconnectInterrupt.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+

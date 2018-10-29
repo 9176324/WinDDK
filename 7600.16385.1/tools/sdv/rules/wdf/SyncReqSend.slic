@@ -1,0 +1,158 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+	Summary:This rule verifies that all synchronous request sends are done using synchronous specific DDIs that
+			    have a non-zero timeout.
+
+	Description: If the driver calls WDFxxxSendXXXSynchronously without setting a valid timeout,
+	the thread can be stalled if hardware does not respond promptly. Depending on the dispatch level at which 
+	the thread is running, this can cause various other issues for the OS.
+	
+	Rule diagnostics:
+	The timeout value in the request options must be non-zero and the timeout flag must be set.
+	If the driver fails to satisfy either of the above conditions, this rule reports a defect.
+	
+
+*/
+
+#include "ntddk_slic.h"
+
+
+state{
+}
+
+/*
+
+WDF_REQUEST_SEND_OPTION_TIMEOUT = 0x0000001
+WDF_REQUEST_SEND_OPTION_SYNCHRONOUS = 0x0000002
+WDF_REQUEST_SEND_OPTION_IGNORE_TARGET_STATE = 0x0000004 
+WDF_REQUEST_SEND_OPTION_SEND_AND_FORGET = 0x0000008
+
+Differnet possibilities for Flags with Timeout flag set/not set
+
+Timeout:       !Timeout
+0001		0000
+0011		0010
+0101		0100
+0111		0110
+1001		1000
+1011		1010
+1101		1100
+1111		1110
+
+
+Ignore all 1xxx since Send and forget flag (0x8) cannot be set
+with any other flags. Feasible options for NOT satisfying the conditions:
+0000		=0
+0010		=2
+0100		=4
+0110		=6
+
+*/
+
+
+[
+ sdv_WdfUsbTargetDeviceSendUrbSynchronously,
+ sdv_WdfUsbTargetPipeWriteSynchronously,
+ sdv_WdfUsbTargetPipeReadSynchronously,
+ sdv_WdfUsbTargetPipeSendUrbSynchronously,
+ sdv_WdfUsbTargetDeviceSendControlTransferSynchronously].entry
+ {
+	if ($3==NULL )
+	{
+	    abort "$fname used to send a request synchronously without setting a timeout.";
+	}
+	else if ($3->Timeout==0)
+	{
+            abort "$fname used to send a request synchronously with zero timeout.";
+	}
+	else if ($3->Flags==0 || $3->Flags==2 ||$3->Flags==4 ||	$3->Flags==6) 			
+	{
+	    abort "$fname used to send a request synchronously without setting a timeout flag.";
+	}
+ }	
+		 
+[sdv_WdfIoTargetSendWriteSynchronously,
+ sdv_WdfIoTargetSendReadSynchronously].entry
+ {
+	if ($5==NULL )
+	{
+		abort "$fname used to send a request synchronously without setting a timeout.";
+	}
+	else if ($5->Timeout==0)
+	{
+		abort "$fname used to send a request synchronously with zero timeout set.";
+	}
+	else if ($5->Flags==0 || $5->Flags==2 || $5->Flags==4 || $5->Flags==6) 			
+	{
+		abort "$fname used to send a request synchronously without a timeout flag set.";
+	}
+ }
+
+[sdv_WdfIoTargetSendIoctlSynchronously
+ ].entry
+ {
+	if ($6==NULL )
+	{
+		abort "$fname used to send a request synchronously without setting a timeout.";
+	}
+	else if ($6->Timeout==0)
+	{
+		abort "$fname used to send a request synchronously with zero timeout";
+	}
+	else if ($6->Flags==0 || $6->Flags==2 || $6->Flags==4 || $6->Flags==6) 			
+	{
+		abort "$fname used to send a request synchronously without setting a timeout flag.";
+	}
+ }
+
+ 
+/*
+
+[
+ sdv_WdfUsbTargetDeviceSendUrbSynchronously,
+ sdv_WdfUsbTargetPipeWriteSynchronously,
+ sdv_WdfUsbTargetPipeReadSynchronously,
+ sdv_WdfUsbTargetPipeSendUrbSynchronously,
+ sdv_WdfUsbTargetDeviceSendControlTransferSynchronously].entry
+ {
+	if ($3==NULL )
+	{
+	    abort "$fname used to send a request synchronously without timeout";
+	}
+	else if (!getBit($3->Flags, timeOutBit) && $3->Timeout==0) 			
+	{
+            abort "$fname used to send a request synchronously without a timeout flag set";
+	}
+ }	
+		 
+
+[sdv_WdfIoTargetSendWriteSynchronously,
+ sdv_WdfIoTargetSendReadSynchronously].entry
+ {
+	if ($5==NULL )
+	{
+	    abort "$fname used to send a request synchronously without timeout";
+	}
+	else if (!getBit($5->Flags, timeOutBit) && $5->Timeout==0) 			
+	{
+	    abort "$fname used to send a request synchronously without a timeout flag set";
+	}
+ }
+
+[sdv_WdfIoTargetSendIoctlSynchronously
+ ].entry
+ {
+	if ($6==NULL )
+	{
+    	    abort "$fname used to send a request synchronously without timeout";
+	}
+	else if (!getBit($6->Flags, timeOutBit) && $6->Timeout==0) 			
+	{
+	    abort "$fname used to send a request synchronously without a timeout flag set";
+	}
+ }
+		 
+
+*/

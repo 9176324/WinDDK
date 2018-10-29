@@ -1,0 +1,15 @@
+TARGETNAME=pp
+TARGETTYPE=DYNLINK
+TARGETLIBS=$(SDK_LIB_PATH)\kernel32.lib \
+           $(SDK_LIB_PATH)\advapi32.lib
+
+INCLUDES=.; ..\inc
+
+DLLENTRY=_DllMainCRTStartup
+DLLBASE=0x01000000
+
+C_DEFINES=-DUNICODE
+
+USE_MSVCRT=1
+SOURCES=pp.c port.c misc.c
+

@@ -1,0 +1,6 @@
+; Plot.def : Declares the Plot module parameters.
+
+LIBRARY      "Plot.DLL"
+
+EXPORTS
+

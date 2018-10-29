@@ -1,0 +1,45 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+    
+    Summary:
+    If NdisMAllocateSharedMemory is called in MiniportInitialize, it should also call NdisWriteErrorLogEntry in case it fails.
+    
+    Description:
+    In general is a good practice to log an error entry in the log, whenever an allocation memory operation is failing.
+    Most of the allocation operations happen in the MiniportInitializeEx callback.
+    
+    Related Rule:
+    None
+    
+*/
+
+#include "ntddk_slic.h"
+
+state{
+   enum {ok, failure} s = ok;
+   enum {not_called, called} c = not_called;
+}
+
+watch sdv_NdisMAllocateSharedMemory.exit.$4;
+
+
+sdv_NdisMAllocateSharedMemory.exit [ guard || null $4]
+{  
+    if ( (*$4) == 0 )
+    {
+        s = failure;
+    }
+}
+
+sdv_NdisWriteErrorLogEntry.entry
+{
+    c = called;
+}
+
+sdv_MINIPORT_INITIALIZE.exit
+{
+    if ((s == failure) && (c == not_called))
+    {
+        abort "You need to call NDisWriteErrorLogEntry if NdisMAllocateSharedMemory fails.";
+    }
+}

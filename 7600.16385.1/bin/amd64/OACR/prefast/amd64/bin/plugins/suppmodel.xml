@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Supplemental models for standard functions -->
+<Models>
+
+  <Function name="free">
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PostConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+	<IsReleased value="always"/>
+        <IsValidPointer value="never" except="always"/>
+      </PostConditions>
+    </External>
+    <External>
+      <ExternalID type="param" index="0" deref="1" />
+      <PreConditions>
+	<IsValidPointer value="sometimes" except="always"/>
+      </PreConditions>
+    </External>
+  </Function>
+
+  <Function name="_freea">
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PostConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+	<IsReleased value="always" />
+        <IsValidPointer value="never" except="always" />
+      </PostConditions>
+    </External>
+    <External>
+      <ExternalID type="param" index="0" deref="1" />
+      <PreConditions>
+	<IsValidPointer value="sometimes" except="always"/>
+      </PreConditions>
+    </External>
+  </Function>
+
+  <Function name="MNLS_lstrlenW">
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+        <IsWritableString value="never"/>
+        <IsNullOk value="never"/>
+        <RequiresZeroTermination value="always"/>
+        <IsValidPointer value="always"/>
+      </PreConditions>
+      <PostConditions/>
+    </External>
+    <External>
+      <ExternalID type="retval"/>
+      <PostConditions>
+        <MustBeChecked value="always"/>
+      </PostConditions>
+    </External>
+  </Function>
+
+  <Function name="realloc">
+    <External>
+      <ExternalID type="retval"/>
+      <PostConditions>
+        <NeedsRelease value="sometimes"/>
+      </PostConditions>
+    </External>
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PostConditions>
+      </PostConditions>
+    </External>
+  </Function>
+
+<!--
+__in : __pre __valid (=isNullOK=never, ShouldBeInitialized=always) __pre __deref __readonly
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+        <IsNullOk value="never"/>
+        <ShouldBeInitialized value="always"/>
+      </PreConditions>
+    </External>
+    <External>
+      <ExternalID type="param" index="0" deref="1"/>
+      <PreConditions>
+        <IsWritableString value="never"/>
+      </PreConditions>
+    </External>
+
+__out : __ecount(1) __post __valid (=IsValidPointer=always IsSetToNull=naver"(deref=1) __refparam (== __deref __notreadonly)
+__ecount(size) __notnull __elem_writableTo(size)
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PostConditions>
+        <IsNullOk value="never"/>
+        <WritableTo value="always">
+          <SizeSpec kind="elementcount" qualifier="post">
+			<NumberSpec kind="int" longvalue="1"/>
+          </SizeSpec>
+        </WritableTo>				
+      </PostConditions>
+    </External>
+    <External>
+      <ExternalID type="param" index="0" deref="1"/>
+      <PostConditions>
+        <IsWritableString value="always"/>
+        <IsSetToNull value="never"/>
+      </PostConditions>
+    </External>
+
+__inout :  __pre __valid __post __valid __refparam
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+        <IsNullOk value="never"/>
+        <ShouldBeInitialized value="always"/>
+      </PreConditions>
+    </External>
+    <External>
+      <ExternalID type="param" index="0" deref="1"/>
+      <PostConditions>
+        <IsWritableString value="always"/>
+        <IsSetToNull value="never"/>
+      </PostConditions>
+    </External>
+-->
+</Models>

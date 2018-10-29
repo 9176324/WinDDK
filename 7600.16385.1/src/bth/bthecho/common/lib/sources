@@ -1,0 +1,57 @@
+TARGETNAME=bthecho
+TARGETTYPE=LIBRARY
+
+KMDF_VERSION_MAJOR=1
+
+INCLUDES=\
+        $(INCLUDES); \
+        $(DDK_INC_PATH); \
+        $(BASE_INC_PATH); \
+        ..\inc;   \
+
+#
+# Build everything for UNICODE
+#
+
+C_DEFINES = $(C_DEFINES) /D_UNICODE /DUNICODE 
+
+#
+# Set the warning level high
+# Disable 4201: nonstandard extension used : nameless struct/union
+#
+
+MSC_WARNING_LEVEL=/W4 /WX /wd4201
+
+SOURCES= \
+    clisrv.c \
+    connection.c
+
+#
+# Comment the below line to disable tracing. All the debug traces
+# will be sent to the kernel-debugger.
+
+ENABLE_EVENT_TRACING=1
+
+
+!IFDEF ENABLE_EVENT_TRACING
+
+C_DEFINES = $(C_DEFINES) -DEVENT_TRACING
+
+#
+# Generate WPP tracing code
+# $(SOURCES)   -- run software preprocessor on files listed in SOURCES
+# -km          -- use kernel mode
+# -func        -- define function we'll use for tracing
+#                 This would map all TraceEvents calls to 
+#                 DoTraceMessage.
+#
+RUN_WPP= $(SOURCES)                             \
+         -ext:.c.cpp.h.hpp -preserveext:.h.hpp \
+         -km                                    \
+         -func:TraceEvents(LEVEL,FLAGS,MSG,...) \
+         -gen:{km-WdfDefault.tpl}*.tmh       
+!ENDIF
+
+
+
+

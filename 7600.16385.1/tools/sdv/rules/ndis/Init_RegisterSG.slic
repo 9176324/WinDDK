@@ -1,0 +1,72 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+    
+    Summary:
+    If NdisMRegisterScatterGatherDma is called at least once during MPInitilize, then NdisMDeregisterScatterGatherDma 
+    should be called at least once in MPHaltEx.
+    
+    Description:
+    Register SG List, which usually happen during initialization, should be undone (deregister) if 
+    something goes worng in the initialization process or the halt of the miniport.
+    
+    Related Rule:
+    
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+   int calls = 0;
+   enum {in_init, in_halt} t = in_init;
+}
+
+sdv_NdisMRegisterScatterGatherDma.exit
+{
+    if ((t == in_init) && (NDIS_SUCCESS($return))) 
+    {
+        if (calls >0)
+        {
+          abort "$fname has been called succsefully once, already.";
+        }
+        else
+        {
+          calls = calls + 1;
+        }
+    }
+}
+
+sdv_NdisMDeregisterScatterGatherDma.exit
+{
+    calls = calls - 1;
+}
+
+sdv_MINIPORT_INITIALIZE.exit
+{
+    if (NDIS_FAILURE($return)) {
+        if (calls > 0) {
+            abort "The $fname routine is failing wihout deregistering all the Scatter\Gather DMA.";
+        }
+        else if (calls < 0)
+        {
+            abort "The $fname routine is exting deregistering not previously registered Scatter\Gather DMA buffer.";
+        }
+    }
+}
+
+sdv_MINIPORT_HALT.entry
+{
+    t = in_halt;
+}
+
+sdv_MINIPORT_HALT.exit
+{
+      if (calls > 0) 
+      {
+          abort "The $fname routine is exting wihout deregistering all the Scatter\Gather DMA buffer.";
+      }
+      else if (calls < 0)
+      {
+          abort "The $fname routine is exting deregistering not previously registered Scatter\Gather DMA buffer.";
+      }
+}

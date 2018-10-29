@@ -1,0 +1,20 @@
+# This is a minimal sources file sample meant to demonstrate the usage of BUILD_CONSUMES macro
+# Drawlib.lib will be generated during build Pass1. The BUILD_CONSUMES macro specifies a 
+# dependancy from pix_lib which will also be generated during Pass1.
+
+
+TARGETNAME=drawlib
+TARGETTYPE=LIBRARY
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+INCLUDES=$(DDK_INC_PATH);..\inc;
+
+SOURCES= drawlib.cpp
+
+#Specify the dependancy lib
+OBJLIBFILES= $(OBJ_PATH)\..\pixlib\$(O)\pixlib.lib
+
+#Use BUILD_CONSUMES macro for PASS1 dependancy
+BUILD_CONSUMES = pix_lib
+

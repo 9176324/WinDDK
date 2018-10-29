@@ -1,0 +1,71 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    This rule verifies that OID handling related DDIs are only called at proper IRQL levels.
+    
+    Description:
+    Check for the proper IRQL when the function is entering.
+    
+    Related Rule:
+    
+*/
+
+#include "ntddk_slic.h"
+
+sdv_NdisAllocateCloneOidRequest.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisCancelOidRequest.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFCancelOidRequest.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFOidRequest.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFOidRequestComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeCloneOidRequest.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMOidRequestComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisOidRequest.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+

@@ -1,0 +1,28 @@
+# Copyright (c) 2005 Microsoft Corporation
+#
+# All rights reserved.
+#
+# THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+# ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+SOURCES=$(SOURCES) \
+ dllentry.cpp      \
+ nuptprps.cpp      \
+ nupxform.cpp      \
+ nupflt.cpp        \
+ nupsax.cpp        \
+ nuppage.cpp       \
+ nupflt.rc         \
+
+TARGETNAME=xdnup
+TARGETTYPE=DYNLINK
+
+DLLENTRY=_DllMainCRTStartup
+
+!include ..\sources.inc
+
+!IF "$(BUILD_PASS)" == "PASS2" || "$(BUILD_PASS)" == "PASSALL"
+NTTARGETFILES=COPYDLL
+!ENDIF

@@ -1,0 +1,2221 @@
+<?xml version='1.0'?>
+<DefectDefs>
+
+    <DefectDefGroup guid="7C52E9EA-9C01-44F7-B6FF-DDC20E9D56D8"
+        id="28600"
+        name="WindowsPREfast"
+        symbol="DEFECT_DESCRIPTION__">
+
+        <display>Windows Division Defect Checks</display>
+
+        <doc>
+            <p>
+                This Module contains defect detections intended to be 
+                used for Windows code.
+            
+                The following warnings are reported by this Module.
+            </p>
+        </doc>
+
+        <ownerURL>http://winweb/wincet/</ownerURL>
+        <ownerContact>winpft</ownerContact>
+
+        <!-- 28600 -->
+
+        <!-- 28601 -->
+        <DefectDef guid="893F7CA7-820D-42a7-9245-CA7836C6D1C8"
+            id="28601"
+            name="AVOID_BLOCKING_HWNDBROADCAST">
+
+            <description>
+                <format>
+                    Avoid blocking on HWND_BROADCAST
+                </format>
+            </description>
+
+            <doc>
+                <p>
+                    Calling <code>SendMessage</code> with the
+                    <code>HWND_BROADCAST</code> flag will block your thread
+                    until all the windows that you broadcasted this message
+                    to respond.  However, if another window is hung - then
+                    you've just hung your thread as well.
+                </p>
+                <p>
+                    To fix this, you may want to use
+                    <code>PostMessage</code> instead - so that it is not a
+                    blocking call. Alternatively, you may want to avoid
+                    <code>HWND_BROADCAST</code> altogether in favour of
+                    directing the message at a particular window.
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    SendMessage(HWND_BROADCAST, ... );
+                ]]></defectiveSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+        </DefectDef>
+
+
+        <!-- 28602 -->
+        <DefectDef guid="9A629C2A-7F9C-49e6-B15D-8BACC8AAA40B"
+            id="28602"
+            name="AVOID_TIMEOUT_HWNDBROADCAST">
+
+            <description>
+                <format>
+                    Avoid calling SendMessageTimeout with HWND_BROADCAST
+                </format>
+            </description>
+
+            <doc>
+                <p>
+                    Even if you use <code>SendMessageTimeout</code> and ask
+                    the thread to hang for only 10 seconds; your application
+                    may actually get hung for as long as there is any other
+                    window that's hung. This is because you cannot control
+                    the response time of every other <code>HWND</code> on
+                    the system.
+                </p>
+                <p>
+                    To fix this, you may want to use
+                    <code>PostMessage</code> instead - so that it is not a
+                    blocking call. Alternatively, you may want to avoid
+                    <code>HWND_BROADCAST</code> altogether in favour of
+                    directing the message at a particular window.
+
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+        </DefectDef>
+
+
+        <!-- 28604 -->
+        <DefectDef guid="100FAFBC-D866-4fa1-8EAD-46BAEED0D780"
+            id="28604"
+            name="AVOID_SENDMESSAGE_TIMEOUT_MISUSE">
+
+            <description>
+                <format>
+                    Avoid calling SendMessageTimeout with SMTO_ABORTIFHUNG 
+                    with a timeout of 0
+                </format>
+            </description>
+
+            <doc>
+                <p>
+                    Using <code>SendMessageTimeout</code> with <code>SMTO_ABORTIFHUNG</code> flag and a
+                    timeout value of 0 can be problematic because in this
+                    case timeout has no impact and the call is treated as 
+                    a blocking call.
+                </p>
+                <p>
+                    Use a non zero value for timeout.
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    fNeedsCallbackEvent = (0 != SendMessageTimeout(_hwnd, WM_NULL, 0, 0, SMTO_ABORTIFHUNG, 0, &dwResult));  
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    fNeedsCallbackEvent = (0 != SendMessageTimeout(_hwnd, WM_NULL, 0, 0, SMTO_ABORTIFHUNG, 1000, &dwResult));  
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+        </DefectDef>
+
+
+        <!-- 28615 -->
+        <DefectDef guid="D2DD3D4B-1F22-48a3-BF91-62168966B466"
+            id="28615"
+            name="ALLOCA_RESETSTKOFLW">
+
+            <description>
+                <format>
+                    Must call _resetstkoflw in the __except() block when
+                    calling _alloca in the __try block.  Don't call
+                    _resetstkoflw from inside a catch() block
+                </format>
+            </description>
+
+            <doc>
+                <p>
+                    Only one raise from <code>_alloca</code> can be caught
+                    in a given thread unless the stack is 'fixed' (e.g. by
+                    <code>_resetstkoflw</code>) after each raise. If the
+                    stack is not fixed after the first raise from
+                    <code>_alloca</code>, a second raise will result in
+                    immediate and silent process termination.
+                </p>
+                <p>
+                    You must call <code>_resetstkoflw</code> when the
+                    current stack pointer points into an address higher than
+                    the third page on the stack. This is because it doesn't
+                    make sense to make a guard page out of the current page
+                    the stack pointer is pointing to (or will point to in a
+                    moment).
+                </p>
+                <p>
+                    Thus, you shouldn't call <code>_resetstkoflw()</code>
+                    from an SEH filter expression, or a function called from
+                    an SEH filter expression.
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    __try 
+                    {
+                        /* The following could cause stack overflow */
+                        char *x = _alloca (i);
+                    }
+
+                    /* This doesn't work since the filter expression is
+                     * called before stack unwinding happens. In the case
+                     * of stack overflow, the filter expression is called 
+                     * when the current stack pointer is pointing to the
+                     * third page from the bottom of the stack.
+                     */
+                    __except ((GetExceptionCode () == EXCEPTION_STACK_OVERFLOW) ? (_resetstkoflw (), EXCEPTION_EXECUTE_HANDLER) : EXCEPTION_CONTINUE_SEARCH)
+                    {
+                    }
+                ]]></defectiveSrc>
+                <defectiveSrc><![CDATA[
+                    __try 
+                    {
+                        char *x = _alloca (i);
+                    }
+                    __except (SEHFilter (GetExceptionCode ()))
+                    {
+                    }
+
+                    int SEHFilter (DWORD dwExceptionCode)
+                    {
+                        if (dwExceptionCode == EXCEPTION_STACK_OVERFLOW)
+                        {
+                            _resetstkoflw ();
+                            return EXCEPTION_EXECUTE_HANDLER;
+                        }
+                        else
+                        {
+                            return EXCEPTION_CONTINUE_SEARCH;
+                        }
+                    }
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    __try
+                    {
+                        char *x = _alloca (i);
+                    }
+                    __except ((GetExceptionCode () == EXCEPTION_STACK_OVERFLOW) ? EXCEPTION_EXECUTE_HANDLER : EXCEPTION_CONTINUE_SEARCH)
+                    {
+                        /* In this block the stack has already been unwound,
+                         * so this call will succeed.
+                         */
+                        _resetstkoflw ();
+                    }
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+        </DefectDef>
+
+
+        <!-- 28616 -->
+        <DefectDef guid="4839BA36-A495-4be1-B380-4032C140CFD8"
+            id="28616"
+            name="INTERLOCKEDDECREMENT_MISUSE1">
+
+            <description>
+                <format>
+                    Multithreaded AV condition
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    After InterlockedDecrement(this.m_cRef) you can't
+                    reference member variables again - they may already 
+					have been deleted
+                </format>
+            </additionalInfo>
+
+            <doc>
+                <p>
+                    Refer to the example of defective source given below. 
+                    An example of threading time sequence that could expose
+                    this problem:
+                </p>
+               <p>
+                    A thread T1 executes lines 1, 2, and 3 decrementing
+                    m_cRef to 1.
+                </p>
+                <p>
+
+                    Another thread T2 executes lines 1, 2, and 3 decrementing
+                    <code>m_cRef</code> to 0. Then it executes lines 4 and 5
+                    - where <code>this</code> is deleted, and finally line 6.
+                </p>
+                <p>
+                    Now when T1 is rescheduled, it will reference
+                    <code>m_cref</code> on line 9. Thus it will access a
+                    member variable after the related <code>this</code>
+                    pointer has been deleted - and when the heap for the
+                    object is in an unknown state.
+                </p>
+                <p>
+                    The corrected example does not reference any heap memory
+                    after the object is deleted.
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    ULONG CObject::Release()                            // 1
+                    {                                                   // 2
+                        if ( 0 == InterlockedDecrement(&m_cRef) )       // 3
+                        {                                               // 4
+                            delete this;                                // 5
+                            return NULL;                                // 6
+                        }                                               // 7
+                        /* this.m_cRef isn't thread safe */             // 8
+                        return m_cRef;                                  // 9
+                    }                                                   // 10
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    ULONG CObject::Release()
+                    {
+                        ASSERT( 0 != m_cRef );
+                        ULONG cRef = InterlockedDecrement(&m_cRef);
+                        if ( 0 == cRef )
+                        {
+                            delete this;
+                        }
+                        return cRef;
+                    }
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+
+        <!-- 28617 -->
+        <DefectDef guid="48C84BB3-50FB-4556-846B-9624C703BAC7"
+            id="28617"
+            name="AVOID_BEGIN_THREAD_RETURN_VALUE">
+
+            <description>
+                <format>
+                    Avoid using the return value of _beginthread().
+                    Use _beginthreadex() instead
+                </format>
+            </description>
+
+            <doc>
+                <p>
+                    It is safer to use <code>_beginthreadex</code> than
+                    <code>_beginthread</code>.  If the thread spawned by
+                    <code>_beginthread</code> exits quickly, the handle
+                    returned to the caller of <code>_beginthread</code> may
+                    be invalid or, worse, point to another thread. However,
+                    the handle returned by <code>_beginthreadex</code> has
+                    to be closed by the caller of
+                    <code>_beginthreadex</code>, so it is guaranteed to be
+                    a valid handle if <code>_beginthreadex</code> did not
+                    return an error. 
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    hThread = (HANDLE)_beginthread ( NULL, 0,
+                                                     &SecondThreadFunc,
+                                                     NULL, 0, &threadID);
+
+                    WaitForSingleObject (hThread, INFINITE);
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    hThread = (HANDLE)_beginthreadex ( NULL, 0,
+                                                       &SecondThreadFunc,
+                                                       NULL, 0, &threadID);
+
+                    WaitForSingleObject (hThread, INFINITE);
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28623 -->
+        <DefectDef guid="C89B1903-0F01-4e6e-AE90-564230B6AE2A"
+            id="28623"
+            name="UNSIGNED_CAST_OF_GETMESSAGEPOS">
+
+            <description>
+                <format>
+                    Unsigned cast of GetMessagePos() coordinates.
+                    Use GET_X_LPARAM/GET_Y_LPARAM instead of LOWORD/HIWORD
+                </format>
+            </description>
+
+            <doc>
+                <p>
+                    Systems with multiple monitor systems can have negative
+                    x- and y- coordinates. On such systems,
+                    <code>GetMessagePos</code> may therefore return negative
+                    values.  <code>LOWORD</code> and <code>HIWORD</code>,
+                    however, treat the coordinates as unsigned quantities.
+                    Hence they should not be used.
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    DWORD dw = GetMessagePos();
+                    POINT ppt;
+
+                    ppt.x = LOWORD(dw);
+                    ppt.y = HIWORD(dw);
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    DWORD dw = GetMessagePos();
+                    POINT ppt;
+
+                    ppt.x = GET_X_LPARAM(dw);
+                    ppt.y = GET_Y_LPARAM(dw);
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28624 -->
+        <DefectDef guid="429D0998-F766-4086-97EC-BCF5F3F33131"
+            id="28624"
+            name="UNRELEASED_REF">
+
+            <description>
+                <format>
+                    No call to Release() to match incremented refcount 
+                    from LResultFromObject
+                </format>
+            </description>
+
+            <doc>
+                <p>
+                    <code>LresultFromObject()</code> increases the refcount
+                    on new <code>IAccessible</code> objects.
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    {
+                        IAccessible *pacc = CreateNewIAccessible();
+                        LRESULT lTemp = LresultFromObject(riid, NULL, pacc );
+                    }
+
+                    {
+                        IAccessible *pacc = NULL;
+
+                        /* 
+                         * Get new interface (from same object)
+                         */
+                        QueryInterface( & pacc );
+
+                        /* 
+                         * Lresult will internally bump up the refcount
+                         * to hold onto the object.
+                         */
+                        LRESULT lTemp = LresultFromObject( riid, NULL, pacc );
+                    }
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    {
+                        IAccessible *pacc = CreateNewIAccessible();
+
+                        /* 
+                         * Lresult internally bumps up the refcount to
+                         * hold onto the object.
+                         */
+                        LRESULT lTemp = LresultFromObject(riid, NULL, pacc );
+
+                        /* 
+                         * We no longer need our pacc interface, so we 
+                         * release it.
+                         */
+                        pacc->Release();
+                    }
+
+                    {
+                        /* 
+                         * This case is actually fine, but flagged as
+                         * an error - Noisy case.
+                         */
+
+                        IAccessible *g_pCachedIAccessible = CreateNewIAccessible();
+                        /* 
+                         * Same object used throughout this window/app-s 
+                         * lifetime.
+                         */
+                        IAccessible *pacc = g_pCachedIAccessible;
+
+                        LresultFromObject( riid, NULL, pacc );
+                    }
+
+                    {
+                        IAccessible *pacc = NULL;
+
+                        /*
+                         * Get new interface (from same object)
+                         */
+                        QueryInterface( & pacc );
+
+                        /*
+                         * Lresult internally bumps up the refcount 
+                         * to hold onto the object.
+                         */
+                        LRESULT lTemp = LresultFromObject( riid, NULL, pacc );
+
+                        /*
+                         * We no longer need our pacc interface, 
+                         * so we release it.
+                         */
+                        pacc->Release();
+                    }
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28625 -->
+        <DefectDef guid="9599FCEA-7E38-4bab-82D2-CBC36E589F54"
+            id="28625"
+            name="COMPILER_OPTIMIZATES_OUT_CLEARING_SENSITIVEDATA">
+
+            <description>
+                <format>
+                    Function call used to clear sensitive data
+                    will be optimized away
+                </format>
+            </description>
+
+            <doc>
+                <p>
+                    This Function call may be optimized away during compile, 
+                    resulting in sensitive data lingering in memory.
+                    Use <code>SecureZeroMemory</code> or
+                    <code>RtlSecureZeroMemory</code> instead.
+                    A heuristic looks for identifier names containing
+                    items like "key" or "pass" to trigger this warning.
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    {
+                        BYTE Password[100];
+
+                        /*
+                         * The Buffer will be going out of scope 
+                         * anyway so the compiler optimises away
+                         * the following
+                         */
+                        ZeroMemory (Password, sizeof(Password);
+                    }
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    {
+                        BYTE Password[100];
+
+                        /*
+                         * The Buffer will be going out of scope 
+                         * anyway so the compiler optimises away
+                         * the following
+                         */
+                        SecureZeroMemory (Password, sizeof(Password);
+                    }
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28636 -->
+        <DefectDef guid="F60DE7C3-09C0-445b-87AD-499432B68370"
+            id="28636"
+            name="LOCAL_FREE_NONALLOCATED">
+
+            <description>
+                <format>
+                    Calling LocalFree on non-allocated pointer
+                    obtained from calls to
+                    GetSecurityDescriptorOwner/Group/Dacl/Sacl
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    pointer initialized from call to %function% 
+                    (line %lineno%) should not have LocalFree
+                    called on it
+                </format>
+
+                <param name="function" format="%s"/>
+                <param name="lineno" format="%d"/>
+            </additionalInfo>
+
+            <doc>
+                <p>
+                    These functions do not allocate any memory - it
+                    just sets the passed in pointer. Hence it is 
+                    wrong to free memory using that pointer.
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    PSECURITY_DESCRIPTOR pSecurityDescriptor = NULL;
+                    LPBOOL lpbDaclPresent = NULL;
+                    PSID *pOwner = NULL;
+                    PACL *pacl = NULL;
+                    LPBOOL lpbOwnerDefaulted = NULL;
+
+                    GetSecurityDescriptorOwner (pSecurityDescriptor,
+                                                pOwner,
+                                                lpbOwnerDefaulted);
+
+                     /* 
+                      * Error - GetSecurityDescriptorOwner 
+                      * doesn't allocate.
+                      */
+                    LocalFree(pOwner);
+
+
+
+                    GetSecurityDescriptorGroup (pSecurityDescriptor, 
+                                                pOwner,
+                                                lpbOwnerDefaulted);
+
+                     /* 
+                      * Error - GetSecurityDescriptorGroup
+                      * doesn't allocate.
+                      */
+                    LocalFree(pOwner);
+
+
+
+                    GetSecurityDescriptorDacl ( pSecurityDescriptor,
+                                                lpbDaclPresent,
+                                                pacl,
+                                                lpbOwnerDefaulted);
+
+                     /* 
+                      * Error - GetSecurityDescriptorDacl
+                      * doesn't allocate.
+                      */
+                    LocalFree(pacl);
+
+
+                    GetSecurityDescriptorSacl ( pSecurityDescriptor,
+                                                lpbDaclPresent,
+                                                pacl,
+                                                lpbOwnerDefaulted);
+                     /* 
+                      * Error - GetSecurityDescriptorSacl
+                      * doesn't allocate.
+                      */
+                    LocalFree(pacl);
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    PSECURITY_DESCRIPTOR pSecurityDescriptor = NULL;
+                    LPBOOL lpbDaclPresent = NULL;
+                    PSID *pOwner = NULL;
+                    PACL *pacl = NULL;
+                    LPBOOL lpbOwnerDefaulted = NULL;
+
+                    GetSecurityDescriptorOwner (pSecurityDescriptor,
+                                                pOwner,
+                                                lpbOwnerDefaulted);
+
+                    GetSecurityDescriptorGroup (pSecurityDescriptor,
+                                                pOwner,
+                                                lpbOwnerDefaulted);
+
+                    GetSecurityDescriptorDacl ( pSecurityDescriptor,
+                                                lpbDaclPresent,
+                                                pacl,
+                                                lpbOwnerDefaulted);
+
+                    GetSecurityDescriptorSacl ( pSecurityDescriptor,
+                                                lpbDaclPresent,
+                                                pacl,
+                                                lpbOwnerDefaulted);
+
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+        </DefectDef>
+
+        <!-- 28637 -->
+        <DefectDef guid="5169C9B8-7C6F-4e49-ACB5-8D89866A6C87"
+            id="28637"
+            name="UNSAFE_CALL_IN_GLOBAL_INIT">
+
+            <description>
+                <format>
+                    Calling %function% in a global initializer 
+                    is unsafe
+                </format>
+
+                <param name="function" format="%s"/>
+
+            </description>
+
+            <doc>
+                <p>
+                    When using a DLL, it is frequently the case that any
+                    static construtors are called from DllMain.
+                    There are a number of constraints that apply to calling
+                    other functions from DllMain.  In particular, it is 
+                    possible to create memory leaks if the DLL is loaded 
+                    and unloaded dynamically.
+                    The MSDN article
+                    http://msdn2.microsoft.com/en-us/library/ms682583.aspx
+                    contains the details.
+                </p>
+                <p>
+                    SysAllocString is an example of a function that, in this
+                    case, could cause a memory leak.
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    extern const BSTR XML_SELECTION_LANGUAGE_VALUE = SysAllocString(L"XPath");
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                void InitFunc()
+                {
+                    /*
+                     * OK if initialised inside a function.
+                     */
+                    BSTR temp = SysAllocString(L"XPath");
+                }
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28638 -->
+        <DefectDef guid="B2DABD50-5E12-41bf-AED6-9F099A576B2A"
+            id="28638"
+            name="DLOAD_FUNCDEFN">
+
+            <description>
+                <format>
+                    '%function%' delayload stub is missing a 
+                    matching declaration
+                </format>
+
+                <param name="function" format="%s"/>
+
+            </description>
+
+            <doc>
+                <p>
+                    Many of delayload stubs may be implemented without
+                    including the project's headerfile where the functions
+                    are declared.  Over time the function signatures might
+                    be changed without updating all the corresponding
+                    delayload stubs. If the delayload stubs have the wrong
+                    signature that leads to AV. 
+                </p>
+                <p>
+
+                    Usually a <code>#include &lt;foobar.h&gt;</code> that
+                    contains the function prototype for the delayload stub
+                    being implemented is missing.  A common mistake is to
+                    include the public headerfile while implementing
+                    delayload stubs for both public and private ordinals. So
+                    the fix is to include the appropriate header file for
+                    the delayload stub being implemented.
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+        </DefectDef>
+
+        <!-- 28639 -->
+        <DefectDef guid="B63799BB-1A60-4b3f-BA6F-5E4608722731"
+            id="28639"
+            name="CLOSEHANDLE_STRING">
+
+            <description>
+                <format>
+                    Calling close handle with string '%string%'
+                </format>
+
+                <param name="string" format="%s"/>
+            </description>
+
+            <doc>
+                <p>
+                    The function <code>CloseHandle</code> takes a <code>void
+                    *</code>.  It is possible to cast (among other things) a
+                    string pointer to a <code>void *</code> and pass it as an
+                    argument to it when the intention was to pass a handle
+                    opened using the string.
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    _hPUPProfileArrival = CreateEvent (NULL, FALSE, FALSE, L"Global\\PUPProfileArrival");
+
+                    if (_hPUPProfileArrival)
+                    {
+                        /*
+                         * Bad - Passing a String instead of a handle.
+                         */
+                        CloseHandle (L"Global\\PUPProfileArrival");
+                    }
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    _hPUPProfileArrival = CreateEvent (NULL, FALSE, FALSE, L"Global\\PUPProfileArrival");
+
+                    if (_hPUPProfileArrival)
+                    {
+                        /*
+                         * OK - Passing in a handle.
+                         */
+                        CloseHandle (_hPUPProfileArrival);
+                    }
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28640 -->
+    <!-- Bug Number 740362 -->
+        <DefectDef guid="0AD60F9F-D058-4acc-8144-81D62BDD62CF"
+            id="28640"
+            name="DLOAD_FUNCSTATIC">
+
+            <description>
+                <format>
+                    '%function%' delayload stub should be a static function
+                </format>
+
+                <param name="function" format="%s"/>
+            </description>
+
+            <doc>
+                <p>
+                    All of the dload libs should be static so they have no 
+                    symbolic exports. This ensures that no one inside
+                    and outside of MS can link to your dload stub functions.
+                    If this guideline is not followed your binary exposes a
+                    bunch of exports that look like kernel APIs to some
+                    folk, for instance. So some people may end up linking to
+                    your delaystub which is the wrong API.
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28642 -->
+        <DefectDef guid="0FD84139-03D3-4fc4-9A09-6646A785A000"
+            id="28642"
+            name="BAD_POSTMESSAGE_FLAG">
+
+            <description>
+                <format>
+            THIS WARNING IS CURRENTLY DISABLED.
+                    Bad flag for PostMessage
+                </format>
+            </description>
+
+            <doc>
+                <p>
+                    As per the MSDN documentation for
+                    <code>PostMessage</code>:
+                    <ul>
+                        If you send a message in the range below
+                        <b>WM_USER</b> to the asynchronous message functions
+                        (<b>PostMessage</b>, <b>SendNotifyMessage</b>, and
+                        <b>SendMessageCallback</b>), its message parameters
+                        cannot include pointers.  Otherwise, the operation
+                        will fail. The functions will return before the
+                        receiving thread has had a chance to process the
+                        message and the sender will free the memory before
+                        it is used.
+                    </ul>
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28644 -->
+        <DefectDef guid="E8BC9B33-5979-4af2-9DE8-978D3CE83031"
+            id="28644"
+            name="DPA_INSERTPTR_RETURN">
+
+            <description>
+                <format>
+                    Return value from DPA_InsertPtr not checked
+                </format>
+            </description>
+
+            <consequence>
+                <format>
+                    Memory might be leaked
+                </format>
+            </consequence>
+
+            <doc>
+                <p>
+                    Most calls to <code>DPA_InsertPtr</code> use a variable
+                    that was allocated on the heap. Functions then use the
+                    DPA and free all the objects stored in the DPA. When
+                    <code>DPA_InsertPtr</code> fails, the allocated object
+                    can no longer be freed by the DPA cleanup code, so the
+                    caller of <code>DPA_InsertPtr</code> needs to free the
+                    memory.
+                </p>
+                <p>
+                    Notice the call to <code>CleanupDPA</code> in the
+                    example below. If your code does not free the allocated
+                    objects in a manner similar to <code>CleanupDPA</code>
+                    then you might not have to fix anything. This defect
+                    assumes we're relying on the DPA to keep track of all
+                    the objects that we have to later free. 
+                </p>
+                <p>
+                    This warning fires only when SHELL_FULL_DEBUG=1.
+                </p>
+            </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    void Func()
+                    {
+
+                        WCHAR *pszBuf = new WCHAR[MAX_PATH];
+
+                        DPA_InsertPtr(_hdpa, DA_LAST, pszBuf);
+                    }
+
+                    void CleanupDPA()
+                    {
+                        int count = DPA_GetCount(_hdpa);
+                        for (int i = 0; i < count; i++)
+                        {
+                            delete [] (LPWSTR)DPA_GetPtr(_hdpa, i);
+                        }
+                    }
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    void Func()
+                    {
+
+                        WCHAR *pszBuf = new WCHAR[MAX_PATH];
+
+                        if (DPA_ERR == DPA_InsertPtr(_hdpa, DA_LAST, pszBuf))
+                        {
+                            delete [] pszBuf;
+                        }
+                    }
+
+                    void CleanupDPA()
+                    {
+                        int count = DPA_GetCount(_hdpa);
+                        for (int i = 0; i < count; i++)
+                        {
+                            delete [] (LPWSTR)DPA_GetPtr(_hdpa, i);
+                        }
+                    }
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28645 -->
+        <DefectDef guid="286152F9-DE0E-45b4-B1DA-37F3861E3C93"
+            id="28645"
+            name="OBSOLETE_MESSAGE_SYMBOL_QUESTION">
+
+            <description>
+                <format>
+                    MessageBox was called using the question mark message 
+                    symbol which is no longer recommended
+                </format>
+            </description>
+
+            <doc>
+                <p>
+                    As per MSDN:
+                    <ul>
+                        "...the question mark message icon is no longer
+                        recommended, because it does not clearly represent a
+                        specific type of message and because the phrasing of
+                        a message as a question could apply to any message
+                        type.  In addition, users can confuse the message
+                        symbol question mark with Help information.
+                        Therefore, do not use this question mark message
+                        symbol in your message boxes. The system continues
+                        to support its inclusion only for backward
+                        compatibility."
+                    </ul>
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28648 -->
+        <DefectDef guid="71EA6182-979A-452f-9DE1-9DB59CFC419F"
+            id="28648"
+            name="DO_NOT_USE_PULSEEVENT">
+
+            <description>
+                <format>
+                    PulseEvent is an unreliable function
+                </format>
+            </description>
+
+            <recommendedFix>
+                <format>
+                    Do NOT use it
+                </format>
+            </recommendedFix>
+
+            <doc>
+                <p>
+                    A thread waiting on a synchronization object can be
+                    momentarily removed from the wait state by a kernel-mode
+                    APC, and then returned to the wait state after the APC
+                    is complete. If the call to <code>PulseEvent</code>
+                    occurs during the period when the thread was removed
+                    from the wait state, the thread will not be released and
+                    will "hang" forever.  This is because
+                    <code>PulseEvent</code> releases only those threads that
+                    are waiting at the moment it is called.
+                </p>
+                <p>
+                   The following ways are suggested to fix usage of 
+                   PulseEvent:
+
+                    <UL>
+                        <LI>
+                            If only one of the threads waiting on the event
+                            needs to be released AND:
+                            <UL>
+                                <LI>
+                                    the event is a manual-reset event;
+                                    change it to an auto-reset event and
+                                    call <code>SetEvent</code> instead of
+                                    <code>PulseEvent</code>.
+                                </LI>
+                                <LI>
+                                    the event is an auto-reset event; call
+                                    <code>SetEvent</code> instead of
+                                    <code>PulseEvent</code>.
+                                </LI>
+                            </UL>
+                        </LI>
+
+                        <LI>
+                            If all threads waiting on the event need to 
+                            be released AND:
+                            <UL>
+                                <LI>
+                                    the event is a manual-reset event; 
+                                    redesign your code to use a different 
+                                    kind of synchronization object (such 
+                                    as a semaphore).
+                                </LI>
+                                <LI>
+                                    the event is an auto-reset event; call
+                                    <code>SetEvent</code> instead of
+                                    <code>PulseEvent</code> (your original
+                                    call to <code>PulseEvent</code> was
+                                    releasing just one thread anyway).
+                                </LI>
+                            </UL>
+                        </LI>
+                    </UL>
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28649 -->
+        <DefectDef guid="60ACAB27-37B0-432c-A5F0-47195CB574D0"
+            id="28649"
+            name="REDUNDANT_CHECK_FOR_ARRAY_IS_NOT_NULL">
+
+            <description>
+                <format>
+                    Automatic or Global Stack Arrays are never NULL
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    Checking that they are not NULL is not only redundant
+                    but is often an indicator of a bug
+                </format>
+            </additionalInfo>
+
+            <doc>
+                <p>
+
+                    Stack based arrays can never be <code>NULL</code>.
+                    However most of the times; the intention is to check a
+                    particular element (almost always the first element)
+                    against <code>NULL</code> or for a <code>NULL</code>
+                    character. Due to an error of omission, the programmer
+                    misses the dereferencing (<code>*</code>) operator
+                    resulting in the array being checked instead.
+                </p>
+            </doc>
+
+            <example funcBody="BOOL WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    WCHAR   szLocalComputerName[MAX_COMPUTERNAME_LENGTH + 3];
+                    ...
+                    szLocalNameTable = BuildNameTable((szLocalComputerName == NULL ? NULL : szLocalComputerName),NULL, & dwLastName); 
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    WCHAR   szLocalComputerName[MAX_COMPUTERNAME_LENGTH + 3];
+                    ...
+                    szLocalNameTable = BuildNameTable((szLocalComputerName[0] == L'\0'? NULL : szLocalComputerName),NULL, & dwLastName); 
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28650 -->
+        <DefectDef guid="62B70E94-F72B-468b-943E-20A7C4B36CDD"
+            id="28650"
+            name="IMPROPER_NOT_OPERATOR_ON_ZERO">
+
+            <description>
+                <format>
+                    The type for which <code>!0</code> is being used does not treat it as failure case.
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+            Returning a status value like <code>!TRUE</code> is not the
+            same as returning a status value that indicates failure.
+                </format>
+            </additionalInfo>
+
+            <doc>
+                <p>
+            Certain types like NTSTATUS and HRESULT have associated 
+            macros that classify values of these types into SUCCESS or
+            FAILURE. These macros check the most significant bit of the
+            returned value(s) to determine this. Thus 0 and 1 are both
+            classified as SUCCESS values. 
+                </p>
+                <p>
+            The
+            proper way to fix this warning is to return a proper error
+            code instead of a generic value like -1.
+                </p>
+            </doc>
+
+            <example funcBody="NTSTATUS WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    status = !STATUS_SUCCESS;
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    status = STATUS_NO_MEMORY;
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28651 -->
+        <DefectDef guid="7E3414CE-D8B5-4c3d-A272-968F0D6653B4"
+            id="28651"
+            name="NONSTATIC_FUNCPTR_IN_STATIC_INIT">
+
+            <description>
+                <format>
+                    Static initializer causes copy on write pages due to member function pointers
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    %desc%
+                </format>
+
+                <param name="desc" format="%s"/>
+
+            </additionalInfo>
+
+            <doc>
+                <p>
+            Static initializers of global or static const variables can often
+            be fully evaluated at compile time, thus generated in RDATA.
+            However if any initializer is a pointer-to-member-function where
+            it is a non-static function, the entire initialier may be placed
+            in copy-on-write pages, which has a performance cost.
+                </p>
+                <p>
+            For binaries which require fast loading and minimizing copy on
+            write pages, consider making sure all function pointer in the
+            static initializer are not pointer-to-member-function.  If a
+            pointer-to-member-function is required, write a simple static
+            member function that wraps a call to the actual member function.
+                </p>
+            </doc>
+
+            <example funcBody="NTSTATUS WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    class MyClass
+                    {
+                        ...
+                        bool memberFunc();
+                        ...
+                    };
+                    const StructType MyStruct[] = {
+                        ...
+                        &MyClass::memberFunc,
+                        ...
+                    };
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    class MyClass
+                    {
+                        ...
+                        bool memberFunc();
+                        static bool memberFuncWrap(MyClass *thisPtr)
+                            { return thisPtr->memberFunc(); }
+                        ...
+                    };
+                    const StructType MyStruct[] = {
+                        ...
+                        &MyClass::memberFuncWrap,
+                        ...
+                    };
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28652 -->
+        <DefectDef guid="01CD60A0-6037-497c-B7A4-5A119224FAC4"
+            id="28652"
+            name="BITOP_CALL_IN_STATIC_INIT">
+
+            <description>
+                <format>
+                    Static initializer causes copy on write pages due to overloaded bitwise operators
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    %desc%
+                </format>
+
+                <param name="desc" format="%s"/>
+
+            </additionalInfo>
+
+            <doc>
+                <p>
+            Static initializers of global or static const variables can often
+            be fully evaluated at compile time, thus generated in RDATA.
+            However if any initializer requires a function call, the entire
+            initializer may be put in copy-on-write pages, which has
+            a performance cost.  This initialization has calls to overloaded
+            bitwise operators on enum types.  If the overloaded implementations
+            have the obvious semantics, then using appropriate casts or
+            macros can get the same effect without requiring copy-on-write.
+                </p>
+            </doc>
+
+            <example funcBody="NTSTATUS WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+                    #include <nt.h>
+
+                    typedef enum
+                    {
+                        ENUM_VAL_1 = 0x1,
+                        ENUM_VAL_2 = 0x2,
+                        ENUM_VAL_3 = 0x4
+                    } ENUM_VALS;
+
+                    DEFINE_ENUM_FLAG_OPERATORS(ENUM_VALS);
+
+                    const ENUM_VALS rgValsRuntime[] = {
+                        ENUM_VAL_1 | ENUM_VAL_2,    // Runtime init!
+                        ENUM_VAL_3                  // Compile time init
+                    };
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    #include <nt.h>
+
+                    typedef enum
+                    {
+                        ENUM_VAL_1 = 0x1,
+                        ENUM_VAL_2 = 0x2,
+                        ENUM_VAL_3 = 0x4
+                    } ENUM_VALS;
+
+                    DEFINE_ENUM_FLAG_OPERATORS(ENUM_VALS);
+
+                    const ENUM_VALS rgValsRuntime[] = {
+                        (ENUM_VALS) COMPILETIME_OR_2FLAGS(ENUM_VAL_1, ENUM_VAL_2),
+                        ENUM_VAL_3                  // Compile time init
+                    };
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28714 -->
+        <DefectDef guid="17EFF727-5B74-4f86-AC38-4B7CAF8409B2"
+            id="28714"
+            name="CAST_NTSTATUS_TO_BOOL">
+
+            <description>
+                <format>
+                    Cast between semantically different integer types
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    NTSTATUS to Boolean
+                </format>
+            </additionalInfo>
+
+            <doc>
+                <p>
+                    This warning indicates that an <code>NTSTATUS</code> is
+                    being explicitly cast to a Boolean type. This is likely
+                    to give undesirable results.  For example, the typical
+                    success value for <code>NTSTATUS</code>,
+                    <code>STATUS_SUCCESS</code>, is <code>false</code> when
+                    tested as a Boolean.
+                </p>
+                <p>
+                    In most cases, the <code>NT_SUCCESS</code> macro should
+                    be used to test the value of an <code>NTSTATUS</code>.
+                    This macro returns <code>true</code> iff the returned 
+                    status value is neither a warning nor an error code.
+                    If the function return a Boolean to indicate its 
+                    failure/success; it should explicitly return the 
+                    appropriate Boolean types than depend on casting
+                    of <code>NTSTATUS</code> to a Boolean type.
+                </p>
+                <p>
+                    Also sometimes the program may be attempting to reuse a
+                    Boolean local variable to store <code>NTSTATUS</code>s as
+                    well.  This practice is often error-prone; it is much
+                    safer (and likely more efficient) to use a separate
+                    <code>NTSTATUS</code> variable.
+                </p>
+            </doc>
+
+            <example funcBody="BOOL WindowsPREfast_%id%" sysIncludes="nt.h"
+                     globalDecls="extern NTSTATUS SomeFunction(void)">
+                <defectiveSrc><![CDATA[
+                    NTSTATUS Status;
+
+                    Status = SomeFunc();
+
+                    if (NT_SUCCESS(Status)) {
+                        return ((BOOL)Status);
+                    }
+
+                    /* ... */
+
+                    return Status;
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    NTSTATUS Status;
+
+                    Status = SomeFunc();
+
+                    if (NT_SUCCESS(Status)) {
+                        return FALSE;
+                    }
+
+                    /* ... */
+
+                    return TRUE;
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28715 -->
+        <DefectDef guid="9A50B9FE-3409-4c57-ABA8-234781BC5350"
+            id="28715"
+            name="CAST_BOOL_TO_NTSTATUS">
+
+            <description>
+                <format>
+                    Cast between semantically different integer types
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    Boolean to NTSTATUS
+                </format>
+            </additionalInfo>
+
+            <doc>
+                <p>
+                    This warning indicates that a Boolean is being cast to
+                    an <code>NTSTATUS</code>.  This is likely to give
+                    undesirable results.  For example, the typical failure
+                    value for functions that return a Boolean
+                    (<code>false</code>) is a success status when tested as
+                    an <code>NTSTATUS</code>.
+                </p>
+                <p>
+                    Typically a function that returns Boolean returns either
+                    1 (for <code>true</code>) or 0 (for <code>false</code>).
+                    Both of these values are treated as as success codes by
+                    the <code>NT_SUCCESS</code> macro. The failure case
+                    will, thus, never be detected.
+                </p>
+            </doc>
+
+            <example funcBody="int WindowsPREfast_%id%" sysIncludes="nt.h"
+                     globalDecls="extern BOOL SomeFunction(void)">
+                <defectiveSrc><![CDATA[
+                    if (NT_SUCCESS(SomeFunction())) {
+                        return 0;
+                    } else {
+                        return -1;
+                    }
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    if (SomeFunction() == TRUE) {
+                        return 0;
+                    } else {
+                        return -1;
+                    }
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+        <!-- 28716 -->
+        <DefectDef guid="98CECFC5-3D09-4024-AE9B-99F9B6184BB2"
+            id="28716"
+            name="COMPILER_INSERTED_CAST_BOOL_TO_NTSTATUS">
+
+            <description>
+                <format>
+                    Compiler-inserted cast between semantically different
+                    integral types
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    Boolean to NTSTATUS
+                </format>
+            </additionalInfo>
+
+            <doc>
+                <p>
+                    This warning indicates that a Boolean is being used as
+                    an <code>NTSTATUS</code> without being explicitly cast.
+                    This is likely to give undesirable results.  For
+                    instance, the typical failure value for functions that
+                    return a Boolean (<code>false</code>) is a success
+                    status when tested as an <code>NTSTATUS</code>.
+                </p>
+            </doc>
+
+            <example funcBody="NTSTATUS WindowsPREfast_%id%" sysIncludes="nt.h"
+                     globalDecls="extern bool SomeMemAllocFunction(void **)">
+
+                <defectiveSrc><![CDATA[
+                    return SomeMemAllocFunction(&MyPtr);
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+                    if (SomeMemAllocFunction(&MyPtr) == true) {
+                        return STATUS_SUCCESS;
+                    } else {
+                        return STATUS_NO_MEMORY;
+                    }
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28717 -->
+        <DefectDef guid="40ee231d-2068-4932-88dc-198fb1e0a716"
+            id="28717"
+            name="INVALID_VARIANT_TYPE">
+
+            <description>
+                <format>
+                    Invalid VARIANT type
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    The vt field of a VARIANT struct can take only
+            certain values.  Assigning any other value to
+            it is an error
+                </format>
+            </additionalInfo>
+
+            <doc>
+                <p> The vt field of a VARIANT or VARIANTARG struct can only take the following values (possibly or-ed by VT_BYREF and/or VT_ARRAY):</p>
+        <p> VT_EMPTY, VT_NULL, VT_I2, VT_I4, VT_R4, VT_R8, VT_CY, VT_DATE, VT_BSTR, VT_DISPATCH, VT_ERROR, VT_BOOL, VT_VARIANT, VT_DECIMAL, VT_RECORD, VT_UNKNOWN, VT_I1, VT_UI1, VT_UI2, VT_UI4, VT_INT, VT_UINT (VT_EMPTY and VT_NULL cannot be combined with VT_ARRAY) </p>
+        <p> Assigning any other value to this field is an error. </p>
+           </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+           VARIANT var;
+           var.vt = VT_SAFEARRAY | VT_INT;
+               ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+           VARIANT var;
+           var.vt = VT_ARRAY | VT_INT;
+              ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28718 -->
+        <DefectDef guid="28F9EC34-15EB-401e-806F-7DC4260E087D"
+            id="28718"
+            name="UNANNOTATED_BUFFER">
+
+            <description>
+                <format>
+                    Unannotated buffer
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    The following %buffers% should be annotated with SAL so that tools can
+                    catch buffer overruns at compile time: %list%%where%
+                </format>
+
+                <param name="buffers" format="%s"/>
+                <param name="list" format="%s" />
+                <param name="where" format="%s" />
+            </additionalInfo>
+
+            <doc>
+                <p> A buffer passed as a function parameter or returned by a function should be annotated with SAL. Static analysis tools can use such annotations to detect buffer overruns.
+                </p>
+                <p>Currently, only non-constant string buffers are diagnosed with this warning.  Ideally, all buffers passed as function parameters or returned by functions should be annotated. 
+                Arrays of wchar_t or char are candidates for this 
+                warning.  Unsigned chars currently are not.
+                </p>
+           </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+           int foo( LPTSTR buffer, size_t cch );
+               ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+           int foo( __out_ecount(cch) LPTSTR buffer, size_t cch );
+              ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28719 -->
+        <DefectDef guid="dfa7cb4f-bf00-4732-b86b-5f83fd990241"
+            id="28719"
+            name="BANNED_API_USAGE">
+
+            <description>
+                <format>
+                    Banned API Usage
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    %function% is a Banned API as listed in dontuse.h for security purposes
+                </format>
+
+                <param name="function" format="%s"/>
+            </additionalInfo>
+
+            <doc>
+                <p> This warning indicates that a function is being used that has been banned,
+                    and has a more robust and secure replacement.
+                </p>
+
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28720 -->
+        <DefectDef guid="945a7b78-0347-4a4b-b218-03d62592329a"
+            id="28720"
+            name="ISBADXXXPTR_API_USAGE">
+
+            <description>
+                <format>
+                    Banned API Usage
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    %function% is a Banned API as listed in dontuse.h for security purposes
+                </format>
+
+                <param name="function" format="%s"/>
+            </additionalInfo>
+
+            <doc>
+                <p> This warning indicates that a function is being used that has been banned,
+                    and has a more robust and secure replacement.
+                </p>
+
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+        <!-- 28721 -->
+        <DefectDef guid="6F5D3780-5636-47ec-B204-CC868C979397"
+            id="28721"
+            name="DEPRECATED_PERF_COUNT">
+
+            <description>
+                <format>
+                    Deprecated performance counter architecture
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    A deprecated performance counter architecture is used: %symptom%
+                </format>
+
+                <param name="symptom" format="%s"/>
+            </additionalInfo>
+
+            <doc>
+                <p> The code uses an old performance counter architecture to expose
+                    performance metrics of your application/component.  
+                    A new performance counter architecture was introduced for Vista.
+                    You should migrate to the new architecture unless your 
+                    application has simultaneous down-level requirements 
+                    (must run on both Vista and down-level platforms).
+                </p>
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28722 -->
+        <!-- This warning is transitional and should be discarded once
+         it reaches level 1.  See the analysis code for more. -->
+        <DefectDef guid="CBED7E96-87FF-4096-8D0F-6FCCF4F60451"
+            id="28722"
+            name="UNANNOTATED_BUFFER_IN_DECL">
+
+            <description>
+                <format>
+                    Unannotated buffer in function declaration
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    The following %buffers% should be annotated with SAL so that tools can
+                    catch buffer overruns at compile time: %list%
+                </format>
+
+                <param name="buffers" format="%s"/>
+                <param name="list" format="%s" />
+            </additionalInfo>
+
+            <doc>
+                <p> A buffer passed as a function parameter or returned by a function should be annotated with SAL. Static analysis tools can use such annotations to detect buffer overruns.
+                </p>
+                <p>Currently, only non-constant buffers are diagnosed with this warning.
+                </p>
+           </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+           int foo( LPTSTR buffer, size_t cch );
+               ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+           int foo( __out_ecount(cch) LPTSTR buffer, size_t cch );
+              ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28723 -->
+        <DefectDef guid="2C560784-0BB8-4947-91F0-B5940E20931A"
+            id="28723"
+            name="UNANNOTATED_BUFFER_IN_DEFN_WO_DECL">
+
+            <description>
+                <format>
+                    Unannotated buffer in function definition that has no corresponding declaration
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    The following %buffers% should be annotated with SAL so that tools can
+                    catch buffer overruns at compile time: %list%
+                </format>
+
+                <param name="buffers" format="%s"/>
+                <param name="list" format="%s" />
+            </additionalInfo>
+
+            <doc>
+                <p> A buffer passed as a function parameter or returned by a function should be annotated with SAL. Static analysis tools can use such annotations to detect buffer overruns.
+                </p>
+                <p>Currently, only non-constant buffers are diagnosed with this warning.
+                </p>
+           </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+           int foo( LPTSTR buffer, size_t cch )
+       {
+           ...
+       }
+               ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+           int foo( __out_ecount(cch) LPTSTR buffer, size_t cch )
+       {
+           ...
+       }
+              ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28725 -->
+        <DefectDef guid="731811D4-24D5-4FA3-A088-F80430C08D84"
+            id="28725"
+            name="SETUNHANDLEDEXCEPTIONFILTER_USE">
+
+            <description>
+                <format>
+                     Use Watson instead of this SetUnhandledExceptionFilter.
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    See the online help for more detailed information.
+                </format>
+            </additionalInfo>
+
+            <doc>
+                <p> Use Watson instead. mailto:kinshu</p>
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28726 -->
+        <DefectDef guid="dfa7cb4f-bf00-4732-b86b-5f83fd990241"
+            id="28726"
+            name="BANNED_API_USAGEL2">
+
+            <description>
+                <format>
+                    Banned API Usage
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    %function% is a Banned API as listed in dontuse.h for security purposes
+                </format>
+
+                <param name="function" format="%s"/>
+            </additionalInfo>
+
+            <doc>
+                <p> This warning indicates that a function is being used that has been banned,
+                    and has a more robust and secure replacement.
+                </p>
+
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+        <!-- 28727 -->
+        <DefectDef guid="dfa7cb4f-bf00-4732-b86b-5f83fd990241"
+            id="28727"
+            name="BANNED_API_USAGEL3">
+
+            <description>
+                <format>
+                    Banned API Usage
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    %function% is a Banned API as listed in dontuse.h for security purposes
+                </format>
+
+                <param name="function" format="%s"/>
+            </additionalInfo>
+
+            <doc>
+                <p> This warning indicates that a function is being used that has been banned,
+                    and has a more robust and secure replacement.
+                </p>
+
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+        </DefectDef>
+
+        <!-- 28728 -->
+        <DefectDef guid="dfa7cb4f-bf00-4732-b86b-5f83fd990241"
+            id="28728"
+            name="BANNED_API_USAGEL4">
+
+            <description>
+                <format>
+                    Banned API Usage
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    %function% is a Banned API as listed in dontuse.h for security purposes
+                </format>
+
+                <param name="function" format="%s"/>
+            </additionalInfo>
+
+            <doc>
+                <p> This warning indicates that a function is being used that has been banned,
+                    and has a more robust and secure replacement.
+                </p>
+
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+        </DefectDef>
+
+
+        <!-- 28730 -->
+        <DefectDef guid="CF29FD1C-6FEB-4639-87F1-D1A903B0D62E"
+            id="28730"
+            name="INCORRECT_NULLTERM_ASSIGN">
+
+            <description>
+                <format>
+                     Possible assignment of '\\0' directly to a pointer.
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                     p='\\0' should be *p='\\0'
+                </format>
+            </additionalInfo>
+
+            <doc>
+                <p></p>
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+        
+        <!-- 28731 -->
+        <DefectDef guid="DE150D75-32DB-4D11-9909-CA2B3BAD885D"
+            id="28731"
+            name="RETAIL_DEBUGBREAK">
+
+            <description>
+                <format>
+            THIS WARNING IS CURRENTLY DISABLED.
+                    Avoid calling DebugBreak() in retail build.
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    
+                </format>
+            </additionalInfo>
+
+            <doc>
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28732 -->
+        <DefectDef guid="28CA0941-9716-48B6-894F-FC9B74934C21"
+            id="28732"
+            name="THROW_DECL_MISMATCH">
+
+            <description>
+                <format>
+            THIS WARNING IS CURRENTLY DISABLED.
+                    The throw clause is different between the decleration and definition
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    
+                </format>
+            </additionalInfo>
+
+            <doc>
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28733 -->
+        <DefectDef guid="93958600-099B-45BF-9B79-4AD1664EE534"
+            id="28733"
+            name="THROW_DECL_MISSING">
+
+            <description>
+                <format>
+            THIS WARNING IS CURRENTLY DISABLED.
+                    The function throws, but it missing a throw clause decleration.
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    
+                </format>
+            </additionalInfo>
+
+            <doc>
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28734 -->
+        <DefectDef guid="af81d2bb-8d01-4a6a-bbea-7719eecb0af4"
+            id="28734"
+            name="CYCLOMATIC_COMPLEXITY">
+
+            <description>
+                <format>
+                    Cyclocmatic complexity is %ccnum%; max allowable is %ccmax%
+                </format>
+                <param name="ccnum" format="%d"/>
+                <param name="ccmax" format="%d"/>
+            </description>
+
+            <additionalInfo>
+                <format>
+                Setting the environment variable _PREFAST_CYCLOMATIC will override the default
+                max threashold of 25. Cyclomatic complexity is the number of closed loops in a function + 1.
+                A quick way to count this metric is to sum 1 plus the count of {IF FOR WHILE SWITCH BREAK RETURN OPERATOR.QUESTION OPERATOR.AND OPERATOR.OR CATCH} in the function body.
+                </format>
+            </additionalInfo>
+
+            <doc>
+           </doc>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+    <!-- 28735 -->
+        <DefectDef guid="B4292A93-8B64-44fe-A2C1-ABB1211028F9"
+            id="28735"
+            name="BANNED_CRIMSON_API_USAGE">
+            <description>
+                <format>
+                    Banned Crimson API Usage
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    %function% is a Banned Crimson API
+                </format>
+
+                <param name="function" format="%s"/>
+            </additionalInfo>
+
+            <doc>
+            <p> This warning indicates that a legacy Crimson API 
+            is being used. These APIs have been replaced by the Windows Vista ETW model
+            which improves both performance and security. By restricting new uses of these legacy API 
+            calls, we ensure that our customers, particularly administrators, have the best possible 
+            experience when debugging Windows components using events. 
+            
+            If you have any questions, please contact etwapi support alias.
+            </p>
+
+            </doc>
+
+            <helpURL>http://diagnostics/sites/etw/Document%20Library/legacyapis.aspx</helpURL>
+
+        </DefectDef>
+
+    <!-- 28736 -->
+        <DefectDef guid="24A49A0E-21C8-4205-82FE-814741912C94"
+            id="28736"
+            name="BANNED_API_ARGUMENT_USAGE">
+            <description>
+                <format>
+                    Banned API Argument Usage
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    %function% has a banned Crimson or Perflib consumer API argument %argument%
+                </format>
+
+        <param name="function" format="%s"/>
+        <param name="argument" format="%s" />
+            </additionalInfo>
+
+            <doc>
+            <p> This warning indicates that a legacy Crimson or Perflib consumer API with a banned argument
+            is being used. These APIs and arguments have been replaced by the Windows Vista ETW model
+            which improves both performance and security. By restricting new uses of these legacy API 
+            calls, we ensure that our customers, particularly administrators, have the best possible 
+            experience when debugging Windows components using events. 
+            
+            If you have any questions, please contact etwapi support alias.
+        </p>
+
+           </doc>
+
+            <helpURL>http://diagnostics/sites/etw/Document%20Library/legacyapis.aspx</helpURL>
+
+        </DefectDef>
+
+        <!-- 28740 -->
+        <!-- This warning is transitional and should be discarded once
+         it reaches level 1.  See the analysis code for more. -->
+        <DefectDef guid="38F9EC34-15EB-401e-806F-7DC4260E087D"
+            id="28740"
+            name="UNANNOTATED_BUFFER_UCHAR">
+
+            <description>
+                <format>
+                    Unannotated unsigned buffer
+                </format>
+            </description>
+
+            <additionalInfo>
+                <format>
+                    The following %buffers% should be annotated with SAL so that tools can
+                    catch buffer overruns at compile time: %list%%where%
+                </format>
+
+                <param name="buffers" format="%s"/>
+                <param name="list" format="%s" />
+                <param name="where" format="%s" />
+            </additionalInfo>
+
+            <doc>
+                <p> A buffer passed as a function parameter or returned by a function should be annotated with SAL. Static analysis tools can use such annotations to detect buffer overruns.
+                </p>
+                <p>Currently, only non-constant buffers are diagnosed with this warning.
+                </p>
+           </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+           int foo( BYTE * buffer, size_t cch );
+               ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+           int foo( __out_ecount(cch) BYTE * buffer, size_t cch );
+              ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28741 -->
+        <!-- This warning is transitional and should be discarded once
+         it reaches level 0.  See the analysis code for more. -->
+        <DefectDef guid="38F9EC34-15EB-401e-806F-7DC4260E087D"
+            id="28741"
+            name="UNANNOTATED_BUFFER_PROTOTYPE">
+
+            <description>
+                <format>
+                    Unannotated buffer in the function %kind1%
+                </format>
+                <param name="kind1" format="%s" />
+            </description>
+
+            <additionalInfo>
+                <format>
+                    The following %buffers% in the function %kind2%
+                    corresponding to this function should be annotated
+                    with SAL so that tools can
+                    catch buffer overruns at compile time: %list%
+                </format>
+
+                <param name="buffers" format="%s"/>
+                <param name="list" format="%s" />
+                <param name="kind2" format="%s" />
+            </additionalInfo>
+
+            <doc>
+                <p> A buffer passed as a function parameter or returned by a function should be annotated with SAL. Static analysis tools can use such annotations to detect buffer overruns.
+                </p>
+                <p>Currently, only non-constant string buffers are diagnosed with this warning.  Ideally, all buffers passed as function parameters or returned by functions should be annotated. 
+                Arrays of wchar_t or char are candidates for this 
+                warning.  Unsigned chars currently are not.
+                </p>
+           </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+           int foo( LPTSTR buffer, size_t cch );
+               ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+           int foo( __out_ecount(cch) LPTSTR buffer, size_t cch );
+              ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+        <!-- 28742 -->
+        <!-- This warning is transitional and should be discarded once
+         it reaches level 1.  See the analysis code for more. -->
+        <DefectDef guid="38F9EC34-15EB-401e-806F-7DC4260E087D"
+            id="28742"
+            name="UNANNOTATED_BUFFER_PROTOTYPE_UCHAR">
+
+            <description>
+                <format>
+                    Unannotated buffer in the function %kind1%
+                </format>
+                <param name="kind1" format="%s" />
+            </description>
+
+            <additionalInfo>
+                <format>
+                    The following %buffers% in the function %kind2%
+                    corresponding to this function should be annotated
+                    with SAL so that tools can
+                    catch buffer overruns at compile time: %list%
+                </format>
+
+                <param name="buffers" format="%s"/>
+                <param name="list" format="%s" />
+                <param name="kind2" format="%s" />
+            </additionalInfo>
+
+            <doc>
+                <p> A buffer passed as a function parameter or returned by a function should be annotated with SAL. Static analysis tools can use such annotations to detect buffer overruns.
+                </p>
+                <p>Currently, only non-constant buffers are diagnosed with this warning.
+                </p>
+           </doc>
+
+            <example funcBody="void WindowsPREfast_%id%">
+                <defectiveSrc><![CDATA[
+           int foo( LPTSTR buffer, size_t cch );
+               ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+           int foo( __out_ecount(cch) LPTSTR buffer, size_t cch );
+              ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/wincet/docs/prefast/warning_%id%.htm</helpURL>
+
+        </DefectDef>
+
+
+    </DefectDefGroup>
+</DefectDefs>

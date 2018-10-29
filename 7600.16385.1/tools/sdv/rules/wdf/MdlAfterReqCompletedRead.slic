@@ -1,0 +1,54 @@
+/*
+
+  Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+  Summary: After a Request is completed, the associated Mdl object
+  cannot be accessed (inside Read callback only).
+  Mdl object was retrieved by calling WdfRequestRetrieveOutputWdmMdl or WdfRequestRetrieveInputWdmMdl.
+
+  Description: 
+  Within Read Io queue event callback, the Mdl object associated with the
+  Request by calling WdfRequestRetrieveOutputWdmMdl,
+  cannot be accessed after WdfRequestComplete/WithInformation/WithPriorityBoost 
+  on the Request.
+  The following possible Mdl object access functions are considered:
+  WdfRequestRetrieveOutputWdmMdl, WdfRequestRetrieveInputWdmMdl.
+
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT1, READ} s = INIT1;
+     enum {INIT2, REQCOMPL} t = INIT2;
+} with guard (sdv_main, hrequest)
+
+fun_WDF_IO_QUEUE_IO_READ.entry[guard $2]
+{
+   s = READ;
+}
+fun_WDF_IO_QUEUE_IO_READ.exit[guard $2]
+{
+	 halt;
+}
+[sdv_WdfRequestComplete
+,sdv_WdfRequestCompleteWithInformation
+,sdv_WdfRequestCompleteWithPriorityBoost 
+].entry[guard $1]
+{    
+     if (s == READ){
+           t = REQCOMPL;
+   }
+}
+[sdv_WdfRequestRetrieveOutputWdmMdl
+,sdv_WdfRequestRetrieveInputWdmMdl
+].entry[guard $1]
+{
+   if ((s == READ) && (t == REQCOMPL)) 
+   {
+          abort "Request's Mdl cannot be accessed after the Request had been completed.";
+   }
+   
+}

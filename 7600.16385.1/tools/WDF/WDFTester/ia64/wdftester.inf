@@ -1,0 +1,65 @@
+;/*++
+;
+;Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;   THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+;   KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+;   IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+;   PURPOSE.
+;
+;Module Name:
+;
+;    wdftester.INF
+;
+;--*/
+
+[Version]
+signature   =   "$Windows NT$"
+Provider    =   %Msft%
+DriverVer=date,6.1.7600.16385
+
+[DestinationDirs]
+DefaultDestDir = 12
+wdftester.Files = 12
+
+[SourceDisksNames]
+1=%Disk_Description%,,,
+
+[SourceDisksFiles]
+wdftester.sys = 1
+
+[wdftester.Files]
+wdftester.sys
+
+[DefaultInstall]
+CopyFiles=wdftester.Files
+
+[DefaultInstall.Services]
+Addservice = %servicename%, %SPSVCINST_ASSOCSERVICE%, wdftester.AddService
+
+[wdftester.AddService]
+DisplayName    = %wdftester.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\wdftester.sys
+AddReg         = wdftester.AddReg
+LoadOrderGroup = WdfLoadGroup
+
+[wdftester.AddReg]
+HKR,"Parameters", "ModuleList", %REG_MULTI_SZ%, ""
+
+[DefaultUninstall]
+DelFiles            = wdftester.Files
+
+[DefaultUninstall.Services]
+DelService = %servicename%,0x200      ; Flags note to stop service first
+
+[Strings]
+wdftester.SvcDesc="Wdftester Kernel Mode Driver"
+SPSVCINST_ASSOCSERVICE= 0x00000002
+Disk_Description="wdftester disk description"
+msft="Microsoft"
+servicename=wdftester
+REG_MULTI_SZ = 0x00010000
+

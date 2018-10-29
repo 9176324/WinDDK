@@ -1,0 +1,169 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    This rule verifies that MCM related DDIs are only called at proper IRQL levels.
+    
+    Description:
+    Check for the proper IRQL when the function is entering.
+    
+    Related Rule:
+    
+*/
+
+#include "ntddk_slic.h"
+
+sdv_NdisMCmActivateVc.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmAddPartyComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmCloseAddressFamilyComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmCloseCallComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmCreateVc.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmDeactivateVc.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmDeleteVc.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmDeregisterSapComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmDispatchCallConnected.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmDispatchIncomingCall.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmDispatchIncomingCallQoSChange.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmDispatchIncomingCloseCall.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmDispatchIncomingDropParty.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmDropPartyComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmMakeCallComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmModifyCallQoSComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmNotifyCloseAddressFamily.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisMCmOidRequest.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmOidRequestComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmOpenAddressFamilyComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCmRegisterAddressFamilyEx.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisMCmRegisterSapComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+

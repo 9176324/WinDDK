@@ -1,0 +1,18 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	The property is satisfied if the driver defines a AddDevice routine.
+    
+*/
+
+#include "ntddk_slic.h"
+		 
+[sdv_CheckAddDevice].exit
+{
+  if($return)
+  {
+    abort "The property is satisfied as the driver defines a AddDevice routine.";
+  }
+}

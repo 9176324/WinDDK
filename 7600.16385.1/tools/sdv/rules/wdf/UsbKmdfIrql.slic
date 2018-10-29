@@ -1,0 +1,76 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Precondition: isUsbDriver fails. (This rule is for USB drivers only)
+
+	Summary: This rule verifies that USB specific DDIs are not called at the incorrect IRQL level.
+	
+	Rule diagnostics:
+	If any of the USB specific DDIs are called with a higher than allowed IRQL level,
+	this rule reports a defect.
+	
+*/
+
+
+
+#include "ntddk_slic.h"
+
+state
+{
+}
+
+[WdfUsbTargetDeviceCreate,
+WdfUsbTargetDeviceGetDeviceDescriptor,
+WdfUsbTargetDeviceRetrieveConfigDescriptor,
+WdfUsbTargetDeviceQueryString,
+WdfUsbTargetDeviceAllocAndQueryString,
+WdfUsbTargetDeviceSendControlTransferSynchronously,
+WdfUsbTargetDeviceIsConnectedSynchronous,
+WdfUsbTargetDeviceResetPortSynchronously,
+WdfUsbTargetDeviceCyclePortSynchronously,
+WdfUsbTargetDeviceSendUrbSynchronously,
+WdfUsbTargetPipeResetSynchronously,
+WdfUsbTargetPipeWriteSynchronously,
+WdfUsbTargetPipeReadSynchronously,
+WdfUsbTargetPipeAbortSynchronously,
+WdfUsbTargetPipeSendUrbSynchronously,
+WdfUsbInterfaceSelectSetting,
+WdfUsbTargetDeviceSelectConfig].entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL == PASSIVE_LEVEL ";
+}
+
+[WdfUsbTargetDeviceRetrieveInformation,
+WdfUsbTargetDeviceFormatRequestForString,
+WdfUsbTargetDeviceGetNumInterfaces,
+WdfUsbTargetDeviceWdmGetConfigurationHandle,
+WdfUsbTargetDeviceRetrieveCurrentFrameNumber,
+WdfUsbTargetDeviceFormatRequestForControlTransfer,
+WdfUsbTargetDeviceFormatRequestForCyclePort,
+WdfUsbTargetDeviceFormatRequestForUrb,
+WdfUsbTargetPipeGetInformation,
+WdfUsbTargetPipeIsInEndpoint,
+WdfUsbTargetPipeIsOutEndpoint,
+WdfUsbTargetPipeGetType,
+WdfUsbTargetPipeSetNoMaximumPacketSizeCheck,
+WdfUsbTargetPipeFormatRequestForWrite,
+WdfUsbTargetPipeFormatRequestForRead,
+WdfUsbTargetPipeConfigContinuousReader,
+WdfUsbTargetPipeFormatRequestForAbort,
+WdfUsbTargetPipeFormatRequestForReset,
+WdfUsbTargetPipeFormatRequestForUrb,
+WdfUsbInterfaceGetInterfaceNumber,
+WdfUsbInterfaceGetNumEndpoints,
+WdfUsbInterfaceGetDescriptor,
+WdfUsbInterfaceGetNumSettings,
+WdfUsbInterfaceGetEndpointInformation,
+WdfUsbTargetDeviceGetInterface,
+WdfUsbInterfaceGetConfiguredSettingIndex,
+WdfUsbInterfaceGetNumConfiguredPipes,
+WdfUsbInterfaceGetConfiguredPipe,
+WdfUsbTargetPipeWdmGetPipeHandle].entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}

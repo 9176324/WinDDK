@@ -1,0 +1,7 @@
+TARGETNAME=event
+TARGETTYPE=DRIVER
+
+SOURCES=event.c \
+        event.rc
+
+MSC_WARNING_LEVEL=/W4 /WX

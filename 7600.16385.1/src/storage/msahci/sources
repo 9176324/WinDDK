@@ -1,0 +1,23 @@
+TARGETNAME=msahci
+TARGETTYPE=MINIPORT
+
+TARGETLIBS=$(DDK_LIB_PATH)\pciidex.lib
+
+#
+# Log Command History and complete Execution History.
+#
+#C_DEFINES=$(C_DEFINES) -DENABLE_HISTORY_LOG
+
+SOURCES=entrypts.c \
+        pwrmgmt.c \
+        hbastat.c \
+        util.c   \
+        io.c    \
+        msahci.rc        
+
+RUN_WPP= $(SOURCES) -km -func:TracePrint((LEVEL,FLAGS,MSG,...))
+
+TARGET_DESTINATION=retail
+         
+# Macro to create marker for Boot Driver embedded signing.
+BOOT_LOADER_CRITICAL=1

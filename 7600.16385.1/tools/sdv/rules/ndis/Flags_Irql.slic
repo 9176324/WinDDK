@@ -1,0 +1,43 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    This rule verifies that KeGetCurrentIrql is not used within callbacks that
+    have a flags parameter that includes the current IRQL.
+
+    Description:
+    (from WDK documntation "Dispatch IRQL Tracking")
+    To improve system performance, some NDIS functions (for example, the MiniportSendNetBufferLists function) include a dispatch level flag that indicates the current IRQL. 
+    The proper use of the dispatch level flag can help to avoid unnecessary attempts to set the IRQL.
+    The caller must determine the dispatch level flag setting from the known current IRQL, not by testing the IRQL. 
+    For example, you know the IRQL because it is a fixed characteristic of the driver design, or the driver saved the current IRQL.
+
+    Related Rule:
+    
+*/
+
+#include "ntddk_slic.h"
+
+state{
+   enum {in_func, outside} t = outside;
+}
+
+[sdv_MINIPORT_RETURN_NET_BUFFER_LISTS,
+sdv_MINIPORT_SEND_NET_BUFFER_LISTS].entry
+{
+      t = in_func;
+}
+
+[sdv_MINIPORT_RETURN_NET_BUFFER_LISTS,
+sdv_MINIPORT_SEND_NET_BUFFER_LISTS].exit
+{
+      t = outside;
+}
+
+sdv_KeGetCurrentIrql.entry
+{
+      if(t == in_func)
+      {
+            abort "WARNING: KeGetCurrentIrql called from callback with flags parameter.  Use the flags parameter to determine IRQL.";
+      }
+}

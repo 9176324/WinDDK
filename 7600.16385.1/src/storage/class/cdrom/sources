@@ -1,0 +1,45 @@
+TARGETNAME=cdrom
+TARGETTYPE=DRIVER
+TARGET_DESTINATION=retail
+
+MSC_WARNING_LEVEL=-W4 -WX
+
+TARGETLIBS=\
+        $(DDK_LIB_PATH)\ntoskrnl.lib
+
+# Uncomment this to allow CDROM to "pretend" that
+# AACS ioctls are actually succeeding.
+# C_DEFINES=$(C_DEFINES) -DENABLE_AACS_TESTING
+
+
+SOURCES=           \
+    cdrom.c        \
+    init.c         \
+    common.c       \
+    ioctl.c        \
+    data.c         \
+    guid.c         \
+    sense.c        \
+    autorun.c      \
+    mmc.c          \
+    scratch.c      \
+    pnppower.c     \
+    aacs.c         \
+    cdrom.rc    
+
+# Currently, TracePrint will always use WPP functionality for convenience even for checked builds.
+# Uncomment the below lines in order to use debug prints instead for checked builds.
+
+#!if $(FREEBUILD)
+RUN_WPP=$(SOURCES) -km -func:TracePrint((LEVEL,FLAGS,MSG,...)) 
+#!else
+#C_DEFINES=$(C_DEFINES) -DDEBUG_USE_KDPRINT
+#!endif
+
+
+INF_NAME=cdrom
+NTTARGETFILE1=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+PASS2_BINPLACE=$(NTTARGETFILE1)
+
+
+KMDF_VERSION_MAJOR=1

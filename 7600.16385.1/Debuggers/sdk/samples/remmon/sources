@@ -1,0 +1,28 @@
+TARGETNAME = remmon
+TARGETTYPE = PROGRAM
+
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+
+!if "$(DBGSDK_INC_PATH)" != ""
+INCLUDES = $(DBGSDK_INC_PATH);$(INCLUDES)
+!endif
+!if "$(DBGSDK_LIB_PATH)" == ""
+DBGSDK_LIB_PATH = $(SDK_LIB_PATH)
+!else
+DBGSDK_LIB_PATH = $(DBGSDK_LIB_PATH)\$(TARGET_DIRECTORY)
+!endif
+
+TARGETLIBS = \
+        $(DBGSDK_LIB_PATH)\dbgeng.lib\
+        $(SDK_LIB_PATH)\kernel32.lib
+
+USE_MSVCRT = 1
+
+SOURCES = \
+        extr.cpp\
+        out.cpp\
+        remmon.cpp
+
+MSC_WARNING_LEVEL = /W4 /WX
+
+UMTYPE = console

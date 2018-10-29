@@ -1,0 +1,14 @@
+TARGETNAME=toaster
+TARGETTYPE=DRIVER
+
+INCLUDES = ..\..\inc;..\shared\
+
+MSC_WARNING_LEVEL= /W4 /WX
+
+TARGETLIBS= $(DDK_LIB_PATH)\ntstrsafe.lib
+
+SOURCES= incomplete2.c
+
+# Temporarily excuse usage of serviceability impairing macros in code...
+ALLOW_DATE_TIME=1
+

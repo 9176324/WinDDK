@@ -1,0 +1,14 @@
+TARGETNAME=ctx
+TARGETTYPE=DRIVER
+DRIVERTYPE=FS
+
+
+TARGETLIBS= $(TARGETLIBS) \
+            $(IFSKIT_LIB_PATH)\fltMgr.lib
+
+SOURCES=CtxInit.c \
+        operations.c \
+        context.c \
+        support.c \
+        ctx.rc
+

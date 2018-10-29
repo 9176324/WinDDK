@@ -1,0 +1,55 @@
+/*
+  Copyright (c) Microsoft Corporation.  All rights reserved.
+
+  Summary: After a Request is completed, its Buffer cannot be accessed
+  (inside the EvtIoRead callback only). The buffer was retrieved by calling 
+  WdfRequestRetrieveInputBuffer or WdfRequestRetrieveOutputBuffer or
+  WdfRequestRetrieveUnsafeUserInputBuffer or WdfRequestRetrieveUnsafeUserOutputBuffer.
+         
+
+  Description: 
+  Within EvtIoRead Io queue event callback, the Request Buffer retrieved by calling
+  WdfRequestRetrieveOutputBuffer or WdfRequestRetrieveUnsafeUserOutputBuffer
+  cannot be accessed after WdfRequestComplete/WithInformation/WithPriorityBoost 
+  was called on the Request. The following possible buffer access functions are considered:
+  WdfRequestRetrieveOutputBuffer, WdfRequestRetrieveUnsafeUserOutputBuffer,
+  WdfRequestRetrieveInputBuffer, WdfRequestRetrieveUnsafeUserInputBuffer.
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT1, READ} s = INIT1;
+     enum {INIT2, REQCOMPL} t = INIT2;
+} with guard (sdv_main, hrequest)
+
+fun_WDF_IO_QUEUE_IO_READ.entry [guard $2]
+{
+   s = READ;
+}
+fun_WDF_IO_QUEUE_IO_READ.exit [guard $2]
+{
+	halt;
+}
+[sdv_WdfRequestComplete
+,sdv_WdfRequestCompleteWithInformation
+,sdv_WdfRequestCompleteWithPriorityBoost
+].exit [guard $1]
+{ 
+       if (s == READ){
+       t = REQCOMPL;                      
+   }
+}
+[ sdv_WdfRequestRetrieveOutputBuffer
+, sdv_WdfRequestRetrieveUnsafeUserOutputBuffer
+, sdv_WdfRequestRetrieveInputBuffer
+, sdv_WdfRequestRetrieveUnsafeUserInputBuffer
+].exit [guard $1]
+{
+     if ((s == READ) && (t == REQCOMPL)) 
+	 {
+          abort "Request's Buffer cannot be accessed after the Request had been completed.";
+     }
+	 
+}

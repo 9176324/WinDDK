@@ -1,0 +1,36 @@
+TARGETNAME=regctrl
+TARGETTYPE=PROGRAM
+
+UMTYPE=console
+UMENTRY=wmain
+
+USE_MSVCRT=1
+
+MSC_OPTIMIZATION=/Odi
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+INCLUDES= \
+         $(DDK_INC_PATH); \
+
+C_DEFINES=$(C_DEFINES) -DUNICODE -D_UNICODE
+
+SOURCES=\
+        regctrl.c \
+        pre.c     \
+        post.c    \
+        capture.c \
+        util.c    \
+        regctrl.rc 
+
+TARGETLIBS=$(SDK_LIB_PATH)\advapi32.lib \
+           $(SDK_LIB_PATH)\ntdll.lib \
+           $(SDK_LIB_PATH)\kernel32.lib \
+
+
+#WIN32_WINNT_VERSION=$(LATEST_WIN32_WINNT_VERSION)
+#_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_LONGHORN)
+#NTDDI_VERSION=$(LATEST_NTDDI_VERSION)
+
+
+

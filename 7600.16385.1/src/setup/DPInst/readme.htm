@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>DPInst</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2900.2802" name=GENERATOR><!-- #BeginEditable "doctitle" --><!-- #EndEditable --></HEAD>
+<BODY link=#0000FF><FONT face=Verdana size=5>
+<H2>DRIVER PACKAGE INSTALLER (DPInst)</H2></FONT><FONT face=Verdana size=2>
+<P style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px"><a href="#Note">Note</a>
+<P style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px"><a href="#Intro">Introduction 
+to the Toaster PnP Installation Sample</a>
+<P style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px"><a href="#Run">Running 
+the Sample</a>
+<P style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px"><a href="#Plug">Plugging 
+in a Toaster Device</a>
+
+<H3><A name=Note></A>Note</H3>
+
+<P>
+This sample works only on an x86-based Microsoft Windows operating system. However, the 
+techniques illustrated in this sample apply to Windows operating systems for 
+other architectures as well.
+</P>
+
+<BR>
+
+<H3><A name=Intro></A>Introduction to the Toaster PnP Installation Sample</H3>
+
+<P>
+This sample is based on the toaster sample package shipped with the Windows Driver Kit (WDK) and 
+partially provided with these tools. This sample demonstrates how you can use <B>DPInst.exe</B> to 
+install the Toaster Driver. The toaster driver package contains the following files:
+
+<BR><BR>
+
+<DL>
+
+<LI type=square>
+toastpkg.inf, tostx86.cat and the i386 directory located 
+in <I><B>src\setup\DIFxPkgs\x86\PlugPlay</B></I> (You can find the full toaster sample at <I><B>src\general\toaster\toastpkg</I></B>.)
+</LI>
+
+<BR><BR>
+
+<LI type=square>
+DpInst.exe is located in <I><B>redist\difx\dpinst</B></I>.
+</LI>
+
+<BR><BR>
+
+<LI type=square>
+<i>Optional.</i> DPInst.xml, eula.txt, ToasterRed.bmp and custom.ico 
+are located in <I><B>src\setup\dpinst</B></I>.
+</LI>
+
+</DL>
+
+</P>
+
+<H3><A name=Run></A>Running the Sample</H3>
+
+<P>
+
+<OL>
+
+<LI type=square>
+To run the samples, copy <B>DPInst.exe</B> to the <I><B>src\setup\DIFxPkgs\x86\PlugPlay</B></I> directory. 
+</LI>
+
+<BR><BR>
+
+<LI>
+Further, if you want to customize <B>DPInst</B>, also 
+copy dpinst.xml, eula.txt, ToasterRed.bmp and custom.ico (which are located in 
+<I><B>src\setup\dpinst</B></I>) to <I><B>src\setup\DIFxPkgs\x86\PlugPlay</B></I>. 
+</LI>
+
+<BR><BR>
+
+<LI>
+Run <B>DPInst.exe</B> and answer the questions of the wizard. 
+</LI>
+
+</OL>
+
+<B>DPInst</B> will attempt to update the driver for 
+any existing toaster devices. If there are no existing devices, it will instead “pre-install” 
+the INF so that Plug and Play will automatically find a match when the hardware 
+is subsequently inserted. 
+
+<BR><BR>
+
+The driver package is now installed and ready 
+to use in case the user plugs in a toaster.
+
+<BR><BR>
+
+You can remove the driver package using the Add/Remove Programs Wizard in the Control Panel. As long as the 
+driver package is not removed, users should never be prompted to reinstall any 
+media or provide any location for driver files. In this way, you can
+“pre-install” all the driver files as well so that the user would never be 
+prompted. 
+
+</P>
+
+<H3><A name=Plug></A>Plugging in a Toaster Device</H3>
+
+<P>
+
+The WDK contains information on how to simulate the plugging in of a toaster (see the 
+documentation for the toaster sample driver in the WDK at <I><B>src\general\toaster</I></B>). 
+<BR><BR>
+For information about how the Toaster bus enumerator <B>enum.exe</B> 
+simulates plugging and unplugging of toaster devices, look in the <I><B>src\general\toaster\exe\enum</I></B> directory. After the toaster bus 
+enumerator is built, type the following at a command 
+prompt:
+
+<BR><BR>
+
+<B>enum.exe -p 1 </B>
+
+<BR><BR>
+
+The install of the preinstalled toaster driver package will proceed without 
+requiring any user interaction.
+
+<BR></P>
+
+<P align=center><A href="file:///C:/Documents%20and%20Settings/tstone/My%20Documents/DIFx%20Readmes/DPInst/readme.htm#top"><FONT 
+face=Verdana size=2>Top of page</FONT></A><FONT face=Verdana size=2> 
+</P></FONT><FONT face="MS Sans Serif" size=1>
+<P>© Microsoft Corporation 2006</FONT> </FONT></P></BODY></HTML>
+

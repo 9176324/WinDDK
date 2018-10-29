@@ -1,0 +1,77 @@
+/*
+
+  Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+  Summary: After a Request is completed, the associated WDFMEMORY object
+  cannot be accessed (inside Ioctl callback only).
+  WDFMEMORY object was retrieved by calling WdfRequestRetrieveInputMemory or
+  WdfRequestRetrieveOutputMemory.           
+
+  Description: 
+  Within Ioctl Io queue event callback, the Request Buffer retrieved by calling
+  WdfRequestRetrieveOutputBuffer or WdfRequestRetrieveUnsafeUserOutputBuffer
+  or WdfRequestRetrieveInputBuffer or WdfRequestRetrieveUnsafeUserInputBuffer
+  cannot be accessed after WdfRequestComplete/WithInformation/WithPriorityBoost 
+  on the Request. The following possible buffer access functions are considered:
+  WdfMemoryGetBuffer, WDF_MEMORY_DESCRIPTOR_INIT_HANDLE, WdfMemoryAssignBuffer, 
+  WdfMemoryCopyToBuffer, WdfMemoryCopyFromBuffer, WdfObjectReference,
+   WdfObjectDereference, WdfObjectDelete.
+*/
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT2, MEMRETR, REQCOMPL} t = INIT2;
+     int *cur_memory = 0;
+}
+watch fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL.entry.$2;
+
+sdv_main.entry
+{
+  cur_memory = hmemory;
+}
+[sdv_WdfRequestComplete
+,sdv_WdfRequestCompleteWithInformation
+,sdv_WdfRequestCompleteWithPriorityBoost
+].exit [guard $1]
+{    
+    if(t == MEMRETR)
+    {  
+        t = REQCOMPL;
+    }
+    else
+    {
+        halt;
+    }
+}
+[sdv_WdfRequestRetrieveOutputMemory
+, sdv_WdfRequestRetrieveInputMemory
+].exit [guard $1]
+{
+   if (t != REQCOMPL) 
+   {
+       cur_memory = *($2);  
+ 	     t = MEMRETR;
+   }
+}
+[sdv_WdfMemoryGetBuffer
+, sdv_WdfMemoryAssignBuffer
+, sdv_WdfMemoryCopyToBuffer
+, sdv_WdfMemoryCopyFromBuffer
+, sdv_WdfObjectReference
+, sdv_WdfObjectDereference
+, sdv_WdfObjectDelete
+].entry
+{
+   if ((t == REQCOMPL) && ($1 == cur_memory)) {
+       abort "Request's memory object cannot be accessed after the Request had been completed.";
+   }
+} 
+sdv_WDF_MEMORY_DESCRIPTOR_INIT_HANDLE.entry
+{
+   if ((t == REQCOMPL) && ($2 == cur_memory)) {
+       abort "Request's memory object cannot be accessed after the Request had been completed.";
+   }
+} 
+

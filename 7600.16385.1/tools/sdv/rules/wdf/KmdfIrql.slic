@@ -1,0 +1,2185 @@
+#include "ntddk_slic.h"
+
+WdfChildListCreate.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfChildListGetDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfChildListRetrievePdo.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfChildListRetrieveAddressDescription.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfChildListBeginScan.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfChildListEndScan.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfChildListBeginIteration.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfChildListRetrieveNextDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfChildListEndIteration.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfChildListAddOrUpdateChildDescriptionAsPresent.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfChildListUpdateChildDescriptionAsMissing.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfChildListUpdateAllChildDescriptionsAsPresent.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfChildListRequestChildEject.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfCollectionCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCollectionGetCount.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCollectionAdd.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCollectionRemove.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCollectionRemoveItem.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCollectionGetItem.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCollectionGetFirstItem.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCollectionGetLastItem.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCommonBufferCreate.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfCommonBufferCreateWithConfig.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfCommonBufferGetAlignedVirtualAddress.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCommonBufferGetAlignedLogicalAddress.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCommonBufferGetLength.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfControlDeviceInitAllocate.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfControlDeviceInitSetShutdownNotification.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfControlFinishInitializing.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceGetDeviceState.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceSetDeviceState.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWdmDeviceGetWdfDeviceHandle.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceWdmGetDeviceObject.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceWdmGetAttachedDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceWdmGetPhysicalDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceWdmDispatchPreprocessedIrp.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceAddDependentUsageDeviceObject.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceRemoveDependentUsageDeviceObject.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceAddRemovalRelationsPhysicalDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceRemoveRemovalRelationsPhysicalDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceClearRemovalRelationsDevices.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceGetDriver.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceRetrieveDeviceName.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceAssignMofResourceName.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceGetIoTarget.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceGetDevicePnpState.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceGetDevicePowerState.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceGetDevicePowerPolicyState.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceAssignS0IdleSettings.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceAssignSxWakeSettings.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceOpenRegistryKey.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceSetSpecialFileSupport.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceSetCharacteristics.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceGetCharacteristics.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceGetAlignmentRequirement.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceSetAlignmentRequirement.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitFree.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetPnpPowerEventCallbacks.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetPowerPolicyEventCallbacks.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetPowerPolicyOwnership.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitRegisterPnpStateChangeCallback.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceInitRegisterPowerStateChangeCallback.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceInitRegisterPowerPolicyStateChangeCallback.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceInitSetIoType.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetExclusive.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetPowerNotPageable.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetPowerPageable.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetPowerInrush.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetDeviceType.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitAssignName.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceInitAssignSDDLString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceInitSetDeviceClass.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetCharacteristics.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetFileObjectConfig.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetRequestAttributes.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitAssignWdmIrpPreprocessCallback.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceInitSetIoInCallerContextCallback.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceCreate.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceSetStaticStopRemove.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceCreateDeviceInterface.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceSetDeviceInterfaceState.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceRetrieveDeviceInterfaceString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceCreateSymbolicLink.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceQueryProperty.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceAllocAndQueryProperty.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDeviceSetPnpCapabilities.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceSetPowerCapabilities.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceSetBusInformationForChildren.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceIndicateWakeStatus.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceSetFailed.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceResumeIdle.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceGetFileObject.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceEnqueueRequest.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceGetDefaultQueue.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceConfigureRequestDispatching.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceGetSystemPowerAction.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaEnablerCreate.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDmaEnablerGetMaximumLength.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaEnablerGetMaximumScatterGatherElements.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaEnablerSetMaximumScatterGatherElements.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDmaEnablerGetFragmentLength.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaEnablerWdmGetDmaAdapter.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionInitialize.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionInitializeUsingRequest.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionExecute.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionRelease.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionDmaCompleted.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionDmaCompletedWithLength.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionDmaCompletedFinal.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionGetBytesTransferred.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionGetRequest.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionGetCurrentDmaTransferLength.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDmaTransactionGetDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDpcCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDpcEnqueue.entry
+{
+     if ( sdv_irql_current > HIGH_LEVEL ) 
+         abort "$fname should be called at IRQL <= HIGH_LEVEL ";
+}
+
+WdfDpcGetParentObject.entry
+{
+
+     if ( sdv_irql_current > HIGH_LEVEL ) 
+         abort "$fname should be called at IRQL <= HIGH_LEVEL ";
+}
+
+WdfDpcWdmGetDpc.entry
+{
+     if ( sdv_irql_current > HIGH_LEVEL ) 
+         abort "$fname should be called at IRQL <= HIGH_LEVEL ";
+}
+
+WdfDriverCreate.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDriverGetRegistryPath.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDriverOpenParametersRegistryKey.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDriverRetrieveVersionString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfDriverIsVersionAvailable.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfFdoInitWdmGetPhysicalDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfFdoInitOpenRegistryKey.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfFdoInitQueryProperty.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfFdoInitAllocAndQueryProperty.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfFdoInitSetEventCallbacks.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfFdoInitSetFilter.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfFdoInitSetDefaultChildListConfig.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfFdoQueryForInterface.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfFdoGetDefaultChildList.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfFdoAddStaticChild.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfFdoLockStaticChildListForIteration.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfFdoRetrieveNextStaticChild.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfFdoUnlockStaticChildListFromIteration.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfFileObjectGetFileName.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfFileObjectGetFlags.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfFileObjectGetDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfFileObjectWdmGetFileObject.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfInterruptCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfInterruptSynchronize.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfInterruptAcquireLock.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfInterruptReleaseLock.entry
+{
+     if ( sdv_irql_current != DISPATCH_LEVEL + 1 ) 
+         abort "$fname should be called at IRQL = DISPATCH_LEVEL + 1 ";
+}
+
+WdfInterruptEnable.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfInterruptDisable.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoQueueCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoQueueGetState.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoQueueStart.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoQueueStop.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoQueueStopSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoQueueGetDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoQueueRetrieveNextRequest.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoQueueRetrieveRequestByFileObject.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoQueueFindRequest.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoQueueRetrieveFoundRequest.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoQueueDrainSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoQueueDrain.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoQueuePurgeSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoQueuePurge.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoQueueReadyNotify.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetCreate.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetOpen.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetCloseForQueryRemove.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetClose.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetStart.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetGetState.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetGetDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetQueryTargetProperty.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetAllocAndQueryTargetProperty.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetQueryForInterface.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetWdmGetTargetDeviceObject.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetWdmGetTargetPhysicalDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetWdmGetTargetFileObject.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetWdmGetTargetFileHandle.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetSendReadSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetFormatRequestForRead.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetSendWriteSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetFormatRequestForWrite.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetSendIoctlSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetFormatRequestForIoctl.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetSendInternalIoctlSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetFormatRequestForInternalIoctl.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoTargetSendInternalIoctlOthersSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfIoTargetFormatRequestForInternalIoctlOthers.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfMemoryCreatePreallocated.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceMiniportCreate.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfObjectCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfObjectDelete.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfPdoInitAllocate.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfPdoInitSetEventCallbacks.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfPdoInitAssignDeviceID.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfPdoInitAssignInstanceID.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfPdoInitAddHardwareID.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfPdoInitAddCompatibleID.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfPdoInitAddDeviceText.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfPdoInitSetDefaultLocale.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfPdoInitAssignRawDevice.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfPdoMarkMissing.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfPdoRequestEject.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfPdoGetParent.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfPdoRetrieveIdentificationDescription.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfPdoRetrieveAddressDescription.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfPdoUpdateAddressDescription.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfPdoAddEjectionRelationsPhysicalDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfPdoRemoveEjectionRelationsPhysicalDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfPdoClearEjectionRelationsDevices.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfDeviceAddQueryInterface.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryOpenKey.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryCreateKey.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryClose.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryRemoveKey.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryRemoveValue.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryQueryValue.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryQueryMemory.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryQueryMultiString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryQueryUnicodeString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryQueryString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryQueryULong.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryAssignValue.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryAssignMemory.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryAssignMultiString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryAssignUnicodeString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryAssignString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRegistryAssignULong.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRequestCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestCreateFromIrp.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestReuse.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestChangeTarget.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestFormatRequestUsingCurrentType.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestWdmFormatUsingStackLocation.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestSend.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestGetStatus.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestMarkCancelable.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestUnmarkCancelable.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestIsCanceled.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestCancelSentRequest.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestIsFrom32BitProcess.entry
+{
+     if ( sdv_irql_current > APC_LEVEL ) 
+         abort "$fname should be called at IRQL <= APC_LEVEL ";
+}
+
+WdfRequestSetCompletionRoutine.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestGetCompletionParams.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestAllocateTimer.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestComplete.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestCompleteWithPriorityBoost.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestCompleteWithInformation.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestGetParameters.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestRetrieveInputMemory.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestRetrieveOutputMemory.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestRetrieveInputBuffer.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestRetrieveOutputBuffer.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestRetrieveInputWdmMdl.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestRetrieveOutputWdmMdl.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestRetrieveUnsafeUserInputBuffer.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRequestRetrieveUnsafeUserOutputBuffer.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRequestSetInformation.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestGetInformation.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestGetFileObject.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestProbeAndLockUserBufferForRead.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRequestProbeAndLockUserBufferForWrite.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfRequestGetRequestorMode.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestForwardToIoQueue.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestGetIoQueue.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestRequeue.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestStopAcknowledge.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfRequestWdmGetIrp.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceRequirementsListSetSlotNumber.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceRequirementsListSetInterfaceType.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceRequirementsListAppendIoResList.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceRequirementsListInsertIoResList.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceRequirementsListGetCount.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceRequirementsListGetIoResList.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceRequirementsListRemove.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceRequirementsListRemoveByIoResList.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceListCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceListAppendDescriptor.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceListInsertDescriptor.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceListUpdateDescriptor.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceListGetCount.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceListGetDescriptor.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceListRemove.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfIoResourceListRemoveByDescriptor.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCmResourceListAppendDescriptor.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCmResourceListInsertDescriptor.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCmResourceListGetCount.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCmResourceListGetDescriptor.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCmResourceListRemove.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfCmResourceListRemoveByDescriptor.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfStringCreate.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfStringGetUnicodeString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfObjectAcquireLock.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfObjectReleaseLock.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWaitLockCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWaitLockAcquire.entry
+{
+     if($2==NULL)
+     {
+       if ( sdv_irql_current > PASSIVE_LEVEL ) 
+       {
+           abort "$fname should be called at IRQL == PASSIVE_LEVEL "; 
+       }
+       
+     }
+     else if(*$2>0)
+     {
+       if ( sdv_irql_current > PASSIVE_LEVEL ) 
+       {
+           abort "$fname should be called at IRQL == PASSIVE_LEVEL "; 
+       }
+     }
+     else if(*$2<0)
+     {
+       if ( sdv_irql_current > PASSIVE_LEVEL ) 
+       {
+           abort "$fname should be called at IRQL == PASSIVE_LEVEL "; 
+       }
+     }
+     else 
+     {
+       if ( sdv_irql_current > DISPATCH_LEVEL ) 
+       {
+           abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+       } 
+     }
+}
+
+WdfWaitLockRelease.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfSpinLockCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfSpinLockAcquire.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+
+WdfSpinLockRelease.entry
+{
+     if ( sdv_irql_current != DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL = DISPATCH_LEVEL ";
+}
+
+WdfTimerCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfTimerStart.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetDeviceCreate.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetDeviceRetrieveInformation.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetDeviceGetDeviceDescriptor.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetDeviceRetrieveConfigDescriptor.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetDeviceQueryString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetDeviceAllocAndQueryString.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetDeviceFormatRequestForString.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetDeviceGetNumInterfaces.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetDeviceSelectConfig.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetDeviceWdmGetConfigurationHandle.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetDeviceRetrieveCurrentFrameNumber.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetDeviceSendControlTransferSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetDeviceFormatRequestForControlTransfer.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetDeviceIsConnectedSynchronous.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetDeviceResetPortSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetDeviceCyclePortSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetDeviceFormatRequestForCyclePort.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetDeviceSendUrbSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetDeviceFormatRequestForUrb.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeGetInformation.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeIsInEndpoint.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeIsOutEndpoint.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeGetType.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeSetNoMaximumPacketSizeCheck.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeWriteSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetPipeFormatRequestForWrite.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeReadSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetPipeFormatRequestForRead.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeConfigContinuousReader.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeAbortSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetPipeFormatRequestForAbort.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeResetSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetPipeFormatRequestForReset.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeSendUrbSynchronously.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbTargetPipeFormatRequestForUrb.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbInterfaceGetInterfaceNumber.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbInterfaceGetNumEndpoints.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbInterfaceGetDescriptor.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbInterfaceGetNumSettings.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbInterfaceSelectSetting.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfUsbInterfaceGetEndpointInformation.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetDeviceGetInterface.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbInterfaceGetConfiguredSettingIndex.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbInterfaceGetNumConfiguredPipes.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbInterfaceGetConfiguredPipe.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfUsbTargetPipeWdmGetPipeHandle.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWmiProviderCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWmiProviderGetDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWmiProviderIsEnabled.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWmiProviderGetTracingHandle.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWmiInstanceCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWmiInstanceRegister.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfWmiInstanceDeregister.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+WdfWmiInstanceGetDevice.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWmiInstanceGetProvider.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWmiInstanceFireEvent.entry
+{
+     if ( sdv_irql_current > APC_LEVEL ) 
+         abort "$fname should be called at IRQL <= APC_LEVEL ";
+}
+
+WdfWorkItemCreate.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWorkItemEnqueue.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWorkItemGetParentObject.entry
+{
+     if ( sdv_irql_current > DISPATCH_LEVEL ) 
+         abort "$fname should be called at IRQL <= DISPATCH_LEVEL ";
+}
+
+WdfWorkItemFlush.entry
+{
+     if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+
+sdv_do_paged_code_check.entry 
+{
+    if ( sdv_irql_current > PASSIVE_LEVEL ) 
+         abort "$fname should be called at IRQL <= PASSIVE_LEVEL ";
+}
+

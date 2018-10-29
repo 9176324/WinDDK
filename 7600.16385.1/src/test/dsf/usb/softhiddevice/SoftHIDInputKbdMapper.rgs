@@ -1,0 +1,27 @@
+HKCR
+{
+	SoftHID.SoftHIDInputKbdMapper.1 = s 'SoftHIDInputKbdMapper Class'
+	{
+		CLSID = s '{6853488F-9478-4290-84A1-83BFF8BBE48F}'
+	}
+	SoftHID.SoftHIDInputKbdMapper = s 'SoftHIDInputKbdMapper Class'
+	{
+		CLSID = s '{6853488F-9478-4290-84A1-83BFF8BBE48F}'
+		CurVer = s 'SoftHID.SoftHIDInputKbdMapper.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {6853488F-9478-4290-84A1-83BFF8BBE48F} = s 'SoftHIDInputKbdMapper Class'
+		{
+			ProgID = s 'SoftHID.SoftHIDInputKbdMapper.1'
+			VersionIndependentProgID = s 'SoftHID.SoftHIDInputKbdMapper'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{E4467B25-A31D-42A9-A863-B6614A44FC0C}'
+		}
+	}
+}
+

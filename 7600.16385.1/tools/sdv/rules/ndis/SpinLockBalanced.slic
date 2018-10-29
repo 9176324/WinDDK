@@ -1,0 +1,66 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    Verify the correct usage of Spinlock DDIs.
+    
+    Description:
+    This rule verifies that the numbers of calls to Acquire\Release DDIs the same.  
+    This rule woill just provide WARNINGs.
+    
+    Related Rule:
+	
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+   int calls_acquire = 0;
+   int calls_release = 0;
+}
+
+[sdv_NdisAcquireSpinLock,sdv_NdisDprAcquireSpinLock].exit
+{
+    calls_acquire  = calls_acquire + 1;
+
+}
+
+[sdv_NdisReleaseSpinLock,sdv_NdisDprReleaseSpinLock].exit
+{
+    calls_release = calls_release - 1;
+}
+
+[sdv_MINIPORT_RESET,
+sdv_MINIPORT_PAUSE,
+sdv_MINIPORT_RESTART,
+sdv_MINIPORT_SET_OPTIONS,
+sdv_MINIPORT_INITIALIZE,
+sdv_MINIPORT_ENABLE_INTERRUPT,
+sdv_MINIPORT_ALLOCATE_SHARED_MEM_COMPLETE,
+sdv_MINIPORT_UNLOAD,
+sdv_MINIPORT_INTERRUPT_DPC,
+sdv_MINIPORT_DEVICE_PNP_EVENT_NOTIFY,
+sdv_MINIPORT_OID_REQUEST,
+sdv_MINIPORT_CANCEL_SEND,
+sdv_MINIPORT_ISR,
+sdv_MINIPORT_CANCEL_OID_REQUEST,
+sdv_MINIPORT_SEND_NET_BUFFER_LISTS,
+sdv_MINIPORT_SHUTDOWN,
+sdv_MINIPORT_RETURN_NET_BUFFER_LISTS,
+sdv_MINIPORT_DISABLE_INTERRUPT,
+sdv_MINIPORT_HALT,
+sdv_MINIPORT_PROCESS_SG_LIST,
+sdv_MINIPORT_CHECK_FOR_HANG,
+sdv_NDIS_IO_WORKITEM_FUNCTION,
+sdv_NDIS_TIMER_FUNCTION].exit
+{
+    if ((calls_acquire + (calls_release))  < 0) 
+    { 
+        abort "WARNING: Releasing wihtout acquiring."; 
+    }
+    else if ((calls_acquire + (calls_release)) > 0) 
+    { 
+        abort "WARNING: Acquiring without releasing."; 
+    }
+}

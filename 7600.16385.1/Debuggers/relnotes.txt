@@ -1,0 +1,289 @@
+                   Microsoft(R) Debugging Tools for Windows(R)
+                            Version 6.12 Release Notes
+				Feb 2010
+
+-----------------------------------------------------------------------------
+
+Contents
+
+    Overview
+    What's New
+    Known Issues
+    Programs
+    Debugger Extensions
+    Software Development Samples
+    Documentation
+    Redistributables
+    More Information
+    Feedback
+
+-----------------------------------------------------------------------------
+ 
+Overview
+
+Debugging Tools for Windows contains tools to analyze and debug Windows,
+Windows drivers, and applications.   It can analyze memory dump files or
+perform live debugging.
+
+The kernel debugger is KD.exe.  It can be installed and run on all
+the platforms listed below. It can debug all the platforms listed below.
+
+The user-mode debugger is CDB.exe.  It can be installed and used on all the
+platforms listed below.
+
+WinDbg.exe is the GUI version of the debugger.  It supports both user-mode
+and kernel-mode debugging.  It can be installed and run on all the platforms
+listed below. It can debug all the platforms listed below.
+
+Supported platforms:
+
+Windows 2000 (x86)
+Windows XP (All CPU architectures)
+Windows Server 2003 (All CPU architectures)
+Windows Vista (All CPU architectures)
+Windows 2008 Server (All CPU architectures)
+Windows 7 (All CPU architectures)
+
+Please be aware that while you may run the 32-bit version of the debugging 
+tools on an 64-bit installation, the inverse is not supported.
+
+-----------------------------------------------------------------------------
+
+What's New
+
+This release of Debugging Tools for Windows contains many bug fixes and new
+enhancements. The debuggers are stable and more reliable than previous 
+releases and we recommend that you upgrade to this version.
+
+Here's some of the key changes in this version of Debugging Tools for Windows:
+
+1)	Several bug fixes in extensions to only use public symbols
+2)	General BugCheck Analysis Updates including
+		a) Bug Check 0x9F Update – Add logic to diagnose bugcheck 0x9F minidumps using new to Windows 7 data added to the 0x9F Mini Dumps by the Kernel and Networking Teams.
+		Data includes:
+			All Kernel ExWorkerThreads that process Power IRPs.
+			IRPs Associated with any ExWorkerThread
+			IRPs Associated with  PnP Completion Queue.  
+			All Kernel Power IRPs
+			Device Stacks for all IRPS
+			NT_TRIAGE_POWER Structure
+			NT_TRIAGE_PNP structure
+
+		b.) BugCheck 0xFE Update - Add logic to diagnose bugcheck 0xFE minidumps using new to Windows 7 callback data added by the USB team.
+3)	Fixed user-mode minidump generation problem.
+4)	Fixed buffer overrun in schannel transport.
+5)	Fixed several kernel debugger transport issues.
+6)	Fixed problem with debugger reporting incorrect FPO information.
+7)	Allowed stack dumps deeper than 65535 if specified explicitly.
+8)	Changed ".outmask /a" and ".outmask /d" to be set only instead of or/xor.
+9)	The old ADPlus.vbs is being replaced by ADPlus.exe which requires the .Net Framework 2.0. For those cases where the .Net Framework isn't available we are still shipping the older version renamed to adplus_old.vbs. For detailed documentation of the new ADPlus.exe as well as for its new companion ADPlusManager.exe please see adplus.doc located in the same folder as adplus.exe.
+
+
+    Additional details on some of these features can be found in the debugger
+    documentation (debugger.chm).  To open this documentation, use 
+    Start --> Debugging Tools for Windows --> Debugging Help.
+
+
+
+-----------------------------------------------------------------------------
+
+Programs
+
+This distribution includes the following debuggers:
+
+    KD        - Command-line kernel debugger
+    NTSD      - Command-line user-mode debugger
+    CDB       - Command-line user-mode debugger (variant of NTSD)
+    WinDbg    - GUI kernel debugger
+
+I386KD is also provided in the package to support backwards compatibility. 
+It has the same code-base as KD.
+
+There are several debugger-related tools included with the package.  They
+are identified as a subcategory under Tools in the custom menu during 
+install. This subcategory is called "Helpful Tools" and it is installed by
+default.
+
+The Helpful Tools option is installed by default and includes these
+debugger-related tools:
+
+    AgeStore     - Removes old or unwanted files from the downstream store 
+                   used by a symbol server or source server
+    DBH          - DbgHelp shell
+    GFlags       - Global Flags Editor
+    Breakin      - Utility to force a breakin in another process being 
+                   debugged
+    Remote       - Remote Command Line
+    Kill         - Task Killing Utility
+    List         - File List Utility
+    LogViewer    - Display API logs created with the .logext extension from
+                   the debugger
+    RTList       - Remote Task List Viewer
+    SymChk       - utility to check validity of symbol files, or download 
+                   symbols from a symbol server prior to a debugging session
+    SymProxy     - ISAPI filter acting as an HTTP proxy for one or more
+                   symbol servers
+    SymStore     - Creates a symbol server for automatic symbol lookup
+    ConvertStore - Modifies Symbol Server stores
+    TList        - Task List Viewer
+    UMDH         - Heap Analysis Tool
+    PdbCopy      - Symbol file stripper
+    DbEngPrx     - A repeater (small proxy server) used for remote debugging. DbgSrv is described in this documentation.
+    DbgRpc       - A tool used to display Microsoft Remote Procedure Call (RPC) state information.
+    DumpChk      - A tool used to validate a memory dump file.
+    KDbgCtrl     - A tool that controls and configures the kernel debugging connection.
+    KdSrv        - A KD connection server used for remote debugging.
+    Logger       - A tool and an extension DLL that record the function calls and other actions of a program.
+
+
+-----------------------------------------------------------------------------
+
+Debugger Extensions
+
+Debugger Extensions are DLLs that WinDbg, CDB, NTSD, and KD can use to 
+provide additional debugger commands.
+
+The extensions that work for all versions of Windows reside in the "winext"
+subdirectory, and include:
+
+    uext.dll
+    kext.dll
+    ext.dll
+    logexts.dll
+
+
+The newest version-specific debugger extensions (which work on Windows XP,
+Windows Server 2003, Windows Vista, Windows 2008 Server Windows 7) reside
+in the "winxp" subdirectory, and include:
+
+    exts.dll
+    kdexts.dll
+
+The debugger extension DLLs for Windows 2000 is operating system 
+version and debug/retail specific.  However, these extensions should 
+properly support all service packs based on that build.  
+Multiple versions of each DLL are included, to provide the necessary 
+files for each variant. All DLLs are provided in both debug and retail 
+versions.  The debug and retail versions of these DLLs for Windows 2000 
+are installed into four subdirectories,under the target subdirectory:
+
+    w2kchk
+    w2kfre
+    
+The debugger has awareness of these subdirectories, and will not be able
+to find them if these subdirectories are renamed or moved.
+
+If a custom extension DLL is to be used, it should be placed in its own
+directory.  The user can then set the debugger extension path variable so the
+debugger can find the extension.  Debugger extensions can also be loaded in
+the debugger using fully qualified path names.
+
+All of the debuggers search for debugger extension DLLs in a series of 
+directories.  For a list of these directories and the sequence in which they
+are searched, open the documentation, choose the Index tab, type "extension",
+and click on "default search order" in the listing under "extension".
+
+
+-----------------------------------------------------------------------------
+
+Software Development Samples
+
+
+Header files, libraries and samples for debugger extensions are provided
+in this package.  They are not installed by default.  The "SDK"
+component of the package must be selected during the install to get the
+samples installed.
+
+Use the Build utility to compile and build these samples.  You must use
+the version of the Build utility supplied by the latest version of the
+Windows WDK or the Platform SDK.  These kits include several different
+build environment windows; it is important that you use the "Windows
+Server 2003 Build Environment" or "Windows Vista Build Environment"
+windows -- even if you are building samples or extensions for use on a
+different version of Windows.
+
+Attempting to build the samples and headers in a "Windows 2000 Build
+Environment" will cause compilation errors.  Building them in a "Windows
+XP Build Environment" may succeed in some cases, but it is not
+recommended.  The "Windows 2003 Server Build Environment" and "Windows
+Vista Build Environment" windows are the ones that should be used in all
+cases.
+
+The header files and libs in this package should replace any existing
+version of the header files or libs that are shipped with the Windows
+WDK or the Platform SDK.  If you follow the instructions for using the
+Build utility, which appear in the Windows WDK documentation, you can
+set your include paths so that this is done automatically.
+
+The samples will not compile if they are located in a directory path 
+containing spaces.  If you have installed Debugging Tools for Windows into a
+path with spaces, you can work around this limitation by moving or copying the
+"sdk" subdirectory to a directory path without spaces.
+
+
+-----------------------------------------------------------------------------
+
+Documentation
+
+For documentation on how to use these debuggers and related tools, see the
+help file debugger.chm that is included with the tools.  This documentation
+has been improved and expanded since the last release.
+
+When Debugging Tools for Windows is installed, a shortcut to this documentation
+can be found under Start --> Programs --> Debugging Tools for Windows -->
+Debugging Help.
+
+You may also choose to review the most current documentation on MSDN: 
+	http://msdn2.microsoft.com/en-us/library/cc267445.aspx
+
+Information on how to write debugger extensions is included in this same
+documentation file.  If you plan to write debugger extensions, you should
+perform a custom install of Debugging Tools for Windows and select all
+available features.  This will ensure that you have all the necessary
+extension headers, libraries, and samples.
+
+The DbgHelp interface is documented in a separate documentation file
+(dbghelp.chm).
+
+A tutorial on kernel debugging, Kernel_Debugging_Tutorial.doc, is also included
+in this installation.  This file is helpful if you are familiar with other
+debugging tools and want to learn how to use WinDbg for kernel debugging.
+
+You need to have Internet Explorer 5.0 or greater installed in order to use
+the documentation properly.
+
+-----------------------------------------------------------------------------
+
+Redistributables
+
+Please read the license agreement during setup for legal information regarding
+redistributable files.  If this is a retail release, the license agreement 
+mentions that redist.txt gives a list of the files that are redistributable.  
+
+-----------------------------------------------------------------------------
+
+More Information
+
+For more information on debugging, see the Debugging Tools for Windows
+web page, <http://www.microsoft.com/whdc/DevTools/Debugging>.
+
+We encourage people to get the new debugger off the web "often", as
+we do many updates, while keeping compatibility with current, and Beta 
+versions of Windows.
+
+Version 6.9 was the last debugger release that supported NT 4.0.
+
+-----------------------------------------------------------------------------
+
+Feedback
+
+We are interested in your feedback on the tools.  Please mail suggestions or 
+bug reports to WinDbgfb@microsoft.com.  This is not a support alias, but your 
+feedback will help us to plan future changes for these tools and will make 
+them more useful to you in the future.
+
+There is also a newsgroup moderated by Microsoft representatives and made up 
+many users of these tools.  It is microsoft.public.windbg.  Posting questions
+or comments here will often get you the information you need to be productive
+with the debuggers.
+-----------------------------------------------------------------------------

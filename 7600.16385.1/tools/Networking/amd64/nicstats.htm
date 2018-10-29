@@ -1,0 +1,3219 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 14">
+<meta name=Originator content="Microsoft Word 14">
+<title>NICStats User Guide</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:"MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;
+	mso-font-alt:"\FF2D\FF33 \660E\671D";
+	mso-font-charset:128;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-536870145 1791491579 18 0 131231 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870145 1107305727 0 0 415 0;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870145 1073743103 0 0 415 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-520092929 1073786111 9 0 415 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-520081665 -1073717157 41 0 66047 0;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-520092929 1073800319 41 0 415 0;}
+@font-face
+	{font-family:"\@MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;
+	mso-font-charset:128;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-536870145 1791491579 18 0 131231 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+h1
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 1 Char";
+	mso-style-next:Normal;
+	margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	mso-pagination:widow-orphan lines-together;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#365F91;
+	mso-themecolor:accent1;
+	mso-themeshade:191;
+	mso-font-kerning:0pt;}
+h2
+	{mso-style-priority:9;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 2 Char";
+	mso-style-next:Normal;
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	mso-pagination:widow-orphan lines-together;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#4F81BD;
+	mso-themecolor:accent1;}
+h3
+	{mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 3 Char";
+	mso-style-next:Normal;
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	mso-pagination:widow-orphan lines-together;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#4F81BD;
+	mso-themecolor:accent1;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{mso-style-update:auto;
+	mso-style-priority:39;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:5.0pt;
+	margin-left:0in;
+	line-height:115%;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{mso-style-update:auto;
+	mso-style-priority:39;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:5.0pt;
+	margin-left:11.0pt;
+	line-height:115%;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{mso-style-update:auto;
+	mso-style-priority:39;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:5.0pt;
+	margin-left:22.0pt;
+	line-height:115%;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-priority:99;
+	mso-style-link:"Header Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.25in right 6.5in;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-priority:99;
+	mso-style-link:"Footer Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.25in right 6.5in;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-priority:10;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Title Char";
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:15.0pt;
+	margin-left:0in;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	border:none;
+	mso-border-bottom-alt:solid #4F81BD 1.0pt;
+	mso-border-bottom-themecolor:accent1;
+	padding:0in;
+	mso-padding-alt:0in 0in 4.0pt 0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#17365D;
+	mso-themecolor:text2;
+	mso-themeshade:191;
+	letter-spacing:.25pt;
+	mso-font-kerning:14.0pt;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{mso-style-priority:10;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Title Char";
+	mso-style-next:Normal;
+	mso-style-type:export-only;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	border:none;
+	mso-border-bottom-alt:solid #4F81BD 1.0pt;
+	mso-border-bottom-themecolor:accent1;
+	padding:0in;
+	mso-padding-alt:0in 0in 4.0pt 0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#17365D;
+	mso-themecolor:text2;
+	mso-themeshade:191;
+	letter-spacing:.25pt;
+	mso-font-kerning:14.0pt;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{mso-style-priority:10;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Title Char";
+	mso-style-next:Normal;
+	mso-style-type:export-only;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	border:none;
+	mso-border-bottom-alt:solid #4F81BD 1.0pt;
+	mso-border-bottom-themecolor:accent1;
+	padding:0in;
+	mso-padding-alt:0in 0in 4.0pt 0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#17365D;
+	mso-themecolor:text2;
+	mso-themeshade:191;
+	letter-spacing:.25pt;
+	mso-font-kerning:14.0pt;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{mso-style-priority:10;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Title Char";
+	mso-style-next:Normal;
+	mso-style-type:export-only;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:15.0pt;
+	margin-left:0in;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	border:none;
+	mso-border-bottom-alt:solid #4F81BD 1.0pt;
+	mso-border-bottom-themecolor:accent1;
+	padding:0in;
+	mso-padding-alt:0in 0in 4.0pt 0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#17365D;
+	mso-themecolor:text2;
+	mso-themeshade:191;
+	letter-spacing:.25pt;
+	mso-font-kerning:14.0pt;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{mso-style-unhide:no;
+	mso-style-link:"Body Text Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	tab-stops:.25in .5in;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"MS Mincho";
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:Arial;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	mso-themecolor:hyperlink;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:purple;
+	mso-themecolor:followedhyperlink;
+	text-decoration:underline;
+	text-underline:single;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;}
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+	{mso-style-priority:1;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-style-link:"No Spacing Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-type:export-only;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-type:export-only;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-type:export-only;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
+	{mso-style-noshow:yes;
+	mso-style-priority:39;
+	mso-style-qformat:yes;
+	mso-style-parent:"Heading 1";
+	mso-style-next:Normal;
+	margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	mso-pagination:widow-orphan lines-together;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#365F91;
+	mso-themecolor:accent1;
+	mso-themeshade:191;
+	font-weight:bold;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-priority:10;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:Title;
+	mso-ansi-font-size:26.0pt;
+	mso-bidi-font-size:26.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#17365D;
+	mso-themecolor:text2;
+	mso-themeshade:191;
+	letter-spacing:.25pt;
+	mso-font-kerning:14.0pt;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 2";
+	mso-ansi-font-size:13.0pt;
+	mso-bidi-font-size:13.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#4F81BD;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#4F81BD;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+span.NoSpacingChar
+	{mso-style-name:"No Spacing Char";
+	mso-style-priority:1;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"No Spacing";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 1";
+	mso-ansi-font-size:14.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#365F91;
+	mso-themecolor:accent1;
+	mso-themeshade:191;
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Balloon Text";
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-ascii-font-family:Tahoma;
+	mso-hansi-font-family:Tahoma;
+	mso-bidi-font-family:Tahoma;}
+span.BodyTextChar
+	{mso-style-name:"Body Text Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Body Text";
+	mso-bidi-font-size:10.0pt;
+	font-family:"MS Mincho";
+	mso-fareast-font-family:"MS Mincho";
+	mso-bidi-font-family:Arial;}
+span.Small
+	{mso-style-name:Small;
+	mso-style-unhide:no;
+	mso-ansi-font-size:9.0pt;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:Header;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:Footer;}
+p.TableHead, li.TableHead, div.TableHead
+	{mso-style-name:"Table Head";
+	mso-style-unhide:no;
+	mso-style-parent:"Body Text";
+	mso-style-next:"Body Text";
+	margin-top:8.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan lines-together;
+	page-break-after:avoid;
+	tab-stops:.25in .5in;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"MS Mincho";
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:Arial;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+.MsoPapDefault
+	{mso-style-type:export-only;
+	margin-bottom:10.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:274212814;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1728912434 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.5in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:1.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:1.5in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.0in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.5in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.0in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.5in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:4.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:576087914;
+	mso-list-type:hybrid;
+	mso-list-template-ids:653720732 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:1.75in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.75in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.25in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:4.25in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:4.75in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:1041788405;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-235226942 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;}
+@list l2:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;}
+@list l2:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:1.25in;
+	text-indent:-9.0pt;}
+@list l2:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:1.75in;
+	text-indent:-.25in;}
+@list l2:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.25in;
+	text-indent:-.25in;}
+@list l2:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:2.75in;
+	text-indent:-9.0pt;}
+@list l2:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.25in;
+	text-indent:-.25in;}
+@list l2:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.75in;
+	text-indent:-.25in;}
+@list l2:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:4.25in;
+	text-indent:-9.0pt;}
+@list l3
+	{mso-list-id:1053046923;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1116184784 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l3:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l3:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l3:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l3:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l3:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l3:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l3:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l4
+	{mso-list-id:1216510442;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1433021110 847156418 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l4:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l4:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l4:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l4:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l4:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l4:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l4:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l4:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l5
+	{mso-list-id:1379088141;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1134213142 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l5:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;}
+@list l5:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;}
+@list l5:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:1.75in;
+	text-indent:-9.0pt;}
+@list l5:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.25in;
+	text-indent:-.25in;}
+@list l5:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.75in;
+	text-indent:-.25in;}
+@list l5:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:3.25in;
+	text-indent:-9.0pt;}
+@list l5:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.75in;
+	text-indent:-.25in;}
+@list l5:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:4.25in;
+	text-indent:-.25in;}
+@list l5:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:4.75in;
+	text-indent:-9.0pt;}
+@list l6
+	{mso-list-id:1557862807;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-235226942 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l6:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;}
+@list l6:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;}
+@list l6:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:1.75in;
+	text-indent:-9.0pt;}
+@list l6:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.25in;
+	text-indent:-.25in;}
+@list l6:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.75in;
+	text-indent:-.25in;}
+@list l6:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:3.25in;
+	text-indent:-9.0pt;}
+@list l6:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.75in;
+	text-indent:-.25in;}
+@list l6:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:4.25in;
+	text-indent:-.25in;}
+@list l6:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:4.75in;
+	text-indent:-9.0pt;}
+@list l7
+	{mso-list-id:2099591264;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-579185232 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l7:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l7:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l7:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l7:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l7:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l7:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l7:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=WordSection1>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle><span class=SpellE>NICStats</span> user guide</p>
+
+</div>
+
+<p class=TableHead>Document History</p>
+
+<table class=Tablerowcell border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <thead>
+  <tr style='mso-yfti-irow:-1;mso-yfti-firstrow:yes;page-break-inside:avoid'>
+   <td width=102 valign=top style='width:76.45pt;border:solid windowtext 1.0pt;
+   mso-border-alt:solid windowtext .5pt;background:#C6D9F1;mso-background-themecolor:
+   text2;mso-background-themetint:51;padding:0in 5.4pt 0in 5.4pt'>
+   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;
+   line-height:normal;page-break-after:avoid;mso-yfti-cnfc:1'><b
+   style='mso-bidi-font-weight:normal'><span style='font-size:10.0pt;
+   mso-bidi-font-size:11.0pt;mso-ascii-font-family:Calibri;mso-hansi-font-family:
+   Calibri'>Date<o:p></o:p></span></b></p>
+   </td>
+   <td width=417 valign=top style='width:312.95pt;border:solid windowtext 1.0pt;
+   border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+   solid windowtext .5pt;background:#C6D9F1;mso-background-themecolor:text2;
+   mso-background-themetint:51;padding:0in 5.4pt 0in 5.4pt'>
+   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;
+   line-height:normal;page-break-after:avoid;mso-yfti-cnfc:1'><b
+   style='mso-bidi-font-weight:normal'><span style='font-size:10.0pt;
+   mso-bidi-font-size:11.0pt;mso-ascii-font-family:Calibri;mso-hansi-font-family:
+   Calibri'>Change</span></b><span style='font-size:9.0pt;mso-bidi-font-size:
+   11.0pt;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'><o:p></o:p></span></p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:0;mso-yfti-lastrow:yes;page-break-inside:avoid'>
+  <td width=102 valign=top style='width:76.45pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><span style='font-size:10.0pt;mso-bidi-font-size:11.0pt'>May 11, 2009<o:p></o:p></span></p>
+  </td>
+  <td width=417 valign=top style='width:312.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'><span style='font-size:10.0pt;mso-bidi-font-size:11.0pt'>First
+  publication<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<span style='font-size:11.0pt;line-height:115%;font-family:"Calibri","sans-serif";
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA'><br clear=all style='mso-special-character:line-break;
+page-break-before:always'>
+</span>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<w:Sdt SdtDocPart="t" DocPartType="Table of Contents" DocPartUnique="t"
+ ID="-845472260">
+ <p class=MsoTocHeading>Contents<span style='font-size:11.0pt;line-height:115%;
+ mso-ascii-font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+ Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-font-family:Calibri;
+ mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+ mso-bidi-theme-font:minor-bidi;color:windowtext;font-weight:normal'><w:sdtPr></w:sdtPr></span></p>
+ <p class=MsoToc1 style='tab-stops:right dotted 467.5pt'><!--[if supportFields]><span
+ style='mso-element:field-begin'></span><span
+ style='mso-spacerun:yes'> </span>TOC \o &quot;1-3&quot; \h \z \u <span
+ style='mso-element:field-separator'></span><![endif]--><a href="#_Toc229804611"><span
+ style='mso-no-proof:yes'>Introduction</span><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804611 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>4<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600310031000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc1 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804612"><span style='mso-no-proof:yes'>How to use NICStats</span><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804612 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>4<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600310032000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc1 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804613"><span style='mso-no-proof:yes'>NICStats Examples</span><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804613 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>4<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600310033000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc1 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804614"><span style='mso-no-proof:yes'>NICStats Reference</span><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804614 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>5<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600310034000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804615"><span style='mso-no-proof:yes'>-a &lt;action&gt;</span><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804615 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>5<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600310035000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804617"><span style='mso-no-proof:yes'>-c &lt;event count
+ tracking flags&gt;</span><span style='color:windowtext;display:none;
+ mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:none'><span
+ style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804617 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>6<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600310037000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804618"><span style='mso-no-proof:yes'>-d</span><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804618 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>6<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600310038000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804619"><span style='mso-no-proof:yes'>-i &lt;interface ID
+ value&gt;</span><span style='color:windowtext;display:none;mso-hide:screen;
+ mso-no-proof:yes;text-decoration:none;text-underline:none'><span
+ style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804619 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>7<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600310039000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804620"><span style='mso-no-proof:yes'>-o &lt;output file
+ name&gt;</span><span style='color:windowtext;display:none;mso-hide:screen;
+ mso-no-proof:yes;text-decoration:none;text-underline:none'><span
+ style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804620 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>7<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600320030000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804621"><span style='mso-no-proof:yes'>-s</span><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804621 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>7<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600320031000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804622"><span style='mso-no-proof:yes'>-t &lt;Interface ID
+ Type&gt;</span><span style='color:windowtext;display:none;mso-hide:screen;
+ mso-no-proof:yes;text-decoration:none;text-underline:none'><span
+ style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804622 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>7<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600320032000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804623"><span style='mso-no-proof:yes'>-y &lt;event cycle count
+ tracking flags&gt;</span><span style='color:windowtext;display:none;
+ mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:none'><span
+ style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804623 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>8<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600320033000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc1 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804624"><span style='mso-no-proof:yes'>Appendix A: NICStats
+ sample output</span><span style='color:windowtext;display:none;mso-hide:screen;
+ mso-no-proof:yes;text-decoration:none;text-underline:none'><span
+ style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804624 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>9<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600320034000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804625"><span style='mso-no-proof:yes'>Output of GetHardwareInfo
+ Action</span><span style='color:windowtext;display:none;mso-hide:screen;
+ mso-no-proof:yes;text-decoration:none;text-underline:none'><span
+ style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804625 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>9<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600320035000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804626"><span style='mso-no-proof:yes'>Output for GetRssCaps
+ Action</span><span style='color:windowtext;display:none;mso-hide:screen;
+ mso-no-proof:yes;text-decoration:none;text-underline:none'><span
+ style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804626 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>10<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600320036000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804627"><span style='mso-no-proof:yes'>Output for GetRSSParams
+ Action</span><span style='color:windowtext;display:none;mso-hide:screen;
+ mso-no-proof:yes;text-decoration:none;text-underline:none'><span
+ style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804627 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>11<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600320037000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoToc2 style='tab-stops:right dotted 467.5pt'><a
+ href="#_Toc229804628"><span style='mso-no-proof:yes'>Output of GetPowerInfo
+ Action</span><span style='color:windowtext;display:none;mso-hide:screen;
+ mso-no-proof:yes;text-decoration:none;text-underline:none'><span
+ style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'><span style='mso-element:field-begin'></span>
+ PAGEREF _Toc229804628 \h <span style='mso-element:field-separator'></span></span><![endif]--><span
+ style='color:windowtext;display:none;mso-hide:screen;mso-no-proof:yes;
+ text-decoration:none;text-underline:none'>11<!--[if gte mso 9]><xml>
+  <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320039003800300034003600320038000000</w:data>
+ </xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+ display:none;mso-hide:screen;mso-no-proof:yes;text-decoration:none;text-underline:
+ none'><span style='mso-element:field-end'></span></span><![endif]--></a><span
+ style='mso-fareast-font-family:"Times New Roman";mso-fareast-theme-font:minor-fareast;
+ mso-no-proof:yes'><o:p></o:p></span></p>
+ <p class=MsoNormal><!--[if supportFields]><b><span style='mso-no-proof:yes'><span
+ style='mso-element:field-end'></span></span></b><![endif]--><o:p>&nbsp;</o:p></p>
+</w:Sdt><span style='font-size:11.0pt;line-height:115%;font-family:"Calibri","sans-serif";
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA'><br clear=all style='mso-special-character:line-break;
+page-break-before:always'>
+</span>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;line-height:115%;
+font-family:"Cambria","serif";mso-ascii-theme-font:major-latin;mso-fareast-font-family:
+"Times New Roman";mso-fareast-theme-font:major-fareast;mso-hansi-theme-font:
+major-latin;mso-bidi-font-family:"Times New Roman";mso-bidi-theme-font:major-bidi;
+color:#365F91;mso-themecolor:accent1;mso-themeshade:191'><o:p>&nbsp;</o:p></span></b></p>
+
+<h1><a name="_Toc229804611">Introduction</a></h1>
+
+<p class=MsoNormal style='margin-left:.5in'><span class=SpellE>NICStats</span>
+is a simple command line based tool that provides information on network
+adaptors installed in a server. The tool queries OIDs and counters at the NDIS
+level and provides useful information on a Network Interface <span
+class=SpellE>Card’s</span> (NIC) capabilities and configuration details.</p>
+
+<p class=MsoNormal style='margin-left:.5in'><span class=SpellE>NICStats</span>
+can be used to gather the following information</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:1.0in;mso-add-space:auto;
+text-indent:-.25in;mso-list:l3 level1 lfo8'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>NIC capabilities</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l3 level1 lfo8'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>NIC driver information</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l3 level1 lfo8'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>RSS capabilities</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l3 level1 lfo8'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>RSS parameters (Indirection table, etc.)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l3 level1 lfo8'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Power management information</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.0in;mso-add-space:auto;
+text-indent:-.25in;mso-list:l3 level1 lfo8'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>NIC specific performance counters and event
+cycles</p>
+
+<p class=MsoBodyText style='margin-left:.5in'>This information applies for the
+following operating systems:<br>
+<span style='mso-tab-count:1'>                </span>Windows Server<span
+class=Small><span style='font-size:9.0pt;mso-bidi-font-size:10.0pt'>®</span></span>
+2008 R2<br>
+<span style='mso-tab-count:1'>                </span>Windows 7</p>
+
+<h1><a name="_Toc229804612">How to use </a><span class=SpellE><span
+style='mso-bookmark:_Toc229804612'>NICStats</span></span><span
+style='mso-bookmark:_Toc229804612'></span></h1>
+
+<p class=MsoNormal style='margin-left:.5in'>The application included in this
+package is named NICStats.exe.</p>
+
+<p class=MsoNormal style='margin-left:.5in'>To run <span class=SpellE>NICStats</span>,
+open up a command prompt with administrator privileges. Use commands listed in
+the <span class=SpellE>NICStats</span> examples section to verify that the tool
+works fine.</p>
+
+<p class=MsoNormal style='text-indent:.5in'><span class=SpellE>NICStats</span>
+does not require any other special configurations.</p>
+
+<h1><a name="_Toc229804613"></a><span class=SpellE><span style='mso-bookmark:
+_Toc229804613'>NICStats</span></span><span style='mso-bookmark:_Toc229804613'>
+Examples</span></h1>
+
+<p class=MsoListParagraph style='margin-left:.75in;mso-add-space:auto;
+text-indent:-.25in;mso-list:l2 level1 lfo2'><![if !supportLists]><b
+style='mso-bidi-font-weight:normal'><span style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><span style='mso-list:Ignore'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b><![endif]><b
+style='mso-bidi-font-weight:normal'>Enumerate all physical adaptors in the
+machine<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in;background:#D9D9D9;mso-background-themecolor:
+background1;mso-background-themeshade:217'><span class=SpellE><span
+class=GramE><span style='font-family:"Courier New"'>nicstats</span></span></span><span
+style='font-family:"Courier New"'> -a <span class=SpellE>Enum</span> -t <span
+class=SpellE>AllPhysical</span><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:.75in;mso-add-space:auto;
+text-indent:-.25in;mso-list:l2 level1 lfo2'><![if !supportLists]><b
+style='mso-bidi-font-weight:normal'><span style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><span style='mso-list:Ignore'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b><![endif]><b
+style='mso-bidi-font-weight:normal'>Get hardware info for the adaptor with
+ifIndex of 12<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in;background:#D9D9D9;mso-background-themecolor:
+background1;mso-background-themeshade:217'><span class=SpellE><span
+class=GramE><span style='font-family:"Courier New"'>nicstats</span></span></span><span
+style='font-family:"Courier New"'> -t <span class=SpellE>ifindex</span> -i 12
+-a <span class=SpellE>GetHardwareInfo</span><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:.75in;mso-add-space:auto;
+text-indent:-.25in;mso-list:l2 level1 lfo2'><![if !supportLists]><b
+style='mso-bidi-font-weight:normal'><span style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><span style='mso-list:Ignore'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b><![endif]><b
+style='mso-bidi-font-weight:normal'>Get RSS capabilities for the adaptor with
+ifIndex of 12<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in;background:#D9D9D9;mso-background-themecolor:
+background1;mso-background-themeshade:217'><span class=SpellE><span
+class=GramE><span style='font-family:"Courier New"'>nicstats</span></span></span><span
+style='font-family:"Courier New"'> -t ifIndex -i 12 -a <span class=SpellE>GetRSSCaps</span><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:.75in;mso-add-space:auto;
+text-indent:-.25in;mso-list:l2 level1 lfo2'><![if !supportLists]><b
+style='mso-bidi-font-weight:normal'><span style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><span style='mso-list:Ignore'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b><![endif]><b
+style='mso-bidi-font-weight:normal'>Get RSS parameters for the adaptor with
+ifIndex of 12<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in;background:#D9D9D9;mso-background-themecolor:
+background1;mso-background-themeshade:217'><span class=SpellE><span
+class=GramE><span style='font-family:"Courier New"'>nicstats</span></span></span><span
+style='font-family:"Courier New"'> -t ifIndex -i 12 -a <span class=SpellE>GetRSSParams</span><b
+style='mso-bidi-font-weight:normal'><o:p></o:p></b></span></p>
+
+<p class=MsoListParagraph style='margin-left:.75in;mso-add-space:auto;
+text-indent:-.25in;mso-list:l2 level1 lfo2'><![if !supportLists]><b
+style='mso-bidi-font-weight:normal'><span style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><span style='mso-list:Ignore'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b><![endif]><b
+style='mso-bidi-font-weight:normal'>Get power management info for the adaptor
+with ifIndex of 12<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in;background:#D9D9D9;mso-background-themecolor:
+background1;mso-background-themeshade:217'><span class=SpellE><span
+class=GramE><span style='font-family:"Courier New"'>nicstats</span></span></span><span
+style='font-family:"Courier New"'> –t ifIndex -i 12 -a <span class=SpellE>GetPowerInfo</span><b
+style='mso-bidi-font-weight:normal'><o:p></o:p></b></span></p>
+
+
+<h1><a name="_Toc229804614"></a><span class=SpellE><span style='mso-bookmark:
+_Toc229804614'>NICStats</span></span><span style='mso-bookmark:_Toc229804614'>
+Reference</span></h1>
+
+<p class=MsoNormal style='margin-left:.5in'>This section provides detailed
+information of all the command line arguments supported by <span class=SpellE>NICStats</span>.</p>
+
+<h2 style='margin-left:.5in'><a name="_Toc229804615">-a &lt;action&gt;</a></h2>
+
+<p class=MsoNormal style='margin-left:1.0in'><b style='mso-bidi-font-weight:
+normal'>Description<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in'>Performs action selected option
+(from list below)-<b style='mso-bidi-font-weight:normal'><o:p></o:p></b></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l6 level1 lfo3'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>Enum</b></span> <span style='mso-tab-count:2'>                           </span><span
+style='mso-tab-count:1'>                </span>- Lists all adaptors installed
+in the system</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l6 level1 lfo3'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>GetHardwareInfo</b></span> <span style='mso-tab-count:1'>   </span><span
+style='mso-tab-count:1'>                </span>- Provides hardware information
+for the selected interface (Should be used with -i option)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l6 level1 lfo3'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>GetRSSCaps</b></span> <span style='mso-tab-count:1'>              </span><span
+style='mso-tab-count:1'>                </span>- Returns RSS capabilities of
+the interface (RSS revision, number of queues<span class=GramE>,...</span>)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l6 level1 lfo3'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>GetRSSParams</b></span> <span style='mso-tab-count:2'>                         </span>-
+Returns RSS parameters of the interface (Hash function, hash fields,
+indirection table)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l6 level1 lfo3'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>CalcRssCpu</b></span><span style='mso-tab-count:3'>                                 </span>-
+Returns the RSS target processor for an interface given the source and
+destination IP address and source and destination TCP port numbers</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l6 level1 lfo3'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>ResetPerfCounters</b></span> <span style='mso-tab-count:2'>                                </span>-
+Resets all per processor performance <span class=SpellE>coutners</span> to zero</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l6 level1 lfo3'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>StartPerfCounters</b></span><span style='mso-tab-count:2'>                   </span>-
+Start per processor performance counters. (Use -c and -y options to specify <span
+class=SpellE>coutners</span>.)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l6 level1 lfo3'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>StopPerfCounters</b></span> <span style='mso-tab-count:2'>                  </span>-
+Stop per processor performance counters</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l6 level1 lfo3'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>9.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>GetPerfCounters</b></span> <span style='mso-tab-count:2'>                    </span>-
+Displays per processor <span class=SpellE>perfromance</span> counters</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l6 level1 lfo3'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>10.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>GetPowerInfo</b></span> <span style='mso-tab-count:2'>                          </span>-
+Returns power management capabilities of the selected interface</p>
+
+<p class=MsoNormal style='margin-left:1.0in'><b style='mso-bidi-font-weight:
+normal'>Default Value<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span class=SpellE>Enum</span><b
+style='mso-bidi-font-weight:normal'><o:p></o:p></b></p>
+
+<h2 style='margin-left:.5in'><a name="_Toc229804617">-c &lt;event count
+tracking flags&gt;</a></h2>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:.5in'><b
+style='mso-bidi-font-weight:normal'>Description<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:.5in'>DWORD describing
+counters selected for tracking. Used with -a <span class=SpellE>StartPerfCounters</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:.5in'>Bitmap specifying
+which event to keep track of:</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>DPC count<span style='mso-tab-count:4'>                                                           </span>0x00000001</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>ISR count<span style='mso-tab-count:4'>                                                             </span>0x00000002</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE>Receive_Indications</span><span
+style='mso-tab-count:3'>                                       </span>0x00000004</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE>Return_NBL</span> calls<span
+style='mso-tab-count:3'>                                              </span>0x00000008</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Received NBLs<span style='mso-tab-count:4'>                                                  </span>0x00000010</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Returned NBLs<span style='mso-tab-count:4'>                                                  </span>0x00000020</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Send calls<span style='mso-tab-count:4'>                                                            </span>0x00000040</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE>Send_Complete</span> calls<span
+style='mso-tab-count:3'>                                      </span>0x00000080</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Sent NBs<span style='mso-tab-count:4'>                                                              </span>0x00000100</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE>Sent_Complete</span> NBs<span
+style='mso-tab-count:3'>                                       </span>0x00000200</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>HAL <span class=SpellE>build_SG</span> calls<span
+style='mso-tab-count:3'>                                           </span>0x00000400</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Indirection table changes<span style='mso-tab-count:
+2'>                             </span>0x00000800</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Low resource <span class=SpellE>recv</span>
+indication calls<span style='mso-tab-count:1'>             </span>0x00001000</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Low resource <span class=SpellE>recv</span>
+indication NBLs<span style='mso-tab-count:1'>           </span>0x00002000</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:.5in;mso-list:l0 level1 lfo4'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Queue DPC on non-current processor<span
+style='mso-tab-count:1'>    </span>0x00004000</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;mso-add-space:
+auto'><o:p>&nbsp;</o:p></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.0in;mso-add-space:auto'>DO
+NOT specify <span class=GramE>0x</span> before the mask.</p>
+
+<h2 style='margin-left:.5in'><a name="_Toc229804618">-d</a></h2>
+
+<p class=MsoNormal style='margin-left:1.0in'><b style='mso-bidi-font-weight:
+normal'>Description<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in'>Specifies destination related
+info.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:.5in'><span
+style='mso-spacerun:yes'> </span>IP=&lt;IP destination address&gt; is the IP
+address of the LOCAL host</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:.5in'>TCP=&lt;TCP
+destination port&gt; is TCP port number of the LOCAL application</p>
+
+<h2 style='margin-left:.5in'><a name="_Toc229804619">-i &lt;interface ID value&gt;</a></h2>
+
+<p class=MsoNormal style='margin-left:1.0in'><b style='mso-bidi-font-weight:
+normal'>Description<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in'>Interface identifier.</p>
+
+<p class=MsoNormal style='margin-left:1.0in'>The interface identifier value is
+interpreted based on the interface type specified in the –t option. If this
+option if the Action needs an interface, an interface is not specified, and
+there is only one physical adaptor in the system, it will be picked as the
+default interface.</p>
+
+<h2 style='margin-left:.5in'><a name="_Toc229804620">-o &lt;output file
+name&gt;</a></h2>
+
+<p class=MsoNormal style='margin-left:1.0in'><b style='mso-bidi-font-weight:
+normal'>Description<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span class=GramE>Stores the
+output in the specified file name.</span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><b style='mso-bidi-font-weight:
+normal'>Default Value<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span class=SpellE><span
+class=GramE>stderr</span></span></p>
+
+<h2 style='margin-left:.5in'><a name="_Toc229804621">-s</a> </h2>
+
+<p class=MsoNormal style='margin-left:1.0in'><b style='mso-bidi-font-weight:
+normal'>Description<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in'>Specifies source related info.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:.5in'>IP=&lt;IP source
+address&gt; is the IP address of the REMOTE host</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:.5in'>TCP=&lt;TCP
+source port&gt; is the TCP port number of the REMOTE application</p>
+
+<h2 style='margin-left:.5in'><a name="_Toc229804622">-t &lt;Interface ID
+Type&gt;</a></h2>
+
+<p class=MsoNormal style='margin-left:1.0in'><b style='mso-bidi-font-weight:
+normal'>Description<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in'>Specifies type of interface to be
+considered</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l5 level1 lfo5'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><b style='mso-bidi-font-weight:normal'>ifIndex</b><span
+style='mso-tab-count:2'>                         </span>- Interface index</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l5 level1 lfo5'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>ifName</b></span><span style='mso-tab-count:2'>                         </span>-
+<span class=SpellE>NetLUID</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l5 level1 lfo5'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>ifAlias</b></span><span style='mso-tab-count:2'>                           </span>-
+<span class=SpellE>Conenction</span> name</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l5 level1 lfo5'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>ifDesc</b></span><span style='mso-tab-count:2'>                           </span>-
+Friendly name, <span class=SpellE>DeviceName</span> (using \Device\{GUID})</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l5 level1 lfo5'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><b style='mso-bidi-font-weight:normal'>ALL</b><span
+style='mso-tab-count:3'>                                 </span>- All adaptors</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l5 level1 lfo5'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>AllPhysical</b></span><span style='mso-tab-count:2'>                  </span>-
+All physical adaptors</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;mso-add-space:auto;
+text-indent:-.25in;mso-list:l5 level1 lfo5'><![if !supportLists]><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><b style='mso-bidi-font-weight:
+normal'>EnumIndex</b></span><span style='mso-tab-count:2'>                 </span>-
+Use the index returned back by Enumeration</p>
+
+<p class=MsoNormal style='margin-left:1.0in'><b style='mso-bidi-font-weight:
+normal'>Default Value<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span class=SpellE>AllPhysical</span>
+for -<span class=GramE>a</span> <span class=SpellE>Enum</span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span class=GramE>ifIndex</span>
+for the rest</p>
+
+<p class=MsoNormal style='margin-left:.5in'><b style='mso-bidi-font-weight:
+normal'>-x &lt;get cost&gt;<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><b style='mso-bidi-font-weight:
+normal'>Description<o:p></o:p></b></p>
+
+<h2 style='margin-left:.5in'><a name="_Toc229804623">-y &lt;event cycle count
+tracking flags&gt;</a></h2>
+
+<p class=MsoNormal style='margin-left:1.0in'><b style='mso-bidi-font-weight:
+normal'>Description</b></p>
+
+<p class=MsoNormal style='margin-left:1.0in'>DWORD specifying which <span
+class=SpellE>which</span> event cycle counts should to be recorded.</p>
+
+<p class=MsoNormal style='margin-left:1.0in'>Bitmap specifying which event
+cycles to keep track of:</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Total DPC cycles<span style='mso-tab-count:3'>                                        </span>0x00000001</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>ISR cycles<span style='mso-tab-count:4'>                                                     </span>0x00000002</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>NDIS <span class=SpellE>receive_indication</span>
+cycles<span style='mso-tab-count:1'>           </span>0x00000004</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Stack <span class=SpellE>receive_indication</span>
+cycles<span style='mso-tab-count:1'>          </span>0x00000008</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE>Return_NBL</span> NDIS cycles<span
+style='mso-tab-count:2'>                       </span>0x00000010</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE>Return_NBL</span> miniport
+cycles<span style='mso-tab-count:2'>                                </span>0x00000020</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>NDIS send cycles<span style='mso-tab-count:3'>                                      </span>0x00000040</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Miniport send cycles<span style='mso-tab-count:
+2'>                              </span>0x00000080</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>NDIS <span class=SpellE>send_complete</span>
+cycles<span style='mso-tab-count:2'>                                </span>0x00000100</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Stack <span class=SpellE>send_complete</span>
+cycles<span style='mso-tab-count:1'>               </span><span
+style='mso-tab-count:1'>                </span>0x00000200</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>HAL <span class=SpellE>build_SG</span> cycles<span
+style='mso-tab-count:3'>                                                </span>0x00000400</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;mso-add-space:auto;
+text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Indirection table change cycles<span
+style='mso-tab-count:1'>          </span>0x00000800</p>
+
+<span style='font-size:11.0pt;line-height:115%;font-family:"Calibri","sans-serif";
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA'><br clear=all style='mso-special-character:line-break;
+page-break-before:always'>
+</span>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;line-height:115%;
+font-family:"Cambria","serif";mso-ascii-theme-font:major-latin;mso-fareast-font-family:
+"Times New Roman";mso-fareast-theme-font:major-fareast;mso-hansi-theme-font:
+major-latin;mso-bidi-font-family:"Times New Roman";mso-bidi-theme-font:major-bidi;
+color:#365F91;mso-themecolor:accent1;mso-themeshade:191'><o:p>&nbsp;</o:p></span></b></p>
+
+<h1><a name="_Toc229804624">Appendix A: </a><span class=SpellE><span
+style='mso-bookmark:_Toc229804624'>NICStats</span></span><span
+style='mso-bookmark:_Toc229804624'> sample output</span></h1>
+
+<p class=MsoNormal>This section lists output from several useful commands. Key
+inferences from the output are highlighted.</p>
+
+<h2><a name="_Toc229804625">Output of </a><span class=SpellE><span
+style='mso-bookmark:_Toc229804625'>GetHardwareInfo</span></span><span
+style='mso-bookmark:_Toc229804625'> Action</span></h2>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'>Adapter:
+**********************************************<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'>Driver NDIS version:<span
+style='mso-spacerun:yes'>    </span>6.20</span><span style='font-family:"Courier New"'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Interrupt type: Message interrupts<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span style='background:yellow;
+mso-highlight:yellow'>MSI supported<o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span style='mso-spacerun:yes'>       
+</span>MSI Enabled<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span style='mso-spacerun:yes'>       
+</span>MSI-X Supported</span><span style='font-family:"Courier New"'>. MSI-X
+table entries:<span style='mso-spacerun:yes'>   </span>10<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>MSI-X messages:<span
+style='mso-spacerun:yes'>     </span><span
+style='mso-spacerun:yes'>    </span>42<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>MSI-X message affinity:<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span>Message<span
+style='mso-spacerun:yes'>       </span><span class=GramE>0<span
+style='mso-spacerun:yes'>       </span>Affinity</span>:<span
+style='mso-spacerun:yes'>       </span>0000000000000001<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span>Message<span
+style='mso-spacerun:yes'>       </span>1<span style='mso-spacerun:yes'>      
+</span>Affinity:<span style='mso-spacerun:yes'>       </span>0000000000000002<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span>Message<span
+style='mso-spacerun:yes'>       </span><span class=GramE>2<span
+style='mso-spacerun:yes'>       </span>Affinity</span>:<span
+style='mso-spacerun:yes'>       </span>0000000000000004<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span>Message<span
+style='mso-spacerun:yes'>     </span><span style='mso-spacerun:yes'>  </span><span
+class=GramE>3<span style='mso-spacerun:yes'>       </span>Affinity</span>:<span
+style='mso-spacerun:yes'>       </span>0000000000000008<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span>Message<span
+style='mso-spacerun:yes'>       </span><span class=GramE>4<span
+style='mso-spacerun:yes'>       </span>Affinity</span>:<span
+style='mso-spacerun:yes'>       </span>0000000000000010<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span>Message<span
+style='mso-spacerun:yes'>       </span><span class=GramE>5<span
+style='mso-spacerun:yes'>       </span>Affinity</span>:<span
+style='mso-spacerun:yes'>       </span>0000000000000020<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span>Message<span
+style='mso-spacerun:yes'>       </span><span class=GramE>6<span
+style='mso-spacerun:yes'>       </span>Affinity</span>:<span
+style='mso-spacerun:yes'>       </span>0000000000000040<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span>Message <span
+style='mso-spacerun:yes'>      </span><span class=GramE>7<span
+style='mso-spacerun:yes'>       </span>Affinity</span>:<span
+style='mso-spacerun:yes'>       </span>0000000000000080<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span>Message<span
+style='mso-spacerun:yes'>       </span><span class=GramE>8<span
+style='mso-spacerun:yes'>       </span>Affinity</span>:<span
+style='mso-spacerun:yes'>       </span>0000000000000001<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span>Message<span
+style='mso-spacerun:yes'>       </span><span class=GramE>9<span
+style='mso-spacerun:yes'>       </span>Affinity</span>:<span
+style='mso-spacerun:yes'>       </span>0000000000000001<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span>Message<span
+style='mso-spacerun:yes'>       </span><span class=GramE>10<span
+style='mso-spacerun:yes'>      </span>Affinity</span>:<span
+style='mso-spacerun:yes'>       </span>0000000000000001<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>11<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000002<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>12<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000004<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>13<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000008<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>14<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000010<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>15<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000020<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>16<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000040<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>17<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000080<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>18<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>       </span>0000000000000001<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>19<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000002<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>20<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000004<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>21<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000008<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>22<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>       </span>0000000000000010<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>23<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000020<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>24<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000040<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>25<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000080<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>26<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>       </span>0000000000000001<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>27<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000002<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>28<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000004<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>29<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000008<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>30<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>    </span><span
+style='mso-spacerun:yes'>   </span>0000000000000010<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>31<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000020<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>32<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000040<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>33<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000080<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>34<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000001<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>35<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000002<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>36<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000004<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>37<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000008<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>38<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000010<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>39<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000020<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>40<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000040<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>          </span><span class=GramE>Message<span
+style='mso-spacerun:yes'>       </span>41<span style='mso-spacerun:yes'>     
+</span>Affinity</span>:<span style='mso-spacerun:yes'>      
+</span>0000000000000080<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'>MSI
+capabilities reported in PCI configuration space:<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>MSI capabilities information record was
+found<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span class=SpellE>MultipleMessageCapable</span>
+0, Number of messages<span style='mso-spacerun:yes'>    </span>1<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span class=SpellE>MultipleMessageEnable</span>:
+0, Number of messages:<span style='mso-spacerun:yes'>   </span>1<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>CapableOf64Bits:<span
+style='mso-spacerun:yes'>   </span><span
+style='mso-spacerun:yes'>                             </span>1<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span class=SpellE>PerVectorMaskCapable</span>:<span
+style='mso-spacerun:yes'>                           </span>1<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'>MSI-X
+capabilities reported in PCI Configuration Space:<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>MSI-X capabilities information record
+was found<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Number of MSI-X table entries:<span
+style='mso-spacerun:yes'>          </span>10<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>   </span><span style='mso-spacerun:yes'>     </span><span
+class=SpellE>MSIXEnable</span>:<span style='mso-spacerun:yes'>            
+</span>1<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'>PCI
+information:<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Device type:<span
+style='mso-spacerun:yes'>                    </span>PCI Express Treated <span
+class=GramE>As</span> PCI<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Legacy PCI current speed and mode:<span
+style='mso-spacerun:yes'>      </span>NOT applicable<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Max payload size:<span
+style='mso-spacerun:yes'>               </span>512<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Max read request size:<span
+style='mso-spacerun:yes'>   </span><span
+style='mso-spacerun:yes'>       </span>512<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span style='background:yellow;
+mso-highlight:yellow'>Current link speed:<span
+style='mso-spacerun:yes'>             </span>2.5 <span class=SpellE>Gbps</span><o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span style='mso-spacerun:yes'>       
+</span>Current link Width:<span style='mso-spacerun:yes'>             </span>4<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span style='mso-spacerun:yes'>       
+</span>Max link speed:<span style='mso-spacerun:yes'>                
+</span>2.5 <span class=SpellE>Gbps</span><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span style='mso-spacerun:yes'>       
+</span>Max link width:<span style='mso-spacerun:yes'>                 </span>4</span><span
+style='font-family:"Courier New"'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span style='background:yellow;
+mso-highlight:yellow'>PCI Express version:<span style='mso-spacerun:yes'>   
+</span>PCI Version 1.1</span><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Interrupt support information from PCI
+bus driver:<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span>Line Based interrupts<span
+style='mso-spacerun:yes'>   </span>Supported<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span>MSI interrupts<span
+style='mso-spacerun:yes'>          </span>Supported<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span>MSI-X interrupts<span
+style='mso-spacerun:yes'>        </span>Supported<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span>Number of interrupt
+messages:<span style='mso-spacerun:yes'>  </span><span
+style='mso-spacerun:yes'> </span>10<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<h2><a name="_Toc229804626">Output for </a><span class=SpellE><span
+style='mso-bookmark:_Toc229804626'>GetRssCaps</span></span><span
+style='mso-bookmark:_Toc229804626'> Action</span></h2>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'>Adapter:
+**********************************************<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'>RSS
+capabilities:<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>RSS Capabilities Revision:<span
+style='mso-spacerun:yes'>      </span>1<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>MSI Supports:<span
+style='mso-spacerun:yes'>                   </span>Yes<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Classification at ISR:<span
+style='mso-spacerun:yes'>          </span>Yes<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Classification at DPC:<span
+style='mso-spacerun:yes'>          </span>NO<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>MSI-X Support:<span
+style='mso-spacerun:yes'>                  </span>Yes<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span style='background:yellow;
+mso-highlight:yellow'>TCP/IPv4 Support:<span
+style='mso-spacerun:yes'>               </span>Yes<o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span style='mso-spacerun:yes'>       
+</span>TCP/IPv6 Support:<span style='mso-spacerun:yes'>              
+</span>Yes</span><span style='font-family:"Courier New"'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>IPv6 extension headers support: NO<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Number of interrupt messages:<span
+style='mso-spacerun:yes'>   </span>1<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span class=GramE><span
+style='background:yellow;mso-highlight:yellow'>Number of RSS receive</span></span><span
+style='background:yellow;mso-highlight:yellow'> queues:<span
+style='mso-spacerun:yes'>   </span>8</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<h2><a name="_Toc229804627">Output for </a><span class=SpellE><span
+style='mso-bookmark:_Toc229804627'>GetRSSParams</span></span><span
+style='mso-bookmark:_Toc229804627'> Action</span></h2>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'>Adapter:
+**********************************************<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'>RSS
+Parameters:<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>RSS Parameters Revision:<span
+style='mso-spacerun:yes'>        </span>2<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>RSS current state:<span
+style='mso-spacerun:yes'>              </span>On<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span style='background:yellow;
+mso-highlight:yellow'>RSS Hash function:<span
+style='mso-spacerun:yes'>          </span><span
+style='mso-spacerun:yes'>    </span><span class=SpellE>Toeplitz</span></span><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span style='background:yellow;
+mso-highlight:yellow'>RSS hash fields<span class=GramE>:<span
+style='mso-spacerun:yes'>                </span>,</span> IPv6, TCP/IPv6</span><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Hash secret key size:<span
+style='mso-spacerun:yes'>           </span>40<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Indirection Table Size:<span
+style='mso-spacerun:yes'>         </span>256<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span style='background:yellow;
+mso-highlight:yellow'>Indirection Table: (Format=CPU Group, CPU Number)<o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span
+style='mso-spacerun:yes'>           </span>0, 0<span
+style='mso-spacerun:yes'>   </span>0, 1<span style='mso-spacerun:yes'>  
+</span>0, 2<span style='mso-spacerun:yes'>   </span>0, 3<span
+style='mso-spacerun:yes'>   </span>0, 4<span style='mso-spacerun:yes'>  
+</span>0, 5<span style='mso-spacerun:yes'>   </span>0, 6<span
+style='mso-spacerun:yes'>   </span>0, 7<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span
+style='mso-spacerun:yes'>           </span>0, 0<span
+style='mso-spacerun:yes'>   </span>0, 1<span style='mso-spacerun:yes'>  
+</span>0, 2<span style='mso-spacerun:yes'>   </span>0, 3<span
+style='mso-spacerun:yes'>   </span>0, 4<span style='mso-spacerun:yes'>  
+</span>0, 5<span style='mso-spacerun:yes'>   </span>0, 6<span
+style='mso-spacerun:yes'>   </span>0, 7<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span
+style='mso-spacerun:yes'>           </span>0, 0<span
+style='mso-spacerun:yes'>   </span>0, 1<span style='mso-spacerun:yes'>  
+</span>0, 2<span style='mso-spacerun:yes'>   </span>0, 3<span
+style='mso-spacerun:yes'>   </span>0, 4<span style='mso-spacerun:yes'>  
+</span>0, 5<span style='mso-spacerun:yes'>   </span>0, 6<span
+style='mso-spacerun:yes'>   </span>0, 7<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span
+style='mso-spacerun:yes'>           </span>0, 0<span
+style='mso-spacerun:yes'>   </span>0, 1<span style='mso-spacerun:yes'>  
+</span>0, 2<span style='mso-spacerun:yes'>   </span>0, 3<span
+style='mso-spacerun:yes'>   </span>0, 4<span style='mso-spacerun:yes'>  
+</span>0, 5<span style='mso-spacerun:yes'>   </span>0, 6<span
+style='mso-spacerun:yes'>   </span>0, 7<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span
+style='mso-spacerun:yes'>           </span>0, 0<span
+style='mso-spacerun:yes'>   </span>0, 1<span style='mso-spacerun:yes'>  
+</span>0, 2<span style='mso-spacerun:yes'>   </span>0, 3<span
+style='mso-spacerun:yes'>   </span>0, 4<span style='mso-spacerun:yes'>  
+</span>0, 5<span style='mso-spacerun:yes'>   </span>0, 6<span
+style='mso-spacerun:yes'>   </span>0, 7<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span
+style='mso-spacerun:yes'>           </span>0, 0<span
+style='mso-spacerun:yes'>   </span>0, 1<span style='mso-spacerun:yes'>  
+</span>0, 2<span style='mso-spacerun:yes'>   </span>0, 3<span
+style='mso-spacerun:yes'>   </span>0, 4<span style='mso-spacerun:yes'>  
+</span>0, 5<span style='mso-spacerun:yes'>   </span>0, 6<span
+style='mso-spacerun:yes'>   </span>0, 7<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span
+style='mso-spacerun:yes'>           </span>0, 0<span
+style='mso-spacerun:yes'>   </span>0, 1<span style='mso-spacerun:yes'>  
+</span>0, 2<span style='mso-spacerun:yes'>   </span>0, 3<span
+style='mso-spacerun:yes'>   </span>0, 4<span style='mso-spacerun:yes'>  
+</span>0, 5<span style='mso-spacerun:yes'>   </span>0, 6<span
+style='mso-spacerun:yes'>   </span>0, 7<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New";
+background:yellow;mso-highlight:yellow'><span
+style='mso-spacerun:yes'>           </span>0, 0<span
+style='mso-spacerun:yes'>   </span>0, 1<span style='mso-spacerun:yes'>  
+</span>0, 2<span style='mso-spacerun:yes'>   </span>0, 3<span
+style='mso-spacerun:yes'>   </span>0, 4<span style='mso-spacerun:yes'>  
+</span>0, 5<span style='mso-spacerun:yes'>   </span>0, 6<span
+style='mso-spacerun:yes'>   </span>0, 7</span><span style='font-family:"Courier New"'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'>Adapter:
+Intel(R) Gigabit ET Dual Port Server Adapter #2<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'>RSS
+Processor Information:<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>RSS Processor Info Revision:<span
+style='mso-spacerun:yes'>    </span>1<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>RSS Base Processor<span
+style='mso-spacerun:yes'>              </span>Group<span class=GramE>:0</span>
+Number<span class=GramE>:0</span><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span style='background:yellow;
+mso-highlight:yellow'>Max number of RSS processors:<span
+style='mso-spacerun:yes'>   </span>8</span><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Preferred NUMA Node:<span
+style='mso-spacerun:yes'>    </span>0<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span style='background:yellow;
+mso-highlight:yellow'>Number of RSS processors:<span
+style='mso-spacerun:yes'>               </span>8</span><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Processor List: (Format=<span
+class=SpellE>PreferenceIndex</span>: <span class=SpellE>Group<span class=GramE>,Number</span></span>)<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>           </span>0:<span style='mso-spacerun:yes'> 
+</span>0, 0<span style='mso-spacerun:yes'>   </span>0:<span
+style='mso-spacerun:yes'>  </span>0, 1<span style='mso-spacerun:yes'>  
+</span>0:<span style='mso-spacerun:yes'>  </span>0, 2<span
+style='mso-spacerun:yes'>   </span>0:<span style='mso-spacerun:yes'>  </span>0,
+3<span style='mso-spacerun:yes'>   </span>0:<span style='mso-spacerun:yes'> 
+</span>0, 4<span style='mso-spacerun:yes'>   </span>0:<span
+style='mso-spacerun:yes'>  </span>0, 5<span style='mso-spacerun:yes'>  
+</span>0:<span style='mso-spacerun:yes'>  </span>0, 6<span
+style='mso-spacerun:yes'>   </span>0:<span style='mso-spacerun:yes'>  </span>0,
+7<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<h2><a name="_Toc229804628">Output of </a><span class=SpellE><span
+style='mso-bookmark:_Toc229804628'>GetPowerInfo</span></span><span
+style='mso-bookmark:_Toc229804628'> Action</span></h2>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'>Adapter:
+*********************************************<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Driver NDIS version:<span
+style='mso-spacerun:yes'>  </span>6.0<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Stack lowest version: 6.0<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span><span class=SpellE>CurrentDevicePowerState</span>:
+PowerDeviceD0<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Device Bus Capabilities<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>SystemWake</span>:
+<span class=SpellE>PowerSystemHibernate</span><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>DeviceWake</span>:
+PowerDeviceD3<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Device Power Capabilities<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>SupportedWoLPacketPatterns</span>:<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                        </span>WOL_BITMAP_PATTERN
+WOL_MAGIC_PACKET<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>SupportedProtocolOffloads</span>:
+None<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>NumTotalWoLPatterns</span>:<span
+style='mso-spacerun:yes'>     </span>0<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>MinMagicPacketWakeUp</span>:<span
+style='mso-spacerun:yes'>    </span>NdisDeviceStateD3<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>MinPatternWakeUp</span>:<span
+style='mso-spacerun:yes'>        </span>NdisDeviceStateD3<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>MinLinkChangeWakeUp</span>:<span
+style='mso-spacerun:yes'>     </span><span class=SpellE>NdisDeviceStateUnspecified</span><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Current Power Capabilities<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>SupportedWoLPacketPatterns</span>:<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                        </span>WOL_BITMAP_PATTERN<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>SupportedProtocolOffloads</span>:
+None<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>NumTotalWoLPatterns</span>:<span
+style='mso-spacerun:yes'>     </span>0<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>MinMagicPacketWakeUp</span>:<span
+style='mso-spacerun:yes'>    </span>NdisDeviceStateD3<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>MinPatternWakeUp</span>:<span
+style='mso-spacerun:yes'>        </span>NdisDeviceStateD3<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>    </span><span
+style='mso-spacerun:yes'>            </span><span class=SpellE>MinLinkChangeWakeUp</span>:<span
+style='mso-spacerun:yes'>     </span><span class=SpellE>NdisDeviceStateUnspecified</span><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Active Power Capabilities<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>EnabledWoLPacketPatterns</span>:<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                        </span>WOL_BITMAP_PATTERN
+WOL_MAGIC_PACKET<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>EnabledProtocolOffloads</span>:
+None<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>         </span><span
+style='mso-spacerun:yes'>       </span><span class=SpellE>WakeUpFlags</span>:
+None<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Number of applied <span class=SpellE>WoL</span>
+patterns: 4<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Number of applied Protocol Offloads: 0<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Disabled Power Capabilities: None<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>        </span>Device Power Keywords<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>WakeOnPattern</span>:<span
+style='mso-spacerun:yes'>           </span>Unspecified<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>              </span><span
+style='mso-spacerun:yes'>  </span><span class=SpellE>WakeOnMagicPacket</span>:<span
+style='mso-spacerun:yes'>       </span>Unspecified<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>DeviceSleepOnDisconnect</span>:
+Unspecified<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>PMARPOffload</span>:<span
+style='mso-spacerun:yes'>            </span>Unspecified<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>PMNSOffload</span>:<span
+style='mso-spacerun:yes'>             </span>Unspecified<o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='background:#D9D9D9;mso-background-themecolor:background1;
+mso-background-themeshade:217'><span style='font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                </span><span class=SpellE>PMWiFiRekeyOffload</span>:<span
+style='mso-spacerun:yes'>      </span>Unspecified<o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

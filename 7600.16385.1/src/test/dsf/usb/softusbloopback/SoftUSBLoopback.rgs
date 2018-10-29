@@ -1,0 +1,12 @@
+HKCR
+{
+    NoRemove AppID
+    {
+        '%APPID%' = s 'SoftUSBLoopback'
+        'SoftUSBLoopback.EXE'
+        {
+            val AppID = s '%APPID%'
+        }
+    }
+}
+

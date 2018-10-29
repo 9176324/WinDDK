@@ -1,0 +1,10 @@
+PackStrings@16
+GetPortSize@8
+DllEntryPoint@12
+CreatePortEntry@4
+EnumPortsW@24
+LeaveSplSem@0
+InitializePrintMonitor@4
+CopyIniPortToPort@16
+EnterSplSem@0
+

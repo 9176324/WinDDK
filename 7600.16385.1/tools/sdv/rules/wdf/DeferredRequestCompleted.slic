@@ -1,0 +1,243 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	If a request presented to driver's default I/O queue is not completed
+	in the callback function but is deferred for later processing, the request must be completed 
+	in a deferred processing callback function, unless the request is cancelled in EvtRequestCancel, forwarded (to an I/O Target or to another queue) or  
+	delivered to the Framework.
+	
+	Description:
+	A request presented to the driver's default queue through one of the queue callbacks
+	and deferred, must be completed before exit from the request scoping callbacks,       
+        except in the following cases:
+          1. The Request was cancelled in the EvtRequestCancel callback;
+          2. The Request was forwarded to an I/O Target or to another queue; 
+          3. The Request was delivered to the Framework (by calling WdfDeviceEnqueueRequest);
+         
+
+         Request scoping callbacks are: EvtIoStop, EvtCleanupCallback or EvtDestroyCallback for 
+         the queue, EvtCleanupCallback or EvtDestroyCallback for the file object, EvtFileClose,
+         EvtFileCleanup, EvtDeviceSelfManagedIoSuspend, EvtDeviceSelfManagedIoFlush, 
+         EvtDeviceSelfManagedIoCleanup,EvtDeviceShutdownNotification, 
+         EvtDeviceSurpriseRemoval, EvtCleanupCallback or EvtDestroyCallback for the device,
+         EvtDriverUnload.
+
+         I/O Queue callbacks for Request presentation are: EvtIoDefault, EvtIoRead, EvtIoWrite, 
+         EvtIoDeviceControl, EvtIoInternalDeviceControl.
+         
+         Deferred processing callbacks for a request: EvtTimerFunc, EvtDpcFunc, EvtInterruptDpc,
+         EvtInterruptEnable, EvtInterruptDisable, EvtWorkItem.
+         
+         The rule uses calls of WdfRequestMarkCancelable or
+	 WdfDmaTransactionInitializeUsingRequest/WdfDmaTransactionInitialize
+	 or WdfWorkItemEnqueue as an indication that the Request is being
+	 deferred. 
+	
+	Rule diagnostics:
+	"Warning: Request might not have been completed before exit from <Name of the callback>." 
+
+
+*/
+
+#include "ntddk_slic.h"
+
+#define STATUS_CANCELLED    -1073741536
+
+state{
+     enum {INIT,ALIASOK,OK} t = INIT;
+     enum {INIT1, REQPRESENTED,  REQCOMPLETED} s = INIT1;
+     enum {INIT2, INDEFERRED} u = INIT2;
+     enum {INIT3, REQDEFERRED} v = INIT3;
+} with guard (sdv_main, hrequest)
+
+[fun_WDF_IO_QUEUE_IO_DEFAULT
+,fun_WDF_IO_QUEUE_IO_READ
+,fun_WDF_IO_QUEUE_IO_WRITE
+,fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL
+,fun_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL
+].entry[guard $2]
+{
+   s = REQPRESENTED;
+}
+sdv_WdfRequestMarkCancelable.entry[guard $1]
+{
+   if (s == REQPRESENTED) {
+   v = REQDEFERRED;          
+   }
+} 
+sdv_WdfDmaTransactionInitializeUsingRequest.entry[guard $2]
+{
+   if (s == REQPRESENTED) {
+   v = REQDEFERRED;         
+   }
+} 
+sdv_WdfDmaTransactionInitialize.entry
+{
+   if (s == REQPRESENTED) {
+   v = REQDEFERRED;         
+   }
+} 
+sdv_WdfWorkItemEnqueue.entry
+{
+   if (s == REQPRESENTED) {
+   v = REQDEFERRED;          
+   }
+} 
+[fun_WDF_TIMER_1
+,fun_WDF_TIMER_2
+,fun_WDF_TIMER_3
+,fun_WDF_TIMER_4
+,fun_WDF_TIMER_5
+,fun_WDF_TIMER_6
+,fun_WDF_DPC_1
+,fun_WDF_DPC_2
+,fun_WDF_DPC_3
+,fun_WDF_DPC_4
+,fun_WDF_DPC_5
+,fun_WDF_DPC_6
+,fun_WDF_DPC_7
+,fun_WDF_INTERRUPT_DPC
+,fun_WDF_INTERRUPT_ENABLE
+,fun_WDF_INTERRUPT_DISABLE
+,fun_WDF_WORKITEM_1
+,fun_WDF_WORKITEM_2
+,fun_WDF_WORKITEM_3
+,fun_WDF_WORKITEM_4
+,fun_WDF_WORKITEM_5
+,fun_WDF_WORKITEM_6
+].entry
+{
+   u = INDEFERRED;
+}
+[fun_WDF_TIMER_1
+,fun_WDF_TIMER_2
+,fun_WDF_TIMER_3
+,fun_WDF_TIMER_4
+,fun_WDF_TIMER_5
+,fun_WDF_TIMER_6
+,fun_WDF_DPC_1
+,fun_WDF_DPC_2
+,fun_WDF_DPC_3
+,fun_WDF_DPC_4
+,fun_WDF_DPC_5
+,fun_WDF_DPC_6
+,fun_WDF_DPC_7
+,fun_WDF_INTERRUPT_DPC
+,EvtInterruptPostEnable
+,EvtInterruptPreDisable
+,fun_WDF_WORKITEM_1
+,fun_WDF_WORKITEM_2
+,fun_WDF_WORKITEM_3
+,fun_WDF_WORKITEM_4
+,fun_WDF_WORKITEM_5
+,fun_WDF_WORKITEM_6
+].exit
+{
+   u = INIT2;
+}
+
+sdv_save_request.entry[guard $1]
+{
+	if (s == REQPRESENTED) 
+	{
+	    v = REQDEFERRED;
+   	}
+	 
+}  
+sdv_retrieve_request.exit
+{
+    if ((u == INDEFERRED)&&(v == REQDEFERRED)&&($1 == hrequest)) 
+	{
+    	t = ALIASOK;
+   	}
+	
+	
+}
+
+[ sdv_WdfRequestComplete
+, sdv_WdfRequestCompleteWithInformation
+, sdv_WdfRequestCompleteWithPriorityBoost
+].entry
+{
+  if (v == REQDEFERRED)
+  {
+    if ((u == INDEFERRED)&&(t==ALIASOK))
+    {
+       s = REQCOMPLETED; 
+    }
+  }
+  else if((s == REQPRESENTED)&&($1 == hrequest))
+  {
+	s = REQCOMPLETED;           
+  }       
+   
+}
+  
+
+
+sdv_WdfRequestStopAcknowledge.exit[guard $1]
+{
+  t = OK;
+}
+
+
+
+sdv_WdfRequestUnmarkCancelable.exit[guard $1]
+{
+  if ($return == STATUS_CANCELLED){ 
+     t = OK;
+  }
+}
+
+[sdv_WdfRequestSend
+,sdv_WdfRequestForwardToIoQueue
+,fun_WDF_REQUEST_CANCEL_1
+,fun_WDF_REQUEST_CANCEL_2
+,fun_WDF_REQUEST_CANCEL_3
+,fun_WDF_REQUEST_CANCEL_4
+,fun_WDF_REQUEST_CANCEL_5
+,fun_WDF_REQUEST_CANCEL_6
+].entry[guard $1]
+{
+   t = OK;
+}
+[ sdv_WdfIoTargetSendReadSynchronously  
+, sdv_WdfIoTargetSendWriteSynchronously
+, sdv_WdfIoTargetSendIoctlSynchronously 
+, sdv_WdfIoTargetSendInternalIoctlSynchronously 
+, sdv_WdfIoTargetSendInternalIoctlOthersSynchronously 
+, sdv_WdfDeviceEnqueueRequest
+].entry[guard $2]
+{
+   t = OK;
+}
+
+select one {
+  case: 
+   [  fun_WDF_IO_QUEUE_IO_STOP
+     | fun_WDF_IO_QUEUE_CONTEXT_CLEANUP_CALLBACK
+     | fun_WDF_IO_QUEUE_CONTEXT_DESTROY_CALLBACK
+     | fun_WDF_FILE_CONTEXT_CLEANUP_CALLBACK
+     | fun_WDF_FILE_CONTEXT_DESTROY_CALLBACK
+     | fun_WDF_FILE_CLOSE
+     | fun_WDF_FILE_CLEANUP
+     | fun_WDF_DEVICE_SELF_MANAGED_IO_SUSPEND
+     | fun_WDF_DEVICE_SELF_MANAGED_IO_FLUSH
+     | fun_WDF_DEVICE_SELF_MANAGED_IO_CLEANUP
+     | fun_WDF_DEVICE_SHUTDOWN_NOTIFICATION
+     | fun_WDF_DEVICE_SURPRISE_REMOVAL
+     | fun_WDF_DEVICE_CONTEXT_CLEANUP
+     | fun_WDF_DEVICE_CONTEXT_DESTROY
+     | fun_WDF_DRIVER_UNLOAD
+   ].exit 
+{
+   if ((t == OK) || (s == REQCOMPLETED) || ((s == INIT1)&&(t == INIT)&&(u == INIT2))||
+       (v != REQDEFERRED)) {
+    s = s;                       
+   }else{
+      abort "Warning: Request might not have been completed before exit from $fname.";
+   }
+} 
+} 
+

@@ -1,0 +1,20 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule verifies that IRQL <= APC_LEVEL when PAGED_CODE is
+	called.
+*/
+
+
+#include "ntddk_slic.h"
+
+/* Notice: The PAGED_CODE() function is re-defined to
+sdv_do_paged_code_check in the OS model: */
+sdv_do_paged_code_check.entry 
+{
+    if (sdv_irql_current >= DISPATCH_LEVEL) {
+        abort "The driver is calling PAGED_CODE() at IRQL >= DISPATCH_LEVEL.";
+    }
+}

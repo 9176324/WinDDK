@@ -1,0 +1,12 @@
+TARGETNAME=simrep
+TARGETTYPE=DRIVER
+DRIVERTYPE=FS
+
+
+TARGETLIBS= $(TARGETLIBS) \
+            $(IFSKIT_LIB_PATH)\fltMgr.lib
+
+SOURCES=SimRep.c \
+        SimRep.rc
+
+

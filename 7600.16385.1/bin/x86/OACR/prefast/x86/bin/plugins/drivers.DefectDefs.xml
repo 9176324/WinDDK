@@ -1,0 +1,1929 @@
+<?xml version='1.0'?>
+<DefectDefs>
+
+    <DefectDefGroup guid="DD7451F5-09ED-47ed-805A-A2BB3B49831C"
+         id="99200"
+         name="fpa">
+
+		<DefectDef guid="6EA4F852-15DB-4d97-99F9-49D4CCFDAC3D"
+			id="28101"
+			name="DRIVER_FUNCTION_TYPE">
+
+			<description>
+				<format>
+				The Drivers module has inferred that the current function
+				is a %prop% function
+				</format>
+				<param name="prop" format="%ls" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				This is informational only.  No problem has been detected
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<P>
+				This message is generated when the drivers module has
+				concluded that the function is of the identified type.
+				It does not indicate an error, but does indicate that
+				PREfast will look for errors specific to that function type.
+				If this inference is wrong, unexpected errors can be ignored.
+				</P>
+				<P>
+				The function signature (arguments and result type) are used
+				where possible.  Some functions (such as Cancel and StartIo)
+				have the same signature, so the name is checked to see if it
+				matches the conventional name for that functions.   Other
+				functions may be checked for conventional names as well
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28101.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="ef95060a-19ef-4a9d-b6ce-a98aae29e175"
+			id="28110"
+			name="FLOAT_IN_DRIVER">
+
+			<description>
+				<format>Drivers must protect floating point hardware state. 
+				See use of float %expr%</format>
+				<param name="expr" format="%ls" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				Use KeSaveFloatingPointState/KeRestoreFloatingPointState 
+				around floating point operations.
+				Display Drivers should use the corresponding Eng... routines
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<P>
+				Drivers normally run with the floating point
+				context of the application that was running most
+				recently, and any use of floating point that is
+				unprotected by KeSaveFloatingPointState and
+				KeRestoreFloatingPointState will change the
+				results for some other process, and can often
+				cause incorrect or unexpected results in the
+				driver.  Any attempt to use a variable or
+				constant of a float type will trigger this
+				warning because the compiler is free to use the
+				floating point hardware should it choose to do
+				so
+				</P>
+
+				<P>
+				Display Drivers should use
+				EngSaveFloatingPointState/EngRestoreFloatingPointState
+				instead
+				</P>
+
+				<P>
+				Once an instance of this error is detected along
+				any given flow path, as many as possible of any
+				subsequent similar errors are suppressed.
+				Functions definitions which either take floating
+				type arguments or which return a floating type
+				do not have this error reported because the
+				caller will report the use
+				</P>
+
+				<P>
+				This test can be mislead when a program saves
+				and restores floating point state around a
+				function call, and the called function does
+				floating point operations 
+				</P>
+
+			</doc>
+
+			<example>
+				<defectiveSrc><![CDATA[
+
+					void driver_utility()
+					{
+						float a;
+						a += 1;
+					}
+
+				]]></defectiveSrc>
+
+				<correctedSrc><![CDATA[
+
+					void driver_utility()
+					{
+						KFLOATING_SAVE FloatBuf;
+						KeSaveFloatingPointState(&FloatBuf);
+						float a;
+						a += 1;
+						KeRestoreFloatingPointState(&FloatBuf);
+					}
+					
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28110.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="954492EC-28E1-4545-8355-A6F602120BAC"
+			id="28111"
+			name="FP_IRQ_UNMATCHED">
+
+			<description>
+				<format>The IRQL where the floating point state was saved
+				does not match the current IRQL (for this restore operation)
+				</format>
+			</description>
+
+			<additionalInfo>
+				<format>
+				The floating Save/Restore functions require that the IRQL
+				be the same at the time of save and the corresponding restore
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<P>
+				The IRQL at which the floating point state is saved affects
+				how it is saved, and thus the save and restore must occur
+				at the same level.
+				</P>
+			</doc>
+
+			<example>
+				<defectiveSrc><![CDATA[
+
+					void driver_utility()
+					{
+						// Running at APC level
+						KFLOATING_SAVE FloatBuf;
+						if (KeSaveFloatingPointState(&FloatBuf))
+						{
+							KeLowerIrql(PASSIVE_LEVEL);
+							...
+							KeRestoreFloatingPointState(&FloatBuf);
+						}
+					}
+
+				]]></defectiveSrc>
+
+				<correctedSrc><![CDATA[
+
+					void driver_utility()
+					{
+						// Running at APC level
+						KFLOATING_SAVE FloatBuf;
+						if (KeSaveFloatingPointState(&FloatBuf))
+						{
+							KeLowerIrql(PASSIVE_LEVEL);
+							...
+							KeRaiseIrql(APC_LEVEL, &old);
+							KeRestoreFloatingPointState(&FloatBuf);
+						}
+					}
+					
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28111.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="C5820575-2597-444e-BAE6-16271F91F8AA"
+			id="28112"
+			name="INTERLOCKED_ACCESS">
+
+			<description>
+				<format>A variable (%name%) which is accessed via an Interlocked
+				function must always be accessed via an Interlocked function.
+				See line %line%
+				</format>
+				<param name="name" format="%ls" />
+				<param name="line" format="%ld" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				It is not always safe to access a variable which is accessed
+				via the Interlocked* family of functions in any other way
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<P>
+				Although certain ordinary assignments, accesses, and
+				comparisons to variables which are used by
+				the Interlocked* functions may, upon careful
+				analysis, be safe, it is a sufficient risk
+				that all such uses are diagnosed.  In
+				particular, in a MP system, without using
+				the Interlocked functions, there is no
+				guarantee that data shared between processors
+				will be updated in memory in the order
+				expected.  There is also no guarantee that
+				accessing the same shared variable twice
+				(even in close proximity) without using the
+				Interlocked* functions will yield the same
+				value (or for that matter a different value,
+				even when that is expected).
+				</P>
+			</doc>
+
+			<example>
+				<defectiveSrc><![CDATA[
+				inter_var --;
+				...
+                InterlockedIncrement(&inter_var);
+				]]></defectiveSrc>
+
+				<correctedSrc><![CDATA[
+				InterlockedDecrement(&inter_var);
+				...
+                InterlockedIncrement(&inter_var);
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28112.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="35966BBC-DFB7-42b9-9FE7-337FF5DF4A4E"
+			id="28113"
+			name="INTERLOCKED_SCLASS">
+
+			<description>
+				<format>Accessing a local variable %name% via an Interlocked function
+				</format>
+				<param name="name" format="%ls" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				This is an unusual usage which could be reconsidered
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<P>
+				Although it is legal to pass the address of a local scope
+				variable to another function and then operate on it via the
+				Interlocked functions, you need to be sure that the stack
+				will not be swapped out unexpectedly and that the variable
+				has the correct lifetime across all threads that might use it.
+				Unnecessary use of interlocked operations will impact
+				performance.
+				</P>
+				<P>
+				Note that the Interlocked* functions all have a return value,
+				and often it is the return value that should be used in
+				subsequent computations, not any of the input arguments.
+				</P>
+				<P>
+				Note also that the Interlocked* functions only protect their
+				leftmost argument; using an Interlocked* function in the
+				style of InterlockedExchange(&amp;local, global) does not
+				protect the global in any special way, and often serves no
+				purpose.  local = InterllockedExchange(&amp;global, global) would 
+				have the same effect on the data, and protect the global.
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28113.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="3B1F7612-8E02-4f94-9BFB-1EDE522C0584"
+			id="28114"
+			name="IRP_COPY">
+
+			<description>
+				<format>
+				Copying a whole IRP stack entry leaves certain fields 
+				initialized that should be cleared or updated
+				</format>
+			</description>
+
+			<additionalInfo>
+				<format>
+				Use IoCopyCurrentIrpStackLocationToNext to accomplish this
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<P>
+				Improperly copying an IRP stack entry can cause serious 
+				problems with a driver, including lost data and system crashes.
+				If an IRP stack entry must be copied and 
+				IoCopyCurrentIrpStackLocationToNext
+				will not serve, then certain members should not be copied or
+				should be zeroed after copying.
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28114.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="6dd060f3-0281-49dd-bf17-6f23ebbd1993"
+			id="28120"
+			name="IRQ_TOO_LOW">
+
+			<description>
+				<format>
+				The function %func% is not permitted to be called
+				at the current IRQ level.  The current level is too low
+				</format>
+				<param name="func" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				%where%.
+				The level might have been inferred from the function signature
+				</format>
+				<param name="where" format="%ls" />
+			</additionalInfo>
+
+			<doc>
+				<P>
+				The function being called is limited to being called to at
+				IRQ levels above the current IRQ level.  Consult the function
+				documentation for the acceptable range.
+				</P>
+
+				<P>
+				Note that PREfast will attempt to infer what it can about
+				the current IRQ level, and this warning is generated only
+				when it has inferred enough about the IRQ level to detect
+				the error.  Inference may come from the signature of the
+				function being analyzed or prior calls along the current
+				path.
+				</P>
+
+				<P>
+				Note that if PREfast has not inferred enough about the
+				function to determine the IRQ level at which it is running,
+				no error will be reported, although a problem may be present.
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28120.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="2b948934-de4a-4a20-b42f-ec04f4019551"
+			id="28121"
+			name="IRQ_TOO_HIGH">
+
+			<description>
+				<format>
+				The function %func% is not permitted to be called
+				at the current IRQ level.  The current level is too high
+				</format>
+				<param name="func" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				%where%.
+				The level might have been inferred from the function signature
+				</format>
+				<param name="where" format="%ls" />
+			</additionalInfo>
+
+			<doc>
+				<P>
+				The function being called is limited to being called to at
+				IRQ levels below the current IRQ level.  Consult the function
+				documentation for the acceptable range.
+				</P>
+
+				<P>
+				Note that PREfast will attempt to infer what it can about
+				the current IRQ level, and this warning is generated only
+				when it has inferred enough about the IRQ level to detect
+				the error.  Inference may come from the signature of the
+				function being analyzed or prior calls along the current
+				path.
+				</P>
+
+				<P>
+				Note that if PREfast has not inferred enough about the
+				function to determine the IRQ level at which it is running,
+				no error will be reported, although a problem may be present.
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28121.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="71469508-c5b2-48da-8c11-71cb4c243c08"
+			id="28122"
+			name="INFERRED_IRQ_TOO_LOW">
+
+			<description>
+				<format>
+				The function %func% is not permitted to be called at a low
+				IRQ level.  Prior function calls are inconsistent with this
+				constraint
+				</format>
+				<param name="func" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				It may be that the error is actually in some prior call
+				that limited the range.
+				%where%
+				</format>
+				<param name="where" format="%ls" />
+			</additionalInfo>
+
+			<doc>
+				<P>
+				The function being called is limited to being called at
+				high IRQ levels.  However, PREfast has inferred from prior
+				calls that the highest acceptable IRQ level for those prior
+				calls to succeed is below the minimum for this call.
+				Consult the function documentation for the acceptable range.
+				</P>
+
+				<P>
+				Note that PREfast will attempt to infer what it can about
+				the current IRQ level, and this warning is generated only
+				when it has inferred enough about the IRQ level to detect
+				the error.  Inference may come from the signature of the
+				function being analyzed or prior calls along the current
+				path.
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28122.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="1f2b9b31-fb4c-4db6-8972-1dd840b09e9b"
+			id="28123"
+			name="INFERRED_IRQ_TOO_HIGH">
+
+			<description>
+				<format>
+				The function %func% is not permitted to be called at a high
+				IRQ level.  Prior function calls are inconsistent with this
+				constraint
+				</format>
+				<param name="func" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				It may be that the error is actually in some prior call
+				that limited the range.
+				%where%
+				</format>
+				<param name="where" format="%ls" />
+			</additionalInfo>
+
+			<doc>
+				<P>
+				The function being called is limited to being called at
+				low IRQ levels.  However, PREfast has inferred from prior
+				calls that the lowest acceptable IRQ level for those prior
+				calls to succeed exceeds the maximum for this call.
+				Consult the function documentation for the acceptable range.
+				</P>
+
+				<P>
+				Note that PREfast will attempt to infer what it can about
+				the current IRQ level, and this warning is generated only
+				when it has inferred enough about the IRQ level to detect
+				the error.  Inference may come from the signature of the
+				function being analyzed or prior calls along the current
+				path.
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28123.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="C983B2AF-7A5D-4e6d-94FF-509886203F35"
+			id="28124"
+			name="IRQ_SET_TOO_LOW">
+
+			<description>
+				<format>
+				The call to %func% causes the IRQ Level to be set below
+				the minimum acceptable for the function being analyzed
+				</format>
+				<param name="func" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				The level limits come from annotations on the current function
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<P>
+				The function being called changes the IRQL to above the
+				maximum for the current function type.  This could have been
+				inferred either from the function type, or from annotations
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28124.htm</helpURL>
+
+		</DefectDef>
+
+        <DefectDef guid="38EFBA32-DA95-467e-8FBF-78AF107BC372"
+            id="28125"
+            name="PROBE_NO_TRY">
+
+            <description>
+                <format>
+                    The function %func% must be called from within a try/except block
+                </format>
+					<param name="func" format="'%ls'" />
+            </description>
+
+			<additionalInfo>
+				<format>
+				The requirement might be conditional
+				</format>
+			</additionalInfo>
+
+            <doc>
+                <p>
+					This functiom must be called from within a try/except block
+                </p>
+            </doc>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					ProbeForRead(addr, len, 4);
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					__try
+					{
+						ProbeForRead(addr, len, 4);
+					}
+					__except(EXCEPTION_EXECUTE_HANDLER)
+					{
+						Status = GetExceptionCode();
+						... report error status
+					}
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28125.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="C8560017-C408-4575-A986-7211FDD336C9"
+            id="28126"
+            name="OBJ_REFERENCE_MODE">
+
+            <description>
+                <format>
+                    The AccessMode parameter to ObReferenceObject* should be IRP->RequestorMode
+                </format>
+            </description>
+
+            <doc>
+                <p>
+				A driver should use Irp->RequestorMode rather than specifying 
+				UserMode or KernelMode.  This allows kernel-mode IRP senders
+				to supply kernel-mode handles safely.
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28126.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="08C0ED21-36C3-4340-BCE2-8B7FE48A5510"
+            id="28127"
+            name="PROTOTYPE_MISMATCH">
+
+            <description>
+                <format>
+					The function being used as a %func% routine does not
+					exactly match the type expected.  Have '%type1%', 
+					expecting '%type2%'
+                </format>
+				    <param name="func" format="%ls" />
+				    <param name="type1" format="%ls" />
+				    <param name="type2" format="%ls" />
+            </description>
+			<additionalInfo>
+				<format>
+				It is likely that the difference is that the actual function
+				returns a value, and the expected function type is void
+				</format>
+			</additionalInfo>
+
+            <doc>
+                <p>
+				To assure that PREfast is able to check the various callbacks,
+				a warning about this otherwise benign type mismatch is 
+				generated.  The type should match exactly.  Note that any
+				return value will be ignored when the expected function
+				return type is void, so providing one serves no purpose
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28127.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="8B1CF304-6062-4d89-B46D-B2E5FC2D0A02"
+            id="28128"
+            name="FUNCTION_ASSIGNMENT">
+
+            <description>
+                <format>
+					An access to %field% has been made directly.
+					It should be made by %routine%
+                </format>
+				    <param name="field" format="%ls" />
+				    <param name="routine" format="%ls" />
+            </description>
+
+            <doc>
+                <p>
+				Certain structure members should not be accessed directly,
+				but rather through specialized functions
+                </p>
+            </doc>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					irp->CancelRoutine = myCancelRoutine;
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					oldCancel = IoSetCancelRoutine(irp, myCancelRoutine);
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28128.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="B1FD9A31-EE20-4946-B5E5-B2489809B930"
+            id="28129"
+            name="MUST_BE_BITOP">
+
+            <description>
+                <format>
+					An assignment has been made to %operand% which should
+					only be modified using bit sets and clears
+                </format>
+				    <param name="operand" format="%ls" />
+            </description>
+
+            <doc>
+                <p>
+				The operand is a collection of bit flags, and not preserving 
+				the bits other than those explicitly being changed may 
+				cause unexpected behaviors.
+                </p>
+            </doc>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					fdo->Flags = DO_BUFFERED_IO;
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					fdo->Flags |= DO_BUFFERED_IO;
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28129.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="8F2CE864-BF61-4f85-BD16-343D485554F8"
+            id="28131"
+            name="NOT_COPYING_NAME">
+
+            <description>
+                <format>
+					The DriverEntry routine should save a copy of the argument
+					%argname%, not the pointer, since the I/O Manager frees 
+					the buffer after DriverEntry returns
+                </format>
+				    <param name="argname" format="%ls" />
+            </description>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28131.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="E955F7AE-DF57-4306-A3FF-34A12A20A38B"
+            id="28132"
+            name="SIZEOF_POINTER">
+
+            <description>
+                <format>
+					Taking the size of pointer %operand%
+                </format>
+				    <param name="operand" format="%ls" />
+            </description>
+
+			<additionalInfo>
+				<format>
+                <p>
+				This will yield the size of a pointer (4 or 8), not the size
+				of the object pointed to.  Dereference the pointer, or if the
+				size of a pointer was intended, use the pointer type or
+				(void *) instead
+                </p>
+				</format>
+			</additionalInfo>
+
+			<doc>
+                <p>
+				Even when sizeof(pointer) is intended, it can be confusing
+				to a future reader, so making it explicit that the pointer type
+				was intended will both suppress the error and help readers.
+				</p>
+				<p>
+				Should the va_start macro change, this test will produce
+				false positives for it.  The PREfast drivers module should 
+				be updated to recognize and ignore va_start.
+                </p>
+			</doc>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					memset(b, 0, sizeof(b));
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					memset(b, 0, sizeof(*b));
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28132.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="AEA1165B-680C-4d28-B49B-309F22023C54"
+            id="28133"
+            name="INITIALIZE_TIMER">
+
+            <description>
+                <format>
+					IoInitializeTimer is best called from AddDevice
+                </format>
+            </description>
+
+			<additionalInfo>
+				<format>
+                <p>
+				IoInitializeTimer can only be called once per device object.
+				Calling it from the AddDevice routine helps assure that it is
+				not unexpectedly called more than once
+                </p>
+				</format>
+			</additionalInfo>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28133.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="8CA20881-A507-4c7c-822A-75EB28694FD7"
+            id="28134"
+            name="POOL_TAG">
+
+            <description>
+                <format>
+					The type of a pool tag should be integral, not a string 
+					or string pointer
+                </format>
+            </description>
+
+			<additionalInfo>
+				<format>
+                <p>
+				A pool tag name should be a character literal using single
+				quotes ('gaT_'), not a string in double quotes.  It is normally
+				in reverse byte order
+                </p>
+				</format>
+			</additionalInfo>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					p = ExAllocatePoolWithTag(NonPagedPool, 30, "_Tag");
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					p = ExAllocatePoolWithTag(NonPagedPool, 30, 'gaT_');
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28134.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="94507315-FCBD-4b36-9FCD-B1AB5718BAF8"
+            id="28135"
+            name="KE_WAIT_LOCAL">
+
+            <description>
+                <format>
+					If the first argument to KeWaitForSingleObject is
+					a local variable, the Mode parameter must be KernelMode
+                </format>
+            </description>
+
+			<doc>
+                <p>
+				A wait which is not in kernel mode could cause the process
+				to be swapped out.  If the object being awaited is on the
+				stack (and thus swapped out) a system crash can result
+                </p>
+			</doc>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					KeWaitForSingleObject(&MyMutex, UserRequest, UserMode, FALSE, NULL);
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					KeWaitForSingleObject(&MyMutex, UserRequest, KernelMode, FALSE, NULL);
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28135.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="66BDB610-783B-4c69-81DD-A2700598F317"
+            id="28137"
+            name="ALWAYS_CONSTANT">
+
+            <description>
+                <format>
+					The variable argument '%operand%' should instead be a (literal) constant
+                </format>
+				    <param name="operand" format="%ls" />
+            </description>
+
+			<doc>
+                <p>
+				The function being called expects that a (literal) constant is present
+				in the specified position.  The individual function 
+				documentation will indicate why a variable in this position
+				is unsafe
+                </p>
+			</doc>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					ExAcquireResourceExclusiveLite(Resource, Wait);
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					ExAcquireResourceExclusiveLite(Resource, TRUE);
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28137.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="106F7930-601F-4c16-ABE8-AEC4F14DD168"
+            id="28138"
+            name="NEVER_CONSTANT">
+
+            <description>
+                <format>
+					The constant argument '%operand%' should instead be variable
+                </format>
+				    <param name="operand" format="%ls" />
+            </description>
+
+			<doc>
+                <p>
+				The function being called expects that a variable or
+				non-constant expression is present
+				in the specified position.  The individual function 
+				documentation will indicate why a constant in this position
+				is unsafe.
+                </p>
+			</doc>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					READ_PORT_UCHAR(0x80001234);
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					READ_PORT_UCHAR(PortAddress);
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28138.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="F535FE39-3DD2-452e-B72A-ABA28C4CC9C8"
+            id="28139"
+            name="STRICT_TYPE_MATCH">
+
+            <description>
+                <format>
+					The argument '%operand%' should exactly match the 
+					type '%typename%'
+                </format>
+				    <param name="operand" format="%ls" />
+				    <param name="typename" format="%ls" />
+            </description>
+
+			<additionalInfo>
+				<format>
+				Some functions permit limited arithmetic on the argument
+				type, others do not.
+				This usually indicates that an enum formal was not passed
+				a member of the enum, but may be used for other types as
+				well
+				</format>
+			</additionalInfo>
+
+			<doc>
+                <p>
+				Since C permits enums to be used interchangably, and
+				interchangably with constants, it is easy to pass the
+				wrong enum value to a function without an error.
+				</p>
+				<p>
+				Some functions are coded so that only enums are
+				allowed.  Others permit the ?: operator to select between
+				values of that type.  In some cases, arithmetic on members
+				of the enum type is permitted (as would be the case for
+				bit flags encoded as an enum) and in a few cases enums and
+				constants may be combined.  The documentation will state the
+				rules for a specific function.  If a constant is strictly
+				required, rule 8137 will also apply.
+                </p>
+				<p>
+				This rule can be used for other parameter types as well; 
+				see the function documentation for why the types must match 
+				exactly.
+                </p>
+			</doc>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					KeWaitForSingleObject(&MyMutex, UserRequest, UserRequest, false, NULL);
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					KeWaitForSingleObject(&MyMutex, UserRequest, UserMode, false, NULL);
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28139.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="98B4D6E2-A6B6-4fc3-9795-73FA28BA3CED"
+            id="28140"
+            name="CRITICAL_OR_IRQ">
+
+            <description>
+                <format>
+                    This call must occur inside a critical region or the IRQL
+					must be at least APC level
+                </format>
+            </description>
+
+            <doc>
+                <p>
+					This function must be protected from possible APC calls
+					by either using it in a critical region or with the
+					IRQL raised to at least APC level
+                </p>
+            </doc>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					ExAcquireFastMutexUnsafe(Mutex);
+					ExReleaseFastMutexUnsafe(Mutex);
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					KeEnterCriticalRegion();
+					ExAcquireFastMutexUnsafe(Mutex);
+					ExReleaseFastMutexUnsafe(Mutex);
+					KeLeaveCriticalRegion();
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28140.htm</helpURL>
+        </DefectDef>
+
+		<DefectDef guid="C311F394-7617-43ea-B4D1-FFFC38CF0713"
+			id="28141"
+			name="IRQ_LOWERED_IMPROPERLY">
+
+			<description>
+				<format>
+				The argument '%expr%' causes the IRQ Level to be set below
+				the current IRQL, and this function cannot be used for
+				that purpose
+				</format>
+				<param name="expr" format="%ls" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				%where%
+				</format>
+				<param name="where" format="%ls" />
+			</additionalInfo>
+
+			<doc>
+				<P>
+				The function being called changes the IRQL to below the
+				current IRQL, and the function is not intended for that 
+				purpose.
+				</P>
+			</doc>
+
+			<example>
+				<defectiveSrc><![CDATA[
+
+				KeRaiseIrql(DISPATCH_LEVEL, &OldIrql);
+				KeRaiseIrql(PASSIVE_LEVEL, &OldIrql);
+
+				]]></defectiveSrc>
+
+				<correctedSrc><![CDATA[
+
+				KeRaiseIrql(DISPATCH_LEVEL, &OldIrql);
+				KeLowerIrql(OldIrql);
+
+				]]></correctedSrc>
+			</example>
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28141.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="95A795EF-F1CA-47f9-A144-8D421FEA10B3"
+			id="28142"
+			name="RELEASE_CONSTANT">
+
+			<description>
+				<format>
+				The argument '%expr%' is a constant and is being passed
+				in a context where a resource release or other restoration
+				of a prior state is being made.  An object containing
+				a resource should be passed
+				</format>
+				<param name="expr" format="%ls" />
+			</description>
+
+			<doc>
+				<P>
+				This is most commonly found when passing a constant to
+				a function such as KeRestoreIrql, which should instead
+				be passed a value containing a previously saved IRQL.
+				</P>
+			</doc>
+
+			<example>
+				<defectiveSrc><![CDATA[
+
+				KeRaiseIrql(DISPATCH_LEVEL, &OldIrql);
+				KeLowerIrql(PASSIVE_LEVEL);
+
+				]]></defectiveSrc>
+
+				<correctedSrc><![CDATA[
+
+				KeRaiseIrql(DISPATCH_LEVEL, &OldIrql);
+				KeLowerIrql(OldIrql);
+
+				]]></correctedSrc>
+			</example>
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28142.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="DCFEAE0A-F569-4c17-9E66-50250790DBE0"
+			id="28143"
+			name="PENDING_STATUS_ERROR">
+
+			<description>
+				<format>
+				A dispatch routine that calls IoMarkIrpPending 
+				must also return STATUS_PENDING
+				</format>
+			</description>
+
+			<example>
+				<defectiveSrc><![CDATA[
+
+				IoMarkIrpPending(Irp);
+				...
+				return STATUS_SUCCESS;
+
+				]]></defectiveSrc>
+
+				IoMarkIrpPending(Irp);
+				...
+				return STATUS_PENDING;
+
+				<correctedSrc><![CDATA[
+
+
+				]]></correctedSrc>
+			</example>
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28143.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="319E2C38-3F65-4ac4-BB84-A3C16473EDC9"
+			id="28144"
+			name="CANCEL_IRQL_FROM_IRP">
+
+			<description>
+				<format>
+				Within a cancel routine, at the point of exit,
+				the IRQL in Irp->CancelIrql should be the current IRQL.
+				</format>
+			</description>
+
+			<additionalInfo>
+				<format>
+				The value need not be restored by any specific function,
+				but must be restored before exit.  PREfast was unable
+				to determine that it was restored to the required value
+				</format>
+			</additionalInfo>
+
+			<example>
+				<defectiveSrc><![CDATA[
+
+				IoReleaseCancelSpinLock(PASSIVE_LEVEL);
+
+				]]></defectiveSrc>
+
+				<correctedSrc><![CDATA[
+
+				IoReleaseCancelSpinLock(Irp->CancelIrql);
+
+				]]></correctedSrc>
+			</example>
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28144.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="83BC3377-6947-43f4-9FF7-B48636400C0C"
+			id="28145"
+			name="MODIFYING_MDL">
+
+			<description>
+				<format>
+				The opaque MDL structure should not be modified by a driver
+				</format>
+			</description>
+
+			<doc>
+				<P>
+				The MdlFlags field is used as a proxy for all MDL fields.
+				With the exceptions of: MDL_MAPPING_CAN_FAIL for drivers that
+				need to be Win98/NT4 compatible, and MDL_PAGES_LOCKED that
+				need to be Win2K compatible, no fields should be modified.
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28145.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="6AC43B16-9749-453e-A403-ECBFE7093784"
+			id="28146"
+			name="STRSAFE_H">
+
+			<description>
+				<format>
+				Kernel Mode drivers should use ntstrsafe.h, not strsafe.h.
+				Found in source file %file%
+				</format>
+				<param name="file" format="%ls" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				The header ntstrsafe.h contains versions of the functions 
+				found in strsafe.h that are suitable for use in kernel
+				mode code
+				</format>
+			</additionalInfo>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28146.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="B0FB041A-64A2-4cb7-BFFF-742B77CE4C8D"
+			id="28147"
+			name="UNHELPFUL_TAG">
+
+			<description>
+				<format>
+				The use of a default pool tag (' kdD' or ' mdW') for calls
+				to this function defeats the purpose of pool tagging
+				</format>
+			</description>
+
+			<additionalInfo>
+				<format>
+				This may be caused by using ExAllocatePool directly, or the
+				tag may have been copied from that macro.  In any case,
+				ExAllocatePoolWithTag (etc.) should be used with a unique
+				tag
+				</format>
+			</additionalInfo>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28147.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="F17F30F4-44BB-452b-BFA0-8254513D2E9A"
+			id="28150"
+			name="IRQ_SET_TOO_HIGH">
+
+			<description>
+				<format>
+				The function %func% causes the IRQ Level to be set above
+				the maximum acceptable for the function being analyzed
+				</format>
+				<param name="func" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				The level limits come from being PAGED_CODE or annotations on the current function
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<P>
+				The function being called changes the IRQL to above the
+				maximum for the current function type.  This could have been
+				inferred either from the function type, or from annotations
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28150.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="B2E8D539-3880-461b-990E-211F8A2B38E8"
+			id="28151"
+			name="BAD_IRQL_VALUE">
+
+			<description>
+				<format>
+				The value of %val% is not a legal value for an IRQL
+				</format>
+				<param name="val" format="%ls" />
+			</description>
+
+			<doc>
+				<P>
+				The value is outside the range of legal values for an
+				IRQL (0-31)
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28151.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="8EF7A3CD-E7D8-4a39-AC39-220D5C922450"
+			id="28152"
+			name="INIT_NOT_CLEARED">
+
+			<description>
+				<format>
+				The return from an AddDevice-like function unexpectedly 
+				%kind% DO_DEVICE_INITIALIZING
+				</format>
+				<param name="kind" format="%ls" />
+			</description>
+
+			<doc>
+				<P>
+				The Flags word of the DeviceObject must have the 
+				DO_DEVICE_INITIALIZING bit cleared exactly when AddDevice 
+				returns successfully.  This annotation may have been applied
+				to a utility function, which then must meet the same 
+				requirement.
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28152.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="8EF7A3CD-E7D8-4a39-AC39-220D5C922451"
+			id="28153"
+			name="MODEL_BAD_IRQL">
+
+			<description>
+				<format>
+				The value for an IRQL from annotation %type% could not be 
+				evaluated in this context%note%
+				</format>
+				<param name="note" format="%ls" />
+				<param name="type" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				Probable annotation error.
+				The following was computed: %val%
+				</format>
+				<param name="val" format="%ls" />
+			</additionalInfo>
+
+			<doc>
+				<P>
+				The annotation for this function is incorrect, and the
+				value for the expression could not be determined
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28153.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a39-AC39-220D5C922453"
+			id="28155"
+			name="CLASS_MISMATCH_NONE">
+
+			<description>
+				<format>
+				The function being assigned or passed should be a %class1% function
+				</format>
+				<param name="class1" format="%ls" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				Add the declaration '%class1% %funcname1%;' before the current 
+				first declaration of %funcname2%
+				</format>
+				<param name="class1" format="%ls" />
+				<param name="funcname1" format="%ls" />
+				<param name="funcname2" format="%ls" />
+			</additionalInfo>
+
+			<doc>
+				<P>
+				The function type on the left was annotated as a
+				special function type.  The function on the right is not
+				annotated.  The function on the right should be declared
+				to be of the proper function type.
+				</P>
+			</doc>
+
+			<example>
+				<defectiveSrc><![CDATA[
+
+				IoSetCancelRotine(MyStartIo);
+
+				]]></defectiveSrc>
+
+				<correctedSrc><![CDATA[
+
+				IoSetCancelRotine(MyCancelRoutine);
+
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28155.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a39-AC39-220D5C922454"
+			id="28156"
+			name="IRQ_INCORRECT">
+
+			<description>
+				<format>
+				The actual IRQL %act% is inconsistent with the required 
+				IRQL %reqd%
+				</format>
+				<param name="act" format="%ls" />
+				<param name="reqd" format="%ls" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				The value at exit was not set to the expected value
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<P>
+				The function is annotated to exit with a specific IRQL value,
+				and it did not do so along the specified path.
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28156.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a39-AC39-220D5C922455"
+			id="28157"
+			name="IRQL_NOT_USED">
+
+			<description>
+				<format>
+				The IRQL in '%name%' was never restored
+				</format>
+				<param name="name" format="%ls" />
+			</description>
+
+			<doc>
+				<P>
+				The function is annotated to exit having restored the IRQL,
+				and it did not do so along the specified path
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28157.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a39-AC39-220D5C922555"
+			id="28158"
+			name="IRQL_NOT_SET">
+
+			<description>
+				<format>
+				No IRQL was saved into '%name%'
+				</format>
+				<param name="name" format="%ls" />
+			</description>
+
+			<doc>
+				<P>
+				The function is annotated to exit having saved the IRQL
+				into the location
+				and it did not do so along the specified path.
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28158.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="3493220c-7d5d-48ac-8de2-adea987ea42b"
+			id="28161"
+			name="FLOAT_UNSAFE_EXIT">
+
+			<description>
+				<format>Exiting without acquiring the right to use floating hardware
+				</format>
+			</description>
+
+			<additionalInfo>
+				<format>
+				This function was annotated to exit with floating point available
+				</format>
+			</additionalInfo>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28161.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="3493220a-7d5d-48ac-8de2-adea987ea42b"
+			id="28162"
+			name="FLOAT_SAFE_EXIT">
+
+			<description>
+				<format>Exiting while holding the right to use floating point hardware
+				</format>
+			</description>
+
+			<additionalInfo>
+				<format>
+				This function was annotated to exit with floating point restored
+				</format>
+			</additionalInfo>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28162.htm</helpURL>
+
+		</DefectDef>
+
+        <DefectDef guid="38EFBA32-DC95-467e-8FBF-78AF107BC372"
+            id="28163"
+            name="MUST_NOT_TRY">
+
+            <description>
+                <format>
+                    The function %func% should never be called from within a try/except block
+                </format>
+				<param name="func" format="'%ls'" />
+            </description>
+
+			<additionalInfo>
+				<format>
+				The requirement might be conditional
+				</format>
+			</additionalInfo>
+
+            <doc>
+                <p>
+					This functiom should never be called from within a try/except block
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28163.htm</helpURL>
+        </DefectDef>
+
+		<DefectDef guid="DB625898-03AC-4176-8001-90360EDE33C1"
+			id="28164"
+			name="PVOID">
+
+			<description>
+				<format>
+				The argument %variable% is being passed to a function that
+				expects a pointer to an object (not a pointer to a pointer)
+				</format>
+				<param name="variable" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				The function takes a PVOID in this position.
+				Usually, this indicates that &amp;pXXX was used when pXXX is
+				required
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<p>
+				Some 'polymorphic' functions are implemented in C by using
+				a PVOID argument to take any pointer type.  However, this
+				permits coding a pointer to a pointer when this is not
+				intended.
+				</p>
+			</doc>
+
+			<example funcBody="void Dfa_%id%">
+				<defectiveSrc><![CDATA[
+					PFAST_MUTEX pFm;
+					...
+					KeWaitForSingleObject(&pFm, UserRequest, UserMode, false, NULL);
+				]]></defectiveSrc>
+				<correctedSrc><![CDATA[
+					PFAST_MUTEX pFm;
+					...
+					KeWaitForSingleObject(pFm, UserRequest, UserMode, false, NULL);
+				]]></correctedSrc>
+			</example>
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28164.htm</helpURL>
+        </DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a29-AC39-220D5C922453"
+			id="28165"
+			name="CLASS_MISMATCH">
+
+			<description>
+				<format>
+				The function pointer of class %class1% does not match the
+				function class %class2%
+				</format>
+				<param name="class1" format="%ls" />
+				<param name="class2" format="%ls" />
+			</description>
+
+			<doc>
+				<P>
+				Both functions were annotated with a function class, but
+				the classes do not match.
+				</P>
+			</doc>
+
+			<example>
+				<defectiveSrc><![CDATA[
+
+				IoSetCancelRotine(MyStartIo);
+
+				]]></defectiveSrc>
+
+				<correctedSrc><![CDATA[
+
+				IoSetCancelRotine(MyCancelRoutine);
+
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28165.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a39-AC39-220D5C922565"
+			id="28166"
+			name="NOT_SAME_IRQL">
+
+			<description>
+				<format>
+				The function %func% does not restore the IRQL to the value that 
+				was current at function entry and is required to do so.
+				%where%
+				</format>
+				<param name="func" format="'%ls'" />
+				<param name="where" format="%ls" />
+			</description>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28166.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a39-AC39-220D5C922575"
+			id="28167"
+			name="UNEXPECTED_IRQL_CHANGE">
+
+			<description>
+				<format>
+				The function %func% changes the IRQL and does not restore the 
+				IRQL before it exits.  It should be annotated to reflect the 
+				change or the IRQL should be restored.
+				%where%
+				</format>
+				<param name="func" format="'%ls'" />
+				<param name="where" format="%ls" />
+			</description>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28167.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="5aa1ba1e-80d0-4f6f-adff-9c71d58bc880"
+			id="28168"
+			name="DISPATCH_MISMATCH">
+
+			<description>
+				<format>
+				The dispatch function %func% does not
+				have a __drv_dispatchType annotation matching 
+				this dispatch table entry (0x%slot%)
+				</format>
+				<param name="func" format="'%ls'" />
+				<param name="slot" format="%02x" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				This can be corrected either by adding a __drv_dispatchType
+				annotation to the function or correcting the dispatch table
+				entry being used
+				</format>
+			</additionalInfo>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28168.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="5aa1ba1e-80d0-4f6f-adff-9c71d58bc881"
+			id="28169"
+			name="DISPATCH_MISSING">
+
+			<description>
+				<format>
+				The dispatch function %func% does not
+				have any __drv_dispatchType annotations
+				</format>
+				<param name="func" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				This can be corrected by adding appropriate 
+				__drv_dispatchType annotations to the function.
+				Unnecessary casts can cause this warning
+				</format>
+			</additionalInfo>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28169.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a29-AC39-123456789abc"
+			id="28170"
+			name="NO_PAGED_CODE">
+
+			<description>
+				<format>
+				The function '%func%' has been declared to be in a paged
+				segment, but neither PAGED_CODE nor PAGED_CODE_LOCKED was
+				found
+				</format>
+				<param name="func" format="%ls" />
+			</description>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a29-AC39-123456789abd"
+			id="28171"
+			name="MULTIPLE_PAGED_CODE">
+
+			<description>
+				<format>
+				The function '%func%' has more than one instance of
+				PAGED_CODE or PAGED_CODE_LOCKED
+				</format>
+				<param name="func" format="%ls" />
+			</description>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a29-AC39-123456789abe"
+			id="28172"
+			name="NO_PAGING_SEGMENT">
+
+			<description>
+				<format>
+				The function '%func%' has PAGED_CODE or PAGED_CODE_LOCKED
+				but is not declared to be in a paged segment
+				</format>
+				<param name="func" format="%ls" />
+			</description>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a29-AC39-12345678173e"
+			id="28173"
+			name="GET_ADAPTER_NOT_RETRIED">
+
+			<description>
+				<format>
+				The current function appears to incorrectly adapt to 
+				physical memory above 4GB
+				</format>
+			</description>
+			<additionalInfo>
+				<format>
+				The code does not appear to recover from a call to 
+				IoGetDmaAdapter that returns a small number of
+				map registers.  See the documentation for details
+				</format>
+			</additionalInfo>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a29-AC39-123456789abf"
+			id="28175"
+			name="INACCESSIBLE_MEMBER">
+
+			<description>
+				<format>
+				The %member% member of %struct% should not be accessed by
+				a driver
+				</format>
+				<param name="struct" format="%ls" />
+				<param name="member" format="'%ls'" />
+			</description>
+			<additionalInfo>
+				<format>
+				Access to this member may be permitted for certain classes
+				of drivers.  See the documentation for this warning for 
+				more information
+				</format>
+			</additionalInfo>
+
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-E7D8-4a29-AC39-123456789abf"
+			id="28176"
+			name="READ_ONLY_MEMBER">
+
+			<description>
+				<format>
+				The %member% member of %struct% should not be modified by
+				a driver
+				</format>
+				<param name="struct" format="%ls" />
+				<param name="member" format="'%ls'" />
+			</description>
+			<additionalInfo>
+				<format>
+				Access to this member may be permitted for certain classes
+				of drivers.  See the documentation for this warning for 
+				more information
+				</format>
+			</additionalInfo>
+
+		</DefectDef>
+
+		<DefectDef guid="b4036440-4ce8-4bb7-a4ed-bcfff80db645"
+			id="28177"
+			name="MULTIPLE_FUNCTION_CLASS">
+
+			<description>
+				<format>
+				Function %func% is annotated with more than one
+				function class.  All but one will be ignored
+				</format>
+				<param name="func" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				This can often occur when there is a chain of typedefs
+				</format>
+			</additionalInfo>
+
+		</DefectDef>
+
+		<DefectDef guid="CEABDAA0-B065-49c3-831A-11E44F2A3066"
+			id="28260"
+			name="MODEL_SYNTAX_ERROR">
+
+			<description>
+				<format>
+					A syntax error in the annotations was found 
+					for function %clue1%,
+					for property %clue2%,
+					while parsing %clue3%,
+					beginning just before "%clue4%"
+				</format>
+
+				<param name="clue1" format="%ls" />
+				<param name="clue2" format="'%ls'" />
+				<param name="clue3" format="%ls" />
+				<param name="clue4" format="%ls" />
+			</description>
+
+			<doc>
+				<p>
+				This indicates an error in the annotations.  The owner
+				of the file containing those annotations should correct that
+				file.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28260.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="CEABDAA0-B065-49a3-831A-11E44F2A3066"
+			id="28266"
+			name="MODEL_PLACEMENT_ERROR">
+
+			<description>
+				<format>
+					A syntax error in the annotations was found 
+					for function %clue1%,
+					for property %clue2%,
+					%clue3%
+				</format>
+
+				<param name="clue1" format="%ls" />
+				<param name="clue2" format="'%ls'" />
+				<param name="clue3" format=" %ls" />
+			</description>
+
+			<doc>
+				<p>
+				This indicates an error in the annotations.  The owner
+				of the file containing those annotations should correct that
+				file.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28266.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="86F7A3CD-C7D8-4a39-AC39-220D5C922453"
+			id="28268"
+			name="CLASS_MODEL_MISMATCH">
+
+			<description>
+				<format>
+				The function class %class1% on the function does not
+				match the function class %class2% on the typedef used here
+				</format>
+				<param name="class1" format="%ls" />
+				<param name="class2" format="%ls" />
+			</description>
+
+			<additionalInfo>
+				<format>
+				This is an error in the annotations
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<P>
+				Both the typedef and the function itself have functionClass
+				annotations, but they do not match.  If both are used they
+				must match
+				</P>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28268.htm</helpURL>
+
+		</DefectDef>
+
+	</DefectDefGroup>
+
+</DefectDefs>

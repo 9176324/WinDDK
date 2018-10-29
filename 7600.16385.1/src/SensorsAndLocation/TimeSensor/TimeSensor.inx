@@ -1,0 +1,90 @@
+;
+; TimeSensor.inf
+;
+
+[Version]
+Signature	= "$Windows NT$"
+Class		= Sensor
+ClassGuid	= {5175D334-C371-4806-B3BA-71FD53C9258D}
+Provider	= %MSFT%
+CatalogFile	= TimeSensor.cat
+DriverVer=10/10/2008,0.0.0.1
+
+; =================== Manufacturer/Models sections =======================
+
+[Manufacturer]
+%MSFT%                      = Microsoft,NT$ARCH$
+
+[Microsoft.NT$ARCH$]
+%TimeSensor.DeviceDesc% = TimeSensor_Install,Sensors\TimeSensor
+
+; =================== Sensor Skeleton Device ==================================
+
+[TimeSensor_Install.NT]
+CopyFiles       = UMDriverCopy
+AddProperty     = DriverPropertiesSection
+
+[TimeSensor_Install.NT.hw]
+
+
+[TimeSensor_Install.NT.Services]
+AddService      = WUDFRd,0x000001fa,WUDFRD_ServiceInstall
+
+[TimeSensor_Install.NT.CoInstallers]
+AddReg          = WUDF_CoInstallers_AddReg
+CopyFiles       = WUDF_CoInstallers_CopyFiles
+
+[TimeSensor_Install.NT.Wdf]
+UmdfService             = TimeSensor,UMDFTimeSensor_Install
+UmdfServiceOrder        = TimeSensor
+UmdfImpersonationLevel  = Impersonation
+
+; =================== UMDF Service Install section ===================
+
+[UMDFTimeSensor_Install]
+UmdfLibraryVersion      = $UMDFVERSION$
+ServiceBinary           = %12%\UMDF\TimeSensor.dll
+DriverCLSID             = {AE19511C-07B1-4476-B8EB-3351ACA8E7C5}
+
+[WUDFRD_ServiceInstall]
+DisplayName     = %WudfRdDisplayName%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WUDFRd.sys
+LoadOrderGroup  = Base
+
+[SourceDisksFiles]
+TimeSensor.dll  = 1
+WudfUpdate_$UMDFCOINSTALLERVERSION$.dll = 1
+
+[SourceDisksNames]
+1 = %MediaDescription%
+
+[WUDF_CoInstallers_CopyFiles]
+WudfUpdate_$UMDFCOINSTALLERVERSION$.dll
+
+[WUDF_CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WUDFUpdate_$UMDFCOINSTALLERVERSION$.dll"
+
+[DestinationDirs]
+UMDriverCopy            = 12,UMDF
+CoInstallers_CopyFiles  = 11
+
+[UMDriverCopy]
+TimeSensor.dll
+
+[DriverPropertiesSection]
+DeviceIcon,,,,"%12%\UMDF\TimeSensor.dll,-1000"
+
+; =================== Generic ==================================
+
+[Strings]
+MSFT                        = "Microsoft Corporation"
+MediaDescription            = "Microsoft Time Sensor Sample Driver Installation Media"
+ClassName                   = "Time Sensor Sample"
+WudfRdDisplayName           = "Windows Driver Foundation - User-mode Driver Framework Reflector"
+TimeSensor.DeviceDesc   = "Microsoft Time Sensor Device Sample"
+
+
+

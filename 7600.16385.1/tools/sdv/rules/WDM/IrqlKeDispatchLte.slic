@@ -1,0 +1,130 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that DDIs are only called at proper IRQL levels.
+*/
+
+#include "ntddk_slic.h"
+
+
+KeCancelTimer.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeClearEvent.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeFlushIoBuffers.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeInitializeDeviceQueue.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeInitializeTimer.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeInitializeTimerEx.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KePulseEvent.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeRaiseIrqlToDpcLevel.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeReadStateEvent.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeReadStateTimer.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeReleaseMutex.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeRemoveEntryDeviceQueue.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeResetEvent.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeSaveFloatingPointState.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeSetTimer.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeSetTimerEx.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+KeAcquireSpinLock.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+

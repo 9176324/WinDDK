@@ -1,0 +1,41 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+	Summary: 
+	This property is satisfied if the driver is NOT a Power Policy Owner and it 
+	is not satisfied or is not applicable if it is.
+	
+	Description:
+	If EvtDriverDeviceAdd is called, but WdfFdoInitSetFilter is not, the property 
+	is not satisfied (fdo driver); the property is not satisfied if WdfPdoInitAssignRawDevice is called (raw 
+	pdo driver). 
+*/
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT1, OWNER} s = INIT1;
+     enum {INIT3, FILTER} v = INIT3;
+} with guard (sdv_main, hdevice_init)
+
+sdv_WdfFdoInitSetFilter.entry[guard $1]
+{
+    v = FILTER;
+}
+fun_WDF_DRIVER_DEVICE_ADD.exit[guard $2]
+{
+    if ((v != FILTER) || (s == OWNER))
+	{
+      abort "The Driver is a Power Policy Owner.";
+    }
+	else
+	{
+		halt;
+	}
+}
+sdv_WdfPdoInitAssignRawDevice.entry
+{
+   s = OWNER;
+}
+

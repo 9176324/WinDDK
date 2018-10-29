@@ -1,0 +1,48 @@
+/*++
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Module Name:
+    athwfpci.rc
+
+Abstract:
+    Internal resource file for miniport
+    
+Revision History:
+      When        What
+    ----------    ----------------------------------------------
+    09-04-2007    Created
+
+Notes:
+
+--*/
+
+#include <windows.h>
+#include <ntverp.h>
+
+#define VER_FILETYPE                VFT_DRV
+#define VER_FILESUBTYPE             VFT2_DRV_NETWORK
+#define VER_FILEDESCRIPTION_STR     "Sample Driver for Atheros Wireless Device"
+#define VER_INTERNALNAME_STR        "athwfpci.sys"
+#define VER_ORIGINALFILENAME_STR    "athwfpci.sys"
+
+#define VER_FILEVERSION             1,0,0,00
+#define VER_FILEVERSION_STR         "1.0.0.00"
+
+#undef VER_PRODUCTVERSION
+#define VER_PRODUCTVERSION          VER_FILEVERSION
+
+#undef VER_PRODUCTVERSION_STR
+#define VER_PRODUCTVERSION_STR      VER_FILEVERSION_STR
+
+#define VER_LEGALCOPYRIGHT_STR      "Copyright (C) Microsoft Corporation" 
+#ifdef VER_COMPANYNAME_STR
+#undef VER_COMPANYNAME_STR
+#define VER_COMPANYNAME_STR         "Microsoft Corporation"
+#endif
+
+#undef VER_PRODUCTNAME_STR
+#define VER_PRODUCTNAME_STR         "Atheros Wireless Adapters"
+#define VER_LANGNEUTRAL
+
+#include "common.ver"

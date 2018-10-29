@@ -1,0 +1,74 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+    
+	Summary: 
+	For a PDO device, the framework device object initialization methods and 
+	framework PDO initialization methods must be called BEFORE the driver calls WdfDeviceCreate.
+    
+	Description: 
+	For a PDO device, the framework device object initialization methods
+	and framework PDO initialization methods, which store information in the 
+	WDFDEVICE_INIT structure, cannot be called after the driver calls WdfDeviceCreate.
+
+	Rule diagnostics:
+	"WdfXXXDeviceInitXXX could only be called before WdfDeviceCreate for the PDO device."
+ 
+	Related rules: DeviceInitAllocate, ControlDeviceInitAPI, DeviceInitAPI.
+
+*/     
+
+
+#include "ntddk_slic.h"
+
+state{
+     int create_called = 0;
+}
+
+
+watch sdv_WdfPdoInitAllocate.exit.$return;
+sdv_WdfDeviceCreate.exit
+{
+         if ((*$1 == hpdo_deviceinit)&&(NT_SUCCESS($return))) { 
+              create_called = 1; 
+         }
+}
+[sdv_WdfDeviceInitSetPnpPowerEventCallbacks
+, sdv_WdfDeviceInitSetFileObjectConfig
+, sdv_WdfDeviceInitSetExclusive                                                         
+, sdv_WdfDeviceInitSetPowerPolicyEventCallbacks
+, sdv_WdfDeviceInitSetPowerPolicyOwnership  
+, sdv_WdfDeviceInitRegisterPnpStateChangeCallback
+, sdv_WdfDeviceInitRegisterPowerStateChangeCallback
+, sdv_WdfDeviceInitRegisterPowerPolicyStateChangeCallback
+, sdv_WdfDeviceInitSetIoType
+, sdv_WdfDeviceInitSetPowerNotPageable
+, sdv_WdfDeviceInitSetPowerPageable
+, sdv_WdfDeviceInitSetPowerInrush
+, sdv_WdfDeviceInitSetDeviceType
+, sdv_WdfDeviceInitAssignName
+, sdv_WdfDeviceInitAssignSDDLString
+, sdv_WdfDeviceInitSetDeviceClass
+, sdv_WdfDeviceInitSetCharacteristics
+, sdv_WdfDeviceInitSetRequestAttributes
+, sdv_WdfDeviceInitAssignWdmIrpPreprocessCallback
+, sdv_WdfDeviceInitSetIoInCallerContextCallback
+, sdv_WdfPdoInitSetEventCallbacks
+, sdv_WdfPdoInitAssignDeviceID
+, sdv_WdfPdoInitAssignInstanceID
+, sdv_WdfPdoInitAddHardwareID
+, sdv_WdfPdoInitAddCompatibleID
+, sdv_WdfPdoInitAddDeviceText
+, sdv_WdfPdoInitSetDefaultLocale
+, sdv_WdfPdoInitAssignRawDevice
+].entry[guard $1]
+{
+   if (create_called == 1){
+      abort "$fname could only be called before WdfDeviceCreate for the PDO device.";
+      }
+}
+sdv_WdfPdoInitAllocate.exit [guard $return]
+{
+   if (create_called == 1){
+      abort "$fname could only be called before WdfDeviceCreate for the PDO device.";
+      }
+}

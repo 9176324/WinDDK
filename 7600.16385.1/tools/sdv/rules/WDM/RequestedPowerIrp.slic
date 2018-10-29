@@ -1,0 +1,33 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule verifies that when PoRequestPowerIrp is called the
+	last argument is specified as NULL except when the minor function is set to IRP_MN_WAIT_WAKE.
+*/
+
+#include "ntddk_slic.h"
+
+
+
+/* 
+    Drivers should not use the allocated power IRP returned by a call
+    to PoRequestPowerIrp: By the time this function returns, this IRP
+    might have been completed and the memory freed. Thus, touching the
+    IRP after this call may bugcheck the system.
+*/
+PoRequestPowerIrp.entry
+{
+    if($2!=IRP_MN_WAIT_WAKE)
+    {
+        if ($6 != NULL) 
+        {
+            abort "The last parameter of PoRequestPowerIrp must be null.";
+        }
+    }
+    else
+    {
+        halt;
+    }
+}

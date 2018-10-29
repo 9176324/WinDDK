@@ -1,0 +1,94 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+    
+	Summary: 
+	The driver must call WdfDeviceInitFree if an error occurs when calling any framework device object 
+	initialization functions.
+
+	Description: 
+	
+	If your driver encounters an error while initializing a new framework device object, 
+	and if the driver received the WDFDEVICE_INIT structure from a call to WdfPdoInitAllocate 
+	the driver must call WdfDeviceInitFree. 
+	
+	Rule diagnostics:
+	"A driver must call WdfDeviceInitFree if an error occurs in one of the device init functions when allocating a WDFDEVICE_INIT stucture 
+        via WdfPdoInitAllocate."
+ 
+        Related rules: InitFreeDeviceCallback,InitFreeDeviceCreate,InitFreeDeviceCreateType2,PdoInitFreeDeviceCreateType2,
+	InitFreeDeviceCreateType4,PdoInitFreeDeviceCallback,PdoInitFreeDeviceCreate,PdoInitFreeDeviceCreateType4 and InitFreeDevice.
+	*/     
+
+
+
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {FREENOTREQUIRED,FREEREQUIRED} s1 = FREENOTREQUIRED;
+} 
+
+watch sdv_WdfPdoInitAllocate.exit.$return;
+
+
+[sdv_WdfDeviceInitRegisterPnpStateChangeCallback
+, sdv_WdfDeviceInitRegisterPowerStateChangeCallback
+, sdv_WdfDeviceInitRegisterPowerPolicyStateChangeCallback
+, sdv_WdfDeviceInitAssignName
+, sdv_WdfDeviceInitAssignSDDLString
+, sdv_WdfDeviceInitAssignWdmIrpPreprocessCallback
+, sdv_WdfPdoInitAssignDeviceID
+, sdv_WdfPdoInitAssignInstanceID
+, sdv_WdfPdoInitAddHardwareID
+, sdv_WdfPdoInitAddCompatibleID
+, sdv_WdfPdoInitAddDeviceText
+, sdv_WdfPdoInitAssignRawDevice
+].exit [guard $1]
+{
+   if (!NT_SUCCESS($return))
+   {
+      s1=FREEREQUIRED;
+   }
+   else
+   {
+     halt;
+   }   
+}
+
+
+[sdv_WdfDeviceInitFree].entry[guard $1]
+{
+   if (s1==FREEREQUIRED)
+   {
+	  halt;
+   }   
+}
+
+
+select one 
+{
+  case fun_WDF_DRIVER_DEVICE_ADD:
+        fun_WDF_DRIVER_DEVICE_ADD.exit
+        {
+		   if (s1==FREEREQUIRED) 
+		   {
+		      abort "A driver must call WdfDeviceInitFree if an error occurs in one of the device init functions when allocating a WDFDEVICE_INIT stucture via WdfPdoInitAllocate.";          		
+                   }
+		   else 
+		   {
+			   halt;
+		   }
+	      
+        }
+	[fun_DriverEntry].exit
+        {
+	        if (s1==FREEREQUIRED) 
+		{
+		       abort "A driver must call WdfDeviceInitFree if an error occurs in one of the device initializing functions when allocating a WDFDEVICE_INIT stucture via WdfPdoInitAllocate.";          		
+        	}
+			
+        }           
+} 
+
+ 

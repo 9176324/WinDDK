@@ -1,0 +1,11 @@
+TARGETTYPE=DRIVER
+TARGETNAME=Eventdrv
+
+INCLUDES= .
+SOURCES= Evntdrv.c \
+         evntdrvEvents.rc
+
+MSC_WARNING_LEVEL=-W4 -WX 
+
+NTTARGETFILE0=$(O)\evntdrvEvents.h
+

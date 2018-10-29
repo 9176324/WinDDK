@@ -1,0 +1,131 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that ZwOpenKey routine is used correctly.
+*/
+
+#include "ntddk_slic.h"
+
+state{
+   enum {initial, opened, closed} handleState = initial;
+}
+watch ZwOpenKey.exit.(*$1);
+
+
+ZwOpenKey.exit[guard *$1]
+{  
+   if (handleState == opened) {
+	abort "The driver calls $fname with a registry key that has been opened already.";	
+   } else {
+   	if (NT_SUCCESS($return)) {
+   		handleState = opened;
+	}
+  }
+}
+
+ZwEnumerateKey.entry [guard $1]
+{
+   if (handleState != opened) {
+	abort "The driver is trying to enumerate a registry key by calling $fname with an invalid handle.";
+   }
+}
+
+ZwEnumerateValueKey.entry [guard $1]
+{
+   if (handleState != opened) {
+	abort "The driver is trying to obtain information about the value entries of a registry key by calling $fname with an invalid handle.";
+   }
+}
+
+ZwFlushKey.entry [guard $1]
+{
+   if (handleState != opened) {
+	abort "The driver is trying to commit the changes made on a registry key to disk by calling $fname with an invalid handle.";
+   }
+}
+
+ZwQueryKey.entry [guard $1]
+{
+   if (handleState != opened) {
+	abort "The driver is trying to obtain information about a registry key and its subkeys by calling $fname with an invalid handle.";
+   }
+}
+
+ZwQueryValueKey.entry [guard $1]
+{
+   if (handleState != opened) {
+	abort "The driver is trying to obtain the the value entries for a registry key by calling $fname with an invalid handle.";
+   }
+}
+
+ZwSetValueKey.entry [guard $1]
+{
+   if (handleState != opened) {
+	abort "The driver is trying to replace or create a value entry for a registry key by calling $fname with an invalid handle.";
+   }
+}
+
+ZwClose.entry [guard $1]
+{
+   if (handleState != opened) {
+	abort "The driver is trying to close an invalid handle.";  
+   } else {
+	handleState = closed;
+   }
+}
+
+ZwDeleteKey.entry [guard $1]
+{
+   if (handleState != opened) {
+	abort "The driver is trying to delete a registry key with an invalid handle.";
+   }    
+}
+
+[fun_DriverEntry
+,sdv_RunAddDevice
+,sdv_RunStartDevice
+,sdv_RunStartIo
+,fun_KDEFERRED_ROUTINE_1
+,fun_KDEFERRED_ROUTINE_2
+,fun_KDEFERRED_ROUTINE_3
+,fun_KDEFERRED_ROUTINE_4
+,fun_KDEFERRED_ROUTINE_5
+,fun_KDEFERRED_ROUTINE_6
+,fun_KDEFERRED_ROUTINE_7
+,fun_KDEFERRED_ROUTINE_8
+,fun_KDEFERRED_ROUTINE_9
+,fun_KSERVICE_ROUTINE_1
+,fun_KSERVICE_ROUTINE_2
+,fun_KSERVICE_ROUTINE_3
+,fun_KSERVICE_ROUTINE_4
+,fun_KSERVICE_ROUTINE_5
+,fun_KSERVICE_ROUTINE_6
+,fun_WORKER_THREAD_ROUTINE_1
+,fun_WORKER_THREAD_ROUTINE_2
+,fun_WORKER_THREAD_ROUTINE_3
+,fun_WORKER_THREAD_ROUTINE_4
+,fun_WORKER_THREAD_ROUTINE_5
+,fun_WORKER_THREAD_ROUTINE_6
+,fun_IO_COMPLETION_ROUTINE_1
+,fun_IO_COMPLETION_ROUTINE_2
+,fun_IO_COMPLETION_ROUTINE_3
+,fun_IO_COMPLETION_ROUTINE_4
+,fun_IO_COMPLETION_ROUTINE_5
+,fun_IO_COMPLETION_ROUTINE_6
+,fun_IO_DPC_ROUTINE_1
+,fun_IO_DPC_ROUTINE_2
+,fun_IO_DPC_ROUTINE_3
+,fun_IO_DPC_ROUTINE_4
+,fun_IO_DPC_ROUTINE_5
+,fun_IO_DPC_ROUTINE_6
+,sdv_RunDispatchFunction
+,sdv_RunRemoveDevice
+,sdv_RunUnload
+].exit
+{
+   if (handleState == opened) {
+	abort "The driver is returning without closing an open handle.";
+   } 
+}

@@ -1,0 +1,18 @@
+TARGETNAME=echosrv
+TARGETTYPE=DRIVER
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+INCLUDES=\
+
+TARGETLIBS=\
+    $(DDK_LIB_PATH)\netio.lib \
+    $(SDK_LIB_PATH)\uuid.lib
+
+SOURCES=\
+    wsksmple.c \
+    wsksmple.rc
+
+RUN_WPP= $(SOURCES) -km
+
+

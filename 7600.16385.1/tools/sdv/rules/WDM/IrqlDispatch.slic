@@ -1,0 +1,109 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that DDIs are only called at proper IRQL levels.
+*/
+
+#include "ntddk_slic.h"
+
+
+KeAcquireSpinLockAtDpcLevel.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+KeReleaseSpinLockFromDpcLevel.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+KeInsertByKeyDeviceQueue.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+KeInsertDeviceQueue.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+KeRemoveByKeyDeviceQueue.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+KeRemoveDeviceQueue.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+AllocateAdapterChannel.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+FreeAdapterChannel.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+FreeMapRegisters.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+GetScatterGatherList.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+PutScatterGatherList.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+IoAllocateController.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+IoFreeController.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+
+IoStartNextPacket.entry
+{
+    if ( sdv_irql_current != DISPATCH_LEVEL ) {
+        abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    }
+}
+

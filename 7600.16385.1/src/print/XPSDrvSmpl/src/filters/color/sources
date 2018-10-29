@@ -1,0 +1,41 @@
+# Copyright (c) 2005 Microsoft Corporation
+#
+# All rights reserved.
+#
+# THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+# ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+SOURCES=$(SOURCES) \
+ bmpconv.cpp       \
+ bmpdata.cpp       \
+ cmflt.cpp         \
+ cmflt.rc          \
+ cmimg.cpp         \
+ cmsax.cpp         \
+ colchan.cpp       \
+ colconv.cpp       \
+ dictionary.cpp    \
+ dllentry.cpp      \
+ profile.cpp       \
+ profman.cpp       \
+ scaniter.cpp      \
+ transform.cpp     \
+ wcsapiconv.cpp    \
+ wictobmscn.cpp    \
+
+TARGETNAME=XDColMan
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=$(TARGETLIBS)                     \
+           $(SDK_LIB_PATH)\mscms.lib         \
+           $(SDK_LIB_PATH)\windowscodecs.lib \
+
+DLLENTRY=_DllMainCRTStartup
+
+!include ..\sources.inc
+
+!IF "$(BUILD_PASS)" == "PASS2" || "$(BUILD_PASS)" == "PASSALL"
+NTTARGETFILES=COPYDLL
+!ENDIF

@@ -1,0 +1,74 @@
+[Version]
+Name=HID
+Service={00001124-0000-1000-8000-00805F9B34FB}
+
+[0x200]
+Name=HID Device Release Number
+Required=1
+Format=UINT16
+
+[0x201]
+Name=HID Parser Version
+Required=1
+Format=UINT16
+
+[0x202]
+Name=HID Device Subclass
+Required=1
+Format=UINT8
+
+[0x203]
+Name=HID Country Code
+Required=1
+Format=UINT8
+
+[0x204]
+Name=HID Virtual Cable
+Format=BOOLEAN
+
+[0x205]
+Name=HID Reconnect Initiate
+Required=1
+Format=BOOLEAN
+
+[0x206]
+Name=HID Descriptor List
+Required=1
+; spec says there can be elements after the 2 required ones, so put in a wildcard match
+Format=SEQUENCE{SEQUENCE{UINT8{0x22,0x23}, STRING, *}}
+
+[0x207]
+Name=HID LANGID Base List
+Required=1
+Format=SEQUENCE{SEQUENCE{UINT16, UINT16, *}}
+
+[0x208]
+Name=HID SDP Disable
+Format=BOOLEAN
+
+[0x209]
+Name=HID Battery Power
+Format=BOOLEAN
+
+[0x20A]
+Name=HID Remote Wake
+Format=BOOLEAN
+
+[0x20B]
+; in 0.95c, will be removed for final rev, should mark this attrib as ignore
+Name=HID Profile Version
+; set as wildcard b/c we don't care what it is
+Format=*
+
+[0x20C]
+Name=HID Supervision Timeout
+Format=UINT16
+
+[0x20D]
+Name=HID Normally Connectable
+Format=BOOLEAN
+
+[0x20E]
+Name=HID Boot Device
+Required=1
+Format=BOOLEAN

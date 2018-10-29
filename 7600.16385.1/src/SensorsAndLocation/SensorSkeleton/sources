@@ -1,0 +1,60 @@
+TARGETNAME          = SensorSkeleton
+TARGETTYPE          = DYNLINK
+TARGET_DESTINATION  = retail
+
+UMDF_VERSION_MAJOR=1
+
+# We're using ATL 7.1
+USE_ATL     = 1
+ATL_VER     = 71
+USE_MSVCRT  = 1
+
+C_DEFINES = $(C_DEFINES)  /D_UNICODE /DUNICODE
+
+#
+# Target OS version information
+#
+_NT_TARGET_VERSION  =$(_NT_TARGET_VERSION_WIN7)
+WIN32_WINNT_VERSION =$(LATEST_WIN32_WINNT_VERSION)
+NTDDI_VERSION       =$(LATEST_NTDDI_VERSION)
+MSC_WARNING_LEVEL   =/W4 /WX 
+
+DLLENTRY    =_DllMainCRTStartup
+DLLDEF      =SensorSkeleton.def
+
+INCLUDES= $(INCLUDES);                  \
+          $(SDK_INC_PATH);              \
+          $(DDK_INC_PATH);              \
+          $(UMDF_INC_PATH)\10; 
+
+SOURCES=\
+    SensorSkeleton.rc           \
+    DllMain.cpp                 \
+    driver.cpp                  \
+    queue.cpp                   \
+    sensorddi.cpp               \
+    device.cpp                  \
+    SensorSkeleton.idl
+
+TARGETLIBS=\
+        $(SDK_LIB_PATH)\strsafe.lib     \
+        $(SDK_LIB_PATH)\kernel32.lib    \
+        $(SDK_LIB_PATH)\ole32.lib       \
+        $(SDK_LIB_PATH)\oleaut32.lib    \
+        $(SDK_LIB_PATH)\uuid.lib        \
+        $(SDK_LIB_PATH)\user32.lib      \
+        $(SDK_LIB_PATH)\advapi32.lib    \
+        $(SDK_LIB_PATH)\shlwapi.lib     \
+        $(SDK_LIB_PATH)\PortableDeviceGuids.lib \
+        $(DDK_LIB_PATH)\SensorsClassExtension.lib \
+        
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(TARGETNAME).inf
+
+#
+# This sets up the WPP preprocessor and tells it to scan internal.h to find
+# the trace function definition that's in there.
+#
+
+RUN_WPP= $(SOURCES) -dll -scan:internal.h
+
+

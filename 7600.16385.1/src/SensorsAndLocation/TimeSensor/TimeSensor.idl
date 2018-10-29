@@ -1,0 +1,20 @@
+import "wudfddi.idl";
+
+[
+    uuid(7DFE5396-2D95-445c-8E30-53EB0DB25266),
+    version(1.0),
+    helpstring("Time Sensor Sample Driver Type Library")
+]
+library WDKTimeSensorLib
+{
+    importlib("stdole2.tlb");
+    [
+        uuid(AE19511C-07B1-4476-B8EB-3351ACA8E7C5),
+        helpstring("TimeSensorSampleDriver Class")
+    ]
+    coclass TimeSensorSampleDriver
+    {
+        [default] interface IDriverEntry;
+    };
+};
+

@@ -1,0 +1,7 @@
+BufAfterReqCompletedRead
+MemAfterReqCompletedRead
+MdlAfterReqCompletedRead
+BufAfterReqCompletedWrite
+MdlAfterReqCompletedWrite
+MemAfterReqCompletedIoctl
+DeferredRequestCompleted

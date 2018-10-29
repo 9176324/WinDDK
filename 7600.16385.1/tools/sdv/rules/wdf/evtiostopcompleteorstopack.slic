@@ -1,0 +1,55 @@
+/*
+  Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+  Summary: This rule checks that WdfRequestComplete,WdfRequestCompleteWithInformation,WdfRequestCompleteWithPriorityBoost,WdfRequestCancelSentRequest or WdfRequestStopAcknowledge
+           is called from within EvtIoStop callback for each request presented by the framework.
+
+  Rule diagnostics:
+  "WdfRequestComplete,WdfRequestCompleteWithInformation,WdfRequestCompleteWithPriorityBoost,WdfRequestCancelSentRequest or WdfRequestStopAcknowledge 
+  should be called from within EvtIoStop callback for each request presented by the framework."
+
+  Description: This rule checks that WdfRequestComplete,WdfRequestCompleteWithInformation,WdfRequestCompleteWithPriorityBoost,WdfRequestCancelSentRequest or WdfRequestStopAcknowledge
+               is called from within EvtIoStop callback for each request presented by the framework. If this is not done the driver may block the system 
+			   from entering another lower power state.
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT, INSTOP} s = INIT;
+     enum {INIT1, COMPLETED} r = INIT1;
+}with guard (sdv_main, hrequest)
+                   
+[fun_WDF_IO_QUEUE_IO_STOP].entry[guard $2]
+{
+        s = INSTOP;               
+}
+[fun_WDF_IO_QUEUE_IO_STOP].exit[guard $2]
+{   
+   if(r!=COMPLETED)
+   {
+      abort "WdfRequestComplete,WdfRequestCompleteWithInformation,WdfRequestCompleteWithPriorityBoost,WdfRequestCancelSentRequest or WdfRequestStopAcknowledge should be called from within EvtIoStop callback for each request presented by the framework.";
+   }
+   else
+   {
+	   halt;
+   }
+}
+[ sdv_WdfRequestComplete
+, sdv_WdfRequestCompleteWithInformation
+, sdv_WdfRequestCompleteWithPriorityBoost
+, sdv_WdfRequestStopAcknowledge
+, sdv_WdfRequestCancelSentRequest
+].entry[guard $1]
+{
+   if(s == INSTOP) 
+   {
+      r = COMPLETED;
+   }
+}
+
+
+
+

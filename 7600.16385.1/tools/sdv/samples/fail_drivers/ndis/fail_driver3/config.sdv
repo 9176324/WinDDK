@@ -1,0 +1,4 @@
+Init_RegisterInterrupt
+SpinLock
+SpinLockRelease
+Irql_Miniport_Driver_Function

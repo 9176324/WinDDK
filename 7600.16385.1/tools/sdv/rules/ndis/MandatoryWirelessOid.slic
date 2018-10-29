@@ -1,0 +1,80 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    This rule checks that the driver supports all of the mandatory OIDs for Native WiFi drivers
+    
+    Description:
+   Mndatoory OIDs for Query:
+         0 - OID_DOT11_BEACON_PERIOD 
+         1 - OID_DOT11_CURRENT_REG_DOMAIN 
+         2 - OID_DOT11_FRAGMENTATION_THRESHOLD 
+         3 - OID_DOT11_OPERATIONAL_RATE_SET 
+         4 - OID_DOT11_RTS_THRESHOLD 
+         5 - OID_DOT11_CURRENT_OPERATION_MODE 
+         6 - OID_DOT11_MULTICAST_LIST 
+         7 - OID_DOT11_NIC_POWER_STATE 
+         8 - OID_DOT11_ACTIVE_PHY_LIST 
+         9 - OID_DOT11_AUTO_CONFIG_ENABLED 
+        10 - OID_DOT11_CURRENT_PHY_ID 
+        11 - OID_DOT11_DESIRED_BSS_TYPE 
+        12 - OID_DOT11_DESIRED_BSSID_LIST 
+        13 - OID_DOT11_DESIRED_PHY_LIST 
+        14 - OID_DOT11_DESIRED_SSID_LIST 
+        15 - OID_DOT11_ENABLED_AUTHENTICATION_ALGORITHM 
+        16 - OID_DOT11_ENUM_ASSOCIATION_INFO 
+        17 - OID_DOT11_EXCLUDED_MAC_ADDRESS_LIST 
+        18 - OID_DOT11_HIDDEN_NETWORK_ENABLED
+        19 - OID_DOT11_IBSS_PARAMS
+        20 - OID_DOT11_MEDIA_STREAMING_ENABLED 
+        21 - OID_DOT11_POWER_MGMT_REQUEST
+        22 - OID_DOT11_SAFE_MODE_ENABLED
+        23 - OID_DOT11_STATISTICS 
+        24 - OID_DOT11_UNREACHABLE_DETECTION_THRESHOLD 
+        
+      Mandatory OIDs for Set:
+        25 - OID_DOT11_FRAGMENTATION_THRESHOLD 
+        26 - OID_DOT11_OPERATIONAL_RATE_SET 
+        27 - OID_DOT11_RTS_THRESHOLD 
+        28 - OID_DOT11_CURRENT_OPERATION_MODE 
+        29 - OID_DOT11_MULTICAST_LIST 
+        30 - OID_DOT11_NIC_POWER_STATE 
+        31 - OID_DOT11_SCAN_REQUEST 
+        32 - OID_DOT11_AUTO_CONFIG_ENABLED 
+        33 - OID_DOT11_CIPHER_KEY_MAPPING_KEY 
+        34 - OID_DOT11_CONNECT_REQUEST 
+        35 - OID_DOT11_CURRENT_PHY_ID 
+        36 - OID_DOT11_DESIRED_BSS_TYPE 
+        37 - OID_DOT11_DESIRED_BSSID_LIST 
+        38 - OID_DOT11_DESIRED_PHY_LIST 
+        39 - OID_DOT11_DESIRED_SSID_LIST 
+        40 - OID_DOT11_DISCONNECT_REQUEST 
+        41 - OID_DOT11_ENABLED_AUTHENTICATION_ALGORITHM 
+        42 - OID_DOT11_EXCLUDED_MAC_ADDRESS_LIST 
+        43 - OID_DOT11_FLUSH_BSS_LIST 
+        44 - OID_DOT11_HIDDEN_NETWORK_ENABLED
+        45 - OID_DOT11_IBSS_PARAMS
+        46 - OID_DOT11_MEDIA_STREAMING_ENABLED 
+        47 - OID_DOT11_POWER_MGMT_REQUEST
+        48 - OID_DOT11_SAFE_MODE_ENABLED
+        49 - OID_DOT11_UNREACHABLE_DETECTION_THRESHOLD 
+        
+      Mandatory OIDs for Method: [TO-DO]
+        50 - OID_DOT11_RESET_REQUEST
+        51 - OID_DOT11_ENUM_BSS_LIST 
+    
+    Related Rule:
+    Precondition Rule:Pre_IsWireless (Disabled for now))
+    
+*/
+
+
+#include "ntddk_slic.h"
+
+sdv_MINIPORT_OID_REQUEST.exit
+{
+    if ($return == NDIS_STATUS_INVALID_OID || $return == NDIS_STATUS_NOT_SUPPORTED) 
+    {
+        abort "$fname does not implement all of the required OIDs";
+    }
+}

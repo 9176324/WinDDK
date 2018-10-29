@@ -1,0 +1,304 @@
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+[Version]
+signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Msft%
+DriverVer=05/22/2007,6.0.6001.16640
+CatalogFile=SWTANALOG.cat
+
+[ControlFlags]
+;ExcludeFromSelect=*
+
+[SourceDisksNames]
+1 = %BDA_DISK%,"",
+
+[SourceDisksFiles]
+SWTANALOG.sys   = 1
+
+[DestinationDirs]
+SWTANALOG.CopyFiles=10,system32\drivers
+
+[Manufacturer]
+%Msft%=Microsoft,NTx86,NTamd64
+
+[Microsoft.NTx86]
+%SWTANALOGNTSC.DeviceDesc%=SWTANALOG,ms_swtNTSC
+%SWTANALOGPAL.DeviceDesc%=SWTANALOG,ms_swtPAL
+
+[Microsoft.NTamd64]
+%SWTANALOGNTSC.DeviceDesc%=SWTANALOG,ms_swtNTSC
+%SWTANALOGPAL.DeviceDesc%=SWTANALOG,ms_swtPAL
+
+[SWTANALOG.NTx86]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTANALOG.inf
+CopyFiles=SWTANALOG.CopyFiles
+
+[SWTANALOG.NTamd64]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTANALOG.inf
+CopyFiles=SWTANALOG.CopyFiles
+
+;---------------------------------------------------------------
+;                I n t e r f a c e s
+;---------------------------------------------------------------
+
+[SWTANALOG.NTx86.Interfaces]
+AddInterface = %KSCATEGORY_TVTUNER%, %KSSTRING_BdaAnlgSWTunerFilter%, BdaAnlgTuner.Filter,0
+AddInterface = %KSCATEGORY_CROSSBAR%, %KSSTRING_BdaXBarFilter%, BdaXbar.Filter
+AddInterface = %KSCATEGORY_ENCODER%, %KSSTRING_BdaEncoderFilter%, BdaEncoder.Filter
+AddInterface = %KSCATEGORY_MULTIPLEXER%, %KSSTRING_BdaEncoderFilter%, BdaEncoder.Filter
+AddInterface = %KSCATEGORY_TVAUDIO%, %KSSTRING_BdaTVAudioFilter%, BdaTVAudio.Filter
+AddInterface = %KSCATEGORY_CAPTURE%, %KSSTRING_BdaAnlgCaptureFilter%, BdaAnlgCapture.Filter
+AddInterface = %KSCATEGORY_VIDEO%, %KSSTRING_BdaAnlgCaptureFilter%, BdaAnlgCapture.Filter
+
+[SWTANALOG.NTamd64.Interfaces]
+AddInterface = %KSCATEGORY_TVTUNER%, %KSSTRING_BdaAnlgSWTunerFilter%, BdaAnlgTuner.Filter,0
+AddInterface = %KSCATEGORY_CROSSBAR%, %KSSTRING_BdaXBarFilter%, BdaXbar.Filter
+AddInterface = %KSCATEGORY_ENCODER%, %KSSTRING_BdaEncoderFilter%, BdaEncoder.Filter
+AddInterface = %KSCATEGORY_MULTIPLEXER%, %KSSTRING_BdaEncoderFilter%, BdaEncoder.Filter
+AddInterface = %KSCATEGORY_TVAUDIO%, %KSSTRING_BdaTVAudioFilter%, BdaTVAudio.Filter
+AddInterface = %KSCATEGORY_CAPTURE%, %KSSTRING_BdaAnlgCaptureFilter%, BdaAnlgCapture.Filter
+AddInterface = %KSCATEGORY_VIDEO%, %KSSTRING_BdaAnlgCaptureFilter%, BdaAnlgCapture.Filter
+
+[TunerInterface.NT]
+AddReg=SWTANALOG.Reader.AddReg
+
+
+
+;---------------------------------------------------------------
+;                A d d R e g
+;---------------------------------------------------------------
+[SWTANALOG.Reader.AddReg]
+;HKR,,DevLoader,,*NTKERN
+;HKR,,NTMPDriver,,SWTANALOG.sys
+HKR,,CLSID,,%KSTvTune.CLSID%
+HKR,,FriendlyName,,%SWTANALOG.FriendlyName%
+
+[SWTANALOG.CopyFiles]
+SWTANALOG.sys
+
+[SWTANALOG.NTx86.Services]
+AddService=SWTANALOG, 0x00000002, SWTANALOG.ServiceInstall
+
+[SWTANALOG.NTamd64.Services]
+AddService=SWTANALOG, 0x00000002, SWTANALOG.ServiceInstall
+
+[SWTANALOG.ServiceInstall]
+DisplayName=%SWTANALOG.DeviceDesc%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%10%\system32\drivers\SWTANALOG.sys
+LoadOrderGroup=ExtendedBase
+
+
+[BdaAnlgTuner.Filter]
+AddReg = BdaAnlgTuner.Filter.AddReg, PinNames.AddReg, Category.Addreg
+
+[BdaAnlgTuner.Filter.AddReg]
+HKR,,CLSID,,%KSTvTune.CLSID%
+;HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%BdaAnlgTuner.FilterDesc%
+
+[BdaAnlgTuner.NTx86.Services]
+AddService=SWTANALOG, 0x00000002, BdaAnlgTuner.ServiceInstall
+
+[BdaAnlgTuner.NTamd64.Services]
+AddService=SWTANALOG, 0x00000002, BdaAnlgTuner.ServiceInstall
+
+[BdaAnlgTuner.ServiceInstall]
+DisplayName=%BdaAnlgTuner.DeviceDesc%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%10%\system32\drivers\SWTANALOG.sys
+LoadOrderGroup=ExtendedBase
+
+[BdaXbar.Filter]
+AddReg = BdaXBar.Filter.AddReg
+
+[BdaXBar.Filter.Addreg]
+HKR,,CLSID,,%KSXBar.CLSID%
+HKR,,FriendlyName,,%BdaXBar.FilterDesc%
+
+[BdaXBar.NTx86.Services]
+AddService=SWTANALOG, 0x00000002, BdaAnlgTuner.ServiceInstall
+
+[BdaXBar.NTamd64.Services]
+AddService=SWTANALOG, 0x00000002, BdaAnlgTuner.ServiceInstall
+
+[BdaEncoder.Filter]
+AddReg = BdaEncoder.Filter.AddReg
+
+[BdaEncoder.Filter.Addreg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%BdaEncoder.FilterDesc%
+
+[BdaEncoder.NTx86.Services]
+AddService=SWTANALOG, 0x00000002, BdaAnlgTuner.ServiceInstall
+
+[BdaEncoder.NTamd64.Services]
+AddService=SWTANALOG, 0x00000002, BdaAnlgTuner.ServiceInstall
+
+[BdaTVAudio.Filter]
+AddReg = BdaTVAudio.Filter.AddReg
+
+[BdaTVAudio.Filter.Addreg]
+HKR,,CLSID,,%KSTVAudio.CLSID%
+;HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%BdaTVAudio.FilterDesc%
+
+[BdaTVAudio.NTx86.Services]
+AddService=SWTANALOG, 0x00000002, BdaAnlgTuner.ServiceInstall
+
+[BdaTVAudio.NTamd64.Services]
+AddService=SWTANALOG, 0x00000002, BdaAnlgTuner.ServiceInstall
+
+[BdaAnlgCapture.Filter]
+AddReg = BdaAnlgCapture.Filter.AddReg
+
+[BdaAnlgCapture.Filter.Addreg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%BdaAnlgCapture.FilterDesc%
+
+[BdaAnlgCapture.NTx86.Services]
+AddService=SWTANALOG, 0x00000002, BdaAnlgTuner.ServiceInstall
+
+[BdaAnlgCapture.NTamd64.Services]
+AddService=SWTANALOG, 0x00000002, BdaAnlgTuner.ServiceInstall
+
+
+[PinNames.AddReg]
+HKLM,%MediaCategories%\%GUID.PINNAME_TVAudioIn%,Name,,%Pin.TVAudioIn%
+HKLM,%MediaCategories%\%GUID.PINNAME_TVAudioOut%,Name,,%Pin.TVAudioOut%
+HKLM,%MediaCategories%\%GUID.PINNAME_AnalogVideoOut%,Name,,%Pin.AnalogVideoOut%
+HKLM,%MediaCategories%\%GUID.PINNAME_AnalogAudioOut%,Name,,%Pin.AnalogAudioOut%
+HKLM,%MediaCategories%\%GUID.PINNAME_VideoTunerIn%,Name,,%Pin.VideoTunerIn%
+HKLM,%MediaCategories%\%GUID.PINNAME_AudioTunerIn%,Name,,%Pin.AudioTunerIn%
+HKLM,%MediaCategories%\%GUID.PINNAME_VideoDecOut%,Name,,%Pin.VideoDecOut%
+HKLM,%MediaCategories%\%GUID.PINNAME_AudioDecOut%,Name,,%Pin.AudioDecOut%
+HKLM,%MediaCategories%\%GUID.PINNAME_AnalogVideoIn%,Name,,%Pin.AnalogVideoIn%
+HKLM,%MediaCategories%\%GUID.PINNAME_AnalogAudioIn%,Name,,%Pin.AnalogAudioIn%
+HKLM,%MediaCategories%\%GUID.PINNAME_YUVOut%,Name,,%Pin.YUVOut%
+HKLM,%MediaCategories%\%GUID.PINNAME_AudioPCMOut%,Name,,%Pin.AudioPCMOUT%
+HKLM,%MediaCategories%\%GUID.PINNAME_YUVIn%,Name,,%Pin.YUVIn%
+HKLM,%MediaCategories%\%GUID.PINNAME_AudioPCMIn%,Name,,%Pin.AudioPCMIn%
+HKLM,%MediaCategories%\%GUID.PINNAME_VBI%,Name,,%Pin.VBIOut%
+
+[Category.AddReg]
+HKCR,%ActiveMovieCategories%\%GUID.Encoder%,CLSID,,%GUID.Encoder%
+HKCR,%ActiveMovieCategories%\%GUID.Encoder%,FriendlyName,,%Category_Encoders%
+HKCR,%ActiveMovieCategories%\%GUID.Multiplexer%,CLSID,,%GUID.Multiplexer%
+HKCR,%ActiveMovieCategories%\%GUID.Multiplexer%,FriendlyName,,%Category_Multiplexers%
+
+
+
+[Strings]
+
+;----------------
+; non-localizeable
+;----------------
+
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+REG_EXPAND_SZ=0x00020000
+REG_DWORD=0x00010001
+
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSProxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSTvTune.CLSID="{266EEE40-6C63-11cf-8A03-00AA006ECB65}"
+KSXBar.CLSID="{71F96460-78F3-11d0-A18C-00A0C9118956}"
+KSTVAudio.CLSID="{71F96462-78F3-11d0-A18C-00A0C9118956}"
+
+KSCATEGORY_BDATUNER="{71985F48-1CA1-11d3-9CC8-00C04F7971E0}"
+KSCATEGORY_CROSSBAR="{a799a801-a46d-11d0-a18c-00a02401dcd4}"
+KSCATEGORY_TVTUNER="{a799a800-a46d-11d0-a18c-00a02401dcd4}"
+KSCATEGORY_TVAUDIO="{a799a802-a46d-11d0-a18c-00a02401dcd4}"
+KSCATEGORY_ENCODER="{19689BF6-C384-48FD-AD51-90E58C79F70B}"
+KSCATEGORY_MULTIPLEXER="{7A5DE1D3-01A1-452c-B481-4FA2B96271E8}"
+KSCATEGORY_CAPTURE="{65E8773D-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_VIDEO="{6994AD05-93EF-11D0-A3CC-00A0C9223196}"
+
+BdaAnlgSWTuner.DeviceId="{C1E230A9-520A-427b-8AC3-6489173DAE3A}"
+
+KSSTRING_BdaAnlgSWTunerFilter="{8D118811-289C-4138-8EB9-DC7E2CE44000}"
+KSSTRING_BdaXBarFilter="{0D741D45-01E3-4581-B009-C7843E1F6835}"
+KSSTRING_BdaEncoderFilter="{26E74D4F-D5E0-425d-847D-C478AA8DC4AA}"
+KSSTRING_BdaTVAudioFilter="{54ACCE3E-6484-470e-9EFE-22860812D40D}"
+KSSTRING_BdaAnlgCaptureFilter="{03CB1A33-BE78-45eb-B276-AA8F201B00F2}"
+
+
+;----------------
+; localizeable
+;----------------
+Msft="Microsoft"
+SWTANALOGNTSC.DeviceDesc="BDA Analog NTSC Sample Tuner Device"
+SWTANALOGPAL.DeviceDesc="BDA Analog PAL Sample Tuner Device"
+SWTANALOG.FilterDesc="BDA Analog Sample Tuner Filter"
+BDA_DISK = "SW Analog Drivers disk"
+SWTANALOG.FriendlyName="BDA Analog Sample Tuner"
+MSAnlg="Microsoft"
+MSXBar="MSXBar"
+MSEncoder="MSEncoder"
+MSTVAudio="MSTVAudio"
+MSAnlgCapture="MSAnlgCapture"
+
+
+BdaAnlgTuner.DeviceDesc="Microsoft Sample BDA Analog Device"
+BdaXBar.DeviceDesc="Microsoft Sample BDA Crossbar Device"
+BdaEncoder.DeviceDesc="Microsoft Sample BDA Encoder Device"
+BdaTVAudio.DeviceDesc="Microsoft Sample BDA TV Audio Device"
+BdaAnlgCapture.DeviceDesc="Microsoft Sample BDA Analog Capture Device"
+
+BdaAnlgTuner.FilterDesc="Sample BDA Analog Tuner Filter"
+BdaXBar.FilterDesc="Sample BDA Crossbar Filter"
+BdaEncoder.FilterDesc="Sample BDA Encoder Filter"
+BdaTVAudio.FilterDesc="Sample BDA TV Audio Filter"   
+BdaAnlgCapture.FilterDesc="Sample BDA Analog Capture Filter"
+
+MediaCategories="SYSTEM\CurrentControlSet\Control\MediaCategories"
+
+GUID.PINNAME_TVAudioIn="{606AB02F-7318-47ce-943D-BB40B6EF9D52}"
+GUID.PINNAME_TVAudioOut="{E70B2AAE-EF21-41ca-9364-A05BE93D59E9}"
+GUID.PINNAME_AnalogVideoOut="{0F6F4F80-3C26-4de2-A9CF-22FB4F7F5F48}"
+GUID.PINNAME_AnalogAudioOut="{10DF9484-88D1-4a80-8D34-633ACE36FA6D}"
+GUID.PINNAME_VideoTunerIn="{65BAC61C-FACB-4d5f-A0B8-4B6FEEB59873}"
+GUID.PINNAME_AudioTunerIn="{667F65C5-699D-4eca-9BC4-334AB5F9C34E}"
+GUID.PINNAME_VideoDecOut="{1DFE880F-7C65-4715-B3A9-39BCED70AAB7}"
+GUID.PINNAME_AudioDecOut="{5AF09A2D-2A4C-4074-BB0C-6D62908F8617}"
+GUID.PINNAME_AnalogVideoIn="{CD09343D-64B7-4ff5-9781-0324B1F2ED63}"
+GUID.PINNAME_AnalogAudioIn="{236519F5-3784-4040-86B7-D67FFB1D9B18}"
+GUID.PINNAME_YUVOut="{C7C496C1-B78B-4168-80B2-C1CB718C3C5E}"
+GUID.PINNAME_AudioPCMOut="{AC3299B6-A273-487d-92D2-4A20F3C48200}"
+GUID.PINNAME_YUVIn="{2A8A6A98-CD7D-4065-8A43-0EFE41C44F39}"
+GUID.PINNAME_AudioPCMIn="{3D328BDC-EB2C-43dd-941A-4CB5A43819A1}"
+GUID.PINNAME_VBI="{1987C6F9-88DE-49df-B5F3-5336A4ED56C4}"
+
+Pin.TVAudioIn="TV Audio In"
+Pin.TVAudioOut="TV Audio Out"
+Pin.AnalogVideoOut="Analog Video Out"
+Pin.AnalogAudioOut="Analog Audio Out"
+Pin.VideoTunerIn="Video Tuner In"
+Pin.AudioTunerIn="Audio Tuner In"
+Pin.VideoDecOut="Video Decoder Out"
+Pin.AudioDecOut="Audio Decoder Out"
+Pin.AnalogVideoIn="Analog Video In"
+Pin.AnalogAudioIn="Analog Audio In"
+Pin.YUVOut="Video YUV Out"
+Pin.AudioPCMOUT="Audio PCM Out"
+Pin.YUVIn="Video YUV In"
+Pin.AudioPCMIn="Audio PCM In"
+Pin.VBIOut="VBI"
+
+ActiveMovieCategories="CLSID\{da4e3da0-d07d-11d0-bd50-00a0c911ce86}\Instance"
+GUID.Encoder="{19689BF6-C384-48fd-AD51-90E58C79F70B}"
+Category_Encoders="WDM Streaming Encoder Devices"
+
+GUID.Multiplexer="{7A5DE1D3-01A1-452c-B481-4FA2B96271E8}"
+Category_Multiplexers="WDM Streaming Multiplexer Devices"
+

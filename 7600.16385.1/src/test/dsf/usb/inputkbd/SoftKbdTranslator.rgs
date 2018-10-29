@@ -1,0 +1,27 @@
+HKCR
+{
+	InputKbd.SoftKbdTranslator.1 = s 'SoftKbdTranslator Class'
+	{
+		CLSID = s '{95CA8166-E427-4DC4-B41A-408C6D6628BE}'
+	}
+	InputKbd.SoftKbdTranslator = s 'SoftKbdTranslator Class'
+	{
+		CLSID = s '{95CA8166-E427-4DC4-B41A-408C6D6628BE}'
+		CurVer = s 'InputKbd.SoftKbdTranslator.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {95CA8166-E427-4DC4-B41A-408C6D6628BE} = s 'SoftKbdTranslator Class'
+		{
+			ProgID = s 'InputKbd.SoftKbdTranslator.1'
+			VersionIndependentProgID = s 'InputKbd.SoftKbdTranslator'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{3441EC5D-6A58-4358-9E1B-323587429066}'
+		}
+	}
+}
+

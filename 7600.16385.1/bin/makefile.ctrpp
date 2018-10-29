@@ -1,0 +1,25 @@
+#
+# Create .h & .rc files used by performance counter providers
+#
+
+!ifndef COUNTERS_MANIFEST_OUTPUT_FILE_BASENAME
+COUNTERS_MANIFEST_OUTPUT_FILE_BASENAME=$(COUNTERS_MANIFEST:.man=)
+!endif
+
+!ifdef COUNTERS_PREFIX
+COUNTERS_FLAGS=$(COUNTERS_FLAGS) -prefix $(COUNTERS_PREFIX)
+!endif
+
+CTRPP=ctrpp.exe
+
+BUILD_COUNTERS_MANIFEST: $(OBJ_PATH)\$O\LastCtrpp.run
+
+$(OBJ_PATH)\$O\LastCtrpp.run: $(COUNTERS_MANIFEST)
+    set BUILDMSG=CTRPP Processing: $(COUNTERS_MANIFEST)
+    $(CTRPP) $? \
+    $(COUNTERS_FLAGS) \
+    -o $(OBJ_PATH)\$(O)\$(COUNTERS_MANIFEST_OUTPUT_FILE_BASENAME).h \
+    -ch $(OBJ_PATH)\$(O)\$(COUNTERS_MANIFEST_OUTPUT_FILE_BASENAME)_counters.h \
+    -rc $(OBJ_PATH)\$(O)\$(COUNTERS_MANIFEST_OUTPUT_FILE_BASENAME).rc 
+    echo Success: $(COUNTERS_MANIFEST) > $@
+

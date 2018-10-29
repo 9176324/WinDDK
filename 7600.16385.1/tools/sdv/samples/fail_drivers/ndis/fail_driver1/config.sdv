@@ -1,0 +1,7 @@
+NdisAllocateMemoryWithTagPriority
+Init_RegisterSG
+MiniportPause_Return
+MiniportCheckForHang_Return
+NdisStallExecution_Delay
+Flags_Irql
+Irql_Synch_Function

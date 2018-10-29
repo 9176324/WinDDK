@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<DeviceInfo xmlns="http://schemas.microsoft.com/windows/DeviceMetadata/DeviceInfo/2007/11/">
+  <DeviceCategoryList>
+    <DeviceCategory>Other</DeviceCategory>
+  </DeviceCategoryList>
+  <ModelName>トースター</ModelName>
+  <DeviceDescription1>WDK トースター用　デバイスメタデータパッケージサンプル</DeviceDescription1>
+  <Manufacturer>Fabrikam, Inc.</Manufacturer>
+  <DeviceIconFile>Toaster.ico</DeviceIconFile>
+</DeviceInfo>

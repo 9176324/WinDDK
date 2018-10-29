@@ -1,0 +1,36 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule verifies that before returning from a dispatch
+	routine, if the IRP is a WMI_IRP, then the driver should
+	complete it by calling IoCompleteRequest.
+*/
+
+#include "ntddk_slic.h"
+
+state {
+    int not_completed = 0;
+} with guard(sdv_main,sdv_irp) 
+
+
+sdv_stub_WmiIrpNotCompleted.entry [guard $1]
+{
+    not_completed = 1;
+}
+
+
+IoCompleteRequest.entry [guard $1]
+{
+    not_completed = 0;
+}
+
+
+
+sdv_stub_dispatch_end.entry [guard $2]
+{
+    if (not_completed) {
+        abort "The dispatch routine has not completed its WMI processing.";
+    }
+}

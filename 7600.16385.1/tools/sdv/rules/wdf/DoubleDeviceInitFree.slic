@@ -1,0 +1,33 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+  
+  
+	Summary: 
+	This rule verifies that drivers do not free on device initialization structure twice.
+  
+	Description: 
+	The methods WdfDeviceInitFree should not be called twice for the same device initialization structure. 
+     
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT,  DEALLOCATED} t = INIT;
+     int *cur_deviceinit = 0;
+}
+
+
+[sdv_WdfDeviceInitFree
+].entry
+{
+      if ((t == DEALLOCATED)&&($1 == cur_deviceinit)) {
+        abort "The driver is calling WdfDeviceInitFree on the same DeviceInit Structure twice.";
+        }else{
+        t = DEALLOCATED; 
+        cur_deviceinit = $1;
+      }
+}
+
+

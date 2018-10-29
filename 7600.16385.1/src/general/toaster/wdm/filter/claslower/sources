@@ -1,0 +1,7 @@
+!include ..\sources.inc
+
+TARGETNAME=clslower
+
+C_DEFINES= $(C_DEFINES)  -DCLASS_LOWER=1
+
+

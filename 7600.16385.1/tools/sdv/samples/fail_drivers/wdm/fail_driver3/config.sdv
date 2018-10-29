@@ -1,0 +1,11 @@
+CancelSpinLock
+DanglingDeviceObjectReference
+ForwardedAtBadIrql
+IrqlDispatch
+IrqlExAllocatePool
+IrqlExApcLte3
+IrqlExPassive
+IrqlIoApcLte
+IrqlIoPassive2
+MarkIrpPending
+PnpSurpriseRemove

@@ -1,0 +1,19 @@
+import "wudfddi.idl";
+
+[
+    uuid(1C267C0C-38BD-485E-BA8A-DC0281A23E7F),
+    version(1.0),
+    helpstring("Sensor Skeleton Driver Type Library")
+]
+library SensorsSkeletonDriverLib
+{
+    importlib("stdole2.tlb");
+    [
+        uuid(182BBB15-88C0-4E9C-A16F-EB5CDBC226C8),
+        helpstring("SensorsSkeletonDriver Class")
+    ]
+    coclass SensorsSkeletonDriver
+    {
+        [default] interface IDriverEntry;
+    };
+};

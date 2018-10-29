@@ -1,0 +1,105 @@
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+[Version]
+signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Msft%
+DriverVer=04/21/2008,6.0.6001.18001
+CatalogFile=SWTNetOp.cat
+
+[ControlFlags]
+;ExcludeFromSelect=*
+
+[SourceDisksNames]
+1 = %BDA_DISK%,"",
+
+[SourceDisksFiles]
+SWTNetOp.sys     = 1
+
+[DestinationDirs]
+SWTNetOp.CopyFiles=10,system32\drivers
+
+[Manufacturer]
+%Msft%=Microsoft,NTx86,NTamd64
+
+[Microsoft.NTx86]
+;;%SWTDVBT.DeviceDesc%=SWTDVBT,SW\{627D5C07-457C-4A61-8556-36D980A5E0E2}
+%SWTNetOp.DeviceDesc%=SWTNetOp,ms_swtnetop
+
+[Microsoft.NTamd64]
+%SWTNetOp.DeviceDesc%=SWTNetOp,ms_swtnetop
+
+[SWTNetOp.NTx86]
+Include = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTNetOp.inf
+CopyFiles=SWTNetOp.CopyFiles
+
+[SWTNetOp.NTamd64]
+Include = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTNetOp.inf
+CopyFiles=SWTNetOp.CopyFiles
+
+;---------------------------------------------------------------
+;                I n t e r f a c e s
+;---------------------------------------------------------------
+
+[SWTNetOp.NTx86.Interfaces]
+AddInterface=%KSCATEGORY_SWTNetOp%,%KSSTRING_SWTNetOpFilter%,TunerInterface.NT,
+
+[SWTNetOp.NTamd64.Interfaces]
+AddInterface=%KSCATEGORY_SWTNetOp%,%KSSTRING_SWTNetOpFilter%,TunerInterface.NT,
+
+[TunerInterface.NT]
+AddReg=SwtNetop.Reader.AddReg
+
+;---------------------------------------------------------------
+;                A d d R e g
+;---------------------------------------------------------------
+
+[SwtNetop.Reader.AddReg]
+;HKR,,DevLoader,,*NTKERN
+;HKR,,NTMPDriver,,SWTNetOp.sys
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%SWTNetOp.FriendlyName%
+
+
+[SWTNetOp.CopyFiles]
+SWTNetOp.sys
+
+[SWTNetOp.NTx86.Services]
+AddService=SWTNetOp, 0x00000002, SWTNetOp.ServiceInstall
+
+[SWTNetOp.NTamd64.Services]
+AddService=SWTNetOp, 0x00000002, SWTNetOp.ServiceInstall
+
+[SWTNetOp.ServiceInstall]
+DisplayName=%SWTNetOp.DeviceDesc%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%10%\system32\drivers\SWTNetOp.sys
+LoadOrderGroup=Extended Base
+
+[Strings]
+; non-localizeable
+RunOnce="SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce"
+SWTNETOP.DeviceId="{627D5C07-457C-4A61-8556-36D980A5E0E2}"
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSSTRING_SWTNetOpFilter="{627D5C07-457C-4A61-8556-36D980A5E0E2}"
+KSCATEGORY_SWTNetOp="{71985F48-1CA1-11d3-9CC8-00C04F7971E0}"
+
+
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+
+;localizeable
+Msft="Microsoft"
+SWTNetOp.DeviceDesc="BDA NetOp Sample Tuner Device"
+SWTNetOp.FilterDesc="BDA NetOp Sample Tuner Filter"
+BDA_DISK = "S/W BDA NetOp Sample Tuner Drivers disk"
+SWTNetOp.FriendlyName="BDA NetOp Sample Tuner"
+
+

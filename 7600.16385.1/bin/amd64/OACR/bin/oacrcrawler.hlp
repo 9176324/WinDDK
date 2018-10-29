@@ -1,0 +1,502 @@
+;====================================================================
+; Help file for Microsoft Auto Code Review (OACR) crawler tool.
+;====================================================================
+
+;-----------------------------------------------------------------------------
+; Default topic
+[]
+OACR Source Code Scanning Tool
+
+Tool to get information about the use (or misuse) of suppressed
+or disabled OACR warnings using compiler pragmas. It also provides commands
+to replace PREfast version specific source code warning suppression pragmas
+by version independent macros.
+
+For help try:
+
+oacrcrawler help commands         for a list of all commands
+oacrcrawler help <command>        for help on a specific command
+oacrcrawler help filedescriptor   for help on <fileDescriptor>
+
+;-----------------------------------------------------------------------------
+[commands]
+
+oacrcrawler commands:
+
+Basic Commands:
+--------------
+find           Searches files for a given regular expression
+replace        Searches files for a given regular expression, checks out
+               the files with matches and replaces the matches
+tryreplace     'try' run for replace command. No files get checked out
+               or modified
+
+Commands for bookkeeping:
+------------------------
+pragmacount    Get counts and more details about OACR warning suppression
+               pragmas and macros
+               
+pragmacheck    Check for correct use of pragmas and find obsolete ones
+
+salcount       Finds out which and how many SAL macros are used in
+               the source code
+               
+Commands for PREfast 2.1 to Whidbey-PREfast migration:
+-----------------------------------------------------
+pragmafix          Replace pragma prefast with OACR macros
+trypragmafix       Show all places the 'pragmafix' command would change
+
+salreplace     Command to bulk replace existing SAL macros
+trysalreplace  Show all place the 'salreplace' command would change
+
+;-----------------------------------------------------------------------------
+[find]
+
+find -- Searches files for a given regular expression
+
+oacrcrawler find <regExp> { <fileDescriptor> } [ /all ] [ /recursive ]
+            [ /excludefiles <filter> ] [ /checkout ] [ /files ]
+
+   Searches for matches of <regExp> in files specified by the <fileDescriptor>
+   arguments. The search is performed on a line by line basis. Patterns spanning
+   multiple lines are not supported.
+   
+   The supported regular expressions are a subset of Perl's regular
+   expression functionality.
+
+   Supported Syntax for <regExp>:
+   -----------------------------
+   regx       = alts
+   alts       = seqs ( "|" seqs )*
+   seqs       = seq+
+   seq        = ( "(" ["?:"|"?!"] alts ")" | charClass | charSet |
+                  backref | char | "^" | "$" )[ quantifier ]
+   charClass  = "." | "\s" | "\S" | "\w" | "\W" | "\d" | "\D"
+   charSet    = "[" ["^"]( char [ "-" char ] )+ "]"
+   backref    = "\" 1|2|3|4|5|6|7|8|9
+   quantifier = ( "?" | "*" | "+" | range ) ["?"]
+   range      = "{" [num] ["," [num]' "}"
+   num        = digit+
+
+   Metachars have same semantic as in Perl. Also same backslash rules apply.
+
+   Supported Character Classes:
+   ---------------------------
+   .   any char
+   \s  everything that makes FSpaceWch( wch ) return true
+   \S  everything that makes FSpaceWch( wch ) return false
+   \w  same as [a-z_A-Z0-9]
+   \W  same as [^a-z_A-Z0-9]
+   \d  same as [0-9]
+   \D  same as [^0-9]
+
+   More info about regular expressions can be found in:
+   L. Wall, T. Christiansen & R. L. Schwartz: 'Programming Perl', O'Reilly
+
+   if '^', '|' or blank characters are used in <regExp> the string needs to
+   be quoted.
+
+   With the /all switch the project-root directories of all projects defined
+   in oacr.ini are traversed.
+
+   The /excludefiles switch allows to exclude files from the search.
+   See the 'oacr help filters' for details. For this command only the
+   warning locations apply.
+
+   The /recursive switch tells the tool to recursively search subdirectories
+   if a <fileDescriptor> is a directory name or file pattern.
+
+   The /checkout switch tells the tool to checkout the files with matches.
+   
+   If the /files switch is present the names of the scanned files will be
+   printed to the standard output.
+  
+   Examples:
+   
+   oacrcrawler find __no_e?count mso /excludefiles *.txt
+   oacrcrawler find "__in|__out|__inout" \o12\otools\inc\...
+   oacrcrawler find "\s+MyProc\s*[(]" \o12\ppt\*.cpp /recursive /checkout
+
+;-----------------------------------------------------------------------------
+[replace]
+
+replace -- Searches files for a given regular expression, checks out
+           the files with matches and replaces the matches
+           
+oacrcrawler replace <findRegExp> <replaceExp> { <fileDescriptor> }
+            [ /all ] [ /recursive ] [ /excludefiles <filter> ]
+
+   Searches for matches of <findRegExp> in files specified by
+   <fileDescriptor> arguments, checks out files with matches and replaces
+   the matches by <replaceExp>.
+   
+   The regular expression syntax for <findRegExp> is described in the
+   'find' command.
+   
+   Supported Syntax for <replaceExp>:
+   ---------------------------------
+   replx   = exp+
+   exp     = backref | string
+   backref = "\" 0|1|2|3|4|5|6|7|8|9
+          
+   With the /all switch the project-root directories of all projects defined
+   in oacr.ini are traversed.
+
+   The /recursive switch tells the tool to recursively search subdirectories
+   if a <fileDescriptor> is a directory name or file pattern.
+
+   The /excludefiles switch allows to exclude files from the search.
+   See the 'oacr help filters' for details. For this command only the
+   warning locations apply.
+
+   Examples:
+   
+   oacrcrawler replace __no_e?count\s* "" \o12\ppt\...
+   oacrcrawler replace __in\s+__opt __in_opt \o12\pub\*.cpp /rec
+   oacrcrawler replace (__[beltz]count)\s*([(].*[)])\s+__opt \1_opt\2 mso
+   
+;-----------------------------------------------------------------------------
+[tryreplace]
+
+replace -- 'try' run for replace command. No files get checked out
+           or modified
+           
+oacrcrawler tryreplace <findRegExp> <replaceExp> { <fileDescriptor> }
+            [ /all ] [ /recursive ] [ /excludefiles <filter> ]
+
+   Same as the 'replace' command but no file gets checked out and no
+   match gets replaced.
+
+;-----------------------------------------------------------------------------
+[pragmacount]
+
+pragmacount -- Get counts and more details about OACR warning suppression
+               pragmas and macros
+
+oacrcrawler pragmacount { <fileDescriptor> } [ /all ] [ /recursive ]
+            [ /excludefiles <filter> ] [ /list ] [ /details ]
+            [ /type <types> ] [ /verb <verbs> ] [ /warnings <filter> ]
+
+   Counts pragmas and OACR_WARNING_* macros in source code. 
+   The <fileDescriptor> arguments describe which files are searched.
+   
+   With the /all switch the project-root directories of all projects defined
+   in oacr.ini are traversed.
+
+   The /recursive switch tells the tool to recursively search subdirectories
+   if a <fileDescriptor> is a directory name or file pattern.
+   
+   The /excludefiles switch allows to exclude files from the search.
+   See the 'oacr help filters' for details. For this command only the
+   warning locations apply.
+
+   The /list switch prints the found lines and their source code position
+   to the standard output.
+   
+   The /details switch prints more information about which pragmas have
+   been found in which files.
+   
+   The /type switch allows to filter on the pragma type.
+   
+   Type     | searches for
+   -----------------------
+   warning  | #pragma warning(...)
+   prefast  | #pragma prefast(...)
+   oacr     | OACR_WARNING_* macros
+   oldoacr  | OACR_SUPPRESSWARNING macro
+   
+   Several types can be listed separated by ';' e.g. 'oacr;oldoacr'
+   The default setting for type is 'prefast;oacr;oldoacr'.
+   
+   The /verb switch allows to filter on the pragma verb.
+   The supported verbs are:
+   
+   push pop enable disable suppress default once error 1 2 3 4
+   
+   Several verbs can be listed separated by ';' e.g. 'suppress;disable'
+   The default setting for verb is 'push;pop;enable;disable;suppress'.
+
+   The /warnings switch allows to restrict the command to a limited set of
+   files and\or defect numbers. The syntax is the same as for the /warnings
+   switch for other standard oacr commands like 'list'.
+   See 'oacr help filters' for details on filter specifications.
+      
+   Examples:
+   
+   oacrcrawler pragmacount \myproject\...
+   
+   Scans all files under \myproject including subdirectories and
+   writes the counts of the '#pragma prefast', OACR_WARNING_*
+   and OACR_SUPPRESSWARNINGS found in the code.
+   
+   oacrcrawler pragmacount MyProject /list /type warning /verb disable
+      /warning 4068
+
+   Scans all files that are under the oacr.ini <ProjectRoot> entry
+   of MyProject, searches for occurrences of the #pragma warning(disable:4068)
+   pattern and writes the found lines and their locations to the
+   standard output.
+   
+   oacrcrawler pragmacount MyProject /list /type oacr
+      /warning 25025;*.h
+
+   Scans all files ending with '.h' that are under the oacr.ini <ProjectRoot>
+   entries of MyProject, searches for occurrences of source code suppression
+   for defect 25025 OACR warning in files  and writes the found lines and
+   their locations to the standard output.
+
+;-----------------------------------------------------------------------------
+[pragmacheck]
+
+pragmacheck -- Check for correct use of pragmas and find obsolete ones
+
+oacrcrawler pragmacheck { <fileDescriptor> } [ /all ] [ /recursive ]
+            [ /excludefiles <filter> ] [ /findobsolete ] [ /warnings <filter> ]
+
+   Checks for correct use of warning suppression pragmas and macros in
+   the source code.
+    
+   The <fileDescriptor> arguments describe which files are searched.
+   
+   With the /all switch the project-root directories of all projects defined
+   in oacr.ini are traversed.
+
+   The /recursive switch tells the tool to recursively search subdirectories
+   if a <fileDescriptor> is a directory name or file pattern.
+
+   The /excludefiles switch allows to exclude files from the search.
+   See the 'oacr help filters' for details. For this command only the
+   warning locations apply.
+
+   The /findobsolete switch must be used in combination with defect logs that
+   are created with the 'nopftsuppress' switch turned on. It will report
+   pragmas which do not suppress any warning in the current configuration.
+   The switch only works properly if PREfast warnings are suppressed by
+   macros defined in oacr.h (OACR_WARNING_SUPPRESS and OACR_WARNING_DISABLE).
+   The switch will report wrong results if used with native PREfast warning
+   suppression. e.g. #pragma warning(suppress:6011).
+   The 'oacrcrawler pragmafix' command can be used to convert native PREfast
+   warning suppression pragmas to OACR macros.
+   The switch is useful to find outdated PREfast warning suppression pragmas
+   after switching from PREfast 2.1 to Whidbey-PREfast.
+
+   The /warnings switch allows to restrict the command to a limited set of
+   files and\or defect numbers. The syntax is the same as for the /warnings
+   switch for other standard oacr commands like 'list'. Specifying defect
+   numbers is only effective with the /findobsolete switch.
+   See 'oacr help filters' for details on filter specifications.
+   
+   Examples:
+   
+   oacrcrawler pragmacheck d:\o12\otools\inc\...
+   
+   Scans all text files in the directory tree under d:\o12\otools\inc and
+   reports suspicious use of PREfast warning pragmas.
+   
+   How to find obsolete PREfast pragmas in project 'Word':
+   
+   oacr set batch all nopftsuppress
+   <full build 'word'>
+   oacr check word
+   oacrcrawler pragmacheck word /findobsolete
+   
+   The 'nopftsuppress' mode tells OACR to disable the warning suppression
+   macros. Therefore it will produce a defect log containing warnings
+   that are usually suppressed by the macros. The command will scan
+   all text file in the directories of Word's PROJECTROOT entry in
+   oacr.ini and check if for each #pragma suppress or disable there is
+   at least one actual warning in the special 'nopftsuppress' defect log.
+   
+;-----------------------------------------------------------------------------
+[salcount]
+
+salcount -- Finds out which and how many SAL macros are used in
+            the source code
+
+oacrcrawler salcount { <fileDescriptor> } [ /all ] [ /recursive ]
+            [ /excludefiles <filter> ] [ /list ] [ /files ] [ /match <regx> ]
+
+   Counts SAL macros in source code. 
+   The <fileDescriptor> arguments describe which files are searched.
+   
+   With the /all switch the project-root directories of all projects defined
+   in oacr.ini are traversed.
+
+   The /recursive switch tells the tool to recursively search subdirectories
+   if a <fileDescriptor> is a directory name or file pattern.
+   
+   The /excludefiles switch allows to exclude files from the search.
+   See the 'oacr help filters' for details. For this command only the
+   warning locations apply.
+
+   The /list switch prints the found lines and their source code position
+   to the standard output.
+   
+   If the /files switch is present the files with SAL macros and their counts
+   are printed.
+   
+   The /match switch allows to restrict the search to a subset of macros.
+   The match argument must be a valid regular expression. See the 'find'
+   command for the regular expression syntax documentation.
+         
+   Examples:
+   
+   oacrcrawler salcount \my project\...
+   
+   Scans all files under \myproject including subdirectories and
+   writes the counts of the SAL macros found in the code.
+   
+   oacrcrawler salcount MyProject /list /match __in
+
+   Scans all files that are under the oacr.ini <ProjectRoot> entry
+   of MyProject, searches for occurrences of SAL macros that contain
+   the substring '__in' and writes the found lines and their locations
+   to the standard output.
+   
+;-----------------------------------------------------------------------------
+[salreplace]
+
+salreplace -- Command to bulk replace existing SAL macros
+
+oacrcrawler salreplace { <fileDescriptor> } [ /all ] [ /recursive ]
+            [ /excludefiles <filter> ] /mapfile <mapfile> [ /match <regx> ]
+
+   Replaces SAL macros in source code. 
+   The <fileDescriptor> arguments describe which files are searched.
+   
+   With the /all switch the project-root directories of all projects defined
+   in oacr.ini are traversed.
+
+   The /recursive switch tells the tool to recursively search subdirectories
+   if a <fileDescriptor> is a directory name or file pattern.
+
+   The /excludefiles switch allows to exclude files from the search.
+   See the 'oacr help filters' for details. For this command only the
+   warning locations apply.
+
+   The /mapfile switch passes a text file that contains the description
+   of the macro mappings. The command understands two syntax clauses:
+   
+   #define oldMacro  newMacro1 .. newMacroN
+   #replace oldMacro1 .. oldMacroN #by newMacro1 .. newMacroM
+   
+   e.g.
+   
+   #define __out_ecount(size)       __out_cap(size)
+   #define __deref_out_ecount(size) __out __deref_post_cap(size)
+   
+   #replace __out __deref_post_cap(size) #by __deref_out_cap(size)
+
+   The /match switch allows to restrict the search to a subset of macros
+   defined in the mapfile. The match argument must be a valid regular
+   expression. See the 'find' command for the regular expression syntax
+   documentation.
+   
+   Examples:
+   
+   oacrcrawler salreplace \myproject\... /mapfile old2newsal.txt
+   
+   Scans all files under \myproject including subdirectories,
+   searches for SAL macros defined in old2newsal.txt, checks out
+   files with matches and replaces the macros according to the
+   rules in old2newsal.txt
+   
+   oacrcrawler salreplace MyProject /mapfile anothersal.txt / match __in
+
+   Scans all files that are under the oacr.ini <ProjectRoot> entry
+   of MyProject, searches for occurrences of SAL macros defined
+   in anothersal.txt that also contain the substring '__in' and
+   replaces matches according to the rules in anothersal.txt
+
+;-----------------------------------------------------------------------------
+[trysalreplace]
+
+trysalreplace -- Show all place the 'salreplace' command would change
+
+oacrcrawler trysalreplace { <fileDescriptor> } [ /all ] [ /recursive ]
+            [ /excludefiles <filter> ] /mapfile <mapfile> [ /match <regx> ]
+
+   Command to preview the results of the 'salreplace' command. Lists
+   all the places that would be changed by running the 'salreplace'
+   command with the same parameters.
+   
+;-----------------------------------------------------------------------------
+[pragmafix]
+
+pragmafix -- Replace pragma prefast with OACR macros
+
+oacrcrawler pragmafix { <fileDescriptor> } [ /all ] [ /recursive ]
+            [ /excludefiles <filter> ] [ /warnings <filter> ]
+
+   Replaces all 'old' forms of source code OACR warning suppression
+   with the new OACR_WARNING_* macros. The 'old' forms are
+   '#pragma prefast( ... )' and 'OACR_SUPPRESSWARNING(...)'.
+   
+   It also replaces warning numbers by symbolic names #defined in
+   pftwarnings.h.
+   
+   The command uses SourceDepot to check out files that need to be changed.
+
+   With the /all switch the project-root directories of all projects defined
+   in oacr.ini are traversed.
+
+   The /recursive switch tells the tool to recursively search subdirectories
+   if a <fileDescriptor> is a directory name or file pattern.
+
+   The /excludefiles switch allows to exclude files from the search.
+   See the 'oacr help filters' for details. For this command only the
+   warning locations apply.
+
+   The /warnings switch allows to restrict the command to a limited set of
+   files and\or defect numbers. The syntax is the same as for the /warnings
+   switch for other standard oacr commands like 'list'.
+   See 'oacr help filters' for details on filter specifications.
+   
+   Example:
+   
+   oacrcrawler pragmafix \myproject\...
+   
+   Scans all files that are under \myproject including subdirectories and
+   replaces 'old' forms of source code OACR warning suppression with the
+   appropriate OACR_WARNING_<verb> macro.
+
+;-----------------------------------------------------------------------------
+[trypragmafix]
+
+trypragmafix -- Show all places the 'pragmafix' command would change
+
+oacrcrawler trypragmafix { <fileDescriptor> } [ /all ] [ /recursive ]
+            [ /excludefiles <filter> ] [ /warnings <filter> ]
+
+   Command to preview the results of the 'pragmafix' command. Lists
+   all the places that would be changed by running the 'pragmafix'
+   command with the same parameters.
+
+;-----------------------------------------------------------------------------
+[fileDescriptor]
+
+A file descriptor can either be a
+
+- project
+- directory                
+- file              
+
+If the file descriptor is a project the root of the search will be the directory
+specified in the 'ProjectRoot' entry of the project in oacr.ini.
+
+Wildcards can be used to limit the scan to certain types of files. If wildcards
+are used the /recursive switch must me used to scan subdirectories.
+
+Examples:
+
+MyProject         Searches the file under the 'ProjectRoot' of the 'MyProject'
+                  OACR project.
+
+\myproject\...    Searches all files including subdirectories under the
+                  \myproject directory
+                  
+\MyProj\*.c*      Searches all files in the \MyProj directory whose names
+                  match '*.c*'                  
+
+;-----------------------------------------------------------------------------
+

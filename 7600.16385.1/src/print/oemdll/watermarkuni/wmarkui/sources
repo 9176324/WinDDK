@@ -1,0 +1,42 @@
+TARGETNAME=WMARKUNIUI
+TARGETTYPE=DYNLINK
+
+DLLBASE=0x50000000
+DLLENTRY=_DllMainCRTStartup
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+USE_MSVCRT=1
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.h
+
+# To build version with debug output, add -DDEBUG to C_DEFINES line below
+C_DEFINES=$(C_DEFINES) -DUSERMODE_DRIVER -D_UNICODE -DUNICODE
+
+
+TARGETLIBS=    $(SDK_LIB_PATH)\kernel32.lib   \
+               $(SDK_LIB_PATH)\user32.lib     \
+               $(SDK_LIB_PATH)\ole32.lib      \
+               $(SDK_LIB_PATH)\advapi32.lib   \
+               $(SDK_LIB_PATH)\uuid.lib
+
+
+INCLUDES=..\common;.
+
+SOURCES= intrface.cpp  \
+         dllentry.cpp  \
+         fdevmode.cpp  \
+         globals.cpp   \
+         WMARKUI.cpp   \
+         WMARKUI.rc
+
+!IF "$(BUILD_PASS)" == "PASS2" || "$(BUILD_PASS)" == "PASSALL"
+NTTARGETFILES=COPYDLL
+!ENDIF
+
+# Build with Vista libs but make sure sample can still run downlevel
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+WIN32_WINNT_VERSION =$(LATEST_WIN32_WINNT_VERSION)
+NTDDI_VERSION=$(LATEST_NTDDI_VERSION)
+

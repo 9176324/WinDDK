@@ -1,0 +1,24 @@
+TARGETNAME=toastapp
+TARGETTYPE=PROGRAM
+
+
+# To build ANSI, comment out the following C_DEFINES and UMENTRY lines...
+C_DEFINES=-DUNICODE -D_UNICODE
+UMENTRY=wmain
+
+SOURCES=toastapp.c \
+        toastapp.rc
+
+MSC_WARNING_LEVEL=/W4 /WX
+        
+TARGETLIBS=$(SDK_LIB_PATH)\setupapi.lib \
+       $(SDK_LIB_PATH)\user32.lib
+
+UMTYPE=console
+
+PRECOMPILED_INCLUDE=precomp.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj
+USE_MSVCRT=1
+
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)

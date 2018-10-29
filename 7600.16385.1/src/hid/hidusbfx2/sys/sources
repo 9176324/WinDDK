@@ -1,0 +1,49 @@
+TARGETNAME=hidusbfx2
+TARGETTYPE=DRIVER
+
+
+KMDF_VERSION_MAJOR=1
+
+TARGETLIBS=$(DDK_LIB_PATH)\hidclass.lib \
+           $(DDK_LIB_PATH)\ntstrsafe.lib
+
+INCLUDES=..\inc
+
+SOURCES= \
+     driver.c  \
+        hid.c  \
+        usb.c  \
+  hidusbfx2.rc \
+
+INF_NAME=hidusbfx2
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+PASS0_BINPLACE=$(NTTARGETFILE0)
+
+#
+# Comment the below line to disable tracing. All the debug traces
+# will be sent to the kernel-debugger.
+#ENABLE_EVENT_TRACING=1
+
+!IFDEF ENABLE_EVENT_TRACING
+
+C_DEFINES = $(C_DEFINES) -DEVENT_TRACING
+
+#
+# Generate WPP tracing code
+# $(SOURCES)   -- run software preprocessor on files listed in SOURCES
+# -km          -- use kernel mode
+# -func        -- define function we'll use for tracing
+#                 This would map all TraceEvents calls to 
+#                 DoTraceMessage.
+#
+RUN_WPP= $(SOURCES)                             \
+         -km                                    \
+         -func:TraceEvents(LEVEL,FLAGS,MSG,...) \
+         -gen:{km-WdfDefault.tpl}*.tmh       
+!ENDIF
+
+TARGET_DESTINATION=wdf
+
+# Temporarily excuse usage of serviceability impairing macros in code...
+ALLOW_DATE_TIME=1
+

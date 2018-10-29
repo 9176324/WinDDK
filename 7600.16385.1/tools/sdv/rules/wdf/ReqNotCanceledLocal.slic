@@ -1,0 +1,80 @@
+/*
+
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+
+	Summary: 
+	If a request marked as "Cancelable" is completed in a default I/O queue callback function, 
+	the WdfRequestUnmarkCancelable method must be called on the request before completion. The request
+	must be completed, unless the request is canceled before calling WdfRequestUnmarkCancelable.
+	
+	Description: 
+	If a request that was marked as "Cancelable" by the WdfRequestMarkCancelable method,
+	is completed in one of the DEFAULT/READ/WRITE/DEVICE CONTROL/
+	INTERNAL DEVICE CONTROL callback functions (by calling 
+	WdfRequestComplete, WdfRequestCompleteWithInformation, or WdfRequestCompleteWithPriorityBoost), the WdfRequestUnmarkCancelable
+	method must be called. The request must be completed unless the WdfRequestUnmarkCancelable method
+	returned status equal to STATUS_CANCELLED.
+	
+	Rule diagnostics:
+        "The Request that was marked as cancelable must be made non-cancelable by calling WdfRequestUnmarkCancelable with returned status 
+        not equal to STATUS_CANCELLED before completion."
+	
+	Related rules: 
+	The ReqNotCanceled rule does the same check in the deferred processing callbacks.
+
+
+*/
+
+#include "ntddk_slic.h"
+
+#define STATUS_CANCELLED    -1073741536
+
+state{
+     enum {INIT1, MARK, UNMARK} s = INIT1;
+     enum {INIT2, INDISP, OUTDISP} t = INIT2;
+} with guard (sdv_main, hrequest)
+
+
+[ sdv_WdfRequestComplete
+, sdv_WdfRequestCompleteWithInformation
+, sdv_WdfRequestCompleteWithPriorityBoost
+].exit[guard $1]
+{
+    if ((t == INDISP)&&(s == MARK)) 
+	{      
+      abort "Warning: The Request that was marked as cancelable must be made non-cancelable by calling WdfRequestUnmarkCancelable with returned status not equal to STATUS_CANCELLED before completion."; 
+    }
+
+}
+[fun_WDF_IO_QUEUE_IO_DEFAULT
+,fun_WDF_IO_QUEUE_IO_READ
+,fun_WDF_IO_QUEUE_IO_WRITE
+,fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL
+,fun_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL
+].entry[guard $2]
+{
+   t = INDISP;
+}
+[fun_WDF_IO_QUEUE_IO_DEFAULT
+,fun_WDF_IO_QUEUE_IO_READ
+,fun_WDF_IO_QUEUE_IO_WRITE
+,fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL
+,fun_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL
+].exit[guard $2]
+{
+   halt;
+}
+sdv_WdfRequestMarkCancelable.exit[guard $1]
+{
+    if (t == INDISP) {
+        s = MARK;     
+    }
+}
+sdv_WdfRequestUnmarkCancelable.exit[guard $1]
+{
+     if ((t == INDISP)&&($return != STATUS_CANCELLED)) {
+        s = UNMARK;            
+    }
+}

@@ -1,0 +1,85 @@
+TARGETNAME=PCIDRV
+TARGETTYPE=DRIVER
+
+
+KMDF_VERSION_MAJOR=1
+
+INF_NAME1=genpci
+INF_NAME2=netdrv
+
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\pcidrv.bmf
+
+NTTARGETFILE1=$(OBJ_PATH)\$(O)\$(INF_NAME1).inf \
+              $(OBJ_PATH)\$(O)\$(INF_NAME2).inf
+
+
+TARGET_DESTINATION=wdf
+
+PASS1_BINPLACE= $(NTTARGETFILE1)
+
+
+TARGETLIBS=$(TARGETLIBS) \
+           $(DDK_LIB_PATH)\ntstrsafe.lib
+
+
+
+TARGETLIBS=$(TARGETLIBS) $(DDK_LIB_PATH)\ntstrsafe.lib
+
+C_DEFINES=$(C_DEFINES) -D_WIN2K_COMPAT_SLIST_USAGE
+
+
+INCLUDES=$(INCLUDES);..
+
+PRECOMPILED_INCLUDE=precomp.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj
+
+SOURCES= ..\pcidrv.rc \
+         ..\pcidrv.c  \
+         ..\wmi.c \
+         nic_init.c \
+         eeprom.c \
+         nic_recv.c \
+         nic_send.c \
+         routines.c \
+         physet.c \
+         nic_req.c \
+         nic_pm.c \
+         isrdpc.c
+
+!if !defined(DDK_TARGET_OS) || "$(DDK_TARGET_OS)"=="Win2K"
+
+C_DEFINES = $(C_DEFINES) -DWIN2K 
+
+!endif
+
+
+#
+# Comment the below line to disable tracing. All the debug traces
+# will be sent to the kernel-debugger.
+#ENABLE_EVENT_TRACING=1
+
+!IFDEF ENABLE_EVENT_TRACING
+
+C_DEFINES = $(C_DEFINES) -DEVENT_TRACING
+
+#
+# Generate WPP tracing code
+# $(SOURCES)   -- run software preprocessor on files listed in SOURCES
+# -km          -- use kernel mode
+# -func        -- define function we'll use for tracing
+#                 This would map all TraceEvents calls to 
+#                 DoTraceMessage.
+#
+RUN_WPP= $(SOURCES)                            \
+         -km                                   \
+     -func:TraceEvents(LEVEL,FLAGS,MSG,...) \
+         -func:Hexdump((LEVEL,FLAGS,MSG,...)) \
+         -gen:{km-WdfDefault.tpl}*.tmh
+         
+
+!ENDIF
+
+# Temporarily excuse usage of serviceability impairing macros in code...
+ALLOW_DATE_TIME=1
+

@@ -1,0 +1,141 @@
+<html>
+
+<head>
+<title>WmiSamp</title>
+</head>
+
+<body lang=EN-US link=blue vlink=blue style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<h2><span style='font-family:Verdana'>WMISamp</span></h2>
+
+<h3><span style='font-family:Verdana'>SUMMARY</span></h3>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>This a sample WDF driver
+based on the src\wdm\wmi\WMIFILT WDM sample driver from the Server 2003 SP1 DDK,
+that provides WMI data blocks. This sample demostrates how to register the WMI
+providers and create provider instances for the Framework device object. It also
+illustrates how to handle the WMI queries sent to the device.</span></p>
+
+<h3><span style='font-family:Verdana'>BUILDING THE SAMPLE</span></h3>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>To build the sample drivers,
+you must first set up the DDK environment on your host machine. The “Installation
+and Release Notes” in the DDK has a complete description on how to do this. Run
+the build –ceZ command in the WmiSamp directory to build the WmiSamp driver and
+to generate the WmiSamp inf file.</span></p>
+
+<h3><span style='font-family:Verdana'>INSTALLATION</span></h3>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>To install the WmiSamp
+driver, copy the driver (WmiSamp.sys) file, the INF (WmiSamp.inf) file and the
+WDF coinstaller (WdfCoInstallerXXXXX.dll) to a local directory. Use the devcon
+tool to install the driver.</span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:Verdana'>devcon.exe install
+WmiSamp.inf root\WmiSamp</b></span></p>
+
+<h3><span style='font-family:Verdana'>TESTING</span></h3>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>To test the WmiSamp driver,
+run the generated WmiSamp.vbs script file. This will cause WMI to query all data
+blocks and properties, and put the result in a .log file. For more sophisticated
+testing, the VBScript can be extended by hand. The WBEMTest tool (located in
+%windir%\system32\wbem\) can also be used.</span></p>
+
+<h3><span style='font-family:Verdana'>RESOURCES</span></h3>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>Please see the
+Kernel-Mode driver section of DDK documentation for more information on WMI.</span></p>
+
+<h3><span style='font-family:Verdana'>CODE TOUR</span></h3>
+
+<h4><span style='font-family:Verdana'>File Manifest</span></h4>
+
+<pre><u>File                Description          </u>
+<br>Makefile       - Standard Windows NT makefile.
+<br>Makefile.inc   - Includes instructions for generating the inf file and generating the header file from the mof file.
+<br>sources        - Lists the files that need to be compiled.
+<br>WmiHandler.c   - Handles the WMI queries for the classes defined in the mof file.
+<br>WmiSamp.c      - Registers the WMI providers and creates provider instances for the Framework device object.
+<br>WmiSamp.h      - Header file containing the structure and method declarations.
+<br>WmiSamp.inx    - Used for generating the inf file.
+<br>WmiSamp.mof    - Managed Object Format file that contains descriptions of the data blocks events and methods implemented by the driver.
+<br>WmiSamp.rc     - Resource file containing version information.</pre>
+
+<p><b><span style='font-size:10.0pt;font-family:Verdana'>WMI Mof Check Tool</span></b></p>
+
+<p><span class=SpellE><span style='font-size:10.0pt;font-family:Verdana'>WmiMofCk
+validates that the classes, properties, methods and events specified in a binary
+mof file (.bmf) are valid for use with WMI. It also generates useful output files
+needed to build and test the WMI data provider.</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+style='mso-list:Ignore'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:Verdana'>
+If the -h parameter is specified, a C language header file is created that defines
+the GUIDs, data structures, and method indices specified in the MOF file.</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+style='mso-list:Ignore'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:Verdana'>
+If the -t parameter is specified, a VBScript applet is created that will query all
+data blocks and properties specified in the .mof file. This can be useful for testing
+WMI data providers.</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+style='mso-list:Ignore'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:Verdana'>
+If the -x parameter is specified, a text file is created that contains the text
+representation of the binary .<span class=SpellE>mof</span> data. This can be
+included in the source of the driver if the driver supports reporting the
+binary .mof via a WMI query rather than a resource on the driver image file.</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+style='mso-list:Ignore'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-weight:bold'>Usage</span><span style='font-size:10.0pt;
+font-family:Verdana'>: <span class=SpellE>wmimofck</span> -h&lt;C Header output
+file&gt; -x&lt;<span class=SpellE>Hexdump</span> output file&gt; -t&lt;VBScript
+test output file&gt; &lt;binary mof input file&gt;</span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:Verdana'>Note</span></b><span
+style='font-size:10.0pt;font-family:Verdana'>: A byproduct of compiling the .mof file
+is a .vbs file. This is a VBScript file that is run from the command line on the target
+machine running the new device driver. It will cause WMI to query all data blocks and
+properties, and put the results into a .log file. This can be very useful for
+testing WMI support in your driver. For more sophisticated testing, the VBScript
+can be extended by hand.</span></p>
+
+<p align=center style='text-align:center'><a href="#top"><span style='font-family:Verdana'>Top of page</span></a></p>
+
+<pre><o:p>&nbsp;</o:p></pre>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;mso-cellspacing:0in'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes; height:1.5pt'>
+  <td style='background:aqua;padding:.75pt .75pt .75pt .75pt;height:1.5pt'>
+  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
+  </td>
+ </tr>
+</table>
+
+<pre><o:p>&nbsp;</o:p></pre>
+
+<p><span style='font-size:7.5pt;font-family:"MS Sans Serif";mso-bidi-font-family:"Courier New"'>&copy; 2006 Microsoft Corporation</span></p>
+
+</div>
+
+</body>
+
+</html>
+

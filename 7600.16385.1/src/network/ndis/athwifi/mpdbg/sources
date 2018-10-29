@@ -1,0 +1,28 @@
+TARGETNAME=mpdbg
+TARGETTYPE=DYNLINK
+TARGET_DESTINATION=retail
+
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+
+DLLENTRY=_DllMainCRTStartup
+
+
+INCLUDES = $(INCLUDES) \
+    $(DDK_INC_PATH); 
+
+PRECOMPILED_INCLUDE=precomp.h
+
+TARGETLIBS=$(SDK_LIB_PATH)\kernel32.lib
+
+USE_MSVCRT=1
+
+UMTYPE=windows
+
+MSC_WARNING_LEVEL = /W4 /WX
+
+C_DEFINES=$(C_DEFINES)
+
+SOURCES= mpdbg.cpp    \
+         mpexts.cpp       \
+         mpdbg.rc
+

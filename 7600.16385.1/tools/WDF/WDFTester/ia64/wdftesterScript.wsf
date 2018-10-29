@@ -1,0 +1,1287 @@
+<PACKAGE>
+<COMMENT>
+
+    To run this script open a CMD window and type:
+    cscript WdfTester.wsf
+
+</COMMENT>
+
+<JOB id=Enter>
+
+<SCRIPT LANGUAGE="jscript">
+
+//*****************************************************************************
+//  Parse Arguments
+//
+//*****************************************************************************
+function ParseArgs(Args)
+{
+
+  // constants
+  var STATUS_SUCCESSFUL = 0;
+  var STATUS_INVALID_PARAMETER = 4;
+
+  // globals
+  var status = STATUS_SUCCESSFUL;
+  var options = Args;
+  var re = /cscript.exe/
+
+  if (WScript.FullName.match(re) == null) {
+    WScript.Echo("ERROR: the script was invoked incorrectly \n"  
+    + "Usage: cscript wdftester.wsf ");
+
+    WScript.Quit(1);
+  }
+
+  if(options.Length < 1) {
+     Usage(); 
+     WScript.quit(STATUS_INVALID_PARAMETER);
+  }
+
+  //
+  // Parse commandline arguements 
+  //
+  try {
+  
+      if (options(0).toLowerCase() == "register") {
+          if(options.Length != 2) {
+             Write("ERROR: Incorrect arguements passed. Check Usage.");
+             Usage(); 
+             WScript.quit(STATUS_INVALID_PARAMETER);
+          }
+          return 1;
+      } 
+      else if (options(0).toLowerCase() == "unregister") {
+          if(options.Length != 2 ) {
+             Write("ERROR: Incorrect arguements passed. Check Usage.");
+               Usage(); 
+             WScript.quit(STATUS_INVALID_PARAMETER);
+          }
+          return 2;
+      } 
+      else if (options(0).toLowerCase() == "enableddifi") {
+          if(options.Length != 3) {
+             Write("ERROR: Incorrect arguements passed. Check Usage.");
+             Usage(); 
+             WScript.quit(STATUS_INVALID_PARAMETER);
+          }
+          return 3;
+      }
+      else if (options(0).toLowerCase() == "disableddifi") {
+          if(options.Length != 3) {
+             Write("ERROR: Incorrect arguements passed. Check Usage.");
+             Usage(); 
+             WScript.quit(STATUS_INVALID_PARAMETER);
+          }
+          return 4;
+      }
+      else if (options(0).toLowerCase() == "install") {
+          if(options.Length != 1) {
+             Write("ERROR: Incorrect arguements passed. Check Usage.");
+             Usage(); 
+             WScript.quit(STATUS_INVALID_PARAMETER);
+          }
+          return 5;
+      }
+      else if (options(0).toLowerCase() == "getddistats") {
+          if(options.Length != 2 ) {
+             Write("ERROR: Incorrect arguements passed. Check Usage.");
+             Usage(); 
+             WScript.quit(STATUS_INVALID_PARAMETER);
+          }
+          return 6;
+      } 
+      else if (options(0).toLowerCase() == "waitforfievent") {
+          if(options.Length != 1 ) {
+             Write("ERROR: Incorrect arguements passed. Check Usage.");
+             Usage(); 
+             WScript.quit(STATUS_INVALID_PARAMETER);
+          }
+          return 7;
+      } 
+      else if (options(0).toLowerCase() == "runtest") {
+          if(options.Length != 3 ) {
+             Write("ERROR: Incorrect arguements passed. Check Usage.");
+             Usage(); 
+             WScript.quit(STATUS_INVALID_PARAMETER);
+          }
+          return 8;
+      } 
+      else {
+        WScript.Echo("ERROR: Incorrect arguments passed!");
+        Usage();
+      } 
+      WScript.Quit(status);
+  }
+  catch(e)
+  {
+    //
+    // the HRESULT returned by the interface method is converted to a 
+    // Error object and passed to exception handler as a peremeter, 
+    // and Error.number has the hresult value. However, the
+    // unsigned HRESULT  gets converted to signed number and needs to be 
+    // converted back.
+    // Also, cscript takes care of formatting the error code with the 
+    // system error messsage (using FormatMessage win32 call )
+    // however there does not seem to be any support in jscript or Wsh for that.
+    // 
+    // error.name .message .description .number
+    //
+
+    //Write("ERROR: an error occured. Error code: 0x" + SignedToUnsignedHex(e.number));
+
+    //
+    // for the time being throw the exceoption so that cscript
+    // can map the error code to error message and print readable
+    // error message instead of just error code.
+    //
+    throw(e);
+ 
+    //WScript.Quit(STATUS_ERROR_UNKNOWN);
+  }  
+}
+
+
+//*****************************************************************************
+//  Function Usage
+//
+//*****************************************************************************
+function Usage()
+{
+    Write(" ");
+    Write(WScript.ScriptName + ": WDF Device Testing Utilty");
+    Write(" ");
+    Write("Usage: cscript " + WScript.ScriptName + " <option> "); 
+    Write(" ");
+    Write("options:");
+    Write(" install                   : Install and Start WdfTester Driver Service ");
+    Write(" register     <drivername> : Register driver with Wdftester ");
+    Write(" unregister   <drivername> : Register driver with Wdftester");
+    Write(" WaitForFiEvent            : Wait for a Fault Injection Event to occur");
+    Write(" getddistats  <drivername> : Get Ddi call related info for this driver");
+    Write(" enableddifi  <drivername> <ddiname> : Enable DDI Fault Injection");
+    Write(" disableddifi <drivername> <ddiname> : Disable DDI Fault injection");
+    Write(" runtest <drivername> <hwid> : Execute fault injection test");
+}
+
+function Write(String) {
+    WScript.Echo(String);
+}
+
+
+
+//*****************************************************************************
+//  Async Event notification
+//
+//*****************************************************************************
+function StartAsynEventNotification()
+{
+    try {
+        var Service = GetObject("winmgmts:{impersonationLevel=impersonate}!root/wmi");
+
+        //
+        // create a sink object to receive notifications
+        //
+        var objSink = WScript.CreateObject("WbemScripting.SWbemSink","SINK_");
+
+        //
+        // Obtain an SWbemEventSource object from the 
+        // SWbemServices.ExecNotificationQuery method to specify the 
+        // event source
+        //
+        WScript.Echo("...starting async notification for WdfTester_DdiFiEvent");
+        Service.ExecNotificationQueryAsync(objSink, "SELECT * FROM WdfTester_DdiFiEvent");
+    }
+    catch(e) {
+        WScript.Echo(e);
+        WScript.Echo("ERROR: Error occurred\nCode: " + hex(err.number) + "; Descriptions: " + err.description);
+        SWbemLastError = new ActiveXObject("WbemScripting.SWbemLastError");
+        WScript.Echo(SWbemLastError.GetObjectText_());
+    }
+}
+
+function SINK_OnObjectReady(inst, objAsyncContext)
+{
+    WScript.Echo("*** SUCCESS: FI occured for " + GetDdiNameFromIndex(inst.DdiIndex) + " in " + inst.DriverName);
+    gDdiFiEvent = 1;
+    gDdiFiEventInstance = new Object(inst);
+}
+
+function SINK_OnCompleted(objObject, objAsyncContext) 
+{
+    WScript.Echo("Event call complete.");
+}
+
+//*****************************************************************************
+//  Enable Driver
+//
+//*****************************************************************************
+function EnableDriver(HwId)
+{
+    var Shell = WScript.CreateObject("WScript.Shell");
+    var commandLine = "devcon enable " + HwId;
+    var ret = 0;
+
+    WScript.Echo("...enabling driver");
+    ret = Shell.Run(commandLine,1,true);
+    if (ret != 0) {
+        WScript.Echo("ERROR: Failed to enable driver, code: " + ret);
+    } else {
+       WScript.Echo("SUCCESS: Enabled driver");
+    }
+}
+
+//*****************************************************************************
+//  Disable Driver
+//
+//*****************************************************************************
+function DisableDriver(HwId)
+{
+    var Shell = WScript.CreateObject("WScript.Shell");
+    var commandLine = "devcon disable " + HwId;
+    var ret = 0;
+
+    WScript.Echo("...disabling driver");
+    ret = Shell.Run(commandLine,1,true);
+    if (ret != 0) {
+        WScript.Echo("ERROR: Failed to Disable driver, code: " + ret);
+    } else {
+       WScript.Echo("SUCCESS: Disabled driver");
+    }
+}
+
+function GetListOfDdisToBeFailed(DriverName, ObjectList)
+{
+  try {
+    var Service = GetObject("winmgmts:{impersonationLevel=impersonate}!root/wmi");
+    var objDriverList = Service.Get("WdfTester.InstanceName='WdfTesterBaseInstance0'");
+
+    var GetDdiCallInfo = "GetDdiCallInfo";
+    var objInParams = objDriverList.Methods_(GetDdiCallInfo).inParameters.SpawnInstance_();
+    objInParams.Name = DriverName;
+    var called = false;
+    var count = 0;
+
+    //
+    // Call the method
+    //
+    WScript.Echo("\n...getting list of DDIs to be failed for " + DriverName);  
+    var objOutParams = objDriverList.ExecMethod_(GetDdiCallInfo, objInParams);
+
+    if (objOutParams.Status == 0) {
+      for (var i = 0; i < objOutParams.ArraySize; i++) {
+        var objDdiInfo = objOutParams.Array(i);
+        if (objDdiInfo.Called == true) {
+          called = true;
+          //
+          // if this ddi returns ntstatus add it to the list of ddis to be failed
+          //
+          if (DdiTable[i].NtStatus == true) {
+            count++;
+            WScript.Echo(count + ") " + GetDdiNameFromIndex(i) + " (" + objDdiInfo.CallCount + ")");
+            var o = new Object();
+            o.DdiIndex = i;
+            ObjectList.push(o);
+          }
+        }
+      }
+      if (called == false) {
+          WScript.Echo("No DDI called for driver " + DriverName);
+      }
+    } else {
+       WScript.Echo("ERROR: Call to method " + GetDdiCallInfo + " failed with status: ", objOutParams.Status);
+    }
+  }
+  catch(e) {
+        WScript.Echo(e);
+        WScript.Echo("ERROR: Error occurred\nCode: " + hex(e.number) + "; Descriptions: " + e.description);
+        SWbemLastError = new ActiveXObject("WbemScripting.SWbemLastError");
+        WScript.Echo(SWbemLastError.GetObjectText_());
+  }
+}
+
+//*****************************************************************************
+//  Install and Start Driver Service
+//
+//*****************************************************************************
+function InstallAndStartDriver(InfName, ServiceName) 
+{
+
+    var fs = new ActiveXObject("Scripting.FileSystemObject");
+    var infPath = fs.GetFile(InfName);
+
+    var Shell = WScript.CreateObject("WScript.Shell");
+    var commandLine = "rundll32 setupapi.dll,InstallHinfSection DefaultInstall 132 " + infPath;
+    var ret = 0;
+
+    var ret = Shell.Run(commandLine,1,true);
+    // the return value is not usefule for above case since even for
+    // failure to install, the return value is 0
+    // if (ret != 0) {
+    //    WScript.Echo("ERROR: failed to install the driver service using inf file " & infFile);
+    // } else {
+    //    WScript.Echo("SUCCESS: install inf file");
+    // }
+
+    commandLine = "net start " + ServiceName;
+    ret = Shell.Run(commandLine,1,true);
+    if (ret != 0) {
+    if (ret == 2) {
+            WScript.Echo("INFO: The service is either already started or it failed to start");
+        } else {
+            WScript.Echo("ERROR: failed to start the service");
+        }
+    } else {
+       WScript.Echo("SUCCESS: Started driver service");
+    }
+}
+
+//*****************************************************************************
+//  Get DDI Stats
+//
+//*****************************************************************************
+function GetDdiStats(DriverName) 
+{
+  try {
+    var Service = GetObject("winmgmts:{impersonationLevel=impersonate}!root/wmi");
+    var objDriverList = Service.Get("WdfTester.InstanceName='WdfTesterBaseInstance0'");
+
+    var GetDdiCallInfo = "GetDdiCallInfo";
+    var objInParams = objDriverList.Methods_(GetDdiCallInfo).inParameters.SpawnInstance_();
+    objInParams.Name = DriverName;
+    var called = false;
+    var count = 0;
+
+    //
+    // Call the method
+    //
+    WScript.Echo("\n...getting DDI call Info for " + DriverName);  
+    var objOutParams = objDriverList.ExecMethod_(GetDdiCallInfo, objInParams);
+
+    if (objOutParams.Status == 0) {
+      for (var i = 0; i < objOutParams.ArraySize; i++) {
+        var objDdiInfo = objOutParams.Array(i);
+        if (objOutParams.Array(i).Called == true) {
+          called = true;
+          count ++;
+          WScript.Echo(count + ") " + GetDdiNameFromIndex(i) + " (" + objDdiInfo.CallCount + ")");
+        }
+      }
+      if (called == false) {
+          WScript.Echo("No DDI called for driver " + DriverName);
+      }
+    } else {
+       WScript.Echo("ERROR: Call to method " + GetDdiCallInfo + " failed with status: ", objOutParams.Status);
+    }
+  }
+  catch(e) {
+    WScript.Echo(e);
+    WScript.Echo("ERROR: Error occurred\nCode: " + hex(e.number) + "; Descriptions: " + e.description);
+    SWbemLastError = new ActiveXObject("WbemScripting.SWbemLastError");
+    WScript.Echo(SWbemLastError.GetObjectText_());
+  }
+}
+
+//*****************************************************************************
+//  Event Notification for Fault Injection Events
+//
+//*****************************************************************************
+function WaitForDdiFiEvent() 
+{
+  try {
+    var Service = GetObject("winmgmts:{impersonationLevel=impersonate}!root/wmi");
+
+    //
+    // Obtain an SWbemEventSource object from the 
+    // SWbemServices.ExecNotificationQuery method to specify the 
+    // event source as "Application" events in a Win32_NTLogEvent
+    //
+    var evtsrc = Service.ExecNotificationQuery("SELECT * FROM WdfTester_DdiFiEvent");
+
+    //
+    // Wait for an event by executing the NextEvent method on the 
+    // SWbemEventSource object.
+    //
+    WScript.Echo("...waiting for WdfTester_DdiFiEvent");
+    var inst = evtsrc.NextEvent(-1);
+    WScript.Echo("SUCCESS: Fault injection occured for DDI " + GetDdiNameFromIndex(inst.DdiIndex) + " in " + inst.DriverName);
+  }
+  catch(e) {
+    WScript.Echo(e);
+    WScript.Echo("ERROR: Error occurred\nCode: " + hex(e.number) + "; Descriptions: " + e.description);
+    SWbemLastError = new ActiveXObject("WbemScripting.SWbemLastError");
+    WScript.Echo(SWbemLastError.GetObjectText_());
+  }
+}
+
+//*****************************************************************************
+//  Enable Driver verfifier
+//
+//*****************************************************************************
+function EnableDriverVerfier(DriverName)
+{
+    var Shell = WScript.CreateObject("WScript.Shell");
+
+    WScript.Echo("...enabling Driver Verifier for " + DriverName);
+    //
+    // if it is Vista or newer use the option that does not require reboot
+    //
+    if (GetOsBuildNumber() >= 6000) {
+        var commandLine = "verifier /volatile  /adddriver " + DriverName;
+        var ret = 0;
+
+        //
+        // the return value is not usefule for above case since 
+        // verifier.exe does not return proper failure codes 
+        // 
+        var ret = Shell.Run(commandLine,1,true);
+    }
+    else {
+
+        //
+        // will need reboot if not already enabled. Since verifier.exe does not return 
+        // status that indicates whether reboot is required
+        //
+        var commandLine = "verifier /standard  /driver " + DriverName;
+        var ret = 0;
+        var ret = Shell.Run(commandLine,1,true);
+
+    var message = "Driver Verifier has been enabled for "+ DriverName  + ".\nHowever, you will need to reboot the machine. \n\nPress OK to reboot, or Cancel to continue without reboot \n(in 10 seconds the dialog will disapper without rebooting))";
+
+        var waitSeconds = 10
+        var option = Shell.Popup(message,waitSeconds, "Reboot Option", 1);
+        // 1 is for OK and 2 is for cancel
+        if (option == 1) {
+            Reboot();
+        }
+    }
+}
+
+
+function GetOsBuildNumber()
+{
+    var wmi = GetObject("winmgmts:{impersonationLevel=impersonate}!\\\\.\\root\\CIMV2");
+    var operatingSystems = wmi.ExecQuery("SELECT * FROM Win32_OperatingSystem");
+
+    var itemEnum  = new Enumerator(operatingSystems);
+    for (; !itemEnum.atEnd(); itemEnum.moveNext() )  {
+        var operatingSystem = itemEnum.item();
+        return operatingSystem.BuildNumber;
+    }
+   
+}
+
+function Reboot()
+{
+    var wmi = GetObject("winmgmts:{impersonationLevel=impersonate,(Shutdown)}!\\\\.\\root\\CIMV2");
+    var operatingSystems = wmi.ExecQuery("SELECT * FROM Win32_OperatingSystem", "WQL",
+                                          wbemFlagReturnImmediately | wbemFlagForwardOnly);
+
+    var itemEnum  = new Enumerator(operatingSystems);
+    for (; !itemEnum.atEnd(); itemEnum.moveNext() )
+    {
+        var operatingSystem = itemEnum.item();
+        operatingSystem.Reboot();
+    }
+}
+
+
+//*****************************************************************************
+//  Run Fault Injection Test
+//
+//*****************************************************************************
+function RunFiTest(DriverName, HwId) 
+{
+    var ObjectList = [];
+    
+    //
+    // Register the driver
+    //
+    RegisterDriver(DriverName);
+
+    //
+    //Enable driver verifier
+    //
+    EnableDriverVerfier(DriverName);
+    
+    //
+    // Gather all the DDIs that need to be failed
+    // This will require disabling the driver, enabling the driver, executing
+    // tests that will exercise various code paths, then disabling the driver.
+    //
+    DisableDriver(HwId);
+    EnableDriver(HwId);
+    WScript.Sleep(5000);
+
+    GetDdiStats(DriverName);
+
+    GetListOfDdisToBeFailed(DriverName, ObjectList);
+    WScript.Echo("Object List size: " + ObjectList.length);
+    
+    //
+    // Start an asynchronous fault injection monitoring worker 
+    //
+    StartAsynEventNotification();
+
+    //
+    // For (each DDI that needs to be failed)
+    // {
+    //   1. Disable the driver
+    //   2. Enable FI for the selected DDI
+    //   3. Enable the Driver (this will lead to DDI failure) and execute any tests 
+    //      that would trigger execution of DDI that is being tested
+    //   4. When fault is injected successfully in teh DDI call, a WMI event is fired. 
+    //      Check the event object (global object) to see if the DDI failure event was set
+    //      If it was set, the DI was successfully failed and test passed.
+    // }
+    //
+    for (var i = 0; i < ObjectList.length ; i++) {
+        WScript.Echo("\n************************************************************");
+        WScript.Echo("*         TEST CASE : " + (i+1));
+        WScript.Echo("*         DDI to fail : " + DdiTable[ObjectList[i].DdiIndex].Name);
+        WScript.Echo("************************************************************");
+
+        if (i != 0) {
+            // disable fault injection for previous ddi
+            DisableDdiFi(DriverName, DdiTable[ObjectList[i-1].DdiIndex].Name);
+        }
+        ExecuteFaultInjectionTest(DriverName, ObjectList[i].DdiIndex , HwId);
+        WScript.Sleep(5000);
+    }
+
+    //
+    // Unregister the driver
+    //
+    UnregisterDriver(DriverName);
+
+    //
+    // Enable the driver back to its original
+    //
+    DisableDriver(HwId);
+    WScript.Sleep(2000);
+    EnableDriver(HwId);
+
+    //
+    // Dump a summary
+    //
+    WScript.Echo("\n************************************************************");
+    WScript.Echo("       SUMMARY");
+    WScript.Echo("************************************************************");
+    WScript.Echo("Number of DDIs failed successfully: " + ObjectList.length);
+    WScript.Echo("List of DDIs failed: ");
+    for (var i = 0; i < ObjectList.length ; i++) {
+        WScript.Echo(i+1 + ") " + DdiTable[ObjectList[i].DdiIndex].Name);
+    }
+    WScript.Echo("\n************************************************************");
+    WScript.Echo("       END OF TEST");
+    WScript.Echo("************************************************************");
+}
+
+//*****************************************************************************
+//  Function to wait synchronously on the FI event
+//
+//*****************************************************************************
+function SyncWaitOnEvent(DdiIndex)
+{
+    if (gDdiFiEventInstance != null) {
+        //WScript.Echo(DdiIndex + " *********** " + gDdiFiEventInstance.DdiIndex + " " + gDdiFiEventInstance.DriverName);
+        if (gDdiFiEventInstance.DdiIndex != DdiIndex) {
+            WScript.Echo("...waiting on FI to complete");
+            while (gDdiFiEventInstance.DdiIndex != DdiIndex) { 
+                WScript.Sleep(2000);
+            }
+        }
+    }
+    //gDdiFiEventInstance = null;
+    gDdiFiEvent = 0;
+}
+
+//*****************************************************************************
+//  Worker function for test execution
+//
+//*****************************************************************************
+function ExecuteFaultInjectionTest(DriverName, DdiIndex, HwId)
+{
+    // Disable the driver
+    DisableDriver(HwId);
+
+    // Enable fault injection
+    EnableDdiFi(DriverName, DdiTable[DdiIndex].Name);
+
+    // Enable Driver. this will trigger Failure
+    EnableDriver(HwId);
+
+    // wait
+    SyncWaitOnEvent(DdiIndex);
+}
+
+//*****************************************************************************
+//  DDI Name String Table
+//
+//*****************************************************************************
+var DdiTable = [
+    {Name:"WdfChildListCreate",                     NtStatus:true},     //0
+    {Name:"WdfChildListGetDevice",                  NtStatus:false},    //1
+    {Name:"WdfChildListRetrievePdo",                NtStatus:false},    //2
+    {Name:"WdfChildListRetrieveAddressDescription", NtStatus:true},     //3
+    {Name:"WdfChildListBeginScan",                  NtStatus:false},    //4
+    {Name:"WdfChildListEndScan",                    NtStatus:false},    //5
+    {Name:"WdfChildListBeginIteration",             NtStatus:false},    //6
+    {Name:"WdfChildListRetrieveNextDevice",         NtStatus:true},     //7
+    {Name:"WdfChildListEndIteration",               NtStatus:false},    //8
+    {Name:"WdfChildListAddOrUpdateChildDescriptionAsPresent",   NtStatus:true},  //9
+    {Name:"WdfChildListUpdateChildDescriptionAsMissing",        NtStatus:true},  //10
+    {Name:"WdfChildListUpdateAllChildDescriptionsAsPresent",    NtStatus:false},  //11
+    {Name:"WdfChildListRequestChildEject",          NtStatus:false},  //12
+    {Name:"WdfCollectionCreate",                    NtStatus:true},  //13
+    {Name:"WdfCollectionGetCount",                  NtStatus:false},  //14
+    {Name:"WdfCollectionAdd",                       NtStatus:true},  //15
+    {Name:"WdfCollectionRemove",                    NtStatus:false},  //16
+    {Name:"WdfCollectionRemoveItem",                NtStatus:false},  //17
+    {Name:"WdfCollectionGetItem",                   NtStatus:false},  //18
+    {Name:"WdfCollectionGetFirstItem",              NtStatus:false},  //19
+    {Name:"WdfCollectionGetLastItem",               NtStatus:false},  //20
+    {Name:"WdfCommonBufferCreate",                  NtStatus:true},  //21
+    {Name:"WdfCommonBufferGetAlignedVirtualAddress",        NtStatus:false},  //22
+    {Name:"WdfCommonBufferGetAlignedLogicalAddress",        NtStatus:false},  //23
+    {Name:"WdfCommonBufferGetLength",               NtStatus:false},  //24
+    {Name:"WdfControlDeviceInitAllocate",           NtStatus:false},  //25
+    {Name:"WdfControlDeviceInitSetShutdownNotification",        NtStatus:false},  //26
+    {Name:"WdfControlFinishInitializing",           NtStatus:false},  //27
+    {Name:"WdfDeviceGetDeviceState",                NtStatus:false},  //28
+    {Name:"WdfDeviceSetDeviceState",                NtStatus:false},  //29
+    {Name:"WdfWdmDeviceGetWdfDeviceHandle",         NtStatus:false},  //30
+    {Name:"WdfDeviceWdmGetDeviceObject",            NtStatus:false},  //31
+    {Name:"WdfDeviceWdmGetAttachedDevice",          NtStatus:false},  //32
+    {Name:"WdfDeviceWdmGetPhysicalDevice",          NtStatus:false},  //33
+    {Name:"WdfDeviceWdmDispatchPreprocessedIrp",    NtStatus:true},  //34
+    {Name:"WdfDeviceAddDependentUsageDeviceObject",        NtStatus:true},  //35
+    {Name:"WdfDeviceAddRemovalRelationsPhysicalDevice",        NtStatus:true},  //36
+    {Name:"WdfDeviceRemoveRemovalRelationsPhysicalDevice",        NtStatus:false},  //37
+    {Name:"WdfDeviceClearRemovalRelationsDevices",        NtStatus:false},  //38
+    {Name:"WdfDeviceGetDriver",                     NtStatus:false},  //39
+    {Name:"WdfDeviceRetrieveDeviceName",            NtStatus:true},  //40
+    {Name:"WdfDeviceAssignMofResourceName",         NtStatus:true},  //41
+    {Name:"WdfDeviceGetIoTarget",                   NtStatus:false},  //42
+    {Name:"WdfDeviceGetDevicePnpState",             NtStatus:false},  //43
+    {Name:"WdfDeviceGetDevicePowerState",           NtStatus:false},  //44
+    {Name:"WdfDeviceGetDevicePowerPolicyState",     NtStatus:false},  //45
+    {Name:"WdfDeviceAssignS0IdleSettings",          NtStatus:true},  //46
+    {Name:"WdfDeviceAssignSxWakeSettings",          NtStatus:true},  //47
+    {Name:"WdfDeviceOpenRegistryKey",               NtStatus:true},  //48
+    {Name:"WdfDeviceSetSpecialFileSupport",         NtStatus:false},  //49
+    {Name:"WdfDeviceSetCharacteristics",            NtStatus:false},  //50
+    {Name:"WdfDeviceGetCharacteristics",            NtStatus:false},  //51
+    {Name:"WdfDeviceGetAlignmentRequirement",       NtStatus:false},  //52
+    {Name:"WdfDeviceSetAlignmentRequirement",       NtStatus:false},  //53
+    {Name:"WdfDeviceInitFree",                      NtStatus:false},  //54
+    {Name:"WdfDeviceInitSetPnpPowerEventCallbacks", NtStatus:false},  //55
+    {Name:"WdfDeviceInitSetPowerPolicyEventCallbacks",          NtStatus:false},  //56
+    {Name:"WdfDeviceInitSetPowerPolicyOwnership",               NtStatus:false},  //57
+    {Name:"WdfDeviceInitRegisterPnpStateChangeCallback",        NtStatus:true},  //58
+    {Name:"WdfDeviceInitRegisterPowerStateChangeCallback",      NtStatus:true},  //59
+    {Name:"WdfDeviceInitRegisterPowerPolicyStateChangeCallback",NtStatus:true},  //60
+    {Name:"WdfDeviceInitSetIoType",                 NtStatus:false},  //61
+    {Name:"WdfDeviceInitSetExclusive",              NtStatus:false},  //62
+    {Name:"WdfDeviceInitSetPowerNotPageable",       NtStatus:false},  //63
+    {Name:"WdfDeviceInitSetPowerPageable",          NtStatus:false},  //64
+    {Name:"WdfDeviceInitSetPowerInrush",            NtStatus:false},  //65
+    {Name:"WdfDeviceInitSetDeviceType",             NtStatus:false},  //66
+    {Name:"WdfDeviceInitAssignName",                NtStatus:true},  //67
+    {Name:"WdfDeviceInitAssignSDDLString",          NtStatus:true},  //68
+    {Name:"WdfDeviceInitSetDeviceClass",            NtStatus:false},  //69
+    {Name:"WdfDeviceInitSetCharacteristics",        NtStatus:false},  //70
+    {Name:"WdfDeviceInitSetFileObjectConfig",       NtStatus:false},  //71
+    {Name:"WdfDeviceInitSetRequestAttributes",      NtStatus:false},  //72
+    {Name:"WdfDeviceInitAssignWdmIrpPreprocessCallback",        NtStatus:true},  //73
+    {Name:"WdfDeviceInitSetIoInCallerContextCallback",          NtStatus:false},  //74
+    {Name:"WdfDeviceCreate",                        NtStatus:true},  //75
+    {Name:"WdfDeviceSetStaticStopRemove",           NtStatus:false},  //76
+    {Name:"WdfDeviceCreateDeviceInterface",         NtStatus:true},  //77
+    {Name:"WdfDeviceSetDeviceInterfaceState",        NtStatus:false},  //78
+    {Name:"WdfDeviceRetrieveDeviceInterfaceString",        NtStatus:true},  //79
+    {Name:"WdfDeviceCreateSymbolicLink",            NtStatus:true},  //80
+    {Name:"WdfDeviceQueryProperty",                 NtStatus:true},  //81
+    {Name:"WdfDeviceAllocAndQueryProperty",         NtStatus:true},  //82
+    {Name:"WdfDeviceSetPnpCapabilities",            NtStatus:false},  //83
+    {Name:"WdfDeviceSetPowerCapabilities",          NtStatus:false},  //84
+    {Name:"WdfDeviceSetBusInformationForChildren",  NtStatus:false},  //85
+    {Name:"WdfDeviceIndicateWakeStatus",            NtStatus:true},  //86
+    {Name:"WdfDeviceSetFailed",                     NtStatus:false},  //87
+    {Name:"WdfDeviceStopIdle",                      NtStatus:true},  //88
+    {Name:"WdfDeviceResumeIdle",                    NtStatus:false},  //89
+    {Name:"WdfDeviceGetFileObject",                 NtStatus:false},  //90
+    {Name:"WdfDeviceEnqueueRequest",                NtStatus:true},  //91
+    {Name:"WdfDeviceGetDefaultQueue",               NtStatus:false},  //92
+    {Name:"WdfDeviceConfigureRequestDispatching",        NtStatus:true},  //93 
+    {Name:"WdfDmaEnablerCreate",                    NtStatus:true},  //94
+    {Name:"WdfDmaEnablerGetMaximumLength",          NtStatus:false},  //95
+    {Name:"WdfDmaEnablerGetMaximumScatterGatherElements",        NtStatus:false},  //96
+    {Name:"WdfDmaEnablerSetMaximumScatterGatherElements",        NtStatus:false},  //97
+    {Name:"WdfDmaTransactionCreate",                NtStatus:true},  //98
+    {Name:"WdfDmaTransactionInitialize",            NtStatus:true},  //99
+    {Name:"WdfDmaTransactionInitializeUsingRequest",        NtStatus:true},  //100
+    {Name:"WdfDmaTransactionExecute",               NtStatus:true},  //101
+    {Name:"WdfDmaTransactionRelease",               NtStatus:true},  //102
+    {Name:"WdfDmaTransactionDmaCompleted",          NtStatus:false},  //103
+    {Name:"WdfDmaTransactionDmaCompletedWithLength",        NtStatus:false},  //104
+    {Name:"WdfDmaTransactionDmaCompletedFinal",        NtStatus:false},  //105
+    {Name:"WdfDmaTransactionGetBytesTransferred",        NtStatus:false},  //106
+    {Name:"WdfDmaTransactionSetMaximumLength",        NtStatus:false},  //107
+    {Name:"WdfDmaTransactionGetRequest",            NtStatus:false},  //108
+    {Name:"WdfDmaTransactionGetCurrentDmaTransferLength",        NtStatus:false},  //109
+    {Name:"WdfDmaTransactionGetDevice",             NtStatus:false},  //110
+    {Name:"WdfDpcCreate",                           NtStatus:true},  //111
+    {Name:"WdfDpcEnqueue",                          NtStatus:false},  //112
+    {Name:"WdfDpcCancel",                           NtStatus:false},  //113
+    {Name:"WdfDpcGetParentObject",                  NtStatus:false},  //114
+    {Name:"WdfDpcWdmGetDpc",                        NtStatus:false},  //115
+    {Name:"WdfDriverCreate",                        NtStatus:true},  //116
+    {Name:"WdfDriverGetRegistryPath",               NtStatus:false},  //117
+    {Name:"WdfDriverWdmGetDriverObject",            NtStatus:false},  //118
+    {Name:"WdfDriverOpenParametersRegistryKey",     NtStatus:true},  //119
+    {Name:"WdfWdmDriverGetWdfDriverHandle",         NtStatus:false},  //120
+    {Name:"WdfDriverRegisterTraceInfo",             NtStatus:true},  //121
+    {Name:"WdfDriverRetrieveVersionString",         NtStatus:true},  //122
+    {Name:"WdfDriverIsVersionAvailable",            NtStatus:false},  //123
+    {Name:"WdfFdoInitWdmGetPhysicalDevice",         NtStatus:false},  //124
+    {Name:"WdfFdoInitOpenRegistryKey",              NtStatus:true},  //125
+    {Name:"WdfFdoInitQueryProperty",                NtStatus:true},  //126
+    {Name:"WdfFdoInitAllocAndQueryProperty",        NtStatus:true},  //127
+    {Name:"WdfFdoInitSetEventCallbacks",            NtStatus:false},  //128
+    {Name:"WdfFdoInitSetFilter",                    NtStatus:false},  //129
+    {Name:"WdfFdoInitSetDefaultChildListConfig",    NtStatus:false},  //130
+    {Name:"WdfFdoQueryForInterface",                NtStatus:true},  //131
+    {Name:"WdfFdoGetDefaultChildList",              NtStatus:false},  //132
+    {Name:"WdfFdoAddStaticChild",                   NtStatus:true},  //133
+    {Name:"WdfFdoLockStaticChildListForIteration",  NtStatus:false},  //134
+    {Name:"WdfFdoRetrieveNextStaticChild",          NtStatus:false},  //135
+    {Name:"WdfFdoUnlockStaticChildListFromIteration",        NtStatus:false},  //136
+    {Name:"WdfFileObjectGetFileName",               NtStatus:false},  //137
+    {Name:"WdfFileObjectGetFlags",                  NtStatus:false},  //138
+    {Name:"WdfFileObjectGetDevice",                 NtStatus:false},  //139
+    {Name:"WdfFileObjectWdmGetFileObject",          NtStatus:false},  //140
+    {Name:"WdfInterruptCreate",                     NtStatus:true},  //141
+    {Name:"WdfInterruptQueueDpcForIsr",             NtStatus:false},  //142
+    {Name:"WdfInterruptSynchronize",                NtStatus:false},  //143
+    {Name:"WdfInterruptAcquireLock",                NtStatus:false},  //144
+    {Name:"WdfInterruptReleaseLock",                NtStatus:false},  //145
+    {Name:"WdfInterruptEnable",                     NtStatus:false},  //146
+    {Name:"WdfInterruptDisable",                    NtStatus:false},  //147
+    {Name:"WdfInterruptWdmGetInterrupt",            NtStatus:false},  //148
+    {Name:"WdfInterruptGetInfo",                    NtStatus:false},  //149
+    {Name:"WdfInterruptSetPolicy",                  NtStatus:false},  //150
+    {Name:"WdfInterruptGetDevice",                  NtStatus:false},  //151
+    {Name:"WdfIoQueueCreate",                       NtStatus:true},  //152
+    {Name:"WdfIoQueueGetState",                     NtStatus:false},  //153
+    {Name:"WdfIoQueueStart",                        NtStatus:false},  //154
+    {Name:"WdfIoQueueStop",                         NtStatus:false},  //155
+    {Name:"WdfIoQueueStopSynchronously",            NtStatus:false},  //156
+    {Name:"WdfIoQueueGetDevice",                    NtStatus:false},  //157
+    {Name:"WdfIoQueueRetrieveNextRequest",          NtStatus:true},  //158
+    {Name:"WdfIoQueueRetrieveRequestByFileObject",        NtStatus:true},  //159
+    {Name:"WdfIoQueueFindRequest",                  NtStatus:true},  //160
+    {Name:"WdfIoQueueRetrieveFoundRequest",         NtStatus:true},  //161
+    {Name:"WdfIoQueueDrainSynchronously",           NtStatus:false},  //162
+    {Name:"WdfIoQueueDrain",                        NtStatus:false},  //163
+    {Name:"WdfIoQueuePurgeSynchronously",           NtStatus:false},  //164
+    {Name:"WdfIoQueuePurge",                        NtStatus:false},  //165
+    {Name:"WdfIoQueueReadyNotify",                  NtStatus:true},  //166
+    {Name:"WdfIoTargetCreate",                      NtStatus:true},  //167
+    {Name:"WdfIoTargetOpen",                        NtStatus:true},  //168
+    {Name:"WdfIoTargetCloseForQueryRemove",         NtStatus:false},  //169
+    {Name:"WdfIoTargetClose",                       NtStatus:false},  //170
+    {Name:"WdfIoTargetStart",                       NtStatus:true},  //171
+    {Name:"WdfIoTargetStop",                        NtStatus:false},  //172
+    {Name:"WdfIoTargetGetState",                    NtStatus:false},  //173
+    {Name:"WdfIoTargetGetDevice",                   NtStatus:false},  //174
+    {Name:"WdfIoTargetQueryTargetProperty",         NtStatus:true},  //175
+    {Name:"WdfIoTargetAllocAndQueryTargetProperty",        NtStatus:true},  //176
+    {Name:"WdfIoTargetQueryForInterface",           NtStatus:true},  //177
+    {Name:"WdfIoTargetWdmGetTargetDeviceObject",    NtStatus:false},  //178
+    {Name:"WdfIoTargetWdmGetTargetPhysicalDevice",  NtStatus:false},  //179
+    {Name:"WdfIoTargetWdmGetTargetFileObject",      NtStatus:false},  //180
+    {Name:"WdfIoTargetWdmGetTargetFileHandle",      NtStatus:false},  //181
+    {Name:"WdfIoTargetSendReadSynchronously",       NtStatus:true},  //182
+    {Name:"WdfIoTargetFormatRequestForRead",        NtStatus:true},  //183
+    {Name:"WdfIoTargetSendWriteSynchronously",      NtStatus:true},  //184
+    {Name:"WdfIoTargetFormatRequestForWrite",       NtStatus:true},  //185
+    {Name:"WdfIoTargetSendIoctlSynchronously",      NtStatus:true},  //186
+    {Name:"WdfIoTargetFormatRequestForIoctl",       NtStatus:true},  //187
+    {Name:"WdfIoTargetSendInternalIoctlSynchronously",        NtStatus:true},  //188
+    {Name:"WdfIoTargetFormatRequestForInternalIoctl",        NtStatus:true},  //189
+    {Name:"WdfIoTargetSendInternalIoctlOthersSynchronously",        NtStatus:true},  //190
+    {Name:"WdfIoTargetFormatRequestForInternalIoctlOthers",        NtStatus:true},  //191
+    {Name:"WdfMemoryCreate",                        NtStatus:true},  //192
+    {Name:"WdfMemoryCreatePreallocated",            NtStatus:true},  //193
+    {Name:"WdfMemoryGetBuffer",                     NtStatus:false},  //194
+    {Name:"WdfMemoryAssignBuffer",                  NtStatus:true},  //195
+    {Name:"WdfMemoryCopyToBuffer",                  NtStatus:true},  //196
+    {Name:"WdfMemoryCopyFromBuffer",                NtStatus:true},  //197
+    {Name:"WdfLookasideListCreate",                 NtStatus:true},  //198
+    {Name:"WdfMemoryCreateFromLookaside",           NtStatus:true},  //199
+    {Name:"WdfDeviceMiniportCreate",                NtStatus:true},  //200
+    {Name:"WdfDriverMiniportUnload",                NtStatus:false},  //201
+    {Name:"WdfObjectGetTypedContextWorker",         NtStatus:false},  //202
+    {Name:"WdfObjectAllocateContext",               NtStatus:true},  //203
+    {Name:"WdfObjectContextGetObject",              NtStatus:false},  //204
+    {Name:"WdfObjectReferenceActual",               NtStatus:false},  //205
+    {Name:"WdfObjectDereferenceActual",             NtStatus:false},  //206
+    {Name:"WdfObjectCreate",                        NtStatus:true},  //207
+    {Name:"WdfObjectDelete",                        NtStatus:false},  //208
+    {Name:"WdfObjectQuery",                         NtStatus:true},  //209
+    {Name:"WdfPdoInitAllocate",                     NtStatus:false},  //210
+    {Name:"WdfPdoInitSetEventCallbacks",            NtStatus:false},  //211
+    {Name:"WdfPdoInitAssignDeviceID",               NtStatus:true},  //212
+    {Name:"WdfPdoInitAssignInstanceID",             NtStatus:true},  //213
+    {Name:"WdfPdoInitAddHardwareID",                NtStatus:true},  //214
+    {Name:"WdfPdoInitAddCompatibleID",              NtStatus:true},  //215
+    {Name:"WdfPdoInitAddDeviceText",                NtStatus:true},  //216
+    {Name:"WdfPdoInitSetDefaultLocale",             NtStatus:false},  //217
+    {Name:"WdfPdoInitAssignRawDevice",              NtStatus:true},  //218
+    {Name:"WdfPdoMarkMissing",                      NtStatus:true},  //219
+    {Name:"WdfPdoRequestEject",                     NtStatus:false},  //220
+    {Name:"WdfPdoGetParent",                        NtStatus:false},  //221
+    {Name:"WdfPdoRetrieveIdentificationDescription",        NtStatus:true},  //222
+    {Name:"WdfPdoRetrieveAddressDescription",       NtStatus:true},  //223
+    {Name:"WdfPdoUpdateAddressDescription",         NtStatus:true},  //224
+    {Name:"WdfPdoAddEjectionRelationsPhysicalDevice",        NtStatus:true},  //225
+    {Name:"WdfPdoRemoveEjectionRelationsPhysicalDevice",        NtStatus:false},  //226
+    {Name:"WdfPdoClearEjectionRelationsDevices",        NtStatus:false},  //227
+    {Name:"WdfDeviceAddQueryInterface",             NtStatus:true},  //228
+    {Name:"WdfRegistryOpenKey",                     NtStatus:true},  //229
+    {Name:"WdfRegistryCreateKey",                   NtStatus:true},  //230
+    {Name:"WdfRegistryClose",                       NtStatus:false},  //231
+    {Name:"WdfRegistryWdmGetHandle",                NtStatus:false},  //232
+    {Name:"WdfRegistryRemoveKey",                   NtStatus:true},  //233
+    {Name:"WdfRegistryRemoveValue",                 NtStatus:true},  //234
+    {Name:"WdfRegistryQueryValue",                  NtStatus:true},  //235
+    {Name:"WdfRegistryQueryMemory",                 NtStatus:true},  //236
+    {Name:"WdfRegistryQueryMultiString",            NtStatus:true},  //237
+    {Name:"WdfRegistryQueryUnicodeString",          NtStatus:true},  //238
+    {Name:"WdfRegistryQueryString",                 NtStatus:true},  //239
+    {Name:"WdfRegistryQueryULong",                  NtStatus:true},  //240
+    {Name:"WdfRegistryAssignValue",                 NtStatus:true},  //241
+    {Name:"WdfRegistryAssignMemory",                NtStatus:true},  //242
+    {Name:"WdfRegistryAssignMultiString",           NtStatus:true},  //243
+    {Name:"WdfRegistryAssignUnicodeString",         NtStatus:true},  //244
+    {Name:"WdfRegistryAssignString",                NtStatus:true},  //245
+    {Name:"WdfRegistryAssignULong",                 NtStatus:true},  //246
+    {Name:"WdfRequestCreate",                       NtStatus:true},  //247
+    {Name:"WdfRequestCreateFromIrp",                NtStatus:true},  //248
+    {Name:"WdfRequestReuse",                        NtStatus:true},  //249
+    {Name:"WdfRequestChangeTarget",                 NtStatus:true},  //250
+    {Name:"WdfRequestFormatRequestUsingCurrentType",        NtStatus:false},  //251
+    {Name:"WdfRequestWdmFormatUsingStackLocation",        NtStatus:false},  //252
+    {Name:"WdfRequestSend",                         NtStatus:false},  //253
+    {Name:"WdfRequestGetStatus",                    NtStatus:true},  //254
+    {Name:"WdfRequestMarkCancelable",               NtStatus:false},  //255
+    {Name:"WdfRequestUnmarkCancelable",             NtStatus:true},  //256
+    {Name:"WdfRequestIsCanceled",                   NtStatus:false},  //257
+    {Name:"WdfRequestCancelSentRequest",            NtStatus:false},  //258
+    {Name:"WdfRequestIsFrom32BitProcess",           NtStatus:false},  //259
+    {Name:"WdfRequestSetCompletionRoutine",         NtStatus:false},  //260
+    {Name:"WdfRequestGetCompletionParams",          NtStatus:false},  //261
+    {Name:"WdfRequestAllocateTimer",                NtStatus:true},  //262
+    {Name:"WdfRequestComplete",                     NtStatus:false},  //263
+    {Name:"WdfRequestCompleteWithPriorityBoost",    NtStatus:false},  //264
+    {Name:"WdfRequestCompleteWithInformation",      NtStatus:false},  //265
+    {Name:"WdfRequestGetParameters",                NtStatus:false},  //266
+    {Name:"WdfRequestRetrieveInputMemory",          NtStatus:true},  //267
+    {Name:"WdfRequestRetrieveOutputMemory",         NtStatus:true},  //268
+    {Name:"WdfRequestRetrieveInputBuffer",          NtStatus:true},  //269
+    {Name:"WdfRequestRetrieveOutputBuffer",         NtStatus:true},  //270
+    {Name:"WdfRequestRetrieveInputWdmMdl",          NtStatus:true},  //271
+    {Name:"WdfRequestRetrieveOutputWdmMdl",         NtStatus:true},  //272
+    {Name:"WdfRequestRetrieveUnsafeUserInputBuffer",        NtStatus:true},  //273
+    {Name:"WdfRequestRetrieveUnsafeUserOutputBuffer",        NtStatus:true},  //274
+    {Name:"WdfRequestSetInformation",               NtStatus:false},  //275
+    {Name:"WdfRequestGetInformation",               NtStatus:false},  //276
+    {Name:"WdfRequestGetFileObject",                NtStatus:false},  //277
+    {Name:"WdfRequestProbeAndLockUserBufferForRead",        NtStatus:true},  //278
+    {Name:"WdfRequestProbeAndLockUserBufferForWrite",        NtStatus:true},  //279
+    {Name:"WdfRequestGetRequestorMode",             NtStatus:false},  //280
+    {Name:"WdfRequestForwardToIoQueue",             NtStatus:true},  //281
+    {Name:"WdfRequestGetIoQueue",                   NtStatus:false},  //282
+    {Name:"WdfRequestRequeue",                      NtStatus:true},  //283
+    {Name:"WdfRequestStopAcknowledge",              NtStatus:false},  //284
+    {Name:"WdfRequestWdmGetIrp",                    NtStatus:false},  //285
+    {Name:"WdfIoResourceRequirementsListSetSlotNumber",        NtStatus:false},  //286
+    {Name:"WdfIoResourceRequirementsListSetInterfaceType",        NtStatus:false},  //287
+    {Name:"WdfIoResourceRequirementsListAppendIoResList",        NtStatus:true},  //288
+    {Name:"WdfIoResourceRequirementsListInsertIoResList",        NtStatus:true},  //289
+    {Name:"WdfIoResourceRequirementsListGetCount",        NtStatus:false},  //290
+    {Name:"WdfIoResourceRequirementsListGetIoResList",        NtStatus:false},  //291
+    {Name:"WdfIoResourceRequirementsListRemove",        NtStatus:false},  //292
+    {Name:"WdfIoResourceRequirementsListRemoveByIoResList",        NtStatus:false},  //293
+    {Name:"WdfIoResourceListCreate",        NtStatus:true},  //294
+    {Name:"WdfIoResourceListAppendDescriptor",        NtStatus:true},  //295
+    {Name:"WdfIoResourceListInsertDescriptor",        NtStatus:true},  //296
+    {Name:"WdfIoResourceListUpdateDescriptor",        NtStatus:false},  //297
+    {Name:"WdfIoResourceListGetCount",        NtStatus:false},  //298
+    {Name:"WdfIoResourceListGetDescriptor",        NtStatus:false},  //299
+    {Name:"WdfIoResourceListRemove",        NtStatus:false},  //300
+    {Name:"WdfIoResourceListRemoveByDescriptor",        NtStatus:false},  //301
+    {Name:"WdfCmResourceListAppendDescriptor",        NtStatus:true},  //302
+    {Name:"WdfCmResourceListInsertDescriptor",        NtStatus:true},  //303
+    {Name:"WdfCmResourceListGetCount",        NtStatus:false},  //304
+    {Name:"WdfCmResourceListGetDescriptor",        NtStatus:false},  //305
+    {Name:"WdfCmResourceListRemove",        NtStatus:false},  //306
+    {Name:"WdfCmResourceListRemoveByDescriptor",        NtStatus:false},  //307
+    {Name:"WdfStringCreate",        NtStatus:true},  //308
+    {Name:"WdfStringGetUnicodeString",        NtStatus:false},  //309
+    {Name:"WdfObjectAcquireLock",        NtStatus:false},  //310
+    {Name:"WdfObjectReleaseLock",        NtStatus:false},  //311
+    {Name:"WdfWaitLockCreate",        NtStatus:true},  //312
+    {Name:"WdfWaitLockAcquire",        NtStatus:true},  //313
+    {Name:"WdfWaitLockRelease",        NtStatus:false},  //314
+    {Name:"WdfSpinLockCreate",        NtStatus:true},  //315
+    {Name:"WdfSpinLockAcquire",        NtStatus:false},  //316
+    {Name:"WdfSpinLockRelease",        NtStatus:false},  //317
+    {Name:"WdfTimerCreate",        NtStatus:true},  //318
+    {Name:"WdfTimerStart",        NtStatus:false},  //319
+    {Name:"WdfTimerStop",        NtStatus:false},  //320
+    {Name:"WdfTimerGetParentObject",        NtStatus:false},  //321
+    {Name:"WdfUsbTargetDeviceCreate",        NtStatus:true},  //322
+    {Name:"WdfUsbTargetDeviceRetrieveInformation",        NtStatus:true},  //323
+    {Name:"WdfUsbTargetDeviceGetDeviceDescriptor",        NtStatus:false},  //324
+    {Name:"WdfUsbTargetDeviceRetrieveConfigDescriptor",        NtStatus:true},  //325
+    {Name:"WdfUsbTargetDeviceQueryString",        NtStatus:true},  //326
+    {Name:"WdfUsbTargetDeviceAllocAndQueryString",        NtStatus:true},  //327
+    {Name:"WdfUsbTargetDeviceFormatRequestForString",        NtStatus:true},  //328
+    {Name:"WdfUsbTargetDeviceGetNumInterfaces",        NtStatus:false},  //329
+    {Name:"WdfUsbTargetDeviceSelectConfig",        NtStatus:true},  //330
+    {Name:"WdfUsbTargetDeviceWdmGetConfigurationHandle",        NtStatus:false},  //331
+    {Name:"WdfUsbTargetDeviceRetrieveCurrentFrameNumber",        NtStatus:true},  //332
+    {Name:"WdfUsbTargetDeviceSendControlTransferSynchronously",        NtStatus:true},  //333
+    {Name:"WdfUsbTargetDeviceFormatRequestForControlTransfer",        NtStatus:true},  //334
+    {Name:"WdfUsbTargetDeviceIsConnectedSynchronous",        NtStatus:true},  //335
+    {Name:"WdfUsbTargetDeviceResetPortSynchronously",        NtStatus:true},  //336
+    {Name:"WdfUsbTargetDeviceCyclePortSynchronously",        NtStatus:true},  //337
+    {Name:"WdfUsbTargetDeviceFormatRequestForCyclePort",        NtStatus:true},  //338
+    {Name:"WdfUsbTargetDeviceSendUrbSynchronously",        NtStatus:true},  //339
+    {Name:"WdfUsbTargetDeviceFormatRequestForUrb",        NtStatus:true},  //340
+    {Name:"WdfUsbTargetPipeGetInformation",        NtStatus:false},  //341
+    {Name:"WdfUsbTargetPipeIsInEndpoint",        NtStatus:false},  //342
+    {Name:"WdfUsbTargetPipeIsOutEndpoint",        NtStatus:false},  //343
+    {Name:"WdfUsbTargetPipeGetType",        NtStatus:false},  //344
+    {Name:"WdfUsbTargetPipeSetNoMaximumPacketSizeCheck",        NtStatus:false},  //345
+    {Name:"WdfUsbTargetPipeWriteSynchronously",        NtStatus:true},  //346
+    {Name:"WdfUsbTargetPipeFormatRequestForWrite",        NtStatus:true},  //347
+    {Name:"WdfUsbTargetPipeReadSynchronously",        NtStatus:true},  //348
+    {Name:"WdfUsbTargetPipeFormatRequestForRead",        NtStatus:true},  //349
+    {Name:"WdfUsbTargetPipeConfigContinuousReader",        NtStatus:true},  //350
+    {Name:"WdfUsbTargetPipeAbortSynchronously",        NtStatus:true},  //351
+    {Name:"WdfUsbTargetPipeFormatRequestForAbort",        NtStatus:true},  //352
+    {Name:"WdfUsbTargetPipeResetSynchronously",        NtStatus:true},  //353
+    {Name:"WdfUsbTargetPipeFormatRequestForReset",        NtStatus:true},  //354
+    {Name:"WdfUsbTargetPipeSendUrbSynchronously",        NtStatus:true},  //355
+    {Name:"WdfUsbTargetPipeFormatRequestForUrb",        NtStatus:true},  //356
+    {Name:"WdfUsbInterfaceGetInterfaceNumber",        NtStatus:false},  //357
+    {Name:"WdfUsbInterfaceGetNumEndpoints",        NtStatus:false},  //358
+    {Name:"WdfUsbInterfaceGetDescriptor",        NtStatus:false},  //359
+    {Name:"WdfUsbInterfaceSelectSetting",        NtStatus:true},  //360
+    {Name:"WdfUsbInterfaceGetEndpointInformation",        NtStatus:false},  //361
+    {Name:"WdfUsbTargetDeviceGetInterface",        NtStatus:false},  //362
+    {Name:"WdfUsbInterfaceGetConfiguredSettingIndex",        NtStatus:false},  //363
+    {Name:"WdfUsbInterfaceGetNumConfiguredPipes",        NtStatus:false},  //364
+    {Name:"WdfUsbInterfaceGetConfiguredPipe",        NtStatus:false},  //365
+    {Name:"WdfUsbTargetPipeWdmGetPipeHandle",        NtStatus:false},  //366
+    {Name:"WdfVerifierDbgBreakPoint",        NtStatus:false},  //367
+    {Name:"WdfVerifierKeBugCheck",        NtStatus:false},  //368
+    {Name:"WdfWmiProviderCreate",        NtStatus:true},  //369
+    {Name:"WdfWmiProviderGetDevice",        NtStatus:false},  //370
+    {Name:"WdfWmiProviderIsEnabled",        NtStatus:false},  //371
+    {Name:"WdfWmiProviderGetTracingHandle",        NtStatus:false},  //372
+    {Name:"WdfWmiInstanceCreate",        NtStatus:true},  //373
+    {Name:"WdfWmiInstanceRegister",        NtStatus:true},  //374
+    {Name:"WdfWmiInstanceDeregister",        NtStatus:false},  //375
+    {Name:"WdfWmiInstanceGetDevice",        NtStatus:false},  //376
+    {Name:"WdfWmiInstanceGetProvider",        NtStatus:false},  //377
+    {Name:"WdfWmiInstanceFireEvent",        NtStatus:true},  //378
+    {Name:"WdfWorkItemCreate",        NtStatus:true},  //379
+    {Name:"WdfWorkItemEnqueue",        NtStatus:false},  //380
+    {Name:"WdfWorkItemGetParentObject",        NtStatus:false},  //381
+    {Name:"WdfWorkItemFlush",        NtStatus:false},  //382
+    {Name:"WdfCommonBufferCreateWithConfig",        NtStatus:true},  //383
+    {Name:"WdfDmaEnablerGetFragmentLength",        NtStatus:false},  //384
+    {Name:"WdfDmaEnablerWdmGetDmaAdapter",        NtStatus:false},  //385
+    {Name:"WdfUsbInterfaceGetNumSettings",        NtStatus:false},  //386
+    {Name:"WdfDeviceRemoveDependentUsageDeviceObject",     NtStatus:false},  //387
+    {Name:"WdfDeviceGetSystemPowerAction",                 NtStatus:false},  //388
+    {Name:"WdfInterruptSetExtendedPolicy",	           NtStatus:false},  //389
+    {Name:"WdfIoQueueAssignForwardProgressPolicy",         NtStatus:true},   //390
+    {Name:"WdfPdoInitAssignContainerID",	           NtStatus:true},   //391
+    {Name:"WdfPdoInitAllowForwardingRequestToParent",      NtStatus:false},  //392
+    {Name:"WdfRequestMarkCancelableEx",	    	           NtStatus:true},   //393
+    {Name:"WdfRequestIsReserved",		           NtStatus:false},  //394
+    {Name:"WdfRequestForwardToParentDeviceIoQueue",        NtStatus:true}    //395
+    ];
+
+
+function GetDdiIndexFromName(Name) 
+{
+    for (var index = 0; index < DdiTable.length ; index++) {
+        if (DdiTable[index].Name == Name ) {
+            return index;
+        }
+    }
+    return 1111;
+}
+
+function GetDdiNameFromIndex(Index)
+{
+    return DdiTable[Index].Name;
+}
+
+//
+// User-defined function to format error codes. 
+// VBScript has a Hex() function but JScript does not.
+//
+function hex(nmb)
+{
+    if (nmb > 0)
+        return nmb.toString(16);
+    else
+        return (nmb + 0x100000000).toString(16);
+}
+
+</SCRIPT>
+
+<SCRIPT LANGUAGE="VBScript">
+'*********************************************************************************
+'
+'    Common Routines for "Fault Injection Module"
+'
+'
+'*********************************************************************************
+Function EnableDdiFi(Driver, DdiName)
+
+  On Error Resume Next
+
+  Set Service = GetObject("winmgmts:{impersonationLevel=impersonate}!root/wmi")
+  Set objDriverList = Service.Get("WdfTester.InstanceName='WdfTesterBaseInstance0'")
+  if Err <> 0 Then   
+    WScript.Echo("ERROR: failed to open WMI class WdfTester!")
+    WScript.Echo("...possible reason: wdftester driver not installed or started!")
+    WScript.Echo("Error # " & CStr(Err.Number) & " " & Err.Description & " " & Err.Source)
+    exit Function
+  End If  
+
+  WScript.Echo("...enabling FI for driver: " & Driver)
+
+  Set objInParams = objDriverList.Methods_("ConfigureDdiFi").inParameters.SpawnInstance_()
+  objInParams.DdiIndex = GetDdiIndexFromName(DdiName)
+  if objInParams.DdiIndex = 1111 Then
+      WScript.Echo("ERROR: Incorrect DDI Name provided: " &  DdiName)
+      Exit Function
+  End If
+
+  objInParams.Enable = true 
+  objInParams.FailureType = 1 
+  objInParams.Driver = Driver
+  
+  set objOutParams = objDriverList.ExecMethod_("ConfigureDdiFi", objInParams)
+   
+  If objOutParams.Status <> 0 Then
+      WScript.Echo("ERROR: Failed to register FI for " & DdiName & " in "& Driver & ", status: 0x" & CStr(Hex(objOutParams.Status)))
+  Else
+      WScript.Echo("SUCCESS: Enabled FI for " & DdiName & " in "& Driver)
+  End If
+
+  if Err <> 0 Then   
+      WScript.Echo("ERROR: Failed to enable FI for driver "& Driver )
+      WScript.Echo("Error # " & CStr(Err.Number) & " " & Err.Description & " " & Err.Source)
+  End If  
+
+  WScript.Echo("")
+  On Error Resume Next
+
+End Function
+
+
+Function DisableDdiFi(Driver, DdiName)
+
+  On Error Resume Next
+
+  Set Service = GetObject("winmgmts:{impersonationLevel=impersonate}!root/wmi")
+  Set objDriverList = Service.Get("WdfTester.InstanceName='WdfTesterBaseInstance0'")
+  if Err <> 0 Then   
+    WScript.Echo("ERROR: failed to open WMI class WdfTester!")
+    WScript.Echo("...possible reason: wdftester driver not installed or started!")
+    WScript.Echo("Error # " & CStr(Err.Number) & " " & Err.Description & " " & Err.Source)
+    exit Function
+  End If  
+
+
+  WScript.Echo("...disabling FI for driver: " & Driver)
+
+  Set objInParams = objDriverList.Methods_("ConfigureDdiFi").inParameters.SpawnInstance_()
+  objInParams.DdiIndex = GetDdiIndexFromName(DdiName)
+  if objInParams.DdiIndex = 1111 Then
+      WScript.Echo("ERROR: Incorrect DDI Name provided: " &  DdiName)
+      Exit Function
+  End If
+
+  objInParams.Enable = false
+  objInParams.FailureType = 1 
+  objInParams.Driver = Driver
+  
+  set objOutParams = objDriverList.ExecMethod_("ConfigureDdiFi", objInParams)
+   
+  If objOutParams.Status <> 0 Then
+      WScript.Echo("ERROR: Failed to disable FI for " & DdiName & " in "& Driver & ", status: 0x" & CStr(Hex(objOutParams.Status)))
+  Else
+      WScript.Echo("SUCCESS: Disabled FI for " & DdiName & " in "& Driver)
+  End If
+
+  if Err <> 0 Then   
+      WScript.Echo("ERROR: Failed to disable FI for driver "& Driver )
+      WScript.Echo("Error # " & CStr(Err.Number) & " " & Err.Description & " " & Err.Source)
+  End If  
+
+  WScript.Echo("")
+  On Error Resume Next
+
+End Function
+
+
+Function UnregisterDriver(Driver)
+
+  On Error Resume Next
+
+  Set Service = GetObject("winmgmts:{impersonationLevel=impersonate}!root/wmi")
+  Set objDriverList = Service.Get("WdfTester.InstanceName='WdfTesterBaseInstance0'")
+  if Err <> 0 Then   
+    WScript.Echo("ERROR: failed to open WMI class WdfTester!")
+    WScript.Echo("...possible reason: wdftester driver not installed or started!")
+    WScript.Echo("Error # " & CStr(Err.Number) & " " & Err.Description & " " & Err.Source)
+    exit Function
+  End If  
+
+  Set objInParams = objDriverList.Methods_("UnregisterDriver").inParameters.SpawnInstance_()
+  objInParams.Name = Driver 
+  
+  ' Add a driver
+  WScript.Echo("...unregistering driver " & Driver)
+  set objOutParams = objDriverList.ExecMethod_("UnregisterDriver", objInParams)
+   
+  If objOutParams.Status <> 0 Then
+      WScript.Echo("ERROR: Failed to unregister driver " & Driver & ", status: 0x" & CStr(Hex(objOutParams.Status)))
+  Else
+      WScript.Echo("SUCCESS: Unregistered driver " & Driver & " Successfully!")
+  End If
+
+  if Err <> 0 Then   
+      WScript.Echo("Error # " & CStr(Err.Number) & " " & Err.Description & " " & Err.Source)
+  End If  
+
+  WScript.Echo("")
+  On Error Resume Next
+
+End Function
+
+
+Function RegisterDriver(Driver)
+
+  On Error Resume Next
+
+  Set Service = GetObject("winmgmts:{impersonationLevel=impersonate}!root/wmi")
+  Set objDriverList = Service.Get("WdfTester.InstanceName='WdfTesterBaseInstance0'")
+  if Err <> 0 Then   
+    WScript.Echo("ERROR: failed to open WMI class WdfTester!")
+    WScript.Echo("...possible reason: wdftester driver not installed or started!")
+    WScript.Echo("Error # " & CStr(Err.Number) & " " & Err.Description & " " & Err.Source)
+    exit Function
+  End If  
+
+  Set objInParams = objDriverList.Methods_("RegisterDriver").inParameters.SpawnInstance_()
+  objInParams.Name = Driver 
+  
+  ' Add a driver
+  WScript.Echo("...registering driver " & Driver)
+  set objOutParams = objDriverList.ExecMethod_("RegisterDriver", objInParams)
+   
+  If objOutParams.Status <> 0 Then
+      WScript.Echo("ERROR: Failed to register driver "& Driver & ", status: 0x" & CStr(Hex(objOutParams.Status)))
+  Else
+      WScript.Echo("SUCCESS: Registered driver " & Driver & " Successfully!")
+  End If
+
+  if Err <> 0 Then   
+      WScript.Echo("Error # " & CStr(Err.Number) & " " & Err.Description & " " & Err.Source)
+  End If  
+
+  WScript.Echo("")
+  On Error Resume Next
+
+End Function
+
+
+</SCRIPT>
+<SCRIPT LANGUAGE="JScript">
+//*****************************************************************************
+//                                  MAIN
+//
+//*****************************************************************************
+
+//
+// GLOBALS
+//
+var gDdiFiEvent = 0;
+
+// global ddi fi event object. When an event occurs the asyn functin
+// copies the event object to this global variable
+var gDdiFiEventInstance = null;
+
+// an array of objects. each object has "DdiIndex" member
+var gListOfDdiToBeFailed = [];
+
+var wbemFlagReturnImmediately = 0x10;
+var wbemFlagForwardOnly = 0x20;
+
+
+//
+// start of main
+//
+var input = ParseArgs(WScript.Arguments);
+if (input == 1) {
+   driverName = WScript.Arguments(1);
+   RegisterDriver(driverName);
+}
+else if (input == 2) {
+   driverName = WScript.Arguments(1);
+   UnregisterDriver(driverName);
+}
+else if (input == 3) {
+   driverName = WScript.Arguments(1);
+   ddiName = WScript.Arguments(2);
+   EnableDdiFi(driverName, ddiName);
+}
+else if (input == 4) {  
+   driverName = WScript.Arguments(1)
+   ddiName = WScript.Arguments(2);
+   DisableDdiFi(driverName, ddiName);
+}
+else if (input == 5) {  
+   infName = "wdftester.inf"
+   serviceName = "WdfTester"
+   InstallAndStartDriver(infName, serviceName);
+}
+else if (input == 6) {  
+   driverName = WScript.Arguments(1);
+   GetDdiStats(driverName);
+}  
+else if (input == 7) {  
+   WaitForDdiFiEvent();
+}  
+else if (input == 8) {  
+   driverName = WScript.Arguments(1)
+   hwId = WScript.Arguments(2);
+   RunFiTest(driverName, hwId);
+}  
+
+</SCRIPT>
+
+</JOB>
+</PACKAGE>

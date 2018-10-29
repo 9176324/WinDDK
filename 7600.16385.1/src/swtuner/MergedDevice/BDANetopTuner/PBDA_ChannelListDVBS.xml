@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<SourceTypes>
+	<SourceType TuningSpaceUniqueName="DVB-S">
+	<HeadendType id="DVBs" name="Digital Satellite (DVB-S PBDA)"/>
+	<NetworkType id="FA4B375A-45B4-4D45-8440-263957B11623" name="DVB-S"/>
+	<VideoSource id="ab51755a-00d0-470f-aaf9-7ccc2f3961b5" name="PBDA Satellite"/>
+	</SourceType>
+</SourceTypes>
+
+<Idx value="38733625713728"/>
+<tune:DVB OriginalNetworkID="9018" TransportStreamID="24576" ServiceID="25664">
+    <tune:TuningSpace xsi:type="tune:DVBSTuningSpaceType" Name="DVB-S" SystemType="Satellite" NetworkType="{FA4B375A-45B4-4D45-8440-263957B11623}" HighOscillatorFrequency="10600000" LowOscillatorFrequency="9750000" LNBSwitchFrequency="11700000"/>
+    <tune:Locator xsi:type="tune:DVBSLocatorType" Frequency="11836000" ModulationType="QPSK" InnerFECMethod="RS_204_188" InnerFECRate="2_3" OuterFECMethod="Uninitialized" OuterFECRate="Uninitialized" SymbolRate="27500000" Polarisation="Linear_H" DiseqLNBSource="SourceA"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:DVB>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="The HITS" name="The HITS" callSign="The HITS" matchname="The HITS" affiliation="BBC" ppv="true" subscribed ="true" codec="MPEG2" channel="1">
+</ps:Service>
+
+<Idx value="36369816748546"/>
+<tune:DVB OriginalNetworkID="8468" TransportStreamID="514" ServiceID="514">
+    <tune:TuningSpace xsi:type="tune:DVBSTuningSpaceType" Name="DVB-S" SystemType="Satellite" NetworkType="{FA4B375A-45B4-4D45-8440-263957B11623}" HighOscillatorFrequency="10600000" LowOscillatorFrequency="9750000" LNBSwitchFrequency="11700000"/>
+    <tune:Locator xsi:type="tune:DVBSLocatorType" Frequency="12110000" ModulationType="QPSK" InnerFECMethod="RS_204_188" InnerFECRate="2_3" OuterFECMethod="Uninitialized" OuterFECRate="Uninitialized" SymbolRate="27500000" Polarisation="Linear_H" DiseqLNBSource="SourceA"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:DVB>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="ZDF" name="ZDF" callSign="ZDF" matchname="ZDF" affiliation="ZDF" ppv="true" subscribed ="true" codec="MPEG2" channel="2">
+</ps:Service>
+
+<Idx value="36369816748549"/>
+<tune:DVB OriginalNetworkID="8468" TransportStreamID="514" ServiceID="517">
+    <tune:TuningSpace xsi:type="tune:DVBSTuningSpaceType" Name="DVB-S" SystemType="Satellite" NetworkType="{FA4B375A-45B4-4D45-8440-263957B11623}" HighOscillatorFrequency="10600000" LowOscillatorFrequency="9750000" LNBSwitchFrequency="11700000"/>
+    <tune:Locator xsi:type="tune:DVBSLocatorType" Frequency="12110000" ModulationType="QPSK" InnerFECMethod="RS_204_188" InnerFECRate="2_3" OuterFECMethod="Uninitialized" OuterFECRate="Uninitialized" SymbolRate="27500000" Polarisation="Linear_H" DiseqLNBSource="SourceA"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:DVB>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="Doku/Kika" name="Doku/KiKa" callSign="Kika" matchname="Doku/KiKa" affiliation="Kika" ppv="false" subscribed ="true" codec="MPEG2" channel="3">
+</ps:Service>
+
+<Idx value="36369816748547"/>
+<tune:DVB OriginalNetworkID="8468" TransportStreamID="514" ServiceID="515">
+    <tune:TuningSpace xsi:type="tune:DVBSTuningSpaceType" Name="DVB-S" SystemType="Satellite" NetworkType="{FA4B375A-45B4-4D45-8440-263957B11623}" HighOscillatorFrequency="10600000" LowOscillatorFrequency="9750000" LNBSwitchFrequency="11700000"/>
+    <tune:Locator xsi:type="tune:DVBSLocatorType" Frequency="12110000" ModulationType="Uninitialized" InnerFECMethod="RS_204_188" InnerFECRate="2_3" OuterFECMethod="Uninitialized" OuterFECRate="Uninitialized" SymbolRate="27500000" Polarisation="Linear_H" DiseqLNBSource="SourceA"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:DVB>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="3sat" name="3Sat" callSign="3Sat" matchname="3Sat" affiliation="3sat" ppv="false" subscribed ="true" codec="MPEG2" channel="44">
+</ps:Service>
+

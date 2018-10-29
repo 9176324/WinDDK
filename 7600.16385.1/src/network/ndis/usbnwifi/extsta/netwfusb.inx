@@ -1,0 +1,154 @@
+; /****************************************************************************
+; ** DEVELOPED BY MICROSOFT AND Realtek SEMICONDUCTOR CORP                   **
+; ****************************************************************************/
+
+[version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %Msft%
+LayoutFile  = layout.inf
+CatalogFile = wifiusb.cat
+DriverVer=06/21/2006,6.0.6001.16436
+
+
+[Manufacturer]
+%Realtek%     = Realtek, NTamd64, NTx86
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+
+[Realtek.NTx86]
+; DisplayName                   Section         DeviceID
+; -----------                   -------         --------
+%Realtek.DeviceDesc_8187%       = realtek.ndi,  USB\VID_0BDA&PID_8187
+
+[Realtek.NTamd64]
+; DisplayName                   Section         DeviceID
+; -----------                   -------         --------
+%Realtek.DeviceDesc_8187%       = realtek.ndi,  USB\VID_0BDA&PID_8187
+
+[realtek.ndi.NTx86]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = realtek.reg
+CopyFiles       = realtek.CopyFiles
+*IfType         = 71            ; IF_TYPE_IEEE80211
+*MediaType      = 16            ; NdisMediumNative802_11
+*PhysicalMediaType = 9          ; NdisPhysicalMediumNative802_11
+
+[realtek.ndi.NTAMD64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = realtek.reg
+CopyFiles       = realtek.CopyFiles
+*IfType         = 71            ; IF_TYPE_IEEE80211
+*MediaType      = 16            ; NdisMediumNative802_11
+*PhysicalMediaType = 9          ; NdisPhysicalMediumNative802_11
+
+[realtek.ndi.NTx86.Services]
+AddService = wifiusb, 2, realtek.Service, realtek.EventLog
+
+[realtek.ndi.NTAMD64.Services]
+AddService = wifiusb, 2, realtek.Service, realtek.EventLog
+
+[realtek.reg]
+HKR, Ndi,                         Service,    0, "wifiusb"
+
+HKR, Ndi\Interfaces,              UpperRange, 0, "ndis5"
+HKR, Ndi\Interfaces,              LowerRange, 0, "wlan,ethernet"
+
+HKR, Ndi\params\*ReceiveBuffers,  ParamDesc,  0, "%ReceiveBuffers%"
+HKR, Ndi\params\*ReceiveBuffers,  default,    0, "64"
+HKR, Ndi\params\*ReceiveBuffers,  min,        0, "1"
+HKR, Ndi\params\*ReceiveBuffers,  max,        0, "00000128"
+HKR, Ndi\params\*ReceiveBuffers,  step,       0, "1"
+HKR, Ndi\params\*ReceiveBuffers,  Base,       0, "10"
+HKR, Ndi\params\*ReceiveBuffers,  type,       0, "int"
+
+HKR, Ndi\params\*TransmitBuffers, ParamDesc,  0, "%TransmitBuffers%"
+HKR, Ndi\params\*TransmitBuffers, default,    0, "20"
+HKR, Ndi\params\*TransmitBuffers, min,        0, "1"
+HKR, Ndi\params\*TransmitBuffers, max,        0, "00000020"
+HKR, Ndi\params\*TransmitBuffers, step,       0, "1"
+HKR, Ndi\params\*TransmitBuffers, Base,       0, "10"
+HKR, Ndi\params\*TransmitBuffers, type,       0, "int"
+
+
+[realtek.Service]
+DisplayName     = %Realtek.Service.DispName%
+ServiceType     = 1             ;SERVICE_KERNEL_DRIVER
+StartType       = 3             ;SERVICE_DEMAND_START
+ErrorControl    = 1             ;SERVICE_ERROR_NORMAL
+ServiceBinary   = %12%\wifiusb.sys
+LoadOrderGroup  = NDIS
+
+
+
+[realtek.EventLog]
+AddReg = realtek.AddEventLog.reg
+
+[realtek.AddEventLog.reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR, , TypesSupported,   0x00010001, 7
+
+
+[realtek.CopyFiles]
+wifiusb.sys,,,2
+
+[SourceDisksNames]
+1 = %DiskDescription%,wifiusb.sys,,
+
+[SourceDisksFiles]
+wifiusb.sys = 1,,
+
+[DestinationDirs]
+realtek.CopyFiles          = 12
+DefaultDestDirs            = 11
+
+
+;-------------- WDF Coinstaller installation
+
+[DestinationDirs]
+CoInstaller_CopyFiles = 11
+
+[realtek.ndi.NTx86.CoInstallers]
+AddReg=CoInstaller_AddReg
+CopyFiles=CoInstaller_CopyFiles
+
+[realtek.ndi.NTAMD64.CoInstallers]
+AddReg=CoInstaller_AddReg
+CopyFiles=CoInstaller_CopyFiles
+
+[CoInstaller_CopyFiles]
+wdfcoinstaller$KMDFCOINSTALLERVERSION$.dll
+
+[SourceDisksFiles]
+wdfcoinstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
+
+[CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "wdfcoinstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[realtek.ndi.NTx86.Wdf]
+KmdfService = wifiusb, realtek_wdfsect
+
+[realtek.ndi.NTAMD64.Wdf]
+KmdfService = wifiusb, realtek_wdfsect
+
+[realtek_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+;---------------------------------------------------------------;
+
+
+[Strings]
+Msft                         = "Microsoft"
+Realtek                      = "Realtek Semiconductor Corp"
+Realtek.DeviceDesc_8187      = "Realtek 8187 Extensible USB 802.11a/b/g Wireless Device"
+Realtek.Service.DispName     = "Realtek 8187 Extensible 802.11 Wireless Device Driver"
+DiskDescription              = "Realtek Sample Driver Disk 1"
+TransmitBuffers              = "Transmit Buffers"
+ReceiveBuffers               = "Receive Buffers"
+

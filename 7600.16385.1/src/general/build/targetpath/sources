@@ -1,0 +1,31 @@
+# This is a minimal sample code meant to demonstrate the usage of the binplace macros.
+
+TARGETNAME=filter
+TARGETTYPE=DRIVER
+
+
+KMDF_VERSION_MAJOR=1
+
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+
+INF_NAME=filter
+
+INCLUDES=$(INCLUDES);..\..\inc
+
+SOURCES= ..\filter.c \
+         ..\filter.rc
+
+TARGETLIBS=$(TARGETLIBS) \
+           $(DDK_LIB_PATH)\wdmsec.lib
+
+# Describe custom actions with NTTARGETFILE# and in makefile.inc 
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+
+
+# Describe the target path for TARGETNAME binaries.
+TARGETPATH=targetpathfolder
+
+

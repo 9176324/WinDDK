@@ -1,0 +1,46 @@
+/*
+
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	This ruile verifies that correct APIs for buffer retrieval are used in the
+	EvtIoRead callback function.
+
+	Description: 
+	Within EvtIoRead callback function, the following APIs cannot be called for buffer retrieval: 
+	WdfRequestRetrieveInputBuffer, WdfRequestRetrieveUnsafeUserInputBuffer, WdfRequestRetrieveInputWdmMdl,
+	and WdfRequestRetrieveInputMemory.
+
+	Rule diagnostics: 
+	"<name of the API> cannot be called for Request Buffer retrieval in EvtIoRead callback." 
+
+    
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT, READ} s = INIT;
+}
+
+fun_WDF_IO_QUEUE_IO_READ.entry
+{
+   s = READ;
+}
+fun_WDF_IO_QUEUE_IO_READ.exit
+{
+   halt;
+}
+[sdv_WdfRequestRetrieveInputBuffer
+,sdv_WdfRequestRetrieveUnsafeUserInputBuffer
+,sdv_WdfRequestRetrieveInputWdmMdl
+,sdv_WdfRequestRetrieveInputMemory
+].entry
+{
+   if (s == READ) 
+   {
+      abort "$fname cannot be called for Request Buffer retrieval in EvtIoRead callback.";
+   }
+   
+}

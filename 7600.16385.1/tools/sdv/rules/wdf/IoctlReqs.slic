@@ -1,0 +1,42 @@
+/*
+
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary:  This rule verifies that IOCTL requests are not passed to 
+	          inappropriate KMDF request send DDIs.
+	
+	Rule diagnostics:
+	All requests presented to the driver in the EVT_WDF_IO_QUEUE_IO_DEVICE_CONTROL
+	callback are guaranteed to be IOCTL requests. Hence these cannot be sent using
+	DDIs that are specific to sending read, write, ioctl, etc requests. 
+	
+*/
+
+#include "ntddk_slic.h"
+
+state
+{
+}
+watch fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL.entry.$2;
+
+select one 
+{
+  case fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL:
+        
+		
+		[sdv_WdfUsbTargetPipeSendUrbSynchronously,
+		sdv_WdfIoTargetSendReadSynchronously,
+		sdv_WdfIoTargetSendWriteSynchronously,
+		sdv_WdfIoTargetSendInternalIoctlSynchronously,
+		sdv_WdfIoTargetSendInternalIoctlOthersSynchronously,
+		sdv_WdfUsbTargetPipeWriteSynchronously,
+		sdv_WdfUsbTargetPipeReadSynchronously
+		].entry[guard $2]
+		{
+			abort "Cannot call $fname with an internal device ioctl request object.";
+		}
+		
+} 
+
+
+

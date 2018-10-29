@@ -1,0 +1,79 @@
+/*
+
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: If a PnP driver creates a control device object, the driver must delete the control 
+	device object in one of the cleanup callbacks before the driver unloads.
+
+	Description: If an FDO or filter driver calls WdfDeviceCreate for the control device object, 
+	the driver must call WdfObjectDelete for the control device object from the EvtCleanupCallback for WDFDEVICE object, 
+	the EvtDestroyCallback for WDFDEVICE object, or the EvtDeviceSelfManagedIoCleanup event callback.
+  
+	Related rule: Cleanup4CtlDeviceRegistered checks that one of the cleanup
+	callbacks is registered for such a driver.
+
+	Rule diagnostics:
+	"WdfObjectDelete for the Control Device is not called in $fname; it must be called 
+	from one of the EvtCleanupCallback for WDFDEVICE object/EvtDestroyCallback for WDFDEVICE object/
+	EvtDeviceSelfManagedIoCleanup callbacks."
+
+*/ 
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT, CREATECALLED} s = INIT;
+     enum {INIT1,DELETECALLED} t = INIT1;
+     enum {true,false} check = true;
+} with guard (sdv_main, hcontrol_device)
+
+sdv_WdfDeviceCreate.exit
+{
+  if ((*$3 == hcontrol_device)&&(NT_SUCCESS($return))) {
+         s = CREATECALLED;
+   }   
+}
+sdv_WdfObjectDelete.entry[guard $1]
+{    
+     t = DELETECALLED;
+}
+select all {
+  case fun_WDF_DRIVER_DEVICE_ADD: 
+       fun_WDF_DEVICE_CONTEXT_CLEANUP.exit
+       {
+         if (check==true) {
+            if ((s == CREATECALLED)&&
+                (t != DELETECALLED)&&(hdevcollection_count == 0)){
+                   abort "WdfObjectDelete for the Control Device is not called in $fname; it must be called from one of the EvtCleanupCallback for WDFDEVICE object/EvtDestroyCallback for WDFDEVICE object/EvtDeviceSelfManagedIoCleanup callbacks.";
+            }else{ 
+				check = false;
+			}
+         }     
+       }
+  case fun_WDF_DRIVER_DEVICE_ADD: 
+       fun_WDF_DEVICE_CONTEXT_DESTROY.exit
+       {
+         if (check==true) {
+            if ((s == CREATECALLED)&&
+                (t != DELETECALLED)&&(hdevcollection_count == 0)){
+                   abort "WdfObjectDelete for the Control Device is not called in $fname; it must be called from one of the EvtCleanupCallback for WDFDEVICE object/EvtDestroyCallback for WDFDEVICE object/EvtDeviceSelfManagedIoCleanup callbacks.";
+            }else{ 
+				check = false;
+			}
+         }     
+       }
+  case fun_WDF_DRIVER_DEVICE_ADD: 
+       fun_WDF_DEVICE_SELF_MANAGED_IO_CLEANUP.exit
+       {
+         if (check==true) {
+            if ((s == CREATECALLED)&&
+                (t != DELETECALLED)&&(hdevcollection_count == 0)){
+                   abort "WdfObjectDelete for the Control Device is not called in $fname; it must be called from one of the EvtCleanupCallback for WDFDEVICE object/EvtDestroyCallback for WDFDEVICE object/EvtDeviceSelfManagedIoCleanup callbacks.";
+            }else{ 
+				check = false;
+			}
+         }     
+       }
+}
+   

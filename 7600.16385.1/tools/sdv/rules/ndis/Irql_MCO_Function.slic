@@ -1,0 +1,64 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    This rule verifies that MCO related DDIs are only called at proper IRQL levels.
+    
+    Description:
+    Check for the proper IRQL when the function is entering.
+    
+    Related Rule:
+    
+*/
+
+#include "ntddk_slic.h"
+
+sdv_NdisMCoActivateVcComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCoDeactivateVcComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCoIndicateReceiveNetBufferLists.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCoIndicateStatusEx.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCompleteDmaTransfer.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCoOidRequestComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMCoSendNetBufferListsComplete.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+

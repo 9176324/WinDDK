@@ -1,0 +1,4 @@
+LIBRARY		OEMPREAN
+EXPORTS        DllGetClassObject   PRIVATE
+               DllCanUnloadNow     PRIVATE
+

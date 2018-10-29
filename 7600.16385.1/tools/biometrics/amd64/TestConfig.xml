@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bioTestConfiguration version="0" runOptional="false" runInteractive="true" abortOnFailure="false" manualStep="false" logType="XML">
+  <testSuites>
+    <testSuite deviceRequired="true" id="MSSensorAdapterTestSuite">
+      <library>sensortest.dll</library>
+      <description>Sensor Adapter Test Suite</description>
+      <excludeTestCases>
+        <excludeTestCase>6</excludeTestCase>
+      </excludeTestCases>
+    </testSuite>
+    <testSuite deviceRequired="false" id="MSStorageAdapterTestSuite">
+      <library>storagetest.dll</library>
+      <description>storage Adapter Test Suite</description>
+    </testSuite>
+    <testSuite deviceRequired="true" id="MSEngineAdapterTestSuite">
+      <library>enginetest.dll</library>
+      <description>Engine Adapter Test Suite</description>
+    </testSuite>
+  </testSuites>
+  <deviceInfo>
+    <sensorAdapterLib>winbiosensoradapter.dll</sensorAdapterLib>
+    <engineAdapterLib>engineadapter.dll</engineAdapterLib>
+    <storageAdapterLib>winbiostorageadapter.dll</storageAdapterLib>
+    <indicatorSupported>0</indicatorSupported>
+    <supportedModes>
+      <supportedMode>0x01</supportedMode>
+    </supportedModes>
+    <supportedPurposes>
+      <supportedPurpose>0x01</supportedPurpose>
+      <supportedPurpose>0x02</supportedPurpose>
+      <supportedPurpose>0x04</supportedPurpose>
+      <supportedPurpose>0x08</supportedPurpose>
+      <supportedPurpose>0x10</supportedPurpose>
+      <supportedPurpose>0x80</supportedPurpose>
+    </supportedPurposes>
+  </deviceInfo>
+</bioTestConfiguration>

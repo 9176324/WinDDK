@@ -1,0 +1,340 @@
+import "wudfddi.idl";
+
+//
+//
+
+//
+// Definitions of WUDF USB constants, enums, and data types
+//
+
+cpp_quote("#ifdef MIDL_PASS")
+typedef PVOID WINUSB_INTERFACE_HANDLE;
+typedef WINUSB_INTERFACE_HANDLE * PWINUSB_INTERFACE_HANDLE;
+typedef PVOID PUSB_INTERFACE_DESCRIPTOR;
+typedef PVOID PWINUSB_PIPE_INFORMATION;
+typedef PVOID PWINUSB_SETUP_PACKET;
+typedef ULONG USBD_PIPE_TYPE;
+cpp_quote("#else")
+cpp_quote("#include <WinUsb.h>")
+cpp_quote("#endif")
+
+typedef enum _WDF_USB_REQUEST_TYPE
+{
+    WdfUsbRequestTypeInvalid = 0,
+    WdfUsbRequestTypeNoFormat,
+    WdfUsbRequestTypeDeviceControlTransfer,
+    WdfUsbRequestTypePipeWrite,
+    WdfUsbRequestTypePipeRead
+} WDF_USB_REQUEST_TYPE, *PWDF_USB_REQUEST_TYPE;
+
+//
+// Forward declarations of USB interfaces implemented by WUDF.
+//
+
+interface IWDFUsbTargetFactory;
+interface IWDFUsbTargetDevice;
+interface IWDFUsbInterface;
+interface IUsbTargetPipeContinuousReaderCallbackReadComplete;
+interface IUsbTargetPipeContinuousReaderCallbackReadersFailed;
+interface IWDFUsbTargetPipe;
+interface IWDFUsbTargetPipe2;
+interface IWDFUsbRequestCompletionParams;
+
+//
+// Definitions of WUDF USB interfaces.
+//
+
+//
+// IWDFUsbTargetFactory interface
+//
+
+[
+    uuid(3f7becf9-3a65-4348-a4f3-339d5734a9c6),
+    object,
+    local,
+    pointer_default(unique)
+]
+interface IWDFUsbTargetFactory : IUnknown
+{
+    HRESULT
+    CreateUsbTargetDevice(
+        [out, annotation("__out")]  IWDFUsbTargetDevice**   ppDevice
+        );    
+};
+
+//
+// IWDFUsbTargetDevice interface
+//
+
+[
+    uuid(4cd12e96-900a-44c3-a1b7-05b8954dab76),
+    object,
+    local,
+    pointer_default(unique)
+]
+interface IWDFUsbTargetDevice : IWDFIoTarget
+{
+    WINUSB_INTERFACE_HANDLE
+    GetWinUsbHandle(
+        );
+
+    UCHAR
+    GetNumInterfaces(
+        );
+    
+    HRESULT
+    RetrieveUsbInterface(
+        [in, annotation("__in")] UCHAR InterfaceIndex,
+        [out, annotation("__out")] IWDFUsbInterface ** ppUsbInterface
+        );
+
+    HRESULT
+    FormatRequestForControlTransfer(
+        [in, annotation("__in")] IWDFIoRequest * pRequest,
+        [in, annotation("__in")] PWINUSB_SETUP_PACKET SetupPacket,
+        [in, unique, annotation("__in_opt")] IWDFMemory * pMemory,
+        [in, unique, annotation("__in_opt")] PWDFMEMORY_OFFSET TransferOffset
+        );
+
+
+    //WinUsb_QueryDeviceInformation : takes an information type, kmdf has a struct
+    //WinUsb only has device speed
+    //just like descriptors, what about this - should this be async
+    HRESULT
+    RetrieveDeviceInformation(
+        [in, annotation("__in")] ULONG InformationType,
+        [in, out, annotation("__inout")] ULONG * BufferLength,
+        [out, annotation("__out")] PVOID Buffer
+        );
+
+    HRESULT
+    RetrieveDescriptor(
+        [in, annotation("__in")] UCHAR DescriptorType,
+        [in, annotation("__in")] UCHAR Index,
+        [in, annotation("__in")] USHORT LanguageID,
+        [in, out, annotation("__inout")] ULONG * BufferLength,
+        [out, annotation("__out")] PVOID Buffer
+        );
+
+    HRESULT
+    RetrievePowerPolicy(
+        [in, annotation("__in")] ULONG PolicyType,
+        [in, out, annotation("__inout")] ULONG * ValueLength,
+        [out, annotation("__out")] PVOID Value
+        );
+
+    HRESULT
+    SetPowerPolicy(
+        [in, annotation("__in")] ULONG PolicyType,
+        [in, annotation("__in")] ULONG ValueLength,
+        [in, annotation("__in")] PVOID Value        
+        );    
+};
+
+//
+// IWDFUsbInterface interface
+//
+
+[
+    uuid(a6714a4d-c764-498f-b6d2-032f10ca4e36),
+    object,
+    local,
+    pointer_default(unique)
+]
+interface IWDFUsbInterface : IWDFObject
+{   
+    void
+    GetInterfaceDescriptor(
+        [out, annotation("__out")] PUSB_INTERFACE_DESCRIPTOR UsbAltInterfaceDescriptor
+        );
+
+    UCHAR
+    GetInterfaceNumber(
+        );
+
+    UCHAR
+    GetNumEndPoints(
+        );
+    
+    UCHAR
+    GetConfiguredSettingIndex(
+        );
+
+    HRESULT        
+    SelectSetting(
+        [in, annotation("__in")]  UCHAR SettingNumber
+        );    
+
+    WINUSB_INTERFACE_HANDLE
+    GetWinUsbHandle(
+        );
+
+    HRESULT
+    RetrieveUsbPipeObject(
+        [in, annotation("__in")]  UCHAR PipeIndex,
+        [out, annotation("__out")] IWDFUsbTargetPipe ** ppPipe
+        );
+}
+
+//
+// IUsbTargetPipeContinuousReaderCallbackReadComplete interface
+//
+
+[
+    uuid(E44FC7CC-0037-45fe-B27C-3963FDF13997),
+    object,
+    local,
+    pointer_default(unique)
+]
+interface IUsbTargetPipeContinuousReaderCallbackReadComplete : IUnknown
+{
+    void
+    OnReaderCompletion(
+        [in, annotation("__in")] IWDFUsbTargetPipe * pPipe,
+        [in, annotation("__in")] IWDFMemory * pMemory,
+        [in, annotation("__in")] SIZE_T NumBytesTransferred,
+        [in, annotation("__in")] PVOID Context
+    );
+}
+
+//
+// IUsbTargetPipeContinuousReaderCallbackReadersFailed interface
+//
+
+[
+    uuid(4B891219-3C53-4a8c-8731-4E1B4BE0E233),
+    object,
+    local,
+    pointer_default(unique)
+]
+interface IUsbTargetPipeContinuousReaderCallbackReadersFailed : IUnknown
+{
+    BOOL
+    OnReaderFailure(
+        [in, annotation("__in")] IWDFUsbTargetPipe * pPipe,
+        [in, annotation("__in")] HRESULT hrStatus
+    );
+}
+
+//
+// IWDFUsbTargetPipe interface
+//
+
+[
+    uuid(f373216e-8c42-4c5c-95b4-d2a40b99c0fa),
+    object,
+    local,
+    pointer_default(unique)
+]
+interface IWDFUsbTargetPipe : IWDFIoTarget
+{
+    HRESULT
+    Abort(
+        );
+
+    HRESULT
+    Reset(
+        );
+    
+    HRESULT
+    Flush(
+        );
+
+    void
+    GetInformation(
+        [out, annotation("__out")] PWINUSB_PIPE_INFORMATION pInfo
+        );
+
+    BOOL
+    IsInEndPoint(
+        );
+
+    BOOL
+    IsOutEndPoint(
+        );
+
+    USBD_PIPE_TYPE
+    GetType(
+        );
+
+    HRESULT
+    RetrievePipePolicy(
+        [in, annotation("__in")] ULONG PolicyType,
+        [in, out, annotation("__inout")] ULONG * ValueLength,
+        [out, annotation("__out")] PVOID Value
+        );
+
+    HRESULT
+    SetPipePolicy(
+        [in, annotation("__in")] ULONG PolicyType,
+        [in, annotation("__in")] ULONG ValueLength,
+        [in, annotation("__in")] PVOID Value        
+        );        
+};
+
+//
+// IWDFUsbTargetPipe2 interface
+//
+
+[
+    uuid(8EFE1AB4-F4A2-42bb-9B2B-BBADA19D8B80),
+    object,
+    local,
+    pointer_default(unique)
+]
+interface IWDFUsbTargetPipe2 : IWDFUsbTargetPipe
+{
+    HRESULT
+    ConfigureContinuousReader(
+        [in, annotation("__in")] SIZE_T TransferLength,
+        [in, annotation("__in")] SIZE_T HeaderLength,
+        [in, annotation("__in")] SIZE_T TrailerLength,
+        [in, annotation("__in")] UCHAR NumPendingReads,
+        [in, unique, annotation("__in_opt")] IUnknown * pMemoryCleanupCallbackInterface, //cleanup callback for the memory buffer
+        [in, annotation("__in")] IUsbTargetPipeContinuousReaderCallbackReadComplete * pOnCompletion,
+        [in, unique, annotation("__in_opt")] PVOID pCompletionContext,
+        [in, unique, annotation("__in_opt")] IUsbTargetPipeContinuousReaderCallbackReadersFailed * pOnFailure
+        ); 
+}
+
+//
+// IWDFUsbRequestCompletionParams interface
+//
+
+[
+    uuid(5cb1d859-f7ee-411e-9fa5-0159cc118324),
+    object,
+    local,
+    pointer_default(unique)
+]
+interface IWDFUsbRequestCompletionParams : IWDFRequestCompletionParams
+{
+    WDF_USB_REQUEST_TYPE
+    GetCompletedUsbRequestType(
+        );
+    
+    void
+    GetDeviceControlTransferParameters(
+        [out, unique, annotation("__out_opt")] IWDFMemory**         ppMemory,
+        [out, unique, annotation("__out_opt")] ULONG*               pLengthTransferred,
+        [out, unique, annotation("__out_opt")] SIZE_T*              pOffset,
+        [out, unique, annotation("__out_opt")] PWINUSB_SETUP_PACKET pSetupPacket
+        );
+
+    void
+    GetPipeWriteParameters(
+        [out, unique, annotation("__out_opt")] IWDFMemory**         ppWriteMemory,
+        [out, unique, annotation("__out_opt")] SIZE_T*              pBytesWritten,
+        [out, unique, annotation("__out_opt")] SIZE_T*              pWriteMemoryOffset
+        );
+
+    void
+    GetPipeReadParameters(
+        [out, unique, annotation("__out_opt")] IWDFMemory **        ppReadMemory,
+        [out, unique, annotation("__out_opt")] SIZE_T*              pBytesRead,
+        [out, unique, annotation("__out_opt")] SIZE_T*              pReadMemoryOffset
+        );                    
+}
+
+//
+//

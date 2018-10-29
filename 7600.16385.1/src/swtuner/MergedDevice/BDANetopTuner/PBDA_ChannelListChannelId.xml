@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<SourceTypes>
+	<SourceType>
+	<HeadendType id="TERd" name="Digital Antenna (ChannelId PBDA)"/>
+	<NetworkType id="795ACFF7-F012-4d82-BF5F-8EDFFF960446" name="795ACFF7-F012-4d82-BF5F-8EDFFF960446"/>
+	<VideoSource id="31B740FC-499B-43c7-9562-6D04F85B7FD8" name="PBDA Channel ID"/>
+	</SourceType>
+</SourceTypes>
+
+<Idx value="38733625713728"/>
+<tune:ChannelID ChannelID="101">
+    <tune:TuningSpace xsi:type="tune:ChannelIDTuningSpaceType" Name="795ACFF7-F012-4d82-BF5F-8EDFFF960446" NetworkType="{795ACFF7-F012-4d82-BF5F-8EDFFF960446}"/>
+    <tune:Locator xsi:type="tune:ATSCLocatorType" Frequency="482000" PhysicalChannel="1" TransportStreamID="24576" ProgramNumber="25664"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:ChannelID>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="The HITS" name="The HITS" callSign="The HITS" matchname="The HITS" affiliation="BBC" ppv="true" subscribed ="true" codec="MPEG2" channel="1">
+</ps:Service>
+
+<Idx value="36369816748546"/>
+<tune:ChannelID ChannelID="102">
+    <tune:TuningSpace xsi:type="tune:ChannelIDTuningSpaceType" Name="795ACFF7-F012-4d82-BF5F-8EDFFF960446" NetworkType="{795ACFF7-F012-4d82-BF5F-8EDFFF960446}"/>
+    <tune:Locator xsi:type="tune:ATSCLocatorType" Frequency="554000" PhysicalChannel="1" TransportStreamID="514" ProgramNumber="514"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:ChannelID>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="ZDF" name="ZDF" callSign="ZDF" matchname="ZDF" affiliation="ZDF" ppv="true" subscribed ="true" codec="MPEG2" channel="2">
+</ps:Service>
+
+<Idx value="36369816748549"/>
+<tune:ChannelID ChannelID="103">
+    <tune:TuningSpace xsi:type="tune:ChannelIDTuningSpaceType" Name="795ACFF7-F012-4d82-BF5F-8EDFFF960446" NetworkType="{795ACFF7-F012-4d82-BF5F-8EDFFF960446}"/>
+    <tune:Locator xsi:type="tune:ATSCLocatorType" Frequency="554000" PhysicalChannel="1" TransportStreamID="514" ProgramNumber="517"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:ChannelID>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="Doku/Kika" name="Doku/KiKa" callSign="Kika" affiliation="Kika" matchname="Doku/KiKa" ppv="false" subscribed ="true" codec="MPEG2" channel="3">
+</ps:Service>
+
+<Idx value="36369816748547"/>
+<tune:ChannelID ChannelID="104">
+    <tune:TuningSpace xsi:type="tune:ChannelIDTuningSpaceType" Name="795ACFF7-F012-4d82-BF5F-8EDFFF960446" NetworkType="{795ACFF7-F012-4d82-BF5F-8EDFFF960446}"/>
+    <tune:Locator xsi:type="tune:ATSCLocatorType" Frequency="554000" PhysicalChannel="1" TransportStreamID="514" ProgramNumber="515"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:ChannelID>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="3sat" name="3Sat" callSign="3Sat" matchname="3Sat" affiliation="3sat" ppv="false" subscribed ="true" codec="MPEG2" channel="44">
+</ps:Service>
+

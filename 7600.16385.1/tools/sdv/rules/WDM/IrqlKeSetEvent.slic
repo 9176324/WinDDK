@@ -1,0 +1,26 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule specifies that the KeSetEvent routine is only called
+	at IRQL <= DISPATCH_LEVEL when Wait is set to FALSE, and at
+	IRQL <= APC_LEVEL when Wait is set to TRUE.
+*/
+
+
+#include "ntddk_slic.h"
+
+/* If Wait is set to FALSE, the caller can be running at IRQL <=
+DISPATCH_LEVEL. Otherwise, callers of KeSetEvent must be running at
+IRQL <= APC_LEVEL: */
+KeSetEvent.entry 
+{
+    if (!$3) {
+        if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+            abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+        }
+    } else if ( sdv_irql_current == DISPATCH_LEVEL ) {
+            abort "$fname should only be called at IRQL <= APC_LEVEL when Wait is set to TRUE.";
+    }
+}

@@ -1,0 +1,601 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="wpdmon_files/filelist.xml">
+<title>WPD API/DDI Traffic Monitor Tool</title>
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>90</w:Zoom>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;
+	mso-font-alt:"\FF2D\FF33 \660E\671D";
+	mso-font-charset:128;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-1610612033 1757936891 16 0 131231 0;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:??¡§??;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:PMingLiU;
+	panose-1:2 2 3 0 0 0 0 0 0 0;
+	mso-font-alt:\65B0\7D30\660E\9AD4;
+	mso-font-charset:136;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:3 137232384 22 0 1048577 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-alt:"?? ??";
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:1627421319 -2147483648 8 0 66047 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:536871559 0 0 0 415 0;}
+@font-face
+	{font-family:"\@MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;
+	mso-font-charset:128;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-1610612033 1757936891 16 0 131231 0;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@PMingLiU";
+	panose-1:2 2 3 0 0 0 0 0 0 0;
+	mso-font-charset:136;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:3 137232384 22 0 1048577 0;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-alt:"Times New Roman";
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:auto;
+	mso-font-signature:0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:PMingLiU;
+	color:windowtext;}
+h2
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	color:black;
+	font-weight:bold;}
+h3
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:13.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	color:black;
+	font-weight:bold;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:PMingLiU;
+	color:windowtext;}
+span.MsoCommentReference
+	{mso-style-noshow:yes;
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"MS Mincho";
+	color:windowtext;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:PMingLiU;
+	color:black;}
+pre
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:PMingLiU;
+	color:black;}
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
+	{mso-style-noshow:yes;
+	mso-style-parent:"Comment Text";
+	mso-style-next:"Comment Text";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:PMingLiU;
+	color:windowtext;
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:Tahoma;
+	mso-fareast-font-family:PMingLiU;
+	color:windowtext;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:637489557;
+	mso-list-type:hybrid;
+	mso-list-template-ids:819233464 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1
+	{mso-list-id:701129983;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2141228016 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l1:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2
+	{mso-list-id:1340691667;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1067020492 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:1345208632;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1510587352 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l3:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>  </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="10242"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+mso-outline-level:2'><b><span style='font-size:18.0pt;font-family:Verdana;
+color:black'>WPD API/DDI Traffic Monitor Tool<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span
+style='font-size:10.0pt;font-family:Arial;color:red'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span
+style='font-size:10.0pt;font-family:Arial;color:red'>[This is preliminary
+documentation and subject to change.]</span><span style='font-family:Verdana;
+color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><b><span
+style='font-size:13.5pt;font-family:Verdana;mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><b><span
+style='font-size:13.5pt;font-family:Verdana;mso-bidi-font-family:Arial'>SUMMARY
+</span></b><span style='font-size:10.0pt;font-family:Verdana;mso-bidi-font-family:
+Arial'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+style='font-size:10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoBodyText><span style='font-size:9.0pt'>The <b style='mso-bidi-font-weight:
+normal'>WpdMon.exe</b> application allows developers to analyze the traffic
+between the WPD API and WPD Drivers, or between the WPD Drivers and their I/O
+stacks.<span style='mso-spacerun:yes'>  </span>It also captures PnP
+arrival/removal notifications to help debug connectivity issues.<o:p></o:p></span></p>
+
+<p class=MsoBodyText><span class=SpellE><span style='font-size:9.0pt'>WpdMon</span></span><span
+style='font-size:9.0pt'> is made up of two components: <o:p></o:p></span></p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in;mso-list:l2 level1 lfo1;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:9.0pt;
+font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:9.0pt'>A UI-less
+components which intercepts the relevant traffic.<span
+style='mso-spacerun:yes'>  </span>This is known as the <span class=SpellE>WpdMon</span>
+Shim and must be installed while no WPD Devices are active on the system
+(otherwise a reboot will be required, since the components it hooks will be in
+use).<o:p></o:p></span></p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in;mso-list:l2 level1 lfo1;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:9.0pt;
+font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:9.0pt'>A UI component
+which parses and displays the traffic.<span style='mso-spacerun:yes'> 
+</span>This is a standalone application which can simply be copied and run, and
+is called the <span class=SpellE>WpdMon</span> Application.<o:p></o:p></span></p>
+
+<p class=MsoBodyText><span style='font-size:9.0pt'>As well as capturing the WPD
+<span class=SpellE>Api</span> traffic, <span class=SpellE>WpdMon</span> also
+has a plug-in system, which facilitates the parsing of vendor-specific messages
+between the WPD driver and the I/O stack (i.e. the I/O send to/from the
+device).<span style='mso-spacerun:yes'>  </span>Contact <a
+href="mailto:WpdInfo@microsoft.com">WpdInfo@microsoft.com</a> if you require
+information on how to write your own plug-in.<o:p></o:p></span></p>
+
+<p class=MsoBodyText><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><b><span
+style='font-size:13.5pt;font-family:Verdana;mso-bidi-font-family:Arial'>To
+Install <span class=SpellE>WpdMon</span>:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><b><span
+style='font-size:13.5pt;font-family:Verdana;mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></b></p>
+
+<ol style='margin-top:0in' start=1 type=1>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo2;tab-stops:list .5in;
+     mso-layout-grid-align:none;text-autospace:none'><span style='font-size:
+     10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'>Ensure that all WPD
+     devices are unplugged<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo2;tab-stops:list .5in;
+     mso-layout-grid-align:none;text-autospace:none'><span style='font-size:
+     10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'>For 32-bit systems,
+     copy the Shim DLL to the <span class=SpellE>AppPatch</span> directory
+     (“copy WpdMonShim.dll %<span class=SpellE>windir%\AppPatch</span>”).<span
+     style='mso-spacerun:yes'>  </span>On 64-bit systems, copy the Shim DLL to
+     the AppPatch64 directory (“copy WpdMonShim.dll
+     %windir%\AppPatch\AppPatch64”)<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo2;tab-stops:list .5in;
+     mso-layout-grid-align:none;text-autospace:none'><span style='font-size:
+     10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'>Register the shim
+     (“Regsvr32 %windir%\AppPatch\WpdMonShim.dll” for 32-bit, or “Regsvr32
+     %windir%\AppPatch\AppPatch64\WpdMonShim.dll” for 64-bit)<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo2;tab-stops:list .5in;
+     mso-layout-grid-align:none;text-autospace:none'><span style='font-size:
+     10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'>Plug WPD devices
+     back in<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo2;tab-stops:list .5in;
+     mso-layout-grid-align:none;text-autospace:none'><span style='font-size:
+     10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'>The WPD Monitor
+     Application (WpdMon.exe) is now ready to capture WPD API/DDI traffic, and
+     can be copied and run directly from any directory<o:p></o:p></span></li>
+</ol>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><b><span
+style='font-size:13.5pt;font-family:Verdana;mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><b><span
+style='font-size:13.5pt;font-family:Verdana;mso-bidi-font-family:Arial'>To Run <span
+class=SpellE>WpdMon</span>:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><b><span
+style='font-size:13.5pt;font-family:Verdana;mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></b></p>
+
+<ol style='margin-top:0in' start=1 type=1>
+ <li class=MsoNormal style='mso-list:l3 level1 lfo3;tab-stops:list .5in;
+     mso-layout-grid-align:none;text-autospace:none'><span style='font-size:
+     10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'>After installing <span
+     class=SpellE>WpdMonShim</span>, run WpdMon.exe<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l3 level1 lfo3;tab-stops:list .5in;
+     mso-layout-grid-align:none;text-autospace:none'><span style='font-size:
+     10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'>By default, <span
+     class=SpellE>WpdMon</span> is set to capture WPD API traffic.<span
+     style='mso-spacerun:yes'>  </span>This can be changed by clicking on the “<b
+     style='mso-bidi-font-weight:normal'>Monitor</b>” menu, and selecting the
+     appropriate Parser to activate.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l3 level1 lfo3;tab-stops:list .5in;
+     mso-layout-grid-align:none;text-autospace:none'><span style='font-size:
+     10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'>By default, <span
+     class=SpellE>WpdMon</span> logs its output in RTF format to its main text window,
+     as well as saving to a log file called “<b style='mso-bidi-font-weight:
+     normal'>WpdMon.html</b>”.<span style='mso-spacerun:yes'>   </span>This
+     behavior can be adjusted by clicking on the “<b style='mso-bidi-font-weight:
+     normal'>Options</b>” menu.<o:p></o:p></span></li>
+</ol>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+style='font-size:10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><b><span
+style='font-size:13.5pt;font-family:Verdana;mso-bidi-font-family:Arial'>To
+Uninstall <span class=SpellE>WpdMon</span>:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><b><span
+style='font-size:13.5pt;font-family:Verdana;mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></b></p>
+
+<ol style='margin-top:0in' start=1 type=1>
+ <li class=MsoNormal style='mso-list:l0 level1 lfo4;tab-stops:list .5in;
+     mso-layout-grid-align:none;text-autospace:none'><span style='font-size:
+     10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'>Ensure that all WPD
+     devices are unplugged<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l0 level1 lfo4;tab-stops:list .5in;
+     mso-layout-grid-align:none;text-autospace:none'><span class=SpellE><span
+     style='font-size:10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'>Unregister</span></span><span
+     style='font-size:10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'> the
+     shim (“Regsvr32 –u %windir%\AppPatch\WpdMonShim.dll” for 32-bit, or
+     “Regsvr32 –u %windir%\AppPatch\AppPatch64\WpdMonShim.dll” for 64-bit)<o:p></o:p></span></li>
+</ol>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+style='font-size:10.0pt;font-family:Verdana;mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;mso-cellspacing:0in;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes;
+  height:1.5pt'>
+  <td style='background:aqua;padding:.75pt .75pt .75pt .75pt;height:1.5pt'>
+  <p class=MsoNormal><span style='font-size:2.0pt;mso-bidi-font-size:12.0pt;
+  color:black'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span
+style='font-size:7.5pt;font-family:"MS Sans Serif";color:black'>© 2005
+Microsoft Corporation</span><span style='font-size:10.0pt;font-family:Verdana;
+color:black'> <o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body>
+
+</html>

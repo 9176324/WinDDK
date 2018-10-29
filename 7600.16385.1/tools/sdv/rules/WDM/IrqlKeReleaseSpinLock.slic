@@ -1,0 +1,36 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule specifies that the KeReleaseSpinLock is called at
+	IRQL = DISPATCH_LEVEL only, and only to set the IRQL to the
+	previous IRQL level (typically set by
+	KeAcquireSpinLock).
+
+*/
+
+
+#include "ntddk_slic.h"
+
+/*
+
+Calls to KeAcquireSpinLock and KeReleaseSpinLock must follow a stack
+protocol (See general discussion of the SDV OS Model IRQL Stack in the
+SDV OS Model).
+
+Notice: The rule does not check that the previous IRQL was set by
+KeAcquireSpinLock.
+
+*/
+
+/* Check that KeReleaseSpinLock is called at DISPATCH_LEVEL and that
+it restores the IRQL to previous level: */
+KeReleaseSpinLock.entry 
+{
+    if (sdv_irql_current != DISPATCH_LEVEL) {
+       abort "$fname should only be called at IRQL = DISPATCH_LEVEL.";
+    } else if ($2 != sdv_irql_previous) {
+       abort "$fname must restore old IRQL value.";
+    }
+}

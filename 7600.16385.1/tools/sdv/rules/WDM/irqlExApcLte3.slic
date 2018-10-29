@@ -1,0 +1,53 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that DDIs are only called at proper IRQL levels.
+*/
+
+#include "ntddk_slic.h"
+
+
+ExAcquireResourceExclusiveLite.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExAcquireResourceSharedLite.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExAcquireSharedStarveExclusive.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExAcquireSharedWaitForExclusive.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExConvertExclusiveToSharedLite.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExDeleteResourceLite.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+

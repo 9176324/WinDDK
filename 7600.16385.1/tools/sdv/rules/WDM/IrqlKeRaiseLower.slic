@@ -1,0 +1,41 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule specifies that drivers raise and lower their IRQL
+	levels properly by calling KeRaiseIrql/KeRaiseIrqlToDpcLevel
+	and KeLowerIrql, respectively.
+*/
+
+
+#include "ntddk_slic.h"
+
+/* Counts the number of raises: */
+state {
+    int RaiseDepth = 0;
+}
+
+/* Check use of KeRaiseIrql at proper IRQL: */
+KeRaiseIrql.entry 
+{
+    if ($1 < sdv_irql_current) {
+        abort "The driver calls $fname with a new IRQL less than the current IRQL.";
+    } 
+}
+
+/* Increment the number of raises: */
+[KeRaiseIrql,KeRaiseIrqlToDpcLevel].exit
+{
+     RaiseDepth = RaiseDepth + 1;
+}
+
+/* Decrement/check the number of raises: */
+KeLowerIrql.entry 
+{
+     if (RaiseDepth == 0) {
+	abort "$fname should not be called without a previous call to KeRaiseIrql or KeRaiseIrqlToDpcLevel.";
+     } else {
+        RaiseDepth = RaiseDepth - 1;
+     }
+}

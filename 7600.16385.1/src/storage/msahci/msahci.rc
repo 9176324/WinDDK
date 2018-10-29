@@ -1,0 +1,22 @@
+//+-------------------------------------------------------------------------
+//
+//  Microsoft Windows
+//
+//  Copyright (C) Microsoft Corporation, 2005
+//
+//  File:       msahci.rc
+//
+//--------------------------------------------------------------------------
+
+#include <windows.h>
+
+#include <ntverp.h>
+
+#define VER_FILETYPE    VFT_DRV
+#define VER_FILESUBTYPE VFT2_DRV_SYSTEM
+#define VER_FILEDESCRIPTION_STR     "MS AHCI 1.0 Standard Driver"
+#define VER_INTERNALNAME_STR        "msahci.sys"
+#define VER_ORIGINALFILENAME_STR    "msahci.sys"
+
+#include "common.ver"
+

@@ -1,0 +1,60 @@
+TARGETNAME=ThemeUISmpl
+TARGETTYPE=DYNLINK
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+DLLENTRY=_DllMainCRTStartup
+DLLBASE=0x50000000
+
+USE_MSVCRT=1
+
+USE_OBJECT_ROOT=1
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.h
+
+#
+# ISOLATION
+#
+SXS_ASSEMBLY_NAME=YourCompanyName.YourDivision.YourApp
+SXS_ASSEMBLY_LANGUAGE_INDEPENDENT=1
+SXS_MANIFEST=ThemeUI.Manifest
+SXS_MANIFEST_IN_RESOURCES=1
+SXS_MANIFEST_RESOURCE_ID=2
+SXS_NO_BINPLACE=1
+
+
+#
+# ISOLATION
+#
+LINKER_FLAGS = $(LINKER_FLAGS) -ignore:4049,4217
+
+# To build version with debug output, add -DDEBUG to C_DEFINES line below
+C_DEFINES=$(C_DEFINES) -DUSERMODE_DRIVER -D_UNICODE -DUNICODE -DISOLATION_AWARE_ENABLED
+C_DEFINES=$(C_DEFINES) -DMANIFEST_RESOURCE=$(SXS_MANIFEST_RESOURCE_ID)
+
+
+TARGETLIBS=    $(SDK_LIB_PATH)\kernel32.lib   \
+               $(SDK_LIB_PATH)\user32.lib     \
+               $(SDK_LIB_PATH)\winspool.lib   \
+               $(SDK_LIB_PATH)\ole32.lib      \
+               $(SDK_LIB_PATH)\advapi32.lib   \
+               $(SDK_LIB_PATH)\uuid.lib
+
+SOURCES= intrface.cpp  \
+         dllentry.cpp  \
+         devmode.cpp   \
+         fusutils.cpp  \
+         globals.cpp   \
+         OEMUI.cpp     \
+         OEMUI.rc
+
+!IF "$(BUILD_PASS)" == "PASS2" || "$(BUILD_PASS)" == "PASSALL"
+NTTARGETFILES=COPYDLL
+!ENDIF
+
+# Build with Vista libs but make sure sample can still run downlevel
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+WIN32_WINNT_VERSION =$(LATEST_WIN32_WINNT_VERSION)
+NTDDI_VERSION=$(LATEST_NTDDI_VERSION)
+

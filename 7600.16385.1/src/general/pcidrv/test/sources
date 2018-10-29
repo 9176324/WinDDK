@@ -1,0 +1,25 @@
+TARGETNAME=myping
+TARGETTYPE=PROGRAM
+
+INCLUDES=..\wdm;..\wdm\hw
+
+
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+SOURCES=testapp.rc \
+	testapp.c  \
+        myping.c 
+
+TARGETLIBS=$(SDK_LIB_PATH)\setupapi.lib \
+           $(SDK_LIB_PATH)\wsock32.lib \
+           $(SDK_LIB_PATH)\ws2_32.lib   \
+           $(SDK_LIB_PATH)\ole32.lib  
+	
+UMTYPE=windows
+UMBASE=0x01000000
+UMENTRY=winmain
+
+USE_MSVCRT=1
+
+_NT_TARGET_VERSION= $(_NT_TARGET_VERSION_WINXP)

@@ -1,0 +1,58 @@
+; sideband.inf
+;
+; Installation INF for raw pdo used in kbfiltr to have a 
+; sideband communication from application, bypassing
+; the kbdclass filter driver. This INF is required 
+; only on Windows 2000.
+; This INF installs a NULL driver for the raw-pdo
+; device instance.
+;
+; (c) Copyright 2006 Microsoft
+;
+[Version]
+Signature="$WINDOWS NT$"
+Class=Sample
+ClassGuid={78A1C341-4539-11d3-B88D-00C04FAD5171}
+DriverVer=10/24/2007,6.1.6483.1
+CatalogFile=KmdfSamples.cat
+Provider=%MSFT%
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=SampleClassReg
+
+[SampleClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+
+;*****************************************
+; SideBand Device  Install Section
+;*****************************************
+
+[Manufacturer]
+%StdMfg%=SideBand
+
+[SideBand]
+; DisplayName               Section           DeviceId
+; -----------               -------           --------
+%SideBandDevice.DeviceDesc%=SideBand_Device, {A65C87F9-BE02-4ED9-92EC-012D416169FA}\KEYBOARDFILTER
+
+
+[SideBand_Device.NT]
+;
+
+;-------------- Service installation
+
+[SideBand_Device.NT.Services]
+AddService = , %SPSVCINST_ASSOCSERVICE%, 
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+MSFT = "Microsoft"
+StdMfg = "(Standard system devices)"
+ClassName = "Sample Device"
+SideBandDevice.DeviceDesc = "Keyboard Filter RawPDO for Sideband communication"
+
+

@@ -1,0 +1,40 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+    
+    Summary:
+    OIR Request should not be double complete OID.
+    
+    Description:
+    This rule will report an error if:
+        - MINIPORT_OID_REQUEST exits with NDIS_STATUS_SUCCESS, calling NdisMOidRequestComplete 
+        - NdisMOidRequestComplete is called multiple times when MINIPORT_OID_REQUEST returns pending
+    
+    Related Rule:
+    DoubleCompleteWorkItem: check for double completion issues when the complete process is deferred to a work item.
+    
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+   int calls = 0;
+}
+
+sdv_MINIPORT_OID_REQUEST.exit
+{
+    if ( (calls > 0) && NDIS_SUCCESS($return) ) 
+    {
+        abort "$fname is calling NdisMOidRequestComplete but returning SUCCESS";
+    }
+}
+
+sdv_NdisMOidRequestComplete.entry
+{
+    if(calls > 0) 
+    {
+        abort "$fname is being called from MiniportOidRequest";
+    }
+
+    calls = calls + 1;
+}

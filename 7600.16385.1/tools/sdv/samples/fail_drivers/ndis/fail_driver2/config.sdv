@@ -1,0 +1,7 @@
+PeriodicTimer
+MandatoryOid
+MandatoryWirelessOid
+DoubleComplete
+DoubleCompleteWorkItem
+WriteErrorLog
+SpinLockBalanced

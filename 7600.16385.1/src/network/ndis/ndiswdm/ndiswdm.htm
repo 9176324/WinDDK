@@ -1,0 +1,1327 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 12">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=File-List href="ndiswdm_files/filelist.xml">
+<title>Sample NDIS-WDM Miniport Driver</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Kin Kong Chan</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>Kin Kong Chan</o:LastAuthor>
+  <o:Revision>3</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2009-01-14T22:23:00Z</o:Created>
+  <o:LastSaved>2009-01-14T22:24:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>2698</o:Words>
+  <o:Characters>15379</o:Characters>
+  <o:Company>Microsoft</o:Company>
+  <o:Lines>128</o:Lines>
+  <o:Paragraphs>36</o:Paragraphs>
+  <o:CharactersWithSpaces>18041</o:CharactersWithSpaces>
+  <o:Version>12.00</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<link rel=themeData href="ndiswdm_files/themedata.thmx">
+<link rel=colorSchemeMapping href="ndiswdm_files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
+  DefSemiHidden="true" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="267">
+  <w:LsdException Locked="false" Priority="0" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 9"/>
+  <w:LsdException Locked="false" Priority="35" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" Priority="10" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" Priority="11" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" Priority="22" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="59" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Table Grid"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610611985 1107304683 0 0 415 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1593833729 1073750107 16 0 415 0;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-520092929 1073806591 9 0 415 0;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-alt:"Times New Roman";
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:auto;
+	mso-font-signature:0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	color:black;}
+h2
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 2 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	color:black;
+	font-weight:bold;}
+h3
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 3 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:13.5pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	color:black;
+	font-weight:bold;}
+h4
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 4 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:4;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	color:black;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	color:black;}
+pre
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	color:black;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 2";
+	mso-ansi-font-size:13.0pt;
+	mso-bidi-font-size:13.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#4F81BD;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 3";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#4F81BD;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;
+	mso-ascii-font-family:Consolas;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Consolas;
+	color:black;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 4";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#4F81BD;
+	mso-themecolor:accent1;
+	font-weight:bold;
+	font-style:italic;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:760754913;
+	mso-list-template-ids:920782038;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1
+	{mso-list-id:763650827;
+	mso-list-template-ids:-1329430432;}
+@list l2
+	{mso-list-id:1132601767;
+	mso-list-template-ids:2140692958;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3
+	{mso-list-id:1870483115;
+	mso-list-template-ids:1558066644;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+</style>
+<![endif]-->
+<meta name=Template content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=EN-US link=blue vlink=purple style='tab-interval:.5in'
+leftmargin=8>
+
+<div class=Section1>
+
+<h2><a name=NETVMINI><span style='font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman"'>Sample NDIS-WDM Miniport Driver</span></a><span
+style='font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>
+<o:p></o:p></span></h2>
+
+<h3><span style='font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'>SUMMARY<o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+purpose of this sample is to illustrate functionality of an NDIS-WDM miniport
+driver. An NDIS-WDM driver exposes NDIS miniport interface at its upper edge
+and uses IRPs to interact with other WDM drivers such as USB, IEEE 1394, and
+serial at its lower edge. Unlike NDIS <span class=SpellE>miniports</span>,
+which can call only NDIS functions, an NDIS-WDM driver can call both NDIS and
+non-NDIS functions. However, whenever possible, the miniport driver should call
+NDIS functions. For example, a miniport driver that controls devices on either
+Universal Serial Bus (USB) or IEEE 1394 (<span class=SpellE>firewire</span>)
+buses must expose a standard NDIS miniport driver interface at its upper edge
+and use the class interface for the particular bus at its lower edge. Such a
+miniport driver communicates with devices that are attached to the bus by
+sending I/O request packets (IRPs) to the bus.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+sample is built upon the NETVMINI sample available in the Windows Server 2003
+DDK. Unlike the NETVMINI, this sample is fully functional. It uses the NDISPROT
+(NDIS protocol sample available in the Windows Server 2003 DDK) as its lower
+WDM edge driver to read and write packets to the physical network interface
+card (NIC) as shown in the diagram below. In order to test this sample, you
+should at least have one physical NIC on the test machine. <o:p></o:p></span></p>
+
+<pre><o:p>&nbsp;</o:p></pre><pre><span style='mso-spacerun:yes'>                   </span>---------------------</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>                     </span>|</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>        </span>TCP/IP<span style='mso-spacerun:yes'>       </span>|</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>  </span><span style='mso-spacerun:yes'>                   </span>|</pre><pre><span style='mso-spacerun:yes'>                   </span>---------------------</pre><pre><span style='mso-spacerun:yes'>                            </span>^</pre><pre><span style='mso-spacerun:yes'>                            </span>| &lt;-------------- NDIS Interface</pre><pre><span style='mso-spacerun:yes'>                            </span>V</pre><pre><span style='mso-spacerun:yes'>                   </span>---------------------</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>             </span><span style='mso-spacerun:yes'>        </span>|</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>    </span>Sample NDISWDM<span style='mso-spacerun:yes'>   </span>|</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>       </span>Miniport<span style='mso-spacerun:yes'>      </span>|</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>                     </span>|</pre><pre><span style='mso-spacerun:yes'>                   </span>---------------------</pre><pre><span style='mso-spacerun:yes'>                            </span>^</pre><pre><span style='mso-spacerun:yes'>                            </span>| &lt;--------------- IRPs</pre><pre><span style='mso-spacerun:yes'>                            </span>V</pre><pre><span style='mso-spacerun:yes'>                   </span>---------------------</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>                     </span>|</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>        </span>NDISPROT<span style='mso-spacerun:yes'>     </span>|</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>                     </span>|</pre><pre><span style='mso-spacerun:yes'>                   </span>---------------------</pre><pre><span style='mso-spacerun:yes'>               </span><span style='mso-spacerun:yes'>             </span>^<span
+style='mso-tab-count:3'>                 </span><span style='mso-spacerun:yes'>   </span></pre><pre><span style='mso-spacerun:yes'>                            </span>| &lt;--------------- NDIS Interface</pre><pre><span style='mso-spacerun:yes'>                            </span>V</pre><pre><span style='mso-spacerun:yes'>                   </span>---------------------</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>                     </span>|</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>    </span>NDIS Miniport<span style='mso-spacerun:yes'>    </span>|</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>    </span><span
+class=GramE>for</span> physical NIC |</pre><pre><span style='mso-spacerun:yes'>                  </span>|<span style='mso-spacerun:yes'>                     </span>|</pre><pre><span style='mso-spacerun:yes'>                   </span>---------------------</pre><pre><span style='mso-spacerun:yes'>                            </span>^</pre><pre><span style='mso-spacerun:yes'>                            </span>| &lt;-------------- Talk to the hardware using I/O resources<span
+style='mso-tab-count:2'>       </span><span style='mso-tab-count:1'>        </span><span style='mso-spacerun:yes'>   </span></pre><pre><span style='mso-spacerun:yes'>                          </span><span style='mso-spacerun:yes'>  </span>V<span
+style='mso-tab-count:3'>                 </span><span style='mso-spacerun:yes'>   </span></pre><pre><span style='mso-spacerun:yes'>                      </span>---------------</pre><pre><span style='mso-spacerun:yes'>                     </span>|<span style='mso-spacerun:yes'>    </span>H/w NIC<span style='mso-spacerun:yes'>    </span>|</pre><pre><span style='mso-spacerun:yes'>                      </span>---------------</pre><pre><span style='mso-spacerun:yes'>                             </span>|||||||</pre><pre><span style='mso-spacerun:yes'>                             </span>-------<span style='mso-spacerun:yes'>          </span></pre><pre><span style='mso-spacerun:yes'>                            </span></pre>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Note:</span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'> This sample provides
+an example of a minimal driver intended for educational purposes. Neither the
+driver nor its sample test programs are intended for use in a production
+environment. <o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width="100%"
+ style='width:100.0%;mso-cellspacing:1.5pt;mso-yfti-tbllook:1184'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p align=center style='text-align:center'><b><span style='font-size:10.0pt;
+  font-family:"Verdana","sans-serif"'>Operating System</span></b></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+  mso-fareast-font-family:"Times New Roman"'>Can sample be built in the OS?</span></b><span
+  style='mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+  mso-fareast-font-family:"Times New Roman"'>Does sample work in the OS?</span></b><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+  "Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+  mso-fareast-font-family:"Times New Roman";letter-spacing:-1.0pt'>Can sample
+  be used in a production environment for the OS?</span></b><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+  "Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+  mso-fareast-font-family:"Times New Roman"'>Windows Server 2003</span><span
+  style='mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+  "Times New Roman"'>Yes<o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+  "Times New Roman"'>Yes <o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+  "Times New Roman"'>No<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+  mso-fareast-font-family:"Times New Roman"'>Windows XP<o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+  "Times New Roman"'>Yes <o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+  "Times New Roman"'>Yes <o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+  "Times New Roman"'>No<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+  mso-fareast-font-family:"Times New Roman"'>Windows 2000<o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+  "Times New Roman"'>Yes <o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+  "Times New Roman"'>Yes <o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+  "Times New Roman"'>No<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+  mso-fareast-font-family:"Times New Roman"'>Windows Me<o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p><span style='font-size:7.5pt;font-family:"Verdana","sans-serif"'>See <b>Compatibility</b>
+  below.</span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p><span style='font-size:7.5pt;font-family:"Verdana","sans-serif"'>See <b>Compatibility</b>
+  below.</span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p align=center style='text-align:center'><span style='font-size:10.0pt;
+  font-family:"Verdana","sans-serif"'>No </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5;mso-yfti-lastrow:yes'>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+  mso-fareast-font-family:"Times New Roman"'>Windows 98 SE</span><span
+  style='mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p><span style='font-size:7.5pt;font-family:"Verdana","sans-serif"'>See </span><b><span
+  style='font-size:7.5pt'>C</span></b><b><span style='font-size:7.5pt;
+  font-family:"Verdana","sans-serif"'>ompatibility</span></b><span
+  style='font-size:7.5pt;font-family:"Verdana","sans-serif"'> below.</span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p><span style='font-size:7.5pt;font-family:"Verdana","sans-serif"'>See </span><b><span
+  style='font-size:7.5pt'>C</span></b><b><span style='font-size:7.5pt;
+  font-family:"Verdana","sans-serif"'>ompatibility</span></b><span
+  style='font-size:7.5pt;font-family:"Verdana","sans-serif"'> below.</span><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+  </td>
+  <td width="25%" style='width:25.0%;padding:.75pt .75pt .75pt .75pt'>
+  <p align=center style='text-align:center'><span style='font-size:10.0pt;
+  font-family:"Verdana","sans-serif"'>No </span></p>
+  </td>
+ </tr>
+</table>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The driver
+can be built in the Windows® 2000, Windows® XP, and Server 2003 DDK build
+environment.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The driver
+can be installed in the Windows 2000, XP, and Server 2003 operating systems.
+Windows 2000 supports only NDIS version 5.0 miniport <span class=GramE>driver</span>.
+Windows XP and Server 2003 support NDIS versions 5.0 and 5.1 of miniport
+driver. <o:p></o:p></span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'>BUILDING THE SAMPLE<o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Click the <b>Free
+Build Environment</b> or <b>Checked Build Environment</b> icon under your
+Development Kit's<b> </b>program group to set basic environment variables
+needed by the build utility. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Change to
+the directory containing the device source code, such as CD <span class=SpellE>Src</span>\network\<span
+class=SpellE>ndis</span>\NDISWDM. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Run <b>build
+-<span class=SpellE>ceZ</span></b>, or use the macro <b>BLD</b>. Using these
+tools invokes the Microsoft make routines that produce log files called
+Buildxxx_yyy_zzz.log, and also Buildxx_yyy_zzz.wrn and Buildxx_yyy_zzz.err if
+there are any warnings or errors. Where xxx stands for <span class=SpellE><b>fre</b></span>
+or <span class=SpellE><b>chk</b></span> depending on the environment chosen, <span
+class=SpellE>yyy</span> stands for the OS version (W2K, WXP, or <span
+class=SpellE>Wnet</span>), and <span class=SpellE>zzz</span> stands for
+platform version (x86, IA64, or AMD64).<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>If the
+build succeeds, the driver, <i>ndiswdm.sys</i>,</span><span style='font-size:
+10.0pt;font-family:"Verdana","sans-serif";color:red'> </span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>will be placed in a
+platform specific subdirectory <span class=SpellE><b>src</b></span><b>\network\<span
+class=SpellE>ndis</span>\<span class=SpellE>ndiswdm</span>\$(OBJ_PATH)\$O</b>.
+Depending on the build environment, the driver will be either an NDIS 5.0 or
+NDIS 5.1 miniport driver. If you build in the Windows 2000 build environment,
+you will get NDIS version 5.0 of the miniport driver. If you build in the
+Windows XP or Server 2003 environments, you will get NDIS version 5.1 of the
+miniport driver. <o:p></o:p></span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'>INSTALLATION <o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>You can
+install the NDISWDM driver and use it as your primary miniport by doing <i>one</i>
+of the following: <o:p></o:p></span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo1;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>Disable
+     the bindings of TCP/IP with the physical NIC's miniport and have the
+     NDISWDM miniport to assume the MAC address of the physical NIC. This is
+     the default case. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo1;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>Don't
+     alter the bindings of TCP/IP with the physical NICs miniport. Instead,
+     have the NDISWDM miniport set the physical NIC into Promiscuous mode by
+     using the Advanced Property dialog of NDISWDM in the Device Manager. This
+     way, the NDISWDM can send and receive packets that have different MAC
+     addresses. In this mode, the NDISWDM miniport generates its own locally
+     administered MAC address instead of using the physical NIC's MAC address
+     as its current address. <o:p></o:p></span></li>
+</ul>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman"'>Installation steps</span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'> <o:p></o:p></span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo2;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>Install
+     the NDISPROT sample from the Windows Server 2003 DDK and start the driver.
+     Instruction on how to install and load the driver is given in the
+     NDISPROT.HTM that comes with the sample. Make sure to rebuild the driver
+     with EX_CALLBACK interface defined in the 'Sources' file. This enables the
+     driver to notify NDISWDM whenever it gets loaded. Read the <b>Code Tour</b>
+     section in this document for further information. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo2;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>Double-click
+     <b>Network Connections</b> in Control panel, right-click the <b>Local Area
+     Connection</b> applet of the physical NIC, and select <b>Properties</b>.
+     Clear the <b>TCP/IP <span class=GramE>bindings</span></b> check box. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo2;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>Install
+     the NDISWDM miniport driver. Steps for installing the driver on Windows
+     2000, XP, and Server 2003 DDK are listed below:<o:p></o:p></span></li>
+</ol>
+
+<p style='margin-left:.5in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To
+install the driver on a Windows 2000 machine <o:p></o:p></span></p>
+
+<p style='margin-left:.5in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;
+<o:p></o:p></span></p>
+
+<ol start=3 type=1>
+ <ol start=1 type=1>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Build the driver in a Win2K build environment to get
+      the NDIS version 5.0 of the driver.<o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Copy the driver and the <i>NDISWDM.INF</i> file to a
+      floppy disk or to a directory on the target test machine.<o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Open Control Panel, and double-click <b>Add New
+      Hardware</b>.<o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Click <b>Next</b>.<o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Select <span class=GramE><b>Add</b></span><b> a new
+      device</b>.<o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Select <b>No, I Want to Select the Hardware from a
+      list</b>.<o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Select <b>Network Devices</b>, and then click <span
+      class=GramE><b>Next</b></span>. <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Click <b>Have Disk</b>, and point to the directory
+      that contains NDISWDM.INF file.<o:p></o:p></span></li>
+ </ol>
+</ol>
+
+<p style='margin-left:.5in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To
+install the driver on a Windows XP or Server 2003 machine <o:p></o:p></span></p>
+
+<ol start=3 type=1>
+ <ol start=9 type=1>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Copy the NDIS version 5.1 of the driver and the INF
+      file to a floppy disk or to a directory on the target machine. <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Open Control Panel and double-click <b>Add Hardware</b>.
+      <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>At the Welcome to the Add Hardware Wizard screen,
+      click <span class=GramE><b>Next</b></span>. <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Select <b>Yes, I have already connected the hardware</b>,
+      and click <span class=GramE><b>Next</b></span>. <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Select <b>Add a new hardware device</b> from the list,
+      and click <b>Next</b>. <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Select <span class=GramE><b>Install</b></span><b> the
+      hardware that I manually select from a list (Advanced)</b>, and click <b>Next</b>.
+      <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Select <b>Network adapters</b>, and click <span
+      class=GramE><b>Next</b></span>. <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Click <b>Have Disk</b>, make sure that <b>A:\ </b>is
+      in the <b>Copy manufacturer's files from</b> box, and click <b>OK</b>. <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Click on the desired entry, and click <span
+      class=GramE><b>Next</b></span>. <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>At <b>The wizard is ready to install your hardware</b>
+      screen, click <span class=GramE><b>Next</b></span>. <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l3 level2 lfo2;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+      "Times New Roman"'>Click <b>Finish</b>. <o:p></o:p></span></li>
+ </ol>
+</ol>
+
+<p style='margin-left:.5in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Alternatively,
+you can use the DEVCON.EXE from the DDK to install the driver programmatically.<o:p></o:p></span></p>
+
+<pre style='margin-left:.5in'>c:\&gt;DEVCON.EXE<span style='mso-spacerun:yes'>   </span>INSTALL<span style='mso-spacerun:yes'>   </span>ndiswdm.inf<span style='mso-spacerun:yes'>   </span>&quot;root\<span
+class=SpellE>ndiswdm</span>&quot;</pre>
+
+<p style='margin-left:.5in'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+system copies the NDISWDM.sys file to %<span class=SpellE>systemroot</span>%\system32\drivers
+directory and loads the driver. Instead of root-enumerating the driver as
+described above, you can use the toaster bus driver to bus enumerate the <span
+class=GramE>driver.</span><o:p></o:p></span></p>
+
+<ol start=4 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo2;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>Check
+     the configuration of the miniport by running IPCONFIG /All. You should be
+     able to browse the internet or copy files from another machine. <o:p></o:p></span></li>
+</ol>
+
+<p class=MsoNormal><span class=GramE><span style='font-size:10.0pt;font-family:
+"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>This the</span></span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'> default configuration - NDISPROT driver is started before
+NDISWDM miniport - and the miniport is using the MAC address of the real NIC.
+If you reboot the machine, you will notice that the network connectivity
+through the miniport is broken. This is because the NDISPROT hasn't been loaded
+or loaded after the miniport. When the miniport fails to open the NDISPROT
+interface during init, it reports a locally administered MAC address as the
+current address and completes the initialization. After that, even if the
+miniport is able to successfully open the NDISPROT interface in the <span
+class=SpellE>ExCallback</span>, it cannot report the Real NIC's MAC address. As
+a result, no network communication will take place because the real NIC will
+not receive or send packets that doesn't match with <span class=SpellE><span
+class=GramE>it's</span></span> MAC address. In such a scenario, you can
+re-establish the network connectivity by disabling and re-enabling the miniport
+instance in the device manager to make sure that the miniport opens the target
+device during <span class=SpellE>MiniportInitialize</span> and reports the
+target NIC's MAC address. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>If you
+like to get this configuration to work across reboots, you should configure the
+NDISWDM driver to set the target NIC filter to promiscuous mode. You can do
+that by using Advanced Property of the miniport in the device manager or by
+changing the value in the INF file before installing the miniport. <o:p></o:p></span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'>TESTING<o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Install
+NDIS Tester from the <a
+href="http://www.microsoft.com/hwdq/hwtest/devices/default.asp?area=Network">WHQL
+Web site</a> and run all the client and server tests. <o:p></o:p></span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'>CODE TOUR<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman"'>The information below describes some
+of the key operations performed in the driver.<o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Initialization</span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'> <o:p></o:p></span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>Allocates
+     memory for miniport context structure. This is where the driver stores
+     information about a specific instance of the device. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>In
+     the <span class=SpellE>NICInitializeAdapter</span>, the driver tries to
+     open the NDISPROT device by using <span class=SpellE><span class=GramE>ZwOpenFile</span></span><span
+     class=GramE>(</span>&quot;\Device\<span class=SpellE>NdisProt</span>&quot;).
+     <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>If
+     the call fails because the NDISPROT is not loaded, the driver registers an
+     executive callback interface to be notified whenever the NDISPROT loads.
+     If the call succeeds, the driver gets the target <span class=SpellE>deviceobject</span>
+     related to the file handle returned by <span class=SpellE>ZwOpenFile</span>.
+     The driver then sends IOCTL_NDISPROT_QUERY_BINDING to query the list of
+     miniport device names and a message that NDISPROT is bound to in a loop. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list .5in'><span class=GramE><span
+     style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+     "Times New Roman"'>At every iteration</span></span><span style='font-size:
+     10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>
+     in the loop, the driver makes sure that the miniport name and description
+     it received from the NDISPROT is not one of its own (in case multiple
+     instances of NDISWDM are installed). The driver then makes an
+     IOCTL_NDISPROT_OPEN_DEVICE request to open the target device. If the
+     request fails, the driver continues the loop until it finds a free one. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>If
+     the IOCTL_NDISPROT_OPEN_DEVICE request succeeds, the driver allocates
+     resources for handling send and receive requests, sends IOCTL requests to
+     NDISPROT to get the link speed, sets the miniport to Promiscuous mode (if
+     enabled in the registry), and finally creates a worker thread to poll for
+     read packets from the NDISPROT.<o:p></o:p></span></li>
+</ol>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman"'>Resolving driver load order issue
+between NDISWDM and NDISPROT:</span></b><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'> <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>NDISWDM
+and NDISPROT driver are two unrelated drivers. NDISWDM is a Plug and Play
+driver and NDISPROT is <span class=GramE>an</span> Windows®NT®4.0 compatible
+non-Plug and Play driver. As a result, it's not possible to use a Plug and Play
+notification mechanism to resolve load order dependency between the drivers. If
+the NDISWDM is installed as a root-enumerated driver, then it will get loaded much
+earlier in the boot sequence than the NDISPROT driver. When the NDISWDM tries
+to open the NDISPROT in <span class=SpellE>MiniportInitialize</span> handler,
+it will fail with a STATUS_OBJECT_NAME_NOT_FOUND error because the NDISPROT
+device is not present.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Instead of
+using timer DPCs and work items <span class=GramE>to</span> periodically retry
+opening NDISPROT, this driver uses a new executive callback mechanism to
+resolve the load order issue. Both NDISWDM and NDISPROT create a Callback
+object (<span class=SpellE>ExCreateCallback</span>) called \Callback\<span
+class=SpellE>NdisProtCallbackObject</span> and register their callback handlers
+(<span class=SpellE>ExRegisterCallback</span>). The driver that loads first
+creates the object and the drivers loaded afterwards open the same object,
+register, and then send notification to the other drivers. Based on the
+notification ID received in the callback, both NDISWDM and NDISPROT identify
+the source of notification and take appropriate action. For example, when the
+NDISWDM driver receives a notification, it checks to see if the source driver
+of this notification is NDISPROT and if so, it tries to complete its
+initialization and indicate the final media status of its miniport to NDIS.<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman"'>Request Handler</span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Most of
+the requests are handled directly by the NDISWDM and completed synchronously.
+The driver also has the ability to forward any requests to the target driver.
+For forwarding requests, such as link speed, it queues a work item to get to
+PASSIVE_LEVEL of execution, and from the <span class=SpellE>workitem</span> it
+sends an IOCTL request to NDISPROT and waits for the IRP to complete. When the
+IRP returns, it indicates to NDIS about the completion of the request.<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman"'>Send Packet Handler</span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>In the <span
+class=SpellE>SendPacket</span> handler, the driver copies the packet into a
+free TCB block (because NDISPROT cannot handle chained MDLs), initializes a <span
+class=SpellE>preallocated</span> IRP (IRP_MJ_WRITE) and MDL to describe the TCB
+data buffer and sends the IRP to the NDISPROT driver asynchronously. When the
+write completes, the original send packet that was saved in the TCB control
+block is completed and the TCB and IRP is freed for reuse.<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman"'>Receive Packet handler:</span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The driver
+pre-allocates a certain number (NIC_MAX_BUSY_SENDS) of RCB (Receive Control
+Blocks) buffers, IRPs (IRP_MJ_READ) and MDLs (to describe the RCB data buffer)
+during Miniport Initialize for receiving packets from the target driver
+(NDISPROT). It then queues a <span class=SpellE>workitmem</span> (<span
+class=SpellE><b>NICPostReadsWorkItemCallBack</b></span>) to post all the read
+IRPs to the target driver. When a read request completes, the completion
+routine (<span class=SpellE><b>NICReadRequestCompletion</b></span>) is called.
+This routine checks to see whether the received packet is acceptable based on
+the current packet filter set by the protocol, and decides to either indicate
+the packet to NDIS or discard the packet. When the indicated packet returns
+from NDIS through <span class=SpellE><b>MPReturnPacket</b></span> handler, the
+driver reclaims the associated RCB block and the read IRP for reuse, and checks
+to see if the number of outstanding Read IRPs to the NDISPROT has gone below a
+certain <span class=SpellE>thershold</span> (NIC_SEND_LOW_WATERMARK). If so, it
+queues a <span class=SpellE>workitem</span> to post more read IRPs and keeps
+the read path going.<o:p></o:p></span></p>
+
+<h4><span style='font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'>Adapting this driver for an USB device<o:p></o:p></span></h4>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman"'>If you are using this sample to
+build an NDIS miniport driver for an USB device: <o:p></o:p></span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>First,
+     update the Hardware ID specified in the INF file to that of your USB
+     device. As a result, when you plug in the device, and if the INF file is
+     pre-installed (<span class=SpellE>SetupCopyOEMInf</span>), the PNP manager
+     will automatically pickup your miniport as the driver for the USB device. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>Remove
+     all the code that <span class=GramE>are</span> specific to interacting
+     with NDISPROT. You don't have to open a USB device by calling <span
+     class=SpellE>Zw</span> function. Your driver will be part of the USB
+     device stack and your <span class=SpellE>TargetDeviceObject</span> will be
+     the <span class=SpellE>NextDeviceObject</span> received from <span
+     class=SpellE>NdisGetDeviceProperty</span> call. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>In
+     the <span class=SpellE>NICInitAdapterWorker</span> routine, right before
+     you allocate send &amp; receive side resources, configure your USB device.
+     You can either follow the BULKUSB sample present in the DDK or Walter <span
+     class=SpellE>Oney's</span> Programming Windows Driver Model, Second
+     Edition, book sample code to learn about how to build and submit URB
+     requests to configure your device. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt;
+     font-family:"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'>Once
+     you have all the worker routines for building and submitting URBs are in
+     place, and all the appropriate transfer pipes are setup, you can convert
+     read, write, and IOCTL requests to corresponding URB's and send it to the
+     USB stack. <o:p></o:p></span></li>
+</ul>
+
+<h3><span style='font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'>RESOURCES<o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>For the
+latest release of the Windows device Driver Development Kit, see <a
+href="http://www.microsoft.com/ddk/">http://www.microsoft.com/ddk/</a>.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>If you
+have questions on using or adapting this sample for your project, you can
+either contact <a href="http://support.microsoft.com/">Microsoft Technical
+Support</a> or post your questions in the <a
+href="http://msdn.microsoft.com/newsgroups/default.asp?url=/newsgroups/loadframes.asp?icp=msdn&amp;slcid=us&amp;newsgroup=microsoft.public.development.device.drivers">Microsoft
+driver development newsgroup</a>. <o:p></o:p></span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'>COMPATIBILITY<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman"'>This driver has not been tested on
+Windows Me, Windows 98, Windows 95 or earlier systems. However, this driver can
+be easily made to work if there is an equivalent to NDISPROT that works on
+these systems. One of the <a
+href="http://www.microsoft.com/winhec/presents/driver22.ppt"><span
+class=SpellE>WinHEC</span> 2000</a> presentations discusses some of issues that
+should be addressed in this sample to make it work on Windows Me, Windows 98,
+Windows 95 or earlier systems. <o:p></o:p></span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'>FILE MANIFEST (Optional)<o:p></o:p></span></h3>
+
+<pre><u>File<span style='mso-tab-count:2'>           </span>Description<o:p></o:p></u></pre><pre><o:p>&nbsp;</o:p></pre><pre><span
+class=GramE>ndiswdm.htm</span><span style='mso-tab-count:1'>    </span>Sample Tour documentation for this sample (this file).</pre><pre><span
+class=GramE>Sources<span style='mso-tab-count:2'>        </span>Generic file for building the code sample.</span></pre><pre><span
+class=GramE>ndiswdm.inf</span><span style='mso-tab-count:1'>    </span>INF file for installing the driver.</pre><pre><span
+class=SpellE><span class=GramE>ndiswdm.RC</span></span><span style='mso-tab-count:
+1'>     </span>Resource file to specify driver version, etc.</pre><pre><span
+class=SpellE><span class=GramE>ndiswdm.h</span></span><span style='mso-tab-count:
+1'>      </span>Include file for defining structures, constants and function prototypes.</pre><pre><span
+class=SpellE><span class=GramE>ndiswdm.c</span></span><span style='mso-tab-count:
+1'>      </span>Main file that contains driver entry and other miniport functions.</pre><pre><span
+class=SpellE><span class=GramE>init.c</span></span><span style='mso-tab-count:
+1'>  </span><span style='mso-spacerun:yes'>        </span>Source file for allocating and initializing resources.</pre><pre><span
+class=SpellE><span class=GramE>send.c</span></span><span style='mso-tab-count:
+1'>  </span><span style='mso-spacerun:yes'>        </span>Source file for handling Send requests from NDIS.</pre><pre><span
+class=SpellE><span class=GramE>receive.c</span></span><span style='mso-tab-count:
+1'>      </span>Source file for handling IRPs received by the lower WDM driver indicating to NDIS.</pre><pre><span
+class=SpellE><span class=GramE>request.c</span></span><span style='mso-spacerun:yes'>       </span>Source file for handling set &amp; query information requests from NDIS.</pre><pre><span
+class=SpellE><span class=GramE>excallbk.c</span></span><span style='mso-tab-count:
+1'>     </span>Source file for handling ex callback notification to resolve driver load order.</pre>
+
+<p align=center style='text-align:center'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a href="#top">Top of page</a> <o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;mso-cellspacing:0in;mso-yfti-tbllook:1184'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes;
+  height:1.5pt'>
+  <td style='background:aqua;padding:.75pt .75pt .75pt .75pt;height:1.5pt'></td>
+ </tr>
+</table>
+
+<p><span style='font-size:7.5pt;font-family:"MS Sans Serif","serif"'>© 2003
+Microsoft Corporation. All rights reserved.</span><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'> <o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,105 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that calls to
+	ExAcquireResourceExclusiveLite,ExAcquireResourceSharedLite
+	ExAcquireSharedStarveExclusive,ExAcquireSharedWaitForExclusive and ExReleaseResourceLite or
+	ExReleaseResourceForThreadLite are in the correct manner within a WDM entry point.
+*/
+
+#include "ntddk_slic.h"
+
+state{
+    int ResDepth = 0;
+}
+
+
+
+[ExReleaseResourceLite,ExReleaseResourceForThreadLite].entry
+{   
+    ResDepth = ResDepth - 1;
+}
+
+[ExAcquireResourceExclusiveLite,
+ExAcquireResourceSharedLite,
+ExAcquireSharedStarveExclusive,
+ExAcquireSharedWaitForExclusive].exit
+{
+    if ($return) 
+    {
+       ResDepth = ResDepth + 1;                
+    }
+}
+
+[fun_DriverEntry
+,sdv_RunAddDevice
+,sdv_RunStartDevice
+,sdv_RunStartIo
+,fun_KDEFERRED_ROUTINE_1
+,fun_KDEFERRED_ROUTINE_2
+,fun_KDEFERRED_ROUTINE_3
+,fun_KDEFERRED_ROUTINE_4
+,fun_KDEFERRED_ROUTINE_5
+,fun_KDEFERRED_ROUTINE_6
+,fun_KDEFERRED_ROUTINE_7
+,fun_KDEFERRED_ROUTINE_8
+,fun_KDEFERRED_ROUTINE_9
+,fun_KSERVICE_ROUTINE_1
+,fun_KSERVICE_ROUTINE_2
+,fun_KSERVICE_ROUTINE_3
+,fun_KSERVICE_ROUTINE_4
+,fun_KSERVICE_ROUTINE_5
+,fun_KSERVICE_ROUTINE_6
+,fun_DRIVER_CANCEL_1
+,fun_DRIVER_CANCEL_2
+,fun_DRIVER_CANCEL_3
+,fun_DRIVER_CANCEL_4
+,fun_DRIVER_CANCEL_5
+,fun_DRIVER_CANCEL_6
+,fun_WORKER_THREAD_ROUTINE_1
+,fun_WORKER_THREAD_ROUTINE_2
+,fun_WORKER_THREAD_ROUTINE_3
+,fun_WORKER_THREAD_ROUTINE_4
+,fun_WORKER_THREAD_ROUTINE_5
+,fun_WORKER_THREAD_ROUTINE_6
+,fun_IO_COMPLETION_ROUTINE_1
+,fun_IO_COMPLETION_ROUTINE_2
+,fun_IO_COMPLETION_ROUTINE_3
+,fun_IO_COMPLETION_ROUTINE_4
+,fun_IO_COMPLETION_ROUTINE_5
+,fun_IO_COMPLETION_ROUTINE_6
+,fun_IO_DPC_ROUTINE_1
+,fun_IO_DPC_ROUTINE_2
+,fun_IO_DPC_ROUTINE_3
+,fun_IO_DPC_ROUTINE_4
+,fun_IO_DPC_ROUTINE_5
+,fun_IO_DPC_ROUTINE_6
+,fun_IRP_MJ_CLEANUP
+,fun_IRP_MJ_CLOSE
+,fun_IRP_MJ_CREATE
+,fun_IRP_MJ_DEVICE_CONTROL
+,fun_IRP_MJ_FILE_SYSTEM_CONTROL
+,fun_IRP_MJ_FLUSH_BUFFERS
+,fun_IRP_MJ_INTERNAL_DEVICE_CONTROL
+,fun_IRP_MJ_LOCK_CONTROL
+,fun_IRP_MJ_QUERY_INFORMATION
+,fun_IRP_MJ_READ
+,fun_IRP_MJ_SET_INFORMATION
+,fun_IRP_MJ_SYSTEM_CONTROL
+,fun_IRP_MJ_WRITE
+,fun_IRP_MJ_PNP
+,fun_IRP_MJ_POWER
+,sdv_RunRemoveDevice
+,sdv_RunUnload
+].exit
+{
+        if (ResDepth != 0) 
+        {
+            abort "$fname returned with an invalid Resource state";
+        }
+}
+
+
+

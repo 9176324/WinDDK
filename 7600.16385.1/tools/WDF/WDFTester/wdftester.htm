@@ -1,0 +1,3301 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 12">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=File-List href="WdfTester_files/filelist.xml">
+<title>WDF DDI Fault Injection Test Tool</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>kumar</o:Author>
+  <o:LastAuthor>Kumar Rajeev</o:LastAuthor>
+  <o:Revision>7</o:Revision>
+  <o:TotalTime>459</o:TotalTime>
+  <o:Created>2007-05-30T03:06:00Z</o:Created>
+  <o:LastSaved>2007-05-30T19:53:00Z</o:LastSaved>
+  <o:Pages>7</o:Pages>
+  <o:Words>2465</o:Words>
+  <o:Characters>14052</o:Characters>
+  <o:Company>Microsoft Corporation</o:Company>
+  <o:Lines>117</o:Lines>
+  <o:Paragraphs>32</o:Paragraphs>
+  <o:CharactersWithSpaces>16485</o:CharactersWithSpaces>
+  <o:Version>12.00</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<link rel=themeData href="WdfTester_files/themedata.thmx">
+<link rel=colorSchemeMapping href="WdfTester_files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="--"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" LatentStyleCount="267">
+  <w:LsdException Locked="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="99" Name="No List"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+    {font-family:Wingdings;
+    panose-1:5 0 0 0 0 0 0 0 0 0;
+    mso-font-charset:2;
+    mso-generic-font-family:auto;
+    mso-font-pitch:variable;
+    mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+    {font-family:"Cambria Math";
+    panose-1:2 4 5 3 5 4 6 3 2 4;
+    mso-font-charset:1;
+    mso-generic-font-family:roman;
+    mso-font-format:other;
+    mso-font-pitch:variable;
+    mso-font-signature:0 0 0 0 0 0;}
+@font-face
+    {font-family:Tahoma;
+    panose-1:2 11 6 4 3 5 4 4 2 4;
+    mso-font-charset:0;
+    mso-generic-font-family:swiss;
+    mso-font-pitch:variable;
+    mso-font-signature:-520082689 -1073717157 41 0 66047 0;}
+@font-face
+    {font-family:Verdana;
+    panose-1:2 11 6 4 3 5 4 4 2 4;
+    mso-font-charset:0;
+    mso-generic-font-family:swiss;
+    mso-font-pitch:variable;
+    mso-font-signature:-1593833729 1073750107 16 0 415 0;}
+@font-face
+    {font-family:"Lucida Console";
+    panose-1:2 11 6 9 4 5 4 2 2 4;
+    mso-font-charset:0;
+    mso-generic-font-family:modern;
+    mso-font-pitch:fixed;
+    mso-font-signature:-2147482993 6144 0 0 31 0;}
+@font-face
+    {font-family:"MS Shell Dlg";
+    panose-1:2 11 6 4 2 2 2 2 2 4;
+    mso-font-charset:0;
+    mso-generic-font-family:swiss;
+    mso-font-pitch:variable;
+    mso-font-signature:-520082689 -1073741822 8 0 66047 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+    {mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-parent:"";
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-pagination:widow-orphan;
+    font-size:12.0pt;
+    font-family:"Times New Roman","serif";
+    mso-fareast-font-family:"Times New Roman";}
+h4
+    {mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-link:"Heading 4 Char";
+    mso-margin-top-alt:auto;
+    margin-right:0in;
+    mso-margin-bottom-alt:auto;
+    margin-left:0in;
+    mso-pagination:widow-orphan;
+    mso-outline-level:4;
+    font-size:12.0pt;
+    font-family:"Verdana","sans-serif";
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:minor-fareast;
+    font-weight:bold;}
+a:link, span.MsoHyperlink
+    {mso-style-unhide:no;
+    color:blue;
+    text-decoration:underline;
+    text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+    {mso-style-unhide:no;
+    color:purple;
+    mso-themecolor:followedhyperlink;
+    text-decoration:underline;
+    text-underline:single;}
+p
+    {mso-style-unhide:no;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:7.5pt;
+    margin-left:0in;
+    mso-pagination:widow-orphan;
+    font-size:12.0pt;
+    font-family:"Times New Roman","serif";
+    mso-fareast-font-family:"Times New Roman";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+    {mso-style-unhide:no;
+    mso-style-link:"Balloon Text Char";
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-pagination:widow-orphan;
+    font-size:8.0pt;
+    font-family:"Tahoma","sans-serif";
+    mso-fareast-font-family:"Times New Roman";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:0in;
+    margin-left:.5in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:12.0pt;
+    font-family:"Times New Roman","serif";
+    mso-fareast-font-family:"Times New Roman";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:0in;
+    margin-left:.5in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:12.0pt;
+    font-family:"Times New Roman","serif";
+    mso-fareast-font-family:"Times New Roman";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:0in;
+    margin-left:.5in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:12.0pt;
+    font-family:"Times New Roman","serif";
+    mso-fareast-font-family:"Times New Roman";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:0in;
+    margin-left:.5in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:12.0pt;
+    font-family:"Times New Roman","serif";
+    mso-fareast-font-family:"Times New Roman";}
+span.Heading4Char
+    {mso-style-name:"Heading 4 Char";
+    mso-style-unhide:no;
+    mso-style-locked:yes;
+    mso-style-link:"Heading 4";
+    mso-ansi-font-size:12.0pt;
+    mso-bidi-font-size:12.0pt;
+    font-family:"Cambria","serif";
+    mso-ascii-font-family:Cambria;
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:Cambria;
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    color:#4F81BD;
+    mso-themecolor:accent1;
+    font-weight:bold;
+    font-style:italic;}
+span.BalloonTextChar
+    {mso-style-name:"Balloon Text Char";
+    mso-style-unhide:no;
+    mso-style-locked:yes;
+    mso-style-link:"Balloon Text";
+    mso-ansi-font-size:8.0pt;
+    mso-bidi-font-size:8.0pt;
+    font-family:"Tahoma","sans-serif";
+    mso-ascii-font-family:Tahoma;
+    mso-hansi-font-family:Tahoma;
+    mso-bidi-font-family:Tahoma;}
+span.SpellE
+    {mso-style-name:"";
+    mso-spl-e:yes;}
+span.GramE
+    {mso-style-name:"";
+    mso-gram-e:yes;}
+.MsoChpDefault
+    {mso-style-type:export-only;
+    mso-default-props:yes;
+    font-size:10.0pt;
+    mso-ansi-font-size:10.0pt;
+    mso-bidi-font-size:10.0pt;}
+@page Section1
+    {size:8.5in 11.0in;
+    margin:1.0in 1.0in 1.0in 1.0in;
+    mso-header-margin:.5in;
+    mso-footer-margin:.5in;
+    mso-paper-source:0;}
+div.Section1
+    {page:Section1;}
+@page Section2
+    {size:8.5in 11.0in;
+    margin:1.0in 1.0in 1.0in 1.0in;
+    mso-header-margin:.5in;
+    mso-footer-margin:.5in;
+    mso-columns:2 not-even 3.0in .5in 3.0in;
+    mso-paper-source:0;}
+div.Section2
+    {page:Section2;}
+@page Section3
+    {size:8.5in 11.0in;
+    margin:1.0in 1.0in 1.0in 1.0in;
+    mso-header-margin:.5in;
+    mso-footer-margin:.5in;
+    mso-paper-source:0;}
+div.Section3
+    {page:Section3;}
+ /* List Definitions */
+ @list l0
+    {mso-list-id:377780447;
+    mso-list-type:hybrid;
+    mso-list-template-ids:-1921085378 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+    {mso-level-text:"%1\)";
+    mso-level-tab-stop:.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l0:level2
+    {mso-level-tab-stop:1.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l0:level3
+    {mso-level-tab-stop:1.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l0:level4
+    {mso-level-tab-stop:2.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l0:level5
+    {mso-level-tab-stop:2.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l0:level6
+    {mso-level-tab-stop:3.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l0:level7
+    {mso-level-tab-stop:3.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l0:level8
+    {mso-level-tab-stop:4.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l0:level9
+    {mso-level-tab-stop:4.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l1
+    {mso-list-id:467628940;
+    mso-list-type:hybrid;
+    mso-list-template-ids:-1261515358 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l1:level1
+    {mso-level-text:"%1\)";
+    mso-level-tab-stop:.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l1:level2
+    {mso-level-tab-stop:1.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l1:level3
+    {mso-level-tab-stop:1.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l1:level4
+    {mso-level-tab-stop:2.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l1:level5
+    {mso-level-tab-stop:2.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l1:level6
+    {mso-level-tab-stop:3.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l1:level7
+    {mso-level-tab-stop:3.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l1:level8
+    {mso-level-tab-stop:4.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l1:level9
+    {mso-level-tab-stop:4.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l2
+    {mso-list-id:860819244;
+    mso-list-type:hybrid;
+    mso-list-template-ids:-381381620 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+    {mso-level-text:"%1\)";
+    mso-level-tab-stop:.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l2:level2
+    {mso-level-number-format:alpha-lower;
+    mso-level-tab-stop:1.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l2:level3
+    {mso-level-tab-stop:1.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l2:level4
+    {mso-level-tab-stop:2.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l2:level5
+    {mso-level-tab-stop:2.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l2:level6
+    {mso-level-tab-stop:3.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l2:level7
+    {mso-level-tab-stop:3.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l2:level8
+    {mso-level-tab-stop:4.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l2:level9
+    {mso-level-tab-stop:4.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l3
+    {mso-list-id:1053390977;
+    mso-list-type:hybrid;
+    mso-list-template-ids:-317951300 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l3:level1
+    {mso-level-text:"%1\)";
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l3:level2
+    {mso-level-number-format:alpha-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l4
+    {mso-list-id:1922107440;
+    mso-list-type:hybrid;
+    mso-list-template-ids:-1277539514 -1796042320 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l4:level1
+    {mso-level-text:"%1\)";
+    mso-level-tab-stop:.75in;
+    mso-level-number-position:left;
+    margin-left:.75in;
+    text-indent:-.25in;}
+@list l4:level2
+    {mso-level-tab-stop:1.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l4:level3
+    {mso-level-tab-stop:1.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l4:level4
+    {mso-level-tab-stop:2.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l4:level5
+    {mso-level-tab-stop:2.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l4:level6
+    {mso-level-tab-stop:3.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l4:level7
+    {mso-level-tab-stop:3.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l4:level8
+    {mso-level-tab-stop:4.0in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+@list l4:level9
+    {mso-level-tab-stop:4.5in;
+    mso-level-number-position:left;
+    text-indent:-.25in;}
+ol
+    {margin-bottom:0in;}
+ul
+    {margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+    {mso-style-name:"Table Normal";
+    mso-tstyle-rowband-size:0;
+    mso-tstyle-colband-size:0;
+    mso-style-noshow:yes;
+    mso-style-priority:99;
+    mso-style-qformat:yes;
+    mso-style-parent:"";
+    mso-padding-alt:0in 5.4pt 0in 5.4pt;
+    mso-para-margin:0in;
+    mso-para-margin-bottom:.0001pt;
+    mso-pagination:widow-orphan;
+    font-size:10.0pt;
+    font-family:"Times New Roman","serif";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="3074"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=MsoNormal align=center style='text-align:center'><span class=SpellE><b
+style='mso-bidi-font-weight:normal'><span style='font-size:18.0pt;font-family:
+"Arial","sans-serif"'>WdfTester</span></b></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:18.0pt;font-family:"Arial","sans-serif"'>: WDF
+Driver Testing Toolset<o:p></o:p></span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span style='font-size:18.0pt;font-family:"Arial","sans-serif"'>(<span
+class=GramE>preliminary</span> version)<o:p></o:p></span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span style='font-size:18.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span style='font-size:18.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif"'>SUMMARY<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;font-family:
+"Arial","sans-serif"'>WdfTester</span></span><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'> is a set of tools that allows testing,
+verifying and helping debug WDF drivers. The toolset provides a WMI programming
+interface that could be used in a script or a compiled application. Currently
+it consists of following two tools:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-indent:-.25in;mso-list:l4 level1 lfo2;
+tab-stops:list .75in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>WDF
+DDI Fault Injection Tester (<span class=SpellE>WdfFiTester</span>)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-indent:-.25in;mso-list:l4 level1 lfo2;
+tab-stops:list .75in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>WDF
+Driver Call Tracer (<span class=SpellE>WdfCallTracer</span>)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=SpellE><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>WdfFiTester</span></b></span><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'> can be used for
+injecting KMDF DDI failures in KMDF drivers and test the capability of the
+driver in handling these failures gracefully. This tool can be configured to
+fail any KMDF DDI that returns NTSTATUS code. There are 175 DDIs in KMDF
+version 1.7 that return NTSTATUS code. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=SpellE><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>WdfCallTracer</span></b></span><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'> can be used for
+tracing and viewing driver communication with framework in real-time. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>This
+document provides information on how to install and use the toolset, and
+contains a reference section for WMI interface.<b style='mso-bidi-font-weight:
+normal'><o:p></o:p></b></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .5pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=MsoNormal style='border:none;mso-border-bottom-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:0in 0in 1.0pt 0in'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:"Arial","sans-serif"'>WDF DDI Fault Injection
+Tester (<span class=SpellE>WdfFiTester</span>)<o:p></o:p></span></b></p>
+
+</div>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>A
+typical KMDF DDI call has the following pattern:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New";
+color:#660000'>&nbsp;&nbsp;&nbsp;&nbsp;//<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;<span class=GramE>Create</span>&nbsp;the&nbsp;device&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//<br>
+&nbsp;&nbsp;&nbsp;&nbsp;status&nbsp;=&nbsp;<span class=SpellE><span
+class=GramE><b style='mso-bidi-font-weight:normal'>WdfDeviceCreate</b></span></span><span
+class=GramE>(</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<span
+class=SpellE>DeviceInit</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;attributes,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;device<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!NT_SUCCESS(status))&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;status;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br style='mso-special-character:line-break'>
+<![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>The
+DDI returns NTSTATUS code and the driver checks for the return code before
+proceeding ahead. Many bugs occur because of missing or incorrect check for
+return code. These bugs may result in unexpected behavior or a <span
+class=SpellE>bugcheck</span>. For example, a <span class=SpellE>bugcheck</span>
+may occur if the DDI has an OUT pointer parameter that happens to be NULL and
+is touched by the driver without checking for the status correctly. This tool
+allows failing the DDI that has been configured for fault injection by
+returning NTSTATUS code of STATUS_UNSUCCESSFUL. The driver is expected to
+handle the failure gracefully. The tool provides a WMI interface for
+configuring DDI fault injection for a specific driver. As such this WMI
+interface can be used in a script (<span class=SpellE>vbscript</span> or <span
+class=SpellE>jscript</span>) or any other user mode app (C, C++, C# and so
+forth) that can make calls to WMI. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Apart
+from other operations, the tool’s WMI interface allows getting a list of DDIs
+that were called by a specific KMDF driver, and waiting on a WMI event that gets
+fired every time a DDI fault injection completes successfully.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif"'>Installation<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Follow
+the steps below to install the tool.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l2 level1 lfo4;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Copy
+following files from WDK (tools\<span class=SpellE>wdf</span>\<span
+class=SpellE>wdftester</span>\&lt;platform&gt;) to a local folder<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'>Wdftester.sys<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'>Wdftester.inf<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'>Wdftester.ctl<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'>Wdftester.tmf<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'>WdftesterScript.wsf<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l2 level1 lfo4;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Open
+a command window (with admin privileges on Vista) and execute the following
+command<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'><span style='mso-spacerun:yes'>          
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:.25in'><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>C:\&gt;cscript WdfTesterScript.wsf
+install<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:.25in'><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.25in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'><span style='mso-tab-count:1'>      </span>This
+will install <span class=SpellE>wdftester</span> driver and start the service.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:.25in'><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif"'>Enabling Fault Injection<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>The
+tool provides a WMI interface for configuring DDI fault injection for a
+specific driver. This WMI interface can be used in a script (<span
+class=SpellE>vbscript</span> or <span class=SpellE>jscript</span>) or any user
+mode app that can make calls to WMI. The tool uses following methods exposed by
+WMI class named <span class=SpellE>WdfTester</span> to enable and configure DDI
+fault injection.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><span class=SpellE><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>RegisterDriver</span></span><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'> (<span class=SpellE><i
+style='mso-bidi-font-style:normal'>DriverName</i></span>) <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><span class=SpellE><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>ConfigureDdiFi</span></span><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'> (<span class=SpellE><i
+style='mso-bidi-font-style:normal'>DdiIndex</i></span><i style='mso-bidi-font-style:
+normal'>, Enable, <span class=SpellE>FailureType</span>, <span class=SpellE>DriverName</span></i>)
+<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><span class=SpellE><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>UnregisterDriver</span></span><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'> (<span class=SpellE><i
+style='mso-bidi-font-style:normal'>DriverName</i></span>) <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>A
+typical fault injection test would consist of the following steps (as coded in
+a script):<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo6;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Disable
+the driver in device manager (or unplug the device)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo6;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Register
+the driver with <span class=SpellE>WdfTester</span> by calling the WMI method <span
+class=SpellE>RegisterDriver</span>( )<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo6;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>3)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Enable
+fault injection for a specific DDI that is called in your driver by calling WMI
+method <span class=SpellE>ConfigureDdiFi</span>( )<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo6;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>4)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Start
+asynchronous WMI event notification<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo6;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>5)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Execute
+any action that causes execution of the DDI configured for fault injection
+(e.g. plug-in a child device, enable the driver, disable the driver, unplug the
+driver, power down device etc.)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo6;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>6)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Wait
+for the WMI Event for the DDI to occur <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo6;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>7)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Ensure
+the failure was handled gracefully. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>There
+is script named WdftesterScript.wsf that could be used from command-line to
+register/configure/unregister driver. Also it has a command line option called “<span
+class=SpellE>runtest</span>” that does the following. Note that for this option
+to work you must have devcon.exe present in the same folder as other <span
+class=SpellE>wdftester</span> files.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in;mso-list:l3 level1 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Register
+Driver with <span class=SpellE>wdftester</span> (assuming the driver is
+installed, if not you must first install the driver)<o:p></o:p></span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l3 level1 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Enable
+Driver Verifier for this driver (on Vista it does not require reboot)<o:p></o:p></span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l3 level1 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>3)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Disable
+the driver using devcon.exe<o:p></o:p></span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l3 level1 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>4)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Enable
+the driver using devcon.exe<o:p></o:p></span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l3 level1 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>5)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Get
+list of DDIs that were called during the above operation (disable/enable) and
+that could be failed (only those that return NTSTATUS could be failed). This
+uses <span class=SpellE><span class=GramE>GetDdiCallInfo</span></span><span
+class=GramE>(</span>) method of <span class=SpellE>WdfTester</span> WMI class. <o:p></o:p></span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l3 level1 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>6)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Start
+asynchronous WMI Event notification<o:p></o:p></span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l3 level1 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>7)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>For
+each DDI that could be failed (from above list)<o:p></o:p></span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l3 level2 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Configure
+the DDI for failure (using <span class=SpellE>ConfigureDdiFi</span>() method<o:p></o:p></span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l3 level2 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Do
+disable/enable of driver using <span class=SpellE>devcon</span>. This will call
+the DDI and <span class=SpellE>wdfte<span style='background:yellow;mso-highlight:
+yellow'>s</span>ter</span> will fail the DDI.<o:p></o:p></span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l3 level2 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Wait
+on the WMI event to be fired. <o:p></o:p></span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;mso-add-space:
+auto;text-indent:-.25in;mso-list:l3 level2 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>d.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>If
+the WMI event is fired, <span class=SpellE>goto</span> step 7 and repeat for
+next DDI in the list <span style='mso-spacerun:yes'> </span><span
+style='mso-spacerun:yes'> </span><span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-.25in;mso-list:l3 level1 lfo9'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>8)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Unregister
+driver<o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .5pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=MsoNormal style='border:none;mso-border-bottom-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:0in 0in 1.0pt 0in'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:"Arial","sans-serif"'>WDF Driver Call Tracer (<span
+class=SpellE>WdfCallTracer</span>)<o:p></o:p></span></b></p>
+
+</div>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Using
+this tool you can view the DDI and Event calls in real-time. Below is a
+snapshot of the driver communication for Static Bus Driver Sample (statbus.sys
+available in WDK). Currently only the DDI calls can be viewed.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Follow
+the steps below on your test machine to view driver communication with KMDF:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo8;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Install
+<span class=SpellE>WdfTester</span> using steps described in earlier section.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo8;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Launch
+TraceView.exe from the WDK (&lt;WDK root&gt;\tools\tracing\i386) <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l2 level2 lfo4;
+tab-stops:list 1.0in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Select
+<b style='mso-bidi-font-weight:normal'>File</b></span><span style='font-size:
+10.0pt;font-family:Wingdings;mso-ascii-font-family:Arial;mso-hansi-font-family:
+Arial;mso-bidi-font-family:Arial;mso-char-type:symbol;mso-symbol-font-family:
+Wingdings'><span style='mso-char-type:symbol;mso-symbol-font-family:Wingdings'>à</span></span><b
+style='mso-bidi-font-weight:normal'><span style='font-size:10.0pt;font-family:
+"Arial","sans-serif"'>Create New Log Session</span></b><span style='font-size:
+10.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l2 level2 lfo4;
+tab-stops:list 1.0in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Click
+<span class=SpellE><b style='mso-bidi-font-weight:normal'>AddProvider</b></span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l2 level2 lfo4;
+tab-stops:list 1.0in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Select
+<b style='mso-bidi-font-weight:normal'>CTL (Control GUID) File</b> and using
+file browser select <i style='mso-bidi-font-style:normal'>wdftester.ctl</i>
+file from the folder containing <span class=SpellE>WdfTester</span> files.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l2 level2 lfo4;
+tab-stops:list 1.0in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>d.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Click
+<b style='mso-bidi-font-weight:normal'>OK</b> in <b style='mso-bidi-font-weight:
+normal'>Provide Control GUID Setup</b> dialog box<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l2 level2 lfo4;
+tab-stops:list 1.0in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>e.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Select
+<span class=SpellE><b style='mso-bidi-font-weight:normal'>Select</b></span><b
+style='mso-bidi-font-weight:normal'> TMF Files</b> and press OK.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l2 level2 lfo4;
+tab-stops:list 1.0in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>f.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Press
+<b style='mso-bidi-font-weight:normal'>Add</b>, browse to the folder containing
+<span class=SpellE>wdftester</span> files and select wdftester.tmf. Press <b
+style='mso-bidi-font-weight:normal'>Done</b> when you see wdftester.tmf added
+to the display window.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l2 level2 lfo4;
+tab-stops:list 1.0in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>g.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Click
+<b style='mso-bidi-font-weight:normal'>Next</b> in the <b style='mso-bidi-font-weight:
+normal'>Create New Log Session</b> dialog box.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l2 level2 lfo4;
+tab-stops:list 1.0in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>h.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Click
+<b style='mso-bidi-font-weight:normal'>Finish</b> in the <b style='mso-bidi-font-weight:
+normal'>Log Sessions Options</b> dialog box.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'>Now you are ready to view the driver communication.
+<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo8;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Register
+your KMDF driver from command-line using WdftesterScript.wsf script.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'><span style='mso-spacerun:yes'>            
+</span><span class=SpellE><span class=GramE>cscript</span></span> WdftesterScript.wsf
+register statbus.sys<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo8;
+tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>3)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Now
+enable the driver from device manager or plug-in your hardware. If your driver was
+already enabled then disable it and enable back from device manager. <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>You
+should now see driver communication in the <span class=SpellE>TraceView</span>
+app. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .5pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=MsoNormal style='border:none;mso-border-bottom-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:0in 0in 1.0pt 0in'><b style='mso-bidi-font-weight:
+normal'><span style='font-size:14.0pt;font-family:"Arial","sans-serif"'>WMI
+Interface Reference<o:p></o:p></span></b></p>
+
+</div>
+
+<p class=MsoNormal align=center style='text-align:center;vertical-align:top'><b
+style='mso-bidi-font-weight:normal'><span style='font-size:14.0pt;font-family:
+"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='vertical-align:top'><span class=SpellE><b
+style='mso-bidi-font-weight:normal'><span style='font-size:14.0pt;font-family:
+"Arial","sans-serif"'>WdfTester</span></b></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:14.0pt;font-family:"Arial","sans-serif"'> Class<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='vertical-align:top'><b style='mso-bidi-font-weight:
+normal'><span style='font-size:14.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
+
+<p style='margin-bottom:0in;margin-bottom:.0001pt;line-height:150%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:150%;font-family:"Verdana","sans-serif"'>An
+instance of the <span class=SpellE><b style='mso-bidi-font-weight:normal'>WdfTester</b></span>
+<a href="http://msdn2.microsoft.com/en-us/library/aa393244.aspx"><span
+style='color:windowtext;text-decoration:none;text-underline:none'>WMI class</span></a>
+is created by the kernel module—a component of <span class=SpellE>WdfTester</span>
+tool set. It exposes interfaces that can be used to configure DDI fault
+injection. You will need to install the tool (including starting the service)
+before you can see an instance of this class.<o:p></o:p></span></p>
+
+<p style='margin-bottom:0in;margin-bottom:.0001pt;vertical-align:top'><span
+style='font-size:8.5pt;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>class
+<span class=SpellE>WdfTester</span> : <span class=SpellE>WdfTesterBase</span> {
+<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>    </span>uint32 <span class=SpellE><i
+style='mso-bidi-font-style:normal'>RegisteredDriversCount</i></span>;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>    </span>string <span class=SpellE><i
+style='mso-bidi-font-style:normal'>RegisteredDriversList</i></span>[];<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>};<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<h4 style='line-height:140%;vertical-align:top'><span style='mso-fareast-font-family:
+"Times New Roman"'>Methods<o:p></o:p></span></h4>
+
+<p class=MsoNormal style='vertical-align:top'><span style='font-size:8.5pt;
+font-family:"Verdana","sans-serif"'>The <span class=SpellE><b style='mso-bidi-font-weight:
+normal'>WdfTester</b></span> class defines the following methods.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='vertical-align:top'><o:p>&nbsp;</o:p></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=563
+ style='width:422.2pt;border-collapse:collapse;mso-yfti-tbllook:1184;
+ mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:16.5pt'>
+  <td width="24%" valign=bottom style='width:24.34%;background:#CCCCCC;
+  padding:3.75pt 3.75pt 3.75pt 3.75pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:7.5pt;margin-right:0in;margin-bottom:
+  7.5pt;margin-left:0in'><b><span style='font-size:8.5pt'>Method<o:p></o:p></span></b></p>
+  </td>
+  <td width="75%" valign=bottom style='width:75.66%;background:#CCCCCC;
+  padding:3.75pt 3.75pt 3.75pt 3.75pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:7.5pt;margin-right:0in;margin-bottom:
+  7.5pt;margin-left:0in'><b><span style='font-size:8.5pt'>Description<o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td width="24%" valign=top style='width:24.34%;border:solid #CCCCCC 1.0pt;
+  mso-border-alt:solid #CCCCCC .25pt;background:white;padding:3.75pt 3.75pt 3.75pt 3.75pt'>
+  <p class=MsoNormal><span class=SpellE><b><span style='font-size:8.5pt'>RegisterDriver</span></b></span><span
+  style='font-size:8.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width="75%" valign=top style='width:75.66%;border:solid #CCCCCC 1.0pt;
+  border-left:none;mso-border-left-alt:solid #CCCCCC .25pt;mso-border-alt:solid #CCCCCC .25pt;
+  background:white;padding:3.75pt 3.75pt 3.75pt 3.75pt'>
+  <p class=MsoNormal><span style='font-size:8.5pt'>Enable testing for the
+  driver. This is required for configuring fault injection.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width="24%" valign=top style='width:24.34%;border:solid #CCCCCC 1.0pt;
+  border-top:none;mso-border-top-alt:solid #CCCCCC .25pt;mso-border-alt:solid #CCCCCC .25pt;
+  background:white;padding:3.75pt 3.75pt 3.75pt 3.75pt'>
+  <p class=MsoNormal><span class=SpellE><b><span style='font-size:8.5pt'>UnregisterDriver</span></b></span><span
+  style='font-size:8.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width="75%" valign=top style='width:75.66%;border-top:none;border-left:
+  none;border-bottom:solid #CCCCCC 1.0pt;border-right:solid #CCCCCC 1.0pt;
+  mso-border-top-alt:solid #CCCCCC .25pt;mso-border-left-alt:solid #CCCCCC .25pt;
+  mso-border-alt:solid #CCCCCC .25pt;background:white;padding:3.75pt 3.75pt 3.75pt 3.75pt'>
+  <p class=MsoNormal><span style='font-size:8.5pt'>Disable testing for the
+  driver. <o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes'>
+  <td width="24%" valign=top style='width:24.34%;border:solid #CCCCCC 1.0pt;
+  border-top:none;mso-border-top-alt:solid #CCCCCC .25pt;mso-border-alt:solid #CCCCCC .25pt;
+  background:white;padding:3.75pt 3.75pt 3.75pt 3.75pt'>
+  <p class=MsoNormal><span class=SpellE><b><span style='font-size:8.5pt'>ConfigureDdiFi</span></b></span><b><span
+  style='font-size:8.5pt'><o:p></o:p></span></b></p>
+  </td>
+  <td width="75%" valign=top style='width:75.66%;border-top:none;border-left:
+  none;border-bottom:solid #CCCCCC 1.0pt;border-right:solid #CCCCCC 1.0pt;
+  mso-border-top-alt:solid #CCCCCC .25pt;mso-border-left-alt:solid #CCCCCC .25pt;
+  mso-border-alt:solid #CCCCCC .25pt;background:white;padding:3.75pt 3.75pt 3.75pt 3.75pt'>
+  <p class=MsoNormal><span style='font-size:8.5pt'>Configure fault injection
+  for a DDI<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><span
+style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+class=SpellE><span style='font-size:14.0pt;line-height:140%;font-family:"Arial","sans-serif";
+color:black'>RegisterDriver</span></span><span style='font-size:14.0pt;
+line-height:140%;font-family:"Arial","sans-serif";color:black'> Method<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>The
+<span class=SpellE><b>RegisterDriver</b></span> method enables the KMDF driver
+for testing which means that the underlying kernel module takes appropriate
+action to enable any future test (such as fault injection) for the driver. This
+method also enables the ability to visually monitor the communication of client
+driver with the framework using a WPP trace log viewer such as TraceView.exe.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>void
+<span class=SpellE>RegisterDriver</span>( string <span class=SpellE><i
+style='mso-bidi-font-style:normal'>DriverName</i></span>, <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                     </span>uint32 <i
+style='mso-bidi-font-style:normal'>Status</i> <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                     </span>); <o:p></o:p></span></p>
+
+<h4 style='line-height:140%;vertical-align:top'><span style='mso-fareast-font-family:
+"Times New Roman"'>Parameters<o:p></o:p></span></h4>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+class=SpellE><i><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>DriverName</span></i></span><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'> <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[in]
+Name of the driver image with extension (e.g. statbus.sys). <o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>Status</span></i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[out]
+Return value as returned by the underlying kernel module. <o:p></o:p></span></p>
+
+<h4 style='line-height:140%;vertical-align:top'><span style='mso-fareast-font-family:
+"Times New Roman"'>Return Value<o:p></o:p></span></h4>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>Void
+since the return value for the method is returned in the Status parameter.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:14.0pt;line-height:140%;font-family:"Arial","sans-serif";
+color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+class=SpellE><span style='font-size:14.0pt;line-height:140%;font-family:"Arial","sans-serif";
+color:black'>UnregisterDriver</span></span><span style='font-size:14.0pt;
+line-height:140%;font-family:"Arial","sans-serif";color:black'> Method<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>The
+<span class=SpellE><b>UnregisterDriver</b></span> method disables the KMDF
+driver for testing which means that the underlying kernel module takes
+appropriate action to remove the driver from its list of drivers to be tested.
+This method also disables the ability to visually monitor the communication of
+client driver with the framework using a WPP trace log viewer such as
+TraceView.exe.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>void
+<span class=SpellE>UnregisterDriver</span>( string <span class=SpellE><i
+style='mso-bidi-font-style:normal'>DriverName</i></span>, <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                       </span>uint32 <i
+style='mso-bidi-font-style:normal'>Status</i> <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                       </span>); <o:p></o:p></span></p>
+
+<h4 style='line-height:140%;vertical-align:top'><span style='mso-fareast-font-family:
+"Times New Roman"'>Parameters<o:p></o:p></span></h4>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+class=SpellE><i><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>DriverName</span></i></span><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'> <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[in]
+Name of the driver image with extension (e.g. statbus.sys). <o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>Status</span></i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[out]
+Return value as returned by the underlying kernel module. <o:p></o:p></span></p>
+
+<h4 style='line-height:140%;vertical-align:top'><span style='mso-fareast-font-family:
+"Times New Roman"'>Return Value<o:p></o:p></span></h4>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>Void
+since the return value for the method is returned in the Status parameter.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:14.0pt;line-height:140%;font-family:"Arial","sans-serif";
+color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+class=SpellE><span style='font-size:14.0pt;line-height:140%;font-family:"Arial","sans-serif";
+color:black'>ConfigureDdiFi</span></span><span style='font-size:14.0pt;
+line-height:140%;font-family:"Arial","sans-serif";color:black'> Method<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>The
+<span class=SpellE><b>ConfigureDdiFi</b></span> method configures fault
+injection for the given DDI and the driver. This method is used to enable or
+disable fault injection on a specific DDI. The configuration becomes effective
+immediately after a successful call (no need for restarting the driver).<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>void
+<span class=SpellE>ConfigureDdiFi</span>( uint16 <span class=SpellE><i
+style='mso-bidi-font-style:normal'>DdiIndex</i></span>, <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                     </span>Boolean <i
+style='mso-bidi-font-style:normal'>Enable</i>, <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                     </span>uint16 <span class=SpellE><i
+style='mso-bidi-font-style:normal'>FailureType</i></span>,<span
+style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                     </span>uint32 <i
+style='mso-bidi-font-style:normal'>Status</i> <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                     </span>); <o:p></o:p></span></p>
+
+<h4 style='line-height:140%;vertical-align:top'><span style='mso-fareast-font-family:
+"Times New Roman"'>Parameters<o:p></o:p></span></h4>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+class=SpellE><i><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>DdiIndex</span></i></span><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[in]
+Index of the DDI (from <span class=SpellE>WdfFuncEnum.h</span> in &lt;WDK
+root&gt;\inc\<span class=SpellE>wdf</span>\<span class=SpellE>kmdf</span>\10
+folder). <o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></i></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>Enable</span></i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[in]
+TRUE if enabling DDI failure, FALSE if disabling DDI failure. <o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></i></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></i></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+class=SpellE><i><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>FailureType</span></i></span><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[in]
+Type of failure (currently unused). <o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></i></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>Status</span></i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[out]
+Return value as returned by the underlying kernel module. <o:p></o:p></span></p>
+
+<h4 style='line-height:140%;vertical-align:top'><span style='mso-fareast-font-family:
+"Times New Roman"'>Return Value<o:p></o:p></span></h4>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>Void
+since the return value for the method is returned in the Status parameter.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+class=SpellE><span style='font-size:14.0pt;line-height:140%;font-family:"Arial","sans-serif";
+color:black'>GetDdiCallInfo</span></span><span style='font-size:14.0pt;
+line-height:140%;font-family:"Arial","sans-serif";color:black'> Method<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>The
+<span class=SpellE><b>ConfigureDdiFi</b></span> method configures fault
+injection for the given DDI and the driver. This method is used to enable or
+disable fault injection on a specific DDI. The configuration becomes effective
+immediately after a successful call (no need for restarting the driver).<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span class=GramE><span
+style='font-size:10.0pt;line-height:140%;font-family:"Lucida Console";
+mso-bidi-font-family:"Courier New"'>void</span></span><span style='font-size:
+10.0pt;line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>
+<span class=SpellE>GetDdiCallInfo</span> ( string Name, <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                     </span><span class=GramE>uint32</span>
+<span class=SpellE>ArraySize</span>, <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                     </span><span class=SpellE>DdiCallInfo</span>
+<span class=GramE>Array[</span>387],<span style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                     </span><span class=GramE>uint32</span>
+<i style='mso-bidi-font-style:normal'>Status</i> <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>                     </span>); <o:p></o:p></span></p>
+
+<h4 style='line-height:140%;vertical-align:top'><span style='mso-fareast-font-family:
+"Times New Roman"'>Parameters<o:p></o:p></span></h4>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>Name</span></i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[<span
+class=GramE>in</span>] Name of driver binary (e.g. statbus.sys)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></i></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+class=SpellE><i><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>ArraySize</span></i></span><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[<span
+class=GramE>out</span>] Size of array <span class=SpellE>DdiCallInfoArray</span>
+<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></i></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></i></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>Array</span></i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[<span
+class=GramE>out</span>] array of <span class=SpellE>DdiCallInfo</span> class.
+Array index represents the DDI index. <o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></i></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>Status</span></i><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;line-height:140%;vertical-align:
+top'><span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>[<span
+class=GramE>out</span>] Return value as returned by the underlying kernel
+module. <o:p></o:p></span></p>
+
+<h4 style='line-height:140%;vertical-align:top'><span style='mso-fareast-font-family:
+"Times New Roman"'>Return Value<o:p></o:p></span></h4>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>Void
+since the return value for the method is returned in the Status parameter.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='vertical-align:top'><span class=SpellE><b
+style='mso-bidi-font-weight:normal'><span style='font-size:14.0pt;font-family:
+"Arial","sans-serif"'>DdiCallInfo</span></b></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:14.0pt;font-family:"Arial","sans-serif"'> Class<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>This
+class is used by <span class=SpellE>GetDdiCallInfo</span> method of <span
+class=SpellE>WdfTester</span> class.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span class=GramE><span
+style='font-size:10.0pt;line-height:140%;font-family:"Lucida Console";
+mso-bidi-font-family:"Courier New"'>class</span></span><span style='font-size:
+10.0pt;line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>
+<span class=SpellE>DdiCallInfo</span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>     </span><span class=SpellE><span class=GramE>boolean</span></span>
+Called;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>     </span><span class=GramE>uint32</span> <span
+class=SpellE>CallCount</span>;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>};<o:p></o:p></span></p>
+
+<span style='font-size:8.5pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman";mso-bidi-font-family:"Times New Roman";mso-ansi-language:
+EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br clear=all
+style='mso-special-character:line-break;page-break-before:always'>
+</span>
+
+<p class=MsoNormal style='vertical-align:top'><span style='font-size:8.5pt;
+font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='vertical-align:top'><b style='mso-bidi-font-weight:
+normal'><span style='font-size:14.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal style='vertical-align:top'><span class=SpellE><b
+style='mso-bidi-font-weight:normal'><span style='font-size:14.0pt;font-family:
+"Arial","sans-serif"'>WdfTester_DdiFiEvent</span></b></span><b
+style='mso-bidi-font-weight:normal'><span style='font-size:14.0pt;font-family:
+"Arial","sans-serif"'> Class<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'>This
+event is fired when a DDI fault injection occurs. The event carries information
+about the DDI and the Driver where fault injection occurred.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span class=GramE><span
+style='font-size:10.0pt;line-height:140%;font-family:"Lucida Console";
+mso-bidi-font-family:"Courier New"'>class</span></span><span style='font-size:
+10.0pt;line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>
+<span class=SpellE>WdfTester_DdiFiEvent</span> : <span class=SpellE>WdfTesterEvent</span>
+<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>     </span><span class=GramE>uint32</span> <span
+class=SpellE>DdiIndex</span>;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'><span
+style='mso-spacerun:yes'>     </span><span class=GramE>string</span> <span
+class=SpellE>DriverName</span>;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-right:7.5pt;line-height:140%;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#DDDDDD;vertical-align:top'><span style='font-size:10.0pt;
+line-height:140%;font-family:"Lucida Console";mso-bidi-font-family:"Courier New"'>};<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .5pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=MsoNormal style='border:none;mso-border-bottom-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:0in 0in 1.0pt 0in'><b style='mso-bidi-font-weight:
+normal'><span style='font-size:14.0pt;font-family:"Arial","sans-serif"'>Additional
+Information<o:p></o:p></span></b></p>
+
+</div>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'>Following
+is a list of KMDF DDIs that return NTSTATUS code. Any of these DDIs could be
+failed except the following two: <span class=SpellE>WdfRequestReuse</span> and <span
+class=SpellE>WdfWaitLockAcquire</span>.</span><span style='font-size:7.5pt;
+font-family:"MS Shell Dlg","sans-serif"'> <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Arial","sans-serif"'><span
+style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+<span style='font-size:8.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+"Times New Roman";mso-ansi-language:EN-US;mso-fareast-language:EN-US;
+mso-bidi-language:AR-SA'><br clear=all style='page-break-before:auto;
+mso-break-type:section-break'>
+</span>
+
+<div class=Section2>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=288
+ style='width:216.25pt;margin-left:5.15pt;border-collapse:collapse;mso-yfti-tbllook:
+ 1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfChildListAddOrUpdateChildDescriptionAsPresent</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfChildListCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfChildListRetrieveAddressDescription</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfChildListRetrieveNextDevice</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfChildListUpdateChildDescriptionAsMissing</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfCmResourceListAppendDescriptor</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfCmResourceListInsertDescriptor</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfCollectionAdd</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfCollectionCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfCommonBufferCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfCommonBufferCreateWithConfig</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceAddDependentUsageDeviceObject</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceAddQueryInterface</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceAddRemovalRelationsPhysicalDevice</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceAllocAndQueryProperty</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceAssignMofResourceName</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:"Arial","sans-serif"'>WdfDeviceAssignS0IdleSettings<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:17;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceAssignSxWakeSettings</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:18;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceConfigureRequestDispatching</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:19;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:20;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceCreateDeviceInterface</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:21;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceCreateSymbolicLink</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:22;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceEnqueueRequest</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:23;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceIndicateWakeStatus</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:24;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceInitAssignName</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:25;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceInitAssignSDDLString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:26;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceInitAssignWdmIrpPreprocessCallback</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:27;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceInitRegisterPnpStateChangeCallback</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:28;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceInitRegisterPowerPolicyStateChangeCallback</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:29;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceInitRegisterPowerStateChangeCallback</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:30;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceMiniportCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:31;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceOpenRegistryKey</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:32;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceQueryProperty</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:33;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceRetrieveDeviceInterfaceString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:34;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceRetrieveDeviceName</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:35;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceStopIdle</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:36;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDeviceWdmDispatchPreprocessedIrp</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:37;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDmaEnablerCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:38;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDmaTransactionCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:39;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDmaTransactionExecute</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:40;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDmaTransactionInitialize</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:41;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDmaTransactionInitializeUsingRequest</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:42;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDmaTransactionRelease</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:43;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDpcCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:44;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDriverCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:45;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDriverOpenParametersRegistryKey</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:46;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDriverRegisterTraceInfo</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:47;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfDriverRetrieveVersionString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:48;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfFdoAddStaticChild</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:49;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfFdoInitAllocAndQueryProperty</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:50;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfFdoInitOpenRegistryKey</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:51;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfFdoInitQueryProperty</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:52;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfFdoQueryForInterface</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:53;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfInterruptCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:53;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoQueueAssignForwardProgressPolicy</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:54;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoQueueCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:55;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoQueueFindRequest</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:56;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoQueueReadyNotify</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:57;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoQueueRetrieveFoundRequest</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:58;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoQueueRetrieveNextRequest</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:59;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoQueueRetrieveRequestByFileObject</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:60;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoResourceListAppendDescriptor</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:61;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoResourceListCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:62;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoResourceListInsertDescriptor</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:63;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoResourceRequirementsListAppendIoResList</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:64;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoResourceRequirementsListInsertIoResList</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:65;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetAllocAndQueryTargetProperty</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:66;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:67;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetFormatRequestForInternalIoctl</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:68;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetFormatRequestForInternalIoctlOthers</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:69;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetFormatRequestForIoctl</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:70;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetFormatRequestForRead</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:71;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetFormatRequestForWrite</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:72;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetOpen</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:73;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetQueryForInterface</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:74;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetQueryTargetProperty</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:75;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetSendInternalIoctlOthersSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:76;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetSendInternalIoctlSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:77;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetSendIoctlSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:78;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetSendReadSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:79;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetSendWriteSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:80;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfIoTargetStart</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:81;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfLookasideListCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:82;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfMemoryAssignBuffer</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:83;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfMemoryCopyFromBuffer</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:84;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfMemoryCopyToBuffer</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:85;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfMemoryCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:86;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfMemoryCreateFromLookaside</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:87;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfMemoryCreatePreallocated</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:88;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfObjectAllocateContext</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:89;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfObjectCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:90;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfObjectQuery</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:91;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoAddEjectionRelationsPhysicalDevice</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:92;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoInitAddCompatibleID</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:93;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoInitAddDeviceText</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:94;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoInitAddHardwareID</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:94;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoInitAssignContainerID</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:95;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoInitAssignDeviceID</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:96;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoInitAssignInstanceID</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:97;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoInitAssignRawDevice</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:98;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoMarkMissing</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:99;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoRetrieveAddressDescription</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:100;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoRetrieveIdentificationDescription</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:101;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfPdoUpdateAddressDescription</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:102;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryAssignMemory</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:103;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryAssignMultiString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:104;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryAssignString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:105;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryAssignULong</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:106;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryAssignUnicodeString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:107;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryAssignValue</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:108;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryCreateKey</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:109;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryOpenKey</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:110;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryQueryMemory</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:111;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryQueryMultiString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:112;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryQueryString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:113;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryQueryULong</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:114;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryQueryUnicodeString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:115;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryQueryValue</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:116;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryRemoveKey</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:117;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRegistryRemoveValue</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:118;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestAllocateTimer</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:119;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestChangeTarget</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:120;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:121;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestCreateFromIrp</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:122;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestForwardToIoQueue</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:122;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestForwardToParentDeviceIoQueue</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:123;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestGetStatus</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:123;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestMarkCancelableEx</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:124;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestProbeAndLockUserBufferForRead</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:125;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestProbeAndLockUserBufferForWrite</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:126;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestRequeue</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:127;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestRetrieveInputBuffer</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:128;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestRetrieveInputMemory</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:129;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestRetrieveInputWdmMdl</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:130;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestRetrieveOutputBuffer</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:131;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestRetrieveOutputMemory</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:132;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestRetrieveOutputWdmMdl</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:133;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestRetrieveUnsafeUserInputBuffer</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:134;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestRetrieveUnsafeUserOutputBuffer</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:135;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestReuse</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:136;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfRequestUnmarkCancelable</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:137;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfSpinLockCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:138;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfStringCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:139;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfTimerCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:140;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbInterfaceSelectSetting</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:141;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceAllocAndQueryString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:142;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:143;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceCyclePortSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:144;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceFormatRequestForControlTransfer</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:145;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceFormatRequestForCyclePort</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:146;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceFormatRequestForString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:147;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceFormatRequestForUrb</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:148;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceIsConnectedSynchronous</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:149;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceQueryString</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:150;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceResetPortSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:151;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceRetrieveConfigDescriptor</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:152;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceRetrieveCurrentFrameNumber</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:153;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceRetrieveInformation</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:154;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceSelectConfig</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:155;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceSendControlTransferSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:156;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetDeviceSendUrbSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:157;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetPipeAbortSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:158;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetPipeConfigContinuousReader</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:159;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetPipeFormatRequestForAbort</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:160;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetPipeFormatRequestForRead</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:161;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetPipeFormatRequestForReset</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:162;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetPipeFormatRequestForUrb</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:163;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetPipeFormatRequestForWrite</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:164;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetPipeReadSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:165;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetPipeResetSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:166;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetPipeSendUrbSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:167;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfUsbTargetPipeWriteSynchronously</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:168;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfWaitLockAcquire</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:169;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfWaitLockCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:170;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfWmiInstanceCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:171;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfWmiInstanceFireEvent</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:172;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfWmiInstanceRegister</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:173;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfWmiProviderCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:174;mso-yfti-lastrow:yes;height:12.75pt'>
+  <td width=288 nowrap valign=bottom style='width:216.25pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:8.0pt;
+  font-family:"Arial","sans-serif"'>WdfWorkItemCreate</span></span><span
+  style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<span style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br
+clear=all style='page-break-before:auto;mso-break-type:section-break'>
+</span>
+
+<div class=Section3>
+
+<p class=MsoNormal style='line-height:140%;vertical-align:top'><span
+style='font-size:8.5pt;line-height:140%;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

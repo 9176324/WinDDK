@@ -1,0 +1,35 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule is not applicable to bus drivers.  It verifies
+	that before returning from a dispatch routine, if the IRP is a
+	WMI_IRPv with disposition IrpForward, then the driver should
+	forward it to the lower driver. 
+*/
+
+#include "ntddk_slic.h"
+
+state {
+    int not_forwarded = 0;
+} with guard(sdv_main,sdv_irp) 
+
+
+sdv_stub_WmiIrpForward.entry [guard $1]
+{
+    not_forwarded = 1;
+}
+
+
+[IoCallDriver,PoCallDriver].entry [guard $2]
+{
+    not_forwarded = 0;
+}
+
+sdv_stub_dispatch_end.entry [guard $2]
+{
+    if (not_forwarded) {
+        abort "The dispatch routine has not finished its WMI processing.";
+    }
+}

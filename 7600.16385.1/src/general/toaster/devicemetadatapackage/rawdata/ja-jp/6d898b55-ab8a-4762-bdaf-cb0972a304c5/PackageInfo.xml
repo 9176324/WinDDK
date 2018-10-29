@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<PackageInfo xmlns="http://schemas.microsoft.com/windows/DeviceMetadata/PackageInfo/2007/11/">
+  <MetadataKey>
+    <HardwareIDList>
+      <HardwareID>DOID:{b85b7c50-6a01-11d2-b841-00c04fad5171}\MsToaster</HardwareID>
+    </HardwareIDList>
+    <Locale default="false">ja-JP</Locale>
+    <LastModifiedDate>2009-02-25T11:46:53.5108690Z</LastModifiedDate>
+  </MetadataKey>
+  <PackageStructure>
+    <Metadata MetadataID="http://schemas.microsoft.com/windows/DeviceMetadata/PackageInfo/2007/11/">PackageInfo.xml</Metadata>
+    <Metadata MetadataID="http://schemas.microsoft.com/windows/DeviceMetadata/DeviceInfo/2007/11/">DeviceInformation</Metadata>
+    <Metadata MetadataID="http://schemas.microsoft.com/windows/DeviceMetadata/WindowsInfo/2007/11/">WindowsInformation</Metadata>
+  </PackageStructure>
+</PackageInfo>

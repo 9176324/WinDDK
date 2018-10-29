@@ -1,0 +1,30 @@
+TARGETNAME=usbsamp
+TARGETTYPE=DRIVER
+
+KMDF_VERSION_MAJOR=1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+INF_NAME=usbsamp
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+PASS0_BINPLACE=$(NTTARGETFILE0)
+
+C_DEFINES= $(C_DEFINES) 
+#-DBUFFERED_READ_WRITE=1
+
+TARGETLIBS=$(TARGETLIBS) $(DDK_LIB_PATH)\usbd.lib
+
+
+INCLUDES=\
+      ..\
+
+SOURCES= \
+     ..\driver.c  \
+     ..\device.c  \
+     ..\queue.c  \
+     ..\bulkrwr.c  \
+     ..\isorwr.c  \
+     ..\usbsamp.rc \
+
+TARGET_DESTINATION=wdf
+

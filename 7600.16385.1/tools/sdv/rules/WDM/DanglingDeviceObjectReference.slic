@@ -1,0 +1,34 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that a driver calls ObDereferenceObject
+	with a pointer from a previous call to
+	IoGetAttachedDeviceReference.
+*/
+
+#include "ntddk_slic.h"
+
+state {
+    int ReferenceCount = 0;
+} 
+
+IoGetAttachedDeviceReference.exit
+{
+    ReferenceCount = ReferenceCount + 1;
+}
+
+ObDereferenceObject.entry 
+{
+    if( $1 == sdv_p_devobj_top ) {
+    	ReferenceCount = ReferenceCount - 1;
+    }
+}
+
+sdv_main.exit
+{
+    if ( ReferenceCount > 0 ) {
+        abort "The driver has not called ObDereferenceObject after calling IoGetAttachedDeviceReference.";
+    }
+}

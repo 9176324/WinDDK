@@ -1,0 +1,43 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that IoStartNextPacket and
+	IoCompleteRequest routines are not called with 
+        an invalid spinlock state.
+*/
+
+#include "ntddk_slic.h"
+
+state {
+    int LockDepth = 0;
+}
+
+
+[ KeAcquireSpinLockAtDpcLevel
+, KeAcquireSpinLock
+, IoAcquireCancelSpinLock
+].entry
+{
+    LockDepth = LockDepth + 1;
+}
+
+[ KeReleaseSpinLockFromDpcLevel
+, KeReleaseSpinLock
+, IoReleaseCancelSpinLock
+].entry
+{
+    LockDepth = LockDepth - 1;
+}
+
+
+[ IoStartNextPacket
+, IoCompleteRequest
+].entry
+{
+
+    if (LockDepth != 0) {
+        abort "$fname has been called with an invalid spinlock state";
+    }
+}

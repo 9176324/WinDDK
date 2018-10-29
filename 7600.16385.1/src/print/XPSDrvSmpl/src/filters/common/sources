@@ -1,0 +1,19 @@
+SOURCES=\
+    ptmanage.cpp   \
+    rescache.cpp   \
+    rescpy.cpp     \
+    saxhndlr.cpp   \
+    widetoutf8.cpp \
+    xdrchflt.cpp   \
+    xdsmplflt.cpp  \
+    xdstrmflt.cpp  \
+
+INCLUDES=$(INCLUDES); \
+    ..\xdcont;        \
+
+TARGETNAME=xdfltcmn
+TARGETTYPE=LIBRARY
+
+!include ..\sources.inc
+
+

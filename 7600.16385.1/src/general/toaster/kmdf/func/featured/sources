@@ -1,0 +1,29 @@
+TARGETNAME=wdffeatured
+TARGETTYPE=DRIVER
+
+
+KMDF_VERSION_MAJOR=1
+
+INF_NAME=wdffeatured
+
+INCLUDES = $(INCLUDES);..\..\inc;..\shared
+
+NTTARGETFILE1=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+PASS1_BINPLACE=$(NTTARGETFILE1)
+
+NTTARGETFILE0 = $(OBJ_PATH)\$(O)\toaster.bmf
+
+#
+# List of source files to compile.
+#
+SOURCES=            \
+        toaster.rc  \
+        toaster.c   \
+          power.c   \
+            wmi.c
+
+C_DEFINES=
+
+TARGET_DESTINATION=wdf
+

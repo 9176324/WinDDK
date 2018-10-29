@@ -1,0 +1,1243 @@
+;====================================================================
+; Help file for Microsoft Auto Code Review (OACR) command line tool.
+;====================================================================
+
+;-----------------------------------------------------------------------------
+; Default topic
+[]
+OACR Command Line Tool 
+
+For help try:
+
+oacr help simple     for a list of most common commands
+oacr help commands   for a list of all commands
+
+oacr help <command>  for help on a specific command
+oacr help <num>      for help on a specific warning number
+
+oacr help filters    for help on filtering warnings on the command line
+oacr help warnings   for help on specific warnings
+oacr help project    for help on specifying projects
+oacr help warninglog for help on specifying warning logs
+oacr help fuzzy      for help on fuzzy warning comparison
+
+oacr help scanners   for scanner specific contact information
+
+The /web switch can be added to any help command. It shows additional web
+based help for the topic, if available.
+
+;-----------------------------------------------------------------------------
+[simple]
+
+Common OACR commands:
+
+check      Check scheduled files in a batch run
+clean      Delete project specific OACR files
+count      Count warnings in warning logs
+help       Help on command usage or warning numbers
+list       List a warning log
+showstats  Show warning log statistics
+status     Show status information
+view       Run the viewer on a warning log
+
+See 'oacr help commands' for a list of all OACR commands.
+
+;-----------------------------------------------------------------------------
+[commands]
+
+Common OACR commands:
+
+check             Check scheduled files in a batch run
+clean             Delete project specific OACR files
+count             Count warnings in warning logs
+help              Help on command usage or warning numbers
+list              List a warning log
+showstats         Show warning log statistics
+status            Show status information
+view              Run the viewer on a warning log
+
+Trouble shooting OACR commands:
+
+checkini          Check configuration files
+checkinstallation Check installation of OACR tools and code scanners
+log               Show summary or project specific log of OACR activity
+showconfig        Show project configuration information
+showini           Show configuration file information
+version           Show OACR version information
+wipe              Delete all OACR state information
+
+Power user OACR commands:
+
+bucketdiff        Find the difference between 2 warning logs
+convertqueue      Toggle a queue between 'Batch' and 'BatchOrDaemon' mode
+diff              Find the difference between 2 warning logs
+errornumbers      Determine recommended error filter
+export            Export a warning log to a file
+fixup             Automatic fixup of sources for certain warnings
+listcompunits     List compilation units for warning log
+monitor           Start the monitor taskbar applet
+recheck           Restore a project queue from a backup copy and check files
+restorequeue      Restore a project queue from a backup copy
+savequeue         Create a backup copy of a project queue
+set               Override defaults from project configuration
+showqueue         Show project queue information
+tryfixup          Try run for automatic fixup of sources for certain warnings
+
+Plugin developer OACR commands:
+
+checkini          Check configuration files
+createdefectdefs  Generate the 'defectdefs.xml' and 'pftwarnings.h' files
+recheck           Restore a project queue from a backup copy and check files
+
+Build integration OACR commands:
+
+build             Build project with minimal build integration requirements
+checkintest       Check project for error level defects
+clean             Delete project specific OACR files
+config            Configure OACR for a project
+env               List commands to setup environment for current configuration
+invalidate        Invalidate the warning log of a project, forcing a re-merge
+lock              Synchronize build and daemon processes for all files
+lockfile          Synchronize build and daemon processes for individual file
+running           Determine which OACR tools are running
+set               Override defaults from project configuration
+stop              Stop the specified tool(s)
+
+See 'oacr help commandlist' for an alphabetical list of all OACR commands.
+
+;-----------------------------------------------------------------------------
+[commandlist]
+
+OACR commands:
+
+bucketdiff        Find the difference between 2 warning logs
+build             Build project with minimal build integration requirements
+check             Check scheduled files in a batch run
+checkini          Check configuration files
+checkinstallation Check installation of OACR tools and code scanners
+checkintest       Check project for error level defects
+clean             Delete project specific OACR files
+config            Configure OACR for a project
+convertqueue      Toggle a queue between 'Batch' and 'BatchOrDaemon' mode
+count             Count warnings in warning logs
+createdefectdefs  Generate the 'defectdefs.xml' and 'pftwarnings.h' files
+diff              Find the difference between 2 warning logs
+env               List commands to setup environment for current configuration
+errornumbers      Determine recommended error filter
+export            Export a warning log to a file
+fixup             Automatic fixup of sources for certain warnings
+invalidate        Invalidate the warning log of a project, forcing a re-merge
+log               Show summary or project specific log of OACR activity
+list              List a warning log
+listcompunits     List compilation units for warning log
+lock              Synchronize build and daemon processes for all files
+lockfile          Synchronize build and daemon processes for individual file
+monitor           Start the monitor taskbar applet
+recheck           Restore a project queue from a backup copy and check files
+restorequeue      Restore a project queue from a backup copy
+running           Determine which OACR tools are running
+savequeue         Create a backup copy of a project queue
+set               Override defaults from project configuration
+showconfig        Show project configuration information
+showini           Show configuration file information
+showqueue         Show project queue information
+showstats         Show warning log statistics
+status            Show status information
+stop              Stop the specified tool(s)
+tryfixup          Try run for automatic fixup of sources for certain warnings
+version           Show OACR version information
+view              Run the viewer on a warning log
+wipe              Delete all OACR state information
+
+;-----------------------------------------------------------------------------
+[filters]
+
+Filtering warnings:
+
+The /warnings switch applies a filter to a warning log before performing a
+command on the log. The filtering can be based on warning numbers and/or
+warning locations (i.e. the source file in which the warning is located).
+
+The argument of the /warnings switch is a semicolon separated list of warning
+number and warning location sets. The sets are processed from left to right.
+This means that a set can partially or completely override a set that is 
+further to the left. This allows for example to include all warnings of a 
+particular warning level, and then exclude certain warnings from that level.
+
+A warning number set can be one of the following:
+   all         - A predefined set including all warning numbers and locations
+   <num>       - A warning number, e.g. 11
+   <num>-<num> - A warning number range, e.g. 241-250
+   <setname>   - A warning number set defined in the ini files, e.g. level1 
+
+A warning location set can be one of the following:
+   all         - A predefined set including all warning numbers and locations
+   <filename>  - A file name specification, e.g. src\*.cpp
+                 The following wildcards are supported:
+                    ?   - Matches exactly 1 character except ':', '\', '.'
+                    *   - Matches any characters, except ':', '\'
+                    ... - Matches any characters
+   <setname>   - A file set defined in the ini files, e.g. atl 
+
+A warning number or warning location set can be negated with '!', meaning all
+warnings that are not in the set.
+
+The /errors switch performs the same filtering as the /warnings switch. In 
+addition it applies the project specific error numbers filter which defines
+the subset of warnings that are to be treated as errors. The /errors and
+/warnings switches can not be used together.
+
+The /scanners switch applies a filter based on the code scanner that has 
+generated the warning (e.g. PREfast, PREsharp, MidlDD). For code scanners that
+support modules (aka plugins), the module that has generated the warning can
+also be used for filtering. Code scanners with plugin support are PREfast and 
+PREsharp.
+
+The argument of the /scanners switch is a semicolon separated list of code 
+scanner names. Names can be negated with '!', meaning the scanner is not
+enabled in the filter. For scanners with module support, a semicolon separated
+list of modules can be specified in parenthesis after the scanner name. Names
+can be negated with '!', meaning the module is not enabled in the filter. 
+When a filter is used for a command that runs the code scanner (e.g. 'check' 
+or 'recheck'), a leading '+=' adds modules to the set of modules normally
+enabled for the respective project.
+
+Examples:
+   /warnings level1;gel\... 
+      Level 1 warnings below the gel directory
+   /warnings level1;!300-310
+      Level 1 warnings not in the range 300 to 310
+   /errors *.cpp;!foo.cpp
+      Errors in .cpp files, except foo.cpp
+   /scanners prefast;presharp
+      Warnings generated by PREfast and PREsharp
+   /scanners prefast(oacrcplus)
+      Warnings generated by the oacrcplus PREfast module
+   /scanners prefast(!oacrcplus)
+      Warnings not generated by the oacrcplus PREfast module
+   /scanners prefast(+=oacrcplus)
+      Enable the oacrcplus PREfast plugin for the check/recheck command
+
+See 'oacr showini /filters' for a list of available warning number sets and 
+warning location sets.
+
+Filtering files:
+
+The /files switch applies a filter to a project queue (the list of source
+files to be checked). The filtering is based on the full pathname of the
+source files in the queue.
+
+The argument of the /files switch is a semicolon separated list of file sets.
+The syntax is the same as for warning location sets (see above).
+
+;-----------------------------------------------------------------------------
+[warnings]
+
+oacr help warnings -- Provide help on specific warnings
+
+oacr help warnings <numbers> [ /details ]
+
+   NOTE: This topic does not describe the syntax of warning filters, like the
+         ones used with the /warnings switch. See 'oacr help filters' instead.
+
+   The warning numbers are specified as a semicolon or space separated list of
+   warning number sets. A warning number set can be one of the following:
+      <num>       - A warning number, e.g. 11
+      <num>-<num> - A warning number range, e.g. 241-250
+      <setname>   - A warning number set defined in the ini files, e.g. level1 
+   See 'oacr help filters' for details on warning number filters.
+   
+   The /details switch shows more detailed information on the warning, e.g.
+   'Defective Source' and 'Corrected Source' examples.
+  
+;-----------------------------------------------------------------------------
+[project]
+
+Specifying projects:
+
+Many OACR commands work on projects. Projects can have multiple flavors, 
+e.g. debug and ship. Projects and flavors are defined in oacr.ini. A default
+flavor can be set to be used when no flavor is specified.
+
+For commands that take a project, it can be specified in the following ways:
+   <project:flavor>       - A project and flavor defined in oacr.ini.
+   <project> [ <flavor> ] - A project (and flavor) defined in oacr.ini.
+   all (or /all)          - All projects defined in oacr.ini (default flavor).
+   last (or /last)        - The project for which the most recent 'count', 
+                            'list, 'showstats', or 'view' command was run.
+
+See 'oacr help fuzzy' for information about fuzzy warning comparison.
+
+Most commands accept multiple warning log specifications. The wildcards '*'
+and '?' can be used in project and flavor names.
+
+Not all commands support 'all' and 'last'. It is supported, unless otherwise
+noted.
+
+The 'oacr showini /projects' command lists the projects defined in oacr.ini.
+
+;-----------------------------------------------------------------------------
+[warninglog]
+
+Specifying warning logs:
+
+Many OACR commands work on warning logs. This can either be the current state
+of a project, or a saved warning log file, and can be specified in the 
+following ways:
+   <project:flavor> [ /edit ] [ /cit ]
+      A project and flavor defined in oacr.ini.
+   <project> [ <flavor> ] [ /edit ] [ /cit ]
+      A project and flavor defined in oacr.ini.
+   all (or /all) [ /edit ] [ /cit ]
+      All projects defined in oacr.ini (the default flavor).
+   last (or /last) [ /edit ] [ /cit ]
+      The project for which the most recent 'count', 'list, 'showstats', 
+      or 'view' command was run.
+   <warningLogFile>
+      A warning log file created with the export command.
+
+With the /edit switch only warnings from checked out files (i.e. writeable
+files) are used.
+   
+With the /cit switch only warnings that break the checkin test are used.
+See 'oacr help checkintest' for information about checkin tests.
+
+See 'oacr help fuzzy' for information about fuzzy warning comparison.
+
+Most commands accept multiple warning log specifications. The wildcards '*'
+and '?' can be used in project, flavor, and file names.
+
+Not all commands support 'all' and 'last'. It is supported, unless otherwise
+noted.
+
+;-----------------------------------------------------------------------------
+[fuzzy]
+
+Fuzzy warning comparison:
+
+Many OACR commands support 'fuzzy' comparing of warnings. This is useful for
+the following scenarios:
+   - Comparing warning logs generated by different code scanner versions,
+     e.g. using a different versions of a plugin, but running over the same
+     revision of source files. This is primarily useful for plugin developers
+     and OACR administrators.
+   - Comparing warning logs generated by the same code scanner version for
+     different revisions of source files.
+     
+The following switches control the comparing of warnings:
+   /fuzzy             - Same as '/ignoredescription /ignorecolumn'.
+   /ignoredescription - Ignore the description string of the warning.
+                        -> Useful for warnings that have slightly different 
+                        warning descriptions between plugin versions, or even
+                        between repeated runs with the same plugin version.
+   /ignorecolumn      - Ignore the column of the warning location.
+                        -> Useful for code changes that change the column of
+                        the warning location, e.g. macro definition changes.
+   /ignoreline        - Ignore the line of the warning location.
+                        -> Useful for runs over different source file
+                        revisions.
+   /fuzzyline         - Consider warnings in the same function to be the same,
+                        if the position relative to the start of the function
+                        is the same.
+                        -> Useful for runs over different source file
+                        revisions. More strict than /ignoreline.
+
+;-----------------------------------------------------------------------------
+; Individual commands
+;-----------------------------------------------------------------------------
+[bucketdiff]
+
+bucketdiff -- Find the difference between 2 warning logs
+
+oacr bucketdiff <warningLog> <warningLog> 
+                [ /warnings <filter> | /errors <filter> ] [/scanners <filter>] 
+                [ /increase ] [ /decrease ] [ /raw ] [ /count ]
+
+   The bucketdiff command compares 2 warning logs. One of the logs must be
+   specified as a file. The other one can be specified as a file or a 
+   project name.
+   
+   The diff and bucketdiff commands use different compare algorithms:
+   - diff: Compares the warnings directly and differentiates based on warning
+     attributes (file, function, line, warning number, etc.). Reports 
+     individual warnings that are different.
+   - bucketdiff: Groups the warnings into buckets, and compares the warning
+     counts for the buckets. A bucket is identified by file, function, and
+     warning number. Reports buckets that have different warning counts.
+
+   The bucketdiff command is more resilient to source code changes than the
+   diff command, because it only counts the warnings within a function,
+   without trying to match them. However, there are still code changes that
+   result in false positives, e.g. renaming a function or moving it to another
+   file. Furthermore, the bucketdiff command does not identify the actual
+   warnings that have been introduced or removed. It just identifies the
+   function in which the change has occurred.
+   
+   The /warnings, /errors and /scanners switches apply filters to the 
+   warning log. See 'oacr help filters' for details.
+
+   The /increase switch limits the output to buckets for which the warning
+   count has increased.      
+
+   The /decrease switch limits the output to buckets for which the warning
+   count has decreased.
+   
+   The /raw switch produces output in tab delimited format.
+   
+   The /count switch reports the sum of all bucket warning count differences.
+   The sum is also returned through the return code.
+   
+   See 'oacr help diff' for another way to compare warning logs.
+   
+   See 'oacr help warninglog' for details on specifying warning logs.
+
+;-----------------------------------------------------------------------------
+[build]
+
+build - Build project with minimal OACR build integration requirements
+
+oacr build [ <project> ] 
+           [ /buildcmd <cmd> ] [ /clean ] [ /config ] [ /intercept ] 
+
+   ---------------------------------------------------------------------------
+   | The build command is not needed for projects that have OACR integrated  |
+   | into their build environment.                                           |
+   ---------------------------------------------------------------------------
+   
+   The build command can be used to run OACR on projects that don't have OACR
+   build integration. It builds a project with a user supplied build command,
+   and optionally performs steps to configure OACR.
+
+   The /buildcmd switch specifies the command line to perform a build. If the
+   command line contains white space characters, it must be enclosed in quotes.
+   Embedded quotes must be escaped with '\', e.g. 
+      /buildcmd "\"c:\program files\msvc\devenv.exe\" project.sln /rebuild"
+
+   The /clean switch performs a clean command before starting the build. See
+   'oacr help clean' for details on the clean command. This switch is not
+   needed, if OACR is in auto-clean mode.
+   
+   The /config switch performs a config command before starting the build. See
+   'oacr help config' for details on the config command. The switch is not
+   needed, if OACR is in auto-configuration mode.
+   
+   The /intercept switch puts the directory with the OACR build tool
+   interceptors in front of the path for the duration of the build. This means
+   that the OACR interceptors rather than the regular build tools are called. 
+   This only works, if the build tools (e.g. the compiler) are called without
+   path name, and if the build doesn't change the path in a way that negates
+   the modification made by OACR.
+   
+   No project needs to be specified, if OACR is in auto-configuration mode, or
+   a default project is specified in oacr.ini or oarcuser.ini, or neither the
+   /clean nor the /config switch are used.
+   
+   This command does not support 'all' projects.
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[check]
+
+check -- Check scheduled files in a batch run
+
+oacr check <project> 
+           [ /numproc <num> ] 
+           [ /keepqueue ] [ /ignorebuildtime ] [ /incremental ]
+           [ /scanners <filter> ] [ /files <filter> ] [ /batch ]
+           [ /cit ] 
+
+   The /numproc switch specifies the number of child processes to use. By 
+   default the number of processors in the system is used.
+   
+   With the /keepqueue switch the files are left in the queue after they have
+   been checked. This allows to repeat the run without building first.
+   
+   With the /ignorebuildtime switch the files that have been touched after
+   they were added to the queue during the build are checked as well. Usually,
+   these files are not being checked, because they have not yet been built
+   after the last modification.
+   
+   With the /incremental switch, data from previous checks is re-used, if it
+   is still up-to-date. This is currently only used for PREfixDesktop, and
+   re-uses the .ast files for .obj files that have not been touched.
+
+   The /scanners and /files switches apply filters to the files in the queue. 
+   See 'oacr help filters' for details.
+   
+   The /batch switch ignores pending daemon mode queues and only uses queues
+   that would not be checked automatically in the background eventually.
+
+   With the /cit switch the command can be used as a checkin test. If there is
+   a pending queue for the project, all checked out files in the queue are
+   checked. The command returns 1, if the warning log contains error level
+   defects in checked out files, and 0 otherwise.
+   
+   NOTE: The /cit switch is deprecated and may be removed from future OACR
+         versions. Use the 'checkintest' command instead.   
+
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[checkini]
+
+checkini -- Check configuration files
+
+oacr checkini [ /strict ]
+
+   Reports problems in the oacr.ini and oacruser.ini configuration files.
+   
+   The /strict switch enables additional checks for minor inconsistencies.
+
+;-----------------------------------------------------------------------------
+[checkinstallation]
+
+checkinstallation -- Check installation of OACR tools and code scanners
+
+oacr checkinstallation [ /strict ] [ /htmlhelp ]
+
+   Reports problems with the installation of OACR, e.g. version conflicts,
+   missing files, or obsolete files.
+   A common cause of version conflicts is a failure during syncing to a new
+   version of OACR, caused by not closing the taskbar applet first.
+   
+   The checkinstallation command also implies a 'oacr checkini' command, and
+   performs version specific cleanup necessary after switching to a new OACR
+   version.
+
+   The /strict switch enables additional checks for minor inconsistencies.
+   
+   The /htmlhelp switch enables verification of the help URLs for warning
+   specific help pages in the 'defectdefs.xml' file.
+   
+;-----------------------------------------------------------------------------
+[checkintest] 
+
+checkintest - Check project for error level defects
+
+oacr checkintest <project> [ /continue ] [ /details ] [ /query ]
+
+   Runs a checkin test on the project. This determines whether there are any
+   error level defects. Files in the pending queue are checked as necessary.
+   
+   If the project is configured in oacr.ini to only run on checked out files
+   (i.e. writeable files), then only errors in those files are considered,
+   even if there are local customizations (oacruser.ini or 'oacr set').
+
+   The command returns 1, if the warning log contains errors, and 0 otherwise.
+   
+   The /continue switch checks all projects specified on the command line, 
+   even after error level defects have been found. By default, the check is
+   aborted after the first project fails the checkin test.
+   
+   The /details switch lists the defects that are causing the checkin test
+   to fail.
+   
+   The /query switch checks whether a checkin test is needed, rather than
+   performing the test. The command returns 1, if a checkin test is needed,
+   and 0 otherwise.
+
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[clean]
+
+clean -- Delete project specific OACR files
+
+oacr clean <project> 
+           [ /wipe ] [ /files <filter> ] [ /warnings <filter> ] [ /useenv ] 
+           [ /ignoreunknown ]
+
+   The clean command must be called before starting a full build of a project.
+
+   The /wipe switch deletes additional files that should normally not be
+   deleted before a full build, e.g. a saved queue and precompiled header
+   information that allows to recover from missing .pch files.
+   
+   The /files switch only deletes state of source files matching the filter. 
+   See 'oacr help filters' for details.
+   
+   The /warnings switch only deletes state of source files with warnings
+   matching the filter. See 'oacr help filters' for details.
+
+   The /all switch also cleans global log files. 
+
+   The /useenv switch uses the current configuration in the environment.
+   
+   The /ignoreunknown switch suppresses a warning for an unknown project name.
+
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[config]
+
+config -- Configure OACR for a project
+
+oacr config [ <project> ] [ /ignoreunknown ]
+
+   The config command must be called before starting a build of a project. It
+   sets the active project for subsequent builds.
+
+   The /ignoreunknown switch suppresses a warning for an unknown project name.
+   
+   This command does not support 'all' and 'last' projects.
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[convertqueue]
+
+convertqueue -- Toggle a queue between 'Batch' and 'BatchOrDaemon' mode
+
+oacr convertqueue <project> [ /daemon | /batch ]
+
+   A queue is the list of files that are scheduled to be checked.
+
+   A queue in 'Batch' mode can only be run with the 'check' command. It is not
+   run by the daemon process. A queue in 'BatchOrDaemon' mode can be run 
+   either way. The mode of a queue is determined from the project configuration
+   when the queue is created.
+
+   With the /daemon switch the queue is set into 'BatchOrDaemon' mode.
+   With the /batch switch the queue is set into 'Batch' mode. 
+   Without a switch the queue mode is toggled.
+	
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[count]
+
+count -- Count warnings in warning logs
+
+oacr count <warningLog> 
+           [ /warnings <filter> | /errors <filter> ] [/scanners <filter>] 
+           [ /nozero ] [ /nosubprojects ] [ /noremovedups ]
+
+   The /warnings, /errors and /scanners switches apply filters to the 
+   warning log. See 'oacr help filters' for details.
+
+   The /nozero switch suppresses output for projects with a zero count.
+   
+   The /nosubprojects switch combines the counts of subprojects into a single
+   count. OACR does not provide a general mechanism to define subprojects. In
+   this context a '_' character in the project name is considered a subproject
+   name separator (e.g. 'misc_foo', 'misc_bar').
+
+   The /noremovedups switch suppresses removal of duplicate warnings. This
+   makes the command significantly faster for large warning logs. Note, 
+   however, that the warning count total may include duplicate warnings.
+
+   The command also returns the number of warnings in its return code. 
+
+   See 'oacr help warninglog' for details on specifying warning logs.
+
+;-----------------------------------------------------------------------------
+[createdefectdefs]
+
+createdefectdefs -- Generate the 'defectdefs.xml' and 'pftwarnings.h' files
+
+oacr createdefectdefs [ /checkout ] [ /noheader ]
+
+   The createdefectdefs command generates the defectdefs.xml and 
+   pftwarnings.h files. defectdefs.xml contains descriptions of all warnings
+   generated by the defect modules installed on the machine. pftwarnings.h
+   contains #defines that can be used in macros to suppress, enable, or
+   disable warnings (e.g. OACR_WARNING_SUPPRESS).
+   
+   The command should be run after removing, replacing, or adding defect
+   modules.
+   
+   The /checkout switch checks out defectdefs.xml and pftwarnings.h using
+   Source Depot.
+   
+   The /noheader switch suppresses generation of pftwarnings.h.
+   
+   This is an administrator command.
+
+;-----------------------------------------------------------------------------
+[diff]
+
+diff -- Find the difference between 2 warning logs
+
+oacr diff <warningLog> <warningLog> 
+          [ /warnings <filter> | /errors <filter> ] [/scanners <filter>] 
+          [ /reverse ] [ /both ]
+          [ /list [ /source ] ] 
+          [ /view [ /filterpreset <preset> ] ]
+          [ /showstats [ /nofiles ] [ /nolevels ]  [ /raw ] ] [ /title ]
+          [ /export <outFile> [ ;<outFile> ] ]
+
+   The diff command compares 2 warning logs. One of the logs must be
+   specified as a file. The other one can be specified as a file or a 
+   project name.
+   
+   This command works well for comparing warning logs that have been generated
+   by different code scanner versions, e.g. using a different version of a 
+   plugin, but running over the same revision of source files. With the fuzzy
+   compare algorithm (see 'oacr help fuzzy') the command can be used to 
+   compare warning logs generated for different revisions of source files.
+   However, the 'bucketdiff' command is generally the better choice for that
+   scenario.
+
+   With no switches the command shows the warning counts for both logs, and
+   the number of warnings in the first but not in the second log (log1-log2)
+   as well as those in the second but not the first log (log2-log1).
+   
+   The /warnings, /errors and /scanners switches apply filters to the 
+   warning log. See 'oacr help filters' for details.
+
+   With the /reverse switch the /list, /view, /showstats, and /export switches
+   work on log2-log1. By default, the switches work on log1-log2.
+
+   With the /both switch the /list, /showstats and /export switches run their
+   command twice, first for log1-log2, then for log2-log1. With /both, the
+   /export switch requires two output files, separated by ';'.
+   
+   The /list switch runs the list command on the warnings in one log but not
+   the other. See 'oacr help list' for details on the command.
+     
+   The /view switch runs the view command on the warnings in one log but not
+   the other. See 'oacr help view' for details on the command.
+
+   The /showstats switch runs the showstats command on the warnings in one log
+   but not the other. See 'oacr help showstats' for details on the command.
+
+   The /export switch runs the export command on the warnings in one log but
+   not the other. Two output files need to be specified, if the /both switch
+   is used. See 'oacr help export' for details on the command.
+
+   See 'oacr help bucketdiff' for another way to compare warning logs that is
+   more resilient to source code changes.
+   
+   See 'oacr help warninglog' for details on specifying warning logs.
+   See 'oacr help fuzzy' for information about fuzzy warning comparison.
+
+;-----------------------------------------------------------------------------
+[env]
+
+env -- List commands to setup environment for current configuration
+
+oacr env
+
+   The env command can be used to create a batch file that sets up the 
+   environment for the current project configuration. This is useful in
+   build environments with repeat functionality, to ensure that the repeat
+   build uses the same configuration as the original build.
+
+;-----------------------------------------------------------------------------
+[errornumbers]
+
+errornumbers -- Determine recommended error filter
+
+oacr errornumbers <project> [ /tighten | /relax ]
+
+   The errornumbers command determines the most restrictive setting for
+   'ErrorNumbers' in oacr.ini from a warning log. This is the setting that
+   treats the maximum number of warnings as errors, only excluding the warnings
+   that are in the warning log.
+   
+   The /tighten and /relax switches limit the changes to the existing setting.
+   Only changes that tighten (i.e. treat more warnings as errors) or relax
+   (i.e. treat fewer warnings as errors) are made.
+
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[export]
+
+export -- Export a warning log to a file
+
+oacr export <warningLog> <outFile> 
+            [ /warnings <filter> | /errors <filter> ] [ /scanners <filter> ] 
+            [ /source ] [ /normalizepath ]
+
+   The output file can be used as input for warning log commands.
+
+   The /warnings, /errors and /scanners switches apply filters to the 
+   warning log. See 'oacr help filters' for details.
+
+   The /source switch adds the source code lines with the warnings to the
+   exported warning log.
+   
+   The /normalizepath switch uses project root and path substitution
+   information to generate machine independent path names. This allows to
+   compare warning logs generated on different machines with different
+   enlistment roots.
+
+   See 'oacr help warninglog' for details on specifying warning logs.
+
+;-----------------------------------------------------------------------------
+[fixup]
+[tryfixup]
+
+fixup    -- Automatic fixup of sources for certain warnings
+tryfixup -- Try run for automatic fixup of sources for certain warnings
+
+oacr fixup    <warningLog> [ /warnings <filter> | /errors <filter> ]
+oacr tryfixup <warningLog> [ /warnings <filter> | /errors <filter> ]
+
+   The fixup command checks out source files, and modifies them, fixing the 
+   warnings in the warning log that support automatic fixup.
+
+   The tryfixup command shows the changes that would be made by the fixup
+   command, but does not modify source files.
+
+   The /warnings and /errors switches apply filters to the warning log.
+   See 'oacr help filters' for details.
+   
+   The OACRCONSTTYPEMAP environment variable can be used to extend the
+   set of pointer typedefs for constness warnings (5403, 5404, etc).
+   A type\constType pair is separated by a '-' and multiple type pairs
+   are separated by ';'. If blanks are used in the type definitions the
+   whole string needs to be put in quotes e.g.
+   
+   set OACRCONSTTYPEMAP="LPFOO-LPCFOO;BytePtr-const Byte*;BarPtr-BarCPtr"
+
+   The command returns the number of fixups that were made (or would be made
+   by the tryfixup command). 
+
+   See 'oacr help warninglog' for details on specifying warning logs.
+
+;-----------------------------------------------------------------------------
+[invalidate]
+
+invalidate -- Invalidate the warning log of a project, forcing a re-merge
+
+oacr invalidate <project> 
+                [ /useenv ] [ /ignoreunknown ] [ /autocleanroot ] 
+                [ /autocleanwarnings ] [ /autocleanqueue ]
+
+   Invalidating a warning log forces a re-merge the next time the warning log
+   is accessed. This removes stale warnings from compilation units that had
+   their OACR state deleted manually.
+
+   The /useenv switch uses the current configuration in the environment.
+   
+   The /ignoreunknown switch suppresses a warning for an unknown project name.
+   
+   The /autocleanroot switch runs a clean command on the project, if the
+   current directory is the same as the project root.
+   
+   The /autocleanwarnings switch deletes warnings from compilation units with
+   missing or outdated .obj file or missing .oacr.xml file.
+   
+   The /autocleanqueue switch deletes compilation units in a pending queue, if
+   the source file or .obj file is missing.
+   
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[log]
+
+log -- Show summary or project specific log of OACR activity
+
+oacr log [ /errors ] [ /warnings ] [ /notes ] [ /asserts ] [ /count ]
+oacr log <project>
+
+   With a project name, the check run log of that project is shown. This is
+   the output generated during check runs in batch or daemon mode.
+  
+
+   Without a project name, the summary log is shown. The output can be
+   filtered with the following switches:
+      /errors   - Show errors only
+      /warnings - Show warnings only
+      /notes    - Show notes only
+      /asserts  - Show assertions only
+   The switches can be combined to show log entries of multiple types.
+   
+   The /count switch reports the sum of errors, warnings, notes, and asserts
+   listed. The sum is also returned through the return code.
+   
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[list]
+
+list -- List a warning log
+
+oacr list <warningLog> 
+          [ /warnings <filter> | /errors <filter> ] [ /scanners <filter> ] 
+          [ /source ] [ /raw ]
+
+   The listing can be used in the VC development environment to step through
+   warnings with F8.
+
+   The /warnings, /errors and /scanners switches apply filters to the
+   warning log. See 'oacr help filters' for details.
+
+   The /source switch lists the source code lines with the warnings.
+   
+   The /raw switch produces output in tab delimited format.
+   
+   See 'oacr help warninglog' for details on specifying warning logs.
+
+;-----------------------------------------------------------------------------
+[listcompunits]
+
+listcompunits -- List compilation units for warning log
+
+oacr listcompunits <project> [ /warnings <filter> ] [/scanners <filter>]
+
+   Lists the full path names of the compilation units that are generating
+   the specified warnings. This is useful for warnings in header files, since
+   the warning location (e.g. .h) and the compilation unit (e.g. .cpp) are not
+   the same file.
+
+   The /warnings and /scanners switches apply filters to the warning log.
+   See 'oacr help filters' for details.
+
+;-----------------------------------------------------------------------------
+[lock]
+[lockfile]
+
+lock     -- Synchronize build and daemon processes for all files
+lockfile -- Synchronize build and daemon processes for individual file
+
+oacr lock     command { argument }
+oacr lockfile file command { argument }
+
+   Execute the specified command with the specified arguments, and protect
+   the specified file (lockfile) or all files (lock) from being opened by 
+   the daemon process during the execution of the command.
+
+   This command is used to prevent build breaks that happen, if a build tries
+   to get write access to a generated file, while the daemon process has the
+   file open. No synchronization is needed for files that are not generated by
+   the build.
+
+;-----------------------------------------------------------------------------
+[monitor]
+
+monitor -- Start the monitor taskbar applet
+
+oacr monitor
+
+   The monitor taskbar applet is started automatically by a build, when a 
+   queue that can be run by the daemon is created. The monitor command allows
+   to start the monitor applet manually.
+
+;-----------------------------------------------------------------------------
+[recheck]
+
+recheck -- Restore a project queue from a backup copy and check files
+
+oacr recheck <project> 
+             [/numproc <num>]  
+             [ /keepqueue ] [ /ignorebuildtime ] [ /incremental ]
+             [ /scanners <filter> ] [ /files <filter> ] 
+             [ /warnings <filter> ] [ /modified ] [ /nopch ]
+
+   Run a check of all scheduled files from the backup copy of a queue. Runs a
+   restorequeue command, followed by a check command. 
+   See 'oacr help restorequeue' and 'oacr help check' for details on the
+   supported switches.
+   
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[restorequeue]
+
+restorequeue -- Restore a project queue from a backup copy
+
+oacr restorequeue <project> 
+                  [ /daemon | /batch ]
+                  [ /scanners <filter> ] [ /files <filter> ] 
+                  [ /warnings <filter> ] [ /modified ] [ /touch ] [ /nopch ]
+
+   A queue is the list of files that are scheduled to be checked.
+	
+   A saved queue allows multiple check runs on a project, without multiple
+   builds. Note, that editing a source file invalidates its entry in the queue.
+
+   With the /daemon switch the queue is set into 'BatchOrDaemon' mode.
+   With the /batch switch the queue is set into 'Batch' mode. 
+   See 'oacr help convertqueue' for details on queue modes.
+   
+   The /files, /warnings, and /scanners switches apply filters to the files
+   in the queue. See 'oacr help filters' for details.
+
+   The /modified switch removes files that have not been touched since the
+   last check that has found warnings or errors.
+
+   The /touch switch sets the compile time for all entries to the current
+   system time, so that the respective source files will be checked, even
+   if they have been modified after being added to the queue.
+
+   The /nopch switch uses the existing precompiled headers. By default all
+   precompiled headers used by the files in the queue will be regenerated and
+   checked.
+
+   See 'oacr help project' for details on specifying projects.
+
+   The savequeue command saves a queue.
+
+;-----------------------------------------------------------------------------
+[running]
+
+running -- Determine which OACR tools are running
+
+oacr running [ /monitor ] [ /daemon ] [ /viewer ] [ /session ] [ /config ]
+
+   The /monitor switch lists the running state of the monitor taskbar applet.
+
+   The /daemon switch lists the running state of the daemon process.
+
+   The /viewer switch lists the running state of the viewer.
+
+   With no arguments, the running state of all OACR tools is listed.
+   
+   The command works on all instances of the viewer running on the system.
+   By default, it works on all instances of the monitor and daemon using the
+   same executable. The /session switch limits it to the monitor and daemon
+   instances in this terminal server session. The /config switch limits it to
+   the monitor and daemon instances using the same oacr.ini file.
+
+   This command is primarily intended for scripting. The return code is 1,
+   if at least one of the specified tools is running, and 0 otherwise.
+
+;-----------------------------------------------------------------------------
+[savequeue]
+
+savequeue -- Create a backup copy of a project queue
+
+oacr savequeue <project> [ /merge ]
+
+   A queue is the list of files that are scheduled to be checked.
+	
+   A saved queue allows multiple check runs on a project, without builds.
+   Note, that editing a source file invalidates its entry in the queue.
+
+   The /merge switch merges the entries in the queue into existing saved
+   queue (if any).
+
+   See 'oacr help project' for details on specifying projects.
+
+   The restorequeue command restores a saved queue.
+
+;-----------------------------------------------------------------------------
+[set]
+
+set -- Override settings from project configuration
+
+oacr set [ clean ]
+         [ on | off ]
+         [ all | edit | pch ]
+         [ compile | batch | daemon | compile+batch | compile+daemon ]
+         [ open ] [ nocit ] [fullcit ] [ nomodalmsg ] [ useenv ]
+         [ metrics ] [ metricslite ] [ metricsultralite ]
+         [ timings ] [ traceintercepts ] [ fakebuild ]
+         [ pftbugreport ] [ pftsyntaxcheck | pftastsyntaxcheck ]
+         [ noscanlocfilter ] [ noscannumfilter ] [ noscanfilter ]
+         [ nopostlocfilter ] [ nopostnumfilter ] [ nopostfilter ]
+         [ nopftsuppress ] [ togglesuppress ]
+         [ verbose ] [ verbosescan ] [ debug ] [ debugattach ] [ asserts ]
+
+   With no arguments set shows the current overrides.
+
+   The clean switch clears all overrides.
+
+   Master switch:
+      on                - Turn OACR on
+      off               - Turn OACR off
+   Files to be checked:
+      all               - All compiled files
+      edit              - Writeable compiled files
+      pch               - Precompiled headers only
+   When to check files:
+      compile           - At compile time
+      batch             - In batch run
+      daemon            - In background process
+      compile+batch     - 'compile' for writeable files, 'batch' for others
+      compile+daemon    - 'compile' for writeable files, 'daemon' for others
+   Other switches:
+      open              - Bypass the source depot check and assume that at
+                          least one file is checked out
+      nocit             - Disable checkin tests 
+      fullcit           - Perform checkin tests on all files in the queue
+    * nomodalmsg        - Disable modal message boxes in monitor
+      useenv            - Preserve previous overrides
+   Expert modes:
+    * metrics           - Collect warning and file counts
+    * metricslite       - Similar to 'metrics' without level 4 warnings
+    * metricsultralite  - Similar to 'metrics' with regular warning filters
+    * timings           - Collect compile and check timings
+    * traceintercepts   - Collect data on build tool interception
+      fakebuild         - Suppress build tool runs (cl, csc, link, lib)
+    * pftbugreport      - Assist in reporting PREfast problems
+    * pftsyntaxcheck    - Run PREfast syntax check, using regular front end
+    * pftastsyntaxcheck - Run PREfast syntax check, using AST front end
+    * noscanlocfilter   - No filtering by warning location during scanner run
+    * noscannumfilter   - No filtering by warning number during scanner run
+    * noscanfilter      - Same as noscanlocfilter & noscannumfilter
+    * nopostlocfilter   - No filtering by warning location after scanner run
+    * nopostnumfilter   - No filtering by warning number after scanner run
+    * nopostfilter      - Same as 'nopostlocfilter nopostnumfilter'
+    * nopftsuppress     - Disable OACR macros to suppress/disable warnings
+    * togglesuppress    - Report only warnings suppressed by #pragma prefast
+    * verbose           - Very verbose log output
+    * verbosescan       - Verbose code scanner related output
+    * debug             - Debug mode
+    * debugattach       - Debug boot attach mode
+    * asserts           - Enable extensive asserts
+   
+   Overrides marked with '*' are global settings, all others are local. Local
+   settings only affect OACR processes started from the command shell in which
+   the settings were made. Global switches affect all OACR processes.
+   
+   The '!' prefix can be used to revert the effect of switches, e.g.
+   'oacr set !verbose' to turn off verbose mode.
+
+;-----------------------------------------------------------------------------
+[showconfig]
+
+showconfig -- Show project configuration information
+
+oacr showconfig [ <project> ] [ /useenv ] [ /nocustomizations ]
+
+   The /useenv switch uses the current configuration in the environment.
+   
+   The /nocustomizations switch ignores local customizations (oacruser.ini or 
+   'oacr set').
+
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[showini]
+
+showini -- Show configuration file information
+
+oacr showini [ /projects ] [ /filters ] [ /all ] [ /raw ]
+
+   Shows a summary of the oacr.ini and oacruser.ini configuration files.
+   
+   The /projects switch shows a list of all project names, and the flavors
+   of each project.
+   The /filters switch shows a list of all warning numbers sets, warning
+   location sets, and viewer filter presets, which can be used for warning
+   filtering.
+   The /all switch is the same as combining /projects and /filters.
+   
+   The /raw switch shows all settings sorted by section.
+
+;-----------------------------------------------------------------------------
+[showqueue]
+
+showqueue -- Show project queue information
+
+oacr showqueue <project> [ /details ] [ /raw ]
+
+   A queue is the list of files that are scheduled to be checked.
+
+   Shows a summary of the information in the queue, including the files to be
+   checked.
+   
+   The /details switch shows more detailed information, e.g. precompiled 
+   headers and the build output files associated with source files.
+
+   The /raw switch suppresses header and footer lines.
+   
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[showstats]
+
+showstats -- Show warning log statistics
+
+oacr showstats <warningLog>
+               [ /warnings <filter> | /errors <filter> ] 
+               [ /scanners <filter> ] [ /nofiles ] [ /nolevels ] [ /raw ]
+               [ /title ] [ /noremovedups ] [ /wide ]
+
+   Warnings supported by the fixup command are marked with '*' in the list of
+   warning counts by warning level.
+   
+   The /warnings, /errors and /scanners switches apply filters to the
+   warning log. See 'oacr help filters' for details.
+
+   The /nofiles switch suppresses the list of warning counts by file.
+   The /nolevels switch suppresses the list of warning counts by warning level.
+   The /raw switch produces a list of warning counts by warning number.
+   The /title switch produces a list of warning counts in a format suitable 
+   for use as bug titles.
+
+   The /noremovedups switch suppresses removal of duplicate warnings. This
+   makes the command significantly faster for large warning logs. Note, 
+   however, that the warning counts may include duplicate warnings.
+
+   With the /wide switch the output lines are not limited to 80 characters.
+   
+   See 'oacr help warninglog' for details on specifying warning logs.
+
+;-----------------------------------------------------------------------------
+[status]
+
+status -- Show status information
+
+oacr status [ <project> ] [ /nodetails ]
+
+   With no argument, the command is performed on all projects.
+
+   The /nodetails switch suppresses the warning and file counts.
+
+   See 'oacr help project' for details on specifying projects.
+
+;-----------------------------------------------------------------------------
+[stop]
+
+stop -- Stop the specified tool(s)
+
+oacr stop [ /monitor ] [ /daemon ] [ /viewer ] [ /all ] 
+          [ /session ] [ /config ]
+
+   The /monitor switch closes the monitor taskbar applet. This also implies
+   the /daemon switch.
+
+   The /daemon switch ends the daemon process.
+
+   The /viewer switch closes all instances of the viewer.
+
+   With no arguments or with the /all switch the monitor taskbar applet,
+   daemon process, and viewer instances are stopped.
+   
+   The command works on all instances of the viewer running on the system.
+   By default, it works on all instances of the monitor and daemon using the
+   same executable. The /session switch limits it to the monitor and daemon
+   instances in this terminal server session. The /config switch limits it to
+   the monitor and daemon instances using the same oacr.ini file.
+
+;-----------------------------------------------------------------------------
+[version]
+
+version -- Show OACR version information
+
+oacr version
+
+;-----------------------------------------------------------------------------
+[view]
+
+view -- Run the viewer on a warning log
+
+oacr view <warningLog>
+          [ /warnings <filters> | /errors <filter> ] [ /scanners <filter> ] 
+          [ /filterpreset <preset> ]
+
+   The /warnings, /errors and /scanners switches apply filters to the
+   warning log. See 'oacr help filters' for details.
+
+   The /filterpreset switch selects the initial preset in the viewer.
+   See 'oacr showini /filters' for a list of available filter presets.	
+
+   See 'oacr help warninglog' for details on specifying warning logs.
+
+;-----------------------------------------------------------------------------
+[wipe]
+
+wipe -- Delete all OACR state information
+
+oacr wipe
+
+   The wipe command is more thorough than 'oacr clean /all'.
+   
+   The command only affects the current OACR instance, i.e. OACR state of 
+   other instances (i.e. other oacr.ini files), e.g. in other enlistments is
+   not deleted.
+	 

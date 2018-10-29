@@ -1,0 +1,69 @@
+[Version]
+Signature="$WINDOWS NT$"
+Class=Processor
+ClassGuid={50127DC3-0F36-415e-A6CC-4CB3BE910B65}
+Provider=%MSFT%
+LayoutFile=layout.inf
+DriverVer=06/21/2006,6.1.7600.16385
+CatalogFile=delta.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+pnpcpu.sys  = 1,,
+
+[ClassInstall32]
+AddReg=Processor_Class_Addreg
+
+[Processor_Class_Addreg]
+HKR,,,0,%ProcessorClassName%
+HKR,,NoInstallClass,,1
+HKR,,Icon,,"-28"
+
+[Manufacturer]
+%MSFT%=Microsoft,NTamd64
+
+[Microsoft.NTamd64]
+%acpi0007.DeviceDesc% = PNPCPU_Inst,ACPI\ACPI0007
+
+[PNPCPU_Inst.NT]
+Copyfiles = @pnpcpu.sys
+
+[PNPCPU_Inst.NT.Services]
+AddService = PNPCPU,%SPSVCINST_ASSOCSERVICE%,PNPCPU_Service_Inst,PNPCPU_EventLog_Inst
+
+[PNPCPU_Service_Inst]
+DisplayName    = %PNPCPU.SvcDesc%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_DEMAND_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\pnpcpu.sys
+
+[PNPCPU_EventLog_Inst]
+AddReg=PNPCPU_EventLog_AddReg
+
+[PNPCPU_EventLog_AddReg]
+HKR,,EventMessageFile,0x00020000,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\pnpcpu.sys"
+HKR,,TypesSupported,0x00010001,7
+
+[strings]
+MSFT                  = "Microsoft"
+ProcessorClassName    = "Processor devices"
+acpi0007.DeviceDesc   = "Processor Module"
+PNPCPU.SvcDesc        = "Microsoft Processor Module Driver"
+DiskId1               = "Simulated Dynamic Processor Installation Disk #1"
+SPSVCINST_TAGTOFRONT  = 0x00000003
+SPSVCINST_ASSOCSERVICE= 0x00000002
+SERVICE_KERNEL_DRIVER = 1
+SERVICE_BOOT_START    = 0
+SERVICE_SYSTEM_START  = 1
+SERVICE_DEMAND_START  = 3
+SERVICE_ERROR_NORMAL  = 1
+SERVICE_ERROR_IGNORE  = 0
+REG_EXPAND_SZ         = 0x00020000
+REG_DWORD             = 0x00010001
+REG_SZ                = 0x00000000

@@ -1,0 +1,27 @@
+TARGETNAME=plx
+TARGETTYPE=PROGRAM
+
+_NT_TARGET_VERSION= $(_NT_TARGET_VERSION_WINXP)
+
+UMTYPE=console
+UMENTRY=main
+
+USE_MSVCRT=1
+
+!if defined(DDKBUILDENV)
+C_DEFINES = $(C_DEFINES) -DDDKBUILD=1
+!endif
+
+TARGETLIBS=$(SDK_LIB_PATH)\setupapi.lib \
+           $(SDK_LIB_PATH)\user32.lib   \
+
+
+INCLUDES=$(INCLUDES);$(DDK_INC_PATH);..\sys
+
+SOURCES=       \
+    plx.cpp
+
+RUN_WPP= $(SOURCES) #-func:printf(MSG,...)
+
+TARGET_DESTINATION=wdf
+

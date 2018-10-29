@@ -1,0 +1,7 @@
+[Version]
+Name=Dial Up Networking (DUN)
+Service={00001103-0000-1000-8000-00805F9B34FB}
+
+[0x305]
+Name=DUN Audio Feedback Support
+Format=BOOLEAN

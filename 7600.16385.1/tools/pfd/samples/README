@@ -1,0 +1,18 @@
+//
+// PREfast for Drivers Examples readme
+// Copyright © Microsoft Corporation.  All rights reserved.
+//
+
+These examples are intended to be built using the build command 
+running in the WDK build environment.
+
+For more information see the PFD documentation, which can be accessed
+via the 
+    prefast help
+command.
+
+See PREfast for Drivers 
+       -> PREfast for Drivers Overview 
+	   -> Running PREfast for Drivers
+
+in that documentation.

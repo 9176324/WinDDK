@@ -1,0 +1,57 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule specifices that if a dispatch routine returns
+        STATUS_SUCCESS, the IRP must have been completed by the driver
+        it self or a lower driver.
+
+*/
+
+#include "ntddk_slic.h"
+
+state {
+    int lower_driver_pends = 0;
+    int done = 0;
+} with guard(sdv_main,sdv_irp) 
+
+sdv_stub_dispatch_end.entry [guard $2]
+{
+    if (!done && $1 == STATUS_SUCCESS) {
+       abort "The dispatch routine returned STATUS_SUCCESS, but IRP is not completed by driver or lower driver.";
+    }
+}
+
+[RemoveHeadList,sdv_containing_record].entry
+{
+    done = 1;
+}
+
+[PoCallDriver,IoCallDriver].exit[guard $2] 
+{
+    if ( $return == STATUS_PENDING
+       ) {
+        lower_driver_pends = 1;
+    }
+    else {
+        done = 1;
+    }
+}
+
+[KeWaitForSingleObject, KeWaitForMultipleObjects].entry
+{
+     if ( lower_driver_pends == 1
+         ) {
+             done = 1;
+     }
+}
+
+IoCompleteRequest.entry[guard $1]
+{
+    done = 1;
+}
+
+sdv_stub_WmiIrpProcessed.entry [guard $1] {
+    done = 1;
+}

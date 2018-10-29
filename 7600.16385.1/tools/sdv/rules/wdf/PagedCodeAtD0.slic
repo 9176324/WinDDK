@@ -1,0 +1,27 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	Do not mark code as pageable within callbacks in the power up code path.
+
+	Description: 
+
+	When a function is marked pagable and the code section is paged out, 
+	it will generate a page fault which could impact
+    the fast resume behavior because the client driver will have to wait
+    until the system drivers can service this page fault.
+   
+*/
+
+
+
+
+
+
+
+#include "ntddk_slic.h"
+
+sdv_do_paged_code_check.entry 
+{
+    abort "Do not mark code as pageable within callabcks in the power up code path.";
+}

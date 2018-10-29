@@ -1,0 +1,71 @@
+TARGETNAME=WUDFToaster
+TARGETTYPE=DYNLINK
+
+UMDF_VERSION_MAJOR=1
+UMDF_VERSION_MINOR=9
+
+KMDF_VERSION_MAJOR=1
+KMDF_VERSION_MINOR=9
+
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+
+UMTYPE=windows
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=stdAfx.h
+PRECOMPILED_PCH=stdafx.pch
+PRECOMPILED_OBJ=stdpch.obj
+
+USE_MSVCRT=1
+
+USE_ATL=1
+ATL_VER=70
+
+
+IDL_TYPE=ole
+
+C_DEFINES = $(C_DEFINES) /D_UNICODE /DUNICODE 
+!if !$(FREEBUILD)
+C_DEFINES=$(C_DEFINES) -DDEBUG
+!endif
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+DLLENTRY=_DllMainCRTStartup
+DLLDEF=WUDFToaster.def
+
+INCLUDES=.;$(OBJ_PATH)\$(O);..\..\kmdf\inc;
+
+SOURCES=\
+    WUDFToaster.rc                      \
+    WUDFTOaster.idl                     \
+    $(OBJ_PATH)\$(O)\WUDFToaster_i.c    \
+    WUDFToaster.cpp                     \
+    stdafx.cpp                          \
+    Driver.cpp                          \
+    Device.cpp                          \
+    Queue.cpp                           \
+
+
+TARGETLIBS=\
+        $(SDK_LIB_PATH)\strsafe.lib     \
+        $(SDK_LIB_PATH)\kernel32.lib    \
+        $(SDK_LIB_PATH)\ole32.lib       \
+        $(SDK_LIB_PATH)\oleaut32.lib    \
+        $(SDK_LIB_PATH)\uuid.lib        \
+        $(SDK_LIB_PATH)\user32.lib      \
+        $(SDK_LIB_PATH)\advapi32.lib    \
+
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\WUDFToaster.inf
+PASS0_BINPLACE=$(NTTARGETFILE0)
+
+
+#
+# This sets up the WPP preprocessor and tells it to scan internal.h to find
+# the trace function definition that's in there.
+#
+
+RUN_WPP= $(SOURCES) -dll -scan:internal.h
+
+TARGET_DESTINATION=wudf
+

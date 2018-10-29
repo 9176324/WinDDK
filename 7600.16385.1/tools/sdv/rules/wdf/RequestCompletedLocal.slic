@@ -1,0 +1,118 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	If a request is not completed in any of the EvtIoDefault, EvtIoRead, EvtIoWrite, 
+	EvtIoDeviceControl, and EvtIoInternalDeviceControl event callback functions, and 
+	if the request is not marked as "cancelable" in those callback functions, the rule 
+	gives a warning about a possible defect. This rule is only intended for 
+	the drivers for which the RequestCompleted rule is not applicable 
+	(because there is no scoping callback function registered).
+
+
+	Description: 
+	Upon exit from the EvtIoDefault, EvtIoRead, EvtIoWrite, EvtIoDeviceControl, EvtIoInternalDeviceControl 
+	event callback functions, if a request presented to the driver through one of those callback functions 
+	had not been completed, and if WdfRequestMarkCancelable was not called on the request within the callback 
+	function, the rule gives a warning. 
+ 
+	The following cases are excluded from the analysis by this rule:
+	 1. The Request was cancelled by the driver.
+	 2. The Request was forwarded to an I/O Target or to another queue by calling  
+	    WdfRequestForwardToIoQueue.
+	 3. The Request was delivered to the Framework (by calling WdfDeviceEnqueueRequest).
+	 4. WdfRequestStopAcknowledge was called.
+	 5. WdfWorkItemEnqueue or WdfDmaTransactionInitialize was called.
+
+	Rule diagnostics:
+	"Warning: Request was not completed before exit from $fname; check if it is completed at all." 
+
+	Precondition: RequestCompleted gives N/A result.
+	
+	Rule applicability: 
+	 1. The rule applies only to non-filter drivers. 
+	 2. The rule applies only to the drivers that have at least one I/O queue event.
+	    callback registered.
+	 3. Only the requests that the framework delivered to driver’s I/O queue event. 
+	    callbacks are checked.
+	 4. If the request is deferred, the call of WdfRequestMarkCancelable, WdfDmaTransactionInitializeUsingRequest,
+	    WdfDmaTransactionInitialize, or WdfWorkItemEnqueue is an indication that the request 
+	    is being deferred and hence, the rule will always pass for such drivers. 
+	    Another rule, DeferredRequestCompleted, verifies that deferred requests get completed.
+
+
+*/
+
+#include "ntddk_slic.h"
+
+#define STATUS_CANCELLED    -1073741536
+
+state{
+     enum {INIT1, REQPRESENTED} s = INIT1;
+} with guard (sdv_main, hrequest)                
+
+[fun_WDF_IO_QUEUE_IO_DEFAULT
+,fun_WDF_IO_QUEUE_IO_READ
+,fun_WDF_IO_QUEUE_IO_WRITE
+,fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL
+,fun_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL
+].exit[guard $2]
+{
+   if (s == REQPRESENTED)
+   {
+     abort "Warning: Request was not completed before exit from $fname; check if it is completed at all.";
+   }
+   else
+   {
+	   halt;
+   }
+} 
+[fun_WDF_IO_QUEUE_IO_DEFAULT
+,fun_WDF_IO_QUEUE_IO_READ
+,fun_WDF_IO_QUEUE_IO_WRITE
+,fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL
+,fun_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL
+].entry[guard $2]
+{
+      s = REQPRESENTED;
+}
+[ sdv_WdfRequestComplete
+, sdv_WdfRequestCompleteWithInformation
+, sdv_WdfRequestCompleteWithPriorityBoost
+].entry[guard $1]
+{
+     halt;
+}
+[sdv_WdfRequestMarkCancelable
+,sdv_WdfRequestSend
+].entry[guard $1]
+{
+   halt;
+}
+[sdv_WdfIoTargetSendReadSynchronously  
+, sdv_WdfIoTargetSendWriteSynchronously
+, sdv_WdfIoTargetSendIoctlSynchronously 
+, sdv_WdfIoTargetSendInternalIoctlSynchronously 
+, sdv_WdfIoTargetSendInternalIoctlOthersSynchronously  
+, sdv_WdfDeviceEnqueueRequest
+, sdv_WdfDmaTransactionInitializeUsingRequest
+].entry[guard $2]
+{
+   halt;
+}
+[sdv_WdfDmaTransactionInitialize,
+sdv_WdfWorkItemEnqueue
+].entry
+{
+   halt;
+} 
+sdv_WdfRequestForwardToIoQueue.entry[guard $1]
+{
+  halt;
+}
+sdv_WdfRequestStopAcknowledge.entry[guard $1]
+{
+  halt;
+}
+
+

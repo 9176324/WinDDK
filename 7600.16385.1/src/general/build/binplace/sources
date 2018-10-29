@@ -1,0 +1,55 @@
+# This is a minimal sample code meant to demonstrate the usage of the binplace macros.
+
+TARGETNAME=filter
+TARGETTYPE=DRIVER
+
+
+KMDF_VERSION_MAJOR=1
+
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+
+INF_NAME=filter
+
+INCLUDES=$(INCLUDES);..\..\inc
+
+SOURCES= ..\filter.c \
+         ..\filter.rc
+
+TARGETLIBS=$(TARGETLIBS) \
+           $(DDK_LIB_PATH)\wdmsec.lib
+
+# Describe custom actions with NTTARGETFILE# and in makefile.inc 
+NTTARGETFILE1=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+# Describe the target destination for TARGETNAME binaries.
+TARGET_DESTINATION=targetdestfolder
+
+
+# Binplace more files with PASS#_BINPLACE macro and -:DEST keyword.
+# TARGET_DESTINATION is implied at the start of the PASS#_BINPLACE,
+# so no need of -:DEST specifier by default. Use -:DEST only if you 
+# want to binplace to a folder different than TARGET_DESTINATION. 
+
+# Do not check for the .PDB files for the static bynaries (the binaries that
+# we don't build (ex. WdfCoInstaller01009.pdb)
+BUILD_NO_SYMCHK=1
+
+# Binplace the TARGETNAME binaries and coinstaller to the TARGET_DESTINATION folder.
+# Binplace eula_readme.txt to the retail folder, which is the root of _NTTREE.
+# PASS0_BINPLACE implies that the .DLL and .TXT are available immediately for binplace.
+
+PASS0_BINPLACE=\
+#     implied -:DEST $(TARGET_DESTINATION) \
+      $(BASEDIR)\redist\wdf\$(_BUILDARCH)\WdfCoInstaller01009.dll \
+      -:DEST retail \
+      eula_readme.txt \
+
+# Binplace the NTTARGETFILE1 custom target (filter.inf file) at Pass1.
+# Generating and binplacing the .INF file is also good to be done at Pass0.
+PASS1_BINPLACE=\
+    $(NTTARGETFILE1)
+
+
+

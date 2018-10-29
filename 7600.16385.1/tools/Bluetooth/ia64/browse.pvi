@@ -1,0 +1,10 @@
+[Version]
+Name=Browse Group
+Service={00001001-0000-1000-8000-00805F9B34FB}
+
+[0x200]
+Name=Browse Group ID
+;it is unclear from the core spec if this is required, but lots of devices do not include
+;this attribute for the public browse group node (which in and of itself is not necessary)
+;Required=1
+Format=UUID

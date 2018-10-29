@@ -1,0 +1,379 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    This rule verifies that DDIs are only called at proper IRQL levels.
+    
+    Description:
+    Check for the proper IRQL when the function is entering.
+    
+    Related Rule:
+    
+*/
+
+#include "ntddk_slic.h"
+
+sdv_KeGetCurrentProcessorNumber.entry
+{
+    if ( LTDISPATCH(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL  >= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateFromNPagedLookasideList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateGenericObject.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateIoWorkItem.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAllocateMemoryWithTagPriority.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisAnsiStringToUnicodeString.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisCloseConfiguration.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisCloseFile.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisDeleteNPagedLookasideList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisDeregisterDeviceEx.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisEqualMemory.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisEqualString.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisEqualUnicodeString.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisFreeGenericObject.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeIoWorkItem.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeMemory.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisFreeSpinLock.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisFreeString.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisFreeToNPagedLookasideList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisGeneratePartialCancelId.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisGetCurrentProcessorCounts.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisGetDriverHandle.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisGetRoutineAddress.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisGetSharedDataAlignment.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisGetVersion.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisInitAnsiString.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisInitializeListHead.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisInitializeNPagedLookasideList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisInitializeSListHead.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisInitializeString.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisInitUnicodeString.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisMapFile.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisOpenConfigurationEx.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisOpenConfigurationKeyByIndex.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL < DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisOpenConfigurationKeyByName.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL < DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisOpenFile.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisQueryAdapterInstanceName.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisQueryDepthSList.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisQueueIoWorkItem.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisReadConfiguration.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisReadNetworkAddress.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisReEnumerateProtocolBindings.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisRegisterDeviceEx.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisSetOptionalHandlers.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisSystemProcessorCount.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisUnicodeStringToAnsiString.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisUnmapFile.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisUpcaseUnicodeString.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisWaitEvent.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisWriteConfiguration.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL  = PASSIVE_LEVEL.";
+    }
+}
+
+sdv_NdisWriteErrorLogEntry.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+
+sdv_NdisWriteEventLogEntry.entry
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "$fname should only be called at IRQL <= DISPATCH_LEVEL.";
+    }
+}
+

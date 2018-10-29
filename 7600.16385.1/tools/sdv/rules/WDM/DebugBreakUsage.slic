@@ -1,0 +1,20 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule only applies when building without the DEBUG switch.
+	The rule verifies that drivers do not call to debug functions.
+*/
+
+#include "ntddk_slic.h"
+
+DbgBreakPoint.entry
+{
+        abort "$fname should only be called when the driver is DEBUG build";
+}
+
+DbgBreakPointWithStatus.entry
+{
+        abort "$fname should only be called when the driver is DEBUG build";
+}

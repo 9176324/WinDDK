@@ -1,0 +1,43 @@
+DLLBASE=0x70000000
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.h
+
+TARGETNAME=bitmap
+TARGETTYPE=DYNLINK
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+DLLENTRY=_DllMainCRTStartup
+
+USE_MSVCRT=1
+
+# To build version with debug output, add -D_DEBUG to C_DEFINES line below
+C_DEFINES=$(C_DEFINES) -DKERNEL_MODE -D_UNICODE -DUNICODE -DUSERMODE_DRIVER
+
+INCLUDES=..
+
+SOURCES= dllentry.cpp    \
+         ddihook.cpp     \
+         intrface.cpp    \
+         devmode.cpp     \
+         bitmap.rc
+
+TARGETLIBS=  $(TARGETLIBS)                      \
+             $(SDK_LIB_PATH)\uuid.lib           \
+             $(SDK_LIB_PATH)\kernel32.lib       \
+             $(SDK_LIB_PATH)\winspool.lib       \
+             $(SDK_LIB_PATH)\user32.lib         \
+             $(SDK_LIB_PATH)\gdi32.lib          \
+             $(DDK_LIB_PATH)\umpdddi.lib        \
+             $(SDK_LIB_PATH)\ole32.lib
+
+!IF "$(BUILD_PASS)" == "PASS2" || "$(BUILD_PASS)" == "PASSALL"
+NTTARGETFILES=COPYDLL
+!ENDIF
+
+# Build with Vista libs but make sure sample can still run downlevel
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+WIN32_WINNT_VERSION =$(LATEST_WIN32_WINNT_VERSION)
+NTDDI_VERSION=$(LATEST_NTDDI_VERSION)
+

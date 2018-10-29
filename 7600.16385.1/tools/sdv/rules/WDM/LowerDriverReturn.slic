@@ -1,0 +1,56 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule verifies that once a driver calls lower driver, it
+	captures a return status from the call and returns it from
+	the dispatch routine.  Exceptions to the rule are if the
+	driver calls IoMarkIrpPending or completes the request.
+*/
+
+#include "ntddk_slic.h"
+
+state {
+    int lowerDriverReturn = 0;
+    int lowerDriverCalled = 0;
+    int doLowerDriverCheck = 1;
+} with guard(sdv_main,sdv_irp) 
+
+
+[PoCallDriver,IoCallDriver].exit[guard $2]
+{
+    lowerDriverCalled = 1; 
+    lowerDriverReturn = $return; 
+}
+
+
+IoCompleteRequest.entry[guard $1]
+{
+    doLowerDriverCheck = 0;
+}
+
+
+IoMarkIrpPending.entry[guard $1]
+{
+    doLowerDriverCheck = 0;
+}
+
+
+sdv_stub_dispatch_end.entry
+{
+    if (  doLowerDriverCheck == 1
+       && lowerDriverCalled == 1
+       ) {
+
+
+
+        if (  ((lowerDriverReturn == STATUS_PENDING) && ($1 != STATUS_PENDING))
+           || ((lowerDriverReturn == STATUS_SUCCESS) && ($1 != STATUS_SUCCESS))
+           || ((lowerDriverReturn == -1073741823)    && ($1 != -1073741823))
+           ) {
+        abort "The dispatch routine's return value does not match that of the lower driver.";
+        }
+    }
+}
+

@@ -1,0 +1,31 @@
+TARGETNAME=regfltr
+TARGETTYPE=DRIVER
+
+SOURCES=\
+	    driver.c       \
+        regfltr.c      \
+        Pre.c          \
+        Post.c         \
+        TxR.c          \
+        TxRUtil.c      \
+        Context.c      \
+        MultiAlt.c     \
+        Version.c      \
+        Capture.c      \
+        Util.c         \
+        regfltr.rc
+
+INCLUDES=\
+        $(INCLUDES); \
+        $(IFSKIT_INC_PATH); \
+        ..\exe
+
+
+TARGETLIBS= $(TARGETLIBS) \
+            $(DDK_LIB_PATH)\ntoskrnl.lib
+    
+MSC_OPTIMIZATION=/Odi
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+

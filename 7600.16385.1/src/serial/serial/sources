@@ -1,0 +1,70 @@
+TARGETNAME=wdfserial
+TARGETTYPE=DRIVER
+
+
+KMDF_VERSION_MAJOR=1
+
+TARGETLIBS=$(TARGETLIBS) \
+           $(DDK_LIB_PATH)\ntstrsafe.lib \
+           $(DDK_LIB_PATH)\rtlver.lib
+
+INF_NAME=serial
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+PASS0_BINPLACE=$(NTTARGETFILE0)
+
+SOURCES=error.c    \
+        immediat.c \
+        initunlo.c \
+        ioctl.c    \
+        isr.c      \
+        modmflow.c \
+        openclos.c \
+        purge.c    \
+        read.c     \
+        serial.rc  \
+        utils.c    \
+        waitmask.c \
+        write.c    \
+        pnp.c      \
+        registry.c \
+        power.c    \
+        wmi.c      \
+        log.c      \
+        flush.c    \
+        qsfile.c   \
+        serlog.mc
+
+PRECOMPILED_INCLUDE=precomp.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj
+
+#
+# Comment the below line to disable tracing. All the debug traces
+# will be sent to the kernel-debugger.
+#ENABLE_EVENT_TRACING=1
+
+!IFDEF ENABLE_EVENT_TRACING
+
+C_DEFINES = $(C_DEFINES) -DEVENT_TRACING
+
+#
+# Generate WPP tracing code
+# $(SOURCES)   -- run software preprocessor on files listed in SOURCES
+# -km          -- use kernel mode
+# -func        -- define function we'll use for tracing
+#                 This would map all TraceEvents calls to 
+#                 DoTraceMessage.
+#
+RUN_WPP= $(SOURCES)                                  \
+         -km                                         \
+         -func:SerialDbgPrintEx(LEVEL,FLAGS,MSG,...) \
+         -gen:{km-WdfDefault.tpl}*.tmh
+         
+
+!ENDIF
+
+TARGET_DESTINATION=wdf
+
+# Temporarily excuse usage of serviceability impairing macros in code...
+ALLOW_DATE_TIME=1
+

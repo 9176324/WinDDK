@@ -1,0 +1,26 @@
+TARGETNAME=filter
+TARGETTYPE=DRIVER
+
+
+C_DEFINES= $(C_DEFINES) -DIOCTL_INTERFACE=1
+
+KMDF_VERSION_MAJOR=1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+
+INF_NAME=filter
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+
+TARGETLIBS=$(TARGETLIBS) \
+           $(DDK_LIB_PATH)\wdmsec.lib
+
+INCLUDES=$(INCLUDES);..\..\inc
+
+SOURCES= filter.c \
+         filter.rc
+
+
+
+

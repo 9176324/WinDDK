@@ -1,0 +1,43 @@
+TARGETNAME=elotouch
+TARGETTYPE=DRIVER
+
+
+!undef USE_MSVCRT
+
+TARGET_DESTINATION=wdf
+
+INF_NAME=eloMT
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+PASS0_BINPLACE=$(NTTARGETFILE0)
+
+MUI_DEV=1
+
+MSC_WARNING_LEVEL=/W4 /WX 
+
+KMDF_VERSION_MAJOR=1
+
+TARGETLIBS= $(DDK_LIB_PATH)\HidClass.lib\
+            $(DDK_LIB_PATH)\ntstrsafe.lib
+
+!IFDEF DDKBUILDENV
+C_DEFINES=$(C_DEFINES) -DDDK_BUILD
+!ENDIF
+
+INCLUDES=   $(INCLUDES) \
+            $(DDK_INC_PATH); \
+            ..\common; \
+            ..\..\util;
+
+DIR_SOURCES=elotouch.c  \
+            elotouch.rc \
+            oempen.c    \
+            errcodes.mc
+
+STB_SOURCES=hid.c    \
+            pnp.c       \
+            serial.c    \
+            errlog.c
+
+
+SOURCES=    $(DIR_SOURCES) $(STB_SOURCES)
+

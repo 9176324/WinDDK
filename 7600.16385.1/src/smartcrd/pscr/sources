@@ -1,0 +1,37 @@
+
+
+!IF 0
+
+Copyright (C) SCM Microsystems, 1998 - 1999
+
+!ENDIF
+
+
+TARGETNAME=Pscr
+TARGETTYPE=DRIVER
+
+TARGETLIBS=\
+	$(DDK_LIB_PATH)\smclib.lib \
+	$(DDK_LIB_PATH)\ntoskrnl.lib
+	
+
+KMDF_VERSION_MAJOR=1
+
+INCLUDES=..\inc
+
+SOURCES=pscr.rc    \
+        PscrLog.mc \
+        PscrNT.c   \
+        PscrCB.c   \
+        PscrCmd.c  \
+        PscrRdWr.c
+
+INF_NAME=pscr
+
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+MISCFILES=$(NTTARGETFILE0)
+
+TARGET_DESTINATION=retail
+
+

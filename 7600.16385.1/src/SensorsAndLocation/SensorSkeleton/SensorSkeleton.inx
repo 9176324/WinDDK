@@ -1,0 +1,90 @@
+;
+; SensorSkeleton.inf
+;
+
+[Version]
+Signature	= "$Windows NT$"
+Class		= Sensor
+ClassGuid	= {5175D334-C371-4806-B3BA-71FD53C9258D}
+Provider	= %MSFT%
+CatalogFile	= SensorSkeleton.cat
+DriverVer= 07/25/2008,0.0.0.1
+
+; =================== Manufacturer/Models sections =======================
+
+[Manufacturer]
+%MSFT%                      = Microsoft,NT$ARCH$
+
+[Microsoft.NT$ARCH$]
+%SensorSkeleton.DeviceDesc% = SensorSkeleton_Install,Sensors\SensorSkeleton
+
+; =================== Sensor Skeleton Device ==================================
+
+[SensorSkeleton_Install.NT]
+CopyFiles       = UMDriverCopy
+AddProperty     = DriverPropertiesSection
+
+[SensorSkeleton_Install.NT.hw]
+
+
+[SensorSkeleton_Install.NT.Services]
+AddService      = WUDFRd,0x000001fa,WUDFRD_ServiceInstall
+
+[SensorSkeleton_Install.NT.CoInstallers]
+AddReg          = WUDF_CoInstallers_AddReg
+CopyFiles       = WUDF_CoInstallers_CopyFiles
+
+[SensorSkeleton_Install.NT.Wdf]
+UmdfService             = SensorSkeleton,UMDFSensorSkeleton_Install
+UmdfServiceOrder        = SensorSkeleton
+UmdfImpersonationLevel  = Impersonation
+
+; =================== UMDF Service Install section ===================
+
+[UMDFSensorSkeleton_Install]
+UmdfLibraryVersion      = $UMDFVERSION$
+ServiceBinary           = %12%\UMDF\SensorSkeleton.dll
+DriverCLSID             = {182BBB15-88C0-4E9C-A16F-EB5CDBC226C8}
+
+[WUDFRD_ServiceInstall]
+DisplayName     = %WudfRdDisplayName%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WUDFRd.sys
+LoadOrderGroup  = Base
+
+[SourceDisksFiles]
+SensorSkeleton.dll  = 1
+WudfUpdate_$UMDFCOINSTALLERVERSION$.dll = 1
+
+[SourceDisksNames]
+1 = %MediaDescription%
+
+[WUDF_CoInstallers_CopyFiles]
+WudfUpdate_$UMDFCOINSTALLERVERSION$.dll
+
+[WUDF_CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WUDFUpdate_$UMDFCOINSTALLERVERSION$.dll"
+
+[DestinationDirs]
+UMDriverCopy            = 12,UMDF
+CoInstallers_CopyFiles  = 11
+
+[UMDriverCopy]
+SensorSkeleton.dll
+
+; =================== Driver Property section ===================
+
+[DriverPropertiesSection]
+DeviceIcon,,,,"%SystemRoot%\system32\sensorscpl.dll,-1000"
+
+; =================== Generic ==================================
+
+[Strings]
+MSFT                        = "Microsoft Corporation"
+MediaDescription            = "Sensor Skeleton Sample Driver Installation Media"
+ClassName                   = "Sensor Skeleton Driver"
+WudfRdDisplayName           = "Windows Driver Foundation - User-mode Driver Framework Reflector"
+SensorSkeleton.DeviceDesc   = "Microsoft Sensor Skeleton Device Sample"
+

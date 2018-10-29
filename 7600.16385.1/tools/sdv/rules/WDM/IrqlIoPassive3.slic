@@ -1,0 +1,32 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that DDIs are only called at proper IRQL levels.
+*/
+
+#include "ntddk_slic.h"
+
+
+IoAssignArcName.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoDetachDevice.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoRegisterDeviceInterface.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+

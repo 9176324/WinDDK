@@ -1,0 +1,1068 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"><HTML DIR="LTR" xmlns:MSHelp="http://msdn.microsoft.com/MSHelp">
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>Index of Windows Driver Kit Tools</TITLE>
+<META NAME="ms.locale" content="en-us">
+<style>dd {margin-bottom:0em; margin-left:1.9em; }</style>
+<style>.divclass {behavior:url(#default#savehistory);}</style>
+<META NAME="save" CONTENT="history">
+<style>
+body
+	{
+	padding: 0px 0px 0px 26px;
+	background: #ffffff; 
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 70%;
+	}
+
+div.indent1
+	{
+	margin-left: 12pt;
+	}
+
+/* Note: This does not appear to be used.
+div
+	{
+	width: 90%;
+	border: 2px solid #999999;
+	padding: 4px 8px;
+	background: #cccccc;
+	}*/
+	
+h1, h2, h3, h4
+	{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-left: -26px;
+	}
+	
+h1
+	{
+	font-size: 145%;
+	margin-top: .5em;
+	margin-bottom: .5em; 
+	}
+	
+h2
+	{
+	font-size: 130%;
+	margin-top: 1em;
+	margin-bottom: .6em; 
+	}
+	
+h3
+	{
+	font-size: 115%;
+	margin-top: 1em;
+	margin-bottom: .6em;
+	}
+	
+h4
+	{
+	font-size: 100%;
+	margin-top: 1em;
+	margin-bottom: .6em; 
+	}
+
+ul p, ol p, dl p
+	{
+	margin-left: 0em;
+	}
+
+p
+	{
+	margin-top: .6em;
+	margin-bottom: .6em;
+	}
+
+dl
+	{
+	margin-top: 0em; 
+	}
+
+dd
+	{
+	margin-bottom: 0em;  
+	/*margin-left: 1.9em; */ /* causes major offset in document paste */
+	}
+
+dt
+	{
+	margin-top: .6em; 
+	}
+
+ul, ol
+	{
+	margin-top: .6em; 	
+	margin-bottom: 0em;
+	}
+	
+ol
+	{
+	margin-left: 3.6em;
+	}	
+	
+ul
+	{
+	/*list-style-type: disc; */
+	margin-left: 1.9em; 
+	}
+
+li
+	{
+	margin-bottom: .6em;
+	}
+
+/* ul ol, ol ol
+	{
+	list-style-type: lower-alpha;
+	{*/
+
+pre
+	{
+	margin-top: .6em;
+	margin-bottom: .6em; 
+	}
+
+pre,code
+	{
+	font: 100% Courier New, Courier, mono; 
+	color: #660000;
+	}
+
+table
+	{
+	width: 90%;
+	background: #999999;
+	margin-top: .6em;
+	margin-bottom: .3em;
+	}
+		
+th
+	{ 
+	padding: 4px 8px;
+	background: #cccccc;
+	text-align: left;
+	font-size: 70%;
+	vertical-align: bottom;
+	}
+		
+td
+	{ 
+	padding: 4px 8px;
+	background: #ffffff;
+	vertical-align: top;
+	font-size: 70%;
+	}
+
+blockquote
+	{
+	margin-left: 3.8em;
+	margin-right: 3.8em;
+	margin-top: .6em;
+	margin-bottom: .6em;
+	}
+
+sup
+	{
+	text-decoration: none;
+	font-size: smaller; 
+	}
+
+a:link
+	{
+	color: #0066ff;
+	}
+
+a:visited
+	{
+	color: #996600; 
+	}
+	
+a:hover
+	{
+	color: #cc9900;
+	}
+	
+.label
+	{
+	font-weight: bold; 
+	margin-top: 1em;
+	margin-left: -26px;
+	}
+	
+.tl
+	{
+	margin-bottom: .75em; 
+	}
+	
+.atl
+	{
+	padding-left: 1.5em;
+	padding-bottom: .75em; 
+	}
+	
+.cfe
+	{
+	font-weight: bold; 
+	}
+	
+.mini
+	{
+	font-size: smaller;
+	}
+	
+.dt
+	{
+	margin-bottom: -.6em; 
+	}
+	
+.indent
+	{
+	margin-left: 1.9em; 
+	margin-right: 1.9em;
+	}
+
+.product
+	{
+	text-align: right;
+	color: #333333;
+	font-size: smaller;
+	font-style: italic;
+	}
+
+
+.buttonbarshade
+	{
+	position: relative;
+	margin: 0;
+	left: 10px;
+	top: 2;
+	width: 100%;
+	height: 21px;
+	}
+
+.buttonbartable
+	{
+	position: absolute;
+	margin: 0;
+	left: 0;
+	top: 2;
+	width: 100%;
+	height: 21px;
+	}
+
+table.buttonbartable td, table.buttonbarshade td
+	{
+	background:  #99ccff;
+	border-left: 2px solid #ffffff;
+	margin: 0;
+	padding: 3px 0px 4px 0px;
+	font-family: Verdana, sans-serif;
+	font-size: 9pt;
+	}
+
+table.buttonbartable td.button1
+	{
+	background: #6699ff;
+	padding: 0;
+	font-weight: bold;
+	text-align: center;
+	cursor: hand;
+	}
+
+table.buttonbartable td.button2
+	{
+	background: #99cc66;
+	font-weight: bold;
+	text-align: center;
+	}
+
+table.buttonbartable td.button3
+	{
+	background: #cc9966;
+	font-weight: bold;
+	text-align: center;
+	}
+
+table.buttonbartable td.runninghead
+	{
+	padding-left: 4px;
+	font-style: italic;
+	text-align: left;
+	}
+
+.version
+	{
+	text-align: left;
+	color: #000000;
+	margin-top: 3em;
+	margin-left: -26px;
+	font-size: smaller;
+	font-style: italic;
+	}
+
+
+.lang, .ilang
+	{
+	color: #0000ff;
+	font: normal 7pt Arial, Helvetica, sans-serif;
+	}
+
+div.langMenu
+	{
+	position: absolute;
+	z-index: 1;
+	width: 96pt;
+	padding: 8pt;
+	visibility: hidden;
+	border: 1px solid #000000;
+	background: #ffffd0;
+	}
+
+div.langMenu ul
+	{
+	padding-left: 2em;
+	margin-left: 0;
+	}
+
+div.filtered
+	{
+	margin: 4pt 0 8pt -26px;
+	padding: 4px 4px 8px 26px;
+	width: 100%;
+
+	border: 2px solid #aaaacc;
+
+	background: #ffffff;
+	}
+
+div.filtered2
+	{
+	margin: 4pt 0 8pt -26px;
+	padding: 4px 4px 8px 26px;
+	width: 100%;
+
+	border: none;
+	background: #ffffff;
+	}
+
+div.filtered h1, div.filtered h2, div.filtered h3, div.filtered h4
+	{
+	margin-left: -22px;
+	}
+
+div.filtered span.lang
+	{
+	position: relative;
+	left: -22px;
+	}
+
+
+div.reftip
+	{
+	position: absolute;
+	z-index: 1;
+	padding: 8pt;
+	visibility: hidden;
+	border: 1px solid #000000;
+	background: #ffffd0;
+	}
+
+pre.syntax
+	{
+	background: #dddddd;
+	padding: 2pt,4pt;
+	cursor: text;
+	}
+
+pre.syntax
+	{
+	color: #000000;
+	}
+
+pre.syntaxFree
+	{
+	background: #dddddd;
+	padding: 2pt,4pt;
+	cursor: text;
+	}
+
+pre.syntaxFree
+	{
+	color: #000000;
+	}
+
+a.synParam
+	{
+	color: #0040ff;
+	text-decoration: none;
+	}
+
+a.synParam:hover
+	{
+	text-decoration: underline;
+	}
+
+div.sapop
+	{
+	position: absolute;
+	z-index: 1;
+	left: 26px;
+	width: 100%;
+	padding: 10px 10px 10px 36px;
+	display: none;
+	border: 1px solid #000000;
+	background: #ffffd0;
+	}
+
+div.footer
+	{
+	width: 100%;
+	border: none;
+	background: #ffffff;
+	margin-top: 18pt;
+	padding-bottom: 12pt;
+	color: #228B22;
+	text-align: center;
+	font-size: 76%;
+	}
+
+.note
+	{
+	margin-left: 14pt;
+	margin-right: 12pt;
+	}
+
+.indent1
+	{
+	margin-left: 12pt;
+	}
+
+div.indent1
+	{
+	margin-left: 12pt;
+	}
+
+.indent2
+	{
+	margin-left: 24pt;
+	}
+
+.indent3
+	{
+	margin-left: 36pt;
+	}
+
+p.proch
+	{
+	padding-left: 16px;
+	}
+
+p.proch img
+	{
+	position: relative; 
+	vertical-align: top;
+	left: -18px; 
+	margin-right: -14px; 
+	margin-bottom: -18px;
+	}
+
+a.glosspop:link
+	{
+	color: #00aa00;
+	}
+
+a.glosspop:visited
+	{
+	color: #00aa00;
+	}
+	
+a.glosspop:hover
+	{
+	color: #00cc00;
+	}
+
+.topNav
+	{
+    	font-size: 7pt;
+    	font-family: Verdana, Arial, Helvetica, sans-serif;
+    	text-align: Right;
+    	margin-top: 0.5; 
+    	margin-bottom: 0;
+	}
+</style>
+
+</HEAD>
+<Body topmargin="0">
+<DIV STYLE="display:none;"></DIV>
+<TABLE CLASS="buttonbarshade" CELLSPACING="0" border="0"><TR><TD NOWRAP="true"> </TD></TR></TABLE>
+<TABLE CLASS="buttonbartable" CELLSPACING="0">
+<TR ID="hdr">
+<TD NOWRAP="true" CLASS="runninghead">Windows Driver Kit: Driver Development Tools</TD>
+</TR>
+</TABLE>
+<H1><A NAME="ToolIndex_8d96bed1-47fa-4aab-98c0-f933366aaa74.xml"></A>Index of Windows Driver Kit Tools</H1>
+<P>This topic supplies basic information about the tools that are included in the Windows Driver Kit (WDK). For more information about each tool, see the documentation in this topic that describes the tool. </P>
+<P>For information about how to obtain the latest WDK, see <text> </text><a HREF="http://go.microsoft.com/fwlink/?LinkId=89050" target="_blank">How to Get the Windows Driver Kit and the Windows Logo Kit</a>.</P>
+<P>The following list describes the platforms that you can install the WDK on: </P><B></B><UL type="disc">
+<LI>Windows 7</LI>
+<LI>Windows Server 2008 (including Service Pack 1 (SP1) and R2)</LI>
+<LI>Windows Vista (including SP1 and SP2)</LI>
+<P><LI>Windows Server 2003 with Service Pack 2 (SP2)</LI>
+</P>
+<LI>Windows XP with Service Pack 3 (SP3) </LI>
+</UL>
+<P class="note"><b>Note  </b>The installation of the WDK is not supported on the 64-bit version of Windows XP.</P>
+<P>The following list describes the platforms on which you can build drivers and other software by using the WDK:</P><B></B><UL type="disc">
+<LI>Windows 7</LI>
+<LI>Windows Server 2008 (including SP1 and R2)</LI>
+<LI>Windows Vista (including SP1 and SP2)</LI>
+<P><LI>Windows Server 2003 (including SP1 and SP2)</LI>
+</P>
+<LI>Windows XP (including SP1, SP2, and SP3). </LI>
+</UL>
+<H4><b>What&#8217;s New in the WDK for Windows7</b></H4>
+<P>The following tools have been added to the WDK for Windows 7:</P><B></B><UL type="disc">
+<LI>Bluetooth Inquiry Record Verifier (<i>Sdpverify.exe</i>) </LI>
+<LI>Computer Hardware Identification Tool<i> (ComputerHardwareIds.exe</i>) </LI>
+<LI>Driver Coverage Toolkit</LI>
+<LI>Enhanced Storage Certificate Management Tool (<i>EhStorCertMgrCmd.exe</i>)</LI>
+<LI>IoSpy and IoAttack (<i>IoSpyCmd.exe</i>, <i>IoAttack.exe</i> ) </LI>
+<LI>Windows Auto Code Review (OACR) (<i>Oacr.exe</i>) </LI>
+<LI>Windows Biometric Framework Tools (<i>BioTest.exe, WBDIDriverTest.exe</i>)</LI>
+<LI>WWAN Driver Test App (<i>WwanDriverTestApp.exe</i>)</LI>
+<LI>XpsAnalyzer (<i>XpsAnalyzer.exe</i>)</LI>
+</UL>
+<H4><b>What&#8217;s Changed in the WDK for Windows7</b></H4>
+<P>The following tools were in the Microsoft WDK for Windows Vista, but are not included in the WDK for Windows 7.</P><B></B><UL type="disc">
+<LI><i>Amcap.exe</i> </LI>
+<LI><i>Mcstream.exe</i> </LI>
+<LI><i>Nxdemo.exe</i></LI>
+</UL>
+<P>In conformance with Microsoft support policy, Microsoft is removing Windows 2000 from its list of supported installation platforms for the Windows Driver Kit (WDK). The WDK continues to provide a Windows 2000 build environment for the development of drivers targeting Windows 2000.</P>
+<P>Windows 2000 moved from Mainstream to Extended Support in June 2005 (as defined in the <text> </text><a HREF="http://go.microsoft.com/fwlink/?linkid=73916" target="_blank"><u>Microsoft Support Lifecycle policy</u></a>). The Extended Support phase includes security updates and paid support only; it does not provide support for design changes or new product features. As a result, build tools and platform or library support is limited to Windows XP SP2 and later versions of Windows operating system.</P>
+<P>Customers that require Windows 2000 as an installation platform can <text> </text><a HREF="http://go.microsoft.com/fwlink/?linkid=21859" target="_blank"><u>download the Windows Server 2003 SP1 Driver Development Kit (DDK)</u></a> at no cost from the Windows Hardware Developer Central Web site.</P>
+<H4><b>Index of WDK Tools</b></H4>
+<P>The information in the following table describes the tools that are available in the WDK for Windows 7.</P>
+<P class="note"><b>Note  </b>In this topic, <i>WDKPath</i> represents the path to the directory in which the WDK is installed, such as <i>C:\WINDDK\Version#.</i></P><B></B><table>
+<TR valign="top">
+<TH Width="">Tool name</TH>
+<TH Width="">WDK tool</TH>
+<TH Width="">Tool location</TH>
+<TH Width="">Help file location</TH>
+<TH Width="">Description</TH>
+</TR>
+<TR valign="top">
+<TD colspan="5" Width=""><b>Technology: Audio / Video Drivers</b></TD>
+</TR>
+<TR valign="top">
+<TD Width="">Display Color Calibration tool (<i>Dccw.exe</i>)</TD>
+<TD Width="">No</TD>
+<TD Width=""><i>Windows\System32\Dccw.exe</i></TD>
+<TD Width="">WHDC Documentation: <BR><BR><text> </text><a HREF="http://go.microsoft.com/fwlink/?linkid=150003" target="_blank"><u>MCCS Use by Windows 7 Display Color Calibration Tool</u></a><u> </u><BR><BR></TD>
+<TD Width="">A calibration tool that lets users adjust their display color to be closer to the Windows and World Wide Web international standard red-green-blue (sRGB) color space.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">GraphEdt (<i>Graphedt.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\avstream\amd64\graphedt.exe</i><BR><BR><i>WDKPath\tools\avstream\i386\graphedt.exe</i><BR><BR><i>WDKPath\tools\avstream\ia64\graphedt.exe</i><BR><BR></TD>
+<TD Width="">MSDN Documentation: <BR><BR><text> </text><a HREF="http://go.microsoft.com/fwlink/?linkid=9230" target="_blank"><u>Overview of GraphEdit</u></a><u> </u><BR><BR></TD>
+<TD Width="">Builds filter graphs to test streaming audio/video capture drivers.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">KSStudio (<i>KsStudio.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\avstream\amd64\ KsStudio.exe</i><BR><BR><i>WDKPath\tools\avstream\x86\KsStudio.exe</i><BR><BR><P class="note"><b>Note</b>  This tool must be run by someone who has administrator privileges.</P>
+</TD>
+<TD Width=""><i>WDKPath\tools\avstream\amd64\KsStudio.chm</i><BR><BR><i>WDKPath\tools\avstream\x86\KsStudio.chm</i><BR><BR></TD>
+<TD Width="">Builds, examines, and tests the Windows Driver Model (WDM) kernel streaming (KS) filter graphs. <BR><BR>This tool can construct a graphical representation of a filter graph that shows the pin-to-pin connections between filters and the filters' internal nodes.<BR><BR></TD>
+</TR>
+<TR valign="top">
+<TD Width="">USB Device Viewer (<i>Uvcview.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath</i>\<i>tools\avstream\amd64\Uvcview.exe</i><BR><BR><i>WDKPath</i>\<i>tools\avstream\i386\Uvcview.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation: See the USBVIEW Sample Application.<BR><BR>The USB Device Viewer is an enhanced version of the USBVIEW Sample Application.</TD>
+<TD Width="">Enumerates the USB host controllers, USB hubs, and attached USB devices and can query information about the devices from the registry and through USB requests to the devices.</TD>
+</TR>
+<TR valign="top">
+<TD colspan="5" Width=""><b>Technology: Biometric Drivers</b></TD>
+</TR>
+<TR valign="top">
+<TD Width="">Windows Biometric Framework Tools (<i>BioTest.exe, WBDIDriverTest.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath</i>\<i>tools\Biometrics\amd64</i><BR><BR><i>WDKPath</i>\<i>tools\Biometrics\i386</i><BR><BR></TD>
+<TD Width="">WDK Documentation: See Windows Biometric Framework Tools</a> <BR><BR></TD>
+<TD Width="">Provides developers with tools to implement sensor, engine and storage adapters to support their biometric devices.</TD>
+</TR>
+<TR valign="top">
+<TD colspan="5" Width=""><b>Technology: Bluetooth Drivers</b></TD>
+</TR>
+<TR valign="top">
+<TD Width="" style="background-color:#auto;">Bluetooth Inquiry Record Verifier (<i>Sdpverify.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width="" style="background-color:#auto;"><i>WDKPath</i>\<i>tools\Bluetooth\amd64\Sdpverifiy.exe</i><BR><BR><i>WDKPath</i>\<i>tools\Bluetooth\i386\Sdpverifiy.exe</i><BR><BR><i>WDKPath</i>\<i>tools\Bluetooth\ia64\Sdpverifiy.exe</i><BR><BR></TD>
+<TD Width="" style="background-color:#auto;">For current documentation about this tool, refer to the following files:<B></B><UL type="disc">
+<LI><i>WDKPath\tools\Bluetooth\amd64\Readme.txt</i></LI>
+<LI><i>WDKPath\tools\Bluetooth\i386\Readme.txt</i></LI>
+<LI><i>WDKPath\tools\Bluetooth\ia64\Readme.txt</i>  </LI>
+</UL>
+</TD>
+<TD Width="" style="background-color:#auto;">Displays a Bluetooth device&#8217;s Inquiry Record as Windows interprets it.</TD>
+</TR>
+<TR valign="top">
+<TD colspan="5" Width=""><b>Technology: Modem Drivers</b></TD>
+</TR>
+<TR valign="top">
+<TD Width="">ProCalc</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\procalc\setup.exe</i> (installs ProCalc)</TD>
+<TD Width="">WDK Documentation: See Using ProCalc</MSHelp:link><BR><BR></TD>
+<TD Width="">Creates common modem INF file registry entries for the add-registry sections of modem INF files.</TD>
+</TR>
+<TR valign="top">
+<TD colspan="5" Width=""><b>Technology: Network Drivers</b></TD>
+</TR>
+<TR valign="top">
+<TD Width="">WWAN Driver Test App (<i>WwanDriverTestApp.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\Networking\amd64\WwanDriverTestApp.exe</i><BR><BR><i>WDKPath\tools\Networking\i386\WwanDriverTestApp.exe</i><BR><BR></TD>
+<TD Width="">Run the WWAN Driver Test Application. From the <b>Help</b> menu, select <b>Usage</b>.</TD>
+<TD Width="">Sends WWAN OID requests to the miniport driver and displays the indications received back from the driver.</TD>
+</TR>
+<TR valign="top">
+<TD colspan="5" Width=""><b>Technology: Windows Image Acquisition (WIA) Drivers</b></TD>
+</TR>
+<TR valign="top">
+<TD Width="">WIADbgCfg (<i>Wiadbgcfg.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wia\amd64\wiadbgcfg.exe</i><BR><BR><i>WDKPath\tools\wia\ia64\wiadbgcfg.exe</i><BR><BR><i>WDKPath\tools\wia\x86\wiadbgcfg.exe</i><BR><BR></TD>
+<TD Width=""><i>WDKpath\tools\wia\amd64\wiadbgcfg.htm</i><BR><BR><i>WDKpath\tools\wia\ia64\wiadbgcfg.htm</i><BR><BR><i>WDKpath\tools\wia\x86\wiadbgcfg.htm</i><BR><BR></TD>
+<TD Width="">Enables logging for WIA drivers (Windows Server 2003 and later versions of Windows).<BR><BR><P class="note"><b>Note</b>  For earlier versions of Windows, use WIALogCfg.</P><BR><BR></TD>
+</TR>
+<TR valign="top">
+<TD Width="">WIAInfo2 (<i>Wiainfo2.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wia\amd64\wiainfo2.exe</i><BR><BR><i>WDKPath\tools\wia\ia64\wiainfo2.exe</i><BR><BR><i>WDKPath\tools\wia\x86\wiainfo2.exe</i><BR><BR></TD>
+<TD Width=""><i>WDKPath\tools\wiaamd64\wiainfo2.htm</i><BR><BR><i>WDKPath\tools\wia\ia64\wiainfo2.htm</i><BR><BR><i>WDKPath\tools\wia\x86\wiainfo2.htm</i><BR><BR></TD>
+<TD Width="">Displays the WIA item tree so that you can view and edit WIA device driver properties.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">WIALogCfg (<i>Wialogcfg.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wia\amd64\wialogcfg.exe</i><BR><BR><i>WDKPath\tools\wia\ia64\wialogcfg.exe</i><BR><BR><i>WDKPath\tools\wia\x86\wialogcfg.exe</i><BR><BR></TD>
+<TD Width=""><i>WDKpath\tools\wia\amd64\wialogcfg.htm</i><BR><BR><i>WDKpath\tools\wia\ia64\wialogcfg.htm</i><BR><BR><i>WDKpath\tools\wia\x86\wialogcfg.htm</i><BR><BR></TD>
+<TD Width="">Enables logging for WIA drivers (Windows XP only).<P class="note"><b>Note</b>  For later versions of Windows, use WIADbgCfg.</P>
+</TD>
+</TR>
+<TR valign="top">
+<TD Width="">WIAPreview (<i>Wiapreview.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wia\amd64\wiapreview.exe</i><BR><BR><i>WDKPath\tools\wia\ia64\wiapreview.exe</i><BR><BR><i>WDKPath\tools\wia\x86\wiapreview.exe</i><BR><BR></TD>
+<TD Width=""><i>WDKpath\tools\wia\amd64\ Wiapreview.htm</i><BR><BR><i>WDKpath\tools\wia\ia64\ Wiapreview.htm</i><BR><BR><i>WDKpath\tools\wia\x86\ Wiapreview.htm</i><BR><BR></TD>
+<TD Width="">Shows how to use the WIA Preview component and the driver&#8217;s segmentation filter.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">WIATest (<i>Wiatest.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wia\amd64\wiatest.exe</i><BR><BR><i>WDKPath\tools\wia\ia64\wiatest.exe</i><BR><BR><i>WDKPath\tools\wia\x86\wiatest.exe</i><BR><BR></TD>
+<TD Width=""><i>WDKpath\tools\wia\amd64\ Wiatest.htm</i><BR><BR><i>WDKpath\tools\wia\ia64\ Wiatest.htm</i><BR><BR><i>WDKpath\tools\wia\x86\ Wiatest.htm</i><BR><BR></TD>
+<TD Width="">Displays the item tree that is created by the driver, the Windows Image Acquisition (WIA) properties exposed by the driver, and the current value of each property. You can use this tool to debug your driver during development and unit test.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Windows Imaging Trace File Viewer (<i>Wiatrcvw.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wia\amd64\wiatrcvw.exe</i><BR><BR><i>WDKPath\tools\wia\ia64\wiatrcvw.exe</i><BR><BR><i>WDKPath\tools\wia\x86\wiatrcvw.exe</i><BR><BR></TD>
+<TD Width="">At the command prompt, type <b>wiatracvw /?</b>.</TD>
+<TD Width="">Displays the WIA trace log (<i>%WINDIR%\Debug\WIA\wiatrace.logb</i>) and lets you change the WIA tracing parameters for each module.</TD>
+</TR>
+<TR valign="top">
+<TD colspan="5" Width=""><b>Technology: Windows Portable Devices (WPD) Driver</b></TD>
+</TR>
+<TR valign="top">
+<TD Width="">WpdDeviceInspector (<i>WpdDeviceInspector.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wpd\amd64\WpdDeviceInspector.exe</i><BR><BR><i>WDKPath\tools\wpd\ia64\WpdDeviceInspector.exe</i><BR><BR><i>WDKPath\tools\wpd\x86\WpdDeviceInspector.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR><text> </text><a HREF="http://go.microsoft.com/fwlink/?linkid=106527" target="_blank"><u>Windows Portable Devices</u></a><BR><BR></TD>
+<TD Width="">Queries a WPD driver and generates a comprehensive HTML report that describes your device and its capabilities. For example, you can use it to retrieve a list of supported device commands and objects. And, this tool will generate a list of all properties supported by each object.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">WpdInfo (<i>WpdInfo.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wpd\amd64\WpdInfo.exe</i><BR><BR><i>WDKPath\tools\wpd\ia64\WpdInfo.exe</i><BR><BR><i>WDKPath\tools\wpd\x86\WpdInfo.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR><text> </text><a HREF="http://go.microsoft.com/fwlink/?linkid=106527" target="_blank"><u>Windows Portable Devices</u></a><BR><BR></TD>
+<TD Width="">Performs common WPD operations such as: opening and closing a device, creating or deleting objects on a device, and issuing device commands.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">WpdMon (<i>WpdMon.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wpd\amd64\WpdMon.exe</i><BR><BR><i>WDKPath\tools\wpd\ia64\WpdMon.exe</i><BR><BR><i>WDKPath\tools\wpd\x86\WpdMon.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR><text> </text><a HREF="http://go.microsoft.com/fwlink/?linkid=106527" target="_blank"><u>Windows Portable Devices</u></a><BR><BR></TD>
+<TD Width="">Logs the traffic between a Windows Vista application and a WPD driver.</TD>
+</TR>
+<TR valign="top">
+<TD colspan="5" Width=""><b>Technology: Printer Drivers</b></TD>
+</TR>
+<TR valign="top">
+<TD Width="">GPDCheck (<i>Gpdcheck.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\print\iamd64\gpdcheck.exe</i><BR><BR><i>WDKPath\tools\print\ia64\gpdcheck.exe</i><BR><BR><i>WDKPath\tools\print\x86\gpdcheck.exe</i><BR><BR></TD>
+<TD Width="">At the command prompt, type<BR><BR><b>gpdcheck /?</b><BR><BR></TD>
+<TD Width="">Validates the syntactical correctness of a Generic Printer Description File (GPD).</TD>
+</TR>
+<TR valign="top">
+<TD Width="">INFGate (<i>Infgate.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\print\iamd64\infgate.exe</i><BR><BR><i>WDKPath\tools\print\ia64\infgate.exe.exe</i><BR><BR><i>WDKPath\tools\print\x86\infgate.exe</i><BR><BR></TD>
+<TD Width="">At the command prompt, type<BR><BR><b>infgate /?</b><BR><BR></TD>
+<TD Width="">Validates the conformance of a printer INF file.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">isXPS (<i>isXPS.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\print\iamd64\isxps\isxps.exe</i><BR><BR><i>WDKPath\tools\print\ia64\isxps\isxps.exe</i><BR><BR><i>WDKPath\tools\print\x86\isxps\isxps.exe</i><BR><BR></TD>
+<TD Width="">At the command prompt, type<BR><BR><b>isxps /?</b><BR><BR>For more information, see <text> </text><a HREF="http://go.microsoft.com/fwlink/?linkid=150004" target="_blank"><u>isXPS Conformance Tool </u></a><u> </u>in the Windows MSDN library.<b> </b><BR><BR></TD>
+<TD Width="">Validates the conformance of an XPS file to the XPS and OPC specifications.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Looksgood (<i>Looksgood.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\print\iamd64\looksgood\looksgood.exe</i><BR><BR><i>WDKPath\tools\print\ia64\looksgood\looksgood.exe</i><BR><BR><i>WDKPath\tools\print\x86\looksgood\looksgood.exe</i><BR><BR></TD>
+<TD Width="">At the command prompt, type<BR><BR><b>looksgood  /?</b><BR><BR></TD>
+<TD Width="">Validates the correctness of an XPS rendering engine.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">MakeNTF (<i>Makentf.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\print\amd64\makentf.exe</i><BR><BR><i>WDKPath\tools\print\ia64\makentf.exe</i><BR><BR><i>WDKPath\tools\print\x86\makentf.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Converting AFM Files to NTF Files</MSHelp:link><BR><BR><MSHelp:link tabindex="0" keywords="pscript_ada045c7-c77b-4897-ae1c-09ba0ca74ad5.xml">Converting East Asian AFM Files to NTF Files</MSHelp:link><BR><BR></TD>
+<TD Width="">Converts Adobe Font Metrics (AFM) files and East Asian font AFM files to Windows font files (.<i>ntf</i>).</TD>
+</TR>
+<TR valign="top">
+<TD Width="">PPDCheck (<i>Ppdcheck.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\print\amd64\ppdcheck.exe</i><BR><BR><i>WDKPath\tools\print\ia64\ppdcheck.exe</i><BR><BR><i>WDKPath\tools\print\x86\ppdcheck.exe</i><BR><BR></TD>
+<TD Width="">At the command prompt, type<BR><BR><b>ppdcheck /?</b><BR><BR></TD>
+<TD Width="">Validates the syntactical correctness of a PostScript Printer Description File (PPD).</TD>
+</TR>
+<TR valign="top">
+<TD Width="">PTConform (<i>PTConform.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\print\amd64\PTConform.exe</i><BR><BR><i>WDKPath\tools\print\ia64\PTConform.exe</i><BR><BR><i>WDKPath\tools\print\x86\PTConform.exe</i><BR><BR></TD>
+<TD Width="">At the command prompt, type<BR><BR><b>ptconform /?</b><BR><BR></TD>
+<TD Width="">Validates a Print Ticket or Print Capabilities document for conformance to the Print Schema.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">XpsAnalyzer (<i>XpsAnalyzer.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\print\amd64\XpsAnalyzer.exe</i><BR><BR><i>WDKPath\tools\print\ia64\XpsAnalyzer.exe </i><BR><BR><i>WDKPath\tools\print\x86\XpsAnalyzer.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See XpsAnalyzer</a><BR><BR></TD>
+<TD Width="">Analyzes XML Paper Specification (XPS) files for compatibility with the XPS 1.0 specification.</TD>
+</TR>
+<TR valign="top">
+<TD colspan="5" Width=""><b>Technology: All</b></TD>
+</TR>
+<TR valign="top">
+<TD Width="">BinPlace (<i>Binplace.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\x86\binplace.exe</i></TD>
+<TD Width="">WDK Documentation:<BR><BR>See BinPlace</a><BR><BR></TD>
+<TD Width="">Manages large coding projects by moving files, extracting symbols from executable files, and removing private symbols from symbol files.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Build (<i>Build.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\x86\build.exe</i><BR><BR><i>WDKPath\bin\x86\amd64\build.exe</i><BR><BR><i>WDKPath\bin\x86\ia64\build.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Build</a><BR><BR></TD>
+<TD Width="">Builds the samples, drivers, and associated software components that are supplied in the Microsoft WDK.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">CertMgr (<i>CertMgr.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\amd64\CertMgr.exe</i><BR><BR><i>WDKPath\bin\ia64\CertMgr.exe</i><BR><BR><i>WDKPath\bin\x86\CertMgr.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See CertMgr</a><BR><BR></TD>
+<TD Width="">Manages certificates, certificate trust lists (CTLs), and certificate revocation lists (CRLs) that are used to sign drivers and driver packages.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">ChkINF</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\chkinf</i></TD>
+<TD Width="">WDK Documentation:<BR><BR>ChkINF<BR><BR>See Using ChkINF with Modem INF Files<BR><BR></TD>
+<TD Width="">A set of Perl scripts that verify the structure and syntax of setup information (INF) files for drivers.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Co-installer for Processing DDInstall.WMI</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\coinstallers\amd64</i><BR><BR><i>WDKPath\tools\coinstallers\i386</i><BR><BR><i>WDKPath\tools\coinstallers\ia64</i><BR><BR></TD>
+<TD Width=""><i>WDKPath</i>\tools\coinstallers\wmiinst.htm</TD>
+<TD Width="">Redistributable co-installer used to process the [<i>DDIinstall</i>.WMI] section in an INF file on Windows 2000 and Windows XP.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Computer Hardware Identification Tool<i> (ComputerHardwareIds.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\Other\amd64\ComputerHardwareIds.exe</i><BR><BR><i>WDKPath\tools\Other\i386\ComputerHardwareIds.exe</i><BR><BR><i>WDKPath\tools\Other\ia64\ComputerHardwareIds.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See ComputerHardwareIds</a><BR><BR></TD>
+<TD Width="">Derives the computer hardware IDs from SMBIOS information.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">DC2WMIParser (<i>Dc2wmiparser.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\dc2\amd64\dc2wmiparser.exe</i><BR><BR><i>WDKPath\tools\dc2\i386\dc2wmiparser.exe</i><BR><BR><i>WDKPath\tools\dc2\ia64\dc2wmiparser.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See IRP Logging</a><BR><BR>See Active Control Test</a><BR><BR>See Device Path Exerciser Overview</a><BR><BR></TD>
+<TD Width="">Converts logs of a driver's IRP use from WMI record format to a readable text file. The text file can be used as input to the Active Control Test in Device Path Exerciser (<i>Devpathexer.exe</i>).</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Dependency Walker (<i>Depends.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\Other\amd64\depends.exe</i><BR><BR><i>WDKPath\tools\Other\i386\depends.exe</i><BR><BR><i>WDKPath\tools\Other\ia64\depends.exe</i><BR><BR></TD>
+<TD Width="">In the tool, from the <b>Dependency Walker</b> Help menu, select <b>Help Topics</b>.</TD>
+<TD Width="">Displays the dependence patterns of the modules that are required by an application in a tree diagram. The display includes numerous details, including the functions exported by each module, the functions actually called by other modules, and the minimum set of files that are required for a module to load and run.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">DevCon (<i>Devcon.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\devcon\amd64\devcon.exe</i><BR><BR><i>WDKPath\tools\devcon\i386\devcon.exe</i><BR><BR><i>WDKPath\tools\devcon\ia64\devcon.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See DevCon</a><BR><BR></TD>
+<TD Width="">A command-line version of Device Manager. DevCon enables, disables, installs, configures, and removes devices on the local computer and displays detailed information about devices on local and remote computers.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Device Path Exerciser (<i>Devpathexer.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\dc2\amd64\ Devpathexer.exe</i><BR><BR><i>WDKPath\tools\dc2\i386\ Devpathexer.exe</i><BR><BR><i>WDKPath\tools\dc2\ia64\ Devpathexer.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Device Path Exerciser</a><BR><BR></TD>
+<TD Width="">Tests the reliability and security of drivers by calling drivers through a variety of user-mode I/O interfaces that have valid, invalid, meaningless, and poorly-formatted buffers and data that will crash the driver if not managed correctly. This is the tool form of a Windows logo test.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Driver Coverage Toolkit</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\drvcov\amd64</i><BR><BR><i>WDKPath\tools\drvcov\i386</i><BR><BR><i>WDKPath\tools\drvcov\ia64</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Driver Coverage Toolkit</a><BR><BR></TD>
+<TD Width="">Reports on the various I/O request packets (IRPs) that enter or exit a driver stack for specified devices. The data from the Driver Coverage toolkit can help identify coverage weaknesses during driver test and verification.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Drivers (<i>Drivers.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\Other\amd64\drivers.exe</i><BR><BR><i>WDKPath\tools\Other\i386\drivers.exe</i><BR><BR><i>WDKPath\tools\Other\ia64\drivers.exe</i><BR><BR></TD>
+<TD Width="">None </TD>
+<TD Width="">Displays a list of all drivers that are installed on the computer.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Driver Verifier (<i>Verifier.exe)</i></TD>
+<TD Width="">No</TD>
+<TD Width=""><i>%Windir%\system32\verifier.exe</i></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Driver Verifier</a> <BR><BR></TD>
+<TD Width="">Monitors kernel-mode drivers and graphics drivers to detect illegal function calls or actions that might corrupt the system. It can subject the drivers to a variety of stresses and tests to find improper behavior.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Enhanced Storage Certificate Management Tool (<i>EhStorCertMgrCmd.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\EnhancedStorage\amd64</i><BR><BR><i>WDKPath\tools\EnhancedStorage\i386</i><BR><BR><i>WDKPath\tools\EnhancedStorage\ia64</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Enhanced Storage Certificate Management Tool</a><BR><BR></TD>
+<TD Width="">Manages certificates on USB storage devices that are compliant with the IEEE 1667 standard.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">GUIDgen (<i>Guidgen.exe</i>)</TD>
+<TD Width="">No</TD>
+<TD Width="">Download available from <text> </text><a HREF="http://go.microsoft.com/fwlink/?linkid=121586" target="_blank"><u>Microsoft Exchange Server GUID Generator</u></a></TD>
+<TD Width=""><i>GUIDGEN.doc</i> (included in the download package)</TD>
+<TD Width="">Generates globally unique identifiers (GUID) that you can use to identify your classes, objects, and interfaces. The generated GUID is copied to the Clipboard in one of four formats so that you can insert it into your source code.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Inf2Cat (<i>Inf2cat.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\SelfSign\inf2cat.exe</i></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Inf2Cat</a><BR><BR></TD>
+<TD Width="">Determines whether a driver package&#8217;sINF file can be digitally-signed for a specified list of Windows versions, and, if so, generates the unsigned <MSHelp:link tabindex="0" keywords="Driver-Signing-over_061ab4ee-dde5-4897-a36d-9531595a43ac.xml">catalog files</MSHelp:link> that apply to the specified Windows versions.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">IoSpy and IoAttack (<i>IoSpyCmd.exe</i>, <i>IoAttack.exe</i> )</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\iospy\amd64</i><BR><BR><i>WDKPath\tools\iospy\i386</i><BR><BR><i>WDKPath\tools\iospsy\ia64</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR><See IoSpy and IoAttack<BR><BR></TD>
+<TD Width="">Performs IOCTL and WMI <i>fuzz</i> tests on kernel-mode drivers. <i>Fuzz testing</i> presents a driver with random data.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Kernrate (<i>Kernrate.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\Other\amd64\Kernrate.exe</i><BR><BR><i>WDKPath\tools\Other\i386\Kernrate.exe</i><BR><BR><i>WDKPath\tools\Other\ia64\Kernrate.exe</i><BR><BR></TD>
+<TD Width=""><i>WDKPath\tools\Other\amd64\Kernrate.htm</i><BR><BR><i>WDKPath\tools\Other\i386\Kernrate.htm</i><BR><BR><i>WDKPath\tools\Other\ia64\Kernrate.htm</i><BR><BR></TD>
+<TD Width="">A sample profiling tool that helps to identify where CPU time is being spent. Both kernel and user-mode processes can be profiled separately or at the same time.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">MakeCat (<i>MakeCat.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\amd64\MakeCat.exe</i><BR><BR><i>WDKPath\bin\ia64\MakeCat.exe</i><BR><BR><i>WDKPath\bin\x86\MakeCat.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See MakeCat</a><BR><BR></TD>
+<TD Width="">Creates a catalog file for a driver package.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">MakeCert (<i>MakeCert.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\amd64\MakeCertt.exe</i><BR><BR><i>WDKPath\bin\ia64\MakeCert.exe</i><BR><BR><i>WDKPath\bin\x86\MakeCert.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See MakeCert<BR><BR></TD>
+<TD Width="">Creates an X.509 certificate that is signed by a system test root key or by another specified key.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Microsoft Auto Code Review (OACR)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\amd64\OACR</i><BR><BR><i>WDKPath\bin\x86\OACR</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Microsoft Auto Code Review (OACR)<BR><BR></TD>
+<TD Width="">Integrates static analysis tools, such as PREfast for Drivers, into the WDK build environment.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">PnpCpu (<i>PnPCpu.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\Other\PnpCpu\amd64\PnPCpu.exe</i><BR><BR><i>WDKPath\tools\Other\PnpCpu\i386\PnPCpu.exe</i><BR><BR><i>WDKPath\tools\Other\PnpCpu\ia64\PnPCpu.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See PNPCPU<BR><BR></TD>
+<TD Width="">Simulates a hot add of processors to a running instance of Windows Server 2008.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">PnpDTest (<i>PnPDtest.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\pnpdtest\amd64pnpdtest.exe</i><BR><BR><i>WDKPath\tools\pnpdtest\i386\pnpdtest.exe</i><BR><BR><i>WDKPath\tools\pnpdtest\ia64\pnpdtest.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Plug and Play Driver Test <BR><BR><BR><BR></TD>
+<TD Width="">Tests code paths related to Plug and Play (PnP), including IRPs for removal, rebalance, and surprise removal. </TD>
+</TR>
+<TR valign="top">
+<TD Width="">PoolMon (<i>Poolmon.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\Other\amd64\poolmon.exe</i><BR><BR><i>WDKPath\tools\Other\i386\poolmon.exe</i><BR><BR><i>WDKPath\tools\Other\ia64\poolmon.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See PoolMon<BR><BR></TD>
+<TD Width="">Displays data that the operating system collects about memory allocations from the system's paged and nonpaged kernel pools, and the memory pools used for Terminal Services sessions. The data is grouped by pool allocation tag.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">PREfast for Drivers</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\pfd</i><P class="note"><b>Note  </b>This tool runs in a build environment window in the directory that stores the driver code<i>.</i></P>
+</TD>
+<TD Width="">WDK Documentation:<BR><BR>See PREfast for Drivers<BR><BR></TD>
+<TD Width="">A static verification tool that detects C and C++ coding errors. This version is specifically designed to detect errors in kernel-mode drivers.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Pvk2Pfx (<i>Pvk2Pfx.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\amd64\Pvk2Pfx.exe</i><BR><BR><i>WDKPath\bin\ia64\Pvk2Pfx.exe</i><BR><BR><i>WDKPath\bin\x86\Pvk2Pfx.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Pvk2Pfx<BR><BR></TD>
+<TD Width="">Copies public key and private key information contained in <i>.spc</i>, <i>.cer</i>, and <i>.pvk</i> files to a personal information exchange (<i>.pfx</i>) file.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">PwrTest (<i>Pwrtest.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\PowerManagement\amd64\pwrtest.exe</i><BR><BR><i>WDKPath\tools\ PowerManagement\\i386\pwrtest.exe</i><BR><BR><i>WDKPath\tools\ PowerManagement\\ia64\pwrtest.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See PwrTest<BR><BR></TD>
+<TD Width="">A power management tool for Windows Vista and later that exercises and records power management information from the computer. </TD>
+</TR>
+<TR valign="top">
+<TD Width="">SignTool (<i>SignTool.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\amd64\SignTool.exe</i><BR><BR><i>WDKPath\bin\x86\SignTool.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See SignTool<BR><BR></TD>
+<TD Width="">Digitally-signs files, verifies signatures in files, and time-stamps files.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Stampinf (<i>Stampinf.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\amd64\stampinf.exe</i><BR><BR><i>WDKPath\bin\x86\stampinf.exe</i><BR><BR></TD>
+<TD Width="">At the command prompt, type <BR><BR><b>stampinf /?</b><BR><BR></TD>
+<TD Width="">Updates common INF file directives, including the <b>DriverVer</b> directive.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Static Driver Verifier</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\SDV</i> <BR><BR><P class="note"><b>Note  </b>Runs in a build environment window in the directory that stores the driver code.</P><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Static Driver Verifier<BR><BR></TD>
+<TD Width="">A static verification tool for drivers that systematically analyzes the source code of Windows drivers and determines whether the driver properly interacts with the Windows operating system kernel. </TD>
+</TR>
+<TR valign="top">
+<TD Width="">Tracefmt (<i>Tracefmt.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\tracing\amd64\tracefmt.exe</i><BR><BR><i>WDKPath\tools\tracing\i386\tracefmt.exe</i><BR><BR><i>WDKPath\tools\tracing\ia64\tracefmt.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Tracefmt<BR><BR></TD>
+<TD Width="">Formats and displays trace messages from an event trace log file (.<i>etl</i>) or a real-time trace session. </TD>
+</TR>
+<TR valign="top">
+<TD Width="">TraceLog (<i>Tracelog.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\tracingamd64\tracelog.exe</i><BR><BR><i>WDKPath\tools\tracing\i386\tracelog.exe</i><BR><BR><i>WDKPath\tools\tracing\ia64\tracelog.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Tracelog<BR><BR></TD>
+<TD Width="">Configures and controls trace sessions from the command line. Measures time spent in deferred procedure calls (DPCs) and interrupt service routines (ISRs).</TD>
+</TR>
+<TR valign="top">
+<TD Width="">TracePDB (<i>Tracepdb.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\tracing\amd64\tracepdb.exe</i><BR><BR><i>WDKPath\tools\tracing\i386\tracepdb.exe</i><BR><BR><i>WDKPath\tools\tracing\ia64\tracepdb.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Tracepdb<BR><BR></TD>
+<TD Width="">Creates trace message format (.<i>tmf</i>) files from the full or private PDB symbol file for a WPP trace provider.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">TraceView (<i>Traceview.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\tracing\amd64\TraceView.exe</i><BR><BR><i>WDKPath\tools\tracing\i386\TraceView.exe</i><BR><BR><i>WDKPath\tools\tracing\ia64\TraceView.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See TraceView<BR><BR></TD>
+<TD Width="">Configures and controls trace sessions and displays formatted trace messages from real-time trace sessions and trace logs. TraceView has a graphic user interface and a command-line interface for batch processing and scripting.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">TraceWPP (<i>Tracewpp.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\x86\tracewpp.exe</i></TD>
+<TD Width="">WDK Documentation:<BR><BR>See WPP Preprocessor <BR><BR>See Survey of Software Tracing Tools<BR><BR></TD>
+<TD Width="">Runs the Windows Software Trace Preprocessor (WPP).</TD>
+</TR>
+<TR valign="top">
+<TD Width="">WDF Tester</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wdf\wdftester\amd64</i><BR><BR><i>WDKPath\tools\wd\wdftester\i386</i><BR><BR><i>WDKPath\tools\wdfwdftester\\ia64</i><BR><BR></TD>
+<TD Width=""><i>WDKPath\tools\wdf\wdftester\wdftester.htm</i></TD>
+<TD Width="">A set of tools that can be used to test, verify, and debug WDF drivers. The toolset provides a WMI programming interface that can be used in a script or a compiled application.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">WDF Verifier (<i>Wdfverifier.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wdf\amd64\wdfverifier.exe</i><BR><BR><i>WDKPath\tools\wdf\i386\wdfverifier.exe</i><BR><BR><i>WDKPath\tools\wdf\ia64\wdfverifier.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See WDF Verifier Control Application<BR><BR></TD>
+<TD Width="">Provides an easy-to-use interface to the framework's verifier for KMDF and UMDF drivers.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">Web Services on devices (WSD) Basic Interoperability Tool (WSDBIT)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><b>WSDBIT Client:</b><BR><BR><i>WDKPath\tools\wdsapi\amd64\wsdbit_client.exe</i><BR><BR><i>WDKPath\tools\ wdsapi\i386\wsdbit_client.exe </i><BR><BR><i>WDKPath\tools\wdsapi\ia64\wsdbit_client.exe </i><BR><BR><b>WSDBIT Server:</b><BR><BR><i>WDKPath\tools\wdsapi\amd64\wsdbit_server.exe</i><BR><BR><i>WDKPath\tools\wdsapi\i386\wsdbit_server.exe </i><BR><BR><i>WDKPath\tools\wdsapi\ia64\wsdbit_server.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See WSD Interoperability Tool<BR><BR></TD>
+<TD Width="">Verifies an implementation of <text> </text><a HREF="http://go.microsoft.com/fwlink/?LinkId=81255" target="_blank">Device Profile for Web Services (DPWS)</a> works with WSDAPI.<BR><BR><BR><BR></TD>
+</TR>
+<TR valign="top">
+<TD Width="">Winerror (<i>Winerror.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\Other\amd64\winerror.exe</i><BR><BR><i>WDKPath\tools\Other\i386\winerror.exe</i><BR><BR><i>WDKPath\tools\Other\ia64\winerror.exe</i><BR><BR></TD>
+<TD Width="">At the command prompt, type <BR><BR><b>winerror /?</b><BR><BR></TD>
+<TD Width="">Returns the error message identifier and mapping information for the specified error (<i>Winerror.h</i>) or success codes (<i>Ntstatus.h</i>).</TD>
+</TR>
+<TR valign="top">
+<TD Width="">WMIMofCk (<i>Wmimofck.exe</i>)</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\bin\x86\wmimofck.exe</i><BR><BR><i>WDKPath\bin\x86\amd64\wmimofck.exe</i><BR><BR><i>WDKPath\bin\x86\ia64\wmimofck.exe</i><BR><BR></TD>
+<TD Width="">WDK Documentation:<BR><BR>See Using wmimofck.exe<BR><BR></TD>
+<TD Width="">Verifies that the classes, properties, methods and events specified in a binary MOF file (.<i>bmf</i>) are valid for WMI use. Generates MOF support files.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">WsdCodeGen (<i>Wsdcodegen.exe)</i></TD>
+<TD Width="">Yes</TD>
+<TD Width=""><i>WDKPath\tools\wdsapi\amd64\wsdcodegen.exe</i><BR><BR><i>WDKPath\tools\wdsapi\ia64\wsdcodegen.exe</i><BR><BR><i>WDKPath\tools\wdsapi\i386\wsdcodegen.exe</i><BR><BR></TD>
+<TD Width="">Windows SDK:<BR><BR>See the <text> </text><a HREF="http://go.microsoft.com/fwlink/?LinkId=81407" target="_blank">Web Services on Devices</a> section<BR><BR></TD>
+<TD Width="">Automatically generates proxies and stubs based on a Web Services contract. Primarily, you can use this tool to create client applications.  However, you can use it for testing or for creating user-mode drivers.</TD>
+</TR>
+<TR valign="top">
+<TD Width="">WSDDebug_client and WSDDebug_host</TD>
+<TD Width="">Yes</TD>
+<TD Width=""><b>Debug Client:</b><BR><BR><i>WDKPath\tools\wdsapi\amd64\WSDDebug_client.exe</i><BR><BR><i>WDKPath\tools\wdsapi\ia64\WSDDebug_client.exe</i><BR><BR><i>WDKPath\tools\wdsapi\i386\WSDDebug_client.exe</i><BR><BR><b>Debug Host:</b><BR><BR><i>WDKPath\tools\wdsapi\amd64\WSDDebug_host.exe</i><BR><BR><i>WDKPath\tools\wdsapi\i386\WSDDebug_host.exe</i><BR><BR><i>WDKPath\tools\wdsapi\ia64\WSDDebug_host.exe</i><BR><BR></TD>
+<TD Width="">Windows SDK:<BR><BR>See the <text> </text><a HREF="http://go.microsoft.com/fwlink/?LinkId=81407" target="_blank">Web Services on Devices</a> section<BR><BR></TD>
+<TD Width="">These tools are a soft device and client that you can use to troubleshoot devices or applications.</TD>
+</TR>
+</table>
+<P></P>
+<P></P>
+<P></P>
+<DIV style="display:yes"></DIV>
+<DIV CLASS="footer"><br>© 2009 Microsoft Corporation<br>
+         <br><strong></strong><br<br></DIV>
+</Body>
+</HTML>

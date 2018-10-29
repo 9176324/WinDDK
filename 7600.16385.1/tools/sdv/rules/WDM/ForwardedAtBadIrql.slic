@@ -1,0 +1,44 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	The ForwardedAtBadIrql rule specifies that the driver call
+	IoCallDriver and PoCallDriver at IRQL<DISPATCH_LEVEL unless
+	the IRP major function code being forwarded is one of the
+	following:
+		IRP_MJ_POWER 
+		IRP_MJ_READ 
+		IRP_MJ_WRITE 
+		IRP_MJ_DEVICE_CONTROL 
+		IRP_MJ_INTERNAL_DEVICE_CONTROL
+*/
+
+
+
+
+#include "ntddk_slic.h"
+
+[IoCallDriver,PoCallDriver].entry 
+{
+    if ( sdv_irql_current >= DISPATCH_LEVEL ) {
+        if ( $2 == sdv_irp ) {
+            if ( sdv_harnessStackLocation_next.MajorFunction != IRP_MJ_POWER 
+              && sdv_harnessStackLocation_next.MajorFunction != IRP_MJ_READ 
+              && sdv_harnessStackLocation_next.MajorFunction != IRP_MJ_WRITE 
+              && sdv_harnessStackLocation_next.MajorFunction != IRP_MJ_DEVICE_CONTROL 
+              && sdv_harnessStackLocation_next.MajorFunction != IRP_MJ_INTERNAL_DEVICE_CONTROL) {
+                abort "The driver is forwarding an IRP at an IRQL that is illegal for the IRP's major code";
+            }
+        }
+        else if ( $2 == sdv_other_irp ) {
+            if ( sdv_other_harnessStackLocation_next.MajorFunction != IRP_MJ_POWER
+              && sdv_other_harnessStackLocation_next.MajorFunction != IRP_MJ_READ
+              && sdv_other_harnessStackLocation_next.MajorFunction != IRP_MJ_WRITE
+              && sdv_other_harnessStackLocation_next.MajorFunction != IRP_MJ_DEVICE_CONTROL 
+              && sdv_other_harnessStackLocation_next.MajorFunction != IRP_MJ_INTERNAL_DEVICE_CONTROL) {
+                abort "The driver is forwarding an IRP at an IRQL that is illegal for the IRP's major code";
+            }
+        }
+    }
+}

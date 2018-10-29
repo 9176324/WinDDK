@@ -1,0 +1,19 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	The property is satisfied as the driver is creating a manually dispatched queue.
+*/
+
+
+#include "ntddk_slic.h"
+
+[sdv_WDF_IO_QUEUE_CONFIG_INIT].entry
+{
+    if($2==WdfIoQueueDispatchManual)
+    {
+	     abort "The property is satisfied as the driver is creating a manually dispatched queue.";
+    }
+}
+
+        

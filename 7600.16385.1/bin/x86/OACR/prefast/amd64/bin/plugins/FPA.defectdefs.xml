@@ -1,0 +1,1087 @@
+<?xml version='1.0'?>
+<DefectDefs>
+
+    <DefectDefGroup guid="DD7451F5-09ED-47ed-805A-A2BB3B49831C"
+         id="99200"
+         name="fpa">
+
+		<DefectDef guid="2B46455A-261F-4142-AE59-D84A269A3601"
+			id="28197"
+			name="ALIASED_MEMORY_LEAK">
+
+			<description>
+				<format>
+					Possibly leaking memory %pointer%%note%
+				</format>
+
+				<param name="pointer" format="'%ls'" />
+				<param name="note" format="%ls" />
+			</description>
+
+			<doc>
+				<p>
+					This warning indicates that the specified pointer points
+					to allocated memory or some other allocated resource
+					that was not explicitly freed, but was passed to a
+					function that might have retained a copy that will be
+					freed later.
+				</p>
+				<p>
+					This warning is reported for both memory and resource
+					leaks when the resource is commonly aliased to another 
+				    location.
+				</p>
+				<p>
+					This warning can be reported on function exit if the
+					argument is annotated as having been expected to be
+					released.
+				</p>
+			</doc>
+
+			<example funcBody="void Dfa_%id%" sysIncludes="stdlib.h">
+				<defectiveSrc><![CDATA[
+					char *p = (char *)malloc(10);
+					test(p);   // does not save a copy of p
+				]]></defectiveSrc>
+				<correctedSrc><![CDATA[
+					char *p = (char *)malloc(10);
+					test(p);   // does not save a copy of p
+
+					free(p);
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28197.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="8191AB67-F847-4829-9E3C-43689FC0CA91"
+			id="28198"
+			name="ALIASED_MEMORY_LEAK_EXCEPTION">
+
+			<description>
+				<format>
+					Possibly leaking memory %pointer% due to an exception%note%
+				</format>
+
+				<param name="pointer" format="'%ls'" />
+				<param name="note" format="%ls" />
+			</description>
+
+			<question>
+				<format>
+					Is a local catch block needed to clean up memory
+				</format>
+			</question>
+
+			<doc>
+				<p>
+					This warning indicates that allocated memory is not
+					being freed when an exception is thrown.  The statement
+					at the end of the path could potentially throw an
+					exception.  The memory had been passed to a function
+					that might have saved a copy to be freed later.
+				</p>
+			</doc>
+
+			<example funcBody="void Dfa_%id%" sysIncludes="new">
+				<defectiveSrc><![CDATA[
+					char *p1 = new char[10];
+					char *p2 = new char[10];
+
+					test(p1);   // does not save a copy of p
+
+					delete[] p2;
+					delete[] p1;
+				]]></defectiveSrc>
+				<correctedSrc><![CDATA[
+					char *p1 = new char[10];
+					char *p2 = NULL;
+
+					test(p1);   // does not save a copy of p
+
+					try {
+						p2 = new char[10];
+					} catch (std::bad_alloc *e) {
+						// just handle the throw.
+						;
+					}
+
+					delete[] p2;
+					delete[] p1;
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28198.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="B89B937F-F74C-4700-8562-E9203485F4FB"
+			id="28103"
+			name="RESOURCE_LEAK">
+
+			<description>
+				<format>
+					Leaking the %reskind% stored in %pointer%
+				</format>
+
+				<param name="reskind" format="%ls" />
+				<param name="pointer" format="'%ls'" />
+			</description>
+
+			<doc>
+				<p>
+					This warning indicates that the specified object
+					contains a resource that has not been freed
+				</p>
+				<p>
+					This warning is reported for resource leaks.
+				</p>
+			</doc>
+
+			<example funcBody="void Dfa_%id%" sysIncludes="stdlib.h">
+				<defectiveSrc><![CDATA[
+					res = KeSaveFloatingPointState(buffer);
+				]]></defectiveSrc>
+				<correctedSrc><![CDATA[
+					res = KeSaveFloatingPointState(buffer);
+					if (NT_SUCCESS(res))
+					{
+						res = KeRestoreFloatingPointState(buffer);
+					}
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28103.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="B89B937F-F74C-4700-8562-E9203485F4FB"
+			id="28104"
+			name="RESOURCE_NOT_ACQUIRED">
+
+			<description>
+				<format>
+					The %reskind% that should have been acquired before
+					function exit was not acquired
+				</format>
+
+				<param name="reskind" format="%ls" />
+			</description>
+
+			<doc>
+				<p>
+					This warning indicates that the function is intended
+					to acquire a resource before exit, and did not
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28104.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="145B1056-1169-457f-AEBC-3F635B9F616E"
+			id="28105"
+			name="RESOURCE_LEAK_EXCEPTION">
+
+			<description>
+				<format>
+					Leaking %reskind% stored in %pointer% due to an exception
+				</format>
+
+				<param name="reskind" format="%ls" />
+				<param name="pointer" format="'%ls'" />
+			</description>
+
+			<question>
+				<format>
+					Is a local catch block needed to release the resource 
+				</format>
+			</question>
+
+			<doc>
+				<p>
+					This warning indicates that some resource is not
+					being freed when an exception is thrown.  The statement
+					at the end of the path could potentially throw an
+					exception.
+				</p>
+			</doc>
+
+			<example funcBody="void Dfa_%id%" sysIncludes="new">
+				<defectiveSrc><![CDATA[
+					res = AllocateResource(Resource);
+					char *p2 = new char[10]; // could throw
+
+					delete[] p2;
+					FreeResource(Resource)
+				]]></defectiveSrc>
+				<correctedSrc><![CDATA[
+					res = AllocateResource(Resource);
+					char *p2;
+
+					try {
+						p2 = new char[10];
+					} catch (std::bad_alloc *e) {
+						// just handle the throw.
+						;
+					}
+					FreeResource(Resource)
+
+				]]></correctedSrc>
+			</example>
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28105.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="3DAFCA77-14F1-455f-81C1-F5454A21ED2F"
+			id="28106"
+			name="ALREADY_HELD">
+
+			<description>
+				<format>
+					The variable %variable% already holds a %reskind%
+				</format>
+				<param name="variable" format="'%ls'" />
+				<param name="reskind" format="%ls" />
+			</description>
+
+            <additionalInfo>
+                <format>
+                    Putting a new resource into this variable may cause the
+					prior value to be lost
+                </format>
+            </additionalInfo>
+
+			<doc>
+				<p>
+					This error occurs when a variable containing a resource
+					is called in a context where a new value for that resource
+					will be put into that variable, possibly causing the old
+					value to be lost and thus leak
+				</p>
+			</doc>
+
+			<example funcBody="void Dfa_%id%">
+				<defectiveSrc><![CDATA[
+					ExAcquireResourceLite(resource, true);
+					...
+					ExAcquireResourceLite(resource, true);
+				]]></defectiveSrc>
+				<correctedSrc><![CDATA[
+					ExAcquireResourceLite(resource1, true);
+					...
+					ExAcquireResourceLite(resource2, true);
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28106.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="F2A91A3A-F3C1-4432-9F51-92738391081E"
+			id="28107"
+			name="MUST_HOLD">
+
+			<description>
+				<format>
+					The %reskind% %variable% must be held when calling %func%
+				</format>
+
+				<param name="reskind" format="%ls" />
+				<param name="variable" format="'%ls'" />
+				<param name="func" format="'%ls'" />
+			</description>
+
+			<doc>
+				<p>
+					This warning indicates that some resource that the program
+					must acquire is not held when the failing call is made.
+				</p>
+				<p>
+					This test is used for resources that are usually taken
+					and released in the same function.
+				</p>
+			</doc>
+
+			<example funcBody="void Dfa_%id%">
+				<defectiveSrc><![CDATA[
+					ExAcquireResourceLite(resource, true);
+					ExReleaseResourceLite(resource);
+				]]></defectiveSrc>
+				<correctedSrc><![CDATA[
+					KeEnterCriticalRegion();
+					ExAcquireResourceLite(resource, true);
+					ExReleaseResourceLite(resource);
+					KeLeaveCriticalRegion();
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28107.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="6DB4779E-256D-42eb-9CEE-979A795D8FDF"
+			id="28108"
+			name="WRONG_KIND">
+
+			<description>
+				<format>
+					The variable %variable% holds a %reskind% when it should
+					hold a %expected%
+				</format>
+
+				<param name="variable" format="'%ls'" />
+				<param name="reskind" format="%ls" />
+				<param name="expected" format="%ls" />
+			</description>
+
+			<doc>
+				<p>
+					This error occurs when resources of the same C Language
+					type, but different semantic type, are confused.
+					Note that this rule fires for both must-hold and
+					release annotations, so it frequently will be repeated
+				</p>
+			</doc>
+
+			<example funcBody="void Dfa_%id%">
+				<defectiveSrc><![CDATA[
+					KeAcquireInStackSpinLock(spinLock, lockHandle);
+					...
+					KeReleaseSpinLock(spinLock, 0);
+				]]></defectiveSrc>
+				<correctedSrc><![CDATA[
+					KeAcquireInStackSpinLock(spinLock, lockHandle);
+					...
+					KeReleaseInStackSpinLock(lockHandle);
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28108.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="0711B3E7-EC19-4616-B3D6-E44A33928250"
+			id="28109"
+			name="MUST_NOT_HOLD">
+
+			<description>
+				<format>
+					The %reskind% %variable% cannot be held at the time %func%
+					is called
+				</format>
+
+				<param name="reskind" format="%ls" />
+				<param name="variable" format="'%ls'" />
+				<param name="func" format="'%ls'" />
+			</description>
+
+			<doc>
+				<p>
+					This warning indicates that some resource that the program
+					should not hold at this point is held.  Very possibly it
+					is a duplicate acquisition
+				</p>
+				<p>
+					This test is used for resources that are usually taken
+					and released in the same function
+				</p>
+			</doc>
+
+			<example funcBody="void Dfa_%id%">
+				<defectiveSrc><![CDATA[
+					ExAcquireResourceLite(resource, true);
+					...
+					ExAcquireResourceLite(resource, true);
+				]]></defectiveSrc>
+				<correctedSrc><![CDATA[
+					ExAcquireResourceLite(resource, true);
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28109.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="3496220c-7d5d-48ac-8de2-adea987ec42b"
+			id="28159"
+			name="USE_OTHER_FUNCTION">
+
+			<description>
+				<format>Consider using %function% instead of %function2%. Reason: %reason%</format>
+				<param name="function" format="'%ls'" />
+				<param name="function2" format="'%ls'" />
+				<param name="reason" format="%ls" />
+			</description>
+
+			<doc>
+				<P>This warning suggests a preferred function calls that
+				that may be semantically equivalent to the existing function call.</P>
+			</doc>
+
+			<example funcBody="void example_func(char *input)"
+					 sysIncludes="windows.h">
+
+				<defectiveSrc><![CDATA[
+					char buff[MAX_PATH];
+
+					OemToChar(buff, input);  // if strlen(input) > MAX_PATH,
+											 // leads to buffer overrun
+				]]></defectiveSrc>
+
+				<correctedSrc><![CDATA[
+					char buff[MAX_PATH];
+
+					OemToCharBuff(buff, input, MAX_PATH);
+				]]></correctedSrc>
+			</example>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28159.htm</helpURL>
+
+		</DefectDef>
+
+		<DefectDef guid="3496220c-7d5d-48ac-8de2-adea987ea42b"
+			id="28160"
+			name="ERROR">
+
+			<description>
+				<format>Error annotation: %reason%
+				</format>
+				<param name="reason" format="%ls" />
+			</description>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28160.htm</helpURL>
+
+		</DefectDef>
+
+        <DefectDef guid="F339E66E-854C-41fa-8E1D-368CB2E40D7B"
+            id="28191"
+            name="MUST_HOLD_CLASS">
+
+            <description>
+                <format>
+                    At least one resource of the class %class% must be held 
+					when this function is called
+                </format>
+                <param name="class" format="'%ls'" />
+            </description>
+
+            <doc>
+                <p>
+					This indicates that the function being called will
+					not operate some resource of the specific
+					class is held at the time it is called
+                </p>
+            </doc>
+
+			<!-- No example currently known -->
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28191.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="C4FC1BD4-FC11-4f7a-AB33-79E6FF4CA2D9"
+            id="28192"
+            name="MUST_NOT_HOLD_CLASS">
+
+            <description>
+                <format>
+                    No resource of the class %class% can be held when this
+					function is called.  %variable% is currently held
+                </format>
+                <param name="class" format="'%ls'" />
+                <param name="variable" format="'%ls'" />
+            </description>
+
+            <doc>
+                <p>
+					This indicates that the function being called will
+					not operate correctly if any resource of the specific
+					class is held at the time it is called
+                </p>
+            </doc>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					KeAcquireSpinLock(lock, &oldIrq);
+					...
+					IoCompleteRequest(Irp, 0);
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					KeAcquireSpinLock(lock, &oldIrq);
+					...
+					KeReleaseSpinLock(lock, oldIrq);
+					...
+					IoCompleteRequest(Irp, 0);
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28192.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="A004A944-2F58-4073-8C5A-4233670D36F2"
+            id="28193"
+            name="MUST_USE">
+
+            <description>
+                <format>
+					%variable% holds a value that must be examined
+                </format>
+                <param name="variable" format="'%ls'" />
+            </description>
+
+            <doc>
+                <p>
+					The function call which set this variable returns a
+					value that a correct program must examine, and it was
+					not examined or is being overwritten before examination.
+                </p>
+            </doc>
+
+            <example funcBody="void Dfa_%id%">
+                <defectiveSrc><![CDATA[
+					IoGetDmaAdapter(pPDO, &DevDesc, &nMapRegs);
+					...
+                ]]></defectiveSrc>
+                <correctedSrc><![CDATA[
+					IoGetDmaAdapter(pPDO, &DevDesc, &nMapRegs);
+					...
+					if (nMapRegs < MIN_REQUIRED_MAPS) {
+					    ...
+					}
+                ]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28193.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="0F3F0EC0-4506-4965-AE3C-5DDF2DE14C17"
+            id="28194"
+            name="MEMORY_NOT_ALIASED">
+
+            <description>
+                <format>
+					The function %func% was declared as aliasing 
+					the value in %variable% and exited without doing so
+                </format>
+                <param name="variable" format="'%ls'" />
+                <param name="func" format="'%ls'" />
+            </description>
+
+            <doc>
+                <p>
+					The annotations for the current function indicate that it
+					will alias the specified argument, and it does not do
+					so along the path indicated.  Aliasing means assigning
+					the value to a non-local variable.  Must functions that
+					alias a vaariable "capture" a value and put it into
+					some global data structure.
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28194.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="D11CB8EB-1AE6-4488-8C03-371F5EF16B4D"
+            id="28195"
+            name="MEMORY_NOT_ACQUIRED">
+
+            <description>
+                <format>
+					The function %func% was declared as acquiring memory
+					in %variable% and exited without doing so
+                </format>
+                <param name="func" format="'%ls'" />
+                <param name="variable" format="'%ls'" />
+            </description>
+
+            <doc>
+                <p>
+					The annotations for the current function indicate that it
+					acquires memory in the designated result location, but
+					the current path did not actually allocate a value
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28195.htm</helpURL>
+        </DefectDef>
+
+        <DefectDef guid="5AAF9066-5C9B-454e-8624-F95B652CBDE1"
+            id="28196"
+            name="RETURNING_BAD_RESULT">
+
+            <description>
+                <format>
+					The result %param% is %value%, which
+					is inconsistent with the Results specified by the annotations
+                </format>
+                <param name="param" format="'%ls'" />
+                <param name="value" format="'%ls'" />
+            </description>
+
+            <doc>
+                <p>
+					The annotations specify one or more Results.  The value
+					returned is inconsistent with that
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28196.htm</helpURL>
+        </DefectDef>
+
+		<DefectDef guid="740d585c-cbb6-489e-9b35-04d493dec617"
+			id="28199"
+			name="MAYBE_UNINIT_VAR">
+
+			<description>
+				<format>
+					Using possibly uninitialized memory %variable%
+				</format>
+
+				<param name="variable" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+					The variable has had its address taken but no assignment
+					to it has been discovered
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<p>
+					The warning indicates that the specified variable has
+					been used without being explicitly initialized, but the
+					variable has had its address recorded somewhere.  It is
+					possible that some action invisible to PREfast has 
+					cause the variable to be initialized.
+				</p>
+				<p>
+					This warning can be reported on function exit if the
+					argument is annotated as having been expected to be
+					checked by the caller and it is not initialized.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28199.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="CEABDAA0-B065-49c3-831A-11E44F2A3066"
+			id="28262"
+			name="MODEL_SYNTAX_ERROR2">
+
+			<description>
+				<format>
+					A syntax error in the annotations was found 
+					for function %clue1%,
+					for property %clue2%,
+					while parsing %clue3%,
+					beginning just before "%clue4%"
+				</format>
+
+				<param name="clue1" format="%ls" />
+				<param name="clue2" format="'%ls'" />
+				<param name="clue3" format="%ls" />
+				<param name="clue4" format="%ls" />
+			</description>
+
+			<doc>
+				<p>
+				This indicates an error in the annotations, a responsibility
+				of the PREfast team.  Please inform your PREfast support
+				contact.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28262.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="CEABDAA0-B065-49a3-831A-11E44F2A3066"
+			id="28267"
+			name="MODEL_PLACEMENT_ERROR1">
+
+			<description>
+				<format>
+					A syntax error in the annotations was found 
+					for function %clue1%,
+					for property %clue2%,
+					was %clue3%
+				</format>
+
+				<param name="clue1" format="%ls" />
+				<param name="clue2" format="'%ls'" />
+				<param name="clue3" format="%ls" />
+			</description>
+
+			<doc>
+				<p>
+				This indicates an error in the annotations.  The owner
+				of the file containing those annotations should correct that
+				file.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28267.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="dd8f2ca5-8181-4a5e-86db-91c766348104"
+			id="28181"
+			name="DEREF_INTERMEDIATE_NULL_PTR">
+
+			<description>
+				<format>
+					Possibly dereferencing NULL pointer %pointer%%note%
+				</format>
+
+				<param name="pointer" format="'%ls'" />
+				<param name="note" format="%ls" />
+			</description>
+
+			<doc>
+				<p>
+					This warning indicates that the specified pointer is
+					being dereferenced, but may be a NULL pointer.
+					The pointer being dereferenced usually is in the middle of a chain 
+					pointers to pointers.
+
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28181.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="dd8f2ca5-8182-4a5e-86db-91c766348104"
+			id="28182"
+			name="DEREF_RENAMED_NULL_PTR">
+
+			<description>
+				<format>
+					Dereferencing NULL pointer.  
+					%pointer% contains the same NULL value as %pointer2% 
+					did%note%
+				</format>
+
+				<param name="pointer" format="'%ls'" />
+				<param name="pointer2" format="'%ls'" />
+				<param name="note" format="%ls" />
+			</description>
+
+			<doc>
+				<p>
+				The specified pointer contains a copy of the NULL value
+				discovered in the second-named pointer.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28182.htm</helpURL>
+		</DefectDef>
+
+        <DefectDef guid="a8c3503f-8183-4059-919f-976d24aaf73a"
+            id="28183"
+            name="INVALID_PARAM_VALUE_3">
+
+            <description>
+                <format>
+					%arg% could be %value%, and is a copy
+					of the value found in %pointer%%note%
+                </format>
+
+                <param name="arg" format="'%ls'" />
+                <param name="value" format="'%ls'" />
+				<param name="pointer" format="'%ls'" />
+				<param name="note" format="%ls" />
+            </description>
+
+            <additionalInfo>
+                <format>
+                    this does not adhere to the specification for the
+					function %func%
+                </format>
+
+                <param name="func" format="'%ls'" />
+            </additionalInfo>
+
+            <doc>
+                <p>
+					This warning indicates that this value is unexpected in 
+					the current context. This warning usually appears when
+					a <code>NULL</code> value is passed an argument to a
+					function that does not permit it. The value was actually
+					found in the specified variable, and the argument is
+					a copy of that variable.
+                </p>
+            </doc>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28183.htm</helpURL>
+        </DefectDef>
+
+		<DefectDef guid="dd8f2ca5-8184-4a5e-86db-91c766348104"
+			id="28184"
+			name="DEREF_PARAMETER_NULL_PTR">
+
+			<description>
+				<format>
+					Dereferencing possibly NULL parameter %pointer%%note%
+				</format>
+
+				<param name="pointer" format="'%ls'" />
+				<param name="note" format="%ls" />
+			</description>
+
+			<doc>
+				<p>
+					This warning indicates that the specified pointer is
+					being dereferenced, but may be a NULL pointer.
+					The pointer being dereferenced is a parameter and
+					the annotations do not indicate whether it may be null.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28184.htm</helpURL>
+		</DefectDef>
+
+        <DefectDef guid="a8c3503f-8185-4059-919f-976d24aaf73a"
+            id="28185"
+            name="INVALID_PARAM_VALUE_4">
+
+            <description>
+                <format>
+                    Parameter %arg% could be %value%%note%
+                </format>
+
+                <param name="arg" format="'%ls'" />
+                <param name="value" format="'%ls'" />
+				<param name="note" format="%ls" />
+            </description>
+
+            <additionalInfo>
+                <format>
+                    this does not adhere to the specification for the
+					function %func%
+                </format>
+
+                <param name="func" format="'%ls'" />
+            </additionalInfo>
+
+            <doc>
+                <p>
+					This warning indicates that an unexpected value derived
+					from a formal parameter is being used in the 
+					specified context. This is typically
+					reported for potentially <code>NULL</code> values passed
+					as arguments to a function that does not expect it.
+                </p>
+            </doc>
+
+            <example funcBody="void Dfa_%id%" sysIncludes="string.h">
+				<defectiveSrc><![CDATA[
+					char a[10], b[10];
+					memcpy(0, 0, 0);
+				]]></defectiveSrc>
+				<correctedSrc><![CDATA[
+					char a[10], b[10];
+					memcpy(a, b, 10);
+				]]></correctedSrc>
+            </example>
+
+            <helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28185.htm</helpURL>
+        </DefectDef>
+
+		<DefectDef guid="CE0BDAA0-B065-49c3-831A-11E44F2A309a"
+			id="28274"
+			name="MISMATCHED_PREDICATE1">
+
+			<description>
+				<format>
+					For function %clue1%, the %clue2% %clue3%
+					is inconsistent with the function declaration
+				</format>
+
+				<param name="clue1" format="%ls" />
+				<param name="clue2" format="%ls" />
+				<param name="clue3" format="'%ls'" />
+			</description>
+
+			<doc>
+				<p>
+				This indicates an error in the annotations rather than the
+				code being analyzed.  If the function declaration is in
+				a header, the correction needs to be made to the header.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28274.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="CE0BDAA0-B065-49c3-8275-11E44F2A309a"
+			id="28275"
+			name="NULL_MACRO_VALUE">
+
+			<description>
+				<format>
+					The parameter to macroValue$ is null
+				</format>
+			</description>
+
+			<doc>
+				<p>
+				This indicates an internal error in the model file rather than 
+				the code being analyzed.  
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28275.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="CE0BDAA0-B065-49c3-8276-11E44F2A309a"
+			id="28276"
+			name="NO_MACROS">
+
+			<description>
+				<format>
+					PFD was unable to find any macros -- internal error
+				</format>
+			</description>
+
+			<doc>
+				<p>
+					This indicates an error in setting up PFD, and should
+					never happen.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28276.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="CE0BDAA0-B065-49c3-831A-11E44F2A3066"
+			id="28261"
+			name="MODEL_SYNTAX_ERROR1">
+
+			<description>
+				<format>
+					A syntax error in the annotations was found 
+					for function %clue1%,
+					for property %clue2%,
+					while parsing %clue3%,
+					beginning just before "%clue4%"
+				</format>
+
+				<param name="clue1" format="%ls" />
+				<param name="clue2" format="'%ls'" />
+				<param name="clue3" format="%ls" />
+				<param name="clue4" format="%ls" />
+			</description>
+
+			<doc>
+				<p>
+				This indicates an error in the annotations rather than the
+				code being analyzed.  If the function declaration in
+				a header, the correction needs to be made to the header.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28261.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="655062D5-8B3F-41ff-BC66-D0A973664303"
+			id="28264"
+			name="MUST_BE_CONSTANT">
+
+			<description>
+				<format>
+					Result lists values must be constants. See function %clue1%
+					value %clue2%.
+				</format>
+
+				<param name="clue1" format="'%ls'" />
+				<param name="clue2" format="'%ls'" />
+			</description>
+
+			<additionalInfo>
+				<format>
+					Usually this indicates that a non-constant expression
+					was used for a __drv_valueIs value list
+				</format>
+			</additionalInfo>
+
+			<doc>
+				<p>
+				This indicates an error in the annotations rather than the
+				code being analyzed.  If the function declaration in
+				a header, the correction needs to be made to the header.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28264.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="CE0BDAA0-B065-49c3-831A-11E44F2A3099"
+			id="28272"
+			name="MISMATCHED_LIST">
+
+			<description>
+				<format>
+					The annotation for function %clue1%, parameter %clue2%
+					when examining %clue3%
+					is inconsistent with the function declaration
+				</format>
+
+				<param name="clue1" format="%ls" />
+				<param name="clue2" format="'%ls'" />
+				<param name="clue3" format="'%ls'" />
+			</description>
+
+			<doc>
+				<p>
+				This indicates an error in the annotations rather than the
+				code being analyzed.  If the function declaration in
+				a header, the correction needs to be made to the header.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28272.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="CE0BDAA0-B065-49c3-831A-11E44F2A3099"
+			id="28273"
+			name="MISMATCHED_PREDICATE">
+
+			<description>
+				<format>
+					For function %clue1%, the %clue2% %clue3%
+					is inconsistent with the function declaration
+				</format>
+
+				<param name="clue1" format="%ls" />
+				<param name="clue2" format="%ls" />
+				<param name="clue3" format="'%ls'" />
+			</description>
+
+			<doc>
+				<p>
+				This indicates an error in the annotations rather than the
+				code being analyzed.  If the function declaration in
+				a header, the correction needs to be made to the header.
+				</p>
+			</doc>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28273.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef guid="CE0BDAA0-B065-49c3-831A-11E44F2A3099"
+			id="28278"
+			name="NO_PROTOTYPE">
+
+			<description>
+				<format>
+					Function %name% appears with no prototype in scope.
+				</format>
+
+				<param name="name" format="%ls" />
+			</description>
+			<additionalInfo>
+				<format>
+					Only limited analysis can be performed.  Include the 
+					appropriate header or add a prototype.
+					This warning also occurs if parameter or return types
+					are omitted in a function definition
+				</format>
+			</additionalInfo>
+
+			<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28278.htm</helpURL>
+		</DefectDef>
+
+	</DefectDefGroup>
+
+</DefectDefs>

@@ -1,0 +1,26 @@
+
+TARGETNAME=bthsrvinst
+TARGETTYPE=PROGRAM
+
+UMTYPE=console
+UMENTRY=main
+
+USE_MSVCRT=1
+
+ENABLE_UNICODE=1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+INCLUDES=\
+        $(INCLUDES); \
+        ..\..\common\inc;   \
+
+SOURCES=\
+        main.cpp                    \
+ 
+TARGETLIBS=\
+        $(TARGETLIBS)                 \
+        $(SDK_LIB_PATH)\bthprops.lib  \
+
+
+TARGET_DESTINATION=bthsamples

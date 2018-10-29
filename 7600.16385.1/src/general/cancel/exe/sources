@@ -1,0 +1,24 @@
+TARGETNAME=canclapp
+TARGETTYPE=PROGRAM
+
+INCLUDES=$(DDK_INC_PATH); \
+     ..\sys
+
+# Make sure we are building a multi-threaded app
+!IF "$(NTDEBUG)" == "retail" || "$(NTDEBUG)" == "" || "$(NTDEBUG)" == "ntsdnodbg"
+#...release
+CFLAGS=$(CFLAGS) /MT
+!ELSE
+#...debug
+CFLAGS=$(CFLAGS) /MTd
+!ENDIF
+
+
+USE_MSVCRT=1
+
+SOURCES=testapp.c install.c
+
+UMTYPE=console
+UMBASE=0x0400000
+
+_NT_TARGET_VERSION= $(_NT_TARGET_VERSION_WINXP)

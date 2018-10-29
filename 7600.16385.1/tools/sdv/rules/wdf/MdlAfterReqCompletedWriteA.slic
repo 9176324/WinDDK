@@ -1,0 +1,74 @@
+/*
+
+  Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+  Summary: After a Request is completed, its Mdl cannot be accessed
+  (inside Write callback only). Mdl was retrieved by calling 
+  WdfRequestRetrieveInputWdmMdl.
+         
+
+  Description: 
+  Within WriteIo queue event callback, the Request Mdl retrieved by calling
+  WdfRequestRetrieveInputWdmMdl cannot be accessed after WdfRequestComplete/WithInformation/WithPriorityBoost 
+  on the Request. The following possible buffer access functions are considered:
+  WDF_MEMORY_DESCRIPTOR_INIT_MDL,
+  MmGetMdlByteCount, MmGetSystemAddressForMdlSafe, 
+  MmGetMdlVirtualAddress, IoBuildPartialMdl (1st and 2nd parameter),
+  KeFlushIoBuffers, MmGetMdlPfnArray, MmGetMdlByteOffset,
+  MmPrepareMdlForReuse, WdfDmaTransactionInitialize.
+*/
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT2, REQCOMPL} t = INIT2;
+     int *cur_mdl = 0;
+}
+
+watch fun_WDF_IO_QUEUE_IO_WRITE.entry.$2;
+
+[sdv_WdfRequestComplete
+,sdv_WdfRequestCompleteWithInformation
+,sdv_WdfRequestCompleteWithPriorityBoost
+].exit [guard $1]
+{    
+       t = REQCOMPL;
+}
+sdv_WdfRequestRetrieveInputWdmMdl.exit [guard $1]
+{
+   if (t != REQCOMPL) {
+          cur_mdl = $2;
+      }
+}
+sdv_WDF_MEMORY_DESCRIPTOR_INIT_MDL.entry
+{
+   if ((t == REQCOMPL) && ($2 == *cur_mdl)) {
+       abort "Request's mdl cannot be accessed after the Request had been completed.";
+   }
+}     
+[sdv_MmGetMdlByteCount
+, sdv_MmGetSystemAddressForMdlSafe
+, sdv_MmGetMdlVirtualAddress
+, sdv_KeFlushIoBuffers
+, sdv_MmGetMdlPfnArray
+, sdv_MmGetMdlByteOffset
+, sdv_MmPrepareMdlForReuse
+].entry
+{
+   if ((t == REQCOMPL) && ($1 == *cur_mdl)) {
+       abort "Request's mdl cannot be accessed after the Request had been completed.";
+   }
+}
+IoBuildPartialMdl.entry
+{
+   if ((t == REQCOMPL) && (($1 == *cur_mdl) || ($2 == *cur_mdl))) {
+       abort "Request's mdl cannot be accessed after the Request had been completed.";
+   }
+} 
+sdv_WdfDmaTransactionInitialize.entry
+{
+   if ((t == REQCOMPL) && ($4 == *cur_mdl)) {
+       abort "Request's mdl cannot be accessed after the Request had been completed.";
+   }
+}

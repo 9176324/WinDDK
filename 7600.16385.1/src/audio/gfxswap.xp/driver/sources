@@ -1,0 +1,28 @@
+TARGETNAME=GfxSwap
+TARGETTYPE=DRIVER
+
+TARGETLIBS = $(DDK_LIB_PATH)\ksguid.lib  \
+             $(DDK_LIB_PATH)\ks.lib      \
+             $(DDK_LIB_PATH)\wdm.lib     \
+             $(DDK_LIB_PATH)\drmk.lib
+
+INCLUDES = ..\inc;$(DDK_INC_PATH)
+
+
+# This sample no longer builds for Vista since kernel mode GFX support was removed
+_NT_TARGET_VERSION = $(_NT_TARGET_VERSION_WINXP)
+NTDDI_VERSION       =0x05020100
+WIN32_WINNT_VERSION =0x0502
+
+##
+## Defaults to NT build
+##
+
+C_DEFINES = $(CFASTFLAGS) $(C_DEFINES) -DUNICODE -D_UNICODE -DUNDER_NT
+
+
+SOURCES = gfx.rc      \
+          device.cpp  \
+          filter.cpp  \
+          pin.cpp
+

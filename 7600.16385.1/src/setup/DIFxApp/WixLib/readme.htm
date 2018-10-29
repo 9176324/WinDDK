@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>DIFxApp WiXLib</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2900.2802" name=GENERATOR><!-- #BeginEditable "doctitle" --><!-- #EndEditable --></HEAD>
+<BODY link=#0000ff><FONT face=Verdana size=5>
+<H2>Driver Install Frameworks for Applications (DIFxApp) </H2></FONT><FONT 
+face=Verdana size=2>
+<P style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px"><a href="#Note">Note</a> 
+
+<P style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px"><a href="#Intro">Description</a> 
+
+<P style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px"><a href="#Create">Creating 
+the Windows Installer Package</a> 
+
+<H3><A name=Note></A>Note</H3>
+<P>This sample works only on an x86-based Microsoft Windows operating system. However, the 
+techniques illustrated in this sample apply to Windows operating systems for 
+other architectures as well.<BR>&nbsp; 
+<H3><A name=Intro></A>Description</H3>
+
+<P>
+This sample describes how to use the Windows Installer XML (WiX) tool set 
+(version 2 or later) with DIFxApp to create a Microsoft Windows Installer 
+(Windows Installer) installation package. To support using the WiX tool set, 
+DIFxApp includes DIFxApp.wixlib, DIFxApp.dll and DIFxAppA.dll. 
+Linking these files with a compiled WiX source file produces a Windows Installer 
+installation package.
+</P>
+
+<H3><a name="Create"></a>Creating the Windows Installer Package</H3>
+
+<P>The ClassFilter.wxs file included in this sample is a WiX source file for a 
+simple Windows Installer installation file that installs a class filter driver. 
+The driver package for the class filter driver is provided in <b><i>src\setup\DIFxPkgs\x86\ClsFilt</b></i>. 
+</P>
+
+<P>To create ClassFilter.msi, the Windows Installer installation package for the 
+class filter driver, do the following steps: </P>
+<P>1. Copy the files for the class filter driver package to the same directory 
+as ClassFilter.wxs </P>
+<P>2. Use the candle WiX tool to compile ClassFilter.wxs. For example, type the 
+following at the command prompt:</P>
+
+<P><b>&nbsp;&nbsp;&nbsp; candle ClassFilter.wxs </b></P>
+
+<P>This step produces the ClassFilter.wixobj file. </P>
+
+<P>3. Use the light WiX tool to link ClassFilter.wixobj with DIFxApp.wixlib to 
+produce ClassFilter.msi. For example, type the following at the command prompt: </P>
+
+<P><b>&nbsp;&nbsp;&nbsp; light ClassFilter.wixobj DIFxApp.wixlib -out ClassFilter.msi </b></P>
+
+<P> Before executing the preceding command, make sure that DIFxApp.wixlib, DIFxApp.dll, DIFxAppA.dll and the class filter driver files (ClassAFilterDriver.inf, ClassFilter.cat and clsupr.sys ) are located in the same directory as ClassFilter.wixobj. You can find those files in the following directories:</P>
+
+<P>
+<li type=square>
+Class filter driver files are located in <i><b>src\setup\DIFxPkgs\x86\ClsFilt</b></i>.
+</li>
+</P>
+
+<P>
+<li type=square>
+DIFxApp.wixlib, DIFxApp.dll and DIFxAppA.dll are located in <i><b>redist\difx\difxapp\&ltlanguage&gt\wixlib\&ltarchitecture&gt</b></i>, where <i><b>&ltlanguage&gt</i></b> can be <i><b>\multin</i></b> or <i><b>\english</i></b> and <i><b>&ltarchitecture&gt</b></i> can be <i><b>\x86</b></i>, <i><b>\amd64</b></i>, or <i><b>\ia64</b></i>.
+</li>
+</P>
+
+</FONT><FONT face="MS Sans Serif" size=1>
+<P>© Microsoft Corporation 2006</FONT> </FONT></P></BODY></HTML>
+

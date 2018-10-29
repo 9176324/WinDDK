@@ -1,0 +1,9 @@
+#
+# Build using BUILD.EXE (Do not edit this section of this file, edit SOURCES)
+#
+
+# Ensure the build environment is at least Windows XP
+MINIMUM_NT_TARGET_VERSION = 0x501
+
+!INCLUDE $(NTMAKEENV)\makefile.def
+

@@ -1,0 +1,103 @@
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+[Version]
+signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Msft%
+DriverVer=12/16/2008,6.0.6001.18001
+CatalogFile=SWTPBDAT.cat
+
+[ControlFlags]
+;ExcludeFromSelect=*
+
+[SourceDisksNames]
+1 = %BDA_DISK%,"",
+
+[SourceDisksFiles]
+SWTPBDAT.sys     = 1
+
+[DestinationDirs]
+SWTPBDAT.CopyFiles=10,system32\drivers
+
+[Manufacturer]
+%Msft%=Microsoft,NTx86,NTamd64
+
+[Microsoft.NTx86]
+;;%SWTPBDAT.DeviceDesc%=SWTDVBT,SW\{0E7E99DE-8A1C-11DB-BDA1-00123F758252}
+%SWTPBDAT.DeviceDesc%=SWTPBDAT,ms_swtpbdat
+
+[Microsoft.NTamd64]
+%SWTPBDAT.DeviceDesc%=SWTPBDAT,ms_swtpbdat
+
+[SWTPBDAT.NTx86]
+Include = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTPBDAT.inf
+CopyFiles=SWTPBDAT.CopyFiles
+
+[SWTPBDAT.NTamd64]
+Include = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTPBDAT.inf
+CopyFiles=SWTPBDAT.CopyFiles
+
+;---------------------------------------------------------------
+;                I n t e r f a c e s
+;---------------------------------------------------------------
+
+[SWTPBDAT.NTx86.Interfaces]
+AddInterface=%KSCATEGORY_SWTPBDAT%,%KSSTRING_SWTPBDATFilter%,TunerInterface.NT,
+
+[SWTPBDAT.NTamd64.Interfaces]
+AddInterface=%KSCATEGORY_SWTPBDAT%,%KSSTRING_SWTPBDATFilter%,TunerInterface.NT,
+
+[TunerInterface.NT]
+AddReg=SWTPBDAT.Reader.AddReg
+
+;---------------------------------------------------------------
+;                A d d R e g
+;---------------------------------------------------------------
+
+[SWTPBDAT.Reader.AddReg]
+;HKR,,DevLoader,,*NTKERN
+;HKR,,NTMPDriver,,SWTPBDAT.sys
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%SWTPBDAT.FriendlyName%
+
+
+[SWTPBDAT.CopyFiles]
+SWTPBDAT.sys
+
+[SWTPBDAT.NTx86.Services]
+AddService=SWTPBDAT, 0x00000002, SWTPBDAT.ServiceInstall
+
+[SWTPBDAT.NTamd64.Services]
+AddService=SWTPBDAT, 0x00000002, SWTPBDAT.ServiceInstall
+
+[SWTPBDAT.ServiceInstall]
+DisplayName=%SWTPBDAT.DeviceDesc%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%10%\system32\drivers\SWTPBDAT.sys
+LoadOrderGroup=Extended Base
+
+[Strings]
+; non-localizeable
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSSTRING_SWTPBDATFilter="{0E7E99DE-8A1C-11DB-BDA1-00123F758252}"
+KSCATEGORY_SWTPBDAT="{71985F48-1CA1-11d3-9CC8-00C04F7971E0}"
+
+
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+
+;localizeable
+Msft="Microsoft"
+SWTPBDAT.DeviceDesc="BDA PBDA-T Sample Tuner Device"
+SWTPBDAT.FilterDesc="BDA PBDA-T Sample Tuner Filter"
+BDA_DISK = "S/W BDA PBDA-T Sample Tuner Drivers disk"
+SWTPBDAT.FriendlyName="BDA PBDA-T Sample Tuner"
+
+

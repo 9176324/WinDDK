@@ -1,0 +1,34 @@
+TARGETNAME=xdsdbg
+TARGETTYPE=LIBRARY
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.h
+
+USE_ATL=1
+USE_STL=1
+
+ATL_VER=70
+STL_VER=70
+
+# We use STL 7.0, which is not available pre-Vista. We therefore set USE_LIBCMT=1
+# If STL 7.0 is not necessary, USE_MSVCRT=1 is recommended
+USE_LIBCMT=1
+
+USE_NATIVE_EH=1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+#
+# To build version with debug output, add -DDEBUG to C_DEFINES line below
+#
+C_DEFINES=$(C_DEFINES) -DUSERMODE_DRIVER -D_UNICODE -DUNICODE
+
+
+INCLUDES=$(INCLUDES);     \
+    .\;                   \
+    .\..\inc;             \
+    $(DDK_INC_PATH);      \
+
+SOURCES=debug.cpp
+
+

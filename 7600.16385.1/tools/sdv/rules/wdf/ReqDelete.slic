@@ -1,0 +1,41 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+	Summary: This rule verifies that driver created requests are not passed to
+	WdfRequestCompleteXxx. Instead, the request must be deleted upon completion.
+	
+	Description: If the driver creates a request through a call to 
+	WdfRequestCreate, the request must be deleted using WdfObjectDelete once
+	the driver is finished with the request. The driver may not call any WdfRequestCompleteXxx
+	DDIs on this request. These DDIs are reserved for framework supplied requests.
+	
+    
+	Rule diagnostics:
+	The rule finds a defect if a request created using WdfRequestCreate is passed to
+	WdfRequestComplete, WdfRequestCompleteWithInformation or WdfRequestCompleteWithPriorityBoost
+	before being deleted using WdfObjectDelete.
+*/
+
+#include "ntddk_slic.h"
+
+state{}
+
+
+watch sdv_WdfRequestCreate.exit.(*$3);
+
+
+[sdv_WdfRequestComplete,
+sdv_WdfRequestCompleteWithInformation,
+sdv_WdfRequestCompleteWithPriorityBoost].entry[guard $1]
+{
+    abort "Cannot call $fname with a request created by the driver. Please call WdfObjectDelete instead.";
+}
+		 
+sdv_WdfObjectDelete.entry[guard $1]
+{
+    halt;
+}
+       
+
+

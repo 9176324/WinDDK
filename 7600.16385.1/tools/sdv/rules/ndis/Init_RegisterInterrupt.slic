@@ -1,0 +1,76 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+    
+    Summary:
+    If NdisMRegisterInterruptEx is called at least once during MPInitilize, then NdisMDeregisterInterruptEx 
+    should be called at least once in MPHaltEx.
+    
+    Description:
+    Register of interrupts, which usually happen during initialization, should be undone (deregister) if 
+    something goes wrong in the initialization process or during the halting of the miniport.
+    
+    Related Rule:
+    
+*/
+
+#include "ntddk_slic.h"
+
+state{
+   int calls = 0;
+   enum {in_init, in_halt} t = in_init;
+   enum {True, False} is_reg_successful = True;
+} with guard (sdv_main, g_AdapterContext)
+
+
+sdv_NdisMRegisterInterruptEx.exit
+{
+    if ((t == in_init) && (NDIS_SUCCESS($return))) {
+        calls = calls + 1;
+        is_reg_successful = True;
+    } else if((t == in_init) && (!NDIS_SUCCESS($return))) {
+    	  is_reg_successful = False;
+    }
+}
+
+sdv_NdisMDeregisterInterruptEx.exit
+{
+		if(is_reg_successful == True){
+    			calls = calls - 1;
+    }
+}
+
+
+sdv_MINIPORT_INITIALIZE.exit
+{
+    if (NDIS_FAILURE($return)) 
+    {
+        if (calls > 0) 
+        {
+            abort "The $fname routine is failing wihout Deregistering all the interrupts.";
+        }
+        else if (calls <0)
+        {
+          abort "The $fname routine is Deregistering interrupts that have not been Registered.";
+        }
+    }
+    else
+    {
+      t = in_halt;
+    }
+}
+
+
+sdv_MINIPORT_HALT.exit [guard $1]
+{
+    if (t == in_halt)
+    {
+        if (calls > 0) 
+        {
+            abort "The $fname routine is exting wihout Deregistering all the interrupts.";
+        } 
+        else if (calls <0)
+        {
+            abort "The $fname routine is Deregistering interrupts that have not been Registered.";
+        }
+    }  
+}

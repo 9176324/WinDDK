@@ -1,0 +1,35 @@
+TARGETNAME= SensorAdapter
+TARGETTYPE= DYNLINK
+
+MSC_WARNING_LEVEL=/W4 /WX
+#
+# For easier debugging, un-comment the following 
+# command and build a Checked copy of the DLL with
+# *all* optimizations disabled.
+#
+#MSC_OPTIMIZATION= /Od /Oi
+
+DLLENTRY= _DllMainCRTStartup
+DLLDEF= SensorAdapter.def
+
+USE_MSVCRT= 1
+
+PRECOMPILED_CXX= 1
+PRECOMPILED_INCLUDE= precomp.h
+
+#
+# To build version with debug output, 
+# add -DDEBUG to C_DEFINES line below
+#
+C_DEFINES=$(C_DEFINES) -D_UNICODE -DUNICODE
+
+TARGETLIBS= \
+    $(SDK_LIB_PATH)\advapi32.lib   \
+    $(SDK_LIB_PATH)\kernel32.lib   \
+    $(SDK_LIB_PATH)\user32.lib     \
+
+SOURCES= \
+    SensorAdapter.cpp  \
+    SensorAdapter.rc   \
+
+

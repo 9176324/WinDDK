@@ -1,0 +1,22 @@
+TARGETNAME=WmiToast
+TARGETTYPE=PROGRAM
+
+_NT_TARGET_VERSION= $(_NT_TARGET_VERSION_WINXP)
+
+UMTYPE=console
+UMENTRY=wmain
+
+SOURCES=                  \
+        WmiToast.cpp      \
+      WmiExecute.cpp      \
+       WmiGetSet.cpp      \
+
+TARGETLIBS=$(SDK_LIB_PATH)\ole32.lib     \
+           $(SDK_LIB_PATH)\oleaut32.lib  \
+           $(SDK_LIB_PATH)\uuid.lib      \
+           $(SDK_LIB_PATH)\wbemuuid.lib  \
+
+C_DEFINES=$(C_DEFINES) /D_UNICODE /DUNICODE
+
+USE_MSVCRT=1
+USE_VCCOM=1

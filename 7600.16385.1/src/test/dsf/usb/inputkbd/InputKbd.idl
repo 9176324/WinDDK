@@ -1,0 +1,613 @@
+/*++ BUILD Version: 0000    
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Module Name:
+
+    InputKbd.idl
+
+Abstract:
+    IDL source for InputKbd. Defines the interfaces
+    ISoftKeyboard, ISoftKeyboardEvents, ISoftKbdTranslator,
+    ISoftKbdDevice, ISoftKbdDeviceEvents
+ 
+Revision History:
+
+--*/
+// This file will be processed by the MIDL tool to
+// produce the type library (InputKbd.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+    uuid(3441EC5D-6A58-4358-9E1B-323587429066),
+    version(1.0),
+    helpstring("InputKbd 1.0 Type Library")
+]
+library INPUTKBD
+{
+    importlib("stdole2.tlb");
+    //=---------------------------------------------------------------------=
+    //                     Forward References
+    //=---------------------------------------------------------------------=
+    coclass   SoftKeyboard;
+    coclass   SoftKbdTranslator;
+   
+    interface ISoftKeyboard;
+    interface ISoftKeyboardEvents;
+    interface ISoftKbdTranslator;
+    interface ISoftInputKbdDevice;
+    interface ISoftInputKbdDeviceEvents;
+
+    //=--------------------------------------------------------------------=
+    //                  Enumerations
+    //=--------------------------------------------------------------------=
+    typedef
+    [
+        uuid(3758FD41-3BF7-49A0-A9FE-32DF6AD7796F),
+        helpstring("Key board indicator constansts"),
+    ]
+    enum INDICATOR_KEY
+    {
+        IND_NUM     = 0x01,
+        IND_CAPS    = 0x02,
+        IND_SCROLL  = 0x04,
+        IND_COMPOSE = 0x08,
+        IND_KANA    = 0x10,
+    }INDICATOR_KEY;
+
+    typedef
+    [
+        uuid(02B81820-14F4-47F9-A10D-DCA9B596BFFC),
+        helpstring("Keyboard Key Location"),
+    ]   
+    enum KBD_KEYS
+    {
+        KEY_NONE         = 0,
+
+        // 1st row of main pane
+        KEY_BACK_QUOTE   = 1,
+        KEY_1            = 2,
+        KEY_2            = 3,
+        KEY_3            = 4,
+        KEY_4            = 5,
+        KEY_5            = 6,
+        KEY_6            = 7,
+        KEY_7            = 8,
+        KEY_8            = 9,
+        KEY_9            = 10,
+        KEY_0            = 11,
+        KEY_MINUS        = 12,
+        KEY_EQUAL        = 13,
+        KEY_BCKSP        = 15,
+        
+        // 2nd row of main pane
+        KEY_TAB          = 16,
+        KEY_Q            = 17,
+        KEY_W            = 18,
+        KEY_E            = 19,
+        KEY_R            = 20,
+        KEY_T            = 21,
+        KEY_Y            = 22,
+        KEY_U            = 23,
+        KEY_I            = 24,
+        KEY_O            = 25,
+        KEY_P            = 26,
+        KEY_L_SQUARE     = 27,
+        KEY_R_SQUARE     = 28,
+        KEY_BACK_SLASH   = 29,
+
+        // 3rd row of main pane
+        KEY_CAPS         = 30,
+        KEY_A            = 31,
+        KEY_S            = 32,
+        KEY_D            = 33,
+        KEY_F            = 34,
+        KEY_G            = 35,
+        KEY_H            = 36,
+        KEY_J            = 37,
+        KEY_K            = 38,
+        KEY_L            = 39,
+        KEY_SEMICOLON    = 40,
+        KEY_QUOTE        = 41,
+        KEY_ENTER        = 43,
+
+        // 4th row of main pane
+        KEY_L_SHIFT      = 44,
+        KEY_Z            = 46,
+        KEY_X            = 47,
+        KEY_C            = 48,
+        KEY_V            = 49,
+        KEY_B            = 50,
+        KEY_N            = 51,
+        KEY_M            = 52,
+        KEY_COMMA        = 53,
+        KEY_DOT          = 54,
+        KEY_SLASH        = 55,
+        KEY_R_SHIFT      = 57,
+
+        // 5th row of main pane
+        KEY_L_CTRL       = 58,
+        KEY_L_WIN        = 59,
+        KEY_L_ALT        = 60,
+        KEY_SPACE        = 61,
+        KEY_R_ALT        = 62,
+        KEY_R_WIN        = 63,
+        KEY_R_CTRL       = 64,
+        KEY_APPS         = 65,
+
+        // Navigation pane
+        KEY_INSERT       = 75,
+        KEY_DELETE       = 76,
+        KEY_LEFT         = 79,
+        KEY_HOME         = 80,
+        KEY_END          = 81,
+        KEY_UP           = 83,
+        KEY_DOWN         = 84,
+        KEY_PGUP         = 85,
+        KEY_PGDOWN       = 86,
+        KEY_RIGHT        = 89,
+
+        // Numeric pane
+        KEY_NUM          = 90,
+        KEY_NUM_7        = 91,
+        KEY_NUM_4        = 92,
+        KEY_NUM_1        = 93,
+        KEY_NUM_SLASH    = 95,
+        KEY_NUM_8        = 96,
+        KEY_NUM_5        = 97,
+        KEY_NUM_2        = 98,
+        KEY_NUM_INS      = 99,
+        KEY_NUM_ASTERISK = 100,
+        KEY_NUM_9        = 101,
+        KEY_NUM_6        = 102,
+        KEY_NUM_3        = 103,
+        KEY_NUM_DEL      = 104,
+        KEY_NUM_MINUS    = 105,
+        KEY_NUM_PLUS     = 106,
+        KEY_NUM_ENTER    = 108,
+
+        // Function pane
+        KEY_ESC          = 110,
+        KEY_F1           = 112,
+        KEY_F2           = 113,
+        KEY_F3           = 114,
+        KEY_F4           = 115,
+        KEY_F5           = 116,
+        KEY_F6           = 117,
+        KEY_F7           = 118,
+        KEY_F8           = 119,
+        KEY_F9           = 120,
+        KEY_F10          = 121,
+        KEY_F11          = 122,
+        KEY_F12          = 123,
+        KEY_PRTSCR       = 124,
+        KEY_SCROLL       = 125,
+        KEY_PAUSE        = 126,
+     } KBD_KEYS;
+    
+    typedef
+    [
+        uuid(3a3f140c-70a5-40c9-8d49-72ce1d407706),
+        helpstring("Keyboard Flags"),
+    ]   
+    enum KBD_FLAGS
+    {
+        KEY_MAKE   = 1,
+        KEY_BREAK  = 2,
+        KEY_E0     = 4,
+        KEY_E1     = 8,
+    } KBD_FLAGS;
+
+    // Typematic constants
+    typedef
+    [
+        uuid(17ff9f12-a99c-4f8c-9639-e05af05bf16b),
+        helpstring("Keyboard Typematic Settings"),
+    ]   
+    enum KEYBOARD_TYPEMATIC
+    {
+        KEYBOARD_TYPEMATIC_RATE_MINIMUM     = 2,
+        KEYBOARD_TYPEMATIC_RATE_MAXIMUM     = 30,
+        KEYBOARD_TYPEMATIC_RATE_DEFAULT     = 30,
+        KEYBOARD_TYPEMATIC_DELAY_MINIMUM    = 250,
+        KEYBOARD_TYPEMATIC_DELAY_MAXIMUM    = 1000,
+        KEYBOARD_TYPEMATIC_DELAY_DEFAULT    = 250,
+        KEYBOARD_TYPEMATIC_DELAY_INFINITE   = 0x7fffffff,
+    } KEYBOARD_TYPEMATIC;
+
+
+    // Keyboard Scan Code Set constants
+    typedef
+    [
+        uuid(b4953232-674c-44ab-a538-3507b109bfd9),
+        helpstring("Keyboard Scan Code Set Settings"),
+    ]   
+    enum KEYBOARD_SCANCODESET
+    {
+        KEYBOARD_SCAN_CODE_SET1 = 1,
+        KEYBOARD_SCAN_CODE_SET2 = 2,
+        KEYBOARD_HID_USAGE      = 4,
+    } KEYBOARD_SCANCODESET;
+
+    //=--------------------------------------------------------------------=
+    //                  Structures
+    //=--------------------------------------------------------------------=
+
+    typedef
+    [
+        uuid(5B2349BC-4723-48AB-821B-F4C200EC279F),
+        helpstring("Translator key code."),
+    ]  
+    struct KBD_KEYCODE
+    {
+        KBD_KEYS       KeyCode;
+        unsigned char  ucFlag;
+    }KBD_KEYCODE;
+
+    typedef
+    [
+        uuid(4F574495-58BF-4DDF-AC2C-C9165469C5F8),
+        helpstring("Keyboard identifier."),
+    ]  
+    struct KEYBOARD_ID
+    {
+        unsigned char  ucType;
+        unsigned char  ucSubType;
+    }KEYBOARD_ID;
+
+
+    typedef
+    [
+        uuid(4213DD68-BB75-4BC9-A93C-25AB06559436),
+        helpstring("Keyboard indicator list."),
+    ]  
+    struct INDICATOR_LIST
+    {
+        unsigned short  usMakeCode;
+        unsigned short  usIndicatorFlags;
+    }INDICATOR_LIST;
+
+    typedef
+    [
+        uuid(50CDCB64-1C84-46E3-A5C0-DE42A1A38DCC),
+        helpstring("Keyboard indicator transation."),
+    ]  
+    struct KEYBOARD_INDICATOR_TRANSLATION
+    {
+        unsigned short  usNumberOfIndicatorKeys;
+        INDICATOR_LIST  IndicatorList[1];
+    }KEYBOARD_INDICATOR_TRANSLATION;
+
+    typedef
+    [
+        uuid(DF4BB604-0DBD-486D-8932-442E88364E7D),
+        helpstring("Keyboard typematic parameters."),
+    ]  
+    struct KEYBOARD_TYPEMATIC_PARAMETERS
+    {
+        unsigned short  usUnitId;
+        unsigned long   ulRate;
+        unsigned long   ulDelay;
+    }KEYBOARD_TYPEMATIC_PARAMETERS;
+
+    typedef
+    [
+        uuid(0D8BF528-11E1-485A-BCBC-F7033816B4D9),
+        helpstring("Keyboard indicator parameters."),
+    ]  
+    struct KEYBOARD_INDICATOR_PARAMETERS
+    {
+        unsigned short  usUnitId;
+        unsigned short  usLedFlags;
+    }KEYBOARD_INDICATOR_PARAMETERS;
+    
+    typedef
+    [
+        uuid(A5DD3C76-CA39-448F-973B-90700147EAEA),
+        helpstring("Keyboard device attributes."),
+    ]  
+    struct KEYBOARD_ATTRIBUTES
+    {
+        KEYBOARD_ID  KeyboardIdentifier;
+        unsigned short usKeyboardMode;
+        unsigned short usNumberOfFuctionKeys;
+        unsigned short usNumberOfIndicators;
+        unsigned short usNumberOfKeysTotal;
+        unsigned long  ulInoutDataQueueLength;
+        KEYBOARD_TYPEMATIC_PARAMETERS KeyRepeatMinimum;
+        KEYBOARD_TYPEMATIC_PARAMETERS KeyRepeatMaximum;
+    }KEYBOARD_ATTRIBUTES;
+
+    typedef
+    [
+        uuid(A3179795-DF27-41D3-A820-A2A1D3D5FEBE),
+        helpstring("Keyboard input data."),
+    ]  
+    struct KEYBOARD_INPUT_DATA
+    {
+        unsigned short  usUnitId;
+        unsigned long   ulMakeCode;
+        unsigned short  usFlags;
+        unsigned short  usReserved;
+        unsigned long   ulExtraInformation;
+    }KEYBOARD_INPUT_DATA;
+
+    //=---------------------------------------------------------------------=
+    //                     Interfaces and Coclasses
+    //=---------------------------------------------------------------------=
+
+
+    [
+        object,
+        uuid(5F228A9D-7678-4283-BE25-DED15E2867AE),
+        dual,
+        nonextensible,
+        helpstring("ISoftKeyboard Interface"),
+        pointer_default(unique)
+    ]
+    interface ISoftKeyboard : IDispatch
+    {
+        [propget, id(1), helpstring("property RepeatDelay")] HRESULT RepeatDelay([out, retval] ULONG* pVal);
+        [propget, id(2), helpstring("property RepeatRate")] HRESULT RepeatRate([out, retval] ULONG* pVal);
+        //Indicator status
+        [
+            id(3),
+            propget,
+            helpstring("Soft keyboard idicator status"),
+        ]
+        HRESULT _stdcall IndicatorStatus([in] INDICATOR_KEY LedKey,
+                                         [out,retval] VARIANT_BOOL *pStatus);
+
+
+        //Buffer size
+        [
+            id(4),
+            propget,
+            helpstring("Soft keyboard buffer size"),
+        ]
+        HRESULT _stdcall BufferSize([out,retval] SHORT *pNumberOfEvents);
+
+        // Translator
+        [
+            id(5),
+            propget,
+            helpstring("Soft keyboard translator"),
+        ]
+        HRESULT _stdcall Translator([out,retval] SoftKbdTranslator **ppTranslator);
+
+        [
+            id(5),
+            propput,
+            helpstring("Soft keyboard translator"),
+        ]
+        HRESULT _stdcall Translator([in] SoftKbdTranslator *pTranslator);
+        
+        [
+            id(5),
+            propputref,
+            helpstring("Soft keyboard translator"),
+        ]
+        HRESULT _stdcall Translator([in] SoftKbdTranslator *pTranslator);
+        
+        //methods
+        //HitKeyOnce
+        [
+            id(8),
+            helpstring("Soft keyboard Hit key once"),
+        ]
+        HRESULT _stdcall HitKeyOnce([in] KBD_KEYS KeyCode);
+
+        //PressKey
+        [
+            id(9),
+            helpstring("Soft keyboard Press Key"),
+        ]
+        HRESULT _stdcall PressKey([in] KBD_KEYS KeyCode);
+
+        //ReleaseKey
+        [
+            id(10),
+            helpstring("Soft keyboard Release key"),
+        ]
+        HRESULT _stdcall ReleaseKey([in] KBD_KEYS KeyCode);
+
+        //PressAndReleaseKeys
+        [
+            id(11),
+            helpstring("Soft keyboard press and release"),
+        ]
+        HRESULT _stdcall PressAndReleaseKeys([in] BSTR KeyStrokes);
+        
+    };
+
+    [
+        uuid(0A3D4EB4-2A36-412D-9CE6-4349D52CE1AB),
+        helpstring("ISoftKeyboardEvents Interface")
+    ]
+    interface ISoftKeyboardEvents : IUnknown
+    {
+        //IndicatorOn
+        [
+            id(1),
+            helpstring("Soft keyboard Events Indicator On"),
+        ]
+        HRESULT _stdcall IndicatorOn([in] INDICATOR_KEY LedKey);
+
+        //Indicator Off
+        [
+            id(2),
+            helpstring("Soft keyboard Events Indicator Off"),
+        ]
+        HRESULT _stdcall IndicatorOff([in] INDICATOR_KEY LedKey);
+
+        //BufferOverflow
+        [
+            id(3),
+            helpstring("Soft keyboard Events Buffer Overflow"),
+        ]
+        HRESULT _stdcall BufferOverflow(void);
+    };
+    [
+        uuid(90049CFF-04C3-4FC0-B41E-325FCC7809AA),
+        helpstring("SoftKeyboard Class")
+    ]
+    coclass SoftKeyboard
+    {
+        [default]        interface ISoftKeyboard;
+        [default,source] interface ISoftKeyboardEvents;
+                         interface ISoftInputKbdDevice;
+        [source]         interface ISoftInputKbdDeviceEvents;
+    };
+
+
+    [
+        object,
+        uuid(93971D66-A828-4CCA-9DEC-01B8EE4206A5),
+        dual,
+        nonextensible,
+        helpstring("ISoftKbdDevice Interface"),
+        pointer_default(unique)
+    ]
+    interface ISoftInputKbdDevice : IUnknown
+    {
+       //properties
+        //Attributes
+        [
+            id(11),
+            propget,
+            helpstring("Keyboard attributes")
+        ]
+        HRESULT _stdcall Attributes([out,retval] KEYBOARD_ATTRIBUTES **ppAttributes);
+
+        [
+            id(11),
+            propput,
+            helpstring("Soft keyboard attributes"),
+        ]
+        HRESULT _stdcall Attributes([in] KEYBOARD_ATTRIBUTES *pAttributes);
+
+        //IndicatorTranslation
+        [
+            id(12),
+            propget,
+            helpstring("Soft keyboard indicator translation"),
+        ]
+        HRESULT _stdcall IndicatorTranslation(
+                   [out,retval] KEYBOARD_INDICATOR_TRANSLATION **ppIndicatorTrans);
+
+
+        [
+            id(12),
+            propput,
+            helpstring("Soft keyboard indicator translation"),
+        ]
+        HRESULT _stdcall IndicatorTranslation(
+                   [in] KEYBOARD_INDICATOR_TRANSLATION *pIndicatorTrans);
+
+        //Typematic
+        [
+            id(13),
+            propget,
+            helpstring("Soft keyboard typematic"),
+        ]
+        HRESULT _stdcall Typematic(
+                        [out,retval] KEYBOARD_TYPEMATIC_PARAMETERS **ppTypematic);
+
+        [
+            id(13),
+            propput,
+            helpstring("Soft keyboard typematic"),
+        ]
+        HRESULT _stdcall Typematic(
+                        [in] KEYBOARD_TYPEMATIC_PARAMETERS *pTypematic);
+
+
+        //Indicators
+        [
+            id(14),
+            propget,
+            helpstring("Soft keyboard indicators"),
+        ]
+        HRESULT _stdcall Indicators(
+                        [out,retval] KEYBOARD_INDICATOR_PARAMETERS **ppIndicator);
+                        
+        [
+            id(14),
+            propput,
+            helpstring("Soft keyboard indicators"),
+        ]
+        HRESULT _stdcall Indicators(
+                        [in] KEYBOARD_INDICATOR_PARAMETERS *pIndicator);
+
+                        
+        //methods
+        //Read
+        [
+            helpstring("Soft keyboard Read"),
+        ]
+        HRESULT _stdcall Read(
+                        [out] USHORT *pUnits,
+                        [out,retval] KEYBOARD_INPUT_DATA **ppKbdData);
+    };
+
+    [
+        uuid(61C0F31A-2A8B-4DD4-A087-9695F64C089D),
+        helpstring("_ISoftKbdDeviceEvents Interface")
+    ]
+    interface ISoftInputKbdDeviceEvents : IUnknown
+    {
+        //KeyTouched
+        [
+             id(15),
+             helpstring("Soft keyboard Events key touched"),
+        ]
+        HRESULT _stdcall KeyTouched(void);
+
+    };
+
+
+    [
+        object,
+        uuid(B9CAF9E3-E9E5-41D4-842F-3D4A764FDABE),
+        dual,
+        nonextensible,
+        helpstring("ISoftKbdTranslator Interface"),
+        pointer_default(unique)
+    ]
+    interface ISoftKbdTranslator : IDispatch
+    {
+        //properties
+        //Language
+        [
+            id(21),
+            propget,
+            helpstring("Soft Keyboard Translator language"),
+        ]
+        HRESULT _stdcall Language([out,retval]ULONG *pLCID);
+
+        //methods
+        //TranslateString2Keycodes
+        [
+            id(22),
+            helpstring("Soft Translator Translate String to Key codes"),
+        ]
+        HRESULT _stdcall TranslateString2Keycodes(
+                                [in] UINT nSize,
+                                [in] WCHAR *szStrW,
+                                [out] UINT *pnUnits,
+								[out,retval]KBD_KEYCODE **ppKeyCodes);
+	};
+	
+	[
+		uuid(95CA8166-E427-4DC4-B41A-408C6D6628BE),
+		helpstring("SoftKbdTranslator Class")
+	]
+	coclass SoftKbdTranslator
+	{
+		[default] interface ISoftKbdTranslator;
+	};
+
+};
+

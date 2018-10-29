@@ -1,0 +1,59 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	For a control device object, the relevant framework device object initialization methods
+	and WdfControlDeviceInitSetShutdownNotification method must be called BEFORE the drivers calls 
+	WdfDeviceCreate.
+    
+	Description: 
+	For a control device object, the relevant framework device object initialization methods
+	and WdfControlDeviceInitSetShutdownNotification method which store information in the 
+	WDFDEVICE_INIT structure, cannot be called after the driver calls the WdfDeviceCreate method for the device.
+
+	Rule diagnostics:
+	"WdfXXX could only be called before WdfDeviceCreate for the control device."
+
+	Related rules: 
+	DeviceInitAllocate, ControlDeviceInitAPI, DeviceInitAPI, PdoDeviceInitAPI.
+    
+*/
+
+#include "ntddk_slic.h"
+
+state{
+     int create_called = 0;
+}
+
+
+watch sdv_WdfControlDeviceInitAllocate.exit.$return;
+
+sdv_WdfDeviceCreate.exit
+{
+         if ((*$1 == hcontrol_deviceinit)&&(NT_SUCCESS($return))) { 
+              create_called = 1; 
+         }
+}
+[ sdv_WdfControlDeviceInitSetShutdownNotification
+, sdv_WdfDeviceInitSetFileObjectConfig
+, sdv_WdfDeviceInitSetExclusive                                                          
+, sdv_WdfDeviceInitSetIoType
+, sdv_WdfDeviceInitAssignName
+, sdv_WdfDeviceInitSetDeviceClass
+, sdv_WdfDeviceInitSetCharacteristics
+, sdv_WdfDeviceInitSetRequestAttributes
+, sdv_WdfDeviceInitAssignWdmIrpPreprocessCallback
+, sdv_WdfDeviceInitSetIoInCallerContextCallback
+].entry[guard $1]
+{
+   if (create_called == 1){
+      abort "$fname could only be called before WdfDeviceCreate for the control device.";
+      }
+}
+sdv_WdfControlDeviceInitAllocate.exit[guard $return]
+{
+     if (create_called == 1){
+      abort "$fname could only be called before WdfDeviceCreate for the PDO device.";
+      }
+}
+   

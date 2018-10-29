@@ -1,0 +1,3 @@
+TARGETNAME=kbdgr
+!INCLUDE ..\..\sources.inc
+

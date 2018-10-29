@@ -1,0 +1,27 @@
+HKCR
+{
+    SoftHIDReceiver.HIDDevice.1 = s 'HIDDevice Class'
+    {
+        CLSID = s '{8EE96FB6-E423-40f8-A321-4436D7D8CE49}'
+    }
+    SoftHIDReceiver.HIDDevice = s 'HIDDevice Class'
+    {
+        CLSID = s '{8EE96FB6-E423-40f8-A321-4436D7D8CE49}'
+        CurVer = s 'SoftHIDReceiver.HIDDevice.1'
+    }
+    NoRemove CLSID
+    {
+        ForceRemove {8EE96FB6-E423-40f8-A321-4436D7D8CE49} = s 'HIDDevice Class'
+        {
+            ProgID = s 'SoftHIDReceiver.HIDDevice.1'
+            VersionIndependentProgID = s 'SoftHIDReceiver.HIDDevice'
+            ForceRemove 'Programmable'
+            InprocServer32 = s '%MODULE%'
+            {
+                val ThreadingModel = s 'Apartment'
+            }
+            'TypeLib' = s '{08A7504F-0F34-405f-BBAD-B8DCD994A9AD}'
+        }
+    }
+}
+

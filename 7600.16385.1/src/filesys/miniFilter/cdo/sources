@@ -1,0 +1,13 @@
+TARGETNAME=cdo
+TARGETTYPE=DRIVER
+DRIVERTYPE=FS
+
+
+TARGETLIBS= $(TARGETLIBS) \
+            $(IFSKIT_LIB_PATH)\fltMgr.lib
+
+SOURCES=CdoInit.c \
+        CdoOperations.c \
+        cdo.rc
+
+

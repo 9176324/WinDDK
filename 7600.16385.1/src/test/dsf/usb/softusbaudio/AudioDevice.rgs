@@ -1,0 +1,27 @@
+HKCR
+{
+	SoftUSBAudio.AudioDevice.1 = s 'AudioDevice Class'
+	{
+		CLSID = s '{532E9231-5814-4DCD-A708-938D8DC0E1E1}'
+	}
+	SoftUSBAudio.AudioDevice = s 'AudioDevice Class'
+	{
+		CLSID = s '{532E9231-5814-4DCD-A708-938D8DC0E1E1}'
+		CurVer = s 'SoftUSBAudio.AudioDevice.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {532E9231-5814-4DCD-A708-938D8DC0E1E1} = s 'AudioDevice Class'
+		{
+			ProgID = s 'SoftUSBAudio.AudioDevice.1'
+			VersionIndependentProgID = s 'SoftUSBAudio.AudioDevice'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{1EA32BAB-633B-4A9A-A553-041ED969F269}'
+		}
+	}
+}
+

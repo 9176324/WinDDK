@@ -1,0 +1,27 @@
+!include ..\sources.inc
+
+TARGETNAME=extsta
+
+TARGET_DESTINATION=$(OBJ_PATH)\..\lib\$(_OBJ_DIR)
+
+TARGETTYPE=LIBRARY
+
+PRECOMPILED_INCLUDE=precomp.h
+
+INCLUDES= $(INCLUDES)        \
+    ..\inc;                  \
+    $(DDK_INC_PATH)
+
+SOURCES=                     \
+    st_adhoc.c               \
+    st_aplst.c               \
+    st_assoc.c               \
+    st_auth.c                \
+    st_conn.c                \
+    st_main.c                \
+    st_misc.c                \
+    st_oids.c                \
+    st_recv.c                \
+    st_scan.c                \
+    st_send.c                \
+    st_utils.c

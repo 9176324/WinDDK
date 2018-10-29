@@ -1,0 +1,92 @@
+; monsamp.INF
+;
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+; This is a generic INF file for overriding EDID's of any monitors for Windows Vista.
+;
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Monitor
+ClassGuid={4D36E96E-E325-11CE-BFC1-08002BE10318}
+Provider="MS_EDID_OVERRIDE"
+DriverVer=04/18/2006, 1.0.0.0
+
+; Ensure to add directive below with the proper catalog file after WHQL
+; certification
+;CatalogFile=Sample.cat
+
+
+[DestinationDirs]
+DefaultDestDir=23
+
+[SourceDisksNames]
+1=%SourceDisksNames%
+
+; Enable the following section to copy a monitor profile
+[SourceDisksFiles]
+;profile1.icm=1
+
+[Manufacturer]
+%MS_EDID_OVERRIDE%=MS_EDID_OVERRIDE,NTx86,NTamd64
+
+; Modify the hardware ID (MON1234) to match that of the monitor being used
+[MS_EDID_OVERRIDE.NTx86]
+%MS_EDID_OVERRIDE-1%=MS_EDID_OVERRIDE-1.Install, MONITOR\MON1234
+
+; Modify the hardware ID (MON1234) to match that of the monitor being used
+[MS_EDID_OVERRIDE.NTamd64]
+%MS_EDID_OVERRIDE-1%=MS_EDID_OVERRIDE-1.Install.NTamd64, MONITOR\MON1234
+
+[MS_EDID_OVERRIDE-1.Install.NTx86]
+DelReg=DEL_CURRENT_REG
+AddReg=MS_EDID_OVERRIDE-1.AddReg, 1024, 1280, DPMS
+CopyFiles=MS_EDID_OVERRIDE-1.CopyFiles
+
+[MS_EDID_OVERRIDE-1.Install.NTamd64]
+DelReg=DEL_CURRENT_REG
+AddReg=MS_EDID_OVERRIDE-1.AddReg, 1024, 1280, DPMS
+CopyFiles=MS_EDID_OVERRIDE-1.CopyFiles
+
+[MS_EDID_OVERRIDE-1.Install.NTx86.HW]
+AddReg=MS_EDID_OVERRIDE-1_AddReg
+
+[MS_EDID_OVERRIDE-1.Install.NTamd64.HW]
+AddReg=MS_EDID_OVERRIDE-1_AddReg
+
+[MS_EDID_OVERRIDE-1_AddReg]
+HKR,EDID_OVERRIDE,"0",0x01,0x00,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x00,0x35,0xEE,0x34,0x12,0x01,0x00,0x00,0x00,0x0A,0x0E,0x01,0x03,0x68,0x22,0x1B,0x78,0xEA,0xAE,0xA5,0xA6,0x54,0x4C,0x99,0x26,0x14,0x50,0x54,0xA5,0x4B,0x00,0x71,0x4F,0x81,0x80,0xA9,0x40,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x30,0x2A,0x00,0x98,0x51,0x00,0x2A,0x40,0x30,0x70,0x13,0x00,0x52,0x0E,0x11,0x00,0x00,0x1E,0x00,0x00,0x00,0xFF,0x00,0x41,0x42,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x30,0x31,0x0A,0x00,0x00,0x00,0xFC,0x00,0x4D,0x53,0x20,0x31,0x32,0x33,0x34,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x00,0x00,0x00,0xFD,0x00,0x38,0x4C,0x1F,0x50,0x12,0x00,0x0A,0x20,0x20,0x20,0x20,0x20,0x20,0x00,0xDB
+
+[DEL_CURRENT_REG]
+HKR,MODES
+HKR,,MaxResolution
+HKR,,DPMS
+HKR,,ICMProfile
+
+; Pre-defined AddReg sections. These can be used for default settings on
+; a given standard resolution is used.
+
+[1024]
+HKR,,MaxResolution,,"1024,768"
+[1280]
+HKR,,MaxResolution,,"1280,1024"
+
+[DPMS]
+HKR,,DPMS,,1
+
+[MS_EDID_OVERRIDE-1.AddReg]
+HKR,"MODES\1024,768",Mode1,,"31.0-94.0,55.0-160.0,+,+"
+HKR,"MODES\1280,1024",Mode1,,"31.0-94.0,55.0-160.0,+,+"
+
+; Enable the following section to copy a monitor profile
+[MS_EDID_OVERRIDE-1.CopyFiles]
+;PROFILE1.ICM
+
+[Strings]
+MonitorClassName="Monitor"
+SourceDisksNames="MS_EDID_OVERRIDE Monitor EDID Override Installation Disk"
+
+MS_EDID_OVERRIDE="MS_EDID_OVERRIDE"
+MS_EDID_OVERRIDE-1="MS EDID Override"
+
+

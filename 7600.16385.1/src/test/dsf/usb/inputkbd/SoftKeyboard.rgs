@@ -1,0 +1,27 @@
+HKCR
+{
+	InputKbd.SoftKeyboard.1 = s 'SoftKeyboard Class'
+	{
+		CLSID = s '{90049CFF-04C3-4FC0-B41E-325FCC7809AA}'
+	}
+	InputKbd.SoftKeyboard = s 'SoftKeyboard Class'
+	{
+		CLSID = s '{90049CFF-04C3-4FC0-B41E-325FCC7809AA}'
+		CurVer = s 'InputKbd.SoftKeyboard.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {90049CFF-04C3-4FC0-B41E-325FCC7809AA} = s 'SoftKeyboard Class'
+		{
+			ProgID = s 'InputKbd.SoftKeyboard.1'
+			VersionIndependentProgID = s 'InputKbd.SoftKeyboard'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{3441EC5D-6A58-4358-9E1B-323587429066}'
+		}
+	}
+}
+

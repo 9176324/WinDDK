@@ -1,0 +1,3875 @@
+/*++BUILD Version 0000
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Module Name:
+
+    DSFBase.idl
+
+Abstract:
+    DSF type library source code
+
+--*/
+
+#include <dsfhelp.h>
+#include <dsfdispid.h>
+#include <dsfAttrID.h>
+
+
+import "ocidl.idl";
+import "objidl.idl";
+
+coclass DSFResourceList;
+coclass DSFFullResourceDescriptor;
+coclass DSFDevice;
+coclass DSFDeviceCaps;
+coclass DSFDevices;
+coclass DSFLog;
+coclass DSFVersion;
+coclass DSFPropertyBag;
+coclass DSFPartialResourceList;
+coclass DSFPartialResourceDescriptor;
+
+interface IDSFResourceList;
+interface IDSFFullResourceDescriptor;
+interface IDSFDevice;
+interface IDSFDeviceCaps;
+interface IDSFDeviceEvents;
+interface IDSF;
+interface IDSFDevices;
+interface IDSFLog;
+interface IDSFVersion;
+interface IDSFPropertyBag;
+interface IDSFBus;
+
+//--------------------------------------------------------------------
+//                       Enumerations
+//--------------------------------------------------------------------
+
+//=--------------------------------------------------------------------------=
+//                    Enumeration for System Power States
+//=--------------------------------------------------------------------------=
+
+typedef
+[
+    uuid(993417C7-E892-4F80-9295-1321623DD50D),
+    helpstring("System Power State Constants"),
+    helpcontext(HID_DSFSystemPowerState),
+    helpstringcontext(HID_DSFSystemPowerState)
+]
+enum DSFSystemPowerState
+{
+    [   
+        helpcontext(HID_DSFSystemPowerState_Unspecified), 
+        helpstringcontext(HID_DSFSystemPowerState_Unspecified), 
+        helpstring("Unspecified") 
+    ] 
+    DSFPowerSystemUnspecified = 0,
+
+    [   
+        helpcontext(HID_DSFSystemPowerState_Working), 
+        helpstringcontext(HID_DSFSystemPowerState_Working), 
+        helpstring("Working") 
+    ] 
+    DSFPowerSystemWorking = 1,
+
+    [   
+        helpcontext(HID_DSFSystemPowerState_Sleeping1), 
+        helpstringcontext(HID_DSFSystemPowerState_Sleeping1), 
+        helpstring("Sleeping1") 
+    ] 
+    DSFPowerSystemSleeping1 = 2,
+
+    [   
+        helpcontext(HID_DSFSystemPowerState_Sleeping2), 
+        helpstringcontext(HID_DSFSystemPowerState_Sleeping2), 
+        helpstring("Sleeping2") 
+    ] 
+    DSFPowerSystemSleeping2 = 3,
+
+    [   
+        helpcontext(HID_DSFSystemPowerState_Sleeping3), 
+        helpstringcontext(HID_DSFSystemPowerState_Sleeping3), 
+        helpstring("Sleeping3") 
+    ] 
+    DSFPowerSystemSleeping3 = 4,
+
+    [   
+        helpcontext(HID_DSFSystemPowerState_Hibernate), 
+        helpstringcontext(HID_DSFSystemPowerState_Hibernate), 
+        helpstring("Hibernate") 
+    ] 
+    DSFPowerSystemHibernate = 5,
+
+    [   
+        helpcontext(HID_DSFSystemPowerState_Shutdown), 
+        helpstringcontext(HID_DSFSystemPowerState_Shutdown), 
+        helpstring("Shutdown") 
+    ] 
+    DSFPowerSystemShutdown = 6
+
+} DSFSystemPowerState;
+
+
+
+
+//=--------------------------------------------------------------------------=
+//                    Enumeration for Device Power States
+//=--------------------------------------------------------------------------=
+
+typedef
+[
+    uuid(7B8AD659-B4EF-48C4-A189-9637BD56F086),
+    helpstring("Device Power State Constants"),
+    helpcontext(HID_DSFDevicePowerState),
+    helpstringcontext(HID_DSFDevicePowerState)
+]
+enum DSFDevicePowerState
+{
+    [   
+        helpcontext(HID_DSFDevicePowerState_Unspecified), 
+        helpstringcontext(HID_DSFDevicePowerState_Unspecified), 
+        helpstring("Unspecified") 
+    ] 
+    DSFPowerDeviceUnspecified = 0,
+
+    [   
+        helpcontext(HID_DSFDevicePowerState_D0), 
+        helpstringcontext(HID_DSFDevicePowerState_D0), 
+        helpstring("D0") 
+    ] 
+    DSFPowerDeviceD0 = 1,
+
+    [   
+        helpcontext(HID_DSFDevicePowerState_D1), 
+        helpstringcontext(HID_DSFDevicePowerState_D1), 
+        helpstring("D1") 
+    ] 
+    DSFPowerDeviceD1 = 2,
+
+    [   
+        helpcontext(HID_DSFDevicePowerState_D2), 
+        helpstringcontext(HID_DSFDevicePowerState_D2), 
+        helpstring("D2") 
+    ] 
+    DSFPowerDeviceD2 = 3,
+
+    [   
+        helpcontext(HID_DSFDevicePowerState_D3), 
+        helpstringcontext(HID_DSFDevicePowerState_D3), 
+        helpstring("D3") 
+    ] 
+    DSFPowerDeviceD3 = 4,
+
+} DSFDevicePowerState;
+
+
+
+
+
+
+
+//=--------------------------------------------------------------------------=
+//                    Enumeration for Bitwise Operations
+//=--------------------------------------------------------------------------=
+
+typedef
+[
+    uuid(C936205A-C69B-45E4-8D19-6BE3CAC15E11),
+    helpstring("DSFBitOp Constants"),
+    helpcontext(HID_DSFBitOp),
+    helpstringcontext(HID_DSFBitOp)
+]
+enum DSFBitOp
+{
+    [   
+        helpcontext(HID_DSFBitOff), 
+        helpstringcontext(HID_DSFBitOff), 
+        helpstring("Turn off the specified bit.") 
+    ] 
+    DSFBitOff = 0,
+
+    [   
+        helpcontext(HID_DSFBitOn), 
+        helpstringcontext(HID_DSFBitOn), 
+        helpstring("Turn on the specified bit.") 
+    ] 
+    DSFBitOn = 1,
+
+    [   
+        helpcontext(HID_DSFBitToggle), 
+        helpstringcontext(HID_DSFBitToggle), 
+        helpstring("Toggle the specified bit.") 
+    ] 
+    DSFBitToggle = 2
+
+} DSFBitOp;
+
+
+
+//=--------------------------------------------------------------------------=
+//           Enumeration for Simulator Driver Operation Modes
+//=--------------------------------------------------------------------------=
+
+typedef
+[
+    uuid(52CAB7A6-B8AC-474D-AB38-05A4AAF21FE7),
+    helpstring("DSFOpMode Constants"),
+    helpcontext(HID_DSFOpMode),
+    helpstringcontext(HID_DSFOpMode)
+]
+enum DSFOpMode
+{
+    [   
+        helpcontext(HID_DSFCapture), 
+        helpstringcontext(HID_DSFCapture), 
+        helpstring("Capture mode") 
+    ] 
+    DSFCapture = 0,
+
+    [   
+        helpcontext(HID_DSFSimulate), 
+        helpstringcontext(HID_DSFSimulate), 
+        helpstring("Simulation mode") 
+    ] 
+    DSFSimulate = 1,
+
+    [   
+        helpcontext(HID_DSFCaptureAndSimulate), 
+        helpstringcontext(HID_DSFCaptureAndSimulate), 
+        helpstring("Capture & simulation mode") 
+    ] 
+    DSFCaptureAndSimulate = 2
+
+} DSFOpMode;
+
+
+
+//=--------------------------------------------------------------------------=
+//       Enumeration for Hardware Resource Types
+//=--------------------------------------------------------------------------=
+
+typedef
+[
+    uuid(7D4BA3AD-960C-4A3B-A6CC-3677AD9E0EDE),
+    helpstring("DSFDriverType Constants"),
+    helpcontext(HID_DSFResourceType),
+    helpstringcontext(HID_DSFResourceType)
+]
+enum DSFResourceType
+{
+    [   
+        helpcontext(HID_DSFResourceType_Null), 
+        helpstringcontext(HID_DSFResourceType_Null), 
+        helpstring("No resource type specified") 
+    ] 
+    DSFResourceTypeNull = 0,
+
+    [   
+        helpcontext(HID_DSFResourceType_Port),
+        helpstringcontext(HID_DSFResourceType_Port),
+        helpstring("Port resource") 
+    ] 
+    DSFResourceTypePort = 1,
+
+    [   
+        helpcontext(HID_DSFResourceType_Interrupt),
+        helpstringcontext(HID_DSFResourceType_Interrupt),
+        helpstring("Interrupt resource") 
+    ] 
+    DSFResourceTypeInterrupt = 2,
+
+    [   
+        helpcontext(HID_DSFResourceType_Memory),
+        helpstringcontext(HID_DSFResourceType_Memory),
+        helpstring("Memory resource") 
+    ] 
+    DSFResourceTypeMemory = 3,
+
+    [   
+        helpcontext(HID_DSFResourceType_Dma),
+        helpstringcontext(HID_DSFResourceType_Dma),
+        helpstring("DMA resource") 
+    ] 
+    DSFResourceTypeDma = 4,
+
+    [   
+        helpcontext(HID_DSFResourceType_DeviceSpecific),
+        helpstringcontext(HID_DSFResourceType_DeviceSpecific),
+        helpstring("Device-specific resource") 
+    ] 
+    DSFResourceTypeDeviceSpecific = 5,
+
+    [   
+        helpcontext(HID_DSFResourceType_BusNumber),
+        helpstringcontext(HID_DSFResourceType_BusNumber),
+        helpstring("Bus number resource") 
+    ] 
+    DSFResourceTypeBusNumber = 6,
+
+    [   
+        helpcontext(HID_DSFResourceType_NonArbitrated),
+        helpstringcontext(HID_DSFResourceType_NonArbitrated),
+        helpstring("Resource not arbitrated if this bit is set") 
+    ] 
+    DSFResourceTypeNonArbitrated = 128,
+
+    [   
+        helpcontext(HID_DSFResourceType_ConfigData),
+        helpstringcontext(HID_DSFResourceType_ConfigData),
+        helpstring("Config data. Reserved resource type.") 
+    ] 
+    DSFResourceTypeConfigData = 128,
+
+    [   
+        helpcontext(HID_DSFResourceType_DevicePrivate),
+        helpstringcontext(HID_DSFResourceType_DevicePrivate),
+        helpstring("Device private resource") 
+    ] 
+    DSFResourceTypeDevicePrivate = 129,
+
+    [   
+        helpcontext(HID_DSFResourceType_PcCardConfig),
+        helpstringcontext(HID_DSFResourceType_PcCardConfig),
+        helpstring("PC card config resource") 
+    ] 
+    DSFResourceTypePcCardConfig = 130,
+
+    [   
+        helpcontext(HID_DSFResourceType_MfCardConfig),
+        helpstringcontext(HID_DSFResourceType_MfCardConfig),
+        helpstring("MF card config resource") 
+    ] 
+    DSFResourceTypeMfCardConfig = 131,
+
+    [
+        helpcontext(HID_DSFResourceType_ConfigurationSpace),
+        helpstringcontext(HID_DSFResourceType_ConfigurationSpace),
+        helpstring("General configuration space") 
+    ] 
+    DSFResourceTypeConfigurationSpace = 132,
+
+    [
+        helpcontext(HID_DSFResourceType_Acpi),
+        helpstringcontext(HID_DSFResourceType_Acpi),
+        helpstring("Acpi resource") 
+    ] 
+    DSFResourceTypeAcpi = 133,
+
+    [
+        helpcontext(HID_DSFResourceType_Pci),
+        helpstringcontext(HID_DSFResourceType_Pci),
+        helpstring("PCI configuration space") 
+    ] 
+    DSFResourceTypePci = 134
+
+} DSFResourceType;
+
+
+
+//=--------------------------------------------------------------------------=
+//       Enumeration for Hardware Resource Share Disposition
+//=--------------------------------------------------------------------------=
+
+typedef
+[
+    uuid(D503F600-4EDD-4B7C-A676-0B50BDAED69E),
+    helpstring("DSFShareDisposition Constants"),
+    helpcontext(HID_DSFShareDisposition),
+    helpstringcontext(HID_DSFShareDisposition)
+]
+enum DSFShareDisposition
+{
+    [   
+        helpcontext(HID_DSFShareDisposition_Undetermined), 
+        helpstringcontext(HID_DSFShareDisposition_Undetermined), 
+        helpstring("Share disposition not determined.") 
+    ] 
+    DSFShareDispositionUndetermined = 0,
+
+    [   
+        helpcontext(HID_DSFShareDisposition_DeviceExclusive),
+        helpstringcontext(HID_DSFShareDisposition_DeviceExclusive),
+        helpstring("The device requires exclusive use of the resource.") 
+    ] 
+    DSFShareDispositionDeviceExclusive = 1,
+
+    [   
+        helpcontext(HID_DSFShareDisposition_DriverExclusive),
+        helpstringcontext(HID_DSFShareDisposition_DriverExclusive),
+        helpstring("The driver requires exclusive use of the resource.") 
+    ] 
+    DSFShareDispositionDriverExclusive = 2,
+
+    [   
+        helpcontext(HID_DSFShareDisposition_Shared),
+        helpstringcontext(HID_DSFShareDisposition_Shared),
+        helpstring("The resource can be shared without restriction.") 
+    ] 
+    DSFShareDispositionShared = 3
+
+} DSFShareDisposition;
+
+
+//=--------------------------------------------------------------------------=
+//       Enumeration for Hardware Interface Type
+//=--------------------------------------------------------------------------=
+
+typedef
+[
+    uuid(6FA31433-AA14-4EF7-8FBA-A91F326BA32B),
+    helpstring("DSFInterfaceType Constants"),
+    helpcontext(HID_DSFInterfaceType),
+    helpstringcontext(HID_DSFInterfaceType)
+]
+enum DSFInterfaceType
+{
+    [   
+        helpcontext(HID_DSFInterfaceType_Undefined), 
+        helpstringcontext(HID_DSFInterfaceType_Undefined), 
+        helpstring("Interface type is undefined.") 
+    ] 
+    DSFInterfaceTypeUndefined = -1,
+
+    [   
+        helpcontext(HID_DSFInterfaceType_Internal),
+        helpstringcontext(HID_DSFInterfaceType_Internal),
+        helpstring("Internal interface") 
+    ] 
+    DSFInterfaceTypeInternal = 0,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_Isa),
+        helpstringcontext(HID_DSFInterfaceType_Isa),
+        helpstring("ISA interface") 
+    ] 
+    DSFInterfaceTypeIsa = 1,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_Eisa),
+        helpstringcontext(HID_DSFInterfaceType_Eisa),
+        helpstring("EISA interface") 
+    ] 
+    DSFInterfaceTypeEisa = 2,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_MicroChannel),
+        helpstringcontext(HID_DSFInterfaceType_MicroChannel),
+        helpstring("MicroChannel interface") 
+    ] 
+    DSFInterfaceTypeMicroChannel = 3,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_TurboChannel),
+        helpstringcontext(HID_DSFInterfaceType_TurboChannel),
+        helpstring("TurboChannel interface") 
+    ] 
+    DSFInterfaceTypeTurboChannel = 4,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_PCIBus),
+        helpstringcontext(HID_DSFInterfaceType_PCIBus),
+        helpstring("PCI bus interface") 
+    ] 
+    DSFInterfaceTypePCIBus = 5,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_VMEBus),
+        helpstringcontext(HID_DSFInterfaceType_VMEBus),
+        helpstring("VME bus interface") 
+    ] 
+    DSFInterfaceTypeVMEBus = 6,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_NuBus),
+        helpstringcontext(HID_DSFInterfaceType_NuBus),
+        helpstring("NuBus interface") 
+    ] 
+    DSFInterfaceTypeNuBus = 7,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_PCMCIABus),
+        helpstringcontext(HID_DSFInterfaceType_PCMCIABus),
+        helpstring("PCMCIA bus interface") 
+    ] 
+    DSFInterfaceTypePCMCIABus = 8,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_CBus),
+        helpstringcontext(HID_DSFInterfaceType_CBus),
+        helpstring("CBus interface") 
+    ] 
+    DSFInterfaceTypeCBus = 9,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_MPIBus),
+        helpstringcontext(HID_DSFInterfaceType_MPIBus),
+        helpstring("MPI bus interface") 
+    ] 
+    DSFInterfaceTypeMPIBus = 10,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_MPSABus),
+        helpstringcontext(HID_DSFInterfaceType_MPSABus),
+        helpstring("MPSA bus interface") 
+    ] 
+    DSFInterfaceTypeMPSABus = 11,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_ProcessorInternal),
+        helpstringcontext(HID_DSFInterfaceType_ProcessorInternal),
+        helpstring("Processor internal interface") 
+    ] 
+    DSFInterfaceTypeProcessorInternal = 12,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_InternalPowerBus),
+        helpstringcontext(HID_DSFInterfaceType_InternalPowerBus),
+        helpstring("Internal power bus interface") 
+    ] 
+    DSFInterfaceTypeInternalPowerBus = 13,
+
+
+    [   
+        helpcontext(HID_DSFInterfaceType_PNPISABus),
+        helpstringcontext(HID_DSFInterfaceType_PNPISABus),
+        helpstring("PNP ISA bus interface") 
+    ] 
+    DSFInterfaceTypePNPISABus = 14,
+
+    [   
+        helpcontext(HID_DSFInterfaceType_PNPBus),
+        helpstringcontext(HID_DSFInterfaceType_PNPBus),
+        helpstring("PNP bus interface") 
+    ] 
+    DSFInterfaceTypePNPBus = 15,
+
+
+} DSFInterfaceType;
+
+
+
+//=--------------------------------------------------------------------------=
+//       Enumeration for DSFStateType
+//=--------------------------------------------------------------------------=
+
+typedef
+[
+    uuid(78201517-0b6c-4208-b003-2f396640e5bc),
+    helpstring("DSFStateType Constants"),
+    helpcontext(HID_DSFStateType),
+    helpstringcontext(HID_DSFStateType)
+]
+enum DSFStateType
+{
+    [   
+        helpcontext(HID_DSFDefaultStateType), 
+        helpstringcontext(HID_DSFDefaultStateType), 
+        helpstring("Default place for writing state data") 
+    ] 
+    DSFDefaultStateType = 0,
+
+} DSFStateType;
+
+//=--------------------------------------------------------------------------=
+//       Enumeration for DSFFlagType
+//=--------------------------------------------------------------------------=
+typedef
+[
+    uuid(86b50daf-5bb2-43f3-a9ca-e5bf444d9523),
+    helpstring("DSFFlagType for debugging and logging"),
+    helpcontext(HID_DSFFlagType),
+    helpstringcontext(HID_DSFFlagType)
+]
+enum DSFFlagType
+{
+    [
+        helpstring("Driver debug out flags"),
+        helpcontext(HID_DSFFlagType_DSFDebugFlags),
+        helpstringcontext(HID_DSFFlagType_DSFDebugFlags)
+    ]
+    DSFDebugFlags = 0,
+
+    [
+        helpstring("Driver log output flags"),
+        helpcontext(HID_DSFFlagType_DSFLogFlags),
+        helpstringcontext(HID_DSFFlagType_DSFLogFlags)
+    ]
+    DSFLogFlags = 1,
+
+    [
+        helpstring("Debug standard output flag"),
+        helpcontext(HID_DSFFLagType_DSFStdFlags),
+        helpstringcontext(HID_DSFFLagType_DSFStdFlags)
+    ]
+    DSFStdOutFlags = 2,
+        
+    
+ } DSFFlagType;
+
+
+//=-------------------------------------------------------------------=
+//
+//  DSFVERSION Defintions
+//
+//=-------------------------------------------------------------------=
+
+const long DSFVersionMajor = 1;
+
+const long DSFVersionMinor = 0;
+
+
+
+
+//=---------------------------------------------------------------------=
+//                     Interfaces and Coclasses
+//=---------------------------------------------------------------------=
+[
+    uuid(227948DE-4F1F-4689-8D9F-ED044417C5A9),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("DSFPartialResourceDescriptor object."),
+    helpcontext(HID_IDSFPartialResourceDescriptor),
+    helpstringcontext(HID_IDSFPartialResourceDescriptor)
+]
+interface IDSFPartialResourceDescriptor : IDispatch
+{
+    // properties:
+
+    //
+    // Type
+    //
+    [
+        id(DISPID_DSF_PARTIALRESDESC_TYPE),
+        propget,
+        helpstring("Resource type"),
+        helpcontext(HID_IDSFPartialResourceDescriptor_Type),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_Type)
+    ]
+    HRESULT _stdcall Type([out, retval] DSFResourceType *pType);
+
+    [
+        id(DISPID_DSF_PARTIALRESDESC_TYPE),
+        propput,
+        helpstring("Resource type"),
+        helpcontext(HID_IDSFPartialResourceDescriptor_Type),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_Type)
+    ]
+    HRESULT _stdcall Type([in] DSFResourceType ResType);
+
+    //
+    // ShareDisposition
+    //
+    [
+        id(DISPID_DSF_PARTIALRESDESC_SHARE_DISPOSITION),
+        propget,
+        helpstring("ShareDisposition"),
+        helpcontext(HID_IDSFPartialResourceDescriptor_ShareDisposition),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_ShareDisposition)
+    ]
+    HRESULT _stdcall ShareDisposition([out, retval] DSFShareDisposition *pShareType);
+
+    [
+        id(DISPID_DSF_PARTIALRESDESC_SHARE_DISPOSITION),
+        propput,
+        helpstring("ShareDisposition"),
+        helpcontext(HID_IDSFPartialResourceDescriptor_ShareDisposition),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_ShareDisposition)
+    ]
+    HRESULT _stdcall ShareDisposition([in] DSFShareDisposition ShareType);
+
+    //
+    // Flags
+    //
+    [
+        id(DISPID_DSF_PARTIALRESDESC_FLAGS),
+        propget,
+        helpstring("Flags"),
+        helpcontext(HID_IDSFPartialResourceDescriptor_Flags),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_Flags)
+    ]
+    HRESULT _stdcall Flags([out, retval] short *psFlags);
+
+    [
+        id(DISPID_DSF_PARTIALRESDESC_FLAGS),
+        propput,
+        helpstring("Flags"),
+        helpcontext(HID_IDSFPartialResourceDescriptor_Flags),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_Flags)
+    ]
+    HRESULT _stdcall Flags([in] short sFlags);
+
+
+    //
+    // Descriptor
+    //
+    [
+        id(DISPID_DSF_PARTIALRESDESC_DESCRIPTOR),
+        propget,
+        helpstring("Returns a resource descriptor object associated with the resource type."),
+        helpcontext(HID_IDSFPartialResourceDescriptor_Descriptor),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_Descriptor)
+    ]
+    HRESULT _stdcall Descriptor([out, retval] IDispatch **ppdispDescriptor);
+    
+    [
+        id(DISPID_DSF_PARTIALRESDESC_DESCRIPTOR),
+        propput,
+        helpstring("Sets a resource descriptor object associated with the resource type."),
+        helpcontext(HID_IDSFPartialResourceDescriptor_Descriptor),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_Descriptor)
+    ]
+    HRESULT _stdcall Descriptor([in] IDispatch *pdispDescriptor);
+
+    //
+    // HRM
+    //
+    [
+        id(DISPID_DSF_PARTIALRESDESC_HRM),
+        propget,
+        helpstring("Returns an HRM object for the resource type. Not available in user mode."),
+        helpcontext(HID_IDSFPartialResourceDescriptor_HRM),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_HRM)
+    ]
+    HRESULT _stdcall HRM([out, retval] IUnknown **ppunkHRM);
+    [
+        id(DISPID_DSF_PARTIALRESDESC_HRM),
+        propput,
+        helpstring("Returns an HRM object for the resource type. Not available in user mode."),
+        helpcontext(HID_IDSFPartialResourceDescriptor_HRM),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_HRM)
+    ]
+    HRESULT _stdcall HRM([in] IUnknown *punkHRM);
+
+    // methods:
+};
+
+
+[
+    uuid(7E3FC012-1DB1-4135-AAAA-7FA6ED1CF620),
+    helpstring("DSFPartialResourceDescriptor object"),
+    helpcontext(HID_IDSFPartialResourceDescriptor),
+    helpstringcontext(HID_IDSFPartialResourceDescriptor)
+]
+coclass DSFPartialResourceDescriptor
+{
+    [default] interface IDSFPartialResourceDescriptor;
+};
+
+
+[
+    uuid(C388EB82-EA52-4459-84D9-69B7E9846EC0),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("DSFPartialResourceList object. Represents the hardware resources used by a bus device."),
+    helpcontext(HID_IDSFPartialResourceList),
+    helpstringcontext(HID_IDSFPartialResourceList)
+]
+interface IDSFPartialResourceList : IDispatch
+{
+    // properties:
+
+    //
+    // Version
+    //
+    [
+        id(DISPID_DSF_PARTIALRESLIST_VERSION),
+        propget,
+        helpstring("Version"),
+        helpcontext(HID_IDSFPartialResourceDescriptor_Version),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_Version)
+    ]
+    HRESULT _stdcall Version([out, retval] short *psVersion);
+
+    [
+        id(DISPID_DSF_PARTIALRESLIST_VERSION),
+        propput,
+        helpstring("Version"),
+        helpcontext(HID_IDSFPartialResourceDescriptor_Version),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_Version)
+    ]
+    HRESULT _stdcall Version([in] short sVersion);
+
+    //
+    // Revision
+    //
+    [
+        id(DISPID_DSF_PARTIALRESLIST_REVISION),
+        propget,
+        helpstring("Revision"),
+        helpcontext(HID_IDSFPartialResourceDescriptor_Revision),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_Revision)
+    ]
+    HRESULT _stdcall Revision([out, retval] short *psRevision);
+
+    [
+        id(DISPID_DSF_PARTIALRESLIST_REVISION),
+        propput,
+        helpstring("Revision"),
+        helpcontext(HID_IDSFPartialResourceDescriptor_Revision),
+        helpstringcontext(HID_IDSFPartialResourceDescriptor_Revision)
+    ]
+    HRESULT _stdcall Revision([in] short sRevision);
+
+    //
+    // Count
+    //
+    [
+        id(DISPID_DSF_COUNT),
+        propget,
+        helpstring("Returns the current count of objects in the collection."),
+        helpcontext(HID_IDSFPartialResourceList_Count),
+        helpstringcontext(HID_IDSFPartialResourceList_Count)
+    ]
+    HRESULT _stdcall Count([out, retval] long *plCount);
+
+    //
+    // Item
+    //
+    [
+        id(DISPID_VALUE),
+        propget,
+        helpstring("Returns the specified object from the collection."),
+        helpcontext(HID_IDSFPartialResourceList_Item),
+        helpstringcontext(HID_IDSFPartialResourceList_Item)
+    ]
+    HRESULT _stdcall Item([in]          VARIANT                        Index,
+                          [out, retval] DSFPartialResourceDescriptor **ppDSFPartialResourceDescriptor);
+
+    //
+    // NewEnum
+    //
+    [
+        id(DISPID_NEWENUM),
+        propget,
+        hidden
+    ] 
+    HRESULT _stdcall _NewEnum([out, retval] IUnknown **ppunkEnum);
+
+    // methods:
+
+    //
+    // Add
+    //
+    [
+        id(DISPID_DSF_ADD),
+        helpstring("Adds an object to the collection."),
+        helpcontext(HID_IDSFPartialResourceList_Add),
+        helpstringcontext(HID_IDSFPartialResourceList_Add)
+    ]
+    HRESULT _stdcall Add([in] DSFPartialResourceDescriptor *pDSFPartialResourceDescriptor, [in, optional] VARIANT Index);
+
+    //
+    // Remove
+    //
+    [
+        id(DISPID_DSF_REMOVE),
+        helpstring("Removes the specified object from the collection"),
+        helpcontext(HID_IDSFPartialResourceList_Remove),
+        helpstringcontext(HID_IDSFPartialResourceList_Remove)
+    ]
+    HRESULT _stdcall Remove([in] VARIANT Index);
+
+    //
+    // Clear
+    //
+    [
+        id(DISPID_DSF_CLEAR),
+        helpstring("Removes all objects from the collection"),
+        helpcontext(HID_IDSFPartialResourceList_Clear),
+        helpstringcontext(HID_IDSFPartialResourceList_Clear)
+    ]
+    HRESULT _stdcall Clear();
+
+};
+
+[
+    uuid(DC1C8B82-254C-4AD9-8CE0-CA477FC56DB1),
+    helpstring("DSFPartialResourceList object. Represents the hardware resources used by a bus device."),
+    helpcontext(HID_IDSFPartialResourceList),
+    helpstringcontext(HID_IDSFPartialResourceList)
+]
+coclass DSFPartialResourceList
+{
+    [default] interface IDSFPartialResourceList;
+};
+
+
+
+[
+    uuid(E466F6A1-269F-4E18-94E6-7D2F02779417),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("DSFFullResourceDescriptor object."),
+    helpcontext(HID_IDSFFullResourceDescriptor),
+    helpstringcontext(HID_IDSFFullResourceDescriptor)
+]
+interface IDSFFullResourceDescriptor : IDispatch
+{
+    // properties:
+
+    //
+    // InterfaceType
+    //
+    [
+        id(DISPID_DSF_FULLRESDESC_INTERFACE_TYPE),
+        propget,
+        helpstring("Interface Type"),
+        helpcontext(HID_IDSFFullResourceDescriptor_InterfaceType),
+        helpstringcontext(HID_IDSFFullResourceDescriptor_InterfaceType)
+    ]
+    HRESULT _stdcall InterfaceType([out, retval] DSFInterfaceType *pType);
+
+    [
+        id(DISPID_DSF_FULLRESDESC_INTERFACE_TYPE),
+        propput,
+        helpstring("Interface Type"),
+        helpcontext(HID_IDSFFullResourceDescriptor_InterfaceType),
+        helpstringcontext(HID_IDSFFullResourceDescriptor_InterfaceType)
+    ]
+    HRESULT _stdcall InterfaceType([in] DSFInterfaceType Type);
+
+    //
+    // BusNumber
+    //
+    [
+        id(DISPID_DSF_FULLRESDESC_BUS_NUMBER),
+        propget,
+        helpstring("Bus Number"),
+        helpcontext(HID_IDSFFullResourceDescriptor_BusNumber),
+        helpstringcontext(HID_IDSFFullResourceDescriptor_BusNumber)
+    ]
+    HRESULT _stdcall BusNumber([out, retval] long *plBusNumber);
+
+    [
+        id(DISPID_DSF_FULLRESDESC_BUS_NUMBER),
+        propput,
+        helpstring("Bus Number"),
+        helpcontext(HID_IDSFFullResourceDescriptor_BusNumber),
+        helpstringcontext(HID_IDSFFullResourceDescriptor_BusNumber)
+    ]
+    HRESULT _stdcall BusNumber([in] long lBusNumber);
+
+    //
+    // PartialResourceList
+    //
+    [
+        id(DISPID_DSF_FULLRESDESC_PARTIAL_RESOURCE_LIST),
+        propget,
+        helpstring("Bus Number"),
+        helpcontext(HID_IDSFFullResourceDescriptor_PartialResourceList),
+        helpstringcontext(HID_IDSFFullResourceDescriptor_PartialResourceList)
+    ]
+    HRESULT _stdcall PartialResourceList([out, retval] DSFPartialResourceList **ppDSFPartialResourceList);
+
+    // methods:
+};
+
+
+[
+    uuid(CECFEC54-035C-4103-B64F-A200AB9F32C2),
+    helpstring("DSFFullResourceDescriptor object"),
+    helpcontext(HID_IDSFFullResourceDescriptor),
+    helpstringcontext(HID_IDSFFullResourceDescriptor)
+]
+coclass DSFFullResourceDescriptor
+{
+    [default] interface IDSFFullResourceDescriptor;
+};
+
+
+
+
+[
+    uuid(418E0FF4-25F9-459A-B92B-6B3294E7135C),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("DSFResourceList object. Represents the hardware resources used by a bus device."),
+    helpcontext(HID_IDSFResourceList),
+    helpstringcontext(HID_IDSFResourceList)
+]
+interface IDSFResourceList : IDispatch
+{
+    // properties:
+
+    //
+    // Count
+    //
+    [
+        id(DISPID_DSF_COUNT),
+        propget,
+        helpstring("Returns the current count of objects in the collection."),
+        helpcontext(HID_IDSFResourceList_Count),
+        helpstringcontext(HID_IDSFResourceList_Count)
+    ]
+    HRESULT _stdcall Count([out, retval] long *plCount);
+
+    //
+    // Item
+    //
+    [
+        id(DISPID_VALUE),
+        propget,
+        helpstring("Returns the specified object from the collection."),
+        helpcontext(HID_IDSFResourceList_Item),
+        helpstringcontext(HID_IDSFResourceList_Item)
+    ]
+    HRESULT _stdcall Item([in]          VARIANT                     Index,
+                          [out, retval] DSFFullResourceDescriptor **ppDSFFullResourceDescriptor);
+
+    //
+    // NewEnum
+    //
+    [
+        id(DISPID_NEWENUM),
+        propget,
+        hidden
+    ] 
+    HRESULT _stdcall _NewEnum([out, retval] IUnknown **ppunkEnum);
+
+    // methods:
+
+    //
+    // Add
+    //
+    [
+        id(DISPID_DSF_ADD),
+        helpstring("Adds an object to the collection."),
+        helpcontext(HID_IDSFResourceList_Add),
+        helpstringcontext(HID_IDSFResourceList_Add)
+    ]
+    HRESULT _stdcall Add([in] DSFFullResourceDescriptor *pDSFFullResourceDescriptor, [in, optional] VARIANT Index);
+
+    //
+    // Remove
+    //
+    [
+        id(DISPID_DSF_REMOVE),
+        helpstring("Removes the specified object from the collection"),
+        helpcontext(HID_IDSFResourceList_Remove),
+        helpstringcontext(HID_IDSFResourceList_Remove)
+    ]
+    HRESULT _stdcall Remove([in] VARIANT Index);
+
+    //
+    // Clear
+    //
+    [
+        id(DISPID_DSF_CLEAR),
+        helpstring("Removes all objects from the collection"),
+        helpcontext(HID_IDSFResourceList_Clear),
+        helpstringcontext(HID_IDSFResourceList_Clear)
+    ]
+    HRESULT _stdcall Clear();
+
+};
+
+[
+    uuid(3596C463-2D1E-40B7-8DC7-7BB32F9E2DC4),
+    helpstring("DSFResourceList object. Represents the hardware resources used by a bus device."),
+    helpcontext(HID_IDSFResourceList),
+    helpstringcontext(HID_IDSFResourceList)
+]
+coclass DSFResourceList
+{
+    [default] interface IDSFResourceList;
+};
+
+
+
+[
+    uuid(82850DB2-0F99-4529-9F6E-6C1273C6027C),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("Defines an I/O port hardware resource"),
+    helpcontext(HID_IDSFResDescPort),
+    helpstringcontext(HID_IDSFResDescPort)
+]
+interface IDSFResDescPort : IDispatch
+{
+    // properties:
+
+    //
+    // StartLow
+    //
+    [
+        id(DISPID_DSF_PORT_START_LOW),
+        propget,
+        helpstring("Low bits of starting port address"),
+        helpcontext(HID_IDSFResDescPort_StartLow),
+        helpstringcontext(HID_IDSFResDescPort_StartLow)
+    ]
+    HRESULT _stdcall StartLow([out, retval] long *plStartLow);
+
+    [
+        id(DISPID_DSF_PORT_START_LOW),
+        propput,
+        helpstring("Low bits of starting port address"),
+        helpcontext(HID_IDSFResDescPort_StartLow),
+        helpstringcontext(HID_IDSFResDescPort_StartLow)
+    ]
+    HRESULT _stdcall StartLow([in] long lStartLow);
+
+    //
+    // StartHigh
+    //
+    [
+        id(DISPID_DSF_PORT_START_HIGH),
+        propget,
+        helpstring("High bits of starting port address"),
+        helpcontext(HID_IDSFResDescPort_StartHigh),
+        helpstringcontext(HID_IDSFResDescPort_StartHigh)
+    ]
+    HRESULT _stdcall StartHigh([out, retval] long *plStartHigh);
+
+    [
+        id(DISPID_DSF_PORT_START_HIGH),
+        propput,
+        helpstring("High bits of starting port address"),
+        helpcontext(HID_IDSFResDescPort_StartHigh),
+        helpstringcontext(HID_IDSFResDescPort_StartHigh)
+    ]
+    HRESULT _stdcall StartHigh([in] long lStartHigh);
+
+
+    //
+    // Length
+    //
+    [
+        id(DISPID_DSF_PORT_LENGTH),
+        propget,
+        helpstring("Length in bytes of range of port addresses"),
+        helpcontext(HID_IDSFResDescPort_Length),
+        helpstringcontext(HID_IDSFResDescPort_Length)
+    ]
+    HRESULT _stdcall Length([out, retval] long *plLength);
+
+    [
+        id(DISPID_DSF_PORT_LENGTH),
+        propput,
+        helpstring("Length in bytes of range of port addresses"),
+        helpcontext(HID_IDSFResDescPort_Length),
+        helpstringcontext(HID_IDSFResDescPort_Length)
+    ]
+    HRESULT _stdcall Length([in] long lLength);
+
+
+    // methods:
+};
+
+[
+    uuid(680D2930-B314-4B4F-87F0-14E8ECB1982F),
+    helpstring("Defines an I/O port hardware resource"),
+    helpcontext(HID_IDSFResDescPort),
+    helpstringcontext(HID_IDSFResDescPort)
+]
+coclass DSFResDescPort
+{
+    [default] interface IDSFResDescPort;
+};
+
+
+[
+    uuid(914D27BF-0AB4-44c2-873D-84D163B39DD5),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("Defines a device specific resource descriptor"),
+    helpcontext(HID_IDSFResDescDevSpec),
+    helpstringcontext(HID_IDSFResDescDevSpec)
+]
+
+interface IDSFResDescDevSpecific : IDispatch
+{
+    // properties:
+
+
+
+    //
+    // DataSize
+    //
+    [
+        id(DISPID_DSF_DEVSPEC_DATASIZE),
+        propget,
+        helpstring("Device specific data size"),
+        helpcontext(HID_IDSFResDescDevSpec_DataSize),
+        helpstringcontext(HID_IDSFResDescDevSpec_DataSize)
+    ]
+    HRESULT _stdcall DataSize([out, retval] long *plDataSize);
+
+    [
+        id(DISPID_DSF_DEVSPEC_DATASIZE),
+        propput,
+        helpstring("Device specific data size"),
+        helpcontext(HID_IDSFResDescDevSpec_DataSize),
+        helpstringcontext(HID_IDSFResDescDevSpec_DataSize)
+    ]
+    HRESULT _stdcall DataSize([in] long lDataSize);
+
+    //
+    // Reserved1
+    //
+    [
+        id(DISPID_DSF_DEVSPEC_RESERVED1),
+        propget,
+        helpstring("Device specific reserved 1"),
+        helpcontext(HID_IDSFResDescDevSpec_Reserved1),
+        helpstringcontext(HID_IDSFResDescDevSpec_Reserved1)
+    ]
+    HRESULT _stdcall Reserved1([out, retval] long *plReserved1);
+
+    [
+        id(DISPID_DSF_DEVSPEC_RESERVED1),
+        propput,
+        helpstring("Device specific reserved 1"),
+        helpcontext(HID_IDSFResDescDevSpec_Reserved1),
+        helpstringcontext(HID_IDSFResDescDevSpec_Reserved1)
+    ]
+    HRESULT _stdcall Reserved1([in] long lReserved1);
+
+    //
+    // Reserved2
+    //
+    [
+        id(DISPID_DSF_DEVSPEC_RESERVED2),
+        propget,
+        helpstring("Device specific reserved 2"),
+        helpcontext(HID_IDSFResDescDevSpec_Reserved2),
+        helpstringcontext(HID_IDSFResDescDevSpec_Reserved2)
+    ]
+    HRESULT _stdcall Reserved2([out, retval] long *plReserved2);
+
+    [
+        id(DISPID_DSF_DEVSPEC_RESERVED2),
+        propput,
+        helpstring("Device specific reserved 2"),
+        helpcontext(HID_IDSFResDescDevSpec_Reserved2),
+        helpstringcontext(HID_IDSFResDescDevSpec_Reserved2)
+    ]
+    HRESULT _stdcall Reserved2([in] long lReserved2);
+
+
+    // methods:
+};
+
+
+[
+    uuid(75679715-3926-4211-A5A6-6A333023D5BA),
+    helpstring("Defines a device specific resource descriptor"),
+    helpcontext(HID_IDSFResDescDevSpec),
+    helpstringcontext(HID_IDSFResDescDevSpec)
+]
+coclass DSFResDescDevSpecific
+{
+    [default] interface IDSFResDescDevSpecific;
+};
+
+[
+    uuid(C455E6E1-F93D-47bd-9042-95B7AB0A7D2B),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("Defines a device private data resource descriptor"),
+    helpcontext(HID_IDSFResDescDevPrvt),
+    helpstringcontext(HID_IDSFResDescDevPrvt)
+]
+   
+interface IDSFResDescDevPrivate : IDispatch
+{
+    // properties:
+
+    //
+    // Data0
+    //
+    [
+        id(DISPID_DSF_DEVPRVT_DATA0),
+        propget,
+        helpstring("Device private data byte 0"),
+        helpcontext(HID_IDSFResDescDevPrvt_Data0),
+        helpstringcontext(HID_IDSFResDescDevPrvt_Data0)
+    ]
+    HRESULT _stdcall Data0([out, retval] long *plData0);
+
+    [
+        id(DISPID_DSF_DEVPRVT_DATA0),
+        propput,
+        helpstring("Device private data byte 0"),
+        helpcontext(HID_IDSFResDescDevPrvt_Data0),
+        helpstringcontext(HID_IDSFResDescDevPrvt_Data0)
+    ]
+    HRESULT _stdcall Data0([in] long lData0);
+    
+    //
+    // Data1
+    //
+    [
+        id(DISPID_DSF_DEVPRVT_DATA1),
+        propget,
+        helpstring("Device private data byte 1"),
+        helpcontext(HID_IDSFResDescDevPrvt_Data1),
+        helpstringcontext(HID_IDSFResDescDevPrvt_Data1)
+    ]
+    HRESULT _stdcall Data1([out, retval] long *plData1);
+
+    [
+        id(DISPID_DSF_DEVPRVT_DATA1),
+        propput,
+        helpstring("Device private data byte 1"),
+        helpcontext(HID_IDSFResDescDevPrvt_Data1),
+        helpstringcontext(HID_IDSFResDescDevPrvt_Data1)
+    ]
+    HRESULT _stdcall Data1([in] long lData1);
+
+    //
+    // Data2
+    //
+    [
+        id(DISPID_DSF_DEVPRVT_DATA2),
+        propget,
+        helpstring("Device private data byte 2"),
+        helpcontext(HID_IDSFResDescDevPrvt_Data2),
+        helpstringcontext(HID_IDSFResDescDevPrvt_Data2)
+    ]
+    HRESULT _stdcall Data2([out, retval] long *plData2);
+
+    [
+        id(DISPID_DSF_DEVPRVT_DATA2),
+        propput,
+        helpstring("Device private data byte 2"),
+        helpcontext(HID_IDSFResDescDevPrvt_Data2),
+        helpstringcontext(HID_IDSFResDescDevPrvt_Data2)
+    ]
+    HRESULT _stdcall Data2([in] long lData2);
+    
+    // methods:
+};
+
+
+[
+    uuid(F03EAE50-D772-4125-82E7-087B91ADF213),
+    helpstring("Defines a device private data resource descriptor"),
+    helpcontext(HID_IDSFResDescDevPrvt),
+    helpstringcontext(HID_IDSFResDescDevPrvt)
+]
+coclass DSFResDescDevPrivate
+{
+    [default] interface IDSFResDescDevPrivate;
+};
+
+[
+    uuid(20F6EF07-E851-464A-B1BC-549B941682B0),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("Defines an interrupt hardware resource"),
+    helpcontext(HID_IDSFResDescInterrupt),
+    helpstringcontext(HID_IDSFResDescInterrupt)
+]
+interface IDSFResDescInterrupt : IDispatch
+{
+    // properties:
+
+    //
+    // Level
+    //
+    [
+        id(DISPID_DSF_INTERRUPT_LEVEL),
+        propget,
+        helpstring("Device IRQL"),
+        helpcontext(HID_IDSFResDescInterrupt_Level),
+        helpstringcontext(HID_IDSFResDescInterrupt_Level)
+    ]
+    HRESULT _stdcall Level([out, retval] long *plLevel);
+
+    [
+        id(DISPID_DSF_INTERRUPT_LEVEL),
+        propput,
+        helpstring("Device IRQL"),
+        helpcontext(HID_IDSFResDescInterrupt_Level),
+        helpstringcontext(HID_IDSFResDescInterrupt_Level)
+    ]
+    HRESULT _stdcall Level([in] long lLevel);
+
+
+    //
+    // Vector
+    //
+    [
+        id(DISPID_DSF_INTERRUPT_VECTOR),
+        propget,
+        helpstring("Interrupt vector"),
+        helpcontext(HID_IDSFResDescInterrupt_Vector),
+        helpstringcontext(HID_IDSFResDescInterrupt_Vector)
+    ]
+    HRESULT _stdcall Vector([out, retval] long *plVector);
+
+    [
+        id(DISPID_DSF_INTERRUPT_VECTOR),
+        propput,
+        helpstring("Interrupt vector"),
+        helpcontext(HID_IDSFResDescInterrupt_Vector),
+        helpstringcontext(HID_IDSFResDescInterrupt_Vector)
+    ]
+    HRESULT _stdcall Vector([in] long lVector);
+
+
+    //
+    // Affinity
+    //
+    [
+        id(DISPID_DSF_INTERRUPT_AFFINITY),
+        propget,
+        helpstring("Processor affinity"),
+        helpcontext(HID_IDSFResDescInterrupt_Affinity),
+        helpstringcontext(HID_IDSFResDescInterrupt_Affinity)
+    ]
+    HRESULT _stdcall Affinity([out, retval] long *plAffinity);
+
+    [
+        id(DISPID_DSF_INTERRUPT_AFFINITY),
+        propput,
+        helpstring("Processor affinity"),
+        helpcontext(HID_IDSFResDescInterrupt_Affinity),
+        helpstringcontext(HID_IDSFResDescInterrupt_Affinity)
+    ]
+    HRESULT _stdcall Affinity([in] long lAffinity);
+
+
+
+    // methods:
+};
+
+
+[
+    uuid(B68DF23C-9DB6-4C0A-B927-94F0AFE080C4),
+    helpstring("Defines an interrupt hardware resource"),
+    helpcontext(HID_IDSFResDescInterrupt),
+    helpstringcontext(HID_IDSFResDescInterrupt)
+]
+coclass DSFResDescInterrupt
+{
+    [default] interface IDSFResDescInterrupt;
+};
+
+
+
+[
+    uuid(48ADC411-19EE-4E06-9772-882B487BB8C0),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("Defines a memory hardware resource"),
+    helpcontext(HID_IDSFResDescMemory),
+    helpstringcontext(HID_IDSFResDescMemory)
+]
+interface IDSFResDescMemory : IDispatch
+{
+    // properties:
+
+    //
+    // StartLow
+    //
+    [
+        id(DISPID_DSF_MEMORY_START_LOW),
+        propget,
+        helpstring("Low bits of starting memory address"),
+        helpcontext(HID_IDSFResDescMemory_StartLow),
+        helpstringcontext(HID_IDSFResDescMemory_StartLow)
+    ]
+    HRESULT _stdcall StartLow([out, retval] long *plStartLow);
+
+    [
+        id(DISPID_DSF_MEMORY_START_LOW),
+        propput,
+        helpstring("Low bits of starting memory address"),
+        helpcontext(HID_IDSFResDescMemory_StartLow),
+        helpstringcontext(HID_IDSFResDescMemory_StartLow)
+    ]
+    HRESULT _stdcall StartLow([in] long lStartLow);
+
+    //
+    // StartHigh
+    //
+    [
+        id(DISPID_DSF_MEMORY_START_HIGH),
+        propget,
+        helpstring("High bits of starting memory address"),
+        helpcontext(HID_IDSFResDescMemory_StartHigh),
+        helpstringcontext(HID_IDSFResDescMemory_StartHigh)
+    ]
+    HRESULT _stdcall StartHigh([out, retval] long *plStartHigh);
+
+    [
+        id(DISPID_DSF_MEMORY_START_HIGH),
+        propput,
+        helpstring("High bits of starting memory address"),
+        helpcontext(HID_IDSFResDescMemory_StartHigh),
+        helpstringcontext(HID_IDSFResDescMemory_StartHigh)
+    ]
+    HRESULT _stdcall StartHigh([in] long lStartHigh);
+
+
+    //
+    // Length
+    //
+    [
+        id(DISPID_DSF_MEMORY_LENGTH),
+        propget,
+        helpstring("Length in bytes of range of memory addresses"),
+        helpcontext(HID_IDSFResDescMemory_Length),
+        helpstringcontext(HID_IDSFResDescMemory_Length)
+    ]
+    HRESULT _stdcall Length([out, retval] long *plLength);
+
+    [
+        id(DISPID_DSF_MEMORY_LENGTH),
+        propput,
+        helpstring("Length in bytes of range of memory addresses"),
+        helpcontext(HID_IDSFResDescMemory_Length),
+        helpstringcontext(HID_IDSFResDescMemory_Length)
+    ]
+    HRESULT _stdcall Length([in] long lLength);
+
+
+    // methods:
+};
+
+
+[
+    uuid(FDB94131-E0D2-41E7-A43F-72258F098281),
+    helpstring("Defines a memory hardware resource"),
+    helpcontext(HID_IDSFResDescMemory),
+    helpstringcontext(HID_IDSFResDescMemory)
+]
+coclass DSFResDescMemory
+{
+    [default] interface IDSFResDescMemory;
+};
+
+
+[
+    uuid(9DA9B4D3-C73F-42B8-8CA2-0E5E3FF7198E),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("Defines a DMA hardware resource"),
+    helpcontext(HID_IDSFResDescDMA),
+    helpstringcontext(HID_IDSFResDescDMA)
+]
+interface IDSFResDescDMA : IDispatch
+{
+    // properties:
+
+    //
+    // Channel
+    //
+    [
+        id(DISPID_DSF_DMA_CHANNEL),
+        propget,
+        helpstring("Channel number on system DMA controller"),
+        helpcontext(HID_IDSFResDescDMA_Channel),
+        helpstringcontext(HID_IDSFResDescDMA_Channel)
+    ]
+    HRESULT _stdcall Channel([out, retval] long *plChannel);
+
+    [
+        id(DISPID_DSF_DMA_CHANNEL),
+        propput,
+        helpstring("Channel number on system DMA controller"),
+        helpcontext(HID_IDSFResDescDMA_Channel),
+        helpstringcontext(HID_IDSFResDescDMA_Channel)
+    ]
+    HRESULT _stdcall Channel([in] long lChannel);
+
+    //
+    // Port
+    //
+    [
+        id(DISPID_DSF_DMA_PORT),
+        propget,
+        helpstring("The number of the DMA port that an MCA-type device can use."),
+        helpcontext(HID_IDSFResDescDMA_Port),
+        helpstringcontext(HID_IDSFResDescDMA_Port)
+    ]
+    HRESULT _stdcall Port([out, retval] long *plPort);
+
+    [
+        id(DISPID_DSF_DMA_PORT),
+        propput,
+        helpstring("The number of the DMA port that an MCA-type device can use."),
+        helpcontext(HID_IDSFResDescDMA_Port),
+        helpstringcontext(HID_IDSFResDescDMA_Port)
+    ]
+    HRESULT _stdcall Port([in] long lPort);
+
+
+    //
+    // Reserved
+    //
+    [
+        id(DISPID_DSF_DMA_RESERVED),
+        propget,
+        helpstring("Not used."),
+        helpcontext(HID_IDSFResDescDMA_Reserved),
+        helpstringcontext(HID_IDSFResDescDMA_Reserved)
+    ]
+    HRESULT _stdcall Reserved([out, retval] long *plReserved);
+
+    [
+        id(DISPID_DSF_DMA_RESERVED),
+        propput,
+        helpstring("Not used."),
+        helpcontext(HID_IDSFResDescDMA_Reserved),
+        helpstringcontext(HID_IDSFResDescDMA_Reserved)
+    ]
+    HRESULT _stdcall Reserved([in] long lReserved);
+
+
+    // methods:
+};
+
+
+[
+    uuid(449D593F-EFE0-414E-A5D8-2333B223090E),
+    helpstring("Defines a DMA hardware resource"),
+    helpcontext(HID_IDSFResDescDMA),
+    helpstringcontext(HID_IDSFResDescDMA)
+]
+coclass DSFResDescDMA
+{
+    [default] interface IDSFResDescDMA;
+};
+
+[
+    uuid(8041F860-55E4-4709-A96C-FA51EBC8F895),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("DSFSystemDevice object. Represents the operating systems view of a device."),
+    helpcontext(HID_IDSFSystemDevice),
+    helpstringcontext(HID_IDSFSystemDevice)
+]
+interface IDSFSystemDevice : IDispatch
+{
+    // properties
+
+    //
+    // Address
+    //
+    [
+        id(DISPID_DSFDEVICE_ADDRESS),
+        propget,
+        helpstring("Device's hardware address. Bus-specific."),
+        helpcontext(HID_IDSFSystemDevice_Address),
+        helpstringcontext(HID_IDSFSystemDevice_Address)
+    ]
+    HRESULT _stdcall Address([out, retval] long *plAddress);
+
+    [
+        id(DISPID_DSFDEVICE_ADDRESS),
+        propput,
+        helpstring("Device's hardware address. Bus-specific."),
+        helpcontext(HID_IDSFSystemDevice_Address),
+        helpstringcontext(HID_IDSFSystemDevice_Address)
+    ]
+    HRESULT _stdcall Address([in] long lAddress);
+
+    //
+    // BusNumber
+    //
+    [
+        id(DISPID_DSFDEVICE_BUS_NUMBER),
+        propget,
+        helpstring("Device's bus number. Bus-specific."),
+        helpcontext(HID_IDSFSystemDevice_BusNumber),
+        helpstringcontext(HID_IDSFSystemDevice_BusNumber)
+    ]
+    HRESULT _stdcall BusNumber([out, retval] long *plBusNumber);
+
+    [
+        id(DISPID_DSFDEVICE_BUS_NUMBER),
+        propput,
+        helpstring("Device's bus number. Bus-specific."),
+        helpcontext(HID_IDSFSystemDevice_BusNumber),
+        helpstringcontext(HID_IDSFSystemDevice_BusNumber)
+    ]
+    HRESULT _stdcall BusNumber([in] long lBusNumber);
+
+    //
+    // BusTypeGUID
+    //
+    [
+        id(DISPID_DSFDEVICE_BUS_TYPE_GUID),
+        propget,
+        helpstring("Device's bus type GUID."),
+        helpcontext(HID_IDSFSystemDevice_BusTypeGUID),
+        helpstringcontext(HID_IDSFSystemDevice_BusTypeGUID)
+    ]
+    HRESULT _stdcall BusTypeGUID([out, retval] BSTR *pbstrGUID);
+
+    [
+        id(DISPID_DSFDEVICE_BUS_TYPE_GUID),
+        propput,
+        helpstring("Device's bus type GUID."),
+        helpcontext(HID_IDSFSystemDevice_BusTypeGUID),
+        helpstringcontext(HID_IDSFSystemDevice_BusTypeGUID)
+    ]
+    HRESULT _stdcall BusTypeGUID([in] BSTR bstrGUID);
+
+    //
+    // Capabilities
+    //
+    [
+        id(DISPID_DSFDEVICE_CAPABILITIES),
+        propget,
+        helpstring("Device hardware capabilities. Applies only to bus devices."),
+        helpcontext(HID_IDSFSystemDevice_Capabilities),
+        helpstringcontext(HID_IDSFSystemDevice_Capabilities)
+    ]
+    HRESULT _stdcall Capabilities([out, retval] DSFDeviceCaps **ppDSFDeviceCaps);
+
+    [
+        id(DISPID_DSFDEVICE_CAPABILITIES),
+        propput,
+        helpstring("Device hardware capabilities. Applies only to bus devices."),
+        helpcontext(HID_IDSFSystemDevice_Capabilities),
+        helpstringcontext(HID_IDSFSystemDevice_Capabilities)
+    ]
+    HRESULT _stdcall Capabilities([in] DSFDeviceCaps *pDSFDeviceCaps);
+
+    [
+        id(DISPID_DSFDEVICE_CAPABILITIES),
+        propputref,
+        helpstring("Device hardware capabilities. Applies only to bus devices."),
+        helpcontext(HID_IDSFSystemDevice_Capabilities),
+        helpstringcontext(HID_IDSFSystemDevice_Capabilities)
+    ]
+    HRESULT _stdcall Capabilities([in] DSFDeviceCaps *pDSFDeviceCaps);
+
+    //
+    // ClassGUID
+    //
+    [
+        id(DISPID_DSFDEVICE_CLASS_GUID),
+        propget,
+        helpstring("GUID of device's setup class."),
+        helpcontext(HID_IDSFSystemDevice_ClassGUID),
+        helpstringcontext(HID_IDSFSystemDevice_ClassGUID)
+    ]
+    HRESULT _stdcall ClassGUID([out, retval] BSTR *pbstrGUID);
+
+    [
+        id(DISPID_DSFDEVICE_CLASS_GUID),
+        propput,
+        helpstring("GUID of device's setup class."),
+        helpcontext(HID_IDSFSystemDevice_ClassGUID),
+        helpstringcontext(HID_IDSFSystemDevice_ClassGUID)
+    ]
+    HRESULT _stdcall ClassGUID([in] BSTR bstrGUID);
+
+    //
+    // ClassName
+    //
+    [
+        id(DISPID_DSFDEVICE_CLASS_NAME),
+        propget,
+        helpstring("Name of device's setup class."),
+        helpcontext(HID_IDSFSystemDevice_ClassName),
+        helpstringcontext(HID_IDSFSystemDevice_ClassName)
+    ]
+    HRESULT _stdcall ClassName([out, retval] BSTR *pbstrName);
+
+    [
+        id(DISPID_DSFDEVICE_CLASS_NAME),
+        propput,
+        helpstring("Name of device's setup class."),
+        helpcontext(HID_IDSFSystemDevice_ClassName),
+        helpstringcontext(HID_IDSFSystemDevice_ClassName)
+    ]
+    HRESULT _stdcall ClassName([in] BSTR bstrName);
+
+    //
+    // CompatibleIDs
+    //
+    [
+        id(DISPID_DSFDEVICE_COMPATIBLE_IDS),
+        propget,
+        helpstring("Device's PNP compatible IDs. Applies only to bus devices."),
+        helpcontext(HID_IDSFSystemDevice_CompatibleIDs),
+        helpstringcontext(HID_IDSFSystemDevice_CompatibleIDs)
+    ]
+    HRESULT _stdcall CompatibleIDs([out, retval] SAFEARRAY(VARIANT) *ppsaIDs);
+
+    [
+        id(DISPID_DSFDEVICE_COMPATIBLE_IDS),
+        propput,
+        helpstring("Device's PNP compatible IDs. Applies only to bus devices."),
+        helpcontext(HID_IDSFSystemDevice_CompatibleIDs),
+        helpstringcontext(HID_IDSFSystemDevice_CompatibleIDs)
+    ]
+    HRESULT _stdcall CompatibleIDs([in] SAFEARRAY(VARIANT) psaIDs);
+
+    //
+    // DeviceDescription
+    //
+    [
+        id(DISPID_DSFDEVICE_DEVICE_DESCRIPTION),
+        propget,
+        helpstring("Device's PNP device description"),
+        helpcontext(HID_IDSFSystemDevice_DeviceDescription),
+        helpstringcontext(HID_IDSFSystemDevice_DeviceDescription)
+    ]
+    HRESULT _stdcall DeviceDescription([out, retval] BSTR *pbstrDescription);
+
+    [
+        id(DISPID_DSFDEVICE_DEVICE_DESCRIPTION),
+        propput,
+        helpstring("Device's PNP device description"),
+        helpcontext(HID_IDSFSystemDevice_DeviceDescription),
+        helpstringcontext(HID_IDSFSystemDevice_DeviceDescription)
+    ]
+    HRESULT _stdcall DeviceDescription([in] BSTR bstrDescription);
+
+
+    //
+    // DeviceID
+    //
+    [
+        id(DISPID_DSFDEVICE_DEVICE_ID),
+        propget,
+        helpstring("Device's PNP device ID"),
+        helpcontext(HID_IDSFSystemDevice_DeviceID),
+        helpstringcontext(HID_IDSFSystemDevice_DeviceID)
+    ]
+    HRESULT _stdcall DeviceID([out, retval] BSTR *pbstrID);
+
+    [
+        id(DISPID_DSFDEVICE_DEVICE_ID),
+        propput,
+        helpstring("Device's PNP device ID"),
+        helpcontext(HID_IDSFSystemDevice_DeviceID),
+        helpstringcontext(HID_IDSFSystemDevice_DeviceID)
+    ]
+    HRESULT _stdcall DeviceID([in] BSTR bstrID);
+
+    //
+    // DriverKeyName
+    //
+    [
+        id(DISPID_DSFDEVICE_DRIVER_KEY_NAME),
+        propget,
+        helpstring("Device's driver key path passed to DriverEntry"),
+        helpcontext(HID_IDSFSystemDevice_DriverKeyName),
+        helpstringcontext(HID_IDSFSystemDevice_DriverKeyName)
+    ]
+    HRESULT _stdcall DriverKeyName([out, retval] BSTR *pbstrKeyName);
+
+    [
+        id(DISPID_DSFDEVICE_DRIVER_KEY_NAME),
+        propput,
+        helpstring("Device's driver key path passed to DriverEntry"),
+        helpcontext(HID_IDSFSystemDevice_DriverKeyName),
+        helpstringcontext(HID_IDSFSystemDevice_DriverKeyName)
+    ]
+    HRESULT _stdcall DriverKeyName([in] BSTR bstrKeyName);
+
+    //
+    // EnumeratorName
+    //
+    [
+        id(DISPID_DSFDEVICE_ENUMERATOR_NAME),
+        propget,
+        helpstring("Name of the enumerator for the device, such as ""PCI"" or ""root""."),
+        helpcontext(HID_IDSFSystemDevice_EnumeratorName),
+        helpstringcontext(HID_IDSFSystemDevice_EnumeratorName)
+    ]
+    HRESULT _stdcall EnumeratorName([out, retval] BSTR *pbstrName);
+
+    [
+        id(DISPID_DSFDEVICE_ENUMERATOR_NAME),
+        propput,
+        helpstring("Name of the enumerator for the device, such as ""PCI"" or ""root""."),
+        helpcontext(HID_IDSFSystemDevice_EnumeratorName),
+        helpstringcontext(HID_IDSFSystemDevice_EnumeratorName)
+    ]
+    HRESULT _stdcall EnumeratorName([in] BSTR bstrName);
+    
+    //
+    // FriendlyName
+    //
+    [
+        id(DISPID_DSFDEVICE_FRIENDLY_NAME),
+        propget,
+        helpstring("Friendly name for the device used in UI such as Device Manager."),
+        helpcontext(HID_IDSFSystemDevice_FriendlyName),
+        helpstringcontext(HID_IDSFSystemDevice_FriendlyName)
+    ]
+    HRESULT _stdcall FriendlyName([out, retval] BSTR *pbstrName);
+
+    [
+        id(DISPID_DSFDEVICE_FRIENDLY_NAME),
+        propput,
+        helpstring("Friendly name for the device used in UI such as Device Manager."),
+        helpcontext(HID_IDSFSystemDevice_FriendlyName),
+        helpstringcontext(HID_IDSFSystemDevice_FriendlyName)
+    ]
+    HRESULT _stdcall FriendlyName([in] BSTR bstrName);
+
+    //
+    // HardwareIDs
+    //
+    [
+        id(DISPID_DSFDEVICE_HARDWARE_IDS),
+        propget,
+        helpstring("Device's PNP hardware IDs. Used only by bus devices."),
+        helpcontext(HID_IDSFSystemDevice_HardwareIDs),
+        helpstringcontext(HID_IDSFSystemDevice_HardwareIDs)
+    ]
+    HRESULT _stdcall HardwareIDs([out, retval] SAFEARRAY(VARIANT) *ppsaIDs);
+
+    [
+        id(DISPID_DSFDEVICE_HARDWARE_IDS),
+        propput,
+        helpstring("Device's PNP hardware IDs. Used only by bus devices."),
+        helpcontext(HID_IDSFSystemDevice_HardwareIDs),
+        helpstringcontext(HID_IDSFSystemDevice_HardwareIDs)
+    ]
+    HRESULT _stdcall HardwareIDs([in] SAFEARRAY(VARIANT) psaIDs);
+
+    //
+    // InstanceID
+    //
+    [
+        id(DISPID_DSFDEVICE_INSTANCE_ID),
+        propget,
+        helpstring("Device's PNP instance ID. Used only for bus devices."),
+        helpcontext(HID_IDSFSystemDevice_InstanceID),
+        helpstringcontext(HID_IDSFSystemDevice_InstanceID)
+    ]
+    HRESULT _stdcall InstanceID([out, retval] BSTR *pbstrID);
+
+    [
+        id(DISPID_DSFDEVICE_INSTANCE_ID),
+        propput,
+        helpstring("Device's PNP instance ID. Used only for bus devices."),
+        helpcontext(HID_IDSFSystemDevice_InstanceID),
+        helpstringcontext(HID_IDSFSystemDevice_InstanceID)
+    ]
+    HRESULT _stdcall InstanceID([in] BSTR bstrID);
+
+    //
+    // LegacyBusType
+    //
+    [
+        id(DISPID_DSFDEVICE_LEGACY_BUS_TYPE),
+        propget,
+        helpstring("Device's bus type, such as PCIBus or PCMCIABus."),
+        helpcontext(HID_IDSFSystemDevice_LegacyBusType),
+        helpstringcontext(HID_IDSFSystemDevice_LegacyBusType)
+    ]
+    HRESULT _stdcall LegacyBusType([out, retval] DSFInterfaceType *pBusType);
+
+    [
+        id(DISPID_DSFDEVICE_LEGACY_BUS_TYPE),
+        propput,
+        helpstring("Device's bus type, such as PCIBus or PCMCIABus."),
+        helpcontext(HID_IDSFSystemDevice_LegacyBusType),
+        helpstringcontext(HID_IDSFSystemDevice_LegacyBusType)
+    ]
+    HRESULT _stdcall LegacyBusType([in] DSFInterfaceType BusType);
+
+    //
+    // LocationInfo
+    //
+    [
+        id(DISPID_DSFDEVICE_LOCATION_INFO),
+        propget,
+        helpstring("Device's location on the bus, interpretation is bus-specific."),
+        helpcontext(HID_IDSFSystemDevice_LocationInfo),
+        helpstringcontext(HID_IDSFSystemDevice_LocationInfo)
+    ]
+    HRESULT _stdcall LocationInfo([out, retval] BSTR *pbstrInfo);
+
+    [
+        id(DISPID_DSFDEVICE_LOCATION_INFO),
+        propput,
+        helpstring("Device's location on the bus, interpretation is bus-specific."),
+        helpcontext(HID_IDSFSystemDevice_LocationInfo),
+        helpstringcontext(HID_IDSFSystemDevice_LocationInfo)
+    ]
+    HRESULT _stdcall LocationInfo([in] BSTR bstrInfo);
+
+    //
+    // Manufacturer
+    //
+    [
+        id(DISPID_DSFDEVICE_MANUFACTURER),
+        propget,
+        helpstring("Name of device manufacturer."),
+        helpcontext(HID_IDSFSystemDevice_Manufacturer),
+        helpstringcontext(HID_IDSFSystemDevice_Manufacturer)
+    ]
+    HRESULT _stdcall Manufacturer([out, retval] BSTR *pbstrName);
+
+    [
+        id(DISPID_DSFDEVICE_MANUFACTURER),
+        propput,
+        helpstring("Name of device manufacturer."),
+        helpcontext(HID_IDSFSystemDevice_Manufacturer),
+        helpstringcontext(HID_IDSFSystemDevice_Manufacturer)
+    ]
+    HRESULT _stdcall Manufacturer([in] BSTR bstrName);
+
+    //
+    // PDOName
+    //
+    [
+        id(DISPID_DSFDEVICE_PDO_NAME),
+        propget,
+        helpstring("Name of device's physical device object."),
+        helpcontext(HID_IDSFSystemDevice_PDOName),
+        helpstringcontext(HID_IDSFSystemDevice_PDOName)
+    ]
+    HRESULT _stdcall PDOName([out, retval] BSTR *pbstrPDOName);
+
+    [
+        id(DISPID_DSFDEVICE_PDO_NAME),
+        propput,
+        helpstring("Name of device's physical device object."),
+        helpcontext(HID_IDSFSystemDevice_PDOName),
+        helpstringcontext(HID_IDSFSystemDevice_PDOName)
+    ]
+    HRESULT _stdcall PDOName([in] BSTR bstrPDOName);
+
+    //
+    // RawResources
+    //
+    [
+        id(DISPID_DSFDEVICE_RAW_RESOURCES),
+        propget,
+        helpstring("Raw hardware resources used by device. For bus devices only."),
+        helpcontext(HID_IDSFSystemDevice_RawResources),
+        helpstringcontext(HID_IDSFSystemDevice_RawResources)
+    ]
+    HRESULT _stdcall RawResources([out, retval] DSFResourceList **ppDSFResourceList);
+
+    [
+        id(DISPID_DSFDEVICE_RAW_RESOURCES),
+        propput,
+        helpstring("Raw hardware resources used by device. For bus devices only."),
+        helpcontext(HID_IDSFSystemDevice_RawResources),
+        helpstringcontext(HID_IDSFSystemDevice_RawResources)
+    ]
+    HRESULT _stdcall RawResources([in] DSFResourceList *pDSFResourceList);
+
+    [
+        id(DISPID_DSFDEVICE_RAW_RESOURCES),
+        propputref,
+        helpstring("Raw hardware resources used by device. For bus devices only."),
+        helpcontext(HID_IDSFSystemDevice_RawResources),
+        helpstringcontext(HID_IDSFSystemDevice_RawResources)
+    ]
+    HRESULT _stdcall RawResources([in] DSFResourceList *pDSFResourceList);
+
+
+    //
+    // UINumber
+    //
+    [
+        id(DISPID_DSFDEVICE_UI_NUMBER),
+        propget,
+        helpstring("Name of device's physical device object."),
+        helpcontext(HID_IDSFSystemDevice_UINumber),
+        helpstringcontext(HID_IDSFSystemDevice_UINumber)
+    ]
+    HRESULT _stdcall UINumber([out, retval] long *plNumber);
+
+    [
+        id(DISPID_DSFDEVICE_UI_NUMBER),
+        propput,
+        helpstring("Name of device's physical device object."),
+        helpcontext(HID_IDSFSystemDevice_UINumber),
+        helpstringcontext(HID_IDSFSystemDevice_UINumber)
+    ]
+    HRESULT _stdcall UINumber([in] long lNumber);
+
+    //
+    // XlatedResources
+    //
+    [
+        id(DISPID_DSFDEVICE_XLATED_RESOURCES),
+        propget,
+        helpstring("Translated hardware resources used by device. For bus devices only."),
+        helpcontext(HID_IDSFSystemDevice_XlatedResources),
+        helpstringcontext(HID_IDSFSystemDevice_XlatedResources)
+    ]
+    HRESULT _stdcall XlatedResources([out, retval] DSFResourceList **ppDSFResourceList);
+
+    [
+        id(DISPID_DSFDEVICE_XLATED_RESOURCES),
+        propput,
+        helpstring("Translated hardware resources used by device. For bus devices only."),
+        helpcontext(HID_IDSFSystemDevice_XlatedResources),
+        helpstringcontext(HID_IDSFSystemDevice_XlatedResources)
+    ]
+    HRESULT _stdcall XlatedResources([in] DSFResourceList *pDSFResourceList);
+
+    [
+        id(DISPID_DSFDEVICE_XLATED_RESOURCES),
+        propputref,
+        helpstring("Translated hardware resources used by device. For bus devices only."),
+        helpcontext(HID_IDSFSystemDevice_XlatedResources),
+        helpstringcontext(HID_IDSFSystemDevice_XlatedResources)
+    ]
+    HRESULT _stdcall XlatedResources([in] DSFResourceList *pDSFResourceList);
+
+};
+
+[
+    uuid(1AE675C7-9C3D-429c-94C9-137A00246470),
+    helpstring("DSFSystemDevice object. Represents the operating systems view of a device."),
+    helpcontext(HID_IDSFSystemDevice),
+    helpstringcontext(HID_IDSFSystemDevice)
+]
+coclass DSFSystemDevice
+{
+    [default] interface IDSFSystemDevice;
+};
+
+
+
+
+
+
+[
+    uuid(E3B2A057-2A23-4ABE-8188-9FB655131823),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("DSFDevice object. Represents and controls a simulated device."),
+    helpcontext(HID_IDSFDevice),
+    helpstringcontext(HID_IDSFDevice)
+]
+interface IDSFDevice : IDispatch
+{
+    // properties
+
+    //
+    // Children
+    //
+    [
+        id(DISPID_DSFDEVICE_CHILDREN),
+        propget,
+        helpstring("Collection of devices that are children of this device. Typically used only for bus devices to represent devices attached to the bus."),
+        helpcontext(HID_IDSFDevice_Children),
+        helpstringcontext(HID_IDSFDevice_Children)
+    ]
+    HRESULT _stdcall Children([out, retval] DSFDevices **ppDSFDevices);
+
+    //
+    // Enabled
+    //
+    [
+        id(DISPID_DSFDEVICE_ENABLED),
+        propget,
+        helpstring("Determines whether a device is enabled as defined by its hardware interface."),
+        helpcontext(HID_IDSFDevice_Enabled),
+        helpstringcontext(HID_IDSFDevice_Enabled)
+    ]
+    HRESULT _stdcall Enabled([out, retval] VARIANT_BOOL *pfvarEnabled);
+
+    [
+        id(DISPID_DSFDEVICE_ENABLED),
+        propput,
+        helpstring("Determines whether a device is enabled as defined by its hardware interface."),
+        helpcontext(HID_IDSFDevice_Enabled),
+        helpstringcontext(HID_IDSFDevice_Enabled)
+    ]
+    HRESULT _stdcall Enabled([in] VARIANT_BOOL fvarEnabled);
+
+    //
+    //GUID 
+    //
+    [
+        id(DISPID_DSFDEVICE_GUID),
+        propget,
+        helpstring("Device's GUID."),
+        helpcontext(HID_IDSFDevice_Guid),
+        helpstringcontext(HID_IDSFDevice_Guid)
+    ]
+    HRESULT _stdcall Guid([out, retval] BSTR *pbstrGuid);
+    
+    [
+        id(DISPID_DSFDEVICE_GUID),
+        propput,
+        helpstring("Device's GUID."),
+        helpcontext(HID_IDSFDevice_Guid),
+        helpstringcontext(HID_IDSFDevice_Guid)
+    ]
+    HRESULT _stdcall Guid([in] BSTR bstrGuid);
+
+    //
+    // HasObject
+    //
+    [
+        id(DISPID_DSFDEVICE_HASOBJECT),
+        helpstring("Allows clients to check to see if an arbitrary object is associated with the DSFDevice object."),
+        helpcontext(HID_IDSFDevice_HasObject),
+        helpstringcontext(HID_IDSFDevice_HasObject)
+    ]
+    HRESULT _stdcall HasObject([in]  BSTR                   CLSID,
+                               [out, retval] VARIANT_BOOL * pvBool
+                               );
+
+    //
+    // Hrm
+    //
+    [
+        id(DISPID_DSFDEVICE_HRM),
+        propget,
+        helpstring("Returns a hardware redirection module for the specified resource type."),
+        helpcontext(HID_IDSFDevice_Hrm),
+        helpstringcontext(HID_IDSFDevice_Hrm)
+    ]
+    HRESULT _stdcall Hrm([in]  DSFResourceType    ResType,
+                         [out, retval] IUnknown **ppunkHrm
+                        );
+
+    //
+    // Inserted
+    //
+    [
+        id(DISPID_DSFDEVICE_INSERTED),
+        propget,
+        helpstring("Indicates whether the simulated device appears to be physically present in the system."),
+        helpcontext(HID_IDSFDevice_Inserted),
+        helpstringcontext(HID_IDSFDevice_Inserted)
+    ]
+    HRESULT _stdcall Inserted([out, retval] VARIANT_BOOL *pfvarInserted);
+
+    [
+        id(DISPID_DSFDEVICE_INSERTED),
+        propput,
+        helpstring("Indicates whether the simulated device appears to be physically present in the system."),
+        helpcontext(HID_IDSFDevice_Inserted),
+        helpstringcontext(HID_IDSFDevice_Inserted)
+    ]
+    HRESULT _stdcall Inserted([in] VARIANT_BOOL fvarInserted);
+
+    //
+    // Name
+    //
+    [
+        id(DISPID_DSFDEVICE_NAME),
+        propget,
+        helpstring("Device's display name. Arbitrary name for application use. Not required to be unique."),
+        helpcontext(HID_IDSFDevice_Name),
+        helpstringcontext(HID_IDSFDevice_Name)
+    ]
+    HRESULT _stdcall Name([out, retval] BSTR *pbstrName);
+
+    [
+        id(DISPID_DSFDEVICE_NAME),
+        propput,
+        helpstring("Device's display name. Arbitrary name for application use. Not required to be unique."),
+        helpcontext(HID_IDSFDevice_Name),
+        helpstringcontext(HID_IDSFDevice_Name)
+    ]
+    HRESULT _stdcall Name([in] BSTR bstrName);
+
+    //
+    // Next
+    //
+    [
+        id(DISPID_DSFDEVICE_NEXT),
+        propget,
+        helpstring("Next device in chain. Used to chain devices that process data serially (analogous to WDM device stacks)"),
+        helpcontext(HID_IDSFDevice_Next),
+        helpstringcontext(HID_IDSFDevice_Next)
+    ]
+    HRESULT _stdcall Next([out, retval] DSFDevice **ppDSFDevice);
+
+    [
+        id(DISPID_DSFDEVICE_NEXT),
+        propput,
+        helpstring("Next device in chain. Used to chain devices that process data serially (analogous to WDM device stacks)"),
+        helpcontext(HID_IDSFDevice_Next),
+        helpstringcontext(HID_IDSFDevice_Next)
+    ]
+    HRESULT _stdcall Next([in] DSFDevice *pDSFDevice);
+
+    [
+        id(DISPID_DSFDEVICE_NEXT),
+        propputref,
+        helpstring("Next device in chain. Used to chain devices that process data serially (analogous to WDM device stacks)"),
+        helpcontext(HID_IDSFDevice_Next),
+        helpstringcontext(HID_IDSFDevice_Next)
+    ]
+    HRESULT _stdcall Next([in] DSFDevice *pDSFDevice);
+
+    //
+    // Object
+    //
+    [
+        id(DISPID_DSFDEVICE_OBJECT),
+        propget,
+        helpstring("Allows clients to associate arbitrary objects with DSFDevice object identifed by GUID."),
+        helpcontext(HID_IDSFDevice_Object),
+        helpstringcontext(HID_IDSFDevice_Object)
+    ]
+    HRESULT _stdcall Object([in]  BSTR               GUID,
+                            [out, retval] IUnknown **ppunkObject
+                           );
+
+    [
+        id(DISPID_DSFDEVICE_OBJECT),
+        propput,
+        helpstring("Allows clients to associate arbitrary objects with DSFDevice object identifed by GUID."),
+        helpcontext(HID_IDSFDevice_Object),
+        helpstringcontext(HID_IDSFDevice_Object)
+    ]
+    HRESULT _stdcall Object([in] BSTR      GUID,
+                            [in] IUnknown *punkObject
+                           );
+
+    [
+        id(DISPID_DSFDEVICE_OBJECT),
+        propputref,
+        helpstring("Allows clients to associate arbitrary objects with DSFDevice object identifed by GUID."),
+        helpcontext(HID_IDSFDevice_Object),
+        helpstringcontext(HID_IDSFDevice_Object)
+    ]
+    HRESULT _stdcall Object([in] BSTR      GUID,
+                            [in] IUnknown *punkObject
+                           );
+
+    //
+    // OpMode
+    //
+    [
+        id(DISPID_DSFDEVICE_OPMODE),
+        propget,
+        helpstring("Device's current operating mode (simulation/capture)"),
+        helpcontext(HID_IDSFDevice_OpMode),
+        helpstringcontext(HID_IDSFDevice_OpMode)
+    ]
+    HRESULT _stdcall OpMode([out, retval] DSFOpMode *pMode);
+
+    [
+        id(DISPID_DSFDEVICE_OPMODE),
+        propput,
+        helpstring("Device's current operating mode (simulation/capture)"),
+        helpcontext(HID_IDSFDevice_OpMode),
+        helpstringcontext(HID_IDSFDevice_OpMode)
+    ]
+    HRESULT _stdcall OpMode([in] DSFOpMode Mode);
+
+    //
+    // Parent
+    //
+    [
+        id(DISPID_DSFDEVICE_PARENT),
+        propget,
+        helpstring("Device's parent device. Defines hierarchical relationship between devices. Typically used by buses for attached devices."),
+        helpcontext(HID_IDSFDevice_Parent),
+        helpstringcontext(HID_IDSFDevice_Parent)
+    ]
+    HRESULT _stdcall Parent([out, retval] DSFDevice **ppDSFDevice);
+
+    [
+        id(DISPID_DSFDEVICE_PARENT),
+        propput,
+        helpstring("Device's parent device. Defines hierarchical relationship between devices. Typically used by buses for attached devices."),
+        helpcontext(HID_IDSFDevice_Parent),
+        helpstringcontext(HID_IDSFDevice_Parent)
+    ]
+    HRESULT _stdcall Parent([in] DSFDevice *pDSFDevice);
+
+    [
+        id(DISPID_DSFDEVICE_PARENT),
+        propputref,
+        helpstring("Device's parent device. Defines hierarchical relationship between devices. Typically used by buses for attached devices."),
+        helpcontext(HID_IDSFDevice_Parent),
+        helpstringcontext(HID_IDSFDevice_Parent)
+    ]
+    HRESULT _stdcall Parent([in] DSFDevice *pDSFDevice);
+
+    //
+    // Persistent
+    //
+    [
+        id(DISPID_DSFDEVICE_PERSISTENT),
+        propget,
+        helpstring("Indicates whether a simulated device should remain present in the system after a reboot."),
+        helpcontext(HID_IDSFDevice_Persistent),
+        helpstringcontext(HID_IDSFDevice_Persistent)
+    ]
+    HRESULT _stdcall Persistent([out, retval] VARIANT_BOOL *pfvarPersistent);
+
+    [
+        id(DISPID_DSFDEVICE_PERSISTENT),
+        propput,
+        helpstring("Indicates whether a simulated device should remain present in the system after a reboot."),
+        helpcontext(HID_IDSFDevice_Persistent),
+        helpstringcontext(HID_IDSFDevice_Persistent)
+    ]
+    HRESULT _stdcall Persistent([in] VARIANT_BOOL fvarPersistent);
+
+
+    //
+    // State
+    //
+    [
+        id(DISPID_DSFDEVICE_STATE),
+        propget,
+        helpstring("Device's state bits. Defined by device."),
+        helpcontext(HID_IDSFDevice_State),
+        helpstringcontext(HID_IDSFDevice_State)
+    ]
+    HRESULT _stdcall State([out, retval] long *plState);
+
+
+    //
+    // SystemDevice
+    //
+    [
+        id(DISPID_DSFDEVICE_SYSTEMDEVICE),
+        propget,
+        helpstring("They system device associated with this simulation."),
+        helpcontext(HID_IDSFDevice_SystemDevice),
+        helpstringcontext(HID_IDSFDevice_SystemDevice)
+    ]
+    HRESULT _stdcall SystemDevice([out, retval] IDSFSystemDevice **ppSystemDevice);
+
+
+
+    // methods:
+
+    //
+    // SetStateBit
+    //
+    [
+        id(DISPID_DSFDEVICE_SET_STATE_BIT),
+        helpstring("Asks the device to perform the requested operation on the specified bit in DSFDevice.State."),
+        helpcontext(HID_IDSFDevice_SetStateBit),
+        helpstringcontext(HID_IDSFDevice_SetStateBit)
+    ]
+    HRESULT _stdcall SetStateBit([in] long     Bit,
+                                 [in] DSFBitOp BitOp
+                                 );
+
+    //
+    // StartFaultInjection
+    //
+    [
+        id(DISPID_DSFDEVICE_START_FAULT_INJECTION),
+        helpstring("Requests that the device begin injecting faults into the hardware interface."),
+        helpcontext(HID_IDSFDevice_StartFaultInjection),
+        helpstringcontext(HID_IDSFDevice_StartFaultInjection)
+    ]
+    HRESULT _stdcall StartFaultInjection([in]  DSFResourceType  ResType,
+                                         [in]  VARIANT          Params,
+                                         [out, retval] VARIANT *pvarContext
+                                         );
+
+    //
+    // StopFaultInjection
+    //
+    [
+        id(DISPID_DSFDEVICE_STOP_FAULT_INJECTION),
+        helpstring("Requests that the device begin stop injecting that faults requested by an earlier call to StartFaultInjection that returned the specified context."),
+        helpcontext(HID_IDSFDevice_StopFaultInjection),
+        helpstringcontext(HID_IDSFDevice_StopFaultInjection)
+    ]
+    HRESULT _stdcall StopFaultInjection([in] DSFResourceType ResType,
+                                        [in] VARIANT         Context
+                                        );
+};
+
+
+
+[
+    uuid(3E706BA6-2C8F-4441-8931-1ACEB318112F),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("IDSFDeviceEvents interface."),
+    helpcontext(HID_IDSFDeviceEvents),
+    helpstringcontext(HID_IDSFDeviceEvents)
+]
+interface IDSFDeviceEvents : IDispatch
+{
+    // methods:
+
+    //
+    // Disabled
+    //
+    [
+    id(DISPID_DSFDEVICE_EVENTS_DISABLED),
+    helpstring("Fired when DSFDevice.Enabled has been set to FALSE."),
+    helpcontext(HID_IDSFDeviceEvents_Disabled),
+    helpstringcontext(HID_IDSFDeviceEvents_Disabled)
+    ]
+    HRESULT _stdcall Disabled();
+
+    //
+    // Enabled
+    //
+    [
+        id(DISPID_DSFDEVICE_EVENTS_ENABLED),
+        helpstring("Fired when DSFDevice.Enabled has been set to TRUE."),
+        helpcontext(HID_IDSFDeviceEvents_Enabled),
+        helpstringcontext(HID_IDSFDeviceEvents_Enabled)
+    ]
+    HRESULT _stdcall Enabled();
+
+    //
+    // Inserted
+    //
+    [
+        id(DISPID_DSFDEVICE_EVENTS_INSERTED),
+        helpstring("Fired when a device has simulated becoming physically present."),
+        helpcontext(HID_IDSFDeviceEvents_Inserted),
+        helpstringcontext(HID_IDSFDeviceEvents_Inserted)
+    ]
+    HRESULT _stdcall Inserted();
+
+    //
+    // OpModeChange
+    //
+    [
+        id(DISPID_DSFDEVICE_EVENTS_OPMODE_CHANGE),
+        helpstring("Fired when the device's operating mode has changed (simulation/capture)."),
+        helpcontext(HID_IDSFDeviceEvents_OpModeChange),
+        helpstringcontext(HID_IDSFDeviceEvents_OpModeChange)
+    ]
+    HRESULT _stdcall OpModeChange([in] DSFOpMode NewOpMode);
+
+    //
+    // Removed
+    //
+    [
+        id(DISPID_DSFDEVICE_EVENTS_REMOVED),
+        helpstring("Fired when a device has simulated becoming physically not present."),
+        helpcontext(HID_IDSFDeviceEvents_Removed),
+        helpstringcontext(HID_IDSFDeviceEvents_Removed)
+    ]
+    HRESULT _stdcall Removed();
+
+    //
+    // ResourcesSet
+    //
+    [
+        id(DISPID_DSFDEVICE_EVENTS_RESOURCES_SET),
+        helpstring("Fired when a device has been given its hardware resources (bus devices only)."),
+        helpcontext(HID_IDSFDeviceEvents_ResourcesSet),
+        helpstringcontext(HID_IDSFDeviceEvents_ResourcesSet)
+    ]
+    HRESULT _stdcall ResourcesSet();
+
+    //
+    // StartFaultInjection
+    //
+    [
+        id(DISPID_DSFDEVICE_EVENTS_START_FAULT_INJECTION),
+        helpstring("Fired when the device has received a call to DSFDevice.StartFaultInjection."),
+        helpcontext(HID_IDSFDeviceEvents_StartFaultInjection),
+        helpstringcontext(HID_IDSFDeviceEvents_StartFaultInjection)
+    ]
+    HRESULT _stdcall StartFaultInjection([in] DSFResourceType   ResType,
+                                         [in] VARIANT           Params,
+                                         [out, retval] VARIANT *pvarContext
+                                        );
+
+    //
+    // StopFaultInjection
+    //
+    [
+        id(DISPID_DSFDEVICE_EVENTS_STOP_FAULT_INJECTION),
+        helpstring("Fired when the device has received a call to DSFDevice.StopFaultInjection."),
+        helpcontext(HID_IDSFDeviceEvents_StopFaultInjection),
+        helpstringcontext(HID_IDSFDeviceEvents_StopFaultInjection)
+    ]
+    HRESULT _stdcall StopFaultInjection([in] DSFResourceType ResType,
+                                        [in] VARIANT         Context
+                                        );
+
+    //
+    // StateChange
+    //
+    [
+        id(DISPID_DSFDEVICE_EVENTS_STATE_CHANGE),
+        helpstring("Fired when the device changes a state bit (as returned by DSFDevice.State)."),
+        helpcontext(HID_IDSFDeviceEvents_StateChange),
+        helpstringcontext(HID_IDSFDeviceEvents_StateChange)
+    ]
+    HRESULT _stdcall StateChange([in] long  Bit,
+                                 [in] short Value,
+                                 [in] long  NewState
+                                );
+};
+
+
+[
+    uuid(8B6626F7-F57B-4C47-AE2F-4813FB4D40D6),
+    helpstring("DSFDevice object. Represents and controls a simulated device."),
+    helpcontext(HID_IDSFDevice),
+    helpstringcontext(HID_IDSFDevice)
+]
+coclass DSFDevice
+{
+    [default] interface IDSFDevice;
+    [default, source] interface IDSFDeviceEvents;
+};
+
+
+
+
+
+[
+    uuid(959B9C1D-5644-4835-8297-F435B3FA80DD),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("DSF object. Top level object in DSF object model used to access all features of DSF."),
+    helpcontext(HID_IDSF),
+    helpstringcontext(HID_IDSF)
+]
+interface IDSF : IDispatch
+{
+    // properties:
+
+    //
+    // Devices
+    //
+    [
+        id(DISPID_DSF_DEVICES),
+        propget,
+        helpstring("Returns the root collection of simulated devices."),
+        helpcontext(HID_IDSF_Devices),
+        helpstringcontext(HID_IDSF_Devices)
+    ]
+    HRESULT _stdcall Devices([out, retval] DSFDevices **ppDSFDevices);
+
+
+    //
+    // Log
+    //
+    [
+        id(DISPID_DSF_LOG),
+        propget,
+        helpstring("Returns a DSFLog object that should be used for all test logging."),
+        helpcontext(HID_IDSF_Log),
+        helpstringcontext(HID_IDSF_Log)
+    ]
+    HRESULT _stdcall Log([out, retval] DSFLog **ppDSFLog);
+
+    //
+    // Version
+    //
+    [
+        id(DISPID_DSF_VERSION),
+        propget,
+        helpstring("Returns a Version object which contains the DSF version."),
+        helpcontext(HID_IDSF_Version),
+        helpstringcontext(HID_IDSF_Version)
+    ]
+    HRESULT _stdcall Version([out, retval] DSFVersion **ppDSFVersion);
+
+
+    // methods:
+
+    //
+    // CreateDevice
+    //
+    [
+        id(DISPID_DSF_CREATE_DEVICE),
+        helpstring("Creates a simulated bus device."),
+        helpcontext(HID_IDSF_CreateDevice),
+        helpstringcontext(HID_IDSF_CreateDevice)
+    ]
+    HRESULT _stdcall CreateDevice([in]  BSTR                 bstrDeviceID,
+                                  [in]  BSTR                 bstrInstanceID,
+                                  [in]  VARIANT              HardwareIDs,
+                                  [in]  VARIANT              CompatibleIDs,
+                                  [in]  DSFResourceList     *RawResources,
+                                  [in]  DSFResourceList     *XlatedResources,
+                                  [in]  DSFDeviceCaps       *DeviceCapabilities,
+                                  [out, retval] DSFDevice  **ppDSFDevice
+                                  );
+    //Write State
+    [
+        id(DISPID_DSF_WRITE_STATE),
+        helpstring("Write the driver public state to storage."),
+        helpcontext(HID_IDSF_WriteState),
+        helpstringcontext(HID_IDSF_WriteState)
+    ]
+    HRESULT _stdcall WriteState ([in] DSFStateType Type,
+                                 [in] BSTR Guid,
+                                 [in] DSFPropertyBag *pDSFPropertyBag);
+
+    //Read State
+    [
+        id(DISPID_DSF_READ_STATE),
+        helpstring("Reads the driver public state from storage"),
+        helpcontext(HID_IDSF_ReadState),
+        helpstringcontext(HID_IDSF_ReadState)
+    ]
+    HRESULT _stdcall ReadState ([in] DSFStateType Type,
+                                [in] BSTR Guid,
+                                [out, retval]DSFPropertyBag **ppDSFPropertyBag);
+
+    //DeleteState
+    [
+        id(DISPID_DSF_DELETE_STATE),
+        helpstring("Deletes any public state that has been stored"),
+        helpcontext(HID_IDSF_DeleteState),
+        helpstringcontext(HID_IDSF_DeleteState)
+    ]
+    HRESULT _stdcall DeleteState([in] DSFStateType Type,
+                                 [in] BSTR Guid);
+
+    //SetDriverFlags
+    [
+        id(DISPID_DSF_SET_DRIVER_FLAGS),
+        helpstring("Set the given driver's debug flags"),
+        helpcontext(HID_IDSF_SetDriverFlags),
+        helpstringcontext(HID_IDSF_SetDriverFlags)
+    ]
+    HRESULT _stdcall SetDriverFlags([in] BSTR        DriverGuid,
+                                    [in] DSFFlagType FlagType,
+                                    [in] unsigned long Flags);
+
+    //EnableDriverLogging
+    [
+        id(DISPID_DSF_ENABLE_DRIVER_LOGGING),
+        helpstring("Enable or disable logging for a driver"),
+        helpcontext(HID_IDSF_EnableDriverLogging),
+        helpstringcontext(HID_IDSF_EnableDriverLogging)
+    ]
+    HRESULT _stdcall EnableDriverLogging ([in] BSTR DriverGuid,
+                                          [in] VARIANT_BOOL Enable);
+
+    //HotPlug
+    [
+        id(DISPID_DSF_HOTPLUG),
+        helpstring("Plugs the given DSFDevice into the bus which is defined eithe by its GUID or friendly name."),
+        helpcontext(HID_IDSF_HotPlug),
+        helpstringcontext(HID_IDSF_HotPlug)
+    ]
+    HRESULT _stdcall HotPlug ([in] DSFDevice *pDSFDevice,
+                              [in] BSTR       bstrBus,
+                              [out, retval] IDSFBus **ppiDSFBus);
+};
+
+
+[
+    uuid(44DD6DC0-6427-4C02-8D5C-1179C50C65D7),
+    helpstring("DSF object. Top level object in DSF object model used to access all features of DSF."),
+    helpcontext(HID_IDSF),
+    helpstringcontext(HID_IDSF),
+    custom(DSF_AttrID_KernelServer, "DSFKSvcs")
+]
+coclass DSF
+{
+    [default] interface IDSF;
+};
+
+
+
+[
+    uuid(E75FB264-EA8A-4167-892B-F6F315249518),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("Collection of DSFDevice objects."),
+    helpcontext(HID_IDSFDevices),
+    helpstringcontext(HID_IDSFDevices)
+]
+interface IDSFDevices : IDispatch
+{
+    // properties:
+
+    //
+    // Count
+    //
+    [
+        id(DISPID_DSF_COUNT),
+        propget,
+        helpstring("Returns the current count of objects in the collection."),
+        helpcontext(HID_IDSFDevices_Count),
+        helpstringcontext(HID_IDSFDevices_Count)
+    ]
+    HRESULT _stdcall Count([out, retval] long *plCount);
+
+    //
+    // Item
+    //
+    [
+        id(DISPID_VALUE),
+        propget,
+        helpstring("Returns the specified object from the collection."),
+        helpcontext(HID_IDSFDevices_Item),
+        helpstringcontext(HID_IDSFDevices_Item)
+    ]
+    HRESULT _stdcall Item([in]          VARIANT     Index,
+                          [out, retval] DSFDevice **ppDSFDevice);
+
+    //
+    // NewEnum
+    //
+    [
+        id(DISPID_NEWENUM),
+        propget,
+        hidden
+    ] 
+    HRESULT _stdcall _NewEnum([out, retval] IUnknown **ppunkEnum);
+
+    // methods:
+
+    //
+    // Refresh
+    //
+    [
+        id(DISPID_DEFDEVICES_REFRESH),
+        helpstring("Refreshes the contents of the collection to more accurately reflect the current state of its data source."),
+        helpcontext(HID_IDSFDevices_Refresh),
+        helpstringcontext(HID_IDSFDevices_Refresh)
+    ]
+    HRESULT _stdcall Refresh();
+};
+
+
+
+[
+    uuid(60FA4E76-ED77-4458-ABCF-56E23113FE61),
+    helpstring("Collection of DSFDevice objects."),
+    helpcontext(HID_IDSFDevices),
+    helpstringcontext(HID_IDSFDevices),
+    custom(DSF_AttrID_KernelServer, "DSFKSvcs")
+]
+coclass DSFDevices
+{
+    [default] interface IDSFDevices;
+};
+
+
+
+[
+    uuid(766705D3-5109-460D-80B5-30D97B17D867),
+    nonextensible,
+    helpstring("Device capabilities description. Used only for bus devices."),
+    helpcontext(HID_IDSFDeviceCaps),
+    helpstringcontext(HID_IDSFDeviceCaps)
+]
+interface IDSFDeviceCaps : IDispatch
+{
+    // properties:
+
+    //
+    // Version
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_VERSION),
+        propget,
+        helpstring("Version"),
+        helpcontext(HID_IDSFDeviceCaps_Version),
+        helpstringcontext(HID_IDSFDeviceCaps_Version)
+    ]
+    HRESULT _stdcall Version([out, retval] short *psVersion);
+
+    [
+        id(DISPID_DSFDEVICECAPS_VERSION),
+        propput,
+        helpstring("Version"),
+        helpcontext(HID_IDSFDeviceCaps_Version),
+        helpstringcontext(HID_IDSFDeviceCaps_Version)
+    ]
+    HRESULT _stdcall Version([in] short sVersion);
+
+
+    //
+    // DeviceD1
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_DEVICED1),
+        propget,
+        helpstring("DeviceD1"),
+        helpcontext(HID_IDSFDeviceCaps_DeviceD1),
+        helpstringcontext(HID_IDSFDeviceCaps_DeviceD1)
+    ]
+    HRESULT _stdcall DeviceD1([out, retval] VARIANT_BOOL *pfvarDeviceD1);
+
+    [
+        id(DISPID_DSFDEVICECAPS_DEVICED1),
+        propput,
+        helpstring("DeviceD1"),
+        helpcontext(HID_IDSFDeviceCaps_DeviceD1),
+        helpstringcontext(HID_IDSFDeviceCaps_DeviceD1)
+    ]
+    HRESULT _stdcall DeviceD1([in] VARIANT_BOOL fvarDeviceD1);
+
+
+    //
+    // DeviceD2
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_DEVICED2),
+        propget,
+        helpstring("DeviceD2"),
+        helpcontext(HID_IDSFDeviceCaps_DeviceD2),
+        helpstringcontext(HID_IDSFDeviceCaps_DeviceD2)
+    ]
+    HRESULT _stdcall DeviceD2([out, retval] VARIANT_BOOL *pfvarDeviceD2);
+
+    [
+        id(DISPID_DSFDEVICECAPS_DEVICED2),
+        propput,
+        helpstring("DeviceD2"),
+        helpcontext(HID_IDSFDeviceCaps_DeviceD2),
+        helpstringcontext(HID_IDSFDeviceCaps_DeviceD2)
+    ]
+    HRESULT _stdcall DeviceD2([in] VARIANT_BOOL fvarDeviceD2);
+
+
+    //
+    // LockSupported
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_LOCKSUPPORTED),
+        propget,
+        helpstring("LockSupported"),
+        helpcontext(HID_IDSFDeviceCaps_LockSupported),
+        helpstringcontext(HID_IDSFDeviceCaps_LockSupported)
+    ]
+    HRESULT _stdcall LockSupported([out, retval] VARIANT_BOOL *pfvarLockSupported);
+
+    [
+        id(DISPID_DSFDEVICECAPS_LOCKSUPPORTED),
+        propput,
+        helpstring("LockSupported"),
+        helpcontext(HID_IDSFDeviceCaps_LockSupported),
+        helpstringcontext(HID_IDSFDeviceCaps_LockSupported)
+    ]
+    HRESULT _stdcall LockSupported([in] VARIANT_BOOL fvarLockSupported);
+
+
+    //
+    // EjectSupported
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_EJECTSUPPORTED),
+        propget,
+        helpstring("EjectSupported"),
+        helpcontext(HID_IDSFDeviceCaps_EjectSupported),
+        helpstringcontext(HID_IDSFDeviceCaps_EjectSupported)
+    ]
+    HRESULT _stdcall EjectSupported([out, retval] VARIANT_BOOL *pfvarEjectSupported);
+
+    [
+        id(DISPID_DSFDEVICECAPS_EJECTSUPPORTED),
+        propput,
+        helpstring("EjectSupported"),
+        helpcontext(HID_IDSFDeviceCaps_EjectSupported),
+        helpstringcontext(HID_IDSFDeviceCaps_EjectSupported)
+    ]
+    HRESULT _stdcall EjectSupported([in] VARIANT_BOOL fvarEjectSupported);
+
+
+    //
+    // Removable
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_REMOVABLE),
+        propget,
+        helpstring("Removable"),
+        helpcontext(HID_IDSFDeviceCaps_Removable),
+        helpstringcontext(HID_IDSFDeviceCaps_Removable)
+    ]
+    HRESULT _stdcall Removable([out, retval] VARIANT_BOOL *pfvarRemovable);
+
+    [
+        id(DISPID_DSFDEVICECAPS_REMOVABLE),
+        propput,
+        helpstring("Removable"),
+        helpcontext(HID_IDSFDeviceCaps_Removable),
+        helpstringcontext(HID_IDSFDeviceCaps_Removable)
+    ]
+    HRESULT _stdcall Removable([in] VARIANT_BOOL fvarRemovable);
+
+
+    //
+    // DockDevice
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_DOCKDEVICE),
+        propget,
+        helpstring("DockDevice"),
+        helpcontext(HID_IDSFDeviceCaps_DockDevice),
+        helpstringcontext(HID_IDSFDeviceCaps_DockDevice)
+    ]
+    HRESULT _stdcall DockDevice([out, retval] VARIANT_BOOL *pfvarDockDevice);
+
+    [
+        id(DISPID_DSFDEVICECAPS_DOCKDEVICE),
+        propput,
+        helpstring("DockDevice"),
+        helpcontext(HID_IDSFDeviceCaps_DockDevice),
+        helpstringcontext(HID_IDSFDeviceCaps_DockDevice)
+    ]
+    HRESULT _stdcall DockDevice([in] VARIANT_BOOL fvarDockDevice);
+
+
+    //
+    // UniqueID
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_UNIQUEID),
+        propget,
+        helpstring("UniqueID"),
+        helpcontext(HID_IDSFDeviceCaps_UniqueID),
+        helpstringcontext(HID_IDSFDeviceCaps_UniqueID)
+    ]
+    HRESULT _stdcall UniqueID([out, retval] VARIANT_BOOL *pfvarUniqueID);
+
+    [
+        id(DISPID_DSFDEVICECAPS_UNIQUEID),
+        propput,
+        helpstring("UniqueID"),
+        helpcontext(HID_IDSFDeviceCaps_UniqueID),
+        helpstringcontext(HID_IDSFDeviceCaps_UniqueID)
+    ]
+    HRESULT _stdcall UniqueID([in] VARIANT_BOOL fvarUniqueID);
+
+
+    //
+    // SilentInstall
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_SILENTINSTALL),
+        propget,
+        helpstring("SilentInstall"),
+        helpcontext(HID_IDSFDeviceCaps_SilentInstall),
+        helpstringcontext(HID_IDSFDeviceCaps_SilentInstall)
+    ]
+    HRESULT _stdcall SilentInstall([out, retval] VARIANT_BOOL *pfvarSilentInstall);
+
+    [
+        id(DISPID_DSFDEVICECAPS_SILENTINSTALL),
+        propput,
+        helpstring("SilentInstall"),
+        helpcontext(HID_IDSFDeviceCaps_SilentInstall),
+        helpstringcontext(HID_IDSFDeviceCaps_SilentInstall)
+    ]
+    HRESULT _stdcall SilentInstall([in] VARIANT_BOOL fvarSilentInstall);
+
+
+    //
+    // RawDeviceOK
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_RAWDEVICEOK),
+        propget,
+        helpstring("RawDeviceOK"),
+        helpcontext(HID_IDSFDeviceCaps_RawDeviceOK),
+        helpstringcontext(HID_IDSFDeviceCaps_RawDeviceOK)
+    ]
+    HRESULT _stdcall RawDeviceOK([out, retval] VARIANT_BOOL *pfvarRawDeviceOK);
+
+    [
+        id(DISPID_DSFDEVICECAPS_RAWDEVICEOK),
+        propput,
+        helpstring("RawDeviceOK"),
+        helpcontext(HID_IDSFDeviceCaps_RawDeviceOK),
+        helpstringcontext(HID_IDSFDeviceCaps_RawDeviceOK)
+    ]
+    HRESULT _stdcall RawDeviceOK([in] VARIANT_BOOL fvarRawDeviceOK);
+
+
+    //
+    // SurpriseRemovalOK
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_SURPRISEREMOVALOK),
+        propget,
+        helpstring("SurpriseRemovalOK"),
+        helpcontext(HID_IDSFDeviceCaps_SurpriseRemovalOK),
+        helpstringcontext(HID_IDSFDeviceCaps_SurpriseRemovalOK)
+    ]
+    HRESULT _stdcall SurpriseRemovalOK([out, retval] VARIANT_BOOL *pfvarSurpriseRemovalOK);
+
+    [
+        id(DISPID_DSFDEVICECAPS_SURPRISEREMOVALOK),
+        propput,
+        helpstring("SurpriseRemovalOK"),
+        helpcontext(HID_IDSFDeviceCaps_SurpriseRemovalOK),
+        helpstringcontext(HID_IDSFDeviceCaps_SurpriseRemovalOK)
+    ]
+    HRESULT _stdcall SurpriseRemovalOK([in] VARIANT_BOOL fvarSurpriseRemovalOK);
+
+
+    //
+    // WakeFromD0
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_WAKEFROMD0),
+        propget,
+        helpstring("WakeFromD0"),
+        helpcontext(HID_IDSFDeviceCaps_WakeFromD0),
+        helpstringcontext(HID_IDSFDeviceCaps_WakeFromD0)
+    ]
+    HRESULT _stdcall WakeFromD0([out, retval] VARIANT_BOOL *pfvarWakeFromD0);
+
+    [
+        id(DISPID_DSFDEVICECAPS_WAKEFROMD0),
+        propput,
+        helpstring("WakeFromD0"),
+        helpcontext(HID_IDSFDeviceCaps_WakeFromD0),
+        helpstringcontext(HID_IDSFDeviceCaps_WakeFromD0)
+    ]
+    HRESULT _stdcall WakeFromD0([in] VARIANT_BOOL fvarWakeFromD0);
+
+
+    //
+    // WakeFromD1
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_WAKEFROMD1),
+        propget,
+        helpstring("WakeFromD1"),
+        helpcontext(HID_IDSFDeviceCaps_WakeFromD1),
+        helpstringcontext(HID_IDSFDeviceCaps_WakeFromD1)
+    ]
+    HRESULT _stdcall WakeFromD1([out, retval] VARIANT_BOOL *pfvarWakeFromD1);
+
+    [
+        id(DISPID_DSFDEVICECAPS_WAKEFROMD1),
+        propput,
+        helpstring("WakeFromD1"),
+        helpcontext(HID_IDSFDeviceCaps_WakeFromD1),
+        helpstringcontext(HID_IDSFDeviceCaps_WakeFromD1)
+    ]
+    HRESULT _stdcall WakeFromD1([in] VARIANT_BOOL fvarWakeFromD1);
+
+
+    //
+    // WakeFromD2
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_WAKEFROMD2),
+        propget,
+        helpstring("WakeFromD2"),
+        helpcontext(HID_IDSFDeviceCaps_WakeFromD2),
+        helpstringcontext(HID_IDSFDeviceCaps_WakeFromD2)
+    ]
+    HRESULT _stdcall WakeFromD2([out, retval] VARIANT_BOOL *pfvarWakeFromD2);
+
+    [
+        id(DISPID_DSFDEVICECAPS_WAKEFROMD2),
+        propput,
+        helpstring("WakeFromD2"),
+        helpcontext(HID_IDSFDeviceCaps_WakeFromD2),
+        helpstringcontext(HID_IDSFDeviceCaps_WakeFromD2)
+    ]
+    HRESULT _stdcall WakeFromD2([in] VARIANT_BOOL fvarWakeFromD2);
+
+
+    //
+    // WakeFromD3
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_WAKEFROMD3),
+        propget,
+        helpstring("WakeFromD3"),
+        helpcontext(HID_IDSFDeviceCaps_WakeFromD3),
+        helpstringcontext(HID_IDSFDeviceCaps_WakeFromD3)
+    ]
+    HRESULT _stdcall WakeFromD3([out, retval] VARIANT_BOOL *pfvarWakeFromD3);
+
+    [
+        id(DISPID_DSFDEVICECAPS_WAKEFROMD3),
+        propput,
+        helpstring("WakeFromD3"),
+        helpcontext(HID_IDSFDeviceCaps_WakeFromD3),
+        helpstringcontext(HID_IDSFDeviceCaps_WakeFromD3)
+    ]
+    HRESULT _stdcall WakeFromD3([in] VARIANT_BOOL fvarWakeFromD3);
+
+
+    //
+    // HardwareDisabled
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_HARDWAREDISABLED),
+        propget,
+        helpstring("HardwareDisabled"),
+        helpcontext(HID_IDSFDeviceCaps_HardwareDisabled),
+        helpstringcontext(HID_IDSFDeviceCaps_HardwareDisabled)
+    ]
+    HRESULT _stdcall HardwareDisabled([out, retval] VARIANT_BOOL *pfvarHardwareDisabled);
+
+    [
+        id(DISPID_DSFDEVICECAPS_HARDWAREDISABLED),
+        propput,
+        helpstring("HardwareDisabled"),
+        helpcontext(HID_IDSFDeviceCaps_HardwareDisabled),
+        helpstringcontext(HID_IDSFDeviceCaps_HardwareDisabled)
+    ]
+    HRESULT _stdcall HardwareDisabled([in] VARIANT_BOOL fvarHardwareDisabled);
+
+
+    //
+    // NonDynamic
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_NONDYNAMIC),
+        propget,
+        helpstring("NonDynamic"),
+        helpcontext(HID_IDSFDeviceCaps_NonDynamic),
+        helpstringcontext(HID_IDSFDeviceCaps_NonDynamic)
+    ]
+    HRESULT _stdcall NonDynamic([out, retval] VARIANT_BOOL *pfvarNonDynamic);
+
+    [
+        id(DISPID_DSFDEVICECAPS_NONDYNAMIC),
+        propput,
+        helpstring("NonDynamic"),
+        helpcontext(HID_IDSFDeviceCaps_NonDynamic),
+        helpstringcontext(HID_IDSFDeviceCaps_NonDynamic)
+    ]
+    HRESULT _stdcall NonDynamic([in] VARIANT_BOOL fvarNonDynamic);
+
+
+    //
+    // WarmEjectSupported
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_WARMEJECTSUPPORTED),
+        propget,
+        helpstring("WarmEjectSupported"),
+        helpcontext(HID_IDSFDeviceCaps_WarmEjectSupported),
+        helpstringcontext(HID_IDSFDeviceCaps_WarmEjectSupported)
+    ]
+    HRESULT _stdcall WarmEjectSupported([out, retval] VARIANT_BOOL *pfvarWarmEjectSupported);
+
+    [
+        id(DISPID_DSFDEVICECAPS_WARMEJECTSUPPORTED),
+        propput,
+        helpstring("WarmEjectSupported"),
+        helpcontext(HID_IDSFDeviceCaps_WarmEjectSupported),
+        helpstringcontext(HID_IDSFDeviceCaps_WarmEjectSupported)
+    ]
+    HRESULT _stdcall WarmEjectSupported([in] VARIANT_BOOL fvarWarmEjectSupported);
+
+
+    //
+    // NoDisplayInUI
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_NODISPLAYINUI),
+        propget,
+        helpstring("NoDisplayInUI"),
+        helpcontext(HID_IDSFDeviceCaps_NoDisplayInUI),
+        helpstringcontext(HID_IDSFDeviceCaps_NoDisplayInUI)
+    ]
+    HRESULT _stdcall NoDisplayInUI([out, retval] VARIANT_BOOL *pfvarNoDisplayInUI);
+
+    [
+        id(DISPID_DSFDEVICECAPS_NODISPLAYINUI),
+        propput,
+        helpstring("NoDisplayInUI"),
+        helpcontext(HID_IDSFDeviceCaps_NoDisplayInUI),
+        helpstringcontext(HID_IDSFDeviceCaps_NoDisplayInUI)
+    ]
+    HRESULT _stdcall NoDisplayInUI([in] VARIANT_BOOL fvarNoDisplayInUI);
+
+
+    //
+    // Reserved
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_RESERVED),
+        propget,
+        helpstring("Reserved"),
+        helpcontext(HID_IDSFDeviceCaps_Reserved),
+        helpstringcontext(HID_IDSFDeviceCaps_Reserved)
+    ]
+    HRESULT _stdcall Reserved([out, retval] short *psReserved);
+
+    [
+        id(DISPID_DSFDEVICECAPS_RESERVED),
+        propput,
+        helpstring("Reserved"),
+        helpcontext(HID_IDSFDeviceCaps_Reserved),
+        helpstringcontext(HID_IDSFDeviceCaps_Reserved)
+    ]
+    HRESULT _stdcall Reserved([in] short sReserved);
+
+
+    //
+    // Address
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_ADDRESS),
+        propget,
+        helpstring("Address"),
+        helpcontext(HID_IDSFDeviceCaps_Address),
+        helpstringcontext(HID_IDSFDeviceCaps_Address)
+    ]
+    HRESULT _stdcall Address([out, retval] long *plAddress);
+
+    [
+        id(DISPID_DSFDEVICECAPS_ADDRESS),
+        propput,
+        helpstring("Address"),
+        helpcontext(HID_IDSFDeviceCaps_Address),
+        helpstringcontext(HID_IDSFDeviceCaps_Address)
+    ]
+    HRESULT _stdcall Address([in] long lAddress);
+
+
+    //
+    // UINumber
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_UINUMBER),
+        propget,
+        helpstring("UINumber"),
+        helpcontext(HID_IDSFDeviceCaps_UINumber),
+        helpstringcontext(HID_IDSFDeviceCaps_UINumber)
+    ]
+    HRESULT _stdcall UINumber([out, retval] long *plUINumber);
+
+    [
+        id(DISPID_DSFDEVICECAPS_UINUMBER),
+        propput,
+        helpstring("UINumber"),
+        helpcontext(HID_IDSFDeviceCaps_UINumber),
+        helpstringcontext(HID_IDSFDeviceCaps_UINumber)
+    ]
+    HRESULT _stdcall UINumber([in] long lUINumber);
+
+
+    //
+    // DeviceState
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_DEVICESTATE),
+        propget,
+        helpstring("DeviceState"),
+        helpcontext(HID_IDSFDeviceCaps_DeviceState),
+        helpstringcontext(HID_IDSFDeviceCaps_DeviceState)
+    ]
+    HRESULT _stdcall DeviceState([out, retval] SAFEARRAY(VARIANT) *ppsaDeviceState);
+
+    [
+        id(DISPID_DSFDEVICECAPS_DEVICESTATE),
+        propput,
+        helpstring("DeviceState"),
+        helpcontext(HID_IDSFDeviceCaps_DeviceState),
+        helpstringcontext(HID_IDSFDeviceCaps_DeviceState)
+    ]
+    HRESULT _stdcall DeviceState([in] SAFEARRAY(VARIANT) psaDeviceState);
+
+
+    //
+    // SystemWake
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_SYSTEMWAKE),
+        propget,
+        helpstring("SystemWake"),
+        helpcontext(HID_IDSFDeviceCaps_SystemWake),
+        helpstringcontext(HID_IDSFDeviceCaps_SystemWake)
+    ]
+    HRESULT _stdcall SystemWake([out, retval] DSFSystemPowerState *pPowerState);
+
+    [
+        id(DISPID_DSFDEVICECAPS_SYSTEMWAKE),
+        propput,
+        helpstring("SystemWake"),
+        helpcontext(HID_IDSFDeviceCaps_SystemWake),
+        helpstringcontext(HID_IDSFDeviceCaps_SystemWake)
+    ]
+    HRESULT _stdcall SystemWake([in] DSFSystemPowerState PowerState);
+
+    //
+    // DeviceWake
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_DEVICEWAKE),
+        propget,
+        helpstring("DeviceWake"),
+        helpcontext(HID_IDSFDeviceCaps_DeviceWake),
+        helpstringcontext(HID_IDSFDeviceCaps_DeviceWake)
+    ]
+    HRESULT _stdcall DeviceWake([out, retval] DSFDevicePowerState *pPowerState);
+
+    [
+        id(DISPID_DSFDEVICECAPS_DEVICEWAKE),
+        propput,
+        helpstring("DeviceWake"),
+        helpcontext(HID_IDSFDeviceCaps_DeviceWake),
+        helpstringcontext(HID_IDSFDeviceCaps_DeviceWake)
+    ]
+    HRESULT _stdcall DeviceWake([in] DSFDevicePowerState PowerState);
+
+
+    //
+    // D1Latency 
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_D1LATENCY),
+        propget,
+        helpstring("D1Latency"),
+        helpcontext(HID_IDSFDeviceCaps_D1Latency),
+        helpstringcontext(HID_IDSFDeviceCaps_D1Latency)
+    ]
+    HRESULT _stdcall D1Latency([out, retval] long *plD1Latency);
+
+    [
+        id(DISPID_DSFDEVICECAPS_D1LATENCY),
+        propput,
+        helpstring("D1Latency"),
+        helpcontext(HID_IDSFDeviceCaps_D1Latency),
+        helpstringcontext(HID_IDSFDeviceCaps_D1Latency)
+    ]
+    HRESULT _stdcall D1Latency([in] long lD1Latency);
+
+
+    //
+    // D2Latency 
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_D2LATENCY),
+        propget,
+        helpstring("D2Latency"),
+        helpcontext(HID_IDSFDeviceCaps_D2Latency),
+        helpstringcontext(HID_IDSFDeviceCaps_D2Latency)
+    ]
+    HRESULT _stdcall D2Latency([out, retval] long *plD2Latency);
+
+    [
+        id(DISPID_DSFDEVICECAPS_D2LATENCY),
+        propput,
+        helpstring("D2Latency"),
+        helpcontext(HID_IDSFDeviceCaps_D2Latency),
+        helpstringcontext(HID_IDSFDeviceCaps_D2Latency)
+    ]
+    HRESULT _stdcall D2Latency([in] long lD2Latency);
+
+
+    //
+    // D3Latency 
+    //
+    [
+        id(DISPID_DSFDEVICECAPS_D3LATENCY),
+        propget,
+        helpstring("D3Latency"),
+        helpcontext(HID_IDSFDeviceCaps_D3Latency),
+        helpstringcontext(HID_IDSFDeviceCaps_D3Latency)
+    ]
+    HRESULT _stdcall D3Latency([out, retval] long *plD3Latency);
+
+    [
+        id(DISPID_DSFDEVICECAPS_D3LATENCY),
+        propput,
+        helpstring("D3Latency"),
+        helpcontext(HID_IDSFDeviceCaps_D3Latency),
+        helpstringcontext(HID_IDSFDeviceCaps_D3Latency)
+    ]
+    HRESULT _stdcall D3Latency([in] long lD3Latency);
+};
+
+[
+    uuid(26FF1048-7125-45F8-ACA8-F13C5E883ED1),
+    helpstring("Device capabilities description. Used only for bus devices."),
+    helpcontext(HID_IDSFDeviceCaps),
+    helpstringcontext(HID_IDSFDeviceCaps)
+]
+coclass DSFDeviceCaps
+{
+    [default] interface IDSFDeviceCaps;
+};
+
+
+
+[
+    uuid(B7902A6F-4CC1-4ABE-8E7A-6EFF79BBBACA),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("DSF logging object."),
+    helpcontext(HID_IDSFLog),
+    helpstringcontext(HID_IDSFLog)
+]
+interface IDSFLog : IDispatch
+{
+    // methods:
+
+    //
+    // Write
+    //
+    [
+        id(DISPID_DSFLOG_WRITE),
+        helpstring("Write"),
+        helpcontext(HID_IDSFLog_Write),
+        helpstringcontext(HID_IDSFLog_Write)
+    ]
+    HRESULT _stdcall Write([in] BSTR Text);
+
+    //
+    // Enabled
+    //
+    [
+        id(DISPID_DSFLOG_ENABLED),
+        propget,
+        helpstring("Determines whether the logger is enabled."),
+        helpcontext(HID_IDSFLog_Enabled),
+        helpstringcontext(HID_IDSFLog_Enabled)
+    ]
+    HRESULT _stdcall Enabled([out, retval] VARIANT_BOOL *pfvarEnabled);
+
+    [
+        id(DISPID_DSFLOG_ENABLED),
+        propput,
+        helpstring("Determines whether the logger is enabled."),
+        helpcontext(HID_IDSFLog_Enabled),
+        helpstringcontext(HID_IDSFLog_Enabled)
+    ]
+    HRESULT _stdcall Enabled([in] VARIANT_BOOL fvarEnabled);
+
+};
+
+
+[
+    uuid(A880A214-56A0-426A-844A-7AACCF7C3641),
+    helpstring("DSF logging object."),
+    helpcontext(HID_IDSFLog),
+    helpstringcontext(HID_IDSFLog)
+]
+
+coclass DSFLog
+{
+    [default] interface IDSFLog; 
+};
+
+
+[
+    uuid(F65DF1DA-32B4-411A-B989-1B43B5C428F2),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    object,
+    helpstring("DSF version object."),
+    helpcontext(HID_IDSFVersion),
+    helpstringcontext(HID_IDSFVersion)
+]
+interface IDSFVersion : IDispatch
+{
+    // properties:
+
+    //
+    // Major
+    //
+    [
+        id(DISPID_DSFVERSION_MAJOR),
+        propget,
+        helpstring("DSF Major version number"),
+        helpcontext(HID_IDSFVersion_Major),
+        helpstringcontext(HID_IDSFVersion_Major)
+    ]
+    HRESULT _stdcall Major([out, retval] long *plMajor);
+
+    //
+    // Minor
+    //
+    [
+        id(DISPID_DSFVERSION_MINOR),
+        propget,
+        helpstring("DSF Minor version number"),
+        helpcontext(HID_IDSFVersion_Minor),
+        helpstringcontext(HID_IDSFVersion_Minor)
+    ]
+    HRESULT _stdcall Minor([out, retval] long *plMinor);
+
+    //
+    // OSMajor
+    //
+    [
+        id(DISPID_DSFVERSION_OSMAJOR),
+        propget,
+        helpstring("OS Major version number"),
+        helpcontext(HID_IDSFVersion_OSMajor),
+        helpstringcontext(HID_IDSFVersion_OSMajor)
+    ]
+    HRESULT _stdcall OSMajor([out, retval] long *plOSMajor);
+
+    //
+    // OSMinor
+    //
+    [
+        id(DISPID_DSFVERSION_OSMINOR),
+        propget,
+        helpstring("OS Minor version number"),
+        helpcontext(HID_IDSFVersion_OSMinor),
+        helpstringcontext(HID_IDSFVersion_OSMinor)
+    ]
+    HRESULT _stdcall OSMinor([out, retval] long *plOSMinor);
+
+};
+
+
+[
+    uuid(9B89C450-8E7C-4B02-B4A0-B581A9999B47),
+    helpstring("DSF version object."),
+    helpcontext(HID_IDSFVersion),
+    helpstringcontext(HID_IDSFVersion)
+]
+coclass DSFVersion
+{
+    [default] interface IDSFVersion;
+};
+
+
+[
+    uuid(ac2ed126-da20-48db-817c-61689122d1e0),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden, 
+    helpstring("Property bag used for storing driver state from user mode"),
+    helpcontext(HID_IDSFPropertyBag),
+    helpstringcontext(HID_IDSFPropertyBag)
+]
+
+interface IDSFPropertyBag : IDispatch
+{
+    // Methods
+
+    //Write
+    [
+        id(DISPID_DSFPROPBAG_WRITE),
+        helpstring("Write the incoming data to the property bag"),
+        helpcontext(HID_IDSFPropertyBag_Write),
+        helpstringcontext(HID_IDSFPropertyBag_Write)
+    ]
+    HRESULT _stdcall Write([in]BSTR       Name,
+                           [in]VARIANT    Value);
+
+    //Read
+    [
+        id(DISPID_DSFPROPBAG_READ),
+        helpstring("Read the property bag data"),
+        helpcontext(HID_IDSFPropertyBag_Read),
+        helpstringcontext(HID_IDSFPropertyBag_Read)
+    ]
+    HRESULT _stdcall Read ([in] BSTR Name,
+                           [out,retval] VARIANT *Value);
+
+    //Remove 
+    [ 
+        id(DISPID_DSFPROPBAG_REMOVE),
+        helpstring("Remove the value from the property bag"),
+        helpcontext(HID_IDSFPropertyBag_Remove),
+        helpstringcontext(HID_IDSFPropertyBag_Remove)
+    ]
+    HRESULT _stdcall Remove ([in] BSTR Name);
+
+    //clear
+    [
+        id(DISPID_DSFPROPBAG_CLEAR),
+        helpstring("Clears the property bag"),
+        helpcontext(HID_IDSFPropertyBag_Clear),
+        helpstringcontext(HID_IDSFPropertyBag_Clear)
+    ]
+    HRESULT _stdcall Clear (void);
+};
+
+
+[
+    uuid(c283c5ec-4ba5-46ec-9efc-e9f1bffe7c70),
+    helpstring("Property bag used for storing driver state from user mode"),
+    helpcontext(HID_IDSFPropertyBag),
+    helpstringcontext(HID_IDSFPropertyBag),
+    custom(DSF_AttrID_KernelServer, "DSFKSvcs")
+
+]
+coclass DSFPropertyBag
+{
+    [default] interface IDSFPropertyBag;
+};
+
+        
+[
+    uuid(69b999b5-1f70-418b-83ac-900a289a07f9),
+    helpstring("DSF debug interface. Allows the caller to set the debug level"),
+    helpcontext(HID_IDSFDebug),
+    helpstringcontext(HID_IDSFDebug)
+]
+
+interface IDSFDebug : IUnknown
+{
+    //SetObjectFlags
+    [
+        helpstring("Sets the debug flags for an object"),
+        helpcontext(HID_IDSFDebug_SetObjectFlag),
+        helpstringcontext(HID_IDSFDebug_SetObjectFlag)
+    ]
+    HRESULT _stdcall SetObjectFlags ([in] DSFFlagType FlagType,
+                                     [in] unsigned long Flags);
+
+};
+
+[
+    uuid(f6d08a7f-ef55-406b-be39-2fe6f613ef3d),
+    helpstring("DSF debug interface. Allows the caller to set the debug level"),
+    helpcontext(HID_IDSFDebug),
+    helpstringcontext(HID_IDSFDebug),
+
+]
+coclass DSFDebug
+{
+    [default] interface IDSFDebug;
+};
+
+
+[
+    uuid(E927C266-5364-449E-AE52-D6A782AFDA9C),
+    dual,
+    oleautomation,
+    nonextensible,
+    hidden,
+    helpstring("Generic DSF bus simulator for the  controllers."),
+    helpcontext(HID_IDSFBus),
+    helpstringcontext(HID_IDSFBus)
+]   
+interface IDSFBus: IDispatch
+{
+    //Properties
+    [
+        id(DISPID_DSFBUS_NAME),
+        propget,
+        helpstring("IDSFBUS name"),
+        helpcontext(HID_IDSFBus_Name),
+        helpstringcontext(HID_IDSFBus_Name)
+    ]
+    HRESULT _stdcall Name([out, retval] BSTR *pbstrName);
+
+    [
+        id(DISPID_DSFBUS_GUID),
+        propget,
+        helpstring("IDSFBUS guid"),
+        helpcontext(HID_IDSFBus_Guid),
+        helpstringcontext(HID_IDSFBus_Guid)
+    ]
+    HRESULT _stdcall GUID([out, retval] BSTR *pbstrGuid);
+
+    // Methods
+
+    //
+    // HotPlug
+    //
+    [
+        id(DISPID_DSFBUS_HOTPLUG),
+        helpstring("Hot plugs a simulated device into a simulated bus."),
+        helpcontext(HID_IDSFBus_HotPlug),
+        helpstringcontext(HID_IDSFBus_HotPlug)
+    ]
+    HRESULT _stdcall HotPlug([in] DSFDevice *pDSFDevice);
+
+    //
+    // Unplug
+    //
+    [
+        id(DISPID_DSFBUS_UNPLUG),
+        helpstring("Unplugs a simulated device from a simulated bus."),
+        helpcontext(HID_IDSFBus_Unplug),
+        helpstringcontext(HID_IDSFBus_Unplug)
+    ]
+    HRESULT _stdcall Unplug([in] DSFDevice *pDSFDevice);
+
+};
+
+[
+    uuid(0DEF0513-18CE-4AA4-8C7C-70D37206B4F7),
+    helpstring("USB simulation bus object for controllers."),
+    helpcontext(HID_IDSFBus),
+    helpstringcontext(HID_IDSFBus),
+    custom(DSF_AttrID_KernelServer, "SoftUSBK")
+]
+coclass DSFBus
+{
+    [default] interface IDSFBus;
+}; 
+
+[
+    uuid(66CBAEEA-2F16-4685-AC93-71CC713E6A6A),
+    helpstring("DSF persist interface. Allows DSF to know that the device support persistence"),
+    helpcontext(HID_IDSFPersist),
+    helpstringcontext(HID_IDSFPersist)
+]
+interface IDSFPersist : IUnknown
+{
+    //DSFDevice
+    [
+        helpstring("Get the underlying DSF device associated with the simualtion"),
+        helpcontext(HID_IDSFPersist_DSFDevice),
+        helpstringcontext(HID_IDSFPersist_DSFDevice)
+    ]
+    HRESULT _stdcall get_DSFDevice ([out,retval] IDSFDevice **ppiDSFDevice);
+
+};
+
+

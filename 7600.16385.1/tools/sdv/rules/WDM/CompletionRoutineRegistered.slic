@@ -1,0 +1,56 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+	This rule specifies that if the dispatch routine registers a
+	completion routine using IoSetCompletionRoutineEx it must
+	thereafter call IoCallDriver or PoCallDriver and not call
+	IoSetCompletionRoutineEx or IoSetCompletionRoutine.
+
+	Background: IoSetCompletionRoutineEx reserved a bit of memory.
+	Calling IoCallDriver or PoCallDriver frees this memory up.
+
+*/
+
+
+
+#include "ntddk_slic.h"
+
+state {
+    enum {off, on} checkState = off;
+} watch IoSetCompletionRoutineEx.entry.$2;
+
+IoSetCompletionRoutineEx.exit[guard $2]
+{
+    if (checkState == on) {
+        abort "IoSetCompletionRoutineEx called twice.";
+    } else {
+        if ($return == STATUS_SUCCESS) {
+            checkState = on;
+        }
+    }
+}
+
+IoSetCompletionRoutine.exit[guard $1]
+{
+    if (checkState == on) {
+        abort "IoSetCompletionRoutine called after call to IoSetCompletionRoutineEx.";
+    }
+    
+}
+
+[IoCallDriver,PoCallDriver].entry[guard $2]
+{
+    halt;
+}
+
+sdv_stub_dispatch_end.entry
+{
+    if (checkState == on) {
+        abort "The dispatch routine registered a completion routine, but did not call IoCallDriver or PoCallDriver.";
+    }
+    else
+    {
+        halt;
+    }
+}

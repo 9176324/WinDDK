@@ -1,0 +1,14 @@
+TARGETTYPE=PROGRAM
+TARGETNAME=tracectl
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+
+INCLUDES= .;..\tracedrv;$(BASE_INC_PATH)
+
+SOURCES= tracectl.c install.c
+
+LINKLIBS=$(SDK_LIB_PATH)\advapi32.lib
+
+UMTYPE=console
+
+USE_MSVCRT=1
+

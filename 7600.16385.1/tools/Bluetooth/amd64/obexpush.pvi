@@ -1,0 +1,8 @@
+[Version]
+Name=OBEX Push
+Service={00001105-0000-1000-8000-00805F9B34FB}
+
+[0x303]
+Name=OBEX Push Supported Formats List
+Required=1
+Format=SEQUENCE{UINT8{0x1,0x2,0x3,0x4,0x5,0x6,0xFF}}

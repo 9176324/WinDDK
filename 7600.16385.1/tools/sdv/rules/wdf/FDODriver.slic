@@ -1,0 +1,40 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+	Summary: This property is satisfied if the driver is not a FDO driver. 
+
+	Description: If the driver calls the WdfFdoInitSetFilter method in 
+	EvtDriverDeviceAdd, the driver is not an FDO driver.
+
+	This rule is a pre-condition for the rules NonFDONotPowerPolicyOwnerAPI
+        and FDOPowerPolicyOwnerAPI.
+
+
+    
+	Rule diagnostics:
+	"The property is satisfied if the Driver is not an FDO driver." 
+
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT, FILTER} v = INIT;
+} with guard (sdv_main, hdevice_init)
+
+select one {
+  case fun_WDF_DRIVER_DEVICE_ADD:
+        fun_WDF_DRIVER_DEVICE_ADD.exit[guard $2]
+        {
+	      if (v	== FILTER) {
+		   abort "The property is satisfied as the Driver is not an FDO driver.";
+	      }
+         }
+         sdv_WdfFdoInitSetFilter.entry[guard $1]
+         {
+           v = FILTER;
+         }
+} 
+

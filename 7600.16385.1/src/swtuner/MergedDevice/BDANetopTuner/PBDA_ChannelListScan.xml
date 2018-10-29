@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<SourceTypes>
+	<SourceType>
+	<HeadendType id="DVBt" name="Digital Antenna (Scanning DVB-T PBDA)"/>
+	<NetworkType id="216C62DF-6D7F-4E9A-8571-05F14EDB766A" name="DVB-T"/>
+	<VideoSource id="3685501E-2214-46b1-B234-E0D19E0F5C89" name="PBDA Antenna Scanning"/>
+	</SourceType>
+</SourceTypes>
+

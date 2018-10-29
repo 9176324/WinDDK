@@ -1,0 +1,387 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>UMDF VirtualSerial Sample Driver</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:18.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:13.5pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.style1, li.style1, div.style1
+	{mso-style-name:style1;
+	margin-right:0in;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Verdana","sans-serif";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<h1><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>VirtualSerial</span></h1>
+
+<h2><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>SUMMARY</span></h2>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+sample demonstrates a simple virtual serial driver. This driver supports
+sending and receiving AT commands using the ReadFile/WriteFile calls or via a
+TAPI interface using an application such as HyperTerminal.</span><span
+style='font-family:"Verdana","sans-serif"'> </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+sample driver is a minimal driver meant to demonstrate the usage of the
+User-Mode Driver Framework. It is not intended for use in a production
+environment.</span><span style='font-family:"Verdana","sans-serif"'> </span></p>
+
+<p class=style1>See the UMDF Readme.htm file for more information about <a
+href="../readme.htm#Supported_Environments">supported operating systems</a> and
+<a href="../readme.htm#BuildEnv">building the samples</a>. </p>
+
+<h2><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>BUILDING
+THE SAMPLE</span></h2>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Start a
+build environment window as described under<b> <a href="../readme.htm#buildenv">Building
+and Testing the Samples</a> </b>the UMDF Readme file.</span><span
+style='font-family:"Verdana","sans-serif"'> </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Change to
+the directory containing the device source code.</span><span style='font-family:"Verdana","sans-serif"'> </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Run build
+-ceZ, or use the macro BLD. This command invokes the Microsoft make routines to
+build the components. If the build succeeds, you will find the driver,
+Virtualserial.dll in the binary output directory specified for the build environment. You can get the output path from the buildxxx.log file.. If it fails you can find errors and warnings
+in the build error (.err) and warning (.wrn) log files respectively
+(buildfre_wlh_x86.err for example). </span></p>
+
+<h2><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>INSTALLATION</span></h2>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To test
+the sample you will need to setup your test system as described <b><a
+href="../readme.htm#buildenv">Building and Testing the Samples</a> </b>the UMDF
+Readme file.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To install
+the VirtualSerial driver:</span></p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<ol start=1 type=1>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>First
+     copy the driver binary and the VirtualSerial.inf file to a directory on
+     your test machine (for example c:\VirtualSerial.)</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Copy
+     the UMDF coinstaller WUDFUpdate_01009.dll from
+     c:\winddk\&lt;bld&gt;\redist\wdf\&lt;arch&gt; to the same directory (for
+     example c:\VirtualSerial).</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Change
+     to the directory containing the inf and binaries (for example <b>cd /d
+     c:\VirtualSerial</b>.)</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Next
+     run devcon.exe as follows:</span></li>
+</ol>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>devcon.exe install
+VirtualSerial.inf UMDF\VirtualSerial</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>DevCon can
+be found in the tools directory of your WDK enlistment (for example:
+c:\winddk\&lt;bld&gt;\tools\devcon\i386\devcon.exe.)</span></p>
+
+</blockquote>
+
+</blockquote>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To update
+the VirtualSerial driver after making any changes:</span></p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<ol start=1 type=1>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Increment
+     the version number found in the INF.&nbsp; While this is not strictly
+     necessary, it will help ensure PnP selects your new driver as a better
+     match for the device.</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Copy
+     the updated driver binary and the VirtualSerial.inf file to a directory on
+     your test machine (for example c:\VirtualSerial.)</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Change
+     to the directory containing the inf and binaries (for example <b>cd /d
+     c:\VirtualSerial</b>.)</span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Next
+     run devcon.exe as follows:</span></li>
+</ol>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>devcon.exe update
+VirtualSerial.inf UMDF\VirtualSerial</span></p>
+
+</blockquote>
+
+</blockquote>
+
+<h2><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>TESTING</span></h2>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To test
+the VirtualSerial driver, you can run HyperTerminal (hypertrm.exe)</span></p>
+
+<p style='margin-bottom:12.0pt'><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>First
+install the device as described above. Then run hypertrm.exe Once installed,
+you can talk to the virtualserial driver through HyperTerminal, or via
+ReadFile/WriteFile calls. The AT command set supported by virtualserial
+includes:</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>          <b>AT</b>                         returns
+<b>OK</b><br>
+<br>
+          <b>ATA</b>                       returns <b>CONNECT<u1:p></u1:p></b></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>            ATD</span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&lt;number&gt;          returns
+<b>CONNECT</b><u1:p></u1:p></span></p>
+
+<h2><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>CODE TOUR</span></h2>
+
+<h3><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>File
+Manifest</span></h3>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width="76%"
+ style='width:76.0%' id=table1>
+ <tr>
+  <td width=180 style='width:135.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>File </span></b></p>
+  </td>
+  <td width=747 style='width:560.25pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Description</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:135.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>VirtualSerial.htm
+  </span></p>
+  </td>
+  <td width=747 style='width:560.25pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Documentation
+  for this sample (this file).</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=161 style='width:120.75pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>comsup.cpp
+  &amp; comsup.h</span></p>
+  </td>
+  <td width=604 style='width:453.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>COM
+  Support code - specifically base classes which provide implementations for
+  the standard COM interfaces IUnknown and IClassFactory which are used
+  throughout this sample.</span></p>
+  <p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+  implementation of IClassFactory is designed to create instances of the
+  CMyDriver class. If you should change the name of your base driver class, you
+  would also need to modify this file.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=161 style='width:120.75pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>dllsup.cpp</span></p>
+  </td>
+  <td width=604 style='width:453.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>DLL
+  Support code - provides the DLL's entry point as well as the single required
+  export (DllGetClassObject).</span></p>
+  <p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>These
+  depend on comsup.cpp to perform the necessary class creation.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=161 style='width:120.75pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>exports.def</span></p>
+  </td>
+  <td width=604 style='width:453.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+  file lists the functions that the driver DLL exports.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=161 style='width:120.75pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>makefile</span></p>
+  </td>
+  <td width=604 style='width:453.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+  file redirects to the real makefile, which is shared by all the driver
+  components of the Windows Driver Kit.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=161 style='width:120.75pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>internal.h</span></p>
+  </td>
+  <td width=604 style='width:453.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+  is the main header file for this driver. </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:135.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Driver.cpp
+  &amp; Driver.h</span></p>
+  </td>
+  <td width=747 style='width:560.25pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>DriverEntry
+  and Events on the Driver Object.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:135.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Device.cpp
+  &amp; Device.h</span></p>
+  </td>
+  <td width=747 style='width:560.25pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Events
+  on the Device Object.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:135.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Queue.cpp
+  &amp; Queue.h</span></p>
+  </td>
+  <td width=747 style='width:560.25pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Contains
+  Events on the I/O Queue Objects.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:135.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>VirtualSerial.rc
+  </span></p>
+  </td>
+  <td width=747 style='width:560.25pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Resource
+  file for the driver.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:135.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Sources
+  </span></p>
+  </td>
+  <td width=747 style='width:560.25pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Generic
+  file that lists source files and all the build options.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:135.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>VirtualSerial.inf</span></p>
+  </td>
+  <td width=747 style='width:560.25pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>INF file that describes the
+  installation of this driver</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:135.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>virtualserial.ctl</span></p>
+  </td>
+  <td width=747 style='width:560.25pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+  file lists the WPP trace control GUID(s) for the sample driver. This file can
+  be used with the tracelog command's -guid flag to enable the collection of
+  these trace events within an established trace session.</span></p>
+  <p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>These
+  GUIDs must remain in sync with the trace control guids defined in internal.h</span></p>
+  </td>
+ </tr>
+</table>
+
+<p align=center style='text-align:center'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a href="#top">Top of Page</a></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>© 2008
+Microsoft Corporation</span></p>
+
+</div>
+
+</body>
+
+</html>
+

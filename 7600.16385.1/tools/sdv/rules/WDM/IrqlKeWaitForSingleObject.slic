@@ -1,0 +1,23 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule specifies that callers of KeWaitForSingleObject must
+	be running at IRQL <= DISPATCH_LEVEL. However, if Timeout <> 0, the
+	caller must be running at IRQL <= APC_LEVEL.
+*/
+
+
+#include "ntddk_slic.h"
+
+KeWaitForSingleObject.entry 
+{
+    if ( SDV_IRQL_ELEVATED_LEVEL(sdv_irql_current) ) {
+        abort "Callers of $fname must be running at IRQL <= DISPATCH_LEVEL.";
+    } else if (sdv_irql_current == DISPATCH_LEVEL) {
+        if ($5 == NULL || $5->QuadPart != 0) {
+            abort "Callers of $fname must be running at IRQL <= APC_LEVEL when called with a non-zero timeout interval.";
+        }
+    }
+}

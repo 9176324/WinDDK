@@ -1,0 +1,101 @@
+/*++BUILD Version 0000
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Module Name:
+
+    SoftUSBAudio.idl
+
+Abstract:
+    Library definition for SoftUSBAudio device
+
+--*/
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+
+[
+    uuid(1EA32BAB-633B-4A9A-A553-041ED969F269),
+    version(1.0),
+    helpstring("SoftUSBAudio 1.0 Type Library")
+]
+library SoftUSBAudioLib
+{
+    importlib("stdole2.tlb");
+    importlib("dsfif.tlb");
+
+
+    [
+        object,
+        uuid(C45544C0-AFA8-4544-948C-5D791A517767),
+        oleautomation,
+        dual,
+        nonextensible,
+        helpstring("Primary interface on USB audio device simulator object."),
+        pointer_default(unique)
+    ]
+    interface IAudioDevice : IDispatch
+    {
+        [
+            propget,
+            id(1),
+            helpstring("Returns the DSFDevice object associated with SoftUSBDevice object used by the simulator")
+        ]
+        HRESULT DSFDevice([out, retval] DSFDevice** ppDSFDEevice);
+
+        [
+            id(2),
+            helpstring("Call this method to instruct the simulator to display/not display audio class-specific device requests it receives in the console window.")
+        ]
+        HRESULT _stdcall DisplayDeviceRequests([in] VARIANT_BOOL fvarDisplay);
+
+        [
+            id(3),
+            helpstring("Call this method to instruct the simulator to begin simulating the audio device. Should be called immediately after connecting the device to a simulated controller.")
+        ]
+        HRESULT _stdcall StartSimulation();
+
+        [
+            id(4),
+            helpstring("Returns True if the user has entered any keystrokes that have not been processed by the console window.")
+        ]
+        HRESULT AreKeystrokesWaiting([out, retval] VARIANT_BOOL *pfvarKeysWaiting);
+
+        [
+            propget,
+            id(5),
+            helpstring("Returns the number of packets received by audio device.")
+        ]
+        HRESULT PacketsReceived([out, retval] LONG * plPacketCount);
+    };
+
+    [
+        uuid(DF6DD301-4359-4798-9133-82A53DB84E6C),
+        nonextensible,
+        helpstring("AudioDevice event interface."),
+
+    ]
+    dispinterface IAudioDeviceEvents
+    {
+        properties:
+        methods:
+        [
+            id(1),
+            helpstring("Fired periodically to give the hosting application the opportunity to terminate the simulation. Return False to terminate.")
+        ]
+        HRESULT _stdcall ContinueSimulating([out,retval] VARIANT_BOOL *pfvarContinue);
+
+    }
+
+    [
+        uuid(532E9231-5814-4DCD-A708-938D8DC0E1E1),
+        helpstring("USB Audio Device Simulator Object")
+    ]
+    coclass AudioDevice
+    {
+        [default] interface IAudioDevice;
+        [default, source] dispinterface IAudioDeviceEvents;
+    };
+};
+

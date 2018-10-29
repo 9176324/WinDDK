@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HelpTOC>
+<HelpTOC DTDVersion="1.0" PluginStyle="Flat">
+    <HelpTOCNode NodeType="Regular" Title="Windows Driver Kit">
+        <HelpTOCNode NodeType="TOC" Url="Intro_g"/>
+        <HelpTOCNode NodeType="TOC" Url="NewInfo_g" />
+        <HelpTOCNode NodeType="TOC" Url="GetStart_g" />
+        <HelpTOCNode NodeType="Regular" Title="Kernel-Mode Driver Architecture">
+            <HelpTOCNode NodeType="TOC" Url="Kernel_d" />
+            <HelpTOCNode NodeType="TOC" Url="Kernel_r" />
+            <HelpTOCNode NodeType="TOC" Url="WDM_s" />
+        </HelpTOCNode>
+        <HelpTOCNode NodeType="Regular" Title="Windows Driver Foundation">
+            <HelpTOCNode NodeType="Regular" Title="Kernel-Mode Driver Framework">
+                <HelpTOCNode NodeType="TOC" Url="KMDF_d" />
+                <HelpTOCNode NodeType="TOC" Url="KMDF_r" />
+                <HelpTOCNode NodeType="TOC" Url="KMDF_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="User-Mode Driver Framework">
+                <HelpTOCNode NodeType="TOC" Url="UMDF_d" />
+                <HelpTOCNode NodeType="TOC" Url="UMDF_r" />
+                <HelpTOCNode NodeType="TOC" Url="UMDF_s" />
+            </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode NodeType="Regular" Title="Device and Driver Installation">
+            <HelpTOCNode NodeType="TOC" Url="DevInst_d" />
+            <HelpTOCNode NodeType="TOC" Url="DevInst_r" />
+            <HelpTOCNode NodeType="TOC" Url="DevInst_s" />
+        </HelpTOCNode>
+        <HelpTOCNode NodeType="TOC" Url="DrvTest_g" />
+        <HelpTOCNode NodeType="Regular" Title="Device and Driver Technologies">
+            <HelpTOCNode NodeType="Regular" Title="Audio Devices">
+                <HelpTOCNode NodeType="TOC" Url="Audio_d" />
+                <HelpTOCNode NodeType="TOC" Url="Audio_r" />
+                <HelpTOCNode NodeType="TOC" Url="Audio_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Battery Devices">
+                <HelpTOCNode NodeType="TOC" Url="Battery_d" />
+                <HelpTOCNode NodeType="TOC" Url="Battery_r" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Biometric Devices">
+                <HelpTOCNode NodeType="TOC" Url="Biometric_d" />
+                <HelpTOCNode NodeType="TOC" Url="Biometric_r" />
+                <HelpTOCNode NodeType="TOC" Url="Biometric_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Bluetooth Devices">
+                <HelpTOCNode NodeType="TOC" Url="Bluetooth_d" />
+                <HelpTOCNode NodeType="TOC" Url="Bluetooth_r" />
+                <HelpTOCNode NodeType="TOC" Url="Bluetooth_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Bus and Port Drivers">
+                <HelpTOCNode NodeType="Regular" Title="Buses">
+                    <HelpTOCNode NodeType="TOC" Url="Buses_d" />
+                    <HelpTOCNode NodeType="TOC" Url="Buses_s" />
+                </HelpTOCNode>
+                <HelpTOCNode NodeType="Regular" Title="Ports">
+                    <HelpTOCNode NodeType="Regular" Title="Parallel">
+                        <HelpTOCNode NodeType="TOC" Url="ParPorts_d" />
+                        <HelpTOCNode NodeType="TOC" Url="ParPorts_r" />
+                    </HelpTOCNode>
+                    <HelpTOCNode NodeType="Regular" Title="Serial">
+                        <HelpTOCNode NodeType="TOC" Url="SerPorts_d" />
+                        <HelpTOCNode NodeType="TOC" Url="SerPorts_r" />
+                    </HelpTOCNode>
+                </HelpTOCNode>
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Display Devices (Adapters and Monitors)">
+                <HelpTOCNode NodeType="TOC" Url="Display_d" />
+                <HelpTOCNode NodeType="TOC" Url="Display_r" />
+                <HelpTOCNode NodeType="TOC" Url="Display_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Human Input Devices">
+                <HelpTOCNode NodeType="TOC" Url="HID_d" />
+                <HelpTOCNode NodeType="TOC" Url="HID_r" />
+                <HelpTOCNode NodeType="TOC" Url="HID_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Imaging Devices (Camera, Scanner)">
+                <HelpTOCNode NodeType="TOC" Url="Image_d" />
+                <HelpTOCNode NodeType="TOC" Url="Image_r" />
+                <HelpTOCNode NodeType="TOC" Url="Image_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Infrared Devices">
+                <HelpTOCNode NodeType="TOC" Url="Infrared_d" />
+                <HelpTOCNode NodeType="TOC" Url="Infrared_r" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Installable File System Drivers">
+                <HelpTOCNode NodeType="TOC" Url="IFSK_d" />
+                <HelpTOCNode NodeType="TOC" Url="IFSK_r" />
+                <HelpTOCNode NodeType="TOC" Url="IFSK_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Modem Devices">
+                <HelpTOCNode NodeType="TOC" Url="Modem_d" />
+                <HelpTOCNode NodeType="TOC" Url="Modem_r" />
+                <HelpTOCNode NodeType="TOC" Url="Modem_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="TOC" Url="MultiFunc_g" />
+            <HelpTOCNode NodeType="Regular" Title="Network Devices">
+                <HelpTOCNode NodeType="Regular" Title="Network Drivers for Windows Vista and Later">
+                    <HelpTOCNode NodeType="TOC" Url="NetLH_d" />
+                    <HelpTOCNode NodeType="TOC" Url="NetLH_r" />
+                </HelpTOCNode>
+                <HelpTOCNode NodeType="Regular" Title="Network Drivers Prior to Windows Vista">
+                    <HelpTOCNode NodeType="TOC" Url="NetXP_d" />
+                    <HelpTOCNode NodeType="TOC" Url="NetXP_r" />
+                </HelpTOCNode>
+                <HelpTOCNode NodeType="TOC" Url="NetLH_s" />
+            </HelpTOCNode>
+             <HelpTOCNode NodeType="Regular" Title="Print Devices">
+                <HelpTOCNode NodeType="TOC" Url="Print_d" />
+                <HelpTOCNode NodeType="TOC" Url="Print_r" />
+                <HelpTOCNode NodeType="TOC" Url="Print_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Sensor Devices">
+                <HelpTOCNode NodeType="TOC" Url="Sensors_d" />
+                <HelpTOCNode NodeType="TOC" Url="Sensors_r" />
+                <HelpTOCNode NodeType="TOC" Url="Sensors_s" />
+            </HelpTOCNode>            
+            <HelpTOCNode NodeType="Regular" Title="Smart Card Reader Devices">
+                <HelpTOCNode NodeType="TOC" Url="SmartCrd_d" />
+                <HelpTOCNode NodeType="TOC" Url="SmartCrd_r" />
+                <HelpTOCNode NodeType="TOC" Url="SmartCrd_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Storage Devices">
+                <HelpTOCNode NodeType="TOC" Url="Storage_d" />
+                <HelpTOCNode NodeType="TOC" Url="Storage_r" />
+                <HelpTOCNode NodeType="TOC" Url="Storage_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Streaming Media Devices">
+                <HelpTOCNode NodeType="TOC" Url="Stream_d" />
+                <HelpTOCNode NodeType="TOC" Url="Stream_r" />
+                <HelpTOCNode NodeType="TOC" Url="Stream_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="System Technologies">
+                <HelpTOCNode NodeType="Regular" Title="Hardware Error Technologies">
+                    <HelpTOCNode NodeType="TOC" Url="MCA_g" />
+                    <HelpTOCNode NodeType="TOC" Url="WHEA_g" />
+                </HelpTOCNode>                
+                <HelpTOCNode NodeType="Regular" Title="Power Management Technologies">
+                    <HelpTOCNode NodeType="Regular" Title="ACPI">
+                        <HelpTOCNode NodeType="TOC" Url="ACPI_d" />
+                        <HelpTOCNode NodeType="TOC" Url="ACPI_r" />
+                    </HelpTOCNode>
+                    <HelpTOCNode NodeType="TOC" Url="PowerMeter_g" />
+               </HelpTOCNode> 
+              </HelpTOCNode>              
+            <HelpTOCNode NodeType="Regular" Title="Windows Portable Devices">
+                <HelpTOCNode NodeType="TOC" Url="WPD_DK" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Windows SideShow Drivers">
+                <HelpTOCNode NodeType="TOC" Url="SideShow_d" />
+                <HelpTOCNode NodeType="TOC" Url="SideShow_r" />
+                <HelpTOCNode NodeType="TOC" Url="SideShow_s" />
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Windows Touch Drivers">
+                <HelpTOCNode NodeType="TOC" Url="Touch_d" />                   
+                <HelpTOCNode NodeType="TOC" Url="Touch_s" /> 
+             </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode NodeType="Regular" Title="Device and Driver Development Tools">
+            <HelpTOCNode NodeType="TOC" Url="DevTest_g" />
+            <HelpTOCNode NodeType="Regular" Title="Tools for Simulating Devices">
+                <HelpTOCNode NodeType="Regular" Title="Device Simulation Framework for USB Devices">
+                  <HelpTOCNode NodeType="TOC" Url="dsf_d" />
+                  <HelpTOCNode NodeType="TOC" Url="dsf_r" />
+                </HelpTOCNode>
+            </HelpTOCNode>
+            <HelpTOCNode NodeType="Regular" Title="Tools for Testing Devices">
+                <HelpTOCNode NodeType="Regular" Title="Windows Device Testing Framework">
+                  <HelpTOCNode NodeType="TOC" Url="dtf_d" />
+                  <HelpTOCNode NodeType="TOC" Url="dtf_r" />
+                </HelpTOCNode>            
+            </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode NodeType="Regular" Title="Hypervisor">
+            <HelpTOCNode NodeType="TOC" Url="Hypervisor_d" />
+            <HelpTOCNode NodeType="TOC" Url="Hypervisor_r" />
+        </HelpTOCNode>
+        <HelpTOCNode NodeType="TOC" Url="Gloss_g" />
+        <HelpTOCNode NodeType="TOC" Url="Appendix_g" />
+    </HelpTOCNode>
+</HelpTOC>

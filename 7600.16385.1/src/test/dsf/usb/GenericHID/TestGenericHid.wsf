@@ -1,0 +1,530 @@
+<PACKAGE>
+
+<COMMENT>
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+This test script creates a simulated USB 2.0 external hub and a
+simulated USB 1.1 GenericHID device. It plugs the external hub into the
+root hub of a simulated EHCI controller and then plugs the GenericHID
+device into the external hub.
+
+If you haven't done so already then you must create a simulated EHCI
+controller before running this script. You can do this by running the
+following from a CMD window:
+
+    "\Program Files\dsf\softehci\softehcicfg.exe" /install
+
+To run this script open a CMD window and type:
+
+    cscript TestGenericHID.wsf
+
+The GenericHID device will prompt you to indicate whether it should
+operate in polled or event mode. After that it will begin simulation
+and prompt you as to whether it should terminate simulation. At that
+point you can open another command window and run the usbsamp.exe WDK
+sample program 1 or more times to send I/O to the device. When the
+simulation terminates the script will unplug the GenericHID device from
+the extenal hub and then unplug the external hub from the root hub.
+
+Note: if the operating system prompts you for a driver for the
+GenericHID device you should direct it to install the usbsamp.sys sample
+driver from the WDK.
+
+
+</COMMENT>
+
+
+<JOB id=TestGenericHid>
+<REFERENCE OBJECT="DSF.DSF"/>
+<REFERENCE OBJECT="SOFTUSB.SoftUSBHub"/>
+<REFERENCE OBJECT="SOFTUSB.SoftUSBDevice"/>
+<REFERENCE OBJECT="SoftEHCI.SoftEHCI"/>
+<REFERENCE OBJECT="SoftHIDReceiver.HIDDevice.1"/> 
+<SCRIPT LANGUAGE="VBScript">
+
+Option Explicit
+
+const IID_IDSFBus           = "{E927C266-5364-449E-AE52-D6A782AFDA9C}" 
+const IID_ISoftUSBDevice    = "{9AC61697-81AE-459A-8629-BF5D5A838519}"
+const IID_EHCICtrlrObj      = "{16017C34-A2BA-480B-8DE8-CD08756AD1F8}"
+
+WriteLine "TestGenericHid.wsf starting"
+
+Dim DSF     : Set DSF = CreateObject("DSF.DSF")
+Dim ExtHub  : Set ExtHub = CreateObject("SOFTUSB.SoftUSBHub")
+WriteLine "Setting diagnostics for external hub"
+SetEndpointDiagnostics ExtHub.SoftUSBDevice
+
+WriteLine "Enumerating simulated devices to look for a simulated EHCI controller"
+Dim CtrlrDev : Set CtrlrDev = EnumSimulatedDevices(IID_IDSFBus)
+
+If CtrlrDev Is Nothing Then
+    Error "Could not find simulated a EHCI controller. Did you remember to run softehcicfg.exe /install?"
+End If
+
+Dim CtrlrObj : Set CtrlrObj = CtrlrDev.Object(IID_EHCICtrlrObj)
+Dim RootHubPort : Set RootHubPort = CtrlrObj.Ports(1)
+PromptAndWaitForEnterKey "Press enter to plug external hub into port 1 of root hub"
+RootHubPort.HotPlug ExtHub.SoftUSBDevice.DSFDevice
+
+Dim GenericHIDDev     : Set GenericHIDDev = WScript.CreateObject("SoftHIDReceiver.HIDDevice.1")
+Dim GenericHIDDSFDev  : Set GenericHIDDSFDev = GenericHIDDev.DSFDevice
+Dim GenericHIDUSBDev  : Set GenericHIDUSBDev = GenericHIDDSFDev.Object(IID_ISoftUSBDevice)
+
+' Make this a 1.1 USB device
+Configure1dot1Device GenericHIDUSBDev       
+WriteLine "Setting generic hid device logging to true"
+GenericHIDDev.Logging=true
+
+WriteLine "Setting diagnostics for GenericHID device"
+SetEndpointDiagnostics GenericHIDUSBDev
+
+WriteLine "Create HID report descriptors for generic device with keyboard."
+Dim ReportDescriptors(109)
+'Consumer Controls
+ReportDescriptors(0) = CByte(&H5)       ' Usage Page 
+ReportDescriptors(1) = CByte(&Hc)       ' (Consumer Controls)
+ReportDescriptors(2) = CByte(&H9)       ' Usage 
+ReportDescriptors(3) = CByte(&H1)       ' (Consumer Control)
+ReportDescriptors(4) = CByte(&HA1)      ' Collection 
+ReportDescriptors(5) = CByte(&H1)       ' (Application)
+ReportDescriptors(6) = CByte(&H85)      ' Report Id 
+ReportDescriptors(7) = CByte(&H1)       ' (1)
+ReportDescriptors(8) = CByte(&H19)      ' Usage Minimum
+ReportDescriptors(9) = CByte(&H0)       ' (0)
+ReportDescriptors(10) = CByte(&H2a)     ' Usage Maximum
+ReportDescriptors(11) = CByte(&H3c)     ' (23c)
+ReportDescriptors(12) = CByte(&H2)      ' 
+ReportDescriptors(13) = CByte(&H15)     ' Logical Minimum
+ReportDescriptors(14) = CByte(&H0)      ' (0)
+ReportDescriptors(15) = CByte(&H26)     ' Logical Maximum 
+ReportDescriptors(16) = CByte(&H3c)     ' (23c)
+ReportDescriptors(17) = CByte(&H2)      '
+ReportDescriptors(18) = CByte(&H95)     ' Report Count
+ReportDescriptors(19) = CByte(&H1)      ' (1)
+ReportDescriptors(20) = CByte(&H75)     ' Report Size
+ReportDescriptors(21) = CByte(&H10)     ' (16)
+ReportDescriptors(22) = CByte(&H81)     ' Input 
+ReportDescriptors(23) = CByte(&H0)      ' (Data, Array)
+ReportDescriptors(24) = CByte(&HC0)     ' End Collection
+'MS Vendor controls
+ReportDescriptors(25) = CByte(&H6)      ' Usage Page
+ReportDescriptors(26) = CByte(&Hbc)     ' (Vendor 0xffbc)
+ReportDescriptors(27) = CByte(&Hff)     ' 
+ReportDescriptors(28) = CByte(&H9)      ' Usage
+ReportDescriptors(29) = CByte(&H88)     ' (88) 
+ReportDescriptors(30) = CByte(&Ha1)     ' Collection
+ReportDescriptors(31) = CByte(&H1)      ' (Application)
+ReportDescriptors(32) = CByte(&H85)     ' Report Id
+ReportDescriptors(33) = CByte(&H2)      ' (2)
+ReportDescriptors(34) = CByte(&H19)     ' Usage Minimum 
+ReportDescriptors(35) = CByte(&H1)      ' (0x01)
+ReportDescriptors(36) = CByte(&H29)     ' Usage Maximum
+ReportDescriptors(37) = CByte(&Hff)     ' (0xff)
+ReportDescriptors(38) = CByte(&H15)     ' Logical Minimum
+ReportDescriptors(39) = CByte(&H0)      ' (0)
+ReportDescriptors(40) = CByte(&H25)     ' Logical Maximum
+ReportDescriptors(41) = CByte(&H1)      ' (1)
+ReportDescriptors(42) = CByte(&H95)     ' Report Count
+ReportDescriptors(43) = CByte(&H1)      ' (1)
+ReportDescriptors(44) = CByte(&H75)     ' Report Size
+ReportDescriptors(45) = CByte(&H8)      ' (8)
+ReportDescriptors(46) = CByte(&H81)     ' Input
+ReportDescriptors(47) = CByte(&H0)      ' (Data, Array) 
+ReportDescriptors(48) = CByte(&Hc0)     ' End Collection
+'Standby Button
+ReportDescriptors(49) = CByte(&H5)      ' Usage Page
+ReportDescriptors(50) = CByte(&H1)      ' (Generic Desktop) 
+ReportDescriptors(51) = CByte(&H9)      ' Usage
+ReportDescriptors(52) = CByte(&H80)     ' (System Control)
+ReportDescriptors(53) = CByte(&Ha1)     ' Collection 
+ReportDescriptors(54) = CByte(&H1)      ' (Application)
+ReportDescriptors(55) = CByte(&H85)     ' Report Id
+ReportDescriptors(56) = CByte(&H3)      ' (3)
+ReportDescriptors(57) = CByte(&H19)     ' Usage Minimum
+ReportDescriptors(58) = CByte(&H81)     ' (0x81) 
+ReportDescriptors(59) = CByte(&H29)     ' Usage Maximum
+ReportDescriptors(60) = CByte(&H83)     ' (0x83)
+ReportDescriptors(61) = CByte(&H25)     ' Logical Maximum
+ReportDescriptors(62) = CByte(&H1)      ' (1)
+ReportDescriptors(63) = CByte(&H75)     ' Report Size
+ReportDescriptors(64) = CByte(&H1)      ' (1)
+ReportDescriptors(65) = CByte(&H95)     ' Report Count
+ReportDescriptors(66) = CByte(&H3)      ' (3)
+ReportDescriptors(67) = CByte(&H81)     ' Input
+ReportDescriptors(68) = CByte(&H2)      ' (Variable)
+ReportDescriptors(69) = CByte(&H75)     ' Report Size
+ReportDescriptors(70) = CByte(&H1)      ' (1)
+ReportDescriptors(71) = CByte(&H95)     ' Report Count
+ReportDescriptors(72) = CByte(&H5)      ' (5)
+ReportDescriptors(73) = CByte(&H81)     ' Input
+ReportDescriptors(74) = CByte(&H1)      ' (Constant)
+ReportDescriptors(75) = CByte(&Hc0)     ' End Collection
+'Keyboard
+ReportDescriptors(76) = CByte(&H5)      ' Usage Page
+ReportDescriptors(77) = CByte(&H1)      ' (Generic Desktop)
+ReportDescriptors(78) = CByte(&H9)      ' Usage
+ReportDescriptors(79) = CByte(&H6)      ' (Keyboard)
+ReportDescriptors(80) = CByte(&HA1)     ' Collection 
+ReportDescriptors(81) = CByte(&H1)      ' (Application)
+ReportDescriptors(82) = CByte(&H85)     ' Report Id
+ReportDescriptors(83) = CByte(&H4)      ' (4)
+ReportDescriptors(84) = CByte(&H5)      ' Usage Page 
+ReportDescriptors(85) = CByte(&H7)      ' (Key Codes)
+ReportDescriptors(86) = CByte(&H19)     ' Usage Minimum
+ReportDescriptors(87) = CByte(&He0)     ' Left Control
+ReportDescriptors(88) = CByte(&H29)     ' Usage Maximum 
+ReportDescriptors(89) = CByte(&He8)     ' Keyboard right gui
+ReportDescriptors(90) = CByte(&H75)     ' Report Size
+ReportDescriptors(91) = CByte(&H1)      ' (1)
+ReportDescriptors(92) = CByte(&H95)     ' Report Count
+ReportDescriptors(93) = CByte(&H8)      ' (8)
+ReportDescriptors(94) = CByte(&H81)     ' Input
+ReportDescriptors(95) = CByte(&H2)      ' (Variable)
+ReportDescriptors(96) = CByte(&H19)     ' Usage Minimum
+ReportDescriptors(97) = CByte(&H0)      ' (0)
+ReportDescriptors(98) = CByte(&H29)     ' Usage Maximum
+ReportDescriptors(99) = CByte(&H90)     ' (90)
+ReportDescriptors(100) = CByte(&H26)    ' Logical Maximum
+ReportDescriptors(101) = CByte(&Hff)    ' (0xff)
+ReportDescriptors(102) = CByte(&H0)     '
+ReportDescriptors(103) = CByte(&H75)    ' Report Size
+ReportDescriptors(104) = CByte(&H8)     ' (8)
+ReportDescriptors(105) = CByte(&H95)    ' Report Count
+ReportDescriptors(106) = CByte(&H1)     ' (1)
+ReportDescriptors(107) = CByte(&H81)    ' Input
+ReportDescriptors(108) = CByte(&H0)     ' (Data, Array)
+ReportDescriptors(109) = CByte(&HC0)    ' End Collection
+
+WriteLine "Create HID report descriptors for a generic mouse."
+WriteLine "You can change the device to a mouse by loading these report descriptors instead."
+Dim ReportDescriptorsMouse(66)
+ReportDescriptorsMouse(0) = CByte(&H5)   ' Usage Page
+ReportDescriptorsMouse(1) = CByte(&1)    '   Generic Controls
+ReportDescriptorsMouse(2) = CByte(&H9)   ' Usage
+ReportDescriptorsMouse(3) = CByte(&H2)   '   Mouse
+ReportDescriptorsMouse(4) = CByte(&HA1)  ' Collection
+ReportDescriptorsMouse(5) = CByte(&H1)   '   Application
+ReportDescriptorsMouse(6) = CByte(&H9)   ' Usage
+ReportDescriptorsMouse(7) = CByte(&H1)   '   Pointer
+ReportDescriptorsMouse(8) = CByte(&HA1)  ' Collection
+ReportDescriptorsMouse(9) = CByte(&H0)   '   Physical
+
+ReportDescriptorsMouse(10) = CByte(&H5)  ' Usage Page
+ReportDescriptorsMouse(11) = CByte(&H9)  '   Buttons
+ReportDescriptorsMouse(12) = CByte(&H19) ' Usage Minimum
+ReportDescriptorsMouse(13) = CByte(&H1)  ' 1
+ReportDescriptorsMouse(14) = CByte(&H29) ' Usage Maximum
+ReportDescriptorsMouse(15) = CByte(&H5)  ' 5
+ReportDescriptorsMouse(16) = CByte(&H15) ' Logical Minimum
+ReportDescriptorsMouse(17) = CByte(&H0)  ' 0
+ReportDescriptorsMouse(18) = CByte(&H25) ' Logical Maximum
+ReportDescriptorsMouse(19) = CByte(&H1)  ' 1
+ReportDescriptorsMouse(20) = CByte(&H95) ' Report Count
+ReportDescriptorsMouse(21) = CByte(&H5)  ' 5
+ReportDescriptorsMouse(22) = CByte(&H75) ' Report Size
+ReportDescriptorsMouse(23) = CByte(&H1)  ' 1
+ReportDescriptorsMouse(24) = CByte(&H81) ' Input 
+ReportDescriptorsMouse(25) = CByte(&2)   ' Data Variable Absolute
+ReportDescriptorsMouse(26) = CByte(&H95) ' Report Count
+ReportDescriptorsMouse(27) = CByte(&1)   ' 1
+ReportDescriptorsMouse(28) = CByte(&H75) ' Report Size
+ReportDescriptorsMouse(29) = CByte(&3)   ' 3 padding
+ReportDescriptorsMouse(30) = CByte(&H81) ' Input
+ReportDescriptorsMouse(31) = CByte(&1)   ' Constant
+
+ReportDescriptorsMouse(32) = CByte(&H5)  ' Usage Page
+ReportDescriptorsMouse(33) = CByte(&H1)  ' Generic Desktop
+ReportDescriptorsMouse(34) = CByte(&H9)  ' Usage
+ReportDescriptorsMouse(35) = CByte(&H30) ' X
+ReportDescriptorsMouse(36) = CByte(&H9)  ' Usage
+ReportDescriptorsMouse(37) = CByte(&H31) ' Y
+ReportDescriptorsMouse(38) = CByte(&H9)  ' Usage
+ReportDescriptorsMouse(39) = CByte(&H38) ' Wheel
+ReportDescriptorsMouse(40) = CByte(&H15) ' Logical Minimum
+ReportDescriptorsMouse(41) = CByte(&H81) ' -127
+ReportDescriptorsMouse(42) = CByte(&H25) ' Logical Maximum
+ReportDescriptorsMouse(43) = CByte(&H7F) ' 127
+ReportDescriptorsMouse(44) = CByte(&H75) ' Report Size
+ReportDescriptorsMouse(45) = CByte(&H8)  ' 8
+ReportDescriptorsMouse(46) = CByte(&H95) ' Report Count
+ReportDescriptorsMouse(47) = CByte(&H3)  ' 3
+ReportDescriptorsMouse(48) = CByte(&H81) ' Input 
+ReportDescriptorsMouse(49) = CByte(&H6)  ' Data variable relative
+
+ReportDescriptorsMouse(50) = CByte(&H5)  ' Usage Page
+ReportDescriptorsMouse(51) = CByte(&HC)  ' Consumer Devices
+ReportDescriptorsMouse(52) = CByte(&H15) ' Logical Minimum
+ReportDescriptorsMouse(53) = CByte(&H81) ' -127
+ReportDescriptorsMouse(54) = CByte(&H25) ' Logical Maximum
+ReportDescriptorsMouse(55) = CByte(&H7F) ' 127
+ReportDescriptorsMouse(56) = CByte(&H75) ' Report Size
+ReportDescriptorsMouse(57) = CByte(&H8)  ' 8
+ReportDescriptorsMouse(58) = CByte(&H95) ' Report Count
+ReportDescriptorsMouse(59) = CByte(&H1)  ' 1
+ReportDescriptorsMouse(60) = CByte(&HA)  ' Usage
+ReportDescriptorsMouse(61) = CByte(&H38) ' AC Pan
+ReportDescriptorsMouse(62) = CByte(&H2)  ' Horizontal Wheel scroll
+ReportDescriptorsMouse(63) = CByte(&H81) ' Input
+ReportDescriptorsMouse(64) = CByte(&H6)  ' Data variable relative
+
+ReportDescriptorsMouse(65) = CByte(&HC0) ' End collection
+ReportDescriptorsMouse(66) = CByte(&HC0) ' End collection
+
+WriteLine "Create HID descriptors using desired report descriptor"
+Dim HIDDescriptors(8)
+HIDDescriptors(0) = CByte(&H9)
+HIDDescriptors(1) = CByte(&H21)
+HIDDescriptors(2) = CByte(&H1)
+HIDDescriptors(3) = CByte(&H1)
+HIDDescriptors(4) = CByte(&H0)
+HIDDescriptors(5) = CByte(&H1)
+HIDDescriptors(6) = CByte(&H22)
+HIDDescriptors(7) = CByte(UBound(ReportDescriptors) + 1) ' Descriptor length LOBYTE
+HIDDescriptors(8) = CByte(&H0)                           ' Descriptor length HIBYTE
+
+WriteLine "Populate Report Descriptors in generic hid device to create generic device with keyboard"
+GenericHIDDev.CreateCustomReportDescriptor(ReportDescriptors)
+WriteLine "Populate HID Descriptors"
+GenericHIDDev.CreateCustomHIDDescriptor(HIDDescriptors)
+WriteLine "You can also create both Report and HID descriptors using just the BuildHIDDescriptors method."
+
+WriteLine "Configuring GenericHID device is necessary to load descriptors"
+GenericHIDDev.ConfigureDevice
+
+PromptAndWaitForEnterKey "Press enter to plug GenericHID device into port 1 of external hub"
+Dim ExtHubPort : Set ExtHubPort = ExtHub.Ports(1)
+ExtHubPort.HotPlug GenericHIDDSFDev
+
+WriteLine "Create first input report to send to the consumer control"
+Dim InputReport1(1)
+InputReport1(0) = CByte(&H1)
+InputReport1(1) = CByte(&H3c)
+InputReport1(1) = CByte(&H2)
+WriteLine "Create second input report to send to the consumer control"
+Dim InputReport2(1)
+InputReport2(0) = CByte(&H1)
+InputReport2(1) = CByte(&H3c)
+InputReport2(1) = CByte(&H2)
+
+PromptAndWaitForEnterKey "Queue input reports for processing"
+GenericHIDDev.QueueInputReport(InputReport1), 10
+GenericHIDDev.QueueInputReport(InputReport2), 10
+
+PromptAndWaitForEnterKey "Wait for the device to finish enumerating. Press enter to start processing input reports."
+GenericHIDDev.StartProcessing
+
+WriteLine "You may send additional input reports at this time..."
+PromptAndWaitForEnterKey "Press enter at any time to stop processing input reports and start cleanup."
+GenericHIDDev.StopProcessing
+
+PromptAndWaitForEnterKey "Press enter to unplug GenericHID device from external hub."
+ExtHubPort.UnPlug
+
+PromptAndWaitForEnterKey "Press enter to unplug external hub from root hub."
+RootHubPort.Unplug
+
+PromptAndWaitForEnterKey "Press enter to terminate this script."
+GenericHIDUSBDev.Destroy
+ExtHub.Destroy
+
+WriteLine "TestGenericHID.wsf complete"
+WScript.Quit 0
+
+
+'/////////////////////////////////////////////////////////////////////////////
+' Sub Configure1dot1Device
+' 
+' This routine configures the device as USB 1.1 by setting the version and
+' setting the correct MaxPacketSize on the device's endpoints 
+'/////////////////////////////////////////////////////////////////////////////
+Private Sub Configure1dot1Device(USBDevice)
+
+    Dim Config    : Set Config    = Nothing
+    Dim Interface : Set Interface = Nothing
+    Dim Endpoint  : Set Endpoint  = Nothing
+    Dim EPType    : Set EPType    = Nothing
+    
+    WriteLine "Configuring GenericHID device as a USB 1.1 full speed device."
+
+    USBDevice.USB = &H110 
+    For Each Config In USBDevice.Configurations
+        For Each Interface In Config.Interfaces
+            For Each Endpoint In Interface.Endpoints
+                EPType = Endpoint.Attributes And &H03
+                If (1 = EPType) Then
+                    ' 1023 is the maximum packet size for isochronous endpoints
+                    ' of full speed devices  
+                    Endpoint.MaxPacketSize=1023
+                Else
+                    ' For all other endpoint types, 64 is the max packet size
+                    Endpoint.MaxPacketSize=64
+                End If
+            Next
+        Next
+    Next
+
+End Sub
+
+
+
+'/////////////////////////////////////////////////////////////////////////////
+' Sub PromptAndWaitForEnterKey
+'
+' This routine displays the specified text and then waits for the user
+' to press Enter
+'/////////////////////////////////////////////////////////////////////////////
+Private Sub PromptAndWaitForEnterKey(text)
+    Write text
+    Dim x : x = WScript.StdIn.ReadLine()
+End Sub
+
+
+'/////////////////////////////////////////////////////////////////////////////
+' Sub SetEndpointDiagnostics
+'
+' This routine sets a diagnostic property on all the endpoints in the
+' specified simulated USB device so that you can see all transfers to and 
+' from the device when running under a kernel debugger. This routine will 
+' write information to the console describing every congiguration, interface,
+' and endpoint that it finds.
+'/////////////////////////////////////////////////////////////////////////////
+Private Sub SetEndpointDiagnostics(USBDevice)
+
+    const SOFTUSBENDPOINT_OBJECTFLAGS                     = 100
+    const SOFTUSBENDPOINT_DONOTTRACETRANSFERS             = &H00000000
+    const SOFTUSBENDPOINT_TRACETRANSFERINPUT              = &H00000001
+    const SOFTUSBENDPOINT_TRACETRANSFEROUPUT              = &H00000002
+    const SOFTUSBENDPOINT_TRACETRANSFERINPUTANDOUPUT      = &H00000003
+
+    Dim Config    : Set Config    = Nothing
+    Dim Interface : Set Interface = Nothing
+    Dim Endpoint  : Set Endpoint  = Nothing
+
+    Dim CtlFlags   : CtlFlags   = SOFTUSBENDPOINT_TRACETRANSFERINPUTANDOUPUT
+    Dim OtherFlags : OtherFlags = SOFTUSBENDPOINT_TRACETRANSFERINPUTANDOUPUT
+    Dim FlagsType  : FlagsType  = SOFTUSBENDPOINT_OBJECTFLAGS
+    Dim EPNum :  EPNum = 0
+    Dim EPDir :  EPDir = 0
+    Dim EPType : EPType = 0
+    
+    USBDevice.Endpoint0.SetObjectFlags FlagsType, CtlFlags
+    
+    For Each Config In USBDevice.Configurations
+
+        WriteLine "Setting endpoint diagnostics for configuration " & Config.ConfigurationValue
+
+        For Each Interface In Config.Interfaces
+
+            WriteLine "    Setting endpoint diagnostics for interface " & Interface.InterfaceNumber & " alternate " & Interface.AlternateSetting
+
+            For Each Endpoint In Interface.Endpoints
+
+                EPNum = Endpoint.EndpointAddress And &H0F
+                EPDir = Endpoint.EndpointAddress And &H80
+                If EPDir = 0 Then
+                    EPDir = "OUT"
+                Else
+                    EPDir = "IN"
+                End If
+
+                EPType = Endpoint.Attributes And &H03
+                Select Case EPType
+                    Case 0:
+                        EPType = "Control"
+
+                    Case 1:
+                        EPType = "Isoch"
+
+                    Case 2:
+                        EPType = "Bulk"
+
+                    Case 3:
+                        EPType = "Interrupt"
+                End Select
+
+                WriteLine "        Endpoint.SetObjectFlags for " & EPType & " " & EPDir & " endpoint " & Hex(EPNum)
+                Endpoint.SetObjectFlags FlagsType, OtherFlags
+
+            Next
+
+        Next
+
+    Next
+
+End Sub
+
+
+
+'/////////////////////////////////////////////////////////////////////////////
+' Function EnumSimulatedDevices
+'
+' This function searches the collection of simulated devices
+' referenced by DSF.Devices for a device that exposes an ancillary
+' object from DSFDevice.Object with the specified GUID. If found it returns the
+' DSFDevice object otherwise it returns Nothing.
+'/////////////////////////////////////////////////////////////////////////////
+Private Function EnumSimulatedDevices(SearchObjectGUID)
+
+    Dim DevSought : Set DevSought = Nothing
+    Dim Dev       : Set Dev = Nothing
+    Dim ObjSought : Set ObjSought = Nothing
+
+    For Each Dev in DSF.Devices
+        If Dev.HasObject(SearchObjectGUID) Then
+            Set ObjSought = Dev.Object(SearchObjectGUID)
+            If Not ObjSought Is Nothing Then
+                Set DevSought = Dev
+                Exit For
+            End If
+        End If
+    Next
+
+    Set EnumSimulatedDevices = DevSought
+
+End Function
+
+
+'/////////////////////////////////////////////////////////////////////////////
+' Sub WriteLine
+'
+' This routine writes the specified text to the console followed by a
+' newline.
+'/////////////////////////////////////////////////////////////////////////////
+Private Sub WriteLine(Text)
+
+    WScript.StdOut.WriteLine text
+
+End Sub
+
+
+'/////////////////////////////////////////////////////////////////////////////
+' Sub Write
+'
+' This routine writes the specified text to the console
+'/////////////////////////////////////////////////////////////////////////////
+Private Sub Write(Text)
+
+    WScript.StdOut.Write text
+
+End Sub
+
+
+
+'/////////////////////////////////////////////////////////////////////////////
+' Sub Error
+'
+' This routine writes the specified text to the console and
+' terminates the script
+'/////////////////////////////////////////////////////////////////////////////
+Private Sub Error(msg)
+    WriteLine "Script terminating due to error"
+    WriteLine msg
+    WScript.Quit 1
+End Sub
+
+
+</SCRIPT>
+</JOB>
+</PACKAGE>
+

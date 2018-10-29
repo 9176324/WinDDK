@@ -1,0 +1,16 @@
+SOURCES= \
+    xpsarch.cpp  \
+    xpsfd.cpp    \
+    xpsfds.cpp   \
+    xpsfiler.cpp \
+    xpsfilew.cpp \
+    xpsproc.cpp  \
+    xpsrels.cpp  \
+    xpstype.cpp  \
+
+TARGETNAME=xdcont
+TARGETTYPE=LIBRARY
+
+!include ..\sources.inc
+
+

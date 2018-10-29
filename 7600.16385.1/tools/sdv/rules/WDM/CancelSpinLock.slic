@@ -1,0 +1,56 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that calls to IoAcquireCancelSpinLock and
+	IoReleaseCancelSpinlock are used in strict alternation.
+*/
+
+#include "ntddk_slic.h"
+
+state{
+   enum {unlocked,locked} s = unlocked;
+}
+
+
+IoAcquireCancelSpinLock.exit
+{
+    if(s==locked) {
+        abort "The driver is calling IoAcquireCancelSpinLock after already acquiring the spinlock.";
+    } else {
+        s=locked;
+    }
+}
+
+
+IoReleaseCancelSpinLock.exit
+{
+    if(s==unlocked) {
+        abort "The driver is calling IoReleaseCancelSpinLock without first acquiring the spinlock.";
+    } else {
+        s=unlocked;
+    }
+}
+
+
+[sdv_stub_dispatch_end].entry
+{
+    if(s==locked) 
+    {
+        abort "The dispatch routine has returned without releasing the cancel spinlock.";
+    }
+}
+
+[fun_DRIVER_CANCEL_1
+,fun_DRIVER_CANCEL_2
+,fun_DRIVER_CANCEL_3
+,fun_DRIVER_CANCEL_4
+,fun_DRIVER_CANCEL_5
+,fun_DRIVER_CANCEL_6].exit
+{
+    if(s==locked) 
+    {
+        abort "The Cancel routine has returned without releasing the cancel spinlock.";
+    }
+}

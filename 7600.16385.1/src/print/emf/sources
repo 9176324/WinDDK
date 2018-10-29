@@ -1,0 +1,16 @@
+TARGETNAME=EmfDespooling
+TARGETTYPE=PROGRAM
+TARGETLIBS= $(SDK_LIB_PATH)\winspool.lib \
+            $(SDK_LIB_PATH)\kernel32.lib \
+           
+UMTYPE=console
+UMENTRY=wmain
+
+INCLUDES=
+
+C_DEFINES=-D_UNICODE -DUNICODE
+
+USE_MSVCRT=1
+
+SOURCES=emf.c
+

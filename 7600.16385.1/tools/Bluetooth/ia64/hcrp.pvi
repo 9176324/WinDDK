@@ -1,0 +1,19 @@
+[Version]
+Name=Hard Copy Replacement (HCRP)
+Service={00001126-0000-1000-8000-00805F9B34FB}
+
+[0x300]
+Name=1284 ID
+Format=STRING
+
+[0x302]
+Name=Device Name
+Format=STRING
+
+[0x304]
+Name=Friendly name
+Format=STRING
+
+[0x306]
+Name=Device Location
+Format=STRING

@@ -1,0 +1,45 @@
+#!include ..\..\..\Sources.inc
+
+TARGETNAME=IHVSampleUI
+TARGETTYPE=DYNLINK
+
+C_DEFINES=$(C_DEFINES) -DUNICODE -DWIN32
+
+DLLENTRY=_DllMainCRTStartup
+
+#UMTYPE=console
+USE_MSVCRT=1
+USE_STL=1
+
+#Enable exception handling
+USER_C_FLAGS            = $(USER_C_FLAGS) /EHa
+
+MSC_WARNING_LEVEL   = /W4 /WX
+
+TARGETLIBS=\
+    $(SDK_LIB_PATH)\ole32.lib       \
+    $(SDK_LIB_PATH)\oleaut32.lib    \
+    $(SDK_LIB_PATH)\user32.lib      \
+    $(SDK_LIB_PATH)\uuid.lib        \
+    $(SDK_LIB_PATH)\Kernel32.lib    \
+    $(SDK_LIB_PATH)\Advapi32.lib    \
+    $(SDK_LIB_PATH)\comctl32.lib  \
+
+
+INCLUDES=\
+	$(INCLUDES);\
+        $(DDK_INC_PATH);\
+
+SOURCES=IhvUIInc.idl \
+        IHVSample.idl \
+        IHVSampleExtUI.cpp \
+	IHVSampleExtUICon.cpp \
+	IHVSampleExtUISec.cpp \
+	IHVSampleExtUIKey.cpp \
+	IHVClassFactory.cpp \
+        IHVRegistryHelper.cpp \
+        IHVSampleUI.cpp \
+        IHVSampleUI.rc \
+	IHVSampleProfile.cpp \
+	utils.cpp \
+

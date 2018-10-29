@@ -1,0 +1,107 @@
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+[Version]
+signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Msft%
+DriverVer=01/19/2009,6.0.5752.0
+CatalogFile=SWTDMBTH.cat
+
+[ControlFlags]
+;ExcludeFromSelect=*
+
+[SourceDisksNames]
+1 = %BDA_DISK%,"",
+
+[SourceDisksFiles]
+SWTDMBTH.sys     = 1
+
+[DestinationDirs]
+SWTDMBTH.CopyFiles=10,system32\drivers
+
+[Manufacturer]
+%Msft%=Microsoft,NTx86,NTamd64
+
+[Microsoft.NTx86]
+;;%SWTDMBTH.DeviceDesc%=SWTDMBTH,SW\{A900D25A-5859-4219-9FF7-39CB66561B36}
+%SWTDMBTH.DeviceDesc%=SWTDMBTH,ms_swtdmbth
+
+[Microsoft.NTamd64]
+;;%SWTDMBTH.DeviceDesc%=SWTDMBTH,SW\{A900D25A-5859-4219-9FF7-39CB66561B36}
+%SWTDMBTH.DeviceDesc%=SWTDMBTH,ms_swtdmbth
+
+
+[SWTDMBTH.NTx86]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTDMBTH.inf
+CopyFiles=SWTDMBTH.CopyFiles
+
+[SWTDMBTH.NTamd64]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTDMBTH.inf
+CopyFiles=SWTDMBTH.CopyFiles
+
+;---------------------------------------------------------------
+;                I n t e r f a c e s
+;---------------------------------------------------------------
+
+[SWTDMBTH.NTx86.Interfaces]
+AddInterface=%KSCATEGORY_SWTDMBTH%,%KSSTRING_SWTDMBTHFilter%,TunerInterface.NT,
+
+[SWTDMBTH.NTamd64.Interfaces]
+AddInterface=%KSCATEGORY_SWTDMBTH%,%KSSTRING_SWTDMBTHFilter%,TunerInterface.NT,
+
+[TunerInterface.NT]
+AddReg=SWTDMBTH.Reader.AddReg
+
+
+
+;---------------------------------------------------------------
+;                A d d R e g
+;---------------------------------------------------------------
+[SWTDMBTH.Reader.AddReg]
+;HKR,,DevLoader,,*NTKERN
+;HKR,,NTMPDriver,,SWTDMBTH.sys
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%SWTDMBTH.FriendlyName%
+
+[SWTDMBTH.CopyFiles]
+SWTDMBTH.sys
+
+[SWTDMBTH.NTx86.Services]
+AddService=SWTDMBTH, 0x00000002, SWTDMBTH.ServiceInstall
+
+[SWTDMBTH.NTamd64.Services]
+AddService=SWTDMBTH, 0x00000002, SWTDMBTH.ServiceInstall
+
+[SWTDMBTH.ServiceInstall]
+DisplayName=%SWTDMBTH.DeviceDesc%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%10%\system32\drivers\SWTDMBTH.sys
+LoadOrderGroup=Extended Base
+
+[Strings]
+; non-localizeable
+RunOnce="SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce"
+SWTDMBTH.DeviceId="{A900D25A-5859-4219-9FF7-39CB66561B36}"
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSSTRING_SWTDMBTHFilter="{A900D25A-5859-4219-9FF7-39CB66561B36}"
+KSCATEGORY_SWTDMBTH="{71985F48-1CA1-11d3-9CC8-00C04F7971E0}"
+
+
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+
+;localizeable
+Msft="Microsoft"
+SWTDMBTH.DeviceDesc="BDA DMB-TH Sample Tuner Device"
+SWTDMBTH.FilterDesc="BDA DMB-TH Sample Tuner Filter"
+BDA_DISK = "S/W BDA DMB-TH Sample Tuner Drivers disk"
+SWTDMBTH.FriendlyName="BDA DMB-TH Sample Tuner"
+
+

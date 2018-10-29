@@ -1,0 +1,41 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+	Summary: This Rule verifies that a driver does not change the execution level or synchronization scope for a KMDF driver.
+
+	Description: 
+            Changing the driver execution level or synchronization scope is not illegal.
+            This rule should be treated as a warning. 
+             
+	Rule diagnostics:
+	If the driverObject's execution level and/or synchronization scope are
+	changed to anything other than the default, this rule finds a defect. 
+*/
+
+#include "ntddk_slic.h"
+
+state
+{
+}
+
+sdv_WdfDriverCreate.entry
+{
+	if ($3!=NULL)
+	{	
+                if ($3->ExecutionLevel!=WdfExecutionLevelInheritFromParent)
+		{
+			abort "Warning: do not change the Driver Execution Level for the KMDF driver object.";
+		}
+	}
+}
+sdv_WdfDriverCreate.exit
+{
+	if ($3!=NULL)
+	{	
+                if ($3->SynchronizationScope!=WdfSynchronizationScopeInheritFromParent && $3->SynchronizationScope!=WdfSynchronizationScopeNone)
+		{
+			abort "Warning: do not change the driver synchronization scope for the KMDF driver object.";
+		}
+	}
+}	

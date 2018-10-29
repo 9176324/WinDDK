@@ -1,0 +1,71 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	If a PnP driver creates a control device object in a callback function, 
+	it must call the WdfControlFinishInitializing method after the device has 
+	been created and before exit from callback. This rule is for the case of 
+	the EvtDriverDeviceAdd event callback function. The rule is not applicable 
+	for non-PnP drivers.
+
+	Description: 
+	If a PnP driver calls WdfDeviceCreate for a control device object 
+	and the call returns status STATUS_SUCCESS, the rule checks that the 
+	WdfControlFinishInitializing method is called before exit from the 
+	EvtDriverDeviceAdd callback, unless WDFObjectDelete was called before 
+	(this usually happens when there is an error during an initialization 
+	phase for the control device).
+
+	Rule diagnostics:
+	"WdfControlFinishInitializing must be called after the control device has been created and before it can be used and have I/O sent to it."
+
+*/ 
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT, FINISHCALLED} s = INIT;
+     enum {INIT1, INITCALLED, CREATECALLED} u = INIT1;
+     int t = 0;
+}
+
+watch sdv_WdfControlDeviceInitAllocate.exit.$return;
+sdv_WdfControlDeviceInitAllocate.exit[guard $return]
+{
+     u = INITCALLED;
+}
+sdv_WdfDeviceCreate.exit[guard *$1]
+{
+  if ((u == INITCALLED)&&($return == STATUS_SUCCESS)) {
+     u = CREATECALLED;
+     t = *$3;               
+   }
+}
+sdv_WdfControlFinishInitializing.entry
+{
+  if ((u == CREATECALLED)&&(t == $1)) {
+     s = FINISHCALLED;    
+  }
+}
+sdv_WdfObjectDelete.entry
+{
+  if ($1 == t) {
+	halt;
+  }
+}
+select one {
+  case fun_WDF_DRIVER_DEVICE_ADD:
+      [fun_WDF_DRIVER_DEVICE_ADD].exit
+      {
+          if ((u == CREATECALLED)&&(s != FINISHCALLED))
+		  {
+             abort "WdfControlFinishInitializing must be called after the control device has been created and before it can be used and have I/O sent to it.";
+          }
+		  
+      }
+ }
+
+
+
+   

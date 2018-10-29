@@ -1,0 +1,51 @@
+/*
+
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+	Summary: 
+	This rule verifies that non-PnP drivers cannot call certain DDIs related to power management.
+	
+	Description: 
+	If the driver does not register the EvtDriverDeviceAdd callback function, the following DDIs 
+	cannot be called: WdfDeviceInitSetPowerPolicyEventCallbacks, WdfDeviceAssignS0IdleSettings, and
+	WdfDeviceAssignSxWakeSettings.
+	   
+	Rule diagnostics:
+	"Non-pnp Driver is not a Power Policy Owner and cannot call $fname"
+	
+	Note: For PnP drivers, the rule gives a "N/A" result.
+	For non-PnP drivers that have no defect, the result is "N/A".
+
+
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT, OWNER} s = INIT;
+}
+select one {
+  case fun_WDF_DRIVER_DEVICE_ADD: none
+  case fun_WDF_IO_QUEUE_IO_STOP:none
+  case:
+       [ sdv_WdfDeviceAssignS0IdleSettings
+       | sdv_WdfDeviceInitSetPowerPolicyEventCallbacks
+       | sdv_WdfDeviceAssignSxWakeSettings
+       | sdv_WdfDeviceGetDevicePowerState
+       | sdv_WdfDeviceGetDevicePowerPolicyState
+       | sdv_WdfDeviceInitSetPnpPowerEventCallbacks
+       | sdv_WdfDeviceInitSetPowerPolicyEventCallbacks
+       | sdv_WdfDeviceInitSetPowerPolicyOwnership
+       | sdv_WdfDeviceInitRegisterPowerStateChangeCallback
+       | sdv_WdfDeviceInitRegisterPowerPolicyStateChangeCallback
+       | sdv_WdfDeviceInitSetPowerNotPageable
+       | sdv_WdfDeviceInitSetPowerPageable
+       | sdv_WdfDeviceInitSetPowerInrush
+       | sdv_WdfDeviceSetPowerCapabilities
+       ].entry
+          {
+            abort "Non-pnp Driver is not a Power Policy Owner and cannot call $fname.";
+           }
+}

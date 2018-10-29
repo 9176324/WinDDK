@@ -1,0 +1,70 @@
+/*
+
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+	
+	Summary: 
+	This rule verifies that after a request is completed, its buffer cannot be accessed
+	(inside EvtIoDeviceControl callback only). The buffer was retrieved by calling 
+	WdfRequestRetrieveInputBuffer or WdfRequestRetrieveOutputBuffer or
+	WdfRequestRetrieveUnsafeUserInputBuffer or WdfRequestRetrieveUnsafeUserOutputBuffer.
+	        
+	Description: 
+	Within the EvtIoDeviceControl I/O queue event callback function, the request buffer retrieved by calling
+	WdfRequestRetrieveInputBuffer or WdfRequestRetrieveOutputBuffer or
+	WdfRequestRetrieveUnsafeUserInputBuffer or WdfRequestRetrieveUnsafeUserOutputBuffer
+	cannot be accessed after WdfRequestComplete, WdfRequestCompleteWithInformation, WdfRequestCompleteWithPriorityBoost 
+	on the request. The following possible buffer access functions are considered:
+        WdfRequestRetrieveOutputBuffer, WdfRequestRetrieveUnsafeUserOutputBuffer, 
+        WdfRequestRetrieveInputBuffer and WdfRequestRetrieveUnsafeUserInputBuffer.
+	
+	Rule diagnostics: 
+	"Request's Buffer cannot be accessed after the Request had been completed."      
+	
+	Note 1:  
+	The following buffer access functions are considered in a separate
+	rule: RtlMoveMemory (with the buffer as a 1st and 2nd parameter),
+	RtlZeroMemory, RtlCompareMemory, ZwReadFile, WDF_MEMORY_DESCRIPTOR_INIT_BUFFER, 
+	WdfMemoryCreatePreallocated, WdfMemoryAssignBuffer, WdfMemoryCopyFromBuffer,
+	WdfMemoryCopyToBuffer.
+
+
+
+*/
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT1, IOCTL} s = INIT1;
+     enum {INIT2, REQCOMPL} t = INIT2;
+} with guard (sdv_main, hrequest)
+
+fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL.entry [guard $2]
+{
+   s = IOCTL;
+}
+fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL.exit [guard $2]
+{
+	 halt;
+}
+[sdv_WdfRequestComplete
+,sdv_WdfRequestCompleteWithInformation
+,sdv_WdfRequestCompleteWithPriorityBoost
+].exit [guard $1]
+{    
+       if (s == IOCTL){
+       t = REQCOMPL;                      
+   }
+}
+[ sdv_WdfRequestRetrieveOutputBuffer
+, sdv_WdfRequestRetrieveUnsafeUserOutputBuffer
+, sdv_WdfRequestRetrieveInputBuffer
+, sdv_WdfRequestRetrieveUnsafeUserInputBuffer
+].exit [guard $1]
+{
+     if ((s == IOCTL) && (t == REQCOMPL)) 
+	 {
+          abort "Request's Buffer cannot be accessed after the Request had been completed.";
+     }
+	 
+
+}

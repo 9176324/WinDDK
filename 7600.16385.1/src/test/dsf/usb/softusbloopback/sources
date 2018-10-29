@@ -1,0 +1,53 @@
+TARGETNAME=SoftUSBLoopback
+TARGETTYPE=DYNLINK
+
+DLLENTRY=_DllMainCRTStartup
+
+DLLDEF=SoftUSBLoopback.def
+
+USE_NATIVE_EH=ASYNC
+
+MUI = 0
+MUI_COMMENT=TEST_TOOL, Device Simulation Framework
+
+PRECOMPILED_CXX = 1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+USE_ATL = 1
+ATL_VER = 70
+
+USE_MSVCRT = 1
+USE_OBJECT_ROOT=1
+
+
+C_DEFINES = $(C_DEFINES) -DDSF_USER_MODE -DUNICODE
+
+PRECOMPILED_CXX=1
+
+TARGETLIBS= \
+           $(SDK_LIB_PATH)\kernel32.lib \
+           $(SDK_LIB_PATH)\user32.lib \
+           $(SDK_LIB_PATH)\advapi32.lib \
+           $(SDK_LIB_PATH)\ole32.lib \
+           $(SDK_LIB_PATH)\oleaut32.lib \
+           $(SDK_LIB_PATH)\uuid.lib \
+           $(SDK_LIB_PATH)\shlwapi.lib \
+           $(DDK_LIB_PATH)\SoftUSBIf.lib \
+
+
+INCLUDES=\
+    ..\inc; \
+    $(DDK_LIB_DEST)\$(TARGET_DIRECTORY); \
+    $(DDK_INC_PATH); \
+    
+    
+SOURCES= \
+    SoftUSBLoopback.idl \
+    LoopbackDevice.cpp \
+    SoftUSBLoopback.cpp \
+    SoftUSBLoopback.rc \
+
+
+TARGET_DESTINATION=retail:DSF\Test\USBLoopback:DSF\ProgramFiles\dsf\USBLoopback
+

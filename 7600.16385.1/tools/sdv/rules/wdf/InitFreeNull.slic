@@ -1,0 +1,67 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+    
+	Summary:$fname cannot be called with a PWDFDEVICE_INIT==NULL.
+
+	Description: 
+	
+	None of the Initialization functions below should be called with PWDFDEVICE_INIT==null. WdfDeviceCreate sets the first parameter
+        to NULL if it succeeds.
+	
+	After a successful call to WdfDeviceInitFree one should set PWDFDEVICE_INIT=NULL .
+
+	Rule diagnostics:
+	"$fname cannot be called with a PWDFDEVICE_INIT==NULL."
+    
+	Related rules:.
+
+*/     
+
+
+
+
+
+
+#include "ntddk_slic.h"
+
+
+[sdv_WdfDeviceInitRegisterPnpStateChangeCallback
+, sdv_WdfDeviceInitRegisterPowerStateChangeCallback
+, sdv_WdfDeviceInitRegisterPowerPolicyStateChangeCallback
+, sdv_WdfDeviceInitAssignName
+, sdv_WdfDeviceInitAssignSDDLString
+, sdv_WdfDeviceInitAssignWdmIrpPreprocessCallback
+, sdv_WdfPdoInitAssignDeviceID
+, sdv_WdfPdoInitAssignInstanceID
+, sdv_WdfPdoInitAddHardwareID
+, sdv_WdfPdoInitAddCompatibleID
+, sdv_WdfPdoInitAddDeviceText
+, sdv_WdfPdoInitAssignRawDevice
+].entry 
+{
+   if($1==0) 
+   {
+    abort "$fname cannot be called with a PWDFDEVICE_INIT==NULL.";
+   }
+}
+
+
+
+
+
+[sdv_WdfDeviceInitFree].entry
+{
+   if($1==0) 
+   {
+    abort "$fname cannot be called with a PWDFDEVICE_INIT==NULL.";
+   }
+}
+
+[sdv_WdfDeviceCreate].entry
+{
+   if(*$1==0) 
+   {
+    abort "$fname cannot be called with a PWDFDEVICE_INIT==NULL.";
+   }
+}
+

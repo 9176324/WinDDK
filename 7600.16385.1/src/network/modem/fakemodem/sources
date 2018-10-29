@@ -1,0 +1,17 @@
+TARGETNAME=fakemodem
+TARGETTYPE=DRIVER
+
+
+KMDF_VERSION_MAJOR=1
+
+INF_NAME=mdmfake
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+PASS0_BINPLACE=$(NTTARGETFILE0)
+
+SOURCES= \
+      driver.c \
+       ioctl.c \
+    readwrit.c \
+
+TARGET_DESTINATION=wdf
+

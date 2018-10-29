@@ -1,0 +1,25 @@
+/*
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+    
+    Summary:
+    At least one control path in the MiniportCheckForHang callback need to return true.
+    
+    Description:
+    This rule uses a precondition rule. The precondition Rule fails if MiniportCheckForHang returns TRUE.
+    This rule passes if the precondition rule fails.
+    
+    Related Rule:
+    Precondition Rule: Pre_MiniportCheckForHang_Return.
+    
+*/
+
+
+#include "ntddk_slic.h"
+
+sdv_MINIPORT_CHECK_FOR_HANG.exit
+{
+
+   abort " $fname must return TRUE at least on one path.";
+      
+}
+

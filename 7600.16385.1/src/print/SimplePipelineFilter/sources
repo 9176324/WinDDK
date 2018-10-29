@@ -1,0 +1,56 @@
+!IF 0
+
+  To dynamically link to the C runtime to enable the sample to function on Windows XP or
+  Windows Server 2003, you should make the following changes to the sources file:
+
+    a) Replace USE_LIBCMT=1 with USE_MSVCRT=1 in the sources file.
+
+    b) Add the following lines to the sources file:
+
+        _NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+        WIN32_WINNT_VERSION =$(LATEST_WIN32_WINNT_VERSION)
+        NTDDI_VERSION=$(LATEST_NTDDI_VERSION)
+
+    c) Replace the
+
+        $(SDK_LIB_PATH)\uuid.lib
+           line with
+        $(PUBLIC_ROOT)\lib\wlh\*\uuid.lib
+           in the sources file.
+
+!ENDIF
+
+
+TARGETNAME=WdkPipelineFilter
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=$(SDK_LIB_PATH)\user32.lib                                   \
+           $(SDK_LIB_PATH)\kernel32.lib                                 \
+           $(SDK_LIB_PATH)\oleaut32.lib                                 \
+           $(SDK_LIB_PATH)\ole32.lib                                    \
+           $(SDK_LIB_PATH)\uuid.lib                                     \
+           $(SDK_LIB_PATH)\advapi32.lib                                 \
+
+DLLDEF=FilterSample.def
+DLLENTRY=_DllMainCRTStartup
+
+USE_LIBCMT=1
+NO_BINPLACE=1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+C_DEFINES= -D_UNICODE -DUNICODE
+
+INCLUDES=$(DDK_INC_PATH);      \
+
+RUN_WPP=$(SOURCES)
+
+SOURCES=FilterSample.rc        \
+        main.cxx               \
+        StreamFilter.cxx       \
+        XpsFilter.cxx          \
+
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.hxx
+

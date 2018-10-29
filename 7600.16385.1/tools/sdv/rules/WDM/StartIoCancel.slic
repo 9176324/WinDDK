@@ -1,0 +1,42 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that if IoSetCancelRoutine is called with a
+	non-null cancel routine then IoSetStartIoAttributes should
+	have been called earlier with the noncancellable attribute set
+	to false.
+*/
+
+#include "ntddk_slic.h"
+
+
+state {
+
+    int setNonCancellable  = 0; 
+
+
+    int nonCancellableAttr = 0;
+}
+
+
+
+IoSetStartIoAttributes.entry 
+{ 
+    setNonCancellable = 1;
+    nonCancellableAttr = $3;
+}
+
+
+
+IoSetCancelRoutine.entry 
+{
+    if (  setNonCancellable==1
+       && nonCancellableAttr==0 
+       && $2!=NULL
+       )
+    {
+        abort "There is a potential for cancellation race. IoSetStartIoAttributes is being called with NonCancellable set to false. Then a non-NULL cancel routine has been passed to IoSetCancelRoutine.";
+    }
+}

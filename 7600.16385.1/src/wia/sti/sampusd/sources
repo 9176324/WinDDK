@@ -1,0 +1,37 @@
+TARGETNAME = sampusd
+TARGETTYPE = DYNLINK
+UMTYPE     = windows
+
+DLLENTRY = _DllMainCRTStartup
+
+USE_MSVCRT=1
+
+#
+# Debugging options
+#
+
+!IFDEF MAXDEBUG
+MSC_OPTIMIZATION=/Od
+C_DEFINES  = $(C_DEFINES) /DMAXDEBUG /DDEBUG /DDBG=1
+!ENDIF
+
+TARGETLIBS = $(TARGETLIBS) \
+             $(SDK_LIB_PATH)\kernel32.lib \
+             $(SDK_LIB_PATH)\sti.lib  \
+             $(SDK_LIB_PATH)\uuid.lib \
+             $(SDK_LIB_PATH)\ole32.lib\
+             $(SDK_LIB_PATH)\shell32.lib
+
+INCLUDES = \
+           $(INCLUDES) \
+           $(DDK_INC_PATH)
+
+SOURCES = sampusd.rc \
+          sampusd.cpp \
+          device.cpp
+
+MUI = 0
+MUI_COMMENT = TEMP_DISABLE, DDK sample
+
+
+

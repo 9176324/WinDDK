@@ -1,0 +1,137 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that DDIs are only called at proper IRQL levels.
+*/
+
+#include "ntddk_slic.h"
+
+
+IoGetConfigurationInformation.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoGetDeviceObjectPointer.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoGetDeviceToVerify.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoGetDmaAdapter.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoGetFileObjectGenericMapping.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoInitializeTimer.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoIsWdmVersionAvailable.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoReadPartitionTable.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoRegisterDriverReinitialization.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoRegisterShutdownNotification.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoRemoveShareAccess.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoSetPartitionInformation.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoSetShareAccess.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoUnregisterShutdownNotification.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoUpdateShareAccess.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoWMIAllocateInstanceIds.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoWMIRegistrationControl.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+
+IoWritePartitionTable.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL ) {
+        abort "$fname should only be called at IRQL = PASSIVE_LEVEL.";
+    }
+}
+

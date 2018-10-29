@@ -1,0 +1,60 @@
+TARGETNAME= SoftHIDDevice
+TARGETTYPE=DYNLINK
+
+DLLENTRY=_DllMainCRTStartup
+
+DLLDEF=SoftHIDDevice.def
+
+USE_NATIVE_EH=ASYNC
+
+MUI = 0
+MUI_COMMENT=TEST_TOOL, Device Simulation Framework
+
+PRECOMPILED_CXX = 1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+USE_ATL = 1
+ATL_VER = 70
+
+_BUILD_PASS0_CONSUMES=\
+    BaseToolDsfInputKbdIdl \
+
+
+BUILD_PASS0_CONSUMES=$(_BUILD_PASS0_CONSUMES)
+
+USE_MSVCRT = 1
+
+
+C_DEFINES = $(C_DEFINES) -DUNICODE
+
+PRECOMPILED_CXX=1
+
+TARGETLIBS= \
+           $(SDK_LIB_PATH)\kernel32.lib \
+           $(SDK_LIB_PATH)\user32.lib \
+           $(SDK_LIB_PATH)\advapi32.lib \
+           $(SDK_LIB_PATH)\ole32.lib \
+           $(SDK_LIB_PATH)\oleaut32.lib \
+           $(SDK_LIB_PATH)\uuid.lib \
+           $(SDK_LIB_PATH)\shlwapi.lib \
+
+
+INCLUDES=\
+        $(INCLUDES); \
+        ..\inc; \
+        ..\inputkbd; \
+        $(OBJ_PATH)\..\inputkbd\$(O); \
+        $(DDK_LIB_DEST)\$(TARGET_DIRECTORY); \
+        $(DDK_INC_PATH); \
+	
+SOURCES= \
+	SoftHIDDevice.idl \
+	SoftHIDDevice.cpp \
+        SoftHID.cpp \
+        SoftHIDInputKbdMapper.cpp \
+	messagetask.cpp \
+        task.cpp \
+        SoftHIDDevice.rc \
+        $(OBJ_PATH)\$(O)\softhiddevice_i.c \
+

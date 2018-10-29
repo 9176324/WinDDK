@@ -1,0 +1,8 @@
+[Exclude]
+bin16=yes
+ia64=yes
+SelfSign=yes
+w2k=yes
+win64=yes
+wppconfig=yes
+x86=yes

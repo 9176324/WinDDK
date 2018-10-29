@@ -1,0 +1,105 @@
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+[Version]
+signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Msft%
+DriverVer=06/21/2006,6.0.5752.0
+CatalogFile=SWTQAM.cat
+
+[ControlFlags]
+;ExcludeFromSelect=*
+
+[SourceDisksNames]
+1 = %BDA_DISK%,"",
+
+[SourceDisksFiles]
+SWTQAM.sys     = 1
+
+[DestinationDirs]
+SWTQAM.CopyFiles=10,system32\drivers
+
+[Manufacturer]
+%Msft%=Microsoft,NTx86,NTamd64
+
+[Microsoft.NTx86]
+%SWTQAM.DeviceDesc%=SWTQAM,ms_swtqam
+
+[Microsoft.NTamd64]
+%SWTQAM.DeviceDesc%=SWTQAM,ms_swtqam
+
+
+[SWTQAM.NTx86]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTQAM.inf
+CopyFiles=SWTQAM.CopyFiles
+
+[SWTQAM.NTamd64]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTQAM.inf
+CopyFiles=SWTQAM.CopyFiles
+
+;---------------------------------------------------------------
+;                I n t e r f a c e s
+;---------------------------------------------------------------
+
+[SWTQAM.NTx86.Interfaces]
+AddInterface=%KSCATEGORY_SWTQAM%,%KSSTRING_SWTQAMFilter%,TunerInterface.NT,
+
+[SWTQAM.NTamd64.Interfaces]
+AddInterface=%KSCATEGORY_SWTQAM%,%KSSTRING_SWTQAMFilter%,TunerInterface.NT,
+
+[TunerInterface.NT]
+AddReg=SWTQAM.Reader.AddReg
+
+
+
+;---------------------------------------------------------------
+;                A d d R e g
+;---------------------------------------------------------------
+[SWTQAM.Reader.AddReg]
+;HKR,,DevLoader,,*NTKERN
+;HKR,,NTMPDriver,,SWTQAM.sys
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%SWTQAM.FriendlyName%
+
+[SWTQAM.CopyFiles]
+SWTQAM.sys
+
+[SWTQAM.NTx86.Services]
+AddService=SWTQAM, 0x00000002, SWTQAM.ServiceInstall
+
+[SWTQAM.NTamd64.Services]
+AddService=SWTQAM, 0x00000002, SWTQAM.ServiceInstall
+
+[SWTQAM.ServiceInstall]
+DisplayName=%SWTQAM.DeviceDesc%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%10%\system32\drivers\SWTQAM.sys
+LoadOrderGroup=Extended Base
+
+[Strings]
+; non-localizeable
+RunOnce="SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce"
+SWTQAM.DeviceId="{0E7E99DD-8A1C-11DB-BDA1-00123F758252}"
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSSTRING_SWTQAMFilter="{0E7E99DD-8A1C-11DB-BDA1-00123F758252}"
+KSCATEGORY_SWTQAM="{71985F48-1CA1-11d3-9CC8-00C04F7971E0}"
+
+
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+
+;localizeable
+Msft="Microsoft"
+SWTQAM.DeviceDesc="BDA QAM Sample Tuner Device"
+SWTQAM.FilterDesc="BDA QAM Sample Tuner Filter"
+BDA_DISK = "S/W BDA QAM Sample Tuner Drivers disk"
+SWTQAM.FriendlyName="BDA QAM Sample Tuner"
+
+

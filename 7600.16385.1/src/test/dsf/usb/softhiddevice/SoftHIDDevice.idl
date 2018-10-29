@@ -1,0 +1,59 @@
+/*++ BUILD Version: 0000    
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Module Name:
+
+    SoftHIDDevice.idl
+
+Abstract:
+    Defined the library SOFTHID. Includes definitions for the 
+    interface ISoftHIDInputKbdMapper
+ 
+Revision History:
+
+--*/
+// This file will be processed by the MIDL tool to
+// produce the type library (SoftHIDDevice.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+[
+    uuid(E4467B25-A31D-42A9-A863-B6614A44FC0C),
+    version(1.0),
+    helpstring("SoftHIDDevice 1.0 Type Library")
+]
+library SOFTHID
+{
+    importlib("stdole2.tlb");
+    importlib("dsfif.tlb");
+    importlib("InputKbd.tlb");
+    importlib("SoftHidUSBIf.tlb");
+    
+    [
+        object,
+        uuid(925D14EB-7485-4FEE-8EB2-7B5C813BC39D),
+        dual,
+        nonextensible,
+        helpstring("ISoftHIDInputKbdMapper Interface"),
+        pointer_default(unique)
+    ]
+    interface ISoftHIDInputKbdMapper : IDispatch{
+        [propget, id(1), helpstring("property InputReportMask")] HRESULT InputReportMask([out, retval] SHORT* pVal);
+        [propput, id(1), helpstring("property InputReportMask")] HRESULT InputReportMask([in] SHORT newVal);
+        [propget, id(2), helpstring("property OutputReportMask")] HRESULT OutputReportMask([out, retval] BYTE* pVal);
+        [propput, id(2), helpstring("property OutputReportMask")] HRESULT OutputReportMask([in] BYTE newVal);
+        [id(3), helpstring("method AttachKbd")] HRESULT AttachKbd([in] SoftKeyboard *pSoftKbd);
+        [id(4), helpstring("method AttachProtocolXlator")] HRESULT AttachProtocolXlator([in] SoftHIDProtocolXlator* pSoftProtXlator);
+    };
+    [
+        uuid(6853488F-9478-4290-84A1-83BFF8BBE48F),
+        helpstring("SoftHIDInputKbdMapper Class")
+    ]
+    coclass SoftHIDInputKbdMapper
+    {
+        [default] interface ISoftHIDInputKbdMapper;
+        [default,source] interface ISoftInputKbdDeviceEvents;
+    };
+};
+

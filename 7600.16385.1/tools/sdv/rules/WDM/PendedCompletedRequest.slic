@@ -1,0 +1,42 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule verifies that a driver does not return
+	STATUS_PENDING from its dispatch routine, if IoCompleteRequest
+	has been called on the incoming IRP.
+*/
+
+#include "ntddk_slic.h"
+
+state {
+    int io_complete_request_called = 0;
+} with guard(sdv_main,sdv_irp) 
+
+
+sdv_stub_dispatch_end.entry [guard $2]
+{
+    if (io_complete_request_called && $1 == STATUS_PENDING) {
+        abort "The dispatch routine is returning STATUS_PENDING, but it has also called IoCompleteRequest on the incoming IRP.";
+    }
+    else
+    {
+        halt;
+    }
+}
+
+[RemoveHeadList,sdv_containing_record].entry
+{
+    halt;
+}
+
+IoCompleteRequest.entry[guard $1]
+{
+    io_complete_request_called = 1;
+}      
+
+IoMarkIrpPending.entry[guard $1]
+{
+    halt;
+}

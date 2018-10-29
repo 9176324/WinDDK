@@ -1,0 +1,12 @@
+[Version]
+Name=SDP Server
+Service={00001000-0000-1000-8000-00805F9B34FB}
+
+[0x200]
+Name=SDP Server Version Number List
+Required=1
+Format=SEQUENCE{UINT16}
+
+[0x201]
+Name=SDP Server Database State
+Format=UINT32

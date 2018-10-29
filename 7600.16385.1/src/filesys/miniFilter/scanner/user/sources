@@ -1,0 +1,25 @@
+TARGETNAME=scanuser
+TARGETTYPE=PROGRAM
+UMTYPE=console
+USE_MSVCRT=1
+
+
+C_DEFINES=$(C_DEFINES) -DUNICODE -D_UNICODE
+
+LINKLIBS=$(SDK_LIB_PATH)\shell32.lib
+
+INCLUDES=$(INCLUDES);         \
+         $(IFSKIT_INC_PATH);  \
+         $(DDK_INC_PATH);     \
+         ..\inc
+
+TARGETLIBS=$(TARGETLIBS) \
+            $(IFSKIT_LIB_PATH)\fltLib.lib
+
+SOURCES=scanUser.c  \
+        scanUser.rc
+
+!if "$(DDK_TARGET_OS)"=="WinLH"
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+!endif
+

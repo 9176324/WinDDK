@@ -1,0 +1,70 @@
+<html>
+  <body>
+
+    <h1>BDA Tuner Samples</h1>
+
+    <h2>Summary</h2>
+
+    <p>
+      These samples provide a starting point for Windows® BDA tuner development. They contain annotated code to illustrate basic tuner functionality including ATSC, DVBT, DVBS, ISDBT and Analog signal feeds. Developers are expected to obtain sample multimedia content as these samples simulate live signals by streaming local MPEG content.
+    </p>
+    
+    <h2>Building the samples</h2>
+    <p>
+      To build the sample drivers, you must first set up the DDK environment on your host machine. The “Installation and Release Notes” in the DDK has a complete description on how to do this.<br><br>
+      Run the build command in the SWTuner directory to build all the drivers described above. Copy the tuner’s .sys and .inf file produced by the build process to a temporary directory on the target system. 
+    </p>
+    
+    <h2>Installation</h2>
+    
+      Tuners are installed using the DEVCON utility provided in the WDK’s Setup directory inside an elevated command window. For example, to install the ATSC tuner, run
+    
+      <pre>devcon.exe install swtatsc.inf ms_swtATSC</pre>
+    
+      <p>
+        The tuner samples read parameter information from a private registry tree; production code would employ a different mechanism.<br><br>
+    
+        Create a new PSWTUNER registry tree rooted under HKLM\System. From this parent key, create a sub key called ROOT_MEDIA_0000 then a key below this key called Device Parameters for a total depth of three from PSWTUNER. Populate the Device Parameters key with sample data modifying the values for the target system’s and path specifications.<br><br>
+    
+        <pre>
+        [HKEY_LOCAL_MACHINE\SYSTEM\PSWTuner\ROOT_MEDIA_0000\Device Parameters]<br><br>
+        "DefaultStreamLocation", "\??\C:\mpeg\myemptystream.ts"
+        </pre>
+
+        Under Device Parameters, sub keys for individual channel data are stored. For example, three sub keys could be created. The text below lays out sample data for illustration; the registry information offers no production value.<br><br>
+
+        <pre>
+          [HKEY_LOCAL_MACHINE\SYSTEM\PSWTuner\ROOT_MEDIA_0000\Device Parameters\482000]<br>
+          "SignalLocked", DWORD:0x00000001<br>
+          "SignalPresent", DWORD:0x00000001<br>
+          "SignalQuality", DWORD:0x00000064<br>
+          "SignalStrength", DWORD:0x0000003f<br>
+          "StreamLocation", "\??\C:\mpeg\test.dvbt.1.ts"<br>
+          "FriendlyName"="CamXYZ"<br><br>
+
+          [HKEY_LOCAL_MACHINE\SYSTEM\PSWTuner\ROOT_MEDIA_0000\Device Parameters\538000]<br>
+          "SignalLocked", DWORD:0x00000001<br>
+          "SignalPresent", DWORD:0x00000001<br>
+          "SignalQuality", DWORD:0x00000064<br>
+          "SignalStrength", DWORD:0x0000003f<br>
+          "StreamLocation", "\??\C:\mpeg\test.dvbt.2.ts"<br>
+          "FriendlyName"="CamXYZ2"<br><br>
+
+          [HKEY_LOCAL_MACHINE\SYSTEM\PSWTuner\ROOT_MEDIA_0000\Device Parameters\554000]<br>
+          "SignalLocked", DWORD:0x00000001<br>
+          "SignalPresent", DWORD:0x00000001<br>
+          "SignalQuality", DWORD:0x00000064<br>
+          "SignalStrength", DWORD:0x0000003f<br>
+          "StreamLocation", "\??\C:\mpeg\test.dvbt.3.ts"<br>
+          "FriendlyName"="CamXYZ3"<br><br>
+        </pre>
+
+        Connect the sample driver to its PSWTUNER data by creating a string named "DeviceInstanceID" under HKLM\System\CurrentControlSet\Control\Class\{4D36E96C-E325-11CE-BFC1-08002BE10318} in the key created during installation by DEVCON.EXE for the sample driver. Review the keys looking for a string pair named DeviceDesc with a value containing “Sample Tuner” text.<br><br>
+
+        The value for the new “DeviceInstanceID” string is "ROOT_MEDIA_0000”<br><br>
+
+        Uninstall the driver and its software through Device Manager then delete the entire PSWTUNER registry key.<br><br><br><br>
+    </p>
+  </body>
+</html>
+

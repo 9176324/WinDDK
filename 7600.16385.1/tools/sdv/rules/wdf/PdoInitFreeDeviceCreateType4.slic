@@ -1,0 +1,79 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+    
+	Summary: 
+	The driver must call WdfDeviceInitFree if an error occurs when calling WdfDeviceCreate.
+
+	Description: 
+	If your driver encounters an error while WdfDriverCreate, 
+	and if the driver received the WDFDEVICE_INIT structure from a call to WdfPdoInitAllocate 
+	the driver must call WdfDeviceInitFree. 
+	
+	Rule diagnostics:
+	"A driver must call WdfDeviceInitFree if an error occurs when calling WdfDeviceCreate."
+ 
+        Related rules: InitFreeDeviceCallback,InitFreeDeviceCreate,InitFreeDeviceCreateType2,PdoInitFreeDeviceCreateType2,
+	InitFreeDeviceCreateType4,PdoInitFreeDeviceCallback,PdoInitFreeDeviceCreate,PdoInitFreeDeviceCreateType4 
+	and InitFreeDevice.	
+*/     
+
+
+
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {FREENOTREQUIRED,FREEREQUIRED} s1 = FREENOTREQUIRED;
+} 
+
+
+watch sdv_WdfPdoInitAllocate.exit.$return;
+
+[sdv_WdfDeviceInitFree].entry[guard $1]
+{   
+    if (s1==FREEREQUIRED)
+    {
+      halt;
+    }
+}
+
+sdv_WdfDeviceCreate.exit[guard || null *$1]
+{	
+    if(!NT_SUCCESS($return))
+    {
+     s1=FREEREQUIRED;
+    }
+    else
+    {
+      halt;
+    }
+}
+
+
+select one 
+{
+  case fun_WDF_DRIVER_DEVICE_ADD:
+        fun_WDF_DRIVER_DEVICE_ADD.exit
+        {
+		if (s1==FREEREQUIRED) 
+		{
+          	    abort "A driver must call WdfDeviceInitFree if an error occurs when calling WdfDeviceCreate.";
+        	}
+                else
+                {
+                     halt;
+                }
+	      
+        }
+	[fun_DriverEntry].exit
+        {
+		if (s1==FREEREQUIRED) 
+		{
+		    abort "A driver must call WdfDeviceInitFree if an error occurs when calling WdfDeviceCreate.";
+			
+        	}
+                
+        }    
+        
+} 

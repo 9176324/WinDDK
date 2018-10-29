@@ -1,0 +1,27 @@
+HKCR
+{
+    SoftUSBLoopback.LoopbackDevice.1 = s 'LoopbackDevice Class'
+    {
+        CLSID = s '{8419B5D4-9DE5-468E-8273-533D49A94C31}'
+    }
+    SoftUSBLoopback.LoopbackDevice = s 'LoopbackDevice Class'
+    {
+        CLSID = s '{8419B5D4-9DE5-468E-8273-533D49A94C31}'
+        CurVer = s 'SoftUSBLoopback.LoopbackDevice.1'
+    }
+    NoRemove CLSID
+    {
+        ForceRemove {8419B5D4-9DE5-468E-8273-533D49A94C31} = s 'LoopbackDevice Class'
+        {
+            ProgID = s 'SoftUSBLoopback.LoopbackDevice.1'
+            VersionIndependentProgID = s 'SoftUSBLoopback.LoopbackDevice'
+            ForceRemove 'Programmable'
+            InprocServer32 = s '%MODULE%'
+            {
+                val ThreadingModel = s 'Apartment'
+            }
+            'TypeLib' = s '{E2A2A936-5E15-43BF-AAE8-109340CCD68F}'
+        }
+    }
+}
+

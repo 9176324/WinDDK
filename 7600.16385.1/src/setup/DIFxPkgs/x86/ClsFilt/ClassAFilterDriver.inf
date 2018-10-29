@@ -1,0 +1,40 @@
+;  CLASS FILTER SAMPLE
+
+[Version]
+Signature	= "$WINDOWS NT$"
+Provider	= Microsoft
+CatalogFile	= ClassFilter.cat
+DriverPackageType = ClassFilter
+
+[DefaultInstall.NT]
+CopyFiles 	= ClassFilterInstall.CopyFiles
+Addreg 		= Classfilter.AddReg
+
+[ClassFilterInstall.CopyFiles]
+clsupr.sys
+
+[Classfilter.AddReg]
+HKLM, System\CurrentControlSet\Control\Class\{4d36e967-e325-11ce-bfc1-08002be10318}, UpperFilters, 0x00010008, DmiTest
+
+[DefaultInstall.NT.Services]
+AddService 	= DmiTest,,dmi_ClassFilterUpperService
+
+[dmi_ClassFilterUpperService]
+DisplayName	= dmi_ClassUpperFilterService
+ServiceType	= 1
+StartType	= 0
+ErrorControl	= 1
+ServiceBinary 	= %12%\clsupr.sys
+LoadOrderGroup 	= PNP Filter
+
+[DestinationDirs]
+DefaultDestDir   = 12
+
+[SourceDisksNames]
+1=%Disk1%,,
+
+[SourceDisksFiles]
+clsupr.sys		= 1
+
+[Strings]
+Disk1 			= "The First Disk"

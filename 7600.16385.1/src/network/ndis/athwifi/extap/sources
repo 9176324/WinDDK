@@ -1,0 +1,25 @@
+!include ..\sources.inc
+
+TARGETNAME=extap
+
+TARGET_DESTINATION=$(OBJ_PATH)\..\lib\$(_OBJ_DIR)
+
+TARGETTYPE=LIBRARY
+
+PRECOMPILED_INCLUDE=precomp.h
+
+INCLUDES= $(INCLUDES)        \
+    ..\inc;                  \
+    $(DDK_INC_PATH)
+
+SOURCES=                     \
+    ap_main.c                \
+    ap_config.c              \
+    ap_assocmgr.c            \
+    ap_oids.c                \
+    ap_oidapi.c              \
+    ap_action.c              \
+    ap_misc.c                \
+    ap_recv.c                \
+    ap_send.c                \
+    machash.c                \

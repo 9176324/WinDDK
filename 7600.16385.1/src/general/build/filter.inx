@@ -1,0 +1,15 @@
+;/*++
+;
+;Copyright (c) 1990-1999 Microsoft Corporation All rights Reserved
+;
+;Module Name:
+;
+;    filter.INF
+;
+;Abstract:
+;    INF file for installing a filter device driver
+;
+;--*/
+
+
+

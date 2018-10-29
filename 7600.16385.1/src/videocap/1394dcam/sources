@@ -1,0 +1,43 @@
+#############################################################################
+#
+#       Copyright (C) Microsoft Corporation 1997
+#       All Rights Reserved.
+#
+#       Sources for 1394 DCam device
+#
+##########################################################################
+TARGETNAME=sonydcam
+TARGETTYPE=DRIVER
+DRIVERTYPE=WDM
+
+USER_C_FLAGS    =  /Oi
+C_DEFINES       = -DPNP_POWER
+C_DEFINES=$(C_DEFINES) -DUSE_WDM110
+
+MSC_WARNING_LEVEL=-W4 -WX
+INCLUDES= \
+    $(DDK_INC_PATH)
+
+
+TARGETLIBS=$(DDK_LIB_PATH)\stream.lib \
+           $(DDK_LIB_PATH)\ksguid.lib
+
+SOURCES=                \
+        callback.c      \
+        capprop.c       \
+        device.c        \
+        sonydcam.c      \
+        ctrlpkt.c       \
+        datapkt.c       \
+        dcampkt.c       \
+        dbg.c           \
+        sonydcam.rc
+
+I386_LOC_DRIVER_INFS= \
+    image.inf \
+
+AMD64_LOC_DRIVER_INFS= \
+    image.inf \
+
+TARGET_DESTINATION=retail
+

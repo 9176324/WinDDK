@@ -1,0 +1,54 @@
+/*
+
+  Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+  Summary: After a Request is completed, the associated WDFMEMORY object
+  cannot be accessed (inside Ioctl callback only).
+  WDFMEMORY object was retrieved by calling WdfRequestRetrieveInputMemory or
+  WdfRequestRetrieveOutputMemory.         
+
+  Description: 
+  Within Ioctl Io queue event callback, the WDFMEMORY object associated with the
+  Request by calling WdfRequestRetrieveInputMemory or WdfRequestRetrieveOutputMemory,
+  cannot be accessed after WdfRequestComplete/WithInformation/WithPriorityBoost 
+  on the Request.
+  The following possible WDFMEMORY object access functions are considered:
+  WdfRequestRetrieveInputMemory, WdfRequestRetrieveOutputMemory.
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT1, IOCTL} s = INIT1;
+     enum {INIT2, REQCOMPL} t = INIT2;
+} with guard (sdv_main, hrequest)
+
+fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL.entry[guard $2]
+{
+   s = IOCTL;
+}
+fun_WDF_IO_QUEUE_IO_DEVICE_CONTROL.exit[guard $2]
+{
+     halt;
+}
+[sdv_WdfRequestComplete
+,sdv_WdfRequestCompleteWithInformation
+,sdv_WdfRequestCompleteWithPriorityBoost 
+].entry[guard $1]
+{    
+     if (s == IOCTL){
+           t = REQCOMPL;
+   }
+}
+[sdv_WdfRequestRetrieveInputMemory
+,sdv_WdfRequestRetrieveOutputMemory
+].entry[guard $1]
+{
+   if ((s == IOCTL) && (t == REQCOMPL)) 
+   {
+          abort "Request's memory object cannot be accessed after the Request had been completed.";
+   }
+   
+}

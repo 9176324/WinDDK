@@ -1,0 +1,27 @@
+TARGETNAME=ep24res
+TARGETTYPE=DYNLINK
+TARGETLIBS=
+
+DLLBASE=0x20000000
+INCLUDES=..\..\..\..\inc
+RESOURCE_ONLY_DLL=1
+
+SOURCES= \
+        epson24.rc
+
+UMTYPE=windows
+
+MISCFILES= \
+	   ep1060p.GPD \
+           \
+           ep106x.gpd \
+           \
+           ep2000.GPD \
+           \
+           epcomp24.GPD \
+           \
+           epl1050p.GPD \
+	   \
+           epl105x.gpd \
+           \
+           eplq560.GPD

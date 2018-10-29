@@ -1,0 +1,23 @@
+TARGETNAME=usbsamp
+TARGETTYPE=PROGRAM
+
+_NT_TARGET_VERSION= $(_NT_TARGET_VERSION_WINXP)
+
+USE_MSVCRT=1
+
+UMTYPE=console
+UMBASE=0x01000000
+
+INCLUDES=$(DDK_INC_PATH); \
+     ..\sys
+
+
+TARGETLIBS= $(DDK_LIB_PATH)\usbd.lib \
+            $(SDK_LIB_PATH)\setupapi.lib
+
+SOURCES=      \
+        testapp.c  \
+        testapp.rc
+
+TARGET_DESTINATION=wdf
+

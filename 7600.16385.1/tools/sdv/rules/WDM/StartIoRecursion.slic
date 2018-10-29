@@ -1,0 +1,49 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that if a driver calls IoStartNextPacket
+	from within startIo routine then there is a potential for
+	recursion. The driver should call IoSetStartioAttributes with
+	DeferredStartIo set to TRUE on the dev object which would have
+	been passed to IoStartNextPacket.
+*/
+
+#include "ntddk_slic.h"
+
+state {
+
+
+   int inStartIo = 0; 
+
+
+   int setDeferredStartIo = 0; 
+}
+
+
+fun_DriverStartIo.entry 
+{ 
+    inStartIo = 1; 
+}
+
+
+fun_DriverStartIo.exit  
+{ 
+    halt; 
+}
+
+
+IoSetStartIoAttributes.entry 
+{ 
+    setDeferredStartIo = $2; 
+}
+
+
+
+IoStartNextPacket.entry 
+{
+    if (inStartIo && !setDeferredStartIo) {
+        abort "There is a potential for unbounded recursion.  The driver has called IoStartNextPacket inside startIo but it has not set the DeferredStartIo attribute of the device object to true.";
+    }
+}

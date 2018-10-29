@@ -1,0 +1,33 @@
+TARGETNAME=toaster
+TARGETTYPE=DRIVER
+
+NTTARGETFILE0 = $(OBJ_PATH)\$(O)\toaster.bmf
+
+TARGETLIBS= $(DDK_LIB_PATH)\ntstrsafe.lib
+
+INCLUDES = ..\..\inc;..\shared
+
+MSC_WARNING_LEVEL= /W4 /WX
+
+SOURCES= toaster.rc \
+         toaster.c  \
+         power.c \
+         wmi.c \
+	 wake.c 
+
+#
+# Comment the below line to disable tracing. All the debug traces
+# will be sent to the kernel-debugger.
+ENABLE_EVENT_TRACING=1
+
+!IFDEF ENABLE_EVENT_TRACING
+
+C_DEFINES = $(C_DEFINES) -DEVENT_TRACING
+!ENDIF
+
+RUN_WPP=$(SOURCES)\
+        -km\
+	-DWIN2K\
+        -func:ToasterDebugPrint(LEVEL,MSG,...)
+
+

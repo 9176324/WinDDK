@@ -1,0 +1,18 @@
+TARGETNAME=notify
+TARGETTYPE=PROGRAM
+
+INCLUDES=..\..\wdm\inc;$(DDK_INC_PATH); 
+
+
+SOURCES=notify.rc \
+	notify.c  \
+
+
+TARGETLIBS=$(SDK_LIB_PATH)\setupapi.lib 
+	
+UMTYPE=windows
+UMBASE=0x01000000
+UMENTRY=winmain
+USE_MSVCRT=1
+
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)

@@ -1,0 +1,1585 @@
+<?xml version='1.0'?>
+<DefectDefs>
+
+   <DefectDefGroup id="20001" name="OACR">
+      <display>OACR Core Defects (not scanner specific)</display>
+      <doc></doc>
+      <ownerURL>http://oacr</ownerURL>
+      <ownerContact>oacrhelp</ownerContact>
+
+      <DefectDef id="20001" name="DEPRECATED_SCAN_SUCCESS">
+         <description>
+            <format>File processed successfully</format>
+         </description>
+
+         <doc>
+            <P>
+            NOTE: This warning is being phased out. It has been replaced by scanner specific warnings in the range 20040-20049.
+            </P>
+            <P>
+            This warning indicates that a code scanner has successfully processed the indicated file.
+            </P>
+            <P>
+            This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20002" name="SCAN_FAILURE">
+         <description>
+            <format>Error processing file : Scanner failed</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that a code scanner has not successfully checked the indicated file.
+            The OACR warning contains additional information about the failure.
+            </P>
+            <P>
+            This warning should always be enabled and treated as a severe defect. 
+            Ignoring it can result in missed defects, since a code scanner may not report any defects, 
+            if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20003" name="SCAN_FAILURE_CANNOT_FIND_FILE">
+         <description>
+            <format>Error processing file : Cannot find source file</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that the indicated file has not been checked, because the source file could not be found.
+            </P>
+            <P>
+            This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20004" name="SCAN_FAILURE_CANNOT_CREATE_DIR">
+         <description>
+            <format>Error processing file : Cannot create directory</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that the indicated file has not been checked, because a directory could not be created.
+            </P>
+            <P>
+            This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20005" name="SCAN_FAILURE_MANAGED_CODE">
+         <description>
+            <format>Error processing file : Managed code not supported</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that the indicated file has not been checked, because the code scanner does not support managed code.
+            </P>
+            <P>
+            This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20006" name="SCAN_IGNORE_FILE_MODIFIED">
+         <description>
+            <format>Not processing file : Source file modified after build</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that the indicated file has not been checked, because the source file has been modified after the build.
+            This typically happens if OACR is running in asynchronous (i.e. batch or daemon) mode, and the user has edited the file after
+            building, but before OACR tried to check the file. The file will be scheduled to be checked when it is built the next time.
+            </P>
+            <P>
+            This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20007" name="DEPRECATED_SCAN_FAILURE_CANNOT_CREATE_PCH">
+         <description>
+            <format>Error processing file : Cannot create precompiled header</format>
+         </description>
+
+         <doc>
+            <P>
+            NOTE: This warning is being phased out. It has been replaced by scanner specific warnings in the range 20050-20059.
+            </P>
+            <P>
+            This warning indicates that the indicated file has not been checked, because the precompiled header was missing, and could not be generated.
+            This is for example caused by:
+            <ul>
+               <li>Build errors in precompiled headers. This should be indicated by a respective OACR warning.</li>
+               <li>Build environments that use temporary source files for precompiled headers. If OACR is configured to
+               run asynchronously in such an environment, then the source file is no longer available when OACR needs it.
+               The fix is to change the build environment to not delete the source file (recomended), or configure OACR with
+               the 'CheckPCHAtCompileTime=1' setting (last resort, not recommended due to increased build time overhead).</li>
+               <li>Enabling OACR without doing an initial full build. In that case, OACR doesn't know how to generate the precompiled header.</li>
+               <li>Tampering with the OACR build root directory, deleting build history information that allows OACR to regenerate precompiled headers.</li>
+            </ul>
+            </P>
+            <P>
+            This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20008" name="DEPRECATED_SCAN_EXCLUDED">
+         <description>
+            <format>Not processing file : File excluded from checking</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that the indicated file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+            This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+            This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+            This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+		<DefectDef id="20009" name="SCAN_FAILURE_TIMEOUT">
+			<description>
+				<format>Error processing file : Scanner has timed out</format>
+			</description>
+
+			<doc>
+				<P>
+					This warning indicates that the indicated file has not been checked, because the code scanner has not completed in the maximum allowed time.
+				</P>
+			</doc>
+
+			<helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+		</DefectDef>
+
+      <DefectDef id="20021" name="DEPRECATED_SCAN_SUCCESS_PCH">
+         <description>
+            <format>Precompiled header processed successfully</format>
+         </description>
+
+         <doc>
+            <P>
+            NOTE: This warning is being phased out. It has been replaced by scanner specific warnings in the range 20040-20049.
+            </P>
+            <P>
+            This warning indicates that a code scanner has successfully processed the indicated file and has created a precompiled header.
+            </P>
+            <P>
+            This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20022" name="SCAN_FAILURE_PCH">
+         <description>
+            <format>Error processing precompiled header : Scanner failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that a code scanner has not successfully processed the indicated file, and no precompiled header has been created.
+               The OACR warning contains additional information about the failure.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can result in missed defects, since a code scanner may not report any defects,
+               if the file can not be checked sucessfully. Failures in precompiled headers are
+               even more severe than failures in regular source files, since they prevent
+               checking of source files that depend on the precompiled header.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20023" name="SCAN_FAILURE_PCH_CANNOT_FIND_FILE">
+         <description>
+            <format>Error processing precompiled header : Cannot find source file</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that the indicated file has not been checked and no precompiled header has been created, because the source file could not be found.
+            </P>
+            <P>
+            This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20024" name="SCAN_FAILURE_PCH_CANNOT_CREATE_DIR">
+         <description>
+            <format>Error processing precompiled header : Cannot create directory</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that the indicated file has not been checked and no precompiled header has been created, because a directory could not be created.
+            </P>
+            <P>
+            This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20025" name="SCAN_FAILURE_PCH_MANAGED_CODE">
+         <description>
+            <format>Error processing precompiled header : Managed code not supported</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that the indicated file has not been checked and no precompiled header has been created, because the code scanner does not support managed code.
+            </P>
+            <P>
+            This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+		<DefectDef id="20026" name="SCAN_FAILURE_PCH_TIMEOUT">
+			<description>
+				<format>Error processing precompiled heade : Scanner has timed out</format>
+			</description>
+
+			<doc>
+				<P>
+					This warning indicates that the indicated file has not been checked and no precompiled header has been created, because the code scanner has not completed in the maximum allowed time.
+				</P>
+			</doc>
+
+			<helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+		</DefectDef>
+
+		<DefectDef id="20031" name="PLUGIN_DEPENDENCY">
+         <description>
+            <format>Error processing file : Scanner plugin dependency</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that the indicated file has not been checked successfully, because at least one required scanner plugin was not enabled.
+            </P>
+            <P>
+            A code scanner plugin may have a dependency on another plugin, and can only function properly if both plugins are enabled.
+            </P>
+            <P>
+            This warning should always be enabled and treated as a severe defect. 
+            Ignoring it can result in missed defects, since the affected plugin may not report all defects.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20040" name="SCAN_SUCCESS_EXTERNAL">
+         <description>
+            <format>Source file processed successfully by external scanner</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that a external code scanner has successfully processed the indicated source file.
+            </P>
+            <P>
+            This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20041" name="SCAN_SUCCESS_PREFAST">
+         <description>
+            <format>Source file processed successfully by PREfast</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that PREfast has successfully processed the indicated source file.
+            </P>
+            <P>
+            This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20042" name="SCAN_SUCCESS_PREFAST_PCH">
+         <description>
+            <format>Precompiled header processed successfully by PREfast</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that PREfast has successfully processed the indicated file and has created a precompiled header.
+            </P>
+            <P>
+            This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20043" name="SCAN_SUCCESS_PREFIX">
+         <description>
+            <format>Source file processed successfully by PREfix</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that PREfix has successfully processed the indicated source file.
+            </P>
+            <P>
+            This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20044" name="SCAN_SUCCESS_PREFIX_PCH">
+         <description>
+            <format>Precompiled header processed successfully by PREfix</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that PREfix has successfully processed the indicated file and has created a precompiled header.
+            </P>
+            <P>
+            This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20045" name="SCAN_SUCCESS_PRESHARP">
+         <description>
+            <format>Source file processed successfully by PREsharp</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that PREsharp has successfully processed the indicated source file.
+            </P>
+            <P>
+            This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20046" name="SCAN_SUCCESS_MIDLDD">
+         <description>
+            <format>Source file processed successfully by MidlDD</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that MidlDD has successfully processed the indicated source file.
+            </P>
+            <P>
+            This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20047" name="SCAN_SUCCESS_SSS">
+         <description>
+            <format>Source file processed successfully by SSS</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that SSS has successfully processed the indicated source file.
+            </P>
+            <P>
+               This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20048" name="SCAN_SUCCESS_ESP">
+         <description>
+            <format>Source file processed successfully by Esp</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that Esp has successfully processed the indicated source file.
+            </P>
+            <P>
+               This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20049" name="SCAN_SUCCESS_GOLDANALYZER">
+         <description>
+            <format>Source file processed successfully by GoldAnalyzer</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that GoldAnalyzer has successfully processed the indicated source file.
+            </P>
+            <P>
+               This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20050" name="SCAN_FAILURE_EXTERNAL">
+         <description>
+            <format>Error processing source file : External scanner run failed</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that a external code scanner has not successfully checked the indicated source file.
+            The OACR check log may contain additional information.
+            Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+            to see the log. Note, that the log is only available until the next full
+            build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+            This warning should always be enabled and treated as a severe defect. 
+            Ignoring it can result in missed defects, since a code scanner may not report any defects, 
+            if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20051" name="SCAN_FAILURE_PREFAST">
+         <description>
+            <format>Error processing source file : PREfast run failed</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that PREfast has not successfully checked the indicated source file.
+            This is for example caused by:
+            <ul>
+               <li>Differences between the parser versions used by the build and by PREfast,
+               e.g. VC7.1 based version of PREfast and VC8.0 based build environment.</li>
+               <li>Wrong usage of OACR/PREfast specific macros, e.g. '__fallthrough' without
+               trailing semicolon.</li>
+            </ul>
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect. 
+               Ignoring it can result in missed defects, since PREfast does not report any defects, 
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20052" name="SCAN_FAILURE_PREFAST_PCH_MISSING">
+         <description>
+            <format>Error processing source file : Cannot run PREfast on file due to a missing precompiled header</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated source file has not been checked by PREfast, because the precompiled header was missing, and could not be generated.
+               This is for example caused by:
+               <ul>
+                  <li>Build errors in precompiled headers. This should be indicated by a respective OACR warning.</li>
+                  <li>Build environments that use temporary source files for precompiled headers. If OACR is configured to
+                  run asynchronously in such an environment, then the source file is no longer available when OACR needs it.
+                  The fix is to change the build environment to not delete the source file (recomended), or configure OACR with
+                  the 'CheckPCHAtCompileTime=1' setting (last resort, not recommended due to increased build time overhead).</li>
+                  <li>Enabling OACR without doing an initial full build. In that case, OACR doesn't know how to generate the precompiled header.</li>
+                  <li>Tampering with the OACR build root directory, deleting build history information that allows OACR to regenerate precompiled headers.</li>
+               </ul>
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20053" name="SCAN_FAILURE_PREFAST_PCH">
+         <description>
+            <format>Error processing precompiled header : PREfast run to create precompiled header failed</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that PREfast has not successfully processed the indicated file, and no precompiled header has been created.
+            See warning 20051 for more information on possible causes.
+            </P>
+            <P>
+            This warning should always be enabled and treated as a severe defect. 
+            Ignoring it can result in missed defects, since PREfast does not report any defects, 
+            if the file can not be checked sucessfully. Failures in precompiled headers are
+            even more severe than failures in regular source files, since they prevent
+            checking of source files that depend on the precompiled header.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20054" name="SCAN_FAILURE_PREFIX">
+         <description>
+            <format>Error processing source file : PREfix parse phase run failed</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that PREfix has not successfully parsed the indicated source file.
+            This is for example caused by:
+            <ul>
+               <li>Differences between the parser versions used by the build and by PREfix,
+               e.g. VC7.1 based version of PREfix and VC8.0 based build environment.</li>
+               <li>Wrong usage of OACR/PREfix specific macros.</li>
+            </ul>
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect. 
+               Ignoring it can reduce the quality of PREfix results, due to incomplete simulation.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20055" name="SCAN_FAILURE_PREFIX_PCH_MISSING">
+         <description>
+            <format>Error processing source file : Cannot run PREfix on file due to a missing precompiled header</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that the indicated source file has not been parsed by PREfix, because the precompiled header was missing, and could not be generated.
+            This is for example caused by:
+            <ul>
+               <li>Build errors in precompiled headers. This should be indicated by a respective OACR warning.</li>
+               <li>Build environments that use temporary source files for precompiled headers. If OACR is configured to
+               run asynchronously in such an environment, then the source file is no longer available when OACR needs it.
+               The fix is to change the build environment to not delete the source file (recomended), or configure OACR with
+               the 'CheckPCHAtCompileTime=1' setting (last resort, not recommended due to increased build time overhead).</li>
+               <li>Enabling OACR without doing an initial full build. In that case, OACR doesn't know how to generate the precompiled header.</li>
+               <li>Tampering with the OACR build root directory, deleting build history information that allows OACR to regenerate precompiled headers.</li>
+            </ul>
+            </P>
+            <P>
+            This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20056" name="SCAN_FAILURE_PREFIX_PCH">
+         <description>
+            <format>Error processing precompiled header : PREfast parse phase run to create precompiled header failed</format>
+         </description>
+
+         <doc>
+            <P>
+            This warning indicates that PREfix has not successfully processed the indicated file, and no precompiled header has been created.
+            See warning 20054 for more information on possible causes.
+            </P>
+            <P>
+            This warning should always be enabled and treated as a severe defect. 
+            Ignoring it can reduce the quality of PREfix results, due to incomplete simulation.
+            Failures in precompiled headers are
+            even more severe than failures in regular source files, since they prevent
+            checking of source files that depend on the precompiled header.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20057" name="SCAN_FAILURE_PRESHARP">
+         <description>
+            <format>Error processing source file : PREsharp run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that PREsharp has not successfully checked the indicated source file.
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect. 
+               Ignoring it can result in missed defects, since PREsharp may not report any defects, 
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+      
+      <DefectDef id="20058" name="SCAN_FAILURE_MIDLDD">
+         <description>
+            <format>Error processing source file : MidlDD run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that MidlDD has not successfully checked the indicated source file.
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect. 
+               Ignoring it can result in missed defects, since MidlDD may not report any defects, 
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20059" name="SCAN_FAILURE_SSS">
+         <description>
+            <format>Error processing source file : SSS run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that SSS has not successfully checked the indicated source file.
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can result in missed defects, since SSS may not report any defects,
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20060" name="SCAN_SUCCESS_FXCOP">
+         <description>
+            <format>Source file processed successfully by FxCop</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that FxCop has successfully processed the indicated source file.
+            </P>
+            <P>
+               This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20070" name="SCAN_FAILURE_FXCOP">
+         <description>
+            <format>Error processing source file : FxCop run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that FxCop has not successfully checked the indicated source file.
+               See the FxCop log for information on the failure. Run 'oacr log &lt;project&gt; /fxcop'
+               for the respective project (e.g. 'oacr log mso /fxcop') to see the FxCop log.
+               Note, that the log is only available until the next full build is started, 
+               i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can result in missed defects, since FxCop may not report any defects,
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20071" name="SCAN_FAILURE_FXCOP_NON_FATAL">
+         <description>
+            <format>Error processing source file : FxCop run failed with non-fatal error</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that there have been non-fatal errors during the FxCop check.
+               See the FxCop log for information on the failure. Run 'oacr log &lt;project&gt; /fxcop'
+               for the respective project (e.g. 'oacr log mso /fxcop') to see the FxCop log.
+               Note, that the log is only available until the next full build is started,
+               i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20072" name="SCAN_FAILURE_ESP">
+         <description>
+            <format>Error processing source file : Esp run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that Esp has not successfully checked the indicated source file.
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can result in missed defects, since Esp may not report any defects,
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20073" name="SCAN_FAILURE_GOLDANALYZER">
+         <description>
+            <format>Error processing source file : GoldAnalyzer run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that GoldAnalyzer has not successfully checked the indicated source file.
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can result in missed defects, since GoldAnalyzer may not report any defects,
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20100" name="SCAN_EXCLUDED_EXTERNAL">
+         <description>
+            <format>Not processing file : Source file excluded from checking by external scanner</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated source file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20101" name="SCAN_EXCLUDED_PREFAST">
+         <description>
+            <format>Not processing file : Source file excluded from checking by PREfast</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated source file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20102" name="SCAN_EXCLUDED_PREFIX">
+         <description>
+            <format>Not processing file : Source file excluded from checking by PREfix</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated source file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20103" name="SCAN_EXCLUDED_PREsharp">
+         <description>
+            <format>Not processing file : Source file excluded from checking by PREsharp</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated source file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20104" name="SCAN_EXCLUDED_MIDLDD">
+         <description>
+            <format>Not processing file : Source file excluded from checking by MidlDD</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated source file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20105" name="SCAN_EXCLUDED_SSS">
+         <description>
+            <format>Not processing file : Source file excluded from checking by SSS</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated source file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20106" name="SCAN_EXCLUDED_FXCOP">
+         <description>
+            <format>Not processing file : Source file excluded from checking by FxCop</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated source file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20107" name="SCAN_EXCLUDED_FXCOP_NOPROJECT">
+         <description>
+            <format>Not processing file : Source file excluded from checking by FxCop due to missing configuration data</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated source file has not been checked, because not all required scanner configuration information was available.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20108" name="SCAN_EXCLUDED_ESP">
+         <description>
+            <format>Not processing file : Source file excluded from checking by Esp</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated source file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20109" name="SCAN_EXCLUDED_GOLDANALYZER">
+         <description>
+            <format>Not processing file : Source file excluded from checking by GoldAnalyzer</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated source file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20120" name="SCAN_SUCCESS_BINARY_EXTERNAL">
+         <description>
+            <format>Binary file processed successfully by external scanner</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that a external code scanner has successfully processed the indicated binary file.
+            </P>
+            <P>
+               This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20121" name="SCAN_SUCCESS_BINARY_PREFIX">
+         <description>
+            <format>Binary file processed successfully by PREfix</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that PREfix has successfully processed the indicated binary file.
+            </P>
+            <P>
+               This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20122" name="SCAN_SUCCESS_BINARY_PRESHARP">
+         <description>
+            <format>Binary file processed successfully by PREsharp</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that PREsharp has successfully processed the indicated binary file.
+            </P>
+            <P>
+               This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20123" name="SCAN_SUCCESS_BINARY_FXCOP">
+         <description>
+            <format>Binary file processed successfully by FxCop</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that FxCop has successfully processed the indicated binary file.
+            </P>
+            <P>
+               This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20124" name="SCAN_SUCCESS_BINARY_ESP">
+         <description>
+            <format>Binary file processed successfully by Esp</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that Esp has successfully processed the indicated binary file.
+            </P>
+            <P>
+               This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20125" name="SCAN_SUCCESS_BINARY_GOLDANALYZER">
+         <description>
+            <format>Binary file processed successfully by GoldAnalyzer</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that GoldAnalyzer has successfully processed the indicated binary file.
+            </P>
+            <P>
+               This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20126" name="SCAN_SUCCESS_BINARY_SSS">
+         <description>
+            <format>Source files related to binary file processed successfully by SSS</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that SSS has successfully processed the source files related to the indicated binary file.
+            </P>
+            <P>
+               This warning should not be enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20140" name="SCAN_FAILURE_BINARY_EXTERNAL">
+         <description>
+            <format>Error processing binary file : External scanner run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that a external code scanner has not successfully checked the indicated binary file.
+               The OACR check log may contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can result in missed defects, since a code scanner may not report any defects,
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20141" name="SCAN_FAILURE_BINARY_PREFIX">
+         <description>
+            <format>Error processing binary file : PREfix parse phase run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that PREfix has not successfully parsed the indicated binary file.
+               This is for example caused by:
+               <ul>
+                  <li>
+                     Differences between the parser versions used by the build and by PREfix,
+                     e.g. VC7.1 based version of PREfix and VC8.0 based build environment.
+                  </li>
+                  <li>Wrong usage of OACR/PREfix specific macros.</li>
+               </ul>
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can reduce the quality of PREfix results, due to incomplete simulation.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20142" name="SCAN_FAILURE_BINARY_PRESHARP">
+         <description>
+            <format>Error processing binary file : PREsharp run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that PREsharp has not successfully checked the indicated binary file.
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can result in missed defects, since PREsharp may not report any defects,
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20143" name="SCAN_FAILURE_BINARY_FXCOP">
+         <description>
+            <format>Error processing binary file : FxCop run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that FxCop has not successfully checked the indicated binary file.
+               See the FxCop log for information on the failure. Run 'oacr log &lt;project&gt; /fxcop'
+               for the respective project (e.g. 'oacr log mso /fxcop') to see the FxCop log.
+               Note, that the log is only available until the next full build is started,
+               i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can result in missed defects, since FxCop may not report any defects,
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20144" name="SCAN_FAILURE_BINARY_FXCOP_NON_FATAL">
+         <description>
+            <format>Error processing binary file : FxCop run failed with non-fatal error</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that there have been non-fatal errors during the FxCop check.
+               See the FxCop log for information on the failure. Run 'oacr log &lt;project&gt; /fxcop'
+               for the respective project (e.g. 'oacr log mso /fxcop') to see the FxCop log.
+               Note, that the log is only available until the next full build is started,
+               i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20145" name="SCAN_FAILURE_BINARY_ESP">
+         <description>
+            <format>Error processing binary file : Esp run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that Esp has not successfully checked the indicated binary file.
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can result in missed defects, since Esp may not report any defects,
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20146" name="SCAN_FAILURE_BINARY_GOLDANALYZER">
+         <description>
+            <format>Error processing binary file : GoldAnalyzer run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that GoldAnalyzer has not successfully checked the indicated binary file.
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can result in missed defects, since GoldAnalyzer may not report any defects,
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20147" name="SCAN_FAILURE_BINARY_SSS">
+         <description>
+            <format>Error processing binary file : SSS run failed</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that SSS has not successfully checked the source files related to the indicated binary file.
+               The scanner generated error message may be included in the OACR warning.
+               The OACR check log may also contain additional information.
+               Run 'oacr log &lt;project&gt;' for the respective project (e.g. 'oacr log mso')
+               to see the log. Note, that the log is only available until the next full
+               build is started, i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+            <P>
+               This warning should always be enabled and treated as a severe defect.
+               Ignoring it can result in missed defects, since SSS may not report any defects,
+               if the file can not be checked sucessfully.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20160" name="SCAN_EXCLUDED_BINARY_EXTERNAL">
+         <description>
+            <format>Not processing file : Binary file excluded from checking by external scanner</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated binary file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20161" name="SCAN_EXCLUDED_BINARY_PREFAST">
+         <description>
+            <format>Not processing file : Binary file excluded from checking by PREfast</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated binary file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20162" name="SCAN_EXCLUDED_BINARY_PREFIX">
+         <description>
+            <format>Not processing file : Binary file excluded from checking by PREfix</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated binary file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20163" name="SCAN_EXCLUDED_BINARY_PREsharp">
+         <description>
+            <format>Not processing file : Binary file excluded from checking by PREsharp</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated binary file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20164" name="SCAN_EXCLUDED_BINARY_MIDLDD">
+         <description>
+            <format>Not processing file : Binary file excluded from checking by MidlDD</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated binary file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20165" name="SCAN_EXCLUDED_BINARY_SSS">
+         <description>
+            <format>Not processing file : Binary file excluded from checking by SSS</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated binary file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20166" name="SCAN_EXCLUDED_BINARY_FXCOP">
+         <description>
+            <format>Not processing file : Binary file excluded from checking by FxCop</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated binary file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20167" name="SCAN_EXCLUDED_BINARY_FXCOP_NOPROJECT">
+         <description>
+            <format>Not processing file : Binary file excluded from checking by FxCop due to missing configuration data</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated binary file has not been checked, because not all required scanner configuration information was available.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20168" name="SCAN_EXCLUDED_BINARY_ESP">
+         <description>
+            <format>Not processing file : Binary file excluded from checking by Esp</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated binary file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20169" name="SCAN_EXCLUDED_BINARY_GOLDANALYZER">
+         <description>
+            <format>Not processing file : Binary file excluded from checking by GoldAnalyzer</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that the indicated binary file has not been checked, because it has been excluded through a filter in oacr.ini or oacruser.ini.
+            </P>
+            <P>
+               This warning is always generated at compile time, even if OACR is configured to check files asynchronously in batch or daemon mode.
+               This also means that the warning is not generated by a check run from a backup copy of a project queue, e.g. through the 'oacr recheck' command.
+            </P>
+            <P>
+               This warning is typically not enabled for normal OACR use. It is a diagnostic message used to track OACR check activity.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+      <DefectDef id="20400" name="SCAN_FAILURE_FXCOP_INDIRECT_REFERENCE">
+         <description>
+            <format>Error processing binary file : FxCop run failed with non-fatal assembly reference error</format>
+         </description>
+
+         <doc>
+            <P>
+               This warning indicates that there have been non-fatal assembly reference errors during the FxCop check.
+               This means that assemblies referenced indirectly by the target assembly could not be found.
+               See the FxCop log for information on the failure. Run 'oacr log &lt;project&gt; /fxcop'
+               for the respective project (e.g. 'oacr log mso /fxcop') to see the FxCop log.
+               Note, that the log is only available until the next full build is started,
+               i.e. until the next 'oacr clean &lt;project&gt;' call.
+            </P>
+         </doc>
+
+         <helpURL>http://oacr/warnings/warning_%id%.htm</helpURL>
+      </DefectDef>
+
+   </DefectDefGroup>
+   
+</DefectDefs>

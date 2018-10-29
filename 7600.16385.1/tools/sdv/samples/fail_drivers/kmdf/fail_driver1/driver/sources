@@ -1,0 +1,17 @@
+TARGETNAME=fail_driver1
+TARGETTYPE=DRIVER
+
+KMDF_VERSION_MAJOR=1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+SOURCES = fail_driver1.c
+
+INCLUDES=..\Library
+
+TARGETLIBS=$(OBJ_PATH)\..\library\$(O)\fail_library1.lib
+
+!IF "$(SDV_BUILD_AS_CPP)" != ""
+USER_C_FLAGS=$(USER_C_FLAGS) /TP
+!ENDIF
+

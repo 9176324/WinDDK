@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<dpInst>
+    <language code="0x0409">
+        <dpinstTitle>Toaster Device Installer</dpinstTitle>
+    
+        <welcomeTitle>Welcome to the Toaster Installer!</welcomeTitle>
+        <welcomeIntro>This wizard will walk you through updating the drivers for your Toaster device.</welcomeIntro>
+    
+        <eulaHeaderTitle>End User License Agreement</eulaHeaderTitle>
+        <eulaYesButton>I &amp;accept this EULA</eulaYesButton>
+        <eulaNoButton>I do &amp;not accept this EULA</eulaNoButton>
+
+        <installHeaderTitle>Installing the software for your Toaster device...</installHeaderTitle>
+
+        <finishTitle>Congratulations! You are finished installing your Toaster device.</finishTitle>
+        <finishText>Enjoy using the Toaster.</finishText>
+
+        <eula type="txt" path="eula.txt" />
+    </language>
+    <icon>Toaster.ico</icon>
+    <watermarkPath>ToasterRed.bmp</watermarkPath>
+</dpInst>
+

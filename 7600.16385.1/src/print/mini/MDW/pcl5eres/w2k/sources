@@ -1,0 +1,23 @@
+TARGETNAME=pcl5eres
+TARGETTYPE=DYNLINK
+TARGETLIBS=
+
+DLLBASE=0x20000000
+INCLUDES=..\..\..\..\inc
+RESOURCE_ONLY_DLL=1
+
+SOURCES= \
+        pcl5ems.rc
+
+UMTYPE=windows
+
+MISCFILES= \
+	   hp1600c.GPD \
+           \
+           hp4simx.GPD \
+           \
+           hpclj.GPD \
+	   \
+           hplj4.GPD \
+           \
+           hplj5.GPD

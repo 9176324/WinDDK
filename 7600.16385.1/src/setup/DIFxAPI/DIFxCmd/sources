@@ -1,0 +1,13 @@
+C_DEFINES=$(C_DEFINES) -DUNICODE -D_UNICODE
+USE_MSVCRT          = 1
+
+TARGETNAME=DIFxCmd
+TARGETTYPE=PROGRAM
+UMENTRY=wmain
+UMTYPE=console
+
+TARGETLIBS = $(SDK_LIB_PATH)\difxapi.lib
+        
+SOURCES=                \
+    difxcmd.c
+

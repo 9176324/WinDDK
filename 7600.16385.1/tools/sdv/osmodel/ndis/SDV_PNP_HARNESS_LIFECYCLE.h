@@ -1,0 +1,56 @@
+/*
+ Copyright (c) Microsoft Corporation.  All rights reserved.
+*/
+
+/*define fun_MINIPORT_SET_OPTIONS pre_callback_#1
+define fun_MINIPORT_INITIALIZE pre_callback_#1
+define fun_MINIPORT_CANCEL_OID_REQUEST pre_callback_#1
+define fun_MINIPORT_RESTART pre_callback_#1
+define fun_MINIPORT_ISR_1 core_callback
+define fun_MINIPORT_ISR_2 core_callback
+define fun_MINIPORT_ISR_3 core_callback
+define fun_MINIPORT_ISR_4 core_callback
+define fun_MINIPORT_ISR_5 core_callback
+define fun_MINIPORT_ISR_6 core_callback
+define fun_NDIS_TIMER_FUNCTION_1 core_callback
+define fun_NDIS_TIMER_FUNCTION_2 core_callback
+define fun_NDIS_TIMER_FUNCTION_3 core_callback
+define fun_NDIS_TIMER_FUNCTION_4 core_callback
+define fun_NDIS_TIMER_FUNCTION_5 core_callback
+define fun_NDIS_TIMER_FUNCTION_6 core_callback
+define fun_NDIS_TIMER_FUNCTION_7 core_callback
+define fun_NDIS_TIMER_FUNCTION_8 core_callback
+define fun_NDIS_TIMER_FUNCTION_9 core_callback
+define fun_NDIS_TIMER_FUNCTION_10 core_callback
+define fun_NDIS_TIMER_FUNCTION_11 core_callback
+define fun_NDIS_TIMER_FUNCTION_12 core_callback
+define fun_NDIS_TIMER_FUNCTION_13 core_callback
+define fun_NDIS_TIMER_FUNCTION_14 core_callback
+define fun_NDIS_TIMER_FUNCTION_15 core_callback
+define fun_NDIS_TIMER_FUNCTION_16 core_callback
+define fun_NDIS_TIMER_FUNCTION_17 core_callback
+define fun_NDIS_TIMER_FUNCTION_18 core_callback
+define fun_NDIS_TIMER_FUNCTION_19 core_callback
+define fun_NDIS_TIMER_FUNCTION_20 core_callback
+define fun_NDIS_TIMER_FUNCTION_21 core_callback
+define fun_NDIS_TIMER_FUNCTION_22 core_callback
+define fun_NDIS_TIMER_FUNCTION_23 core_callback
+define fun_NDIS_TIMER_FUNCTION_24 core_callback
+define fun_NDIS_IO_WORKITEM_FUNCTION_1 core_callback
+define fun_NDIS_IO_WORKITEM_FUNCTION_2 core_callback
+define fun_NDIS_IO_WORKITEM_FUNCTION_3 core_callback
+define fun_NDIS_IO_WORKITEM_FUNCTION_4 core_callback
+define fun_NDIS_IO_WORKITEM_FUNCTION_5 core_callback
+define fun_NDIS_IO_WORKITEM_FUNCTION_6 core_callback
+define fun_MINIPORT_INTERRUPT_DPC_1 core_callback
+define fun_MINIPORT_INTERRUPT_DPC_2 core_callback
+define fun_MINIPORT_INTERRUPT_DPC_3 core_callback
+define fun_MINIPORT_INTERRUPT_DPC_4 core_callback
+define fun_MINIPORT_INTERRUPT_DPC_5 core_callback
+define fun_MINIPORT_INTERRUPT_DPC_6 core_callback
+define fun_MINIPORT_RESET post_callback_#1
+define fun_MINIPORT_PAUSE post_callback_#1
+define fun_MINIPORT_HALT post_callback_#1
+define fun_MINIPORT_UNLOAD post_callback_#1*/
+
+

@@ -1,0 +1,323 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Build Samples</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:18.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;
+	font-weight:bold;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:13.5pt;
+	font-family:"Times New Roman","serif";
+	color:black;
+	font-weight:bold;}
+h4
+	{mso-style-link:"Heading 4 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+pre
+	{mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	color:black;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;
+	font-style:italic;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;
+	color:black;}
+p.style3, li.style3, div.style3
+	{mso-style-name:style3;
+	margin-right:0in;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";
+	color:windowtext;}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{mso-style-name:msochpdefault;
+	margin-right:0in;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+span.style31
+	{mso-style-name:style31;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+<meta name=Template content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+</head>
+
+<body bgcolor=white lang=EN-US link=blue vlink=purple leftmargin=8>
+
+<div class=Section1>
+
+<h2><span style='font-family:"Verdana","sans-serif"'>Build Samples</span></h2>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>SUMMARY</span></h3>
+
+<h3><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+font-weight:normal'>This series of build samples is meant to demonstrate the
+usage of the major WDK build macros. The essence of the samples is in their </span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>sources</span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif";font-weight:normal'>
+file.&nbsp;&nbsp; </span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The driver
+or library code used is a minimal set of sample code and it is not intended for
+use in a production environment. </span>&nbsp;</p>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>BUILDING THE SAMPLES</span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Click the
+Free Build Environment or Checked Build Environment icon under Development Kits
+program group to set basic environment variables. </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Change to
+the directory containing the device source code, such as CD src\general\build</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Run <b>build
+-ceZ,</b> or use the macro <b>bcz</b>. &nbsp;</span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>SAMPLES TOUR</span></h3>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>Produces_Consumes</span></h3>
+
+<h3><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+font-weight:normal'>This sample demonstrates how to use BUILD_PRODUCES and
+BUILD_CONSUMES pair of macros. Produce and consume macros are only necessary to
+synchronize the build tasks on the same pass. In this sample we demonstrate
+synchronizing the build of two static libraries at Pass1 -pixlib and drawlib.
+The pixlib is a simple graphical library. The drawlib is a static library that
+wraps or packages the pixlib.lib and calls pixlib functions internally. So
+drawlib has a dependency from pixlib at Pass1. This dependency is declared by
+using BUILD_PRODUCES\CONSUMES macros. This macro pair is designed for build
+Pass1. Similarly you can use BUILD_PASS0_PRODUCES/BUILD_PASS0_CONSUMES or
+BUILD_PASS2_PRODUCES/BUILD_PASS2_CONSUMES for other passes. Note that the order
+of the dependant components in the dirs file is not an alphabetical. You can
+use every name. Synchronization is done based on the BUILD_PRODUCES/CONSUMES
+string in the components’ sources file. </span></h3>
+
+<h3><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+font-weight:normal'>The plot DLL is a minimal user mode driver or DLL that
+links with drawlib on build Pass2. Since plot and drawlib are produced on
+different build passes there is no need of BUILD_PRODUCES\CONSUMES
+synchronization pair.</span></h3>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>Binplace</span></h3>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To
+turn on WDK Binplace feature you have use separate_object_root flag with
+setenv.bat.&nbsp; The sample demonstrates how to work with Binplace utility by
+using macros in your sources file. These are PASS#_BINPLACE and
+TARGET_DESTINATION macros. The TARGET_DESTINATION specifies the target
+directory for the TARGETNAME binaries being build (if any). TARGET_DESTINATION
+is a folder relative to %_NTTREE% in your environment (see WDK Documentation
+for _NTTREE). The PASS#_BINPLACE macros pass binplace.exe options and file list
+to Binplace. TARGET_DESTINATION is a default destination for Binplace, but
+PASS#_BINPLACE macros can override it by adding -:DEST &lt;alternative dest&gt;
+before the specified file. There are PASS0_BINPLACE, PASS1_BINPLACE and
+PASS2_BINPLACE for the tree build passes and some predefined target
+destinations like retail (see WDK Documentation for TARGET_DESTINATION).
+General guideline is: perform each task as early as possible.&nbsp; This frees
+up compile and link to consume and execute with greatest freedom in Pass1 and
+Pass2. </span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+Binplace sample demonstrates most common tasks when developing a driver. It
+builds the driver binary described with TARGETNAME macro. It generates a custom
+target by using one of NTTARGETFILE# macros and makefile.inc. In this specific
+example the custom target is a conversion of the .INX file into an .INF file. </span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To
+generate the .INF file we use NTTARGETFILE1 macro, but NTTARGETFILE0 is also
+good - we choose the Pass1 macro just to demonstrate its cooperation with
+PASS1_BINPLACE.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+Binplace macros can also work for files that we do not generate in the current
+build. These are called static files or files that already exist. In our sample
+we demonstrate the co-installer WdfCoinstaller1009.dll and the Eula text file
+being binplaced at Pass0.&nbsp; We assume that the .DLL and the .TXT files
+already exist. To enable binplacing of static binaries we should set the macro
+BUILD_NO_SYMCHK=1, so that the Binplace utility doesn’t look for the .pdb for
+these binaries. This is necessary only for the static binaries, not for the
+text files or other types of files. In the below example we set BUILD_NO_SYMCHK
+macro when Binplace the coinstaller WdfCoinstaller1009.dll.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>TARGETNAME=Filter</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>TARGETTYPE=DRIVER</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>…</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>BUILD_NO_SYMCHK=1</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>PASS0_BINPLACE=\</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+$(NTTARGETFILE0) \</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+$(BASEDIR)\redist\wdf\x86\WdfCoInstaller01009.dll</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>…</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>TARGET_DESTINATION=targetdestfolder</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Put
+your specific name for the target destination if needed and build. As a result
+Filter.sys, Filter.pdb, Filter.inf and WdfCoInstaller01009.dll&nbsp;all go to %_NTTREE%\...\targetdestfolder.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-size:13.5pt;font-family:"Verdana","sans-serif"'>Targetpath</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:13.5pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>TARGETPATH
+macro specifies the destination directory for your TARGETNAME binaries. This
+macro provides customization of the target destination similar to
+TARGET_DESTINATION and PASS#_BINPLACE, but has 2 disadvantages: it binplaces
+only TARGETPATH binaries and doesn’t provide customization of your immediate
+build output path. Your build output is always inside your source tree, so the
+source tree couldn’t be clean and read only. </span></p>
+
+<p class=MsoNormal><b><span style='font-size:13.5pt;font-family:"Verdana","sans-serif"'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+color:windowtext'>In Targethpath sample we set TARGETPATH=targetpathfolder (put
+your own name as needed). Set separate_object_root and build the Binplace and
+Targetpath samples. Targetpath will have the TARGETNAME binaries placed in
+targetpathfolder folder. Binplace sample will have the TARGETNAME binaries and
+coinstaller is placed in targetdestfolder folder. Find these two folders and
+compare them to understand the difefrence. In parallel&nbsp;the
+Produces_Consumes sample will place TARGETNAME binaries in the default object
+output folder in your source tree, because the sample doesn’t use any target
+folder customization or Binplace macros.</span></p>
+
+<h3><span style='font-family:"Verdana","sans-serif"'>REFERENCE</span></h3>
+
+<h3><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+font-weight:normal'>Refer to WDK Documentation for description of the build
+macros. The majorities of WDK samples now use NTTARGETFILE#, TARGET_DESTINATION
+and PASS#_BINPLACE macros. We recommend using Binplace macros instead of
+TARGETPATH. They binplace not only TARGETNAME binaries, but other files too and
+provide customization of the binary and intermediate output (see _NTTREE and
+OBJECT_ROOT in WDK Documentation). Binplace macros provide the capability to
+basically store your output files everywhere and keep your source tree clean.
+BUILD_PRODUCES/BUILD_CONSUMES macros have very rare use and it is demonstrated
+in the Produces_Consumes sample. Even if BUILD_PASS#_PRODUCES/
+BUILD_PASS#_CONSUMES are documented in WDK Documentation these macros have very
+limited user scenarios and should be used with care.</span></h3>
+
+<h3><a href="BuildSamples.htm#top"><span style='font-size:10.0pt;font-family:
+"Verdana","sans-serif"'>Top of page</span></a><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'> </span></h3>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in'>
+ <tr style='height:1.5pt'>
+  <td style='background:aqua;padding:.75pt .75pt .75pt .75pt;height:1.5pt'>
+  <p class=MsoNormal><span style='font-size:2.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p><span style='font-size:7.5pt;font-family:"MS Sans Serif"'>© 2009 Microsoft Corporation</span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'> </span></p>
+
+</div>
+
+</body>
+
+</html>
+

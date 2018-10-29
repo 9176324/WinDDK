@@ -1,0 +1,364 @@
+<?xml version="1.0"?>
+<component>
+
+<?component error="true" debug="true"?>
+
+<registration
+	description="PREfast Execution Environment"
+	progid="PREfast.ExecEnvironment"
+	version="1.00"
+	classid="{2aaef3cc-690e-4976-b7e1-f80165fb55a0}" />
+
+<public>
+	<property name="IsDevelopmentEnvironment"><get /></property>
+	<property name="ScriptsDirectory"        ><get /></property>
+	<property name="DataDirectory"           ><get /></property>
+	<property name="BinDirectory"            ><get /></property>
+	<property name="ArchDirName"             ><get /></property>
+	<property name="BinArchDirectory"        ><get /></property>
+	<property name="ModulesDirectory"        ><get /></property>
+	<property name="ParserDirectory"         ><get /></property>
+	<property name="DocumentationDirectory"  ><get /></property>
+	<property name="RegistryKey"             ><get /></property>
+	<property name="InstalledBuildNumber"    ><get /></property>
+	<property name="HelpTopicNumber"         ><get /></property>
+    <property name="ModelsDirectory"         ><get /></property>
+    
+	<method name="ComposeVersionString">
+		<parameter name="strBuildNum" />
+	</method>
+
+	<method name="LaunchHTA">
+		<parameter name="strHTAFile" />
+		<parameter name="fWait" />
+	</method>
+
+	<method name="DownloadUNCAsString">
+		<parameter name="strUNC" />
+	</method>
+
+	<method name="DownloadUNCToTextFile">
+		<parameter name="strUNC" />
+		<parameter name="strDestFile" />
+		<parameter name="fOverwrite" />
+	</method>
+
+	<method name="GetXMLWithinWSC">
+		<parameter name="strWSC" />
+		<parameter name="strID" />
+	</method>
+</public>
+
+<script language="JScript">
+<![CDATA[
+/////////////////////////////////////////////////////////////////////////////
+// Beginning of script block
+//
+
+// Construction
+var description = new PREfastExecutionEnvironment;
+function PREfastExecutionEnvironment()
+{
+	// Initialize the class
+	this.get_IsDevelopmentEnvironment = get_IsDevelopmentEnvironment;
+	this.get_ScriptsDirectory = get_ScriptsDirectory;
+	this.get_BinDirectory = get_BinDirectory;
+	this.get_ArchDirName = get_ArchDirName;
+	this.get_BinArchDirectory = get_BinArchDirectory;
+	this.get_DataDirectory = get_DataDirectory;
+	this.get_ModulesDirectory = get_ModulesDirectory;
+	this.get_ParserDirectory = get_ParserDirectory;
+	this.get_DocumentationDirectory = get_DocumentationDirectory;
+	this.get_RegistryKey = get_RegistryKey;
+	this.get_InstalledBuildNumber = get_InstalledBuildNumber;
+	this.get_HelpTopicNumber = get_HelpTopicNumber;
+    this.get_ModelsDirectory = get_ModelsDirectory;
+
+	this.ComposeVersionString = ComposeVersionString;
+	this.LaunchHTA = LaunchHTA;
+	this.DownloadUNCAsString = DownloadUNCAsString;
+	this.DownloadUNCToTextFile = DownloadUNCToTextFile;
+	this.GetXMLWithinWSC = GetXMLWithinWSC;
+
+	// Create a helper object
+	var objProcEnv = new ActiveXObject("WScript.Shell").Environment("Process");
+
+	// Determine if the user is running in the PREfast development environment
+	m_fDevEnv = false;
+	if (objProcEnv("PREFAST_DEVENV"))
+		if (0 != (new Number(objProcEnv("PREFAST_DEVENV"))))
+			m_fDevEnv = true;
+
+	// Initialize the environment and global variables
+	var strPREfastHome;
+	var strScriptPath;
+	if (m_fDevEnv)
+	{
+		// Registry key path
+		m_strRegistryKey = "HKCU\\Software\\Microsoft\\PREfast\\";
+
+		// Determine the root
+		strPREfastHome = objProcEnv("PREFAST_ROOT");
+		if (strPREfastHome.lastIndexOf("\\") != strPREfastHome.length - 1)
+			strPREfastHome += "\\";
+
+		// The location of PREfast scripts, modules, and documents
+		m_strScriptsDirectory       = strPREfastHome + "bin\\scripts";
+		m_strModulesDirectory       = strPREfastHome + "bin\\modules";
+		m_strDataDirectory          = strPREfastHome + "data";
+		m_strDocumentationDirectory = strPREfastHome + "doc";
+        m_strModelsDirectory = strPREfastHome + "src\\Model";
+
+		// The location of the AST binaries
+		m_strParserDirectory = strPREfastHome + "..\\clients\\public\\bin\\ast";
+		SetEnvVar(objProcEnv, "PREFASTAST", m_strParserDirectory);
+
+		// The location of the PREfast driver
+		SetEnvVar(objProcEnv, "PREFASTMODULES", m_strModulesDirectory);
+
+		// The PREfast components require these to work correctly
+		SetEnvVar(objProcEnv, "PREFASTLOG"   , strPREfastHome + "bin\\log\\defects.xml");
+		SetEnvVar(objProcEnv, "PREFASTCONFIG", strPREfastHome + "src\\Driver\\pcfg.xml");
+	}
+	else
+	{
+		// Registry key path
+		m_strRegistryKey = "HKCU\\Software\\Microsoft\\PREfast\\";
+
+		// Determine the root
+		strPREfastHome = objProcEnv("PREFAST_ROOT");
+		if (strPREfastHome.lastIndexOf("\\") != strPREfastHome.length - 1)
+			strPREfastHome += "\\";
+
+		// Determine the architecture
+		m_strPREfastArch = objProcEnv("PREFAST_ARCH");
+
+		// The location of PREfast scripts, modules, and documents
+		m_strScriptsDirectory       = strPREfastHome + "scripts";
+		m_strDataDirectory          = strPREfastHome + "data";
+		m_strBinDirectory           = strPREfastHome + "bin";
+		m_strBinArchDirectory       = strPREfastHome + "bin\\bin\\"
+										+ m_strPREfastArch + "\\";
+		m_strModulesDirectory       = strPREfastHome + "bin\\modules\\"
+										+ m_strPREfastArch + "\\";
+		m_strDocumentationDirectory = strPREfastHome + "doc";
+		m_strModelsDirectory        = strPREfastHome + "data"
+		m_strParserDirectory        = strPREfastHome + "bin\\parser\\" 
+										+ m_strPREfastArch + "\\";
+
+		// The location of the AST binaries
+		SetEnvVar(objProcEnv, "PREFASTAST", m_strParserDirectory);
+		
+		// The location of the PREfast driver
+		SetEnvVar(objProcEnv, "PREFASTMODULES", m_strModulesDirectory);
+		
+		// The PREfast components require these to work correctly
+		strHomePath = objProcEnv("APPDATA");
+
+		// Build up the name, and if the directories don't exist, make them.
+		// (PFD won't on first run; "Microsoft" probably will.)
+		var objFSO = new ActiveXObject("Scripting.FileSystemObject");
+		strHomePath += "\\Microsoft";
+		if (!objFSO.FolderExists(strHomePath))
+		{
+			objFSO.CreateFolder(strHomePath);
+		}
+
+		strHomePath += "\\PFD";
+		if (!objFSO.FolderExists(strHomePath))
+		{
+			objFSO.CreateFolder(strHomePath);
+		}
+
+		SetEnvVar(objProcEnv, "PREFASTLOG"   , strHomePath + "\\defects.xml");
+		SetEnvVar(objProcEnv, "PREFASTCONFIG", strHomePath + "\\config.xml");
+	}
+}
+
+// Implementation
+
+function SetEnvVar(objProcEnv, strName, strValue)
+{
+	if (!objProcEnv(strName))
+		objProcEnv(strName) = strValue;
+}
+
+
+// Properies
+
+function get_IsDevelopmentEnvironment()
+{
+	return false;
+}
+
+function get_ScriptsDirectory()
+{
+	return m_strScriptsDirectory;
+}
+
+function get_ArchDirName()
+{
+	return m_strPREfastArch;
+}
+
+function get_BinDirectory()
+{
+	return m_strBinDirectory;
+}
+
+function get_BinArchDirectory()
+{
+	return m_strBinArchDirectory;
+}
+
+function get_DataDirectory()
+{
+	return m_strDataDirectory;
+}
+
+function get_ModulesDirectory()
+{
+	return m_strModulesDirectory;
+}
+
+function get_ModelsDirectory()
+{
+	return m_strModelsDirectory;
+}
+
+function get_DocumentationDirectory()
+{
+	return m_strDocumentationDirectory;
+}
+
+function get_ParserDirectory()
+{
+	return m_strParserDirectory;
+}
+
+function get_RegistryKey()
+{
+	return m_strRegistryKey;
+}
+
+function get_InstalledBuildNumber()
+{
+	return "9.0.21022.100208";  // Value set by build process
+}
+
+function get_HelpTopicNumber()
+{
+	return "2";  // Value set by build process
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+function ComposeVersionString(strBuildNum)
+{
+	// Get the installed build number, if nothing was specified
+	if (!strBuildNum || !strBuildNum.length)
+		strBuildNum = get_InstalledBuildNumber();
+
+	return strBuildNum;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+function LaunchHTA(strHTAFile, fWait)
+{
+	// Compose the entire path
+	var strHTA = get_ScriptsDirectory() + "\\" + strHTAFile;
+
+	// Create a helper object
+	var objFSO = new ActiveXObject("Scripting.FileSystemObject");
+
+	// Get the system WoW directory, if it exists.
+	// We need WoW for some of the pieces of the viewer.
+	var strSys = objFSO.GetSpecialFolder(0).Path; // WindowsFolder = 0
+	strSys += '\\SysWoW64';
+
+    // Do both the directory and the executable exist for the WoW version.
+	// If so, use them. (Pre-Vista non-x86)
+	if (!objFSO.FolderExists(strSys) || !objFSO.FileExists(strSys + "\\mshta.exe")) 
+	{
+		// Get the system directory if it doesn't (Vista or x86)
+		strSys = objFSO.GetSpecialFolder(1).Path; // SystemFolder = 1
+	}
+
+	// Compose the command line
+	var strCmdLine = strSys + '\\mshta.exe "' + strHTA + '"';
+
+	// Create a helper object
+	var objShell = new ActiveXObject("WScript.Shell");
+
+	// Launch the command
+	return objShell.Run(strCmdLine, 1, fWait);
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+function DownloadUNCAsString(strUNC)
+{
+	// Create a helper object
+	var objFSO = new ActiveXObject("Scripting.FileSystemObject");
+
+	// Open a text stream on the specified file
+	var objTS = objFSO.OpenTextFile(strUNC, 1, false, 0);
+
+	// Return the text
+	return objTS.ReadAll();
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+function DownloadUNCToTextFile(strUNC, strDestFile, fOverwrite)
+{
+	// Create a helper object
+	var objFSO = new ActiveXObject("Scripting.FileSystemObject");
+
+	// Just a file copy, really
+	objFSO.CopyFile(strUNC, strDestFile, fOverwrite);
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+function GetXMLWithinWSC(strWSC, strID)
+{
+	// Get the full path to the WSC file
+	var strPath = get_ScriptsDirectory() + "\\" + strWSC;
+
+	// Open the WSC file in a DOM object
+	var objDoc = new ActiveXObject("Microsoft.XMLDOM");
+	if (!objDoc.load(strPath))
+		throw new Error(objDoc.parseError.errorCode, objDoc.parseError.reason);
+
+	// Select the specified <XML> element within the <comment> element
+	return objDoc.selectSingleNode(".//comment/XML[@id='" + strID + "']").firstChild;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// Data Members
+
+var m_strScriptsDirectory;
+var m_strModulesDirectory;
+var m_strBinDirectory;
+var m_strBinArchDirectory;
+var m_strPREfastArch;
+var m_strDataDirectory;
+var m_strDocumentationDirectory;
+var m_strParserDirectory;
+var m_strRegistryKey;
+var m_strModelsDirectory;
+
+//
+// End of script block
+/////////////////////////////////////////////////////////////////////////////
+]]>
+</script>
+
+</component>

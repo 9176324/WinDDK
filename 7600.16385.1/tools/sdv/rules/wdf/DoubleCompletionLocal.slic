@@ -1,0 +1,36 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+	Summary: 
+	This rule verifies that drivers do not complete a request twice.
+	
+	
+	Description: 
+	The WdfCompleteRequest, WdfCompleteRequestWithInformation, or WdfRequestCompleteWithPriorityBoost  
+	must not be called twice in a row for the same request. 
+	This is the same rule as the DoubleCompletion rule, the difference is that this rule
+	is only performed within the default I/O queue callback functions.
+	 
+
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT,  COMPLETED} t = INIT;
+} with guard(sdv_main,hrequest) 
+
+
+[sdv_WdfRequestComplete
+,sdv_WdfRequestCompleteWithInformation
+,sdv_WdfRequestCompleteWithPriorityBoost
+].entry[guard $1]
+{
+      if (t == COMPLETED) {
+        abort "The driver is completing the Request twice.";
+      }else{
+        t = COMPLETED; 
+      }
+}

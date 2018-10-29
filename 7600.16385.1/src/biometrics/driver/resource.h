@@ -1,0 +1,2 @@
+#define IDR_MYDRIVER_CLASSINFO      101
+

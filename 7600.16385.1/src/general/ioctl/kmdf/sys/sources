@@ -1,0 +1,35 @@
+TARGETNAME=nonpnp
+TARGETTYPE=DRIVER
+
+KMDF_VERSION_MAJOR=1
+
+
+TARGETLIBS=$(TARGETLIBS) $(DDK_LIB_PATH)\ntstrsafe.lib \
+                         $(DDK_LIB_PATH)\wdmsec.lib 
+
+C_DEFINES=$(C_DEFINES) -D_WIN2K_COMPAT_SLIST_USAGE
+
+INCLUDES=$(INCLUDES);..
+
+SOURCES= nonpnp.rc \
+         nonpnp.c  
+
+#
+# Generate WPP tracing code
+# $(SOURCES)   -- run software preprocessor on files listed in SOURCES
+# -km          -- use kernel mode
+# -func        -- define function we'll use for tracing
+#                 This would map all TraceEvents calls to 
+#                 DoTraceMessage.
+#
+RUN_WPP= $(SOURCES)                             \
+         -km                                    \
+         -func:TraceEvents(LEVEL,FLAGS,MSG,...) \
+         -func:Hexdump((LEVEL,FLAGS,MSG,...))   \
+         -gen:{km-WdfDefault.tpl}*.tmh
+
+TARGET_DESTINATION=wdf
+
+# Temporarily excuse usage of serviceability impairing macros in code...
+ALLOW_DATE_TIME=1
+

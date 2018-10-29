@@ -1,0 +1,42 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule specifies that if a dispatch routine returns
+        STATUS_PENDING it has called IoMarkIrpPending or passed the
+        IRP to the lower driver.  See MarkIrpPending for a
+	complimentary specification.
+  */
+
+#include "ntddk_slic.h"
+
+state {
+} with guard(sdv_main,sdv_irp) 
+
+sdv_stub_dispatch_end.entry [guard $2]
+{
+    if ($1 == STATUS_PENDING) {
+       abort "The dispatch routine has not marked the incoming IRP with IoMarkIrpPending, but it is returning STATUS_PENDING.";
+    }
+    else
+    {
+       halt;
+    }
+}
+
+[RemoveHeadList,sdv_containing_record].entry
+{
+    halt;
+}
+
+
+[PoCallDriver,IoCallDriver].exit[guard $2] 
+{
+    halt;
+}
+
+IoMarkIrpPending.entry[guard $1]
+{        
+    halt;
+}

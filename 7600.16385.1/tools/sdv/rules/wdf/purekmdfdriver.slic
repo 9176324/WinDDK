@@ -1,0 +1,52 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	This property is satisfied if the KMDF driver escapes to WDM.
+
+	Description: 
+	This property checks that this is a pure KMDF driver:DDIs
+	WdfWdmDeviceGetWdfDeviceHandle,WdfDeviceWdmGetDeviceObject,
+        WdfDeviceWdmGetAttachedDevice,WdfDeviceWdmGetPhysicalDevice,WdfDeviceWdmDispatchPreprocessedIrp,
+        WdfDpcWdmGetDpc,WdfDriverWdmGetDriverObject,WdfWdmDriverGetWdfDriverHandle,WdfFdoInitWdmGetPhysicalDevice,
+        WdfFileObjectWdmGetFileObject,WdfInterruptWdmGetInterrupt,WdfIoTargetWdmGetTargetDeviceObject,
+        WdfIoTargetWdmGetTargetPhysicalDevice,WdfIoTargetWdmGetTargetFileObject,WdfIoTargetWdmGetTargetFileHandle,
+        WdfRegistryWdmGetHandle,WdfRequestWdmFormatUsingStackLocation,WdfRequestRetrieveInputWdmMdl,
+        WdfRequestRetrieveOutputWdmMdl,WdfRequestWdmGetIrp,WdfDmaEnablerWdmGetDmaAdapter,IoRegisterPlugPlayNotification and the callback 
+        WdfDeviceInitAssignWdmIrpPreprocessCallback.
+    
+*/
+
+
+#include "ntddk_slic.h"
+
+
+       [fun_WDFDEVICE_WDM_IRP_PREPROCESS_1,
+        fun_WDFDEVICE_WDM_IRP_PREPROCESS_2,
+        fun_WDFDEVICE_WDM_IRP_PREPROCESS_3,
+        fun_WDFDEVICE_WDM_IRP_PREPROCESS_4,
+        fun_WDFDEVICE_WDM_IRP_PREPROCESS_5,
+        fun_WDFDEVICE_WDM_IRP_PREPROCESS_6,
+	    sdv_WdfWdmDeviceGetWdfDeviceHandle,
+        sdv_WdfDeviceWdmGetDeviceObject,
+        sdv_WdfDeviceWdmGetAttachedDevice,
+        sdv_WdfDeviceWdmDispatchPreprocessedIrp,
+        sdv_WdfDpcWdmGetDpc,
+        sdv_WdfWdmDriverGetWdfDriverHandle,
+        sdv_WdfFileObjectWdmGetFileObject,
+        sdv_WdfInterruptWdmGetInterrupt,
+        sdv_WdfIoTargetWdmGetTargetDeviceObject,
+        sdv_WdfIoTargetWdmGetTargetPhysicalDevice,
+        sdv_WdfIoTargetWdmGetTargetFileObject,
+        sdv_WdfIoTargetWdmGetTargetFileHandle,
+        sdv_WdfRegistryWdmGetHandle,
+        sdv_WdfRequestWdmFormatUsingStackLocation,
+        sdv_WdfRequestWdmGetIrp,
+        sdv_WdfDmaEnablerWdmGetDmaAdapter,
+        NdisRequest,
+        NdisRegisterProtocolDriver,
+        IoRegisterPlugPlayNotification
+       ].entry
+       {
+           abort "This property is satisfied as the KMDF driver escapes to WDM.";
+       }

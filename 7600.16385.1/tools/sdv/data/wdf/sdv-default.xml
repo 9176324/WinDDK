@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SlamConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!--This variable selects the verification engine to be used by StaticDV. Note this value must be set to "enginea","engineb" or "engineab". -->
+  <SDV_engine xmlns="http://www.microsoft.com/SDV">enginea</SDV_engine>
+  <!--Limits the amount of time StaticDV spends verifying a rule per thread. The minimum is 10(Sec) and the maximum is 86400(Sec). -->
+  <SDV_SlamConfig_Timeout xmlns="http://www.microsoft.com/SDV">3000</SDV_SlamConfig_Timeout>
+  <!--Limits the amount of virtual memory per thread. The minimum is 100 (MB) and the maximum is 2000 (MB). -->
+  <SDV_SlamConfig_Spaceout xmlns="http://www.microsoft.com/SDV">1800</SDV_SlamConfig_Spaceout>
+  <!--If value is 0 this limits the number of threads to the number of processors else if >0 then this indicates the number of threads to be used by SDV. -->
+  <SDV_SlamConfig_NumberOfThreads xmlns="http://www.microsoft.com/SDV">0</SDV_SlamConfig_NumberOfThreads>
+  <!--The libraries listed below are already covered by the Osmodel. This list should be comma separated. -->
+  <SDV_SlamConfig_Osmodel_Libraries xmlns="http://www.microsoft.com/SDV">ntstrsafe.lib,sehupd.lib,wdmsec.lib,wdm.lib,ntoskrnl.lib,BufferOverflowK.lib,hal.lib,wmilib.lib,WdfLdr.lib,WdfDriverEntry.lib</SDV_SlamConfig_Osmodel_Libraries> 
+</SlamConfig>

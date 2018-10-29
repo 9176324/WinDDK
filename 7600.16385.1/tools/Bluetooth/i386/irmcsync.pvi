@@ -1,0 +1,8 @@
+[Version]
+Name=IrMC Sync
+Service={00001104-0000-1000-8000-00805F9B34FB}
+
+[0x301]
+Name=IrMC Sync Supported Data Stores List
+Required=1
+Format=SEQUENCE{UINT8{0x1,0x3,0x5,0x6}}

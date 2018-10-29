@@ -1,0 +1,17 @@
+TARGETNAME=echo
+TARGETTYPE=DRIVER
+
+KMDF_VERSION_MAJOR=1
+
+
+INF_NAME=echo
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+
+INCLUDES=$(INCLUDES);..\..\inc\
+
+SOURCES=driver.c  \
+        device.c  \
+        queue.c
+
+

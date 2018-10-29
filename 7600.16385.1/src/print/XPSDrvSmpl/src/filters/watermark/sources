@@ -1,0 +1,33 @@
+# Copyright (c) 2005 Microsoft Corporation
+#
+# All rights reserved.
+#
+# THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+# ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+SOURCES=       \
+ dllentry.cpp  \
+ wmflt.cpp     \
+ wmsax.cpp     \
+ wmbase.cpp    \
+ wmtext.cpp    \
+ wmfont.cpp    \
+ wmrast.cpp    \
+ wmimg.cpp     \
+ wmvect.cpp    \
+ wmxps.cpp     \
+ wmptprop.cpp  \
+ wmflt.rc
+
+TARGETNAME=xdwmark
+TARGETTYPE=DYNLINK
+
+DLLENTRY=_DllMainCRTStartup
+
+!include ..\sources.inc
+
+!IF "$(BUILD_PASS)" == "PASS2" || "$(BUILD_PASS)" == "PASSALL"
+NTTARGETFILES=COPYDLL
+!ENDIF

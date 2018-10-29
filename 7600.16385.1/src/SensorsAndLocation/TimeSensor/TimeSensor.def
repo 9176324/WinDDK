@@ -1,0 +1,12 @@
+; SensorSkeleton.def : Declares the module parameters.
+
+LIBRARY TimeSensorSample
+
+EXPORTS
+        DllCanUnloadNow         PRIVATE
+        DllGetClassObject       PRIVATE
+        DllRegisterServer       PRIVATE
+        DllUnregisterServer     PRIVATE
+
+
+

@@ -1,0 +1,17 @@
+TARGETNAME=addfilter
+TARGETTYPE=PROGRAM
+USE_MSVCRT=1
+
+INCLUDES=
+
+SOURCES=addfilter.c\
+        addfilter.rc
+
+UMTYPE=console
+
+#uncomment for unicode version, comment for ansi
+C_DEFINES=/D_UNICODE /DUNICODE
+UMENTRY=wmain
+
+UMLIBS=$(SDK_LIB_PATH)\setupapi.lib
+

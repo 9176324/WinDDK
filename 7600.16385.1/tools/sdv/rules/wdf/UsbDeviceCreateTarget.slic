@@ -1,0 +1,79 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	This rule verifies that multiple WDFUSBDEVICE objects are not created while WDFUSBDEVICE
+	object(s) currently in the device context are leaked.
+	
+	Description:
+	EvtDevicePrepareHardware can be called multiple times, for example when the system
+	is trying to manage resources and needs to allocate the driver a different chunk
+	of memory. Under this condition, for example, EvtDeviceReleaseHardware is called and 
+	then EvtDevicePrepareHardware is called again. This rule checks that the driver first 
+	verifies that the target WDFUSBDEVICE is NULL and does not simply create a new device and 
+	replace the previous handle.
+	
+	Rule diagnostics:
+	If the output target passed to WdfUsbTargetDeviceCreate is not NULL (has been used before 
+	and the object was not deleted), this rule finds a defect.
+	
+*/
+
+#include "ntddk_slic.h"
+
+state
+{
+	enum {CREATED, NOTCREATED} s = NOTCREATED;
+}
+
+
+sdv_WdfUsbTargetDeviceCreate.entry
+{	
+	if ((*$3)!=NULL)
+	{		
+		abort "$fname called with previously used pointer. The previous value was over written.";
+	}
+}	
+
+	
+/*
+sdv_WdfUsbTargetDeviceCreate.entry
+{	
+	if ((*$3)!=NULL)
+	{		
+		if (s==CREATED)
+		{
+			abort "$fname called with previously used pointer to . Previous value over writen.";
+		}
+	}
+}
+	
+sdv_WdfUsbTargetDeviceCreate.exit
+{
+	if (NT_SUCCESS($return))
+	{
+		s=CREATED;
+	}
+	else
+	{
+	}
+}	
+
+
+*/
+
+/*
+watch sdv_WdfUsbTargetDeviceCreate.entry.$3;
+sdv_WdfUsbTargetDeviceCreate.entry[guard $3]
+{
+	if (s==NOTUSED)
+	{
+		s=USED;
+	}
+	else
+	{
+		abort "$fname called with previously pointer. Previous value over writen.";
+	}
+
+}
+*/

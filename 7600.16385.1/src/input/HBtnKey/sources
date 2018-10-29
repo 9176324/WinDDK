@@ -1,0 +1,44 @@
+TARGETNAME=HBtnKey
+TARGETTYPE=DRIVER
+DRIVERTYPE=WDM
+
+
+!undef USE_MSVCRT
+
+TARGET_DESTINATION=retail
+
+MUI_DEV=1
+
+MSC_WARNING_LEVEL=/W4 
+
+
+TARGETLIBS= $(DDK_LIB_PATH)\HidClass.lib
+
+!IFDEF DDKBUILDENV
+C_DEFINES=$(C_DEFINES) -DDDK_BUILD
+!ENDIF
+
+INCLUDES=   $(INCLUDES) \
+            ..\..\..\input\inc; \
+            $(DDK_INC_PATH); \
+            ..\hidbtn; \
+            ..\util;
+
+
+
+DIR_SOURCES=hbtnkey.c  \
+            hbtnkey.rc \
+            hidbtn.c \
+            pnp.c \
+            ioctl.c \
+            errcodes.mc
+
+STB_SOURCES=hidbtn.c    \
+            pnp.c       \
+            ioctl.c     \
+            errlog.c
+
+IND_SOURCES=..\util\errlog.c
+
+SOURCES=    $(DIR_SOURCES) $(STB_SOURCES)
+

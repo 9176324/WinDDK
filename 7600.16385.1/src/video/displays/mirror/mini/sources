@@ -1,0 +1,12 @@
+TARGETNAME=mirror
+TARGETTYPE=DRIVER
+
+TARGET_DESTINATION=retail
+
+TARGETLIBS=$(DDK_LIB_PATH)\videoprt.lib
+
+INCLUDES=..\inc;..\..\inc
+
+SOURCES=mirror.c \
+        mirror.rc
+

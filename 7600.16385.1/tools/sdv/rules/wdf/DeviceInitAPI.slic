@@ -1,0 +1,68 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	For an FDO device, the framework device object initialization methods
+	and the framework FDO initialization methods must be called BEFORE the driver calls the 
+	WdfDeviceCreate method for the device object.
+	 
+	Description: 
+	For an FDO device, the framework device object initialization methods
+	and framework FDO initialization methods, which store information in the 
+	WDFDEVICE_INIT structure, cannot be called after the driver calls WdfDeviceCreate 
+	for the framework device object. One exception is WdfDeviceInitFree, which could be called 
+	after WdfDeviceCreate to destroy the WDFDEVICE_INIT structure in case WdfDeviceCreate failed.
+
+
+	Rule diagnostics:
+	"XXX could only be called before WdfDeviceCreate."
+
+
+*/
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT, CREATECALLED} s = INIT;
+} with guard (sdv_main, hdevice_init)
+
+sdv_WdfDeviceCreate.exit [guard *$1]
+{
+    if (NT_SUCCESS($return)) {
+      s = CREATECALLED;
+   }
+}
+[sdv_WdfDeviceInitSetPnpPowerEventCallbacks
+, sdv_WdfDeviceInitSetFileObjectConfig
+, sdv_WdfDeviceInitSetExclusive                                                         
+, sdv_WdfDeviceInitSetPowerPolicyEventCallbacks
+, sdv_WdfDeviceInitSetPowerPolicyOwnership  
+, sdv_WdfDeviceInitRegisterPnpStateChangeCallback
+, sdv_WdfDeviceInitRegisterPowerStateChangeCallback
+, sdv_WdfDeviceInitRegisterPowerPolicyStateChangeCallback
+, sdv_WdfDeviceInitSetIoType
+, sdv_WdfDeviceInitSetPowerNotPageable
+, sdv_WdfDeviceInitSetPowerPageable
+, sdv_WdfDeviceInitSetPowerInrush
+, sdv_WdfDeviceInitSetDeviceType
+, sdv_WdfDeviceInitAssignName
+, sdv_WdfDeviceInitAssignSDDLString
+, sdv_WdfDeviceInitSetDeviceClass
+, sdv_WdfDeviceInitSetCharacteristics
+, sdv_WdfDeviceInitSetRequestAttributes
+, sdv_WdfDeviceInitAssignWdmIrpPreprocessCallback
+, sdv_WdfDeviceInitSetIoInCallerContextCallback
+, sdv_WdfFdoInitSetFilter
+, sdv_WdfFdoInitWdmGetPhysicalDevice
+, sdv_WdfFdoInitOpenRegistryKey
+, sdv_WdfFdoInitQueryProperty
+, sdv_WdfFdoInitAllocAndQueryProperty
+, sdv_WdfFdoInitSetEventCallbacks
+, sdv_WdfFdoInitSetDefaultChildListConfig
+].entry[guard $1]
+{
+   if (s == CREATECALLED) {
+      abort "$fname could only be called before WdfDeviceCreate.";
+      }
+}
+   

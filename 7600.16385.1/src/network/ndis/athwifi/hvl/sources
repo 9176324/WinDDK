@@ -1,0 +1,27 @@
+!include ..\sources.inc
+
+TARGETNAME=hvl
+
+TARGET_DESTINATION=$(OBJ_PATH)\..\lib\$(_OBJ_DIR)
+
+TARGETTYPE=LIBRARY
+
+PRECOMPILED_INCLUDE=precomp.h
+
+INCLUDES= $(INCLUDES)        \
+    ..\inc;                  \
+    $(DDK_INC_PATH)
+
+SOURCES=                     \
+    hvl_utils.c              \
+    hvl_oids.c               \
+    hvl_main.c               \
+    hvl_context.c            \
+    vnic_main.c              \
+    vnic_oids.c              \
+    vnic_dot11.c             \
+    vnic_send.c              \
+    vnic_recv.c              \
+    vnic_queue.c             \
+    hvl_queue.c
+

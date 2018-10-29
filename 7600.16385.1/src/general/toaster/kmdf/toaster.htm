@@ -1,0 +1,464 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Toaster</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:18.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:13.5pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+h4
+	{mso-style-link:"Heading 4 Char";
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;
+	font-style:italic;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{mso-style-name:msochpdefault;
+	margin-right:0in;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;
+	font-style:italic;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<h1>Toaster – Driver Learning Package</h1>
+
+<p class=MsoNormal>(KMDF Version)</p>
+
+<h1>Summary</h1>
+
+<p class=MsoNormal>The Toaster sample provides a starting point for Windows®
+driver development. It contains annotated code to illustrate the functionality
+of bus driver, function driver, filter drivers for a hypothetical Toaster bus
+and its devices. </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The samples in this directory are a rewrite of the WDM
+toaster driver (residing under src\general\toaster\wdm) using Kernelmode Driver
+Framework. These samples show how to use driver framework APIs to achieve the
+equivalent WDM functionality with much less code. Only the drivers (bus,
+function, filter &amp; toastmon) of the WDM toaster package have been ported to
+KMDF. The installation instructions and test applications are same as for the
+WDM version of toaster. So read the instruction and test application files from
+<a href="../wdm/toaster.htm">WDM toaster</a> directory.</p>
+
+<h1>Description of drivers</h1>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+sample contains bus, func, filter and toastmon sub directories. </span></p>
+
+<h3>bus&nbsp; </h3>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+job of this driver is to service the TOASTER bus controller, enumerate devices
+that are plugged in, and perform bus-level power management. The bus driver
+supports D0 and D3 power states. It also has a WMI interface. This directory
+contains two subdirectories that show two different implementation of toaster
+bus driver (Busenum.sys).</span></p>
+
+<h3>static</h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Static
+version of the bus driver shows how to enumerate child devices using static
+child list, one per device, provided by the framework. </span></p>
+
+<p><i><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Static
+enumeration</span></i><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+enables a driver to detect and report the existence of devices during
+initialization, with a limited ability to report subsequent changes to the
+system's configuration. </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Bus
+drivers can use static enumeration if the number and type of devices or
+functional subunits is predetermined and permanent, and does not depend on the
+configuration of the system on which the driver is running.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>For
+example, a sound card's driver might act as a bus driver and create separate
+physical device objects (PDOs) for each of the card's capabilities, such as
+MIDI, audio, and joystick. </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To
+enumerate a child, the bus driver:</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Call <b><u>WdfPdoInitAllocate</u></b>
+to obtain a <u>WDFDEVICE_INIT</u> structure. </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Initialize the
+WDFDEVICE_INIT structure. </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Call <b><u>WdfDeviceCreate</u></b>
+to create a framework device object that represents a PDO. </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>After
+calling <b>WdfDeviceCreate</b>, the driver calls <b><u>WdfFdoAddStaticChild</u></b>
+to add the child device to the child list.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Because
+drivers should only use static child lists for device configurations that are
+predetermined and permanent, there is little need for a driver to modify a static
+child list after creating it. If the driver determines that a child device has
+become inaccessible, the driver can call <b><u>WdfPdoMarkMissing</u></b>. (If a
+child device remains accessible but becomes unresponsive and unusable, the
+driver should set the <b>Failed</b> member of the WDF_DEVICE_STATE structure to
+<b>WdfTrue</b> and then call <b>WdfDeviceSetDeviceState</b>.)</span></p>
+
+<h3>dynamic</h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Dynamic
+version shows how to enumerate child devices using child list objects. </span></p>
+
+<p><i><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Dynamic
+enumeration</span></i><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+enables a driver to detect and report changes to the number and type of devices
+that are connected to the system while the system is running.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Bus
+drivers must use dynamic enumeration if the number or types of devices that are
+connected to the parent device depend on a system's configuration. Some of
+these devices might be always connected to the system, and some might be
+plugged in and unplugged while the system is running.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>For
+example, the number and type of devices that are plugged into a system's PCI
+bus are system-dependent, but they are permanent unless a user turns off power,
+opens the case, and adds or removes a device by using a screwdriver. On the
+other hand, a user can add or remove USB devices by plugging in or unplugging a
+cable while the system is running.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Each time
+a bus driver identifies a child device, it must add the child device's
+description to a child list. Driver can either use framework provided device's
+default child list by calling <b><u>WdfFdoGetDefaultChildList</u></b>, or can
+create additional child lists, for grouping children, by calling <b><u>WdfChildListCreate</u></b>.
+This sample uses the default child list. A <i>child description</i> consists of
+a required <i>identification description</i> and an optional <i>address
+description</i>.</span></p>
+
+<p class=MsoNormal><i><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Identification
+Description</span></i><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>:
+An identification description is a structure that contains information that
+uniquely identifies each device that the driver enumerates. The driver defines
+this structure, but its first member must be a <u>WDF_CHILD_IDENTIFICATION_DESCRIPTION_HEADER</u>
+structure.</span></p>
+
+<p class=MsoNormal><i><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Address
+Description</span></i><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>:
+An address description is a structure that contains information that the driver
+requires so that it can access the device on its bus, if the information can
+change while the device is plugged in. The driver defines this structure, but
+its first member must be a <u>WDF_CHILD_ADDRESS_DESCRIPTION_HEADER</u> structure.
+Address descriptions are optional. This sample does not use address
+descriptions.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To add
+children to a child list, the driver calls <b><u>WdfChildListAddOrUpdateChildDescriptionAsPresent</u></b>
+for each child device that it finds. This call informs the framework that a
+driver has discovered a child device that is connected to a parent device. When
+your driver calls <b>WdfChildListAddOrUpdateChildDescriptionAsPresent</b>, it
+supplies an identification description and, optionally, an address description.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>After the
+driver calls <b>WdfChildListAddOrUpdateChildDescriptionAsPresent</b> to report
+a new device, the framework informs the PnP manager that the new device exists.
+The PnP manager then builds a device stack and driver stack for the new device.
+As part of this process, the framework calls the bus driver's <i><u>EvtChildListCreateDevice</u></i>
+callback function. This callback function must call <b><u>WdfDeviceCreate</u></b>
+to create a PDO for the new device.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To report
+a children missing, this driver calls WdfChildListUpdateChildDescriptionAsMissing.
+For further details on dynmaic enumeration, please refer to the framework
+documentation.</span></p>
+
+<h4>Func</h4>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+sub-directories under this one contain the source code of the function driver
+(Toaster.sys) for standard toaster devices. To be illustrative and useful
+learning sample for beginners to driver development, the sample has been built
+from almost nothing (simple) to fully functional. You can either manually
+install the driver (root-enumerations) using devcon.exe (%winddk%\tools\devcon)
+or bus enumerate the driver using the toaster bus driver. They all share one
+common header file present in the <i>shared</i> directory.</span></p>
+
+<h3>Simple</h3>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This is a
+simple form of function driver for toaster device. The driver doesn't handle
+any PnP and Power events because the framework provides default behavior for
+those events. This driver has enough support to allow an user application
+(toast/notify.exe) to open the device&nbsp; interface registered by the driver
+and send read, write or ioctl requests.</span></p>
+
+</blockquote>
+
+<h3>Featured</h3>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+version shows how to register for PNP and Power events, handle create &amp;
+close file requests, handle WMI set and query events, fire WMI notification
+events. This driver is functionally equivalent to the feature2 version of
+toaster WDM driver present in the DDK<br>
+(src\general\toaster\func\featured2). By being a power policy owner, it also
+registers for idle notification so it can put the device to low power state
+when there is no I/O activity.</span></p>
+
+</blockquote>
+
+<h4>Filter</h4>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>This
+directory contains source code of a two filter drivers. The Generic sample is a
+simple passthru filter driver. The SideBand shows how to provide a sideband
+ioctl interface to an application by using control-device object. This private
+interface enables application to talk to the filter driver directly; bypassing
+the functional device stack that filter is attached to. The SideBand sample
+also demonstrates how to implement a collection of device objects if the driver
+will handle requests for more than one device. You can install these filters on
+an existing toaster device by using the filter.inf.</span></p>
+
+<h4>Toastmon</h4>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+purpose of this sample is to show how to open a device and perform I/O in
+kernel mode using remote I/O target interfaces. This sample registers interface
+notification with the PNP manager for toaster interface class by using
+IoRegisterPlugPlayNotification. When a toaster device is plugged in, PnP
+manager notifies the driver by invoking the callback. In the callback, this
+sample creates a remote target and opens the device by using the symbolic link
+provided in the callback data. This sample uses a passive timer to demonstrate
+how to perform asynchronous read and write to the target device. It also shows
+to respond to the device change notification by registering the
+EvtIoTargetQueryRemove/EvtIoTargetRemoveCanceled/EvtIoTargetRemoveComplete on
+the I/O target object. The technique demonstrated in this sample is useful if
+you are writing a driver that talks to another device that your driver is not
+controlling. Even though this sample is based on the WDM toastmon, it has been
+enhanced to show some additional features of the framework. You install this
+driver as a root-enumerate device using the Wdftoastmon.inf. The steps for
+installing this sample is identical to installing the toaster bus driver. </span></p>
+
+<h1>Building the sample</h1>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To build
+the sample drivers, you must first set up the DDK environment on your host
+machine. The “Installation and Release Notes” in the DDK has a complete
+description on how to do this. </span></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.25in;text-indent:-.25in'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Run
+the build –ceZ command in the Toaster directory to build all the drivers
+described above. </span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:.25in;text-indent:-.25in'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Copy
+the KMDF coinstaller (wdfcoinstallerMMmmm.dll), .sys files and INFs to a floppy
+disk or a temporary directory on the target system. You should build the exe
+and other DLLs from the WDM toaster sample.</span></p>
+
+<h1>Installation</h1>
+
+<p>INFs files for each sample driver is provided in the same directory as the
+source. The steps on how to install the bus driver, function driver, filter and
+toastmon is given in the readme file of the WDM toaster sample. Please follow
+that.</p>
+
+<h1>Testing</h1>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+instructions and tools for testing the WDF drivers are exactly same as the WDM
+toaster drivers. So use the exe provided with the WDM sample and follow the
+instruction given there.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>In order
+to statically enumerate child devices every time the bus driver starts, you can
+set a registry value in the Toaster Bus driver's device parameter key.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\Root\SYSTEM\&lt;InstanceNumber&gt;\<InstanceNumber>Device
+Parameters </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;NumberOfToasters:
+REG_DWORD: 2 </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Maximum
+number of child devices that can be enumerated throught registry setting is 10.
+</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>You can
+also configure this value through the Toaster Bus Inf file. </span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=936
+ style='width:6.5in;margin-left:-.75pt'>
+ <tr style='height:1.5pt'>
+  <td style='background:aqua;padding:.75pt .75pt .75pt .75pt;height:1.5pt'></td>
+ </tr>
+</table>
+
+<p style='margin-left:-.75pt'><span style='font-size:7.5pt;font-family:"MS Sans Serif","serif"'>©
+Microsoft Corporation 2002</span><span style='font-size:10.0pt;font-family:
+"Verdana","sans-serif"'> </span></p>
+
+</blockquote>
+
+</div>
+
+</body>
+
+</html>
+

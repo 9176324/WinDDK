@@ -1,0 +1,83 @@
+!if "$(_BUILDARCH)"=="IA64"
+TARGETNAME=xfrmi64
+C_DEFINES=$(C_DEFINES) -DXGE_OS_PLATFORM_64BIT 
+!else 
+!if "$(_BUILDARCH)"=="AMD64"
+TARGETNAME=xfrmx64
+C_DEFINES=$(C_DEFINES) -DXGE_OS_PLATFORM_64BIT 
+!else
+TARGETNAME=xfrmi86
+C_DEFINES=$(C_DEFINES) -DXGE_OS_PLATFORM_32BIT
+!endif
+!endif
+
+TARGETTYPE=DRIVER
+
+INCLUDES=..;.;..\..\include;
+
+USER_C_FLAGS=$(USER_C_FLAGS) /GS
+
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER -DNDIS61_MINIPORT=1 -DBINARY_COMPATIBLE=0
+
+
+############################# HAL  related ################################
+# TODO : NK - We may remove this since for Windows its always defined. Change is complicated though, do not remove before well understood.
+C_DEFINES=$(C_DEFINES) -DXGE_HAL_PROCESS_LINK_INT_IN_ISR
+
+########################### Driver related #################################
+# Coalescing of TxDs to free up
+C_DEFINES=$(C_DEFINES) -DXENAMP_TXD_FREE_COALESCE
+
+# Process RSS settings in a worker thread asynchronously
+C_DEFINES=$(C_DEFINES) -DXMP_SET_RSS_IN_WORKER
+
+# TODO: NK - REmove this setting and make this default since OID_GEN_STATISTICS is a mandatory oid. This should not be opt'ed out.
+# Maintain software stats for OID_GEN_STATISTICS
+C_DEFINES=$(C_DEFINES) -DXMP_STATS_OID
+
+# Diagnostic OIDs
+C_DEFINES=$(C_DEFINES) -DXMP_DIAG
+
+# Alignment boundary for begining of Rx buffer or TCP Paylad
+C_DEFINES=$(C_DEFINES) -DXENAMP_RX_ALIGN_SZ=128
+
+# Large Receive Offload (LRO)
+C_DEFINES=$(C_DEFINES) -DXGE_HAL_CONFIG_LRO
+#C_DEFINES=$(C_DEFINES) -DLRO_DBG
+
+# Temporary: RSS for IPv4 only i.e., not for IPv6
+C_DEFINES=$(C_DEFINES) -DXMP_RSS_IPV4_ONLY
+
+############################ MSI-X related #################################
+C_DEFINES=$(C_DEFINES) -DMSI_X_ENABLE=1
+C_DEFINES=$(C_DEFINES) -DXGE_HAL_MSI
+C_DEFINES=$(C_DEFINES) -DXGE_HAL_MSI_X
+C_DEFINES=$(C_DEFINES) -DXENAMP_MSI_SUPPORT
+C_DEFINES=$(C_DEFINES) -DMSI_DBG
+
+
+############################ for Debugging #################################
+#C_DEFINES=$(C_DEFINES) -DXMP_SLOCK_AUDIT
+#C_DEFINES=$(C_DEFINES) -DXMP_RX_NBL_AUDIT
+#C_DEFINES=$(C_DEFINES) -DXENAMP_TXDBG
+
+############################## for Tracing##################################
+
+#C_DEFINES=$(C_DEFINES) -DXENAMP_TRACING
+#RUN_WPP=$(SOURCES) -km -func:TraceLog((LEVEL,MSG,...))
+
+
+TARGETLIBS=  \
+            $(DDK_LIB_PATH)\ndis.lib  \
+            ..\..\lib\*\xfhal.lib
+
+SOURCES = \
+    xenamp.c \
+    xmpnic.c \
+    xmpreq.c \
+    xmphal.c \
+    xmpdiag.c \
+    xf.c      \
+    xframe.rc 
+
+

@@ -1,0 +1,53 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+	Summary: 
+	This rule verifies that after a request is completed, the associated WDFMEMORY object
+	cannot be accessed (inside EvtIoWrite callback only).
+	The WDFMEMORY object was retrieved by calling WdfRequestRetrieveInputMemory or WdfRequestRetrieveOutputMemory.
+
+	Description: 
+	Within the EvtIoWrite callback function, the WDFMEMORY object associated with the
+	request by calling WdfRequestRetrieveInputMemory or WdfRequestRetrieveOutputMemory
+	cannot be accessed after calling the WdfRequestComplete, WdfRequestCompleteWithInformation, 
+	or WdfRequestCompleteWithPriorityBoost methods on the request.
+	The following possible WDFMEMORY object access functions are considered:
+ 	WdfRequestRetrieveInputMemory, WdfRequestRetrieveOutputMemory.
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT1, WRITE} s = INIT1;
+     enum {INIT2, REQCOMPL} t = INIT2;
+} with guard (sdv_main, hrequest)
+
+fun_WDF_IO_QUEUE_IO_WRITE.entry[guard $2]
+{
+   s = WRITE;
+}
+fun_WDF_IO_QUEUE_IO_WRITE.exit[guard $2]
+{
+	halt;
+}
+[sdv_WdfRequestComplete
+,sdv_WdfRequestCompleteWithInformation
+,sdv_WdfRequestCompleteWithPriorityBoost 
+].entry[guard $1]
+{    
+     if (s == WRITE){
+           t = REQCOMPL;                      
+   }
+}
+[sdv_WdfRequestRetrieveInputMemory
+,sdv_WdfRequestRetrieveOutputMemory
+].entry[guard $1]
+{
+   if ((s == WRITE) && (t == REQCOMPL)) 
+   {
+          abort "Request's memory object cannot be accessed after the Request had been completed.";
+   }
+   
+}

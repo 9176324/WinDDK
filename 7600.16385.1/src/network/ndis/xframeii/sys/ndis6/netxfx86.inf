@@ -1,0 +1,462 @@
+;*******************************************************************************
+; Copyright (c) 2004-2007, Neterion Inc.
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %MSFT%
+DriverVer   = 12/03/2007, 2.6.16.11793
+
+[Manufacturer]
+%NETERION% = NETERION_INC, NTx86.6.0
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[NETERION_INC.NTx86.6.0]
+
+;Xframe-II
+
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&CC_0200
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_000017D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_602017D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_642017D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_6C2017D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_602117D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_642117D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_6C2117D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_602217D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_642217D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_6C2217D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_662217D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_602317D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_642317D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_6C2317D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_662317D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_60201014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_64201014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_6C201014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_60211014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_64211014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_6C211014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_60221014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_64221014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_6C221014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_66221014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_60231014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_64231014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_6C231014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5732&SUBSYS_66231014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&CC_0200
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_000017D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_602017D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_642017D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_6C2017D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_602117D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_642117D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_6C2117D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_602217D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_642217D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_6C2217D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_662217D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_602317D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_642317D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_6C2317D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_662317D5
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_60201014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_64201014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_6C201014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_60211014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_64211014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_6C211014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_60221014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_64221014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_6C221014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_66221014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_60231014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_64231014
+%Hercules%  = XFRAMEWIN.ndi, PCI\VEN_17D5&DEV_5832&SUBSYS_6C231014
+%Hercules%  = XFRAMEWIN.ndi,   PCI\VEN_17D5&DEV_5832&SUBSYS_66231014
+
+%Hercules%  = XFRAMEWIN.ndi,   PCI\VEN_17D5&DEV_5732
+%Hercules%  = XFRAMEWIN.ndi,   PCI\VEN_17D5&DEV_5832
+
+;*******************************************************************************
+[XFRAMEWIN.ndi.NTx86]
+Characteristics = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
+AddReg          = Xp32AddReg, XFRAME.Params, ParamsNt
+CopyFiles       = CopyFile.XpSys32
+BusType         = 5
+*IfType         = 6		; IF_TYPE_ETHERNET_CSMACD 
+*MediaType      = 0		; NdisMedium802_3
+*PhysicalMediaType = 14		; NdisPhysicalMedium802_3 
+
+[XFRAMEWIN.ndi.NTx86.Services]
+AddService = XFRAME, 2, XFRAME.Xp32AddService, Xp32EventLog
+
+[XFRAME.Xp32AddService]
+DisplayName    = %XFRAME%
+ServiceType    = 1 
+StartType      = 3
+ErrorControl   = 1
+ServiceBinary  = %12%\xfrmi86.sys
+LoadOrderGroup = NDIS
+
+[XFRAMEWIN.ndi.NTx86.HW]
+AddReg      = MSIX-NDIS.reg
+
+;*******************************************************************************
+[Xp32AddReg]
+HKR, Ndi,            Service,    0, "XFRAME"
+HKR, Ndi\Interfaces, UpperRange, 0, "ndis5"
+HKR, Ndi\Interfaces, LowerRange, 0, "ethernet"
+
+[Xp32EventLog]
+AddReg = Xp32AddEventLogReg
+
+[Xp32AddEventLogReg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll;%%SystemRoot%%\System32\drivers\xfrmi86.sys"
+HKR, , TypesSupported  , 0x00010001, 7
+
+[MSIX-NDIS.reg]
+HKR, "Interrupt Management", 0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", 0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MSISupported, 0x00010001, 0
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 32
+
+;*******************************************************************************
+[XFRAME.Params]
+
+HKR, , MaxTxDs,                  0, "128"
+HKR, , tx_urange_a,              0, "5"
+HKR, , tx_ufc_a,                 0, "10"
+HKR, , tx_urange_b,              0, "15"
+HKR, , tx_ufc_b,                 0, "40"
+HKR, , tx_urange_c,              0, "40"
+HKR, , tx_ufc_c,                 0, "60"
+HKR, , tx_ufc_d,                 0, "100" 
+HKR, , tx_utilz_periodic,        0, "1"
+HKR, , tx_timer_val,             0, "2000"
+HKR, , tx_ac_disable,            0, "0" 
+HKR, , tx_int_type_per_list,     0, "0" 
+HKR, , tx_int_type_per_utilz,    0, "1" 
+HKR, , stability_period,         0, "4"
+
+HKR, , rx_urange_a,              0, "5"
+HKR, , rx_ufc_a,                 0, "1"
+HKR, , rx_urange_b,              0, "15"
+HKR, , rx_ufc_b,                 0, "3"
+HKR, , rx_urange_c,              0, "40" 
+HKR, , rx_ufc_c,                 0, "10"
+HKR, , rx_ufc_d,                 0, "15" 
+HKR, , rx_utilz_periodic,        0, "0"
+; 1562 is 1 msec @ 100MHz PCIX speed
+HKR, , rx_timer_val,             0, "2000" 
+HKR, , rx_ac_disable,            0, "0"
+
+HKR, , stats_refresh_time,       0, "4"
+
+HKR, , sched_intr_timer_val,     0, "2000"
+
+HKR, , intr_mode,                0, "0"
+HKR, , rx_buf_split,             0, "0"
+
+HKR, , indicate_max_pkts,        0, "90"
+HKR, , rx_nbl_coalesce,          0, "1"
+HKR, , tx_nbl_coalesce,          0, "0"
+
+HKR, , shared_splits,            0, "0"
+HKR, , rd2rd_dly,                0, "0"
+HKR, , enable_tx_req_timeout,    0, "0"
+HKR, , tx_req_timeout,           0, "0"
+
+;Following keys are changed through GUI/Notify object
+HKR, , pcc_enable,               0, "255" 
+
+; Following keys are dummy and only required by the Notify object/GUI
+HKR, , tx_lrange_a,              0, "0"
+HKR, , tx_lrange_b,              0, "6"
+HKR, , tx_lrange_c,              0, "16"
+HKR, , tx_lrange_d,              0, "41"
+HKR, , tx_urange_d,              0, "100" 
+
+HKR, , rx_lrange_a,              0, "0"
+HKR, , rx_lrange_b,              0, "6"
+HKR, , rx_lrange_c,              0, "16" 
+HKR, , rx_lrange_d,              0, "41" 
+HKR, , rx_urange_d,              0, "100"
+
+; ------------  <Following keys are only required by GUI/Notify object> --->
+
+;Required to enter values updated by user. Initially we will read these default values written while device installation
+HKR, , TxFIFONum,                0, "1"
+;HKR, , *TransmitBuffers,          0, "8192"
+HKR, , TransmitBuffers_1,        0, "0"
+HKR, , TransmitBuffers_2,        0, "0"
+HKR, , TransmitBuffers_3,        0, "0"
+HKR, , TransmitBuffers_4,        0, "0"
+HKR, , TransmitBuffers_5,        0, "0"
+HKR, , TransmitBuffers_6,        0, "0"
+HKR, , TransmitBuffers_7,        0, "0"
+
+HKR, , RxRingNum,                0, "8"
+;HKR, , *ReceiveBuffers,           0, "4250"
+HKR, , ReceiveBuffers_1,         0, "4250"
+HKR, , ReceiveBuffers_2,         0, "4250"
+HKR, , ReceiveBuffers_3,         0, "4250"
+HKR, , ReceiveBuffers_4,         0, "4250"
+HKR, , ReceiveBuffers_5,         0, "4250"
+HKR, , ReceiveBuffers_6,         0, "4250"
+HKR, , ReceiveBuffers_7,         0, "4250"
+
+; ------------  </Following keys are only required by GUI/Notify object> --->
+
+[ParamsNt]
+
+; Standardized Keywords ++++++++
+;JumboPacket
+HKR, Ndi\params\*JumboPacket,            ParamDesc,  0, %*JumboPacket% 
+HKR, Ndi\params\*JumboPacket,            default,    0, "1500"
+HKR, Ndi\params\*JumboPacket,            min,        0, "128"
+HKR, Ndi\params\*JumboPacket,            max,        0, "9600"
+HKR, Ndi\params\*JumboPacket,            step,       0, "1"
+HKR, Ndi\params\*JumboPacket,            Base,       0, "10"
+HKR, Ndi\params\*JumboPacket,            type,       0, "int"
+
+;Flow Control
+HKR, Ndi\Params\*FlowControl,           ParamDesc, , %*FlowControl%
+HKR, Ndi\Params\*FlowControl,           default,   , "0"
+HKR, Ndi\Params\*FlowControl,           type,      , "enum"
+HKR, Ndi\Params\*FlowControl\enum,      0,         , %Disabled%
+HKR, Ndi\Params\*FlowControl\enum,      1,         , %Tx Enabled%
+HKR, Ndi\Params\*FlowControl\enum,      2,         , %Rx Enabled%
+HKR, Ndi\Params\*FlowControl\enum,      3,         , %Rx & Tx Enabled%
+
+;First TxFIFO length
+HKR, Ndi\params\*TransmitBuffers,       ParamDesc,  0, %*TransmitBuffers%
+HKR, Ndi\params\*TransmitBuffers,       default,    0, "8192"
+HKR, Ndi\params\*TransmitBuffers,       min,        0, "0"
+HKR, Ndi\params\*TransmitBuffers,       max,        0, "8192"
+HKR, Ndi\params\*TransmitBuffers,       step,       0, "1"
+HKR, Ndi\params\*TransmitBuffers,       Base,       0, "10"
+HKR, Ndi\params\*TransmitBuffers,       type,       0, "int"
+
+;First RxRing length
+HKR, Ndi\params\*ReceiveBuffers,        ParamDesc,  0, %*ReceiveBuffers%
+HKR, Ndi\params\*ReceiveBuffers,        default,    0, "4250"
+HKR, Ndi\params\*ReceiveBuffers,        min,        0, "0"
+HKR, Ndi\params\*ReceiveBuffers,        max,        0, "16384"
+HKR, Ndi\params\*ReceiveBuffers,        step,       0, "1"
+HKR, Ndi\params\*ReceiveBuffers,        Base,       0, "10"
+HKR, Ndi\params\*ReceiveBuffers,        type,       0, "int"
+
+;*IPChecksumOffloadIPv4 
+HKR, Ndi\Params\*IPChecksumOffloadIPv4, ParamDesc, , %*IPChecksumOffloadIPv4%
+HKR, Ndi\Params\*IPChecksumOffloadIPv4, default,   , "3"
+HKR, Ndi\Params\*IPChecksumOffloadIPv4, type,      , "enum"
+HKR, Ndi\Params\*IPChecksumOffloadIPv4\enum, 0,    , %Disabled%
+HKR, Ndi\Params\*IPChecksumOffloadIPv4\enum, 1,    , %Tx Enabled%
+HKR, Ndi\Params\*IPChecksumOffloadIPv4\enum, 2,    , %Rx Enabled%
+HKR, Ndi\Params\*IPChecksumOffloadIPv4\enum, 3,    , %Rx & Tx Enabled%
+
+;*TCPChecksumOffloadIPv4 
+HKR, Ndi\Params\*TCPChecksumOffloadIPv4,      ParamDesc, , %*TCPChecksumOffloadIPv4%
+HKR, Ndi\Params\*TCPChecksumOffloadIPv4,      default,   , "3"
+HKR, Ndi\Params\*TCPChecksumOffloadIPv4,      type,      , "enum"
+HKR, Ndi\Params\*TCPChecksumOffloadIPv4\enum, 0,         , %Disabled%
+HKR, Ndi\Params\*TCPChecksumOffloadIPv4\enum, 1,         , %Tx Enabled%
+HKR, Ndi\Params\*TCPChecksumOffloadIPv4\enum, 2,         , %Rx Enabled%
+HKR, Ndi\Params\*TCPChecksumOffloadIPv4\enum, 3,         , %Rx & Tx Enabled%
+
+;*TCPChecksumOffloadIPv6 
+HKR, Ndi\Params\*TCPChecksumOffloadIPv6,      ParamDesc, , %*TCPChecksumOffloadIPv6%
+HKR, Ndi\Params\*TCPChecksumOffloadIPv6,      default,   , "0"
+HKR, Ndi\Params\*TCPChecksumOffloadIPv6,      type,      , "enum"
+HKR, Ndi\Params\*TCPChecksumOffloadIPv6\enum, 0,         , %Disabled%
+HKR, Ndi\Params\*TCPChecksumOffloadIPv6\enum, 1,         , %Tx Enabled%
+HKR, Ndi\Params\*TCPChecksumOffloadIPv6\enum, 2,         , %Rx Enabled%
+HKR, Ndi\Params\*TCPChecksumOffloadIPv6\enum, 3,         , %Rx & Tx Enabled%
+
+;*LSOv1IPv4
+HKR, Ndi\Params\*LSOv1IPv4,               ParamDesc, , %*LSOv1IPv4%
+HKR, Ndi\Params\*LSOv1IPv4,               default,   , "1"
+HKR, Ndi\Params\*LSOv1IPv4,               type,      , "enum"
+HKR, Ndi\Params\*LSOv1IPv4\enum,          0,         , %Disabled%
+HKR, Ndi\Params\*LSOv1IPv4\enum,          1,         , %Enabled%
+
+;*UDPChecksumOffloadIPv4
+HKR, Ndi\Params\*UDPChecksumOffloadIPv4,      ParamDesc, , %*UDPChecksumOffloadIPv4%
+HKR, Ndi\Params\*UDPChecksumOffloadIPv4,      default,   , "0"
+HKR, Ndi\Params\*UDPChecksumOffloadIPv4,      type,      , "enum"
+HKR, Ndi\Params\*UDPChecksumOffloadIPv4\enum, 0,         , %Disabled%
+HKR, Ndi\Params\*UDPChecksumOffloadIPv4\enum, 1,         , %Enabled%
+
+;*UDPChecksumOffloadIPv6
+HKR, Ndi\Params\*UDPChecksumOffloadIPv6,      ParamDesc, , %*UDPChecksumOffloadIPv6%
+HKR, Ndi\Params\*UDPChecksumOffloadIPv6,      default,   , "0"
+HKR, Ndi\Params\*UDPChecksumOffloadIPv6,      type,      , "enum"
+HKR, Ndi\Params\*UDPChecksumOffloadIPv6\enum, 0,         , %Disabled%
+HKR, Ndi\Params\*UDPChecksumOffloadIPv6\enum, 1,         , %Enabled%
+
+;*PriorityVLANTag 
+HKR, Ndi\Params\*PriorityVLANTag,       ParamDesc, , %*PriorityVLANTag%
+HKR, Ndi\Params\*PriorityVLANTag,       default,   , "3"
+HKR, Ndi\Params\*PriorityVLANTag,       type,      , "enum"
+HKR, Ndi\Params\*PriorityVLANTag\enum,  0,         , %Priority & VLAN Disabled%
+HKR, Ndi\Params\*PriorityVLANTag\enum,  1,         , %Priority Enabled%
+HKR, Ndi\Params\*PriorityVLANTag\enum,  2,         , %VLAN Enabled%
+HKR, Ndi\Params\*PriorityVLANTag\enum,  3,         , %Priority & VLAN Enabled%
+
+;*InterruptModeration
+HKR, Ndi\Params\*InterruptModeration,      ParamDesc, , %*InterruptModeration%
+HKR, Ndi\Params\*InterruptModeration,      default,   , "1"
+HKR, Ndi\Params\*InterruptModeration,      type,      , "enum"
+HKR, Ndi\Params\*InterruptModeration\enum, 0,         , %Disabled%
+HKR, Ndi\Params\*InterruptModeration\enum, 1,         , %Enabled%
+
+;*RSS
+HKR, Ndi\Params\*RSS,                   ParamDesc, , %*RSS%
+HKR, Ndi\Params\*RSS,                   default,   , "1"
+HKR, Ndi\Params\*RSS,                   type,      , "enum"
+HKR, Ndi\Params\*RSS\enum,              0,         , %Disabled%
+HKR, Ndi\Params\*RSS\enum,              1,         , %Enabled%
+
+;*HeaderDataSplit
+;HKR, Ndi\Params\*HeaderDataSplit,      ParamDesc, , %*HeaderDataSplit%
+;HKR, Ndi\Params\*HeaderDataSplit,      default,   , "1"
+;HKR, Ndi\Params\*HeaderDataSplit,      type,      , "enum"
+;HKR, Ndi\Params\*HeaderDataSplit\enum, 0,         ,  %Disabled%
+;HKR, Ndi\Params\*HeaderDataSplit\enum, 1,         ,  %Enabled%
+
+; Standardized keywords ----------
+
+;LRO
+HKR, Ndi\Params\LRO,                   ParamDesc, , %LRO%
+HKR, Ndi\Params\LRO,                   default,   , "0"
+HKR, Ndi\Params\LRO,                   type,      , "enum"
+HKR, Ndi\Params\LRO\enum,              0,         , %Disabled%
+HKR, Ndi\Params\LRO\enum,              1,         , %Enabled%
+
+;offload_encapsulation 
+HKR, Ndi\Params\offload_encapsulation,      ParamDesc, , %offload_encapsulation%
+HKR, Ndi\Params\offload_encapsulation,      default,   , "0"
+HKR, Ndi\Params\offload_encapsulation,      type,      , "enum"
+HKR, Ndi\Params\offload_encapsulation\enum, 0,         , %IEEE_802_3%
+HKR, Ndi\Params\offload_encapsulation\enum, 1,         , %LLC_SNAP_ROUTED%
+HKR, Ndi\Params\offload_encapsulation\enum, 2,         , %Both%
+
+; Latency Timer
+HKR,Ndi\Params\latency_timer,                   ParamDesc,  0, %latency_timer%
+HKR,Ndi\Params\latency_timer,                   Type,       0, "enum"
+HKR,Ndi\Params\latency_timer,                   Default,    0, "1"
+HKR,Ndi\Params\latency_timer\Enum,              "1",        0, %biosdefault%
+HKR,Ndi\Params\latency_timer\Enum,              "248",      0, "248"
+HKR,Ndi\Params\latency_timer\Enum,              "224",      0, "224"
+HKR,Ndi\Params\latency_timer\Enum,              "192",      0, "192"
+HKR,Ndi\Params\latency_timer\Enum,              "160",      0, "160"
+HKR,Ndi\Params\latency_timer\Enum,              "128",      0, "128"
+HKR,Ndi\Params\latency_timer\Enum,              "96",       0, " 96"
+HKR,Ndi\Params\latency_timer\Enum,              "64",       0, " 64"
+HKR,Ndi\Params\latency_timer\Enum,              "32",       0, " 32"
+
+; Maximum read byte count
+HKR,Ndi\Params\max_read_byte_cnt,         ParamDesc,  0, %max_read_byte_cnt_settings%
+HKR,Ndi\Params\max_read_byte_cnt,         Type,       0, "enum"
+HKR,Ndi\Params\max_read_byte_cnt,         Default,    0, "4"
+HKR,Ndi\Params\max_read_byte_cnt\Enum,    "4",        0, %biosdefault%
+HKR,Ndi\Params\max_read_byte_cnt\Enum,    "3",        0, %4k%
+HKR,Ndi\Params\max_read_byte_cnt\Enum,    "2",        0, %2k%
+HKR,Ndi\Params\max_read_byte_cnt\Enum,    "1",        0, %1k%
+HKR,Ndi\Params\max_read_byte_cnt\Enum,    "0",        0, %512b%
+
+; Maximum Split Trans
+HKR,Ndi\Params\max_split_trans,         ParamDesc,  0, %max_split_trans_settings%
+HKR,Ndi\Params\max_split_trans,         Type,       0, "enum"
+HKR,Ndi\Params\max_split_trans,         Default,    0, "8"
+HKR,Ndi\Params\max_split_trans\Enum,    "8",        0, %biosdefault%
+HKR,Ndi\Params\max_split_trans\Enum,    "7",        0, %32splits%
+HKR,Ndi\Params\max_split_trans\Enum,    "6",        0, %16splits%
+HKR,Ndi\Params\max_split_trans\Enum,    "5",        0, %12splits%
+HKR,Ndi\Params\max_split_trans\Enum,    "4",        0, %8splits%
+HKR,Ndi\Params\max_split_trans\Enum,    "3",        0, %4splits%
+HKR,Ndi\Params\max_split_trans\Enum,    "2",        0, %3splits%
+HKR,Ndi\Params\max_split_trans\Enum,    "1",        0, %2splits%
+HKR,Ndi\Params\max_split_trans\Enum,    "0",        0, %1splits%
+
+
+;*******************************************************************************
+[DestinationDirs]
+DefaultDestDir   = 12
+CopyFile.XpSys32 = 12
+
+[CopyFile.XpSys32]
+xfrmi86.sys,,,2
+
+[SourceDisksNames] 
+1000 = %DISK_DESC%
+  
+[SourceDisksFiles] 
+xfrmi86.sys=1000
+
+;*******************************************************************************
+[Strings]
+NETERION            = "Neterion Inc."
+NETERION_INC        = "Neterion Inc."
+DISK_DESC           = "Xframe Installation Media"
+Hercules            = "Xframe II 10GbE Server/Storage Adapter"
+MSFT                = "Microsoft"
+
+*JumboPacket = "Jumbo Packet"
+*FlowControl = "Flow Control"
+*TransmitBuffers = "Transmit Buffers"
+*ReceiveBuffers = "Receive Buffers"
+*IPChecksumOffloadIPv4 = "IPv4 Checksum Offload"
+*TCPChecksumOffloadIPv4 = "TCP Checksum Offload (IPv4)"
+*TCPChecksumOffloadIPv6 = "TCP Checksum Offload (IPv6)"
+*LSOv1IPv4 = "Large Send Offload (IPv4)"
+*UDPChecksumOffloadIPv4 = "UDP Checksum Offload (IPv4)"
+*UDPChecksumOffloadIPv6 = "UDP Checksum Offload (IPv6)"
+*PriorityVLANTag = "Priority & VLAN"
+*RSS = "Receive Side Scaling"
+*InterruptModeration = "Interrupt Moderation"
+
+Disabled = "Disabled"
+Enabled = "Enabled"
+Tx Enabled = "Tx Enabled"
+Rx Enabled = "Rx Enabled"
+Rx & Tx Enabled = "Rx & Tx Enabled"
+Priority & VLAN Disabled = "Priority & VLAN Disabled"
+Priority Enabled = "Priority Enabled"
+VLAN Enabled = "VLAN Enabled"
+Priority & VLAN Enabled = "Priority & VLAN Enabled"
+
+
+IEEE_802_3 = "Ndis_Encap_Ieee_802_3" 
+LLC_SNAP_ROUTED = "Ndis_Encap_llc_snap_routed"
+Both = "Both"
+LRO = "Large Receive Offload"
+offload_encapsulation = "Offload Encapsulation"
+
+max_read_byte_cnt_settings = "Max Read Byte Count"
+biosdefault             = "Use BIOS Default Settings"
+4k                      = "4096"
+2k                      = "2048"
+1k                      = "1024"
+512b                    = " 512"
+
+max_split_trans_settings = "Max Split Transaction"
+32splits                 = "32 splits"
+16splits                 = "16 splits"
+12splits                 = "12 splits"
+8splits                  = " 8 splits"
+4splits                  = " 4 splits"
+3splits                  = " 3 splits"
+2splits                  = " 2 splits"
+1splits                  = " 1 splits"
+
+latency_timer           = "Latency Timer"
+

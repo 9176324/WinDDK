@@ -1,0 +1,7 @@
+EvtIoStopCancel
+BufAfterReqCompletedIntIoctlA
+Cleanup4CtlDeviceRegistered
+InitFreeDeviceCreateType2
+NonFDONotPowerPolicyOwnerAPI
+MemAfterReqCompletedWriteA
+ReqIsCancOnCancReq

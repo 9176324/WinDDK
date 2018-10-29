@@ -1,0 +1,50 @@
+!include ..\sources.inc
+
+TARGETNAME=wifiusb
+TARGETTYPE=DRIVER
+
+PRECOMPILED_INCLUDE=precomp.h
+
+KMDF_VERSION_MAJOR=1
+
+INCLUDES= $(INCLUDES) ;\
+    ..;                \
+    ..\inc;                              \
+    $(DDK_INC_PATH)
+
+SOURCES=$(SOURCES)          \
+    ..\mp_evnts.c           \
+    ..\mp_dbg.c              \
+    ..\mp_main.c             \
+    ..\mp_oids.c             \
+   ..\mp_recv.c             \
+   ..\mp_send.c             \
+    ..\mp_elem.c          \
+    ..\mp_power.c            \
+    ..\mp_util.c             \
+    ..\mp_cntl.c        \
+    st_main.c               \
+    st_misc.c               \
+    st_aplst.c             \
+    st_recv.c               \
+    st_oids.c               \
+    st_conn.c            \
+    st_auth.c               \
+    st_assoc.c              \
+    st_adhoc.c              \
+    st_send.c               \
+    st_scan.c               
+
+INF_NAME=netwfusb
+
+NTTARGETFILES=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+MISCFILES=$(NTTARGETFILES)
+        
+
+TARGETLIBS=\
+    $(DDK_LIB_PATH)\ndis.lib       \
+    $(DDK_LIB_PATH)\ntstrsafe.lib  \
+    $(OBJ_PATH)\..\hw\$(O)\hwextsta.lib \
+    ..\lib\*\rtlpriv.lib
+

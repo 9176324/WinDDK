@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Idx value="38733625713728"/>
+<tune:DVB OriginalNetworkID="9018" TransportStreamID="24576" ServiceID="25664">
+    <tune:TuningSpace xsi:type="tune:DVBTuningSpaceType" Name="DVB-T" SystemType="Terrestrial" NetworkType="{216C62DF-6D7F-4e9a-8571-05F14EDB766A}"/>
+    <tune:Locator xsi:type="tune:DVBTLocatorType" Frequency="482000" ModulationType="Uninitialized" InnerFECMethod="RS_204_188" InnerFECRate="2_3" OuterFECMethod="Uninitialized" OuterFECRate="Uninitialized" SymbolRate="-1" Bandwidth="-1" LPInnerFECMethod="Uninitialized" LPInnerFECRate="Uninitialized" HierarchyAlpha="Uninitialized" GuardInterval="Uninitialized" TransmissionMode="Uninitialized" OtherFrequencyInUse="false"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:DVB>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="The HITS" name="The HITS" matchname="The HITS" callSign="The HITS" affiliation="BBC" ppv="true" subscribed ="true" codec="MPEG2" channel="1">
+</ps:Service>
+
+<Idx value="36369816748546"/>
+<tune:DVB OriginalNetworkID="8468" TransportStreamID="514" ServiceID="514">
+    <tune:TuningSpace xsi:type="tune:DVBTuningSpaceType" Name="DVB-T" SystemType="Terrestrial" NetworkType="{216C62DF-6D7F-4e9a-8571-05F14EDB766A}"/>
+    <tune:Locator xsi:type="tune:DVBTLocatorType" Frequency="554000" ModulationType="Uninitialized" InnerFECMethod="RS_204_188" InnerFECRate="2_3" OuterFECMethod="Uninitialized" OuterFECRate="Uninitialized" SymbolRate="-1" Bandwidth="-1" LPInnerFECMethod="Uninitialized" LPInnerFECRate="Uninitialized" HierarchyAlpha="Uninitialized" GuardInterval="Uninitialized" TransmissionMode="Uninitialized" OtherFrequencyInUse="false"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:DVB>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="ZDF" name="ZDF" callSign="ZDF" matchname="ZDF" affiliation="ZDF" ppv="true" subscribed ="true" codec="MPEG2" channel="2">
+</ps:Service>
+
+<Idx value="36369816748549"/>
+<tune:DVB OriginalNetworkID="8468" TransportStreamID="514" ServiceID="517">
+    <tune:TuningSpace xsi:type="tune:DVBTuningSpaceType" Name="DVB-T" SystemType="Terrestrial" NetworkType="{216C62DF-6D7F-4e9a-8571-05F14EDB766A}"/>
+    <tune:Locator xsi:type="tune:DVBTLocatorType" Frequency="554000" ModulationType="Uninitialized" InnerFECMethod="RS_204_188" InnerFECRate="2_3" OuterFECMethod="Uninitialized" OuterFECRate="Uninitialized" SymbolRate="-1" Bandwidth="-1" LPInnerFECMethod="Uninitialized" LPInnerFECRate="Uninitialized" HierarchyAlpha="Uninitialized" GuardInterval="Uninitialized" TransmissionMode="Uninitialized" OtherFrequencyInUse="false"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:DVB>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="Doku/Kika" name="Doku/KiKa" callSign="Kika" matchname="Doku/KiKa" affiliation="Kika" ppv="false" subscribed ="true" codec="MPEG2" channel="3">
+</ps:Service>
+
+<Idx value="36369816748547"/>
+<tune:DVB OriginalNetworkID="8468" TransportStreamID="514" ServiceID="515">
+    <tune:TuningSpace xsi:type="tune:DVBTuningSpaceType" Name="DVB-T" SystemType="Terrestrial" NetworkType="{216C62DF-6D7F-4e9a-8571-05F14EDB766A}"/>
+    <tune:Locator xsi:type="tune:DVBTLocatorType" Frequency="554000" ModulationType="Uninitialized" InnerFECMethod="RS_204_188" InnerFECRate="2_3" OuterFECMethod="Uninitialized" OuterFECRate="Uninitialized" SymbolRate="-1" Bandwidth="-1" LPInnerFECMethod="Uninitialized" LPInnerFECRate="Uninitialized" HierarchyAlpha="Uninitialized" GuardInterval="Uninitialized" TransmissionMode="Uninitialized" OtherFrequencyInUse="false"/>
+    <tune:Components xsi:type="tune:ComponentsType"/>
+</tune:DVB>
+<ps:Service xmlns:ps="http://schemas.microsoft.com/2006/eHome/MediaCenter/PBDAService.xsd" id="3sat" name="3Sat" callSign="3Sat" matchname="3Sat" affiliation="3sat" ppv="false" subscribed ="true" codec="MPEG2" channel="44">
+</ps:Service>
+

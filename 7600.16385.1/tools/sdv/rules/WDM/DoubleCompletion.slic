@@ -1,0 +1,30 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that IoCompleteRequest routine is not
+	called twice in a row.
+*/
+
+#include "ntddk_slic.h"
+
+state {
+    int completion_called = 0;
+} with guard(sdv_main,sdv_irp) 
+
+
+[RemoveHeadList,sdv_containing_record].entry
+{
+    halt;
+}
+
+
+IoCompleteRequest.entry[guard $1]
+{
+    if (completion_called) {
+        abort "The driver is calling IoCompleteRequest twice.";
+    } else {
+        completion_called = 1;
+    }
+}

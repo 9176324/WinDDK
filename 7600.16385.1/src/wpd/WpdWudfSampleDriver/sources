@@ -1,0 +1,58 @@
+TARGETNAME=WpdWudfSampleDriver
+TARGETTYPE=DYNLINK
+DLLENTRY   = _DllMainCRTStartup
+
+
+UMDF_VERSION_MAJOR=1
+UMDF_VERSION_MINOR=9
+
+# The KMDF version numbers are required by stampinf
+KMDF_VERSION_MAJOR=1
+KMDF_MINOR_VERSION=9
+
+USE_MSVCRT   = 1
+UMTYPE       = windows
+USE_ATL      = 1
+ATL_VER      = 70
+UNICODE      = 1
+MSC_WARNING_LEVEL= /W4 /WX
+USE_NATIVE_EH= 1
+
+INCLUDES= $(INCLUDES);                          \
+          $(DDK_INC_PATH);                      \
+          $(SDK_INC_PATH);                      \
+
+SOURCES=\
+    WpdWudfSampleDriver.rc                      \
+    WpdWudfSampleDriver.idl                     \
+    WpdWudfSampleDriver.cpp                     \
+    Driver.cpp                                  \
+    Device.cpp                                  \
+    Queue.cpp                                   \
+    WpdBaseDriver.cpp                           \
+    WpdObjectEnum.cpp                           \
+    WpdObjectManagement.cpp                     \
+    WpdObjectProperties.cpp                     \
+    WpdObjectResources.cpp                      \
+    WpdCapabilities.cpp                         \
+    WpdObjectPropertiesBulk.cpp                 \
+    WpdStorage.cpp                              \
+    WpdNetworkConfig.cpp                        \
+    Helpers.cpp                                 \
+
+TARGETLIBS=\
+        $(SDK_LIB_PATH)\strsafe.lib             \
+        $(SDK_LIB_PATH)\kernel32.lib            \
+        $(SDK_LIB_PATH)\ole32.lib               \
+        $(SDK_LIB_PATH)\oleaut32.lib            \
+        $(SDK_LIB_PATH)\uuid.lib                \
+        $(SDK_LIB_PATH)\user32.lib              \
+        $(SDK_LIB_PATH)\advapi32.lib            \
+        $(SDK_LIB_PATH)\shlwapi.lib             \
+        $(SDK_LIB_PATH)\PortableDeviceGuids.lib \
+
+PRECOMPILED_CXX     = 1
+PRECOMPILED_INCLUDE = Stdafx.h
+
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(TARGETNAME).inf
+

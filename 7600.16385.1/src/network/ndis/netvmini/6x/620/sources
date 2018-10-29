@@ -1,0 +1,17 @@
+TARGETNAME=netvmini620
+
+C_DEFINES=$(C_DEFINES) -DNDIS620_MINIPORT=1
+MINIMUM_NT_TARGET_VERSION=_NT_TARGET_VERSION_WIN7
+
+!include ..\sources.inc
+
+
+SOURCES=$(SOURCES)                                               \
+    ..\vmq.c 							 \
+    netvmini620.rc                                               \
+
+
+PASS2_BINPLACE=\
+    -:DEST  ndis\netvmini      $(OBJ_PATH)\$O\netvmini620.sys    \
+    -:DEST  ndis\netvmini      netvmini620.inf                   \
+

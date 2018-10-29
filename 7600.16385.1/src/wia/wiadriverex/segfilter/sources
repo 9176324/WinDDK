@@ -1,0 +1,35 @@
+TARGETNAME=segfilter
+TARGETTYPE=DYNLINK
+UMTYPE=windows
+DLLENTRY=_DllMainCRTStartup
+NO_NTDLL=1
+DLLDEF=DLLExports.def
+USE_MSVCRT=1
+UNICODE=1
+
+C_DEFINES       = $(C_DEFINES) -DUNICODE -D_UNICODE
+
+INCLUDES= $(INCLUDES);                  \
+          $(SDK_INC_PATH);              \
+          $(DDK_INC_PATH)                   
+
+
+SOURCES=                 \
+    segmentation.cpp     \
+    wiaitem.cpp          \
+
+TARGETLIBS=$(TARGETLIBS)                   \
+           $(SDK_LIB_PATH)\wiaguid.lib     \
+           $(SDK_LIB_PATH)\ADVAPI32.lib    \
+           $(SDK_LIB_PATH)\KERNEL32.lib    \
+           $(SDK_LIB_PATH)\user32.lib      \
+           $(SDK_LIB_PATH)\oleaut32.lib    \
+           $(SDK_LIB_PATH)\ole32.lib       \
+           $(SDK_LIB_PATH)\uuid.lib        \
+
+MUI = 0
+MUI_COMMENT = TEMP_DISABLE, DDK sample
+
+
+
+

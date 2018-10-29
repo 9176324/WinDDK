@@ -1,0 +1,30 @@
+TARGETNAME=mux
+TARGETTYPE=DRIVER
+
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER -DNDIS_WDM=1
+
+#
+# The driver is built in the XP or .NET build environment
+# So let us build NDIS 5.1 version.
+#
+C_DEFINES=$(C_DEFINES) -DNDIS51_MINIPORT=1
+C_DEFINES=$(C_DEFINES) -DNDIS51=1
+C_DEFINES=$(C_DEFINES) -DIEEE_VLAN_SUPPORT=1
+
+MSC_WARNING_LEVEL=/WX /W4
+
+PRECOMPILED_INCLUDE=precomp.h
+
+TARGETLIBS=$(DDK_LIB_PATH)\ndis.lib
+
+INCLUDES=
+
+SOURCES=\
+    miniport.c \
+    mux.c \
+    mux.rc \
+    protocol.c
+
+
+
+

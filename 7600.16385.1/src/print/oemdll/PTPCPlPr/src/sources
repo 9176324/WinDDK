@@ -1,0 +1,40 @@
+TARGETNAME=PTPCPLPR
+
+TARGETTYPE=DYNLINK
+
+USE_OBJECT_ROOT=1
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+DLLENTRY=_DllMainCRTStartup
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.hxx
+
+USE_LIBCMT=1
+
+# To build version with debug output, add -DDBG to C_DEFINES line below
+# The PLUGIN_PRINTTICKET define below is necessary for code using the Print Ticket interfaces
+
+C_DEFINES=$(C_DEFINES) -DUSERMODE_DRIVER -D_UNICODE -DUNICODE -DPLUGIN_PRINTTICKET
+
+TARGETLIBS=    $(SDK_LIB_PATH)\kernel32.lib   \
+               $(SDK_LIB_PATH)\user32.lib     \
+               $(SDK_LIB_PATH)\winspool.lib   \
+               $(SDK_LIB_PATH)\ole32.lib      \
+               $(SDK_LIB_PATH)\oleaut32.lib   \
+               $(SDK_LIB_PATH)\advapi32.lib   \
+               $(SDK_LIB_PATH)\msxml6.lib     \
+               $(SDK_LIB_PATH)\uuid.lib       \
+
+SOURCES=dllentry.cxx       \
+        globals.cxx        \
+        intrface.cxx       \
+        oemptprovider.cxx  \
+        printschema.cxx    \
+        xmlhandler.cxx     \
+        PTPCPlPr.rc        \
+
+!IF "$(BUILD_PASS)" == "PASS2" || "$(BUILD_PASS)" == "PASSALL"
+NTTARGETFILES=COPYDLL
+!ENDIF

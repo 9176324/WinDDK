@@ -1,0 +1,41 @@
+TARGETNAME=wacompen
+TARGETTYPE=DRIVER
+DRIVERTYPE=WDM
+
+!undef USE_MSVCRT
+
+TARGET_DESTINATION=retail
+
+LOC_DRIVER_INFS= \
+    hiddigi.inf \
+
+MUI_DEV=1
+
+MSC_WARNING_LEVEL=/W3 
+
+
+TARGETLIBS= $(DDK_LIB_PATH)\HidClass.lib
+
+!IFDEF DDKBUILDENV
+C_DEFINES=$(C_DEFINES) -DDDK_BUILD
+!ENDIF
+
+INCLUDES=   $(INCLUDES) \
+            $(DDK_INC_PATH); \
+            ..\hidpen; \
+            ..\util;
+
+DIR_SOURCES=wacompen.c  \
+            wacompen.rc \
+            errcodes.mc
+
+STB_SOURCES=hidpen.c    \
+            pnp.c       \
+            ioctl.c     \
+            serial.c    \
+            oempen.c    \
+            errlog.c
+
+
+SOURCES=    $(DIR_SOURCES) $(STB_SOURCES)
+

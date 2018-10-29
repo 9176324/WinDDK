@@ -1,0 +1,24 @@
+#############################################################################
+#
+#       Copyright (C) Microsoft Corporation. All Rights Reserved.
+#
+#       Sources for BDA sample generic tuner
+#
+##########################################################################
+
+!include ..\sources.inc
+
+TARGETNAME=SWTDVBS # Set driver's name
+C_DEFINES=$(C_DEFINES) -DDVBS_RECEIVER
+
+INF_NAME=$(TARGETNAME)
+NO_PDB_PATHS=1
+
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+BUILD_PASS2_PRODUCES=multimedia_dshow_filters_ks_sampeles_mergeddevice_bdadvbstuner
+
+
+
+        
+

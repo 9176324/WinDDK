@@ -1,0 +1,22 @@
+TARGETNAME=msmpu401
+TARGETTYPE=DRIVER
+
+TARGETLIBS= \
+        $(DDK_LIB_PATH)\portcls.lib\
+# Uncomment to use the stdunk.lib from the DDK lib directory.
+# stdunk.lib not included in Win2000 DDK so this sample relies
+# on the generated lib.
+#        $(DDK_LIB_PATH)\stdunk.lib\
+        $(OBJ_PATH)\..\stdunk\$(O)\stdunk.lib\
+        $(SDK_LIB_PATH)\libcntpr.lib
+
+INCLUDES=
+
+MSC_WARNING_LEVEL=-W4 -WX
+
+C_DEFINES=-D_WIN32 -DUNICODE -D_UNICODE -DUNDER_NT -DDEBUG_LEVEL=DEBUGLVL_TERSE
+
+SOURCES=\
+        adapter.cpp     \
+        mpu401.rc
+

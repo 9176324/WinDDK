@@ -1,0 +1,40 @@
+TARGETNAME=netvmini
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(DDK_LIB_PATH)\ndis.lib
+
+MSC_WARNING_LEVEL=/WX /W4
+
+# System and NDIS wrapper definitions.
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER=1
+C_DEFINES=$(C_DEFINES) -DNDIS_WDM=1 -DIOCTL_INTERFACE
+
+!if !defined(DDK_TARGET_OS) || "$(DDK_TARGET_OS)"=="Win2K"
+#
+# The driver is built in the Win2K build environment
+#
+C_DEFINES=$(C_DEFINES) -DNDIS50_MINIPORT=1 
+!else 
+#
+# The driver is built in the XP or .NET build environment
+# So let us build NDIS 5.1 version.
+#
+C_DEFINES=$(C_DEFINES) -DNDIS51_MINIPORT=1 
+!endif
+
+#pragma warning( disable: 4201 ) // nonstandard extension used : nameless struct/union
+#pragma warning( disable: 4214 ) // nonstandard extension used : bit field types other than int
+MSC_WARNING_LEVEL=$(MSC_WARNING_LEVEL) /wd4201 /wd4214
+
+
+SOURCES = \
+	miniport.c \
+	init.c \
+	request.c \
+	sendrcv.c \
+        ioctl.c \
+	netvmini.rc 
+PASS2_BINPLACE=\
+    -:DEST  ndis\netvmini      $(OBJ_PATH)\$O\netvmini.sys     \
+    -:DEST  ndis\netvmini      ..\netvmini.inf
+

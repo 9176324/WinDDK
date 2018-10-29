@@ -1,0 +1,60 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that dispatch routine calls
+	ObReferenceObject on pointers returned on a TargetRelation PnP
+	IRP.
+*/
+
+#include "ntddk_slic.h"
+
+state {
+    int ref = 0;
+    int passed_on = 0;
+    int in_pnp = 0;
+} with guard(sdv_main,sdv_irp)
+
+[ObReferenceObject
+,ObReferenceObjectByHandle
+,ObReferenceObjectByPointer
+].entry
+{
+    ref = 1;
+}
+
+IoCallDriver.entry [guard $2]
+{
+    passed_on = 1;
+}
+
+
+
+sdv_RunDispatchFunction.entry [guard $2]
+{
+   passed_on = 0;
+   ref = 0;
+}
+
+fun_IRP_MJ_PNP.entry [guard $2]
+{
+    in_pnp = 1;
+}
+
+
+sdv_RunDispatchFunction.exit [guard $2]
+{
+    if (  in_pnp==1
+       && $2->STACKL->MajorFunction==IRP_MJ_PNP
+       && $2->STACKL->MinorFunction==IRP_MN_QUERY_DEVICE_RELATIONS
+       && $2->STACKL->Parameters.QueryDeviceRelations.Type==TargetDeviceRelation
+       && NT_SUCCESS($return) 
+       && !passed_on
+       && !ref
+       && sdv_start_info != sdv_end_info
+       && sdv_end_info != NULL
+       ) {
+        abort "The driver has not called ObReferenceObject on the PDO that its returning.";
+    }
+}

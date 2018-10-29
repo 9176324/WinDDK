@@ -1,0 +1,60 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule verifies that drivers use KeLowerIrql to restore the
+	original IRQL raised by a preceding call to KeRaiseIrql or
+	KeRaiseIrqlToDpcLevel.
+*/
+
+
+#include "ntddk_slic.h"
+
+/*
+
+Calls to KeRaiseIrql/KeRaiseIrqlToDpcLevel and KeLowerIrql must follow
+a stack protocol (See general discussion of the SDV OS Model IRQL
+Stack in the SDV OS Model).
+
+Notice: The stack in the SDV OS Model is bounded to 3 levels in depth.
+The variable CheckDepth is therefore used to disable the check
+whenever a deeper stack would be needed for correct analysis.
+
+*/
+
+
+/* Count the number of raises in RaiseDepth and the actual number of
+pending checks in CheckDepth: */
+state {
+    int RaiseDepth = 0;
+    int CheckDepth = 0;
+}
+
+/* Increase RaiseDepth.  Increase CheckDepth, but not to exceed 3:
+*/
+[KeRaiseIrql,KeRaiseIrqlToDpcLevel].entry
+{
+    if (CheckDepth == 3) {
+        RaiseDepth = RaiseDepth + 1;
+    } else {
+	CheckDepth = CheckDepth + 1;
+	RaiseDepth = RaiseDepth + 1;
+    } 
+}
+
+/* If CheckDepth != 0: Check IRQL level.  Additionally, decrease
+RaiseDepth and CheckDepth: */
+KeLowerIrql.entry 
+{
+     if (CheckDepth != 0) {
+	if ($1 == sdv_irql_previous) {
+		CheckDepth = CheckDepth - 1;
+	  	RaiseDepth = RaiseDepth - 1;
+	} else {
+        	abort "The driver must only use $fname to restore the original IRQL raised by a preceding call to KeRaiseIrql or KeRaiseIrqlToDpcLevel.";
+	} 
+    } else {
+        RaiseDepth = RaiseDepth - 1;
+    }
+}

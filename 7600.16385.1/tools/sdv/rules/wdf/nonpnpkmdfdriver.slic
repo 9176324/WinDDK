@@ -1,0 +1,16 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	This property is satisfied if this is a PNP driver.
+*/
+
+
+#include "ntddk_slic.h"
+
+[fun_WDF_DRIVER_DEVICE_ADD].entry
+{
+	abort "This property is satisfied as this is a PNP driver.";
+}
+
+        

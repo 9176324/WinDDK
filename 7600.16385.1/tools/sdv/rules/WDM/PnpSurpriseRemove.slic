@@ -1,0 +1,52 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule verifies that a driver does not detach or delete on
+	IRP_MN_SURPRISE_REMOVAL.
+*/
+
+#include "ntddk_slic.h"
+
+state {
+    int surprise = 0;
+    int detached = 0;
+    int past_setup = 0;
+}
+
+
+
+sdv_stub_driver_init.entry
+{
+    past_setup = 1;
+}
+
+fun_IRP_MJ_PNP.entry
+{
+    if (  $2->STACKL->MajorFunction==IRP_MJ_PNP
+       && $2->STACKL->MinorFunction==IRP_MN_SURPRISE_REMOVAL
+       ) {
+        surprise = 1;
+    } else {
+        surprise = 0;
+    }
+}
+
+
+
+
+[IoDeleteDevice,IoDetachDevice].entry 
+{
+    if(surprise && past_setup) {
+        abort "Driver should not call $fname on device objects while processing a surprise remove irp";
+    }
+}
+
+
+
+
+fun_IRP_MJ_PNP.exit
+{
+    surprise = 0;
+}

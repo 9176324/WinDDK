@@ -1,0 +1,33 @@
+TARGETNAME=AMCC5933
+TARGETTYPE=DRIVER
+
+KMDF_VERSION_MAJOR=1
+
+TARGETLIBS=$(TARGETLIBS) \
+           $(DDK_LIB_PATH)\ntstrsafe.lib
+
+
+INF_NAME=amcc5933
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+PASS0_BINPLACE=$(NTTARGETFILE0)
+
+INCLUDES = ..\inc
+
+SOURCES=Amcc5933.c \
+        S5933DK1.c\
+        driver.c \
+        Transfer.c
+
+#
+# Generate WPP tracing code
+#
+RUN_WPP= $(SOURCES)                                     \
+         -km                                            \
+         -func:TraceEvents(LEVEL,FLAGS,MSG,...)         \
+         -gen:{km-WdfDefault.tpl}*.tmh
+         
+TARGET_DESTINATION=wdf
+
+# Temporarily excuse usage of serviceability impairing macros in code...
+ALLOW_DATE_TIME=1
+

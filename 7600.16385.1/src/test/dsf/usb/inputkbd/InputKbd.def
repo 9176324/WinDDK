@@ -1,0 +1,22 @@
+; BUILD Version: 0000    
+;
+;Copyright (c) Microsoft Corporation. All rights reserved.
+;
+;Module Name:
+;
+;    InputKbd.def
+;
+;Abstract:
+;    Declares the module exports
+; 
+;Revision History:
+
+
+LIBRARY      "InputKbd.DLL"
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE
+

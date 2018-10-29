@@ -1,0 +1,172 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+	
+  Summary: This rule verifies that locally created requests are not accessed after they are completed or cancelled.
+	
+	Description:
+	This rule verifies that locally created requests are not accessed after they are completed or cancelled.
+	This rule may have overlaps with other rules such as rules that check 
+	for double completion, double marking cancelable, etc.
+	
+	Rule diagnostics:
+	A Request is considered invalid if it is Completed, Marked Cancelable, or Canceled once sent.
+	Once invalid, the request cannot be passed to WdfRequestXxx except WdfRequestUnmarkCancelable if it was 
+	previously marked cancelable.
+	Summary: Checks that locally created requests are not accessed once invalid. 
+
+*/
+
+#include "ntddk_slic.h"
+#define FALSE 0
+
+state{
+	enum {VALID, INVALID} req=VALID;
+	enum {NOTCANCELABLE, CANCELABLE} reqStatus=NOTCANCELABLE;
+} 
+
+watch sdv_WdfRequestCreate.exit.(*$3);
+
+
+
+sdv_WdfObjectDelere.entry[guard $1]
+{
+    if (req==VALID)
+    {
+	req=INVALID;
+    }
+    else
+    {
+	abort "$fname cannot be called on a Request that is invalid (previously completed / marked cancelable?).";
+    }
+}
+	 
+/*
+Note:
+
+WDF_REQUEST_SEND_OPTION_SYNCHRONOUS = 0x0000002
+ 
+Let's consider the ST' part first:
+		Differnet possibilities:
+		Synchronous:   
+		0010			
+		0011			
+		0110		
+		0111			
+		1010			
+		1011		
+		1110		
+		1111		
+
+		We ignore all 1xxx other than 1000
+		Synchronous:
+		0010		=2	
+		0011		=3		
+		0110		=6
+		0111		=7
+*/
+sdv_WdfRequestSend.exit[guard $1]
+{
+    if (req==VALID)
+    {
+        if($return!=FALSE)
+        {
+                
+            if($3==NULL)
+            {
+                req=INVALID;	
+            }
+            else if (!($3->Flags==2 ||
+    	               $3->Flags==3 ||
+    		       $3->Flags==6 ||
+    		       $3->Flags==7 ))	
+    	    {
+     	         req=INVALID;		
+    	    }
+         }
+     }
+     else
+     {
+	abort "$fname called on Request that is invalid (previously completed / marked cancelable?)";
+     }
+}
+	 
+sdv_WdfRequestCancelSentRequest.exit[guard $1]
+{
+    if($return)
+    {
+        req=INVALID;
+    }
+}
+	 
+sdv_WdfRequestMarkCancelable.entry[guard $1]
+{
+    if (req==INVALID)
+    {
+        abort "$fname cannot be called on a Request that is invalid (previously completed / marked cancelable?).";
+    }
+    else
+    {
+	reqStatus=CANCELABLE;
+	req=INVALID;
+    }
+}
+
+sdv_WdfRequestUnmarkCancelable.exit[guard $1]
+{
+    if(NT_SUCCESS($return))
+    {
+        if(reqStatus==CANCELABLE)
+        {
+	    if (req==INVALID)
+	    {
+	        req=VALID;
+	        reqStatus=NOTCANCELABLE;
+	    }
+        }
+    }
+}	
+
+sdv_WdfRequestReuse.exit[guard $1]
+{
+    if(NT_SUCCESS($return))
+    {
+        req=VALID;
+        reqStatus=NOTCANCELABLE;
+    }
+}
+	
+[sdv_WdfRequestChangeTarget,
+sdv_WdfRequestFormatRequestUsingCurrentType,
+sdv_WdfRequestWdmFormatUsingStackLocation,
+sdv_WdfRequestIsFrom32BitProcess,
+sdv_WdfRequestSetCompletionRoutine,
+sdv_WdfRequestGetCompletionParams,
+sdv_WdfRequestAllocateTimer,
+sdv_WdfRequestGetParameters,
+sdv_WdfRequestRetrieveInputMemory,
+sdv_WdfRequestRetrieveOutputMemory,
+sdv_WdfRequestRetrieveInputBuffer,
+sdv_WdfRequestRetrieveOutputBuffer,
+sdv_WdfRequestRetrieveInputWdmMdl,
+sdv_WdfRequestRetrieveOutputWdmMdl,
+sdv_WdfRequestRetrieveUnsafeUserInputBuffer,
+sdv_WdfRequestRetrieveUnsafeUserOutputBuffer,
+sdv_WdfRequestSetInformation,
+sdv_WdfRequestGetInformation,
+sdv_WdfRequestGetFileObject,
+sdv_WdfRequestProbeAndLockUserBufferForRead,
+sdv_WdfRequestProbeAndLockUserBufferForWrite,
+sdv_WdfRequestGetRequestorMode,
+sdv_WdfRequestForwardToIoQueue,
+sdv_WdfRequestGetIoQueue,
+sdv_WdfRequestRequeue,
+sdv_WdfRequestWdmGetIrp].entry[guard $1]
+{
+    if (req==INVALID)
+    {
+        abort "$fname cannot be called on a Request that is invalid (previously completed / marked cancelable?).";
+    }
+}
+       
+
+

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
+  <Product UpgradeCode="F5580CCF-1C72-4D97-B3DA-2B0940F242C2" Name="ClassFilter" Id="3CD9D9C8-AE23-4503-A665-FB5DF9442685" Version="1.0.0" Manufacturer="Microsoft" Language="1033">
+    <Package Id="5967DA19-BBED-4AE8-AF9C-EE10822B0872" Manufacturer="Microsoft" InstallerVersion="200" Platforms="Intel" Languages="1033" Compressed="yes" SummaryCodepage="1252" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Component Id="C__70708CBF27634C5FB5295CDE6954A1BB" Guid="953D30C9-5CCC-D5AE-3AF3-6CF9823200B0" DriverForceInstall="no" DriverSequence="0">
+        <File Id="_70708CBF27634C5FB5295CDE6954A1BB" Name="CLASSA~1.INF" LongName="ClassAFilterDriver.inf" Vital="yes" KeyPath="yes" DiskId="1" />
+        <File Id="_2E5DB546B0644D4392D99D9F62196ECE" Name="CLASSF~1.CAT" LongName="ClassFilter.cat" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="_CE45DF0B5E8E4BF2B21AC5C758ED7C48" Name="CLSUPR.SYS" LongName="clsupr.sys" Vital="yes" KeyPath="no" DiskId="1" />
+      </Component>
+      <Directory Id="ProgramMenuFolder" Name="." SourceName="USER'S~1" LongSource="User's Programs Menu" />
+      <Directory Id="DesktopFolder" Name="." SourceName="USER'S~2" LongSource="User's Desktop" />
+    </Directory>
+    <Feature Id="DefaultFeature" Level="1" ConfigurableDirectory="TARGETDIR">
+      <ComponentRef Id="C__70708CBF27634C5FB5295CDE6954A1BB" />
+    </Feature>
+    <Media Id="1" EmbedCab="yes" Cabinet="_B11DD4EF5BA81CAE51C79EAEC243BD7C" />
+  </Product>
+</Wix>

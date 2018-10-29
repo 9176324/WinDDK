@@ -1,0 +1,102 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule verifies that DDIs are only called at proper IRQL levels.
+*/
+
+#include "ntddk_slic.h"
+
+
+CmRegisterCallback.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+CmUnRegisterCallback.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExAllocateFromPagedLookasideList.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExAllocatePoolWithQuota.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExAllocatePoolWithQuotaTag.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExDeletePagedLookasideList.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExFreeToPagedLookasideList.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExInitializePagedLookasideList.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExRegisterCallback.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExSetTimerResolution.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ExUnregisterCallback.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ProbeForRead.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+
+ProbeForWrite.entry
+{
+    if ( sdv_irql_current != PASSIVE_LEVEL && sdv_irql_current != APC_LEVEL ) {
+        abort "$fname should only be called at IRQL <= APC_LEVEL.";
+    }
+}
+

@@ -1,0 +1,13 @@
+!include ..\..\sources.inc
+!include ..\sources.inc
+
+TARGETNAME=ath_hwpci
+TARGET_DESTINATION=$(OBJ_PATH)\..\lib\$(_OBJ_DIR)
+TARGETTYPE=LIBRARY
+PRECOMPILED_INCLUDE=precomp.h
+
+#
+# The Atheros HAL is a kernel mode export driver
+#
+C_DEFINES=$(C_DEFINES) -DEXPORT_DRIVER_HAL=1
+

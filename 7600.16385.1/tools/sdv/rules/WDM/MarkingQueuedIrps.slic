@@ -1,0 +1,69 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description: 
+
+	This rule verifies that driver correctly marks the IRP as
+	pending when it queues it for further processing.  Drivers
+	should call IoMarkIrpPending before the lock is released,
+	otherwise the IRP might get completed in an arbitrary thread
+	context before it is marked as pending.
+*/
+
+#include "ntddk_slic.h"
+
+state{
+    int locked = 0;
+    int queued = 0;
+    int queuedWithoutMarking = 0;
+    int markedPending = 0;    
+} with guard (sdv_main,sdv_irp)
+
+
+[RemoveHeadList,sdv_containing_record].entry
+{
+    halt;
+}
+
+[InsertHeadList
+,InsertTailList
+].entry{
+    queued = 1;
+}
+
+[KeInsertDeviceQueue
+,KeInsertQueueDpc
+,KeInsertByKeyDeviceQueue
+].exit
+{
+    if ($return)
+        queued = 1;
+}
+
+[KeAcquireSpinLock
+,KeAcquireInStackQueuedSpinLock
+].entry
+{
+    locked = 1;
+}
+
+[KeReleaseSpinLock
+,KeReleaseInStackQueuedSpinLock
+].entry
+{
+    if (locked && queued && !markedPending) {
+        queuedWithoutMarking = 1;
+    }
+}
+
+IoMarkIrpPending.entry[guard $1]
+{
+    markedPending = 1;       
+}
+
+sdv_RunDispatchFunction.exit
+{
+    if ($return == STATUS_PENDING && queuedWithoutMarking) {
+        abort "Driver has queued the IRP without marking it as pending inside the locked state."; 
+    }    
+}

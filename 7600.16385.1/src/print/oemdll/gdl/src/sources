@@ -1,0 +1,50 @@
+#
+# THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+# ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+# PARTICULAR PURPOSE.
+#
+# Copyright  1997 - 2005  Microsoft Corporation.  All Rights Reserved.
+#
+
+TARGETNAME=GDLSMPL
+TARGETTYPE=DYNLINK
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+DLLENTRY=_DllMainCRTStartup
+DLLBASE=0x50000000
+
+INCLUDES=$(INCLUDES);  \
+
+USE_LIBCMT=1
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.h
+
+#
+# To build version with debug output, add -DDEBUG to C_DEFINES line below
+# Add -DPLUGIN_PRINTTICKET to implement the PrintTicket provider
+# interface for plug-ins
+#
+C_DEFINES=$(C_DEFINES) -DUSERMODE_DRIVER -D_UNICODE -DUNICODE 
+
+TARGETLIBS=    $(TARGETLIBS)    \
+               $(SDK_LIB_PATH)\gdi32.lib \
+               $(SDK_LIB_PATH)\kernel32.lib   \
+               $(SDK_LIB_PATH)\user32.lib     \
+               $(SDK_LIB_PATH)\winspool.lib   \
+               $(SDK_LIB_PATH)\ole32.lib      \
+               $(SDK_LIB_PATH)\oleaut32.lib \
+               $(SDK_LIB_PATH)\advapi32.lib   \
+               $(SDK_LIB_PATH)\uuid.lib    \
+               $(SDK_LIB_PATH)\msxml6.lib    \
+
+SOURCES= intrface.cpp    \
+         gdlsmpl.cpp \
+         devmode.cpp    \
+         gdlsmpl.rc    \
+
+!IF "$(BUILD_PASS)" == "PASS2" || "$(BUILD_PASS)" == "PASSALL"
+NTTARGETFILES=COPYDLL
+!ENDIF

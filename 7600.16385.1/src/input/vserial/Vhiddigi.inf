@@ -1,0 +1,130 @@
+; HidDigi.INF
+; Copyright (c) 2000,2002 Microsoft Corporation
+
+[version]
+signature="$WINDOWS NT$"
+Class=HIDClass
+ClassGuid={745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider=%MS%
+DriverVer=05/11/2005,6.0.5066.0
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[DestinationDirs]
+DefaultDestDir              =11     ;LDID_SYS
+WacomPenInst.Copy        =12     ;LDID_DRIVERS
+
+[SourceDisksNames]
+99=%diskname%,,, 
+
+[SourceDisksFiles]
+wacompen.sys    =99
+vserial.sys    =99
+
+; Drivers
+;----------------------------------------------------------
+[Manufacturer]
+%Wacom%=Wacom,NTx86,NTamd64,NTia64
+
+
+[Wacom]
+%ACPI\WACF010.DeviceDesc%   =WacomPenInst,ACPI\MSVS010
+
+[WacomPenInst]
+CopyFiles                   =WacomPenInst.Copy
+
+[WacomPenInst.NTamd64]
+CopyFiles                   =WacomPenInst.Copy
+
+[WacomPenInst.NTia64]
+CopyFiles                   =WacomPenInst.Copy
+
+[WacomPenInst.Copy]
+wacompen.sys
+vserial.sys
+
+[WacomPenInst.HW]
+AddReg                      =SerialInst.HW.AddReg
+
+[WacomPenInst.Services]
+AddService                  =WacomPen,0x00000002,WacomPenServiceInst,WacomEventLogInst
+AddService                  =vSerial,,SerialServiceInst, SerialEventLogInst
+
+[WacomEventLogInst]
+AddReg                      =WacomEventLogAddReg
+
+[WacomEventLogAddReg]
+HKR,,EventMessageFile,0x00020000,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\wacompen.sys"
+HKR,,TypesSupported,0x00010001,7
+
+; -------------- Wacom Pen Driver install section
+[WacomPenServiceInst]
+DisplayName    = %WacomPen.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ;
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\wacompen.sys
+LoadOrderGroup = Extended Base
+
+[SerialInst.HW.AddReg]
+HKR,,"LowerFilters",0x00010000,"vserial"
+HKR,,"MultiportDevice",0x00010001,0
+HKR,,"SerialRelinquishPowerPolicy",0x00010001,1
+
+[SerialEventLogInst]
+AddReg         = SerialEventLogAddReg
+
+[SerialEventLogAddReg]
+HKR,,EventMessageFile,0x00020000,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\vserial.sys"
+HKR,,TypesSupported,0x00010001,7
+
+; -------------- Serial Port Driver install sections
+[SerialServiceInst]
+DisplayName    = %Serial.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 0               ; SERVICE_ERROR_IGNORE
+ServiceBinary  = %12%\vserial.sys
+LoadOrderGroup = Extended base
+
+
+
+;================================================================
+;--- WDF Coinstaller installation ------
+;
+[DestinationDirs]
+vserial.Inst_CoInstaller_CopyFiles = 11
+
+[vserial.Inst.NT.CoInstallers]
+AddReg=vserial.Inst_CoInstaller_AddReg
+CopyFiles=vserial.Inst_CoInstaller_CopyFiles
+
+[vserial.Inst_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "wdfcoinstaller01009.dll,WdfCoInstaller"
+
+[vserial.Inst_CoInstaller_CopyFiles]
+wdfcoinstaller01009.dll
+
+[SourceDisksFiles]
+wdfcoinstaller01009.dll=99 ; make sure the number matches with SourceDisksNames
+
+[vserial.Inst.NT.Wdf]
+KmdfService = vserial, vserial_wdfsect
+[vserial_wdfsect]
+KmdfLibraryVersion = 1.9
+
+
+[Strings]
+;Non-localized strings
+MS="Microsoft"
+Wacom="Wacom Technology Corporation"
+ACPI\WACF010.DeviceDesc="Wacom vSerial Pen Tablet"
+WacomPen.SVCDESC="Wacom vSerial Pen HID Driver"
+Serial.SVCDESC="vSerial Port Driver"
+diskname = "WACOM Pen CD"
+
+
+;Localized strings
+
+

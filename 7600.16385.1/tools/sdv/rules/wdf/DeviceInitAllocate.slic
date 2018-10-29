@@ -1,0 +1,37 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	For a PDO device or a control device object, the framework device object 
+	initialization method WdfPdoInitAllocate or WdfControlDeviceInitAllocate must 
+    	be called before the driver calls WdfDeviceCreate.
+    
+ 	Description: 
+	For a PDO device or a control device object, the framework device object method that 
+	initializes the WDFDEVICE_INIT structure must be called before WdfDeviceCreate. 
+	The WdfDeviceCreate method has the WDFDEVICE_INIT structure as its first parameter.
+
+	Rule diagnostics:
+	"WdfControlDeviceInitAllocate or WdfPdoInitAllocate was not called before WdfDeviceCreate for the device."
+ 
+	Related rules: PdoDeviceInitAPI, ControlDeviceInitAPI, DeviceInitAPI.
+    
+	Note: 
+	If the driver creates both a PDO device and a control device object, and any (or both) of the calls to 	
+	WdfControlDeviceInitAllocate and WdfPdoInitAllocate are missing, the rule will report the defect 
+	for one of the WdfDeviceCreate calls (in fact, for the call that is earlier on the execution pass in the driver).
+	Examples of such drivers are: a filter driver that is a bus driver; a bus driver that has a control device object.
+
+*/  
+
+
+#include "ntddk_slic.h"
+
+sdv_WdfDeviceCreate.entry
+{
+      if ((*$1 != hpdo_deviceinit) && (*$1 != hcontrol_deviceinit) && (*$1 != hdevice_init)) {
+
+          abort "WdfControlDeviceInitAllocate or WdfPdoInitAllocate was not called before WdfDeviceCreate for the device.";
+      }
+}
+   

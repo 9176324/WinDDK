@@ -1,0 +1,32 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
+	Summary: This driver property is satisfied if this is a USB driver (WdfUsbTargetDeviceCreate is called within fun_WDF_DEVICE_PREPARE_HARDWARE). 
+
+	Description: If the driver calls the WdfUsbTargetDeviceCreate DDI in 
+	EvtDevicePrepareHardware, the driver is a USB driver.
+    
+	Rule diagnostics:
+	The rule finds a 'defect' if the driver is a USB driver, NA or pass otherwise.
+*/
+#include "ntddk_slic.h"
+
+state
+{
+}
+
+	
+select one
+{
+  case fun_WDF_DEVICE_PREPARE_HARDWARE:
+  
+    sdv_WdfUsbTargetDeviceCreate.entry
+    {
+	abort "This driver property is satisfied as this is a USB driver.";
+    }
+    fun_WDF_DEVICE_PREPARE_HARDWARE.exit
+    {
+       halt;
+    }
+} 

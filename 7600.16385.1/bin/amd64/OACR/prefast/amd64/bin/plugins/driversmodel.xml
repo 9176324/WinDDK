@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Models specific to drivers -->
+<Models>
+
+  <Function name="InterlockedCompareExchangePointer"> <!-- macro/intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+        <IsNullOk value="never"/>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+  <Function name="InterlockedExchangePointer"> <!-- macro/intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+        <IsNullOk value="never"/>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+
+  <Function name="_InterlockedAdd"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+  <Function name="_InterlockedCompareExchangePointer"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+  <Function name="_InterlockedExchangePointer"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+
+  <Function name="_InterlockedAnd8"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+  <Function name="_InterlockedOr8"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+  <Function name="_InterlockedXor8"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+
+  <Function name="_InterlockedAnd16"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+  <Function name="_InterlockedDecrement16"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+  <Function name="_InterlockedIncrement16"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+  <Function name="_InterlockedOr16"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+  <Function name="_InterlockedXor16"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+
+  <Function name="_InterlockedAdd64"> <!-- intrinsic -->
+    <External>
+      <ExternalID type="param" index="0"/>
+      <PreConditions>
+		<ForceMerge/>   <!-- only sometimes annotated -->
+		<interlocked/>
+      </PreConditions>
+    </External>
+  </Function>
+
+</Models>

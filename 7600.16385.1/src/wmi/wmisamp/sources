@@ -1,0 +1,30 @@
+TARGETNAME=WmiSamp
+TARGETTYPE=DRIVER
+
+
+
+KMDF_VERSION_MAJOR=1
+INF_NAME=WmiSamp
+
+NTTARGETFILE1=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+
+PASS1_BINPLACE=$(NTTARGETFILE1)
+
+
+
+#
+# List of source files to compile.
+#
+SOURCES=             \
+       WmiSamp.mof   \
+       WmiSamp.rc    \
+       WmiSamp.c     \
+    WmiHandler.c     \
+
+NTTARGETFILE0=\
+        $(OBJ_PATH)\$O\wmidata.h   \
+        $(OBJ_PATH)\$O\wmisamp.x   \
+        $(OBJ_PATH)\$O\wmisamp.vbs
+
+TARGET_DESTINATION=wdf
+

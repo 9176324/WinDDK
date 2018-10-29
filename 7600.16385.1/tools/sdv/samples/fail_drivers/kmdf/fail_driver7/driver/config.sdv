@@ -1,0 +1,6 @@
+BufAfterReqCompletedReadA
+MdlAfterReqCompletedReadA
+MemAfterReqCompletedWriteA
+MdlAfterReqCompletedWriteA
+BufAfterReqCompletedIoctl
+BufAfterReqCompletedIntIoctlA

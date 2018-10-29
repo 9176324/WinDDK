@@ -1,0 +1,20 @@
+TARGETNAME=VSerial
+TARGETTYPE=DRIVER
+!undef USE_MSVCRT
+
+TARGET_DESTINATION=retail
+
+KMDF_VERSION_MAJOR=1
+
+_NT_TARGET_VERSION =$(_NT_TARGET_VERSION_WINXP)
+
+INCLUDES=..\      
+
+SOURCES = \
+   Vserial.c \
+   utils.c \
+   vserial.rc \
+   
+
+
+

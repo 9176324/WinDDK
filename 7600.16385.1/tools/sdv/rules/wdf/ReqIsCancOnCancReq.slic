@@ -1,0 +1,51 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Summary: 
+	This rule verifies that the WdfReqIsCanceled method can only be called on a request 
+	that had not been marked as cancelable.
+
+  	Diagnostic message: 
+	"WdfRequestIsCanceled can only be called on a Request that has not been marked cancelable."
+
+	Related rules: ReqNotCanceledLocal.slic; together, these rules enforce 
+	the contract that WdfRequestIsCanceled *is not intended for I/O that 
+	“may never complete”*.
+
+
+*/
+
+
+#include "ntddk_slic.h"
+
+state{
+     enum {INIT, MARK} s = INIT;
+} with guard (sdv_main, hrequest)
+sdv_WdfRequestIsCanceled.entry[guard $1]
+{
+   if (s == MARK) 
+   {
+     abort "WdfRequestIsCanceled can only be called on a Request that has not been marked cancelable.";
+   }
+   else
+   {
+	   halt;
+   }
+}
+[sdv_WdfRequestComplete
+,sdv_WdfRequestCompleteWithInformation
+,sdv_WdfRequestCompleteWithPriorityBoost
+].entry[guard $1]
+{
+   halt;
+}
+sdv_WdfRequestMarkCancelable.entry[guard $1]
+{
+        s = MARK;     
+}
+sdv_WdfRequestUnmarkCancelable.exit[guard $1]
+{
+	halt;
+}
+
+

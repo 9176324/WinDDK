@@ -1,0 +1,32 @@
+C_DEFINES=-DUNICODE -D_UNICODE
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+USE_MSVCRT=1
+
+TARGETNAME=genprint
+TARGETTYPE=DYNLINK
+DLLDEF=winprint.def
+DLLORDER=winprint.prf
+DLLENTRY=_DllMainCRTStartup
+TARGETLIBS=$(SDK_LIB_PATH)\kernel32.lib \
+           $(SDK_LIB_PATH)\spoolss.lib  \
+           $(SDK_LIB_PATH)\user32.lib   \
+           $(SDK_LIB_PATH)\gdi32.lib    \
+           $(SDK_LIB_PATH)\advapi32.lib
+
+SOURCES=winprint.rc \
+        parsparm.cpp  \
+        support.cpp   \
+        winprint.cpp  \
+        emf.cpp     \
+        local.cpp     \
+        util.cpp      \
+        text.cpp      \
+        raw.cpp
+
+# Build with Vista libs but make sure sample can still run downlevel
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+WIN32_WINNT_VERSION =$(LATEST_WIN32_WINNT_VERSION)
+NTDDI_VERSION=$(LATEST_NTDDI_VERSION)
+

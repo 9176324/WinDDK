@@ -1,0 +1,37 @@
+TARGETNAME = GFXSwap
+TARGETTYPE = DYNLINK
+TARGETEXT  = DLL
+DLLENTRY   = _DllMainCRTStartup
+
+TARGETLIBS = $(SDK_LIB_PATH)\kernel32.lib   \
+             $(SDK_LIB_PATH)\gdi32.lib      \
+             $(SDK_LIB_PATH)\ole32.lib      \
+             $(SDK_LIB_PATH)\oleaut32.lib   \
+             $(SDK_LIB_PATH)\user32.lib     \
+             $(SDK_LIB_PATH)\uuid.lib       \
+             $(SDK_LIB_PATH)\advapi32.lib
+
+
+INCLUDES = ..\inc
+
+# This sample no longer builds for Vista since kernel mode GFX support was removed
+_NT_TARGET_VERSION = $(_NT_TARGET_VERSION_WINXP)
+NTDDI_VERSION       =0x05020100
+WIN32_WINNT_VERSION =0x0502
+
+USE_ATL = 1
+ATL_VER = 71
+USE_MSVCRT = 1
+
+MSC_WARNING_LEVEL = $(MSC_WARNING_LEVEL) -WX
+
+C_DEFINES = $(CFASTFLAGS) $(C_DEFINES) -DUNICODE -D_UNICODE
+
+UMTYPE = windows
+
+SOURCES = GFXProp.cpp     \
+               GFXProp.idl     \
+               GFXProp.rc      \
+               GFXProperty.cpp \
+               GFXPropPages.cpp
+

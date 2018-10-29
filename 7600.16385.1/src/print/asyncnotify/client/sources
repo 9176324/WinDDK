@@ -1,0 +1,33 @@
+UMTYPE=console
+UMENTRY=wmain
+
+TARGETNAME=ddkasyncnotify
+TARGETTYPE=PROGRAM
+
+USE_MSVCRT=1
+NO_NTDLL=1
+
+C_DEFINES=-DUNICODE -D_UNICODE
+
+SOURCES=client.cpp \
+	acallback.cpp \
+	notifydata.cpp \
+	resources.rc
+
+INCLUDES= \
+        .; \
+        $(DDK_INC_PATH); \
+        ..\common;\
+
+TARGETLIBS= \
+        $(SDK_LIB_PATH)\kernel32.lib   \
+        $(SDK_LIB_PATH)\user32.lib     \
+        $(SDK_LIB_PATH)\uuid.lib       \
+        $(SDK_LIB_PATH)\winspool.lib   \
+
+
+LINKER_STACKSIZE=-STACK:262144,32768
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.h
+

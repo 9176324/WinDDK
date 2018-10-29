@@ -1,0 +1,120 @@
+/*++BUILD Version 0000
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Module Name:
+
+    SoftUSBLoopback.idl
+
+Abstract:
+    Library definition for SoftUSBLoopback device
+
+--*/
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+
+[
+    uuid(E2A2A936-5E15-43BF-AAE8-109340CCD68F),
+    version(1.0),
+    helpstring("SoftUSBLoopback 1.0 Type Library")
+]
+library SoftUSBLoopbackLib
+{
+    importlib("stdole2.tlb");
+    importlib("dsfif.tlb");
+
+
+    [
+        object,
+        uuid(438CB71F-ED63-42A1-B839-1543ABDAC796),
+        oleautomation,
+        dual,
+        nonextensible,
+        helpstring("ILoopbackDevice Interface"),
+        pointer_default(unique)
+    ]
+    interface ILoopbackDevice : IDispatch
+    {
+        [
+            propget, 
+            id(1), 
+            helpstring("property DSFDevice")
+        ]
+        HRESULT DSFDevice([out, retval] DSFDevice** ppDSFDEevice);
+
+        [
+            id(2),
+            helpstring("Demonstrates how to use the queue method to read/write data")
+        ]
+        HRESULT _stdcall DoPolledLoopback([in] long LoopInterval);
+
+        [
+            id(3),
+            helpstring("Demonstrates how to use the eventing mechanism to read/write data")
+        ]
+        HRESULT _stdcall StartEventProcessing();
+
+        [
+            id(4),
+            helpstring("Starts event-driven simulation and returns immediately to caller.")
+        ]
+        HRESULT _stdcall StartAsyncEventProcessing();
+
+        [
+            id(5),
+            helpstring("Stops event-driven simulation started by a prior call to StartAsyncEventProcessing.")
+        ]
+        HRESULT _stdcall StopAsyncEventProcessing();
+
+        [
+            id(6),
+            helpstring("Check to see if there is any key strokes to be processed")
+        ]
+        HRESULT AreKeystrokesWaiting([out, retval] VARIANT_BOOL *pfvarKeysWaiting);
+
+        [
+            propput,
+            id(7),
+            helpstring("Gets the serial number property for the loopback device")
+        ]
+        HRESULT SerialNumber([in] BSTR bstrSerialNumber);
+
+        
+    };
+
+    [
+        uuid(8EA6471E-4F30-4EA6-88AF-67703A99917C),
+        nonextensible,
+        helpstring("Loopback device event interface."),
+
+    ]
+    dispinterface ILoopbackDeviceEvents
+    {
+        properties:
+        methods:
+        [
+            id(1),
+            helpstring("Detemine if the device should stop polling the endpoint for data")
+        ]
+        HRESULT _stdcall ContinueToPoll([out,retval] VARIANT_BOOL *pfvarConitnue);
+
+        [
+            id(2),
+            helpstring("Detemine if the device should stop the event processing")
+        ]
+        HRESULT _stdcall ContinueEventProcessing([out,retval] VARIANT_BOOL *pfvarConitnue);
+    }
+
+    [
+        uuid(8419B5D4-9DE5-468E-8273-533D49A94C31),
+        helpstring("LoopbackDevice Class")
+    ]
+    coclass LoopbackDevice
+    {
+        [default] interface ILoopbackDevice;
+        [default, source] dispinterface ILoopbackDeviceEvents;
+    };
+};
+

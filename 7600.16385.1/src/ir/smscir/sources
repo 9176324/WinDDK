@@ -1,0 +1,38 @@
+TARGETNAME=smscir
+TARGETTYPE=DRIVER
+
+MSC_WARNING_LEVEL=-W4 -WX
+
+KMDF_VERSION_MAJOR=1
+
+C_DEFINES=-DWIN9X_COMPAT_SPINLOCK
+
+#pragma warning( disable: 4201 ) // nonstandard extension used : nameless struct/union
+MSC_WARNING_LEVEL=$(MSC_WARNING_LEVEL) /wd4201
+
+
+#
+# Define controlling whether or 
+# not we're going to use WPP tracing
+#
+C_DEFINES = -DWPP_TRACING $(C_DEFINES)
+
+INF_NAME=smscir
+NTTARGETFILE0=$(OBJ_PATH)\$(O)\$(INF_NAME).inf
+PASS0_BINPLACE=$(NTTARGETFILE0)
+TARGET_DESTINATION=wdf
+
+SOURCES=smscir.c    \
+        pnp.c       \
+        isr.c       \
+        dpc.c       \
+        io.c        \
+        wake.c      \
+        runtables.c \
+        smscir.rc   \
+
+RUN_WPP=$(SOURCES)\
+        -km\
+        -func:SmscIrTracePrint(LEVEL,FLAGS,(MSG,...))\
+        -gen:{km-WdfDefault.tpl}*.tmh      
+

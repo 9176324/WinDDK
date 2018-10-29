@@ -1,0 +1,10 @@
+TARGETTYPE=DRIVER
+TARGETNAME=tracedrv
+
+INCLUDES= .
+SOURCES= \
+	tracedrv.c \
+	tracedrv.rc
+
+RUN_WPP= $(SOURCES) -km -func:DoTraceLevelMessage(LEVEL,FLAGS,MSG,...) -scan:tracedrv.h
+

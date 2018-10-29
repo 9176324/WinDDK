@@ -1,0 +1,66 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+    Summary:
+    Verify the correct usage of Spinlock DDIs.
+    
+    Description:
+    This rule verifies that calls to NdisAcquireSpinLock or NdisDprAcquireSpinLock  
+    are called only when the SpinLock is the "unlocked" state.  
+    This rule also checks that before exiting the miniport handler routine the 
+    spinlock has been release.
+    
+    Related Rule:
+    SpinLock
+	
+*/
+
+#include "ntddk_slic.h"
+
+state{
+   enum {initial,unlocked,locked} s = initial;
+}
+watch sdv_NdisDprAcquireSpinLock.exit.$1;
+
+[sdv_NdisAcquireSpinLock,sdv_NdisDprAcquireSpinLock].exit[guard $1]
+{  
+        if (s == locked) {
+            abort "The driver is calling $fname after already acquiring the spinlock.";
+        } else {
+            s = locked;
+        }
+}
+
+[sdv_NdisReleaseSpinLock,sdv_NdisDprReleaseSpinLock].entry[guard $1]
+{
+        s = unlocked;
+}
+
+[sdv_MINIPORT_RESET,
+sdv_MINIPORT_PAUSE,
+sdv_MINIPORT_RESTART,
+sdv_MINIPORT_SET_OPTIONS,
+sdv_MINIPORT_INITIALIZE,
+sdv_MINIPORT_ENABLE_INTERRUPT,
+sdv_MINIPORT_ALLOCATE_SHARED_MEM_COMPLETE,
+sdv_MINIPORT_UNLOAD,
+sdv_MINIPORT_INTERRUPT_DPC,
+sdv_MINIPORT_DEVICE_PNP_EVENT_NOTIFY,
+sdv_MINIPORT_OID_REQUEST,
+sdv_MINIPORT_CANCEL_SEND,
+sdv_MINIPORT_ISR,
+sdv_MINIPORT_CANCEL_OID_REQUEST,
+sdv_MINIPORT_SEND_NET_BUFFER_LISTS,
+sdv_MINIPORT_SHUTDOWN,
+sdv_MINIPORT_RETURN_NET_BUFFER_LISTS,
+sdv_MINIPORT_DISABLE_INTERRUPT,
+sdv_MINIPORT_HALT,
+sdv_MINIPORT_PROCESS_SG_LIST,
+sdv_MINIPORT_CHECK_FOR_HANG,
+sdv_NDIS_IO_WORKITEM_FUNCTION,
+sdv_NDIS_TIMER_FUNCTION].exit
+{
+        if (s == locked) {
+            abort "The dispatch routine has returned without releasing a spinlock.";
+        }
+}

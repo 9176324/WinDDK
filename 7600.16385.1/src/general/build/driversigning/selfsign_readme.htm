@@ -1,0 +1,1702 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+
+<title>Driver Package Signing for Vista Using Authenticode</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+h2
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+h3
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:2.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+h4
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:12.0pt;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:24.0pt;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	background:#E6E6E6;
+	font-size:10.0pt;
+	font-family:Arial;
+	color:blue;
+	font-weight:bold;}
+p.MsoList, li.MsoList, div.MsoList
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-size:10.0pt;
+	font-family:Arial;
+	color:black;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:24.0pt;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:Arial;
+	color:black;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:4.0pt;
+	margin-left:.25in;
+	font-size:10.0pt;
+	font-family:Arial;
+	color:black;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	color:black;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:Tahoma;}
+p.disclaimertext, li.disclaimertext, div.disclaimertext
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:Arial;
+	color:black;}
+p.disclaimerheader, li.disclaimerheader, div.disclaimerheader
+	{margin:0in;
+	margin-bottom:.0001pt;
+	page-break-before:always;
+	font-size:10.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+p.bodytextlink, li.bodytextlink, div.bodytextlink
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:4.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:Arial;
+	color:black;}
+p.procedure, li.procedure, div.procedure
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:9.0pt;
+	font-family:Arial;
+	color:navy;
+	font-weight:bold;}
+p.bulletlist, li.bulletlist, div.bulletlist
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:4.0pt;
+	margin-left:.5in;
+	text-indent:-.25in;
+	font-size:10.0pt;
+	font-family:Arial;
+	color:black;}
+p.bulletlist2, li.bulletlist2, div.bulletlist2
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:4.0pt;
+	margin-left:.5in;
+	text-indent:-.25in;
+	font-size:10.0pt;
+	font-family:Arial;
+	color:black;}
+p.tablehead, li.tablehead, div.tablehead
+	{margin-top:1.0pt;
+	margin-right:0in;
+	margin-bottom:1.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:Arial;
+	color:black;
+	font-weight:bold;}
+p.figcap, li.figcap, div.figcap
+	{margin-top:8.0pt;
+	margin-right:0in;
+	margin-bottom:12.0pt;
+	margin-left:0in;
+	font-size:9.0pt;
+	font-family:Arial;
+	color:black;
+	font-weight:bold;}
+p.dt, li.dt, div.dt
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:9.0pt;
+	margin-bottom:.0001pt;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:Arial;
+	color:black;
+	font-weight:bold;}
+p.dl, li.dl, div.dl
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:4.0pt;
+	margin-left:.25in;
+	font-size:10.0pt;
+	font-family:Arial;
+	color:black;}
+p.le, li.le, div.le
+	{margin:0in;
+	margin-bottom:.0001pt;
+	line-height:6.0pt;
+	font-size:6.0pt;
+	font-family:Arial;
+	color:fuchsia;}
+p.lb1, li.lb1, div.lb1
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	text-indent:-.25in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+p.char2, li.char2, div.char2
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:12.0pt;
+	font-size:12.0pt;
+	font-family:Verdana;}
+p.char, li.char, div.char
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:12.0pt;
+	font-size:12.0pt;
+	font-family:Verdana;}
+span.h2charchar
+	{font-family:Arial;
+	font-weight:bold;}
+span.italic
+	{font-style:italic;}
+span.bold
+	{font-weight:bold;}
+span.bodytextchar
+	{font-family:Arial;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<p class=MsoTitle>Driver Package Signing for Windows Vista Using Authenticode
+Tools During Driver Development and Testing</p>
+
+<p class=MsoToc1>Contents</p>
+
+<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc138233163">Changes to
+Driver Signing Requirements for Windows Vista<span style='color:windowtext;
+display:none;text-decoration:none'>. 3</span></a></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc138233164">Create a
+Test Certificate<span style='color:windowtext;display:none;text-decoration:
+none'>. 3</span></a></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc138233165">Obtain a
+Test Certificate<span style='color:windowtext;display:none;text-decoration:
+none'>. 4</span></a></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc138233166">Import the
+Test Certificate to a Test System<span style='color:windowtext;display:none;
+text-decoration:none'>... 4</span></a></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc138233167">Create a
+Catalog File<span style='color:windowtext;display:none;text-decoration:none'>.
+4</span></a></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc138233168">Sign a Driver
+Package with the Test Certificate<span style='color:windowtext;display:none;
+text-decoration:none'>. 5</span></a></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc138233169">Verify the
+Driver Signature<span style='color:windowtext;display:none;text-decoration:
+none'>. 5</span></a></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc138233170">Testing
+Kernel Mode Binaries<span style='color:windowtext;display:none;text-decoration:
+none'>. 5</span></a></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc138233171">Using
+Enterprise Certificate Authority for Internal Development<span
+style='color:windowtext;display:none;text-decoration:none'> 5</span></a></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Toc138233172">Installing an Enterprise
+Certificate Authority<span style='color:windowtext;display:none;text-decoration:
+none'>. 6</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Toc138233173">Creating Certificates for Internal
+Code Signing<span style='color:windowtext;display:none;text-decoration:none'>.
+7</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Toc138233174">Signing the Certificate for Use by
+Internal Developers<span style='color:windowtext;display:none;text-decoration:
+none'>. 10</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Toc138233175">Deploying Authenticode Digital
+Certificates in an Enterprise<span style='color:windowtext;display:none;
+text-decoration:none'>. 11</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc138233176">Resources<span
+style='color:windowtext;display:none;text-decoration:none'>. 13</span></a></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Toc138233177">Certificate Services - Enterprise
+Certificate Authority Server<span style='color:windowtext;display:none;
+text-decoration:none'> 13</span></a></span></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Toc138233178">MakeCert (makecert.exe)<span
+style='color:windowtext;display:none;text-decoration:none'> 14</span></a></span></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Toc138233179">Setupapi.log<span style='color:
+windowtext;display:none;text-decoration:none'>. 14</span></a></span></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Toc138233180">Inf2cat (inf2cat.exe)<span
+style='color:windowtext;display:none;text-decoration:none'> 14</span></a></span></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Toc138233181">SignTool (signtool.exe)<span
+style='color:windowtext;display:none;text-decoration:none'> 15</span></a></span></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Toc138233182">Certmgr (certmgr.exe)<span
+style='color:windowtext;display:none;text-decoration:none'> 15</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Toc138233183">References<span style='color:windowtext;
+display:none;text-decoration:none'>. 15</span></a></span></span></p>
+
+<p class=disclaimerheader>Disclaimer</p>
+
+<p class=disclaimertext>The information contained in this document represents
+the current view of Microsoft Corporation on the issues discussed as of the
+date of publication. Because Microsoft must respond to changing market
+conditions, it should not be interpreted to be a commitment on the part of
+Microsoft, and Microsoft cannot guarantee the accuracy of any information
+presented after the date of publication.</p>
+
+<p class=disclaimertext>&nbsp;</p>
+
+<p class=disclaimertext>This White Paper is for informational purposes only.
+MICROSOFT MAKES NO WARRANTIES, EXPRESS, IMPLIED OR STATUTORY, AS TO THE
+INFORMATION IN THIS DOCUMENT.</p>
+
+<p class=disclaimertext>&nbsp;</p>
+
+<p class=disclaimertext>Complying with all applicable copyright laws is the
+responsibility of the user. Without limiting the rights under copyright, no
+part of this document may be reproduced, stored in or introduced into a
+retrieval system, or transmitted in any form or by any means (electronic,
+mechanical, photocopying, recording, or otherwise), or for any purpose, without
+the express written permission of Microsoft Corporation. </p>
+
+<p class=disclaimertext>&nbsp;</p>
+
+<p class=disclaimertext>Microsoft may have patents, patent applications,
+trademarks, copyrights, or other intellectual property rights covering subject matter
+in this document. Except as expressly provided in any written license agreement
+from Microsoft, the furnishing of this document does not give you any license
+to these patents, trademarks, copyrights, or other intellectual property.</p>
+
+<p class=disclaimertext>&nbsp;</p>
+
+<p class=disclaimertext>Unless otherwise noted, the example companies,
+organizations, products, domain names, e-mail addresses, logos, people, places
+and events depicted herein are fictitious, and no association with any real
+company, organization, product, domain name, email address, logo, person, place
+or event is intended or should be inferred. </p>
+
+<p class=disclaimertext>&nbsp;</p>
+
+<p class=disclaimertext><a name=Copyright>&copy; 2003-2006 Microsoft
+Corporation. All rights reserved.</a></p>
+
+<p class=disclaimertext>&nbsp;</p>
+
+<p class=disclaimertext>Microsoft, Windows, and Windows NT are either
+registered trademarks or trademarks of Microsoft Corporation in the United
+States and/or other countries.</p>
+
+<p class=disclaimertext>&nbsp;</p>
+
+<p class=disclaimertext>The names of actual companies and products mentioned
+herein may be the trademarks of their respective owners.</p>
+
+<b><span style='font-size:14.0pt;font-family:Arial'><br clear=all
+style='page-break-before:always'>
+</span></b>
+
+<h1><a name="_Toc138233163">Changes to Driver Signing Requirements for Windows
+Vista</a></h1>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Microsoft
+Windows will display a dialog during installation of any driver that is not
+signed by a trusted publisher.&nbsp; Prior to Windows Vista, only Microsoft
+Windows certificates were trusted.&nbsp; With Windows Vista, third party
+certificates can also be trusted.&nbsp; Also, kernel mode drivers must be
+signed to load in the x64 platform of Windows Vista.&nbsp; </span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>These
+requirements create a need for driver signing during the driver development and
+testing process.&nbsp; During the development process, developers should sign
+driver packages by using test certificates that can be created by using
+Microsoft Authenticode tools.&nbsp; </span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Each
+developer will require his or her own test certificate, but after a test
+certificate is created, it can be used repeatedly to sign the drivers.
+Certificates and the code signing tools are platform-independent and
+OS-independent.&nbsp; A certificate created on one platform can be used to sign
+driver packages for any other platform.&nbsp; The test certificate must be
+imported to the certificate store of every system on which the driver will be
+installed.&nbsp; This document describes how to:</span></p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Arial'>1.</span><span style='font-size:
+7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Create_a_Test_Certificate">Create</a> or <a
+href="#_Obtain_a_Test_Certificate">obtain</a> a test certificate.</span></p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Arial'>2.</span><span style='font-size:
+7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Import_the_test_certificate_to_all_">Import a
+test certificate</a> to a test system.</span></p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Arial'>3.</span><span style='font-size:
+7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Create_a_Catalog_File">Create a catalog file</a>
+for the driver package.</span></p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Arial'>4.</span><span style='font-size:
+7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Sign_a_Driver_with_the_Test_Certifi">Sign a
+driver package with the test certificate</a>.</span></p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Arial'>5.</span><span style='font-size:
+7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style='font-size:10.0pt;
+font-family:Arial'><a href="#_Verify_the_Driver_Signature">Verify the driver
+signature</a>.</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>For
+Windows Vista, the Windows Driver Kit (WDK) has the following tools added to
+the build environments:</span></p>
+
+<p class=lb1><span style='font-size:10.0pt;font-family:Symbol'>&middot;</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-size:10.0pt;font-family:Arial'><a href="#_MakeCert_(makecert.exe)">MakeCert</a></span></p>
+
+<p class=lb1><span style='font-size:10.0pt;font-family:Symbol'>&middot;</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-size:10.0pt;font-family:Arial'><a href="#_INF2CAT">INF2CAT</a></span></p>
+
+<p class=lb1><span style='font-size:10.0pt;font-family:Symbol'>&middot;</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-size:10.0pt;font-family:Arial'><a href="#_SignTool">SignTool</a></span></p>
+
+<p class=lb1><span style='font-family:Symbol'>&middot;</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-size:10.0pt;font-family:Arial'><a href="#_Certmgr">Certmgr</a></span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>These tools
+can be found in the ..\bin\selfsign folder and can be used at the command
+prompt.&nbsp; The following sections explain how to use these tools in more
+detail.</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<h1><a name="_Toc138233164"></a><a name="_Create_a_Test_Certificate"></a>Create
+a Test Certificate</h1>
+
+</div>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>All of the
+programs that you need to create a certificate and sign a driver have been
+added to the WDK build environments.&nbsp; You can run any of these programs at
+the build environment command prompt.</span></p>
+
+<p class=bodytextlink>The MakeCert utility creates an X.509 certificate that is
+signed by the test root key or by other specified key. This certificate binds
+your certification name to the public part of the key pair. The certificate is
+saved to a file, a system certificate store, or both. The syntax for this tool
+is as follows:</p>
+
+<p class=MsoBodyTextIndent style='margin-bottom:12.0pt'><span class=bold>Makecert</span>
+[<span class=bold>basic options</span> | <span class=bold>extended options</span>]
+<span class=italic>OutputFile</span></p>
+
+<p class=MsoBodyText><span class=italic><span style='font-size:10.0pt;
+font-family:Arial'>OutputFile</span></span><span style='font-size:10.0pt;
+font-family:Arial'> is a placeholder for the name of the file where the
+certificate will be written. This variable can be omitted if you do not want
+the certificate to be written to a file.</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>For more
+information about using MakeCert, see <a href="#_MakeCert">MakeCert</a> in the
+Resources section of this article.</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>To create
+a certificate, run the following command:</span></p>
+
+<p class=MsoBodyText style='margin-left:.5in'><b><span style='font-size:10.0pt;
+font-family:Arial'>Makecert -r -pe -ss </span></b><i><span style='font-size:
+10.0pt;font-family:Arial'>testcertstorename</span></i><b><span
+style='font-size:10.0pt;font-family:Arial'> </span></b><i><span
+style='font-size:10.0pt;font-family:Arial'>certfilename</span></i><b><span
+style='font-size:10.0pt;font-family:Arial'>.cer </span></b></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>You need
+to make only one certificate.&nbsp; You can use this one certificate to sign
+all drivers that are in the development and test phase of the driver
+cycle.&nbsp; </span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<h1><a name="_Toc138233165"></a><a name="_Obtain_a_Test_Certificate"></a>Obtain
+a Test Certificate</h1>
+
+</div>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Larger
+organizations may prefer to control the creation of certificates.&nbsp; Some
+organizations create an Enterprise Certificate Authority and use it to issue
+test certificates to developers.&nbsp; For more information about creating and
+using an Enterprise Certificate Authority for distribution of internal test
+certificate, see the <a href="#_Using_Enterprise_Certificate_Author">Using
+Enterprise Certificate Authority for Internal Development</a> section of this
+document.</span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<h1><a name="_Toc138233166"></a><a name="_Import_the_test_certificate_to_all_"></a>Import
+the Test Certificate to a Test System</h1>
+
+</div>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>All
+systems that you will use to test the development drivers must have the certificate
+added to the Trusted Root Certificate Authorities for that system.&nbsp; </span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>To make
+the certificate trusted, you must import it into your local system's
+certificate store. The Certificate Manager tool can be used at the command line
+to add certificates to the certificate store. In Windows Vista, you must run
+with administrator privileges to use the command. When you open your build
+environment window, right-click and select <b>run as administrator</b>.&nbsp; </span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>For more
+information about using Certmgr, see <a href="#_Certmgr">Certmgr</a> in the
+Resources section of this article.</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>To avoid
+dialog boxes during driver installation, the certificate must be in both the
+Trusted Root certificate store and the Trusted Publisher certificate store:</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>To add a
+certificate to your Trusted Root certificate store, use the following syntax: </span></p>
+
+<p class=MsoBodyText><b><span style='font-size:10.0pt;font-family:Arial'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+certmgr.exe -add </span></b><i><span style='font-size:10.0pt;font-family:Arial'>certfilename</span></i><b><span
+style='font-size:10.0pt;font-family:Arial'>.cer -s -r localMachine root</span></b><span
+style='font-size:10.0pt;font-family:Arial'> </span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>To add a
+certificate to your Trusted Publisher certificate store, use the following
+syntax: </span></p>
+
+<p class=MsoBodyText><b><span style='font-size:10.0pt;font-family:Arial'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+certmgr.exe -add </span></b><i><span style='font-size:10.0pt;font-family:Arial'>certfilename</span></i><b><span
+style='font-size:10.0pt;font-family:Arial'>.cer -s -r localMachine
+trustedpublisher</span></b></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<h1><a name="_Toc138233167"></a><a name="_Create_a_Catalog_File"></a>Create a
+Catalog File</h1>
+
+<p class=procedure>To create a catalog file for a driver package</p>
+
+</div>
+
+<p class=MsoList style='margin-left:.5in;page-break-after:avoid'>1.<span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Specify the name of the catalog file in the driver package&#8217;s INF
+file by placing a <span class=bold>CatalogFile</span><span class=italic>.Xxx </span>entry
+in the <span class=bold>Version</span> section, by using the following syntax:</p>
+
+<p class=MsoBodyTextIndent style='page-break-after:avoid'><span class=bold>CatalogFile</span>=<span
+class=italic>catalogname</span>.cat </p>
+
+<p class=MsoBodyTextIndent>where <span class=italic>catalogname</span> is the
+file name of the .cat file.</p>
+
+<p class=MsoList style='margin-left:.5in'>2.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Copy
+all driver package files to a single directory. </p>
+
+<p class=MsoList style='margin-left:.5in;page-break-after:avoid'>3.<span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Use the INF2CAT tool that is included in the WDK build environment
+to verify the driver package&#8217;s INF file and create the .cat file. The /<b>driver</b>
+ option in the following command line causes INF2CAT to
+check the INF file in the MyDriver directory and create a .cat file. The /<b>os</b>
+option causes this tool to check the INF file against Windows Vista (32-bit and
+64-bit editions), Windows Server&nbsp;2003 (32-bit and 64-bit editions), and Windows&nbsp;XP
+(32-bit and 64-bit editions).</p>
+
+<p class=MsoBodyTextIndent><b><span style='color:windowtext'>INF2CAT</span></b><span
+style='color:windowtext'> /<b>driver</b>:<i>c:\MyDriver</i>
+/<b>os</b>:XP_X86,XP_X64,Server2003_X86,Server2003_X64,Vista_x86,Vista_X64,Server2008_x86,Server2008_x64, Server2008_IA64</span></p>
+
+<p class=MsoBodyTextIndent>&nbsp;</p>
+
+<p class=MsoBodyTextIndent>For a description of the INF2CAT tool and its
+usage, see <a href="#_INF2CAT">INF2CAT</a> in the Resources section of
+this document.</p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<h1><a name="_Toc138233168"></a><a name="_Sign_a_Driver_with_the_Test_Certifi"></a><a
+name="_Sign_a_Driver"></a>Sign a Driver Package with the Test Certificate</h1>
+
+</div>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>You can
+use the SignTool tool to sign files and to verify file signatures for Windows
+Vista, Windows Server&nbsp;2003, Windows&nbsp;XP, and Windows 2000. For a
+description of the SignTool tool, see <a
+href="http://go.microsoft.com/fwlink/?LinkID=62661">http://go.microsoft.com/fwlink/?LinkID=62661</a></span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Use the
+following version of the SignTool command to sign the catalog file that is
+generated by the procedure described in Create a Catalog File:</span></p>
+
+<p class=MsoBodyText><b><span style='font-size:10.0pt;font-family:Arial'>signtool
+sign /s </span></b><i><span style='font-size:10.0pt;font-family:Arial'>testcertstorename
+cat file name</span></i></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<h1><a name="_Toc138233169"></a><a name="_Verify_the_Driver_Signature"></a>Verify
+the Driver Signature</h1>
+
+</div>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>You can
+verify that the driver will be recognized as a signed driver by issuing the
+following command:</span></p>
+
+<p class=MsoBodyText><b><span style='font-size:10.0pt;font-family:Arial'>signtool
+verify /pa /v </span></b><i><span style='font-size:10.0pt;font-family:Arial'>cat
+file name</span></i></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>To ensure
+that a driver is signed correctly, install the driver on a test system. <i>Setupapi.log</i>
+will log any signing issues that are found by the operating system during
+driver installation .</span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<h1><a name="_Toc138233170">Testing Kernel Mode Binaries</a></h1>
+
+</div>
+
+<p class=MsoBodyTextIndent style='margin-top:6.0pt;margin-right:0in;margin-bottom:
+4.0pt;margin-left:0in'>New for Windows Vista, all kernel mode binaries must be
+signed in order to load.&nbsp; During development, the test certificate you
+created and used to sign your driver package can be accepted by KMCS (Kernel
+Mode Code Signing).&nbsp; To enable test signing of the kernel mode binaries,
+use the Bcdedit command-line tool. To use Bcdedit, you must be a member of the
+Administrators group on the system and run the command from an elevated command
+prompt. To launch an elevated command prompt, create a desktop shortcut to
+cmd.exe, right-click on the shortcut and select <b>Run as</b>, select an
+administrator account from the dialog box that appears and click <b>OK</b>.&nbsp;&nbsp;
+</p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>The following
+is an example of running Bcdedit at the command prompt:</span></p>
+
+<p class=MsoPlainText style='margin-left:.25in'><span style='font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoPlainText style='margin-left:.25in'><span style='font-family:Arial;
+color:#993300'>// Accept test signed kernel mode signatures</span></p>
+
+<p class=MsoPlainText style='margin-left:.25in'><span style='font-family:Arial;
+color:#993300'>Bcdedit.exe &#8211;set TESTSIGNING ON </span></p>
+
+<p class=MsoPlainText style='margin-left:.25in'><span style='font-family:Arial;
+color:#993300'>&nbsp;</span></p>
+
+<p class=MsoPlainText style='margin-left:.25in'><span style='font-family:Arial;
+color:#993300'>// Do not accept test signed kernel mode signatures</span></p>
+
+<p class=MsoPlainText style='margin-left:.25in'><span style='font-family:Arial;
+color:#993300'>Bcdedit.exe &#8211;set TESTSIGNING OFF </span></p>
+
+<p class=MsoPlainText style='margin-left:.25in'><span style='font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>The
+TESTSIGNING boot configuration option determines whether Windows Vista accepts
+test signed kernel mode binaries.&nbsp; The option is not defined by default,
+which means that digital signatures on test signed kernel mode drivers will not
+verify and will not load.&nbsp; When Windows Vista accepts test signed kernel
+mode binaries, some premium content that is protected might not be accessible
+on the system.&nbsp; You will be able to determine if TESTSIGNING is turned on
+because you will see the word TESTMODE in the four corners of your Windows desktop.</span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<h1><a name=SetupCA></a><a name="_Toc138233171"></a><a name="_Toc102560103"></a><a
+name="_Using_Enterprise_Certificate_Author"></a>Using Enterprise Certificate
+Authority for Internal Development</h1>
+
+</div>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>To use
+Authenticode certification within your company for development and testing of
+driver packages, you must create an Enterprise Certificate Authority (CA).</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>An
+Enterprise CA is integrated with Active Directory and publishes certificates
+and certificate revocation lists to Active Directory. The Enterprise CA uses
+information that is stored in Active Directory, including user accounts and
+security groups, to approve or deny certificate requests. </span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>An
+Enterprise CA uses certificate templates. When a certificate is issued, the
+Enterprise CA uses information in the certificate template to generate a
+certificate with the appropriate attributes for that certificate type.</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>If you
+want to enable automated certificate approval and automatic user certificate
+enrollment, use Enterprise CAs to issue certificates, which requires the CA
+infrastructure to be integrated with Active Directory. </span></p>
+
+<p class=bodytextlink>The following sections summarize how to set up an Enterprise
+CA, create certificates, sign certificates, and verify signatures that internal
+development teams can use:</p>
+
+<p class=bulletlist><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><a href="#_Installing_an_Enterprise_Certificat">Installing an Enterprise
+Certificate Authority</a></p>
+
+<p class=bulletlist><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><a href="#_Creating_Certificates_for_Internal_">Creating Certificates
+for Internal Code Signing</a></p>
+
+<p class=bulletlist><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><a href="#_Signing_the_Certificate_for_Use_by_">Signing the Certificate
+for Use by Internal Developers</a></p>
+
+<p class=bulletlist><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><a href="#_Deploying_Authenticode_Digital_Cert">Deploying Authenticode
+Digital Certificates in an Enterprise</a></p>
+
+<p class=le><span style='font-size:10.0pt'>&nbsp;</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>When you
+use Authenticode digital signatures for internal use with an Enterprise CA, you
+create catalog files and sign driver packages for internal development by
+following the same basic processes that are described in <a
+href="#_Sign_a_Driver">Sign a Driver Package with the Test Certificate</a>
+section in this document.</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>For
+complete information about designing and deploying Enterprise CA servers and
+the related infrastructure, see the Windows Server 2003 Deployment Kit. You can
+find key links in the <a href="#_Resources">Resources </a>section at the end of
+this document.</span></p>
+
+<h2><a name="_Toc138233172"></a><a name="_Toc102560104"></a><a
+name="_Installing_an_Enterprise_Certificat"></a>Installing an Enterprise
+Certificate Authority</h2>
+
+<p class=bodytextlink>To create an Enterprise CA, you need a minimum of:</p>
+
+<p class=bulletlist><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>A Certificate Authority (CA) server with Windows 2003 Server Enterprise
+Edition or Datacenter Edition installed.</p>
+
+<p class=bulletlist><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>A Certificate Authority server that is joined to a domain in the Active
+Directory forest.</p>
+
+<p class=bulletlist><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>A Windows XP client system or a Windows Server 2003 system.</p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>In
+addition, each Domain/User who will be able to use the certificates must have
+an email account.</span></p>
+
+<p class=le><span style='font-size:10.0pt'>&nbsp;</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>The
+Certificate Authority can be a single stand-alone Certificate Authority or
+multi-tier Certificate Authority system. For information about setting up
+various types of Certificate Authority servers, see the <a href="#_Resources">Resources</a>
+section at the end of this document. </span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=procedure>To install Certificate Services on a Windows
+Server&nbsp;2003 system</p>
+
+</div>
+
+<p class=MsoList style='margin-left:.5in'>1.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+Control Panel, double-click <span class=bold>Add or Remove Programs</span> and
+click <span class=bold>Add/Remove Windows Components</span>.</p>
+
+<p class=MsoList style='margin-left:.5in'>2.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Select
+the <span class=bold>Certificate Services</span> check box.</p>
+
+<p class=MsoBodyTextIndent style='margin-left:.5in'>To run Certificate
+Services, you must have the following software components:</p>
+
+<p class=bulletlist2 style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Certificate Services</p>
+
+<p class=bulletlist2 style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Internet Explorer</p>
+
+<p class=bulletlist2 style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Internet Information Services (IIS), if Web enrollment is required </p>
+
+<p class=MsoBodyTextIndent style='margin-left:.5in'>For an auto-enrollment
+client, you do <span class=italic>not</span> have to support Certificate
+Services Web enrollment and Internet Information Services for Web enrollment.</p>
+
+<p class=MsoList style='margin-left:.5in'>3.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Select
+<span class=bold>Enterprise Root Certificate Authority </span>in the dialog box
+and click <span class=bold>Next</span>.</p>
+
+<p class=MsoList style='margin-left:.5in'>4.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Click
+<span class=bold>Microsoft Strong Cryptographic Provider</span>.</p>
+
+<p class=MsoList style='margin-left:.5in'>5.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Select
+the SHA-1 hash algorithm.</p>
+
+<p class=MsoList style='margin-left:.5in'>6.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Select
+<span class=bold>Key Length</span> (for example, 2048).</p>
+
+<p class=MsoList style='margin-left:.5in'>7.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Clear
+the <span class=bold>Allow this CSP to interact with the desktop</span> and <span
+class=bold>Use an existing key</span><span class=bold><span style='font-weight:
+normal'> check boxes</span></span>, and then click <span class=bold>Next</span>.</p>
+
+<p class=MsoList style='margin-left:.5in'>8.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Specify
+a name for this Certificate Authority, and select the other options as required
+or leave the default settings.</p>
+
+<h2><a name="_Toc138233173"></a><a name="_Toc102560105"></a><a
+name="_Creating_Certificates_for_Internal_"></a>Creating Certificates for
+Internal Code Signing</h2>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Certificate
+templates allow customization of certificates that are issued by Certificate
+Services. These templates are an important element of the certificate policy that
+defines the set of rules and formats for certificate enrollment, use, and
+management. Certificate templates also give instructions to the client on how
+to create and submit a valid certificate request.</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Although
+all issued certificates are based on a certificate template, certificate
+templates can be issued only by an Enterprise CA that runs on Windows
+Server&nbsp;2003, Enterprise Edition or Windows Server&nbsp;2003, Datacenter
+Edition. The templates are stored in Active Directory for use by every CA in
+the forest. This location allows the CA to always have access to the current
+standard template and ensures homogenous application of certificate policy
+across the forest.</span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=procedure>To create a certificate template for code signing</p>
+
+</div>
+
+<p class=MsoList style='margin-left:.5in'>1.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>On a
+Windows Server&nbsp;2003 computer, run Microsoft Management Console (MMC)
+(click <b>Start</b>, click <b>Run</b>, type <b>mmc</b>, and click <b>OK</b>). </p>
+
+<p class=MsoList style='margin-left:.5in'>2.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>On
+the <b>File</b> menu, click <span class=bold>Add/Remove Snap-in</span>, and
+then click <span class=bold>Add</span>.</p>
+
+<p class=MsoList style='margin-left:.5in'>3.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Click
+<span class=bold>Certificate Template</span>, click <span class=bold>Add</span>,
+and then close all of the dialog boxes.</p>
+
+<p class=MsoList style='margin-left:.5in'>4.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Follow
+the instructions for configuring the certificate templates as described in the <a
+href="http://go.microsoft.com/fwlink/?LinkId=69027">Certificate Autoenrollment
+in Windows Server 2003</a> article.</p>
+
+<p class=MsoList style='margin-left:.5in'>5.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Select
+<b>Certificate Templates</b> in the left pane of the MMC snap-in. </p>
+
+<p class=MsoList style='margin-left:.5in'>6.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Right-click
+the Code Signing template in the right pane of the MMC snap-in, and click <span
+class=bold>Duplicate Template</span> in the pop-up menu. </p>
+
+<p class=figcap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border=0
+width=462 height=321 src=image001.jpg></p>
+
+<p class=MsoList style='margin-left:.5in'>7.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+the <b>General</b> tab of the <b>Properties of New Template</b> dialog box:</p>
+
+<p class=bulletlist2 style='margin-left:.75in'>a.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+the <b>Template display name</b> box, type the template name.</p>
+
+<p class=bulletlist2 style='margin-left:.75in'>b.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Confirm
+the validity period for the certificate. </p>
+
+<p class=bulletlist2 style='margin-left:.75in'>c.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Select
+the <span class=bold>Publish certificate in Active Directory</span> check box.</p>
+
+<p class=MsoList style='margin-left:.5in'>8.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+the <span class=bold>Request Handling</span> tab:</p>
+
+<p class=bulletlist2 style='margin-left:.75in'>a.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+the <b>Purpose</b> list, select <b>Signature</b>. </p>
+
+<p class=bulletlist2 style='margin-left:.75in'>b.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+the <b>Minimum key size</b> list, select a minimum key size, for example, 2048.
+</p>
+
+<p class=bulletlist2 style='margin-left:.75in'>c.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Click
+<span class=bold>Enroll subject without requiring any user input</span>.</p>
+
+<p class=figcap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border=0
+width=462 height=319 src=image002.jpg></p>
+
+<p class=MsoList style='margin-left:.5in'>9.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+the <span class=bold>Subject Name</span> tab, select the <span class=bold>E-mail
+name</span> check box, and leave all of the other check boxes at their default
+settings.</p>
+
+<p class=figcap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border=0
+width=462 height=320 src=image003.jpg></p>
+
+<p class=MsoList style='margin-left:.5in'>10.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp; </span>In the <b>Security</b> tab,
+add the user to the list with Read, Enroll, and AutoEnroll permissions, and then
+click <b>OK</b>.</p>
+
+<p class=figcap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border=0
+width=462 height=323 src=image004.jpg></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=procedure>To issue a certificate template </p>
+
+</div>
+
+<p class=MsoList style='margin-left:.5in'>1.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+MMC, open the <b>Certification Authority</b> snap-in. </p>
+
+<p class=MsoList style='margin-left:.5in'>2.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Right-click
+<span class=bold>Certificate Templates</span>, point to <span class=bold>New</span><span
+class=bold><span style='font-weight:normal'> in the pop-up menu</span></span>,
+and then click <span class=bold>Certificate Template to Issue</span>. </p>
+
+<p class=MsoList>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border=0 width=462
+height=321 src=image005.jpg></p>
+
+<p class=MsoList style='margin-left:.5in'>3.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Select
+the certificate template that was created in the previous step, and then click <b>OK</b>.</p>
+
+<h2><a name="_Toc138233174"></a><a name="_Toc102560106"></a><a
+name="_Signing_the_Certificate_for_Use_by_"></a>Signing the Certificate for Use
+by Internal Developers</h2>
+
+<p class=bodytextlink>You can sign the certificate to be used for internal
+development with the CryptoAPI tool, SignTool. For more information about this
+tool, see <a href="#_SignTool_(signtool.exe)">SignTool</a> in the Resources
+section of this document.</p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=procedure>To sign the file with any available certificate in silent
+mode</p>
+
+</div>
+
+<p class=bulletlist><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Run SignTool with the following command:</p>
+
+<p class=MsoBodyTextIndent><span class=bold>signtool sign /s </span><span
+class=bold><i><span style='font-weight:normal'>testcertstorename</span></i> </span><span
+class=italic>filename</span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=procedure>To sign the file by using the Digital Signature Wizard</p>
+
+</div>
+
+<p class=MsoList style='margin-left:.5in'>1.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Run
+SignTool with the following command to start the Digital Signature Wizard:</p>
+
+<p class=MsoBodyTextIndent><span class=bold>signtool signwizard </span></p>
+
+<p class=MsoList style='margin-left:.5in'>2.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>On
+the opening screen, click <span class=bold>Next</span>. </p>
+
+<p class=MsoList style='margin-left:.5in'>3.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+the <b>File Selection</b> screen, specify the file to be signed, and then click
+<span class=bold>Next</span></p>
+
+<p class=MsoList style='margin-left:.5in'>4.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>On
+the <b>Signing Options</b> screen, select <span class=bold>Typical</span><span
+class=bold><span style='font-weight:normal'>,</span></span> and then click <span
+class=bold>Next</span>.</p>
+
+<p class=MsoList style='margin-left:.5in'>5.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>On
+the <b>Signature Certificate</b> screen, click <span class=bold>Select From
+Store</span> to view the code signing certificates that are available on the
+system, select the certificate you want in the <span class=bold>Use this
+certificate</span> box, and then click <span class=bold>Next</span>. </p>
+
+<p class=figcap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border=0
+width=462 height=349 src=image006.jpg></p>
+
+<p class=MsoList style='margin-left:.5in'>6.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Complete
+any option values, such as the description.</p>
+
+<p class=MsoList style='margin-left:.5in'>7.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Add
+a timestamp by using a TimeStamp service. For an example of a TimeStamp
+service, see http://timestamp.verisign.com/scripts/timestamp.dll. </p>
+
+<p class=MsoList style='margin-left:.5in'>8.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Click
+<span class=bold>Finish</span> to complete the signing.</p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=procedure>To create a certificate on a single client</p>
+
+</div>
+
+<p class=bulletlist><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Use the MakeCert tool with the following command:</p>
+
+<p class=MsoBodyTextIndent><span class=bold>Makecert -sk </span><span
+class=italic>myNewKey</span><span class=bold> -n &quot;CN=</span><span
+class=italic>MyName</span><span class=bold>&quot; -ss my</span></p>
+
+<p class=MsoBodyTextIndent><span class=bold><span style='font-weight:normal'>For
+more information about this tool, see <a href="#_MakeCert">MakeCert</a> in the
+Resources section of this document.</span></span></p>
+
+<p class=le>&nbsp;</p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=procedure>To verify a signature</p>
+
+</div>
+
+<p class=bulletlist><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Run SignTool by using the following <b>verify </b>command:</p>
+
+<p class=MsoBodyTextIndent style='margin-left:.5in'><span class=bold>signtool
+verify </span><span class=italic>filename</span></p>
+
+<p class=MsoBodyTextIndent style='margin-left:.5in'>For more information about
+this command, see <a href="#_SignTool">SignTool</a> in the Resources section of
+this document.</p>
+
+<p class=MsoBodyTextIndent>- Or<i> </i>-</p>
+
+<p class=MsoBodyTextIndent style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Wingdings'>&sect;</span><span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Run the File Signature Verification tool, <i>Sigverif.exe</i>, which is
+built into Windows&nbsp;2000 and later operating systems.</p>
+
+<p class=MsoBodyTextIndent style='margin-left:.5in'>For information about the
+File Signature Verification Tool, type <span class=bold>file signature
+verification</span> in the <b>Search</b> box in Windows Help and Support.</p>
+
+<p class=MsoBodyTextIndent>- <i>or</i> -</p>
+
+<p class=MsoBodyTextIndent style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Wingdings'>&sect;</span><span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Use SetupAPI to verify driver Authenticode signatures, as described in
+the WDK documentation.</p>
+
+<h2><a name="_Toc138233175"></a><a name="_Toc102560107"></a><a
+name="_Deploying_Authenticode_Digital_Cert"></a>Deploying Authenticode Digital
+Certificates in an Enterprise</h2>
+
+<p class=bodytextlink>To ensure the best experience for users of Windows, your
+company should install the Authenticode digital certificates that are used to
+sign driver packages in the <span class=italic>trusted publisher certificates
+store</span> on each machine in the workgroup or organizational unit that will
+run signed code. Typically, an administrator adds certificates to the
+certificate store using one of the following methods:</p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>At system setup time, either as part of corporate deployment or through
+OEM preinstall processes. </p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>After Windows Setup is complete by using Group Policy to distribute
+certificates to an organizational unit on a network.</p>
+
+<p class=le>&nbsp;</p>
+
+<p class=bodytextlink>Authenticode digital certificates can be installed in the
+following ways: </p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Add an Authenticode-signed driver package to the distribution source for
+the Windows operating system. In this situation, the publisher&#8217;s signing
+certificate is added automatically to the trusted publisher certificates store
+when the related driver package is installed during Windows GUI-mode Setup. </p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Add the certificates to a directory on a local system drive and specify
+the location of the directory by using a <span class=bold>TrustedPublisherCertificates</span>
+entry in the <span class=bold>Unattended</span> section of the <span
+class=italic>Unattend.txt</span> setup file. In this situation, the certificate
+is installed during GUI-mode Setup.</p>
+
+<p class=MsoBodyTextIndent style='margin-left:.75in'>For example, if the <span
+class=italic>Unattend.txt</span> file contains the following <span class=bold>TrustedPublisherCertificates</span>
+entry and the system drive is E, Setup installs the certificates in the E:<span
+class=italic><span style='font-style:normal'>\certs</span></span> directory in
+the trusted publisher certificates store: </p>
+
+<p class=MsoPlainText style='margin-left:.75in'><span style='font-family:Arial'>[Unattended]</span></p>
+
+<p class=MsoPlainText style='margin-left:.75in'><span style='font-family:Arial'>TrustedPublisherCertificates
+= certs</span></p>
+
+<p class=le style='margin-left:.5in'>&nbsp;</p>
+
+<p class=MsoBodyTextIndent style='margin-left:.75in'>After Setup installs a
+certificate, it deletes the certificate from the specified directory. If a file
+in the specified directory is not a valid certificate, Setup skips the file. If
+all of the certificates in the specified directory are successfully installed
+and the directory is empty, Setup deletes the specified directory.</p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Use a Group Policy to distribute certificates to an organizational unit
+on a network. In this situation, the administrator adds a Certificate Rule to a
+Group Policy to establish trust in a publisher. </p>
+
+<p class=MsoBodyTextIndent>Certificate Rules are part of the software
+restriction policies that Windows Server&nbsp;2003 and later versions support.
+For more information about software restriction policies and using Certificate
+Rules, see the information in the Windows Help and Support Center. In addition,
+you can find out more about these topics on <a
+href="http://go.microsoft.com/fwlink/?LinkID=10111">Microsoft TechNet</a>
+online.</p>
+
+<p class=le>&nbsp;</p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>For more
+information about security settings to support configuration of an Enterprise
+CA, see the <a href="http://go.microsoft.com/fwlink/?LinkId=69028">Default
+Permission Settings for an Enterprise Certificate Authority</a> document.</span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=procedure><a name="_Toc39634882"></a><a
+name="_How_Setup_Interacts_with_a_User_dur"></a>To distribute certificates
+through group policies</p>
+
+</div>
+
+<p class=MsoList style='margin-left:.5in'>1.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+MMC, on the <b>File</b> menu click <b>Add/Remove Snap-in</b>. </p>
+
+<p class=MsoList style='margin-left:.5in'>2.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Click
+<b>Active Directory Users and Computers</b>, and then click <b>OK</b>.</p>
+
+<p class=MsoList style='margin-left:.5in'>3.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Right-click
+the system name in the left pane, and click <b>Properties</b>. </p>
+
+<p class=MsoList style='margin-left:.5in'>4.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+the <b>Group Policy</b> tab of the <b>Properties</b> dialog box, select <b>Default<span
+class=bold> Domain Policy</span></b> and then click <span class=bold>Edit</span>.
+</p>
+
+<p class=figcap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border=0
+width=462 height=328 src=image007.jpg></p>
+
+<p class=MsoList style='margin-left:.5in'>5.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+the left-hand pane of the Group Policy Object Editor, select <span class=bold>User
+Configuration</span>. </p>
+
+<p class=MsoList style='margin-left:.5in'>6.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Click
+<span class=bold>Windows Settings</span>, click <span class=bold>Security
+Settings</span>, and then click <span class=bold>Public Key Policies</span>. </p>
+
+<p class=MsoList style='margin-left:.5in'>7.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Right-click
+<span class=bold>AutoEnrollment Settings</span> and select <span class=bold>Properties</span>
+in the pop-up menu. </p>
+
+<p class=MsoList>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border=0 width=462
+height=329 src=image008.jpg></p>
+
+<p class=MsoList style='margin-left:.5in'>8.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+the <b>Autoenrollment Settings Properties</b> dialog box, click <b>Enroll
+certificates automatically</b>, and then select the following check boxes:</p>
+
+<p class=bulletlist2 style='margin-left:.75in'><span class=bold><span
+style='font-family:Wingdings;font-weight:normal'>&sect;</span></span><span
+class=bold><span style='font-size:7.0pt;font-family:"Times New Roman";
+font-weight:normal'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Renew
+expired certificates, update pending certificates, and remove revoked certificates</span></p>
+
+<p class=bulletlist2 style='margin-left:.75in'><span class=bold><span
+style='font-family:Wingdings;font-weight:normal'>&sect;</span></span><span
+class=bold><span style='font-size:7.0pt;font-family:"Times New Roman";
+font-weight:normal'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Update
+certificates that use certificate templates</span></p>
+
+<p class=MsoList style='margin-left:.5in'>9.<span style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Click
+<b>OK</b> and close the dialog box.</p>
+
+<p class=MsoList>&nbsp;</p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>When this
+configuration is complete, the user will be issued the certificate the next
+time he or she logs on to the computer. After the certificate is issued to the
+user, that computer is capable of signing the files.</span></p>
+
+<p class=bodytextlink>A&nbsp;forced update will autoenroll the user to get or
+update the new certificate. For autoenrollment, note that you can:</p>
+
+<p class=bulletlist2 style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Enroll a subject without requiring any user input.</p>
+
+<p class=bulletlist2 style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Give the user Read, Enroll, and Autoenroll permissions.</p>
+
+<p class=bulletlist2 style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Check any e-mail requirements for the user for autoenrollment.</p>
+
+<p class=le>&nbsp;</p>
+
+<p class=bodytextlink>Another method for forced updates to Group Policy is to
+run the <span class=bold>gpupdate /force</span><span class=bold><span
+style='font-weight:normal'> </span></span>command.</p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<h1><a name="_Toc138233176"></a><a name="_Toc102560109"></a><a name="_Resources"></a>Resources</h1>
+
+</div>
+
+<h3><a name="_Toc138233177"></a><a name="_Toc102560111"></a><a
+name="_Certificate_Services_-"></a>Certificate Services - Enterprise
+Certificate Authority Server</h3>
+
+<p class=bodytextlink>Enterprise Certificate Authority Server is a service that
+runs on a Windows Server operating system. It receives requests for new digital
+certificates over transports such as RPC or HTTP. It checks each request
+against custom or site-specific policies, sets optional properties for a
+certificate to be issued, and issues the certificate. </p>
+
+<p class=bodytextlink>Documentation: </p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Designing and Deploying Directory and Security Services&#8221; of the
+Microsoft Windows Server&nbsp;2003 Deployment&nbsp;Kit<br>
+<a href="http://go.microsoft.com/fwlink/?LinkId=69029">http://go.microsoft.com/fwlink/?LinkId=69029</a></p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Certificate Services<br>
+<a href="http://go.microsoft.com/fwlink/?LinkId=51498">http://go.microsoft.com/fwlink/?LinkId=51498</a></p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Best Practices for Implementing a Microsoft Windows Server 2003 Public
+Key Infrastructure<br>
+<a href="http://go.microsoft.com/fwlink/?LinkId=17800">http://go.microsoft.com/fwlink/?LinkId=17800</a></p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Default Permission Settings for an Enterprise Certificate Authority<br>
+<a href="http://go.microsoft.com/fwlink/?LinkId=69028">http://go.microsoft.com/fwlink/?LinkId=69028</a></p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Certificate Autoenrollment in Windows Server 2003 <a
+href="http://go.microsoft.com/fwlink/?LinkId=69027">http://go.microsoft.com/fwlink/?LinkId=69027</a></p>
+
+<h3><a name="_Toc138233178"></a><a name="_Toc102560112"></a><a name="_MakeCert"></a><a
+name="_MakeCert_(makecert.exe)"></a>MakeCert (makecert.exe)</h3>
+
+<p class=bodytextlink>The MakeCert tool creates an X.509 certificate that is
+signed by the test root key or other specified key. This certificate binds a
+specified name to the public part of the key pair. The certificate is saved to
+a file, a system certificate store, or both.</p>
+
+<p class=bodytextlink>Documentation: </p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>MakeCert<br>
+<a href="http://go.microsoft.com/fwlink/?LinkID=62653">http://go.microsoft.com/fwlink/?LinkID=62653</a></p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Using MakeCert <br>
+<a href="http://go.microsoft.com/fwlink/?LinkID=62655">http://go.microsoft.com/fwlink/?LinkID=62655</a></p>
+
+<h3><a name="_Toc102560113"></a><a name="_Toc138233179"></a>Setupapi.log</h3>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>The
+Windows Setup and Device Installer Services (SetupAPI) include functions that
+control Setup and device installation. During Setup, the general Setup
+functions (<span class=bold>Setup</span><span class=italic>Xxx</span>) and
+device installation functions (<span class=bold>SetupDi</span><span
+class=italic>Xxx</span>) create a plain-text log file that provides information
+for troubleshooting device installation problems. </span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Source: %<span
+class=italic><span style='font-style:normal'>systemroot</span></span>%\<span
+class=italic><span style='font-style:normal'>setupapi.log. This file is </span></span>installed
+in the root directory of all versions of Windows Server&nbsp;2003,
+Windows&nbsp;XP, and Windows Vista.</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Documentation:
+</span></p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Using SetupAPI Logging topic under
+Troubleshooting Device Installation in the Windows WDK Documentation <br>
+<a href="http://go.microsoft.com/fwlink/?LinkId=69030">http://go.microsoft.com/fwlink/?LinkId=69030</a></span></p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Troubleshooting Device Installation
+with the SetupAPI Log File<br>
+</span><span class=MsoHyperlink><a
+href="http://go.microsoft.com/fwlink/?LinkID=62648"><span style='font-size:
+10.0pt;font-family:Arial'>http://go.microsoft.com/fwlink/?LinkID=62648</span></a></span></p>
+
+<p class=bulletlist style='margin-left:.75in'><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Windows Setup and Device
+Installation Logging<br>
+</span><span class=MsoHyperlink><a
+href="http://go.microsoft.com/fwlink/?LinkID=62650"><span style='font-size:
+10.0pt;font-family:Arial'>http://go.microsoft.com/fwlink/?LinkID=62650</span></a></span></p>
+
+<h3><a name="_Toc138233180"></a><a name="_Toc102560114"></a><a
+name="_INF2CAT"></a>INF2CAT (inf2cat.exe)</h3>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>The
+INF2CAT tool is a command-line tool that serves two related but different
+purposes:</span></p>
+
+<p class=MsoList style='margin-left:.5in'><span style='font-family:Wingdings;
+color:windowtext'>&sect;</span><span style='font-size:7.0pt;font-family:"Times New Roman";
+color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>It
+can generate a .cat file from a driver package's INF file.</p>
+
+<p class=MsoList style='margin-left:.5in'><span style='font-family:Wingdings;
+color:windowtext'>&sect;</span><span style='font-size:7.0pt;font-family:"Times New Roman";
+color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>It
+can determine whether the INF files in a driver package can be digitally
+signed. </p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>The
+syntax for the INF2CAT tool is as follows:</span></p>
+
+<p class=MsoPlainText><b><span style='font-family:Arial'>INF2CAT</span></b><span
+style='font-family:Arial'> [/<b>verbose</b>] [/<b>nocat</b>] /<b>driver</b>:<i>path</i>
+/<b>os</b>:<i>OS list</i></span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>The
+following options are supported for INF2CAT.</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border-top:solid windowtext 1.0pt;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
+  background:#D9E3ED;padding:1.0pt 5.4pt 1.0pt 5.4pt'>
+  <p class=tablehead>Option</p>
+  </td>
+  <td width=359 valign=top style='width:268.9pt;border-top:solid windowtext 1.0pt;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
+  background:#D9E3ED;padding:1.0pt 5.4pt 1.0pt 5.4pt'>
+  <p class=tablehead>Description</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid gray 1.0pt;
+  border-top:none;padding:1.0pt 5.4pt 1.0pt 5.4pt'>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>/<b>verbose</b></span></p>
+  </td>
+  <td width=359 valign=top style='width:268.9pt;border-top:none;border-left:
+  none;border-bottom:solid gray 1.0pt;border-right:solid gray 1.0pt;padding:
+  1.0pt 5.4pt 1.0pt 5.4pt'>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Optional.
+  Displays detailed console output.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid gray 1.0pt;
+  border-top:none;padding:1.0pt 5.4pt 1.0pt 5.4pt'>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>/<b>nocat</b></span></p>
+  </td>
+  <td width=359 valign=top style='width:268.9pt;border-top:none;border-left:
+  none;border-bottom:solid gray 1.0pt;border-right:solid gray 1.0pt;padding:
+  1.0pt 5.4pt 1.0pt 5.4pt'>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Optional.
+  Does not generate a .cat file.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid gray 1.0pt;
+  border-top:none;padding:1.0pt 5.4pt 1.0pt 5.4pt'>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>/<b>driver</b>:<i>path</i></span></p>
+  </td>
+  <td width=359 valign=top style='width:268.9pt;border-top:none;border-left:
+  none;border-bottom:solid gray 1.0pt;border-right:solid gray 1.0pt;padding:
+  1.0pt 5.4pt 1.0pt 5.4pt'>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Specify
+  the path to the directory that contains the driver files.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:none;border-bottom:solid windowtext 1.0pt;
+  padding:1.0pt 5.4pt 1.0pt 5.4pt'>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>/<b>os</b>:<i>OS list</i></span></p>
+  </td>
+  <td width=359 valign=top style='width:268.9pt;border:none;border-bottom:solid windowtext 1.0pt;
+  padding:1.0pt 5.4pt 1.0pt 5.4pt'>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Specify
+  the operating system versions to test against, where <i>OS list</i> is a comma delimited list
+  that contains one or more of the following flag values:</span></p>
+  
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>XP_X86 =
+  Windows&nbsp;XP, 32-bit Edition</span></p>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>XP_X64 =
+  Windows&nbsp;XP, 64-bit Edition</span></p>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Server2003_X86 =
+  Windows Server&nbsp;2003, 32-bit Edition</span></p>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Server2003_X64 =
+  Windows Server&nbsp;2003, 64-bit Edition</span></p>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Vista_X86 =
+  Windows Vista, 32-bit Edition</span></p>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Vista_X64 =
+  Windows Vista, 64-bit Edition</span></p>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Server2008_X86 =
+  Windows Server 2008, 32-bit Edition</span></p>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Server2008_X64 =
+  Windows Server 2008, 64-bit Edition</span></p>
+  <p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Server2008_IA64 =
+  Windows Server 2008, IA-64 Edition</span></p>  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>For
+example: </span></p>
+
+<p class=MsoPlainText><b><span style='font-family:Arial'>INF2CAT
+/driver:c:\testdrv\win /os:Vista_X86,Vista_X64</span></b></p>
+
+<p class=MsoPlainText><span style='font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>In the
+preceding example, the INF2CAT tool is used to test the driver files that
+are located in the C:\testdrv\win directory against Windows Vista, 32-bit and
+64-bit editions and to create catalog files for the drivers.</span></p>
+
+<h3><a name="_Toc138233181"></a><a name="_Toc102560115"></a><a name="_SignTool"></a><a
+name="_SignTool_(signtool.exe)"></a>SignTool (signtool.exe)</h3>
+
+<p class=bodytextlink>The SignTool command-line tool digitally signs files,
+verifies signatures in files, or time stamps files.</p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Documentation</span><span
+lang=ES-CL style='font-size:10.0pt;font-family:Arial'>: SignTool<br>
+</span><span style='font-size:10.0pt;font-family:Arial'><a
+href="http://go.microsoft.com/fwlink/?LinkID=62661"><span lang=ES-CL>http://go.microsoft.com/fwlink/?LinkID=62661</span></a></span></p>
+
+<h3><a name="_Toc138233182"></a><a name="_Toc102560116"></a><a name="_Certmgr"></a>Certmgr (certmgr.exe)</h3>
+
+<p class=bodytextlink>The Certmgr command-line tool adds, deletes and manages
+certificates.</p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;font-family:Arial'>Documenation</span><span
+lang=ES-CL style='font-size:10.0pt;font-family:Arial'>: Certmgr<br>
+</span><span style='font-size:10.0pt;font-family:Arial'>
+<a href="http://msdn2.microsoft.com/en-us/library/e78byta0(VS.80).aspx">http://msdn2.microsoft.com/en-us/library/e78byta0(VS.80).aspx</a></span></p>
+
+<h3><a name="_Toc138233183"></a>References</h3>
+
+<p class=dt>Driver Signing</p>
+
+<p class=bulletlist><span style='font-family:Wingdings;color:windowtext'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman";color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Digital Signatures for Kernel Modules on x64-based Systems Running
+Windows Vista <a href="http://go.microsoft.com/fwlink/?LinkID=67481">http://go.microsoft.com/fwlink/?LinkID=67481</a></p>
+
+<p class=bulletlist><span style='font-family:Wingdings;color:windowtext'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman";color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Driver Signing for Windows - information about WHQL digital signatures<br>
+<a href="http://go.microsoft.com/fwlink/?LinkID=12682">http://go.microsoft.com/fwlink/?LinkID=12682</a></p>
+
+<p class=bulletlist><span style='font-family:Wingdings;color:windowtext'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman";color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Obtaining a VeriSign Class-3 Digital ID <br>
+<a href="http://go.microsoft.com/fwlink/?LinkId=69035">http://go.microsoft.com/fwlink/?LinkId=69035</a></p>
+
+<p class=dt>Authenticode and Digital Certificates</p>
+
+<p class=bulletlist><span style='font-family:Wingdings'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Deploying Authenticode with Cryptographic Hardware for Secure Software
+Publishing <a href="http://go.microsoft.com/fwlink/?LinkId=69036">http://go.microsoft.com/fwlink/?LinkId=69036</a></p>
+
+<p class=bulletlist><span style='font-family:Wingdings;color:windowtext'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman";color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Authenticode Overviews and Tutorials<br>
+<a href="http://go.microsoft.com/fwlink/?LinkId=69037">http://go.microsoft.com/fwlink/?LinkId=69037</a></p>
+
+<p class=bulletlist><span style='font-family:Wingdings;color:windowtext'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman";color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Microsoft Root Certificate Program Members<br>
+<a href="http://go.microsoft.com/fwlink/?LinkID=16356">http://go.microsoft.com/fwlink/?LinkID=16356</a></p>
+
+<p class=bulletlist><span style='font-family:Wingdings;color:windowtext'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman";color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Using SetupAPI To Verify Driver Authenticode Signatures<br>
+<a href="http://go.microsoft.com/fwlink/?LinkId=69038">http://go.microsoft.com/fwlink/?LinkId=69038</a></p>
+
+<p class=dt>Windows Logo Program</p>
+
+<p class=bulletlist><span style='font-family:Wingdings;color:windowtext'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman";color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&#8220;Designed for Windows&#8221; Logo Program for Hardware<br>
+<a href="http://go.microsoft.com/fwlink/?LinkID=8772">http://go.microsoft.com/fwlink/?LinkID=8772</a></p>
+
+<p class=dt>Windows Hardware and Driver Central</p>
+
+<p class=bulletlist><span style='font-family:Wingdings;
+color:windowtext;'>&sect;</span><span
+<span style='font-size:7.0pt;font-family:"Times New Roman";
+color:windowtext;text-decoration:none'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><a href="http://go.microsoft.com/fwlink/?LinkID=8703">http://go.microsoft.com/fwlink/?LinkID=8703</a>
+</span></p>
+
+<p class=dt>TechNet Online</p>
+
+<p class=bulletlist><span style='font-family:Wingdings;color:windowtext'>&sect;</span><span
+style='font-size:7.0pt;font-family:"Times New Roman";color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><a href="http://go.microsoft.com/fwlink/?LinkID=26336">http://go.microsoft.com/fwlink/?LinkID=26336</a></p>
+
+</div>
+
+</body>
+
+</html>

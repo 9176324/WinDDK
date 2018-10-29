@@ -1,0 +1,4250 @@
+<?xml version='1.0'?>
+<DefectDefs>
+
+    <DefectDefGroup guid="DD7451F5-09ED-47ed-805A-A2BB3B123456"
+         id="99300"
+         name="modelfile">
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6001"
+	  name="USING_UNINIT_VAR">
+
+		<description>
+		    <format>
+		    Using uninitialized memory '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6001.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6011"
+	  name="DEREF_NULL_PTR">
+
+		<description>
+		    <format>
+		    Dereferencing NULL pointer '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6011.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6014"
+	  name="MEMORY_LEAK">
+
+		<description>
+		    <format>
+		    Leaking memory '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6014.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6029"
+	  name="USING_TAINTED_DATA">
+
+		<description>
+		    <format>
+		    Possible buffer overrun in call to '%ls': use of unchecked value '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6029.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6031"
+	  name="RETVAL_IGNORED_FUNC_COULD_FAIL">
+
+		<description>
+		    <format>
+		    Return value ignored: '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6031.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6053"
+	  name="MISSING_ZERO_TERMINATION1">
+
+		<description>
+		    <format>
+		    Call to '%ls' might not zero-terminate string '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6053.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6054"
+	  name="MISSING_ZERO_TERMINATION2">
+
+		<description>
+		    <format>
+		    String '%ls' might not be zero-terminated
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6054.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6057"
+	  name="CHAR_BYTE_SIZE_MISMATCH">
+
+		<description>
+		    <format>
+		    Buffer overrun due to number of characters/number of bytes mismatch in call to '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6057.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6059"
+	  name="BAD_CONCATENATION">
+
+		<description>
+		    <format>
+		    Incorrect length parameter in call to '%ls'. Pass the number of remaining characters, not the buffer size of '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6059.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6063"
+	  name="MISSING_STRING_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Missing string argument to '%ls' that corresponds to conversion specifier '%d'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6063.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6064"
+	  name="MISSING_INTEGER_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Missing integer argument to '%ls' that corresponds to conversion specifier '%d'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6064.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6066"
+	  name="NON_POINTER_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Non-pointer passed as parameter '%d' when pointer is required in call to '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6066.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6067"
+	  name="NON_STRING_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Parameter '%d' in call to '%ls' must be the address of the string
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6067.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6200"
+	  name="INDEX_EXCEEDS_MAX_NONSTACK">
+
+		<description>
+		    <format>
+		    Index '%ls' is out of valid index range '%I64u' to '%I64d' for non-stack buffer '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6200.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6201"
+	  name="INDEX_EXCEEDS_MAX">
+
+		<description>
+		    <format>
+		    Index '%1$ls' is out of valid index range '%2$I64u' to '%3$I64d' for possibly stack allocated buffer '%4$ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6201.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6202"
+	  name="BUFFER_OVERRUN">
+
+		<description>
+		    <format>
+		    Buffer overrun for '%ls', which is possibly stack allocated, in call to '%ls': length '%I64d' exceeds buffer size '%I64d'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6202.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6203"
+	  name="BUFFER_OVERRUN_NONSTACK">
+
+		<description>
+		    <format>
+		    Buffer overrun for non-stack buffer '%ls' in call to '%ls': length '%I64d' exceeds buffer size '%I64d'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6203.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6204"
+	  name="UNVALIDATED_PARAM">
+
+		<description>
+		    <format>
+		    Possible buffer overrun in call to '%ls': use of unchecked parameter '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6204.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6209"
+	  name="SIZEOF_CHAR_BYTE_SIZE_MISMATCH">
+
+		<description>
+		    <format>
+		    Using 'sizeof %ls' as parameter '%d' in call to '%ls' where '%ls' might be an array of wide characters, did you intend to use character count rather than byte count ?
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6209.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6211"
+	  name="MEMORY_LEAK_EXCEPTION">
+
+		<description>
+		    <format>
+		    Leaking memory '%ls' due to an exception. Consider using a local catch block to clean up memory
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6211.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6214"
+	  name="CAST_HRESULT_TO_BOOL">
+
+		<description>
+		    <format>
+		    Cast between semantically different integer types: HRESULT to a Boolean type
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6214.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6215"
+	  name="CAST_BOOL_TO_HRESULT">
+
+		<description>
+		    <format>
+		    Cast between semantically different integer types: a Boolean type to HRESULT
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6215.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6216"
+	  name="COMPILER_INSERTED_CAST_BOOL_TO_HRESULT">
+
+		<description>
+		    <format>
+		    Compiler-inserted cast between semantically different integral types: a Boolean type to HRESULT
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6216.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6217"
+	  name="TESTING_HRESULT_WITH_NOT">
+
+		<description>
+		    <format>
+		    Implicit cast between semantically different integer types: testing HRESULT with 'not'. Consider using SUCCEEDED or FAILED macro instead
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6217.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6219"
+	  name="COMPARING_HRESULT_TO_ONE">
+
+		<description>
+		    <format>
+		    Implicit cast between semantically different integer types: comparing HRESULT to 1 or TRUE. Consider using SUCCEEDED or FAILED macro instead
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6219.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6220"
+	  name="COMPARING_HRESULT_TO_MINUS_ONE">
+
+		<description>
+		    <format>
+		    Implicit cast between semantically different integer types: comparing HRESULT to -1. Consider using SUCCEEDED or FAILED macro instead
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6220.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6221"
+	  name="COMPARING_HRESULT_TO_INT">
+
+		<description>
+		    <format>
+		    Implicit cast between semantically different integer types: comparing HRESULT to an integer. Consider using SUCCEEDED or FAILED macros instead
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6221.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6225"
+	  name="ASSIGNING_ONE_TO_HRESULT">
+
+		<description>
+		    <format>
+		    Implicit cast between semantically different integer types: assigning 1 or TRUE to HRESULT. Consider using S_FALSE instead
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6225.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6226"
+	  name="ASSIGNING_MINUS_ONE_TO_HRESULT">
+
+		<description>
+		    <format>
+		    Implicit cast between semantically different integer types: assigning -1 to HRESULT. Consider using E_FAIL instead
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6226.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6230"
+	  name="USING_HRESULT_IN_BOOLEAN_CONTEXT">
+
+		<description>
+		    <format>
+		    Implicit cast between semantically different integer types: using HRESULT in a Boolean context
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6230.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6235"
+	  name="NONZEROLOGICALOR">
+
+		<description>
+		    <format>
+		    (&amp;lt;non-zero constant&amp;gt; || &amp;lt;expression&amp;gt;) is always a non-zero constant
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6235.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6236"
+	  name="LOGICALORNONZERO">
+
+		<description>
+		    <format>
+		    (&amp;lt;expression&amp;gt; || &amp;lt;non-zero constant&amp;gt;) is always a non-zero constant
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6236.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6237"
+	  name="ZEROLOGICALANDLOSINGSIDEEFFECTS">
+
+		<description>
+		    <format>
+		    (&amp;lt;zero&amp;gt; &amp;&amp; &amp;lt;expression&amp;gt;) is always zero. &amp;lt;expression&amp;gt; is never evaluated and might have side effects
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6237.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6239"
+	  name="NONZEROLOGICALAND">
+
+		<description>
+		    <format>
+		    (&amp;lt;non-zero constant&amp;gt; &amp;&amp; &amp;lt;expression&amp;gt;) always evaluates to the result of &amp;lt;expression&amp;gt;. Did you intend to use the bitwise-and operator?
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6239.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6240"
+	  name="LOGICALANDNONZERO">
+
+		<description>
+		    <format>
+		    (&amp;lt;expression&amp;gt; &amp;&amp; &amp;lt;non-zero constant&amp;gt;) always evaluates to the result of &amp;lt;expression&amp;gt;. Did you intend to use the bitwise-and operator?
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6240.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6242"
+	  name="LOCALUNWINDFORCED">
+
+		<description>
+		    <format>
+		    A jump out of this try block forces local unwind. This incurs a severe performance penalty
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6242.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6244"
+	  name="LOCALDECLHIDESGLOBAL">
+
+		<description>
+		    <format>
+		    Local declaration of '%ls' hides previous declaration at line '%d' of '%s'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6244.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6246"
+	  name="LOCALDECLHIDESLOCAL">
+
+		<description>
+		    <format>
+		    Local declaration of '%ls' hides declaration of the same name in outer scope. For additional information, see previous declaration at line '%d' of '%s'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6246.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6248"
+	  name="CREATINGNULLDACL">
+
+		<description>
+		    <format>
+		    Setting a SECURITY_DESCRIPTOR's DACL to NULL will result in an unprotected object
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6248.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6250"
+	  name="WIN32UNRELEASEDVADS">
+
+		<description>
+		    <format>
+		    Calling '%ls' without the MEM_RELEASE flag might free memory but not address descriptors (VADs). This causes address space leaks
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6250.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6255"
+	  name="UNPROTECTEDUSEOFALLOCA">
+
+		<description>
+		    <format>
+		    _alloca indicates failure by raising a stack overflow exception. Consider using _malloca instead
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6255.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6258"
+	  name="USINGTERMINATETHREAD">
+
+		<description>
+		    <format>
+		    Using TerminateThread does not allow proper thread clean up
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6258.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6259"
+	  name="DEADCODEINBITORLIMITEDSWITCH">
+
+		<description>
+		    <format>
+		    Labeled code is unreachable: '(&amp;lt;expression&amp;gt; &amp; 0x%I64x)' in a switch-expr cannot evaluate to '0x%I64x'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6259.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6260"
+	  name="USEOFBYTEAREA">
+
+		<description>
+		    <format>
+		    sizeof * sizeof is usually wrong. Did you intend to use a character count or a byte count?
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6260.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6262"
+	  name="EXCESSIVESTACKUSAGE">
+
+		<description>
+		    <format>
+		    Function uses '%I64u' bytes of stack: exceeds /analyze:stacksize'%I64u'. Consider moving some data to heap
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6262.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6263"
+	  name="USINGALLOCAINLOOP">
+
+		<description>
+		    <format>
+		    Using _alloca in a loop: this can quickly overflow stack
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6263.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6267"
+	  name="STRING_LITERAL_TO_NONCONST_CAST">
+
+		<description>
+		    <format>
+		    Cast from string literal to non-const pointer. Attempts to write into static read-only memory can cause random crashes
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6267.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6268"
+	  name="MISPARENTHESIZED_CASTS">
+
+		<description>
+		    <format>
+		    Incorrect order of operations: (&amp;lt;TYPE1&amp;gt;)(&amp;lt;TYPE2&amp;gt;)x + y. Parentheses in (&amp;lt;TYPE1&amp;gt;)((&amp;lt;TYPE2&amp;gt;)x + y) might be missing
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6268.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6269"
+	  name="POINTER_DEREF_DISCARDED">
+
+		<description>
+		    <format>
+		    Possibly incorrect order of operations: dereference ignored
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6269.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6270"
+	  name="MISSING_FLOAT_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Missing float argument to '%ls': add a float argument corresponding to conversion specifier '%d'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6270.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6271"
+	  name="EXTRA_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Extra argument passed to '%ls': parameter '%d' is not used by the format string
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6271.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6272"
+	  name="NON_FLOAT_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Non-float passed as argument '%d' when float is required in call to '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6272.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6273"
+	  name="NON_INTEGER_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Non-integer passed as parameter '%d' when integer is required in call to '%ls': if a pointer value is being passed, %%p should be used
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6273.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6274"
+	  name="NON_CHAR_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Non-character passed as parameter '%d' when character is required in call to '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6274.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6276"
+	  name="CHAR_TO_WCHAR_CAST">
+
+		<description>
+		    <format>
+		    Cast between semantically different string types: char * to wchar_t *. Use of invalid string can lead to undefined behavior
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6276.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6277"
+	  name="CREATEPROCESS_ESCAPE">
+
+		<description>
+		    <format>
+		    NULL application name with an unquoted path in call to '%ls': results in a security vulnerability if the path contains spaces
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6277.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6278"
+	  name="ARRAY_NEW_DELETE_MISMATCH">
+
+		<description>
+		    <format>
+		    '%ls' is allocated with array new [], but deleted with scalar delete. Destructors will not be called
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6278.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6279"
+	  name="NEW_ARRAY_DELETE_MISMATCH">
+
+		<description>
+		    <format>
+		    '%ls' is allocated with scalar new, but deleted with array delete []
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6279.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6280"
+	  name="MEMORY_ALLOCATION_MISMATCH">
+
+		<description>
+		    <format>
+		    '%ls' is allocated with '%ls', but deleted with '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6280.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6281"
+	  name="BITWISERELATIONPRECEDENCEERROR">
+
+		<description>
+		    <format>
+		    Incorrect order of operations: relational operators have higher precedence than bitwise operators
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6281.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6282"
+	  name="ASSIGNMENTREPLACESTEST">
+
+		<description>
+		    <format>
+		    Incorrect operator: assignment of constant in Boolean context. Consider using '==' instead
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6282.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6283"
+	  name="PRIMITIVE_ARRAY_NEW_DELETE_MISMATCH">
+
+		<description>
+		    <format>
+		    '%ls' is allocated with array new [], but deleted with scalar delete
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6283.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6284"
+	  name="OBJECT_AS_STRING_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Object passed as parameter '%d' when string is required in call to '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6284.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6285"
+	  name="LOGICALOROFCONSTANTS">
+
+		<description>
+		    <format>
+		    (&amp;lt;non-zero constant&amp;gt; || &amp;lt;non-zero constant&amp;gt;) is always a non-zero constant. Did you intend to use the bitwise-and operator?
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6285.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6286"
+	  name="NONZEROLOGICALORLOSINGSIDEEFFECTS">
+
+		<description>
+		    <format>
+		    (&amp;lt;non-zero constant&amp;gt; || &amp;lt;expression&amp;gt;) is always a non-zero constant. &amp;lt;expression&amp;gt; is never evaluated and might have side effects
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6286.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6287"
+	  name="REDUNDANTTEST">
+
+		<description>
+		    <format>
+		    Redundant code: the left and right sub-expressions are identical
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6287.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6288"
+	  name="MUTUALINCLUSIONOVERANDISFALSE">
+
+		<description>
+		    <format>
+		    Incorrect operator: mutual inclusion over &amp;&amp; is always zero. Did you intend to use || instead?
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6288.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6289"
+	  name="MUTUALEXCLUSIONOVERORISTRUE">
+
+		<description>
+		    <format>
+		    Incorrect operator: mutual exclusion over || is always a non-zero constant. Did you intend to use &amp;&amp; instead?
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6289.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6290"
+	  name="LOGICALNOTBITWISEAND">
+
+		<description>
+		    <format>
+		    Bitwise operation on logical result: ! has higher precedence than &amp;. Use &amp;&amp; or (!(x &amp; y)) instead
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6290.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6291"
+	  name="LOGICALNOTBITWISEOR">
+
+		<description>
+		    <format>
+		    Bitwise operation on logical result: ! has higher precedence than |. Use || or (!(x | y)) instead
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6291.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6292"
+	  name="LOOP_COUNTS_UP_FROM_MAX">
+
+		<description>
+		    <format>
+		    Ill-defined for-loop: counts up from maximum
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6292.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6293"
+	  name="LOOP_INDEX_GOES_NEGATIVE">
+
+		<description>
+		    <format>
+		    Ill-defined for-loop: counts down from minimum
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6293.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6294"
+	  name="LOOP_BODY_NEVER_EXECUTED">
+
+		<description>
+		    <format>
+		    Ill-defined for-loop: initial condition does not satisfy test. Loop body not executed
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6294.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6295"
+	  name="INFINITE_LOOP">
+
+		<description>
+		    <format>
+		    Ill-defined for-loop: '%ls' values are always of range '%ls' to '%ls'. Loop executes infinitely
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6295.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6296"
+	  name="LOOP_ONLY_EXECUTED_ONCE">
+
+		<description>
+		    <format>
+		    Ill-defined for-loop. Loop body only executed once
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6296.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6297"
+	  name="RESULTOFSHIFTCASTTOLARGERSIZE">
+
+		<description>
+		    <format>
+		    Arithmetic overflow: 32-bit value is shifted, then cast to 64-bit value. Results might not be an expected value
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6297.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6298"
+	  name="CONST_STRING_TO_WRITABLE_STRING">
+
+		<description>
+		    <format>
+		    Argument '%d': using a read-only string as a writable string argument. This will attempt to write into static read-only memory and cause random crashes
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6298.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6299"
+	  name="BITFIELD_TO_BOOL_COMPARISON">
+
+		<description>
+		    <format>
+		    Explicitly comparing a bit field to a Boolean type will yield unexpected results
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6299.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6302"
+	  name="CHAR_WCHAR_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Format string mismatch: character string passed as parameter '%d' when wide character string is required in call to '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6302.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6303"
+	  name="WCHAR_CHAR_ARGUMENT_TO_FORMAT_FUNCTION">
+
+		<description>
+		    <format>
+		    Format string mismatch: wide character string passed as parameter '%d' when character string is required in call to '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6303.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6305"
+	  name="SIZEOF_COUNTOF_MISMATCH">
+
+		<description>
+		    <format>
+		    Potential mismatch between sizeof and countof quantities
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6305.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6306"
+	  name="INCORRECT_VARARG_FUNCTIONCALL">
+
+		<description>
+		    <format>
+		    Incorrect call to '%ls': consider using '%ls' which accepts a va_list as an argument
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6306.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6307"
+	  name="WCHAR_TO_BSTR">
+
+		<description>
+		    <format>
+		    Cast between semantically different string types: wchar * to BSTR. This might cause unexpected behavior
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6307.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6308"
+	  name="REALLOCLEAK">
+
+		<description>
+		    <format>
+		    'realloc' might return null pointer: assigning null pointer to '%ls', which is passed as an argument to 'realloc', will cause the original memory block to be leaked
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6308.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6309"
+	  name="PASSING_FUNCTION_UNEXPECTED_NULL">
+
+		<description>
+		    <format>
+		    Argument '%d' is null: this does not adhere to function specification of '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6309.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6310"
+	  name="ILLEGALEXCEPTEXPRCONST">
+
+		<description>
+		    <format>
+		    Illegal constant in exception filter can cause unexpected behavior
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6310.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6312"
+	  name="EXCEPTIONCONTINUEEXECUTION">
+
+		<description>
+		    <format>
+		    Possible infinite loop: use of the constant EXCEPTION_CONTINUE_EXECUTION in the exception-filter expression of a try-except. Execution restarts in the protected block
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6312.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6313"
+	  name="BITANDVSZEROVALUEDFLAG">
+
+		<description>
+		    <format>
+		    Incorrect operator: zero-valued flag cannot be tested with bitwise-and. Use an equality test to check for zero-valued flags
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6313.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6314"
+	  name="BITORVSQUESTION">
+
+		<description>
+		    <format>
+		    Incorrect order of operations: bitwise-or has higher precedence than the conditional-expression operator. Add parentheses to clarify intent
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6314.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6315"
+	  name="BITORVSBITAND">
+
+		<description>
+		    <format>
+		    Incorrect order of operations: bitwise-and has higher precedence than bitwise-or. Add parentheses to clarify intent
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6315.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6316"
+	  name="INAPPROPRIATEUSEOFBITOR">
+
+		<description>
+		    <format>
+		    Incorrect operator: tested expression is constant and non-zero. Use bitwise-and to determine whether bits are set
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6316.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6317"
+	  name="NOTNOTCOMPLEMENT">
+
+		<description>
+		    <format>
+		    Incorrect operator: logical-not (!) is not interchangeable with ones-complement (~)
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6317.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6318"
+	  name="EXCEPTIONCONTINUESEARCH">
+
+		<description>
+		    <format>
+		    Ill-defined __try/__except: use of the constant EXCEPTION_CONTINUE_SEARCH or another constant that evaluates to zero in the exception-filter expression. The code in the exception handler block is not executed
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6318.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6319"
+	  name="IGNOREDBYCOMMA">
+
+		<description>
+		    <format>
+		    Use of the comma-operator in a tested expression causes the left argument to be ignored when it has no side-effects
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6319.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6320"
+	  name="EXCEPTIONEXECUTEHANDLER">
+
+		<description>
+		    <format>
+		    Exception-filter expression is the constant EXCEPTION_EXECUTE_HANDLER. This might mask exceptions that were not intended to be handled
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6320.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6322"
+	  name="EXCEPT_BLOCK_EMPTY">
+
+		<description>
+		    <format>
+		    Empty _except block
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6322.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6323"
+	  name="ARITH_OP_ON_BOOL">
+
+		<description>
+		    <format>
+		    Use of arithmetic operator on Boolean type(s)
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6323.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6324"
+	  name="STRCPY_INSTEAD_OF_STRCMP">
+
+		<description>
+		    <format>
+		    Potential incorrect use of '%ls': did you intend to use '%ls' ?
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6324.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6326"
+	  name="CONST_CONST_COMP">
+
+		<description>
+		    <format>
+		    Potential comparison of a constant with another constant
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6326.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6327"
+	  name="DEST_BUFFER_INSUFFICIENT">
+
+		<description>
+		    <format>
+		    Potential buffer-overrun: SysAllocStringLen copies '%d' characters from the string '%ls' without validating the number of characters to copy. The code might crash
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6327.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6328"
+	  name="POTENTIAL_ARGUMENT_TYPE_MISMATCH">
+
+		<description>
+		    <format>
+		    '%ls' passed as parameter '%d' when '%ls' is required in call to '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6328.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6329"
+	  name="POTENTIAL_INCORRECT_RETVAL_CHECK">
+
+		<description>
+		    <format>
+		    Return value for a call to '%ls' should not be checked against '%d'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6329.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6331"
+	  name="VIRTUALFREEINVALIDPARAM1">
+
+		<description>
+		    <format>
+		    Invalid parameter: passing MEM_RELEASE and MEM_DECOMMIT in conjunction to '%ls' is not allowed. This causes the call to fail
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6331.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6332"
+	  name="VIRTUALFREEINVALIDPARAM2">
+
+		<description>
+		    <format>
+		    Invalid parameter: passing zero as the dwFreeType parameter to '%ls' is not allowed. This causes the call to fail
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6332.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6333"
+	  name="VIRTUALFREEINVALIDPARAM3">
+
+		<description>
+		    <format>
+		    Invalid parameter: passing MEM_RELEASE and a non-zero dwSize parameter to '%ls' is not allowed. This causes the call to fail
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6333.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6334"
+	  name="SIZEOFEXPR">
+
+		<description>
+		    <format>
+		    sizeof operator applied to an expression with an operator might yield unexpected results
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6334.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6335"
+	  name="LEAKING_PROCESS_HANDLE">
+
+		<description>
+		    <format>
+		    Leaking process information handle '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6335.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6336"
+	  name="QUESTIONPRECEDENCE">
+
+		<description>
+		    <format>
+		    Arithmetic operator has precedence over question operator, use parentheses to clarify intent
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6336.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6381"
+	  name="SHUTDOWN_API">
+
+		<description>
+		    <format>
+		    Shutdown API '%ls' requires a valid dwReason or lpMessage
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6381.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6383"
+	  name="ELEMENTS_TO_BYTES">
+
+		<description>
+		    <format>
+		    Buffer overrun due to conversion of an element count into a byte count: an element count is expected for parameter '%d' in call to '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6383.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6384"
+	  name="DIVIDING_SIZEOF_POINTER">
+
+		<description>
+		    <format>
+		    Dividing sizeof a pointer by another value
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6384.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6385"
+	  name="READ_OVERRUN">
+
+		<description>
+		    <format>
+		    Invalid data: accessing '%ls', the readable size is '%ls' bytes, but '%ls' bytes might be read
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6385.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6386"
+	  name="WRITE_OVERRUN">
+
+		<description>
+		    <format>
+		    Buffer overrun: accessing '%ls', the writable size is '%ls' bytes, but '%ls' bytes might be written
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6386.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6387"
+	  name="INVALID_PARAM_VALUE_1">
+
+		<description>
+		    <format>
+		    '%ls' might be '%ls': this does not adhere to the specification for the function '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6387.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6388"
+	  name="INVALID_PARAM_VALUE_2">
+
+		<description>
+		    <format>
+		    '%ls' might not be '%ls': this does not adhere to the specification for the function '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6388.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6392"
+	  name="BOOL_VARIANT_BOOL_COMPARISON">
+
+		<description>
+		    <format>
+		    Incorrect comparison between bool and VARIANT_BOOL typed expressions
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6392.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6393"
+	  name="COMPARE64BIT">
+
+		<description>
+		    <format>
+		    Incorrect comparison between a 64-bit variable and the 32-bit constant '0xFFFFFFFF'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6393.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6394"
+	  name="MS03_026_LHS">
+
+		<description>
+		    <format>
+		    Potential buffer overrun while writing to buffer '%ls': the buffer pointer is being incremented inside a loop
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6394.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6400"
+	  name="LOCALE_DEPENDENT_CONSTANT_STRING_COMPARISON">
+
+		<description>
+		    <format>
+		    Using '%ls' to perform a case-insensitive compare to constant string '%ls'. Yields unexpected results in non-English locales
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6400.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6401"
+	  name="DEFAULT_LOCALE_CONSTANT_STRING_COMPARISON">
+
+		<description>
+		    <format>
+		    Using '%ls' in a default locale to perform a case-insensitive compare to constant string '%ls'. Yields unexpected results in non-English locales
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6401.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6500"
+	  name="INVALID_ATTRIBUTE_PROPERTY">
+
+		<description>
+		    <format>
+		    Invalid annotation: value for '%ls' property is invalid
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6500.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6501"
+	  name="CONFLICTING_ATTRIBUTE_PROPERTY_VALUES">
+
+		<description>
+		    <format>
+		    Annotation conflict: '%ls' property conflicts with previously specified property
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6501.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6503"
+	  name="REFERENCES_CANT_BE_NULL">
+
+		<description>
+		    <format>
+		    Invalid annotation: references and arrays may not be marked Null=Yes or Null=Maybe
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6503.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6504"
+	  name="NULL_ON_NON_POINTER">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'Null' property may only be used on values of pointer, pointer-to-member, array, or reference type
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6504.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6505"
+	  name="MUSTCHECK_ON_VOID">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'MustCheck' property may not be used on values of void type
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6505.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6506"
+	  name="BUFFER_SIZE_ON_NON_POINTER_OR_ARRAY">
+
+		<description>
+		    <format>
+		    Invalid annotation: '%ls' property may only be used on values of pointer, array, or reference type
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6506.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6507"
+	  name="NULL_MISMATCH_AT_DEREF_0">
+
+		<description>
+		    <format>
+		    Annotation conflict: 'Null' property at Deref=0 on a post condition must be a subset of the Null property on the precondition
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6507.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6508"
+	  name="WRITE_ACCESS_ON_CONST">
+
+		<description>
+		    <format>
+		    Invalid annotation: write access is not allowed on const values
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6508.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6509"
+	  name="RETURN_USED_ON_PRECONDITION">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'return' cannot be referenced from a precondition
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6509.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6510"
+	  name="NULLTERMINATED_ON_NON_POINTER">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'NullTerminated' property may only be used on buffers whose elements are of integral or pointer type
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6510.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6511"
+	  name="MUSTCHECK_MAYBE">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'MustCheck' property must be Yes or No
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6511.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6512"
+	  name="NULL_CONFLICTS_WITH_NOT_VALID">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'Null' property must be Maybe if the 'Valid' property is No
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6512.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6513"
+	  name="ELEMENT_SIZE_WITHOUT_BUFFER_SIZE">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'ElementSize' requires additional size properties
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6513.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6514"
+	  name="BUFFER_SIZE_EXCEEDS_ARRAY_SIZE">
+
+		<description>
+		    <format>
+		    Invalid annotation: value of the '%ls' property exceeds the size of the array
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6514.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6515"
+	  name="BUFFER_SIZE_ON_NON_POINTER">
+
+		<description>
+		    <format>
+		    Invalid annotation: '%ls' property may only be used on values of pointer type
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6515.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6516"
+	  name="NO_PROPERTIES_ON_ATTRIBUTE">
+
+		<description>
+		    <format>
+		    Invalid annotation: no properties specified for %s attribute
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6516.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6517"
+	  name="VALID_SIZE_ON_NON_READABLE_BUFFER">
+
+		<description>
+		    <format>
+		    Invalid annotation: '%ls' property may not be specified on buffers that are not readable
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6517.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6518"
+	  name="WRITABLE_SIZE_ON_NON_WRITABLE_BUFFER">
+
+		<description>
+		    <format>
+		    Invalid annotation: '%ls' property may not be specified as a precondition on buffers that are not writable
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6518.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6519"
+	  name="NEEDSRELEASE_MAYBE">
+
+		<description>
+		    <format>
+		    Invalid annotation: value of the 'NeedsRelease' property must be Yes or No
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6519.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6521"
+	  name="INVALID_SIZE_STRING_DEREF">
+
+		<description>
+		    <format>
+		    Invalid size specification: * operator can only be applied to pointer types
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6521.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6522"
+	  name="INVALID_SIZE_STRING_TYPE">
+
+		<description>
+		    <format>
+		    Invalid size specification: expression must be of integral type
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6522.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6523"
+	  name="INVALID_SIZE_STRING_PARAM">
+
+		<description>
+		    <format>
+		    Invalid size specification: parameter '%ls' not found
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6523.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6525"
+	  name="INVALID_SIZE_STRING_UNREACHABLE_LOCATION">
+
+		<description>
+		    <format>
+		    Invalid size specification: property value might not be valid
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6525.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6526"
+	  name="INVALID_SIZE_STRING_BUFFER_TYPE">
+
+		<description>
+		    <format>
+		    Invalid size specification: expression must be of pointer or array type
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6526.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6527"
+	  name="NEEDSRELEASE_ON_VOID">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'NeedsRelease' property may not be used on values of void type
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6527.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6530"
+	  name="UNRECOGNIZED_FORMAT_STRING_STYLE">
+
+		<description>
+		    <format>
+		    Unrecognized format string style '%ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6530.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6535"
+	  name="BUFFERSIZE_INFEASIBLE">
+
+		<description>
+		    <format>
+		    Buffer size cannot be of type '%ls', bigger than size_t
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6535.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6540"
+	  name="OVERRIDING_OLD_MODEL">
+
+		<description>
+		    <format>
+		    The use of attribute annotations on this function will invalidate all of its existing __declspec annotations
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6540.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6990"
+	  name="MANAGEDCODENOTSUPPORTED">
+
+		<description>
+		    <format>
+		    Managed code not supported: file was not fully analyzed
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6990.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6991"
+	  name="ATTRIBUTESNOTSUPPORTED">
+
+		<description>
+		    <format>
+		    Attributes not supported: file was not fully analyzed
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6991.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6992"
+	  name="NATIVEEVENTSYNTAXNOTSUPPORTED">
+
+		<description>
+		    <format>
+		    Native event syntax not supported: file was not fully analyzed
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6992.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6993"
+	  name="OMPNOTSUPPORTED">
+
+		<description>
+		    <format>
+		    Code analysis ignores OpenMP constructs; analyzing single-threaded code
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6993.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6994"
+	  name="PCHNOTFOUND">
+
+		<description>
+		    <format>
+		    Precompiled header not found: file was not analyzed
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6994.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6995"
+	  name="_SaveToXmlFailed">
+
+		<description>
+		    <format>
+		    Failed to save XML Log file
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6995.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28200"
+	  name="INTERNAL_DEBUG">
+
+		<description>
+		    <format>
+		    Function %ls -- DEBUG: %ls '%ls' '%ls'
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28200.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28201"
+	  name="XML_ANNOTATION">
+
+		<description>
+		    <format>
+		    Annotation in model file %ls applies to %ls at %ls: %ls
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28201.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28209"
+	  name="INVALID_ANNOTATION_SYMBOL">
+
+		<description>
+		    <format>
+		    The declaration for symbol %s has a conflicting declaration at %s.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28209.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28210"
+	  name="POST_EXPECTED">
+
+		<description>
+		    <format>
+		    Annotations for the __on_failure context must not be in explicit pre context: Annotation '%ls' on function '%ls', '%ls'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28210.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28211"
+	  name="CONTEXT_EXPECTED">
+
+		<description>
+		    <format>
+		    Static context name expected for SAL_context, found '%ls'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28211.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28212"
+	  name="POINTER_EXPECTED">
+
+		<description>
+		    <format>
+		    Pointer expression expected for annotation '%ls', parameter %d, found '%ls'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28212.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28213"
+	  name="BAD_USEHEADER">
+
+		<description>
+		    <format>
+		    The __useHeader annotation must be used to reference, without modification, a prior declaration. %ls
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28213.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28214"
+	  name="BAD_PARAM_NAME">
+
+		<description>
+		    <format>
+		    Attribute parameter names must be p1...p9
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28214.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28215"
+	  name="DUPLICATE_TYPEFIX">
+
+		<description>
+		    <format>
+		    The typefix '%ls' cannot be applied to a parameter that already has a typefix.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28215.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28216"
+	  name="MUSTCHECK_NOT_POST">
+
+		<description>
+		    <format>
+		    The checkReturn annotation only applies to postconditions for function '%ls' %ls.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28216.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28217"
+	  name="UNMATCHED_ANNO_COUNT">
+
+		<description>
+		    <format>
+		    For function '%ls' %ls, the number of parameters to annotation '%ls' does not match that found at %ls(%d).
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28217.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28218"
+	  name="UNMATCHED_ANNO_TREE">
+
+		<description>
+		    <format>
+		    For function '%ls' %ls, for annotation '%ls' the annotation's parameter %d does not match that found at %ls(%d).
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28218.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28219"
+	  name="ENUM_EXPECTED">
+
+		<description>
+		    <format>
+		    Member of '%ls' expected for annotation '%ls', parameter %d, found '%ls'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28219.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28220"
+	  name="INTEGER_EXPECTED">
+
+		<description>
+		    <format>
+		    Integer expression expected for annotation '%ls', parameter %d, found '%ls'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28220.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28221"
+	  name="STRING_EXPECTED">
+
+		<description>
+		    <format>
+		    String expression expected for annotation '%ls', parameter %d, found '%ls'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28221.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28222"
+	  name="YNM_EXPECTED">
+
+		<description>
+		    <format>
+		    __yes, __no, or __maybe expected for annotation '%ls', parameter %d, found '%ls'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28222.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28223"
+	  name="AUTOQUOTE_EXPECTED">
+
+		<description>
+		    <format>
+		    Token/identifier expected for annotation '%ls', parameter %d, found '%ls'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28223.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28224"
+	  name="PARAMS_EXPECTED">
+
+		<description>
+		    <format>
+		    Annotation '%ls' requires parameters.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28224.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28225"
+	  name="BAD_NO_PARAMS">
+
+		<description>
+		    <format>
+		    Annotation '%ls' requires %d parameters, found %d.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28225.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28226"
+	  name="NOT_BOTH">
+
+		<description>
+		    <format>
+		    Annotation '%ls' cannot also be a PrimOp (in current declaration)
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28226.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28227"
+	  name="NOT_BOTH_2">
+
+		<description>
+		    <format>
+		    Annotation '%ls' cannot also be a PrimOp (see prior declaration)
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28227.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28228"
+	  name="UNRECOGNIZED_TYPE">
+
+		<description>
+		    <format>
+		    Annotation '%ls' parameter %d: cannot use type '%ls' in annotations
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28228.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28229"
+	  name="NO_PARAMS_EXPECTED">
+
+		<description>
+		    <format>
+		    Annotation '%ls' does not support parameters.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28229.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28230"
+	  name="NO_SUCH_MEMBER">
+
+		<description>
+		    <format>
+		    '%ls' has no member '%ls'
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28230.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28231"
+	  name="ILLEGAL_INDEX">
+
+		<description>
+		    <format>
+		    '%ls' is not an array
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28231.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28232"
+	  name="DANGLING_QUALIFIER">
+
+		<description>
+		    <format>
+		    pre, post, or deref not applied to any annotation
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28232.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28233"
+	  name="BLOCK_QUALIFIER">
+
+		<description>
+		    <format>
+		    pre, post, or deref applied to a block
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28233.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28234"
+	  name="AT_NOT_ROOT">
+
+		<description>
+		    <format>
+		    __at expression does not apply to current function.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28234.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28235"
+	  name="PRIMOP_AS_ANNOTATION">
+
+		<description>
+		    <format>
+		    The function '%ls' cannot stand alone as an annotation.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28235.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28236"
+	  name="ANNOTATION_AS_PRIMOP">
+
+		<description>
+		    <format>
+		    The annotation '%ls' cannot be used in an expression.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28236.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28237"
+	  name="OBSOLETE">
+
+		<description>
+		    <format>
+		    '%ls': the annotation '%ls' on %ls is no longer supported.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28237.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28238"
+	  name="TOOMANY_OLD">
+
+		<description>
+		    <format>
+		    '%ls': the annotation '%ls' on %ls has more than one of value, stringValue, and longValue.  Use paramn=xxx.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28238.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28239"
+	  name="MIXED_OLD_NEW">
+
+		<description>
+		    <format>
+		    '%ls': the annotation '%ls' on %ls has both value, stringValue, or longValue; and paramn=xxx.  Use only paramn=xxx.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28239.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28240"
+	  name="NO_PARAM1">
+
+		<description>
+		    <format>
+		    '%ls': the annotation '%ls' on %ls has param2 but no param1.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28240.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28241"
+	  name="EXTERNAL_UNKNOWN_ANNO">
+
+		<description>
+		    <format>
+		    The annotation '%ls' for '%ls' on '%ls' is not recognized.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28241.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28242"
+	  name="BAD_MULTIPLIER">
+
+		<description>
+		    <format>
+		    The IsMinSize annotation for function '%ls' on %ls has a multiplier inconsistent with the element size.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28242.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28243"
+	  name="BAD_DEREF">
+
+		<description>
+		    <format>
+		    The annotation for function '%ls' on %ls requires more dereferences than the actual type annotated allows.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28243.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28244"
+	  name="BAD_EXTERNAL">
+
+		<description>
+		    <format>
+		    The annotation for function '%ls' %ls has an unparseable parameter/external annotation.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28244.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28245"
+	  name="THIS_NONMEMBER">
+
+		<description>
+		    <format>
+		    The annotation for function '%ls' annotates 'this' on a non-member-function.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28245.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28246"
+	  name="ANNOTATION_TYPE_MISMATCH">
+
+		<description>
+		    <format>
+		    The annotation for function '%ls', parameter '%ls' does not match the type of the parameter.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28246.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28247"
+	  name="XML_DUPLICATE">
+
+		<description>
+		    <format>
+		    Model file annotation for function '%ls': annotation on %ls/%ls, '%ls' duplicates header file annotation '%ls'.  Remove the duplicated annotations from the model file. (Header: %ls(%d)) 
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28247.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28248"
+	  name="XML_MODEL_FILE_DUPLICATE">
+
+		<description>
+		    <format>
+		    Model file annotation for function '%ls' duplicates existing model file definition. Remove the duplicated annotations from the model file.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28248.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28250"
+	  name="UNMATCHED_DECL">
+
+		<description>
+		    <format>
+		    Inconsistent annotation for '%ls': the prior instance has %ls. See %ls.%ls
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28250.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28251"
+	  name="UNMATCHED_DEFN">
+
+		<description>
+		    <format>
+		    Inconsistent annotation for '%ls': this instance has %ls. See %ls.%ls
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28251.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28252"
+	  name="UNMATCHED_DECL_ANNO">
+
+		<description>
+		    <format>
+		    Inconsistent annotation for '%ls': %ls has '%ls' on the prior instance. See %ls.%ls
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28252.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28253"
+	  name="UNMATCHED_DEFN_ANNO">
+
+		<description>
+		    <format>
+		    Inconsistent annotation for '%ls': %ls has '%ls' on this instance. See %ls.%ls
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28253.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28254"
+	  name="DYNAMIC_CAST">
+
+		<description>
+		    <format>
+		    dynamic_cast&amp;lt;&amp;gt;() is not supported in annotations
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28254.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28279"
+	  name="UNMATCHED_BEGIN">
+
+		<description>
+		    <format>
+		    For symbol '%ls', a 'begin' was found without a matching 'end'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28279.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28280"
+	  name="UNMATCHED_END">
+
+		<description>
+		    <format>
+		    For symbol '%ls', an 'end' was found without a matching 'begin'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28280.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28281"
+	  name="BAD_INVALID">
+
+		<description>
+		    <format>
+		    For symbol '%ls' parameter '%ls', 'Invalid Check' value not a number or not in post context.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28281.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28282"
+	  name="FORMAT_NOT_PRE">
+
+		<description>
+		    <format>
+		    Format Strings must be in preconditions: Function '%ls' %ls
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28282.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28283"
+	  name="UNSUPPORTED_SIZESPEC">
+
+		<description>
+		    <format>
+		    For symbol '%ls', the specified size specification is not yet supported.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28283.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28284"
+	  name="SPEC_INVALID_PREDICATE">
+
+		<description>
+		    <format>
+		    For symbol '%ls', Predicates are currently not supported for non-function symbols.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28284.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28285"
+	  name="SPEC_INVALID_SYNTAX2">
+
+		<description>
+		    <format>
+		    For function '%ls', error in '%ls' near '%ls'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28285.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28286"
+	  name="SPEC_INVALID_SYNTAX">
+
+		<description>
+		    <format>
+		    For function '%ls', error near the end of '%ls'.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28286.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28287"
+	  name="INVALID_AT2">
+
+		<description>
+		    <format>
+		    For function '%ls', syntax Error in at() annotation (unrecognized parameter name).
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28287.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28288"
+	  name="INVALID_AT">
+
+		<description>
+		    <format>
+		    For function '%ls', syntax Error in at() annotation (invalid parameter name).
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28288.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28289"
+	  name="LIMITSPEC_EXPECTED">
+
+		<description>
+		    <format>
+		    For function '%ls' %ls: ReadableTo or WritableTo did not have a limit-spec as a parameter.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28289.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28290"
+	  name="SPEC_TOO_MANY">
+
+		<description>
+		    <format>
+		    the annotation for function '%ls' contains more Externals than the actual number of parameters.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28290.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28291"
+	  name="LOD_0_NULL">
+
+		<description>
+		    <format>
+		    post null/notnull at deref level 0 is meaningless for function '%ls' %ls.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28291.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28292"
+	  name="MIN_SIZE_MULTIPLE">
+
+		<description>
+		    <format>
+		    the annotations for function '%ls' '%ls' have more than one MinSize annotation.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28292.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28293"
+	  name="MIN_SIZE_UNKNOWN">
+
+		<description>
+		    <format>
+		    the annotations for function '%ls' '%ls' have an unknown MinSize type.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28293.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28294"
+	  name="EXTERNAL_UNKNOWN_PARAM">
+
+		<description>
+		    <format>
+		    the annotations for function '%ls' at slot %d have a bad parameter index.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28294.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28295"
+	  name="EXTERNAL_UNKNOWN_TYPE">
+
+		<description>
+		    <format>
+		    the annotations for function '%ls' at slot %ls have unknown type.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28295.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28296"
+	  name="MODEL_PARSE_CRASH">
+
+		<description>
+		    <format>
+		    unexpected error while parsing XML model for function '%ls'. %ls
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28296.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28297"
+	  name="MODEL_PARSE_1">
+
+		<description>
+		    <format>
+		    Model validation error (file position = %d): %ls
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28297.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="28299"
+	  name="MODEL_TOO_MANY">
+
+		<description>
+		    <format>
+		    the XML model file for function '%ls' contains more Externals than the actual number of parameters.  This often occurs if the function has no prototype in the C source.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_28299.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36500"
+	  name="X_INVALID_ATTRIBUTE_PROPERTY">
+
+		<description>
+		    <format>
+		    Invalid annotation: value for '%ls' property is invalid
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36500.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36501"
+	  name="X_CONFLICTING_ATTRIBUTE_PROPERTY_VALUES">
+
+		<description>
+		    <format>
+		    Annotation conflict: '%ls' property conflicts with previously specified property
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36501.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36503"
+	  name="X_REFERENCES_CANT_BE_NULL">
+
+		<description>
+		    <format>
+		    Invalid annotation: references and arrays may not be marked Null=Yes or Null=Maybe: Function '%ls' %ls'.
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36503.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36504"
+	  name="X_NULL_ON_NON_POINTER">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'Null' property may only be used on values of pointer, pointer-to-member, array, or reference type: Function '%ls' %ls.
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36504.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36505"
+	  name="X_MUSTCHECK_ON_VOID">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'MustCheck' property may not be used on values of void type: Function '%ls' %ls'
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36505.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36506"
+	  name="X_BUFFER_SIZE_ON_NON_POINTER_OR_ARRAY">
+
+		<description>
+		    <format>
+		    Invalid annotation: '%ls' property (with element count) may only be used on values of pointer, array, or reference type: Function '%ls' %ls.
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36506.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36507"
+	  name="X_NULL_MISMATCH_AT_DEREF_0">
+
+		<description>
+		    <format>
+		    Annotation conflict: 'Null' property at Deref=0 on a post condition must be a subset of the Null property on the precondition
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36507.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36508"
+	  name="X_WRITE_ACCESS_ON_CONST">
+
+		<description>
+		    <format>
+		    Invalid annotation: write access is not allowed on const values
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36508.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36509"
+	  name="X_RETURN_USED_ON_PRECONDITION">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'return' cannot be referenced in some contexts: Function %ls %ls annotation '%ls': %ls
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36509.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36510"
+	  name="X_NULLTERMINATED_ON_NON_POINTER">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'NullTerminated' property may only be used on buffers whose elements are of integral or pointer type: Function '%ls' %ls.
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36510.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36511"
+	  name="X_MUSTCHECK_MAYBE">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'MustCheck' property must be Yes or No
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36511.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36512"
+	  name="X_NULL_CONFLICTS_WITH_NOT_VALID">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'Null' property must be Maybe if the 'Valid' property is No
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36512.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36513"
+	  name="X_ELEMENT_SIZE_WITHOUT_BUFFER_SIZE">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'ElementSize' requires additional size properties
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36513.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36514"
+	  name="X_BUFFER_SIZE_EXCEEDS_ARRAY_SIZE">
+
+		<description>
+		    <format>
+		    Invalid annotation: value of the '%ls' property exceeds the size of the array
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36514.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36515"
+	  name="X_BUFFER_SIZE_ON_NON_POINTER">
+
+		<description>
+		    <format>
+		    Invalid annotation: '%ls' property (with byte count) may only be used on values of pointer type: Function '%ls' %ls.
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36515.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36516"
+	  name="X_NO_PROPERTIES_ON_ATTRIBUTE">
+
+		<description>
+		    <format>
+		    Invalid annotation: no properties specified for %s attribute
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36516.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36517"
+	  name="X_VALID_SIZE_ON_NON_READABLE_BUFFER">
+
+		<description>
+		    <format>
+		    Invalid annotation: '%ls' property may not be specified on buffers that are not readable
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36517.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36518"
+	  name="X_WRITABLE_SIZE_ON_NON_WRITABLE_BUFFER">
+
+		<description>
+		    <format>
+		    Invalid annotation: '%ls' property may not be specified as a precondition on buffers that are not writable
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36518.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36519"
+	  name="X_NEEDSRELEASE_MAYBE">
+
+		<description>
+		    <format>
+		    Invalid annotation: value of the 'NeedsRelease' property must be Yes or No
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36519.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36521"
+	  name="X_INVALID_SIZE_STRING_DEREF">
+
+		<description>
+		    <format>
+		    Invalid size specification: * operator can only be applied to pointer types
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36521.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36522"
+	  name="X_INVALID_SIZE_STRING_TYPE">
+
+		<description>
+		    <format>
+		    Invalid size specification: expression must be of integral type: annotation '%ls' on function '%ls' %ls.
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36522.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36523"
+	  name="X_INVALID_SIZE_STRING_PARAM">
+
+		<description>
+		    <format>
+		    Invalid size specification: parameter '%ls' not found
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36523.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36525"
+	  name="X_INVALID_SIZE_STRING_UNREACHABLE_LOCATION">
+
+		<description>
+		    <format>
+		    Invalid size specification: property value might not be valid
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36525.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36526"
+	  name="X_INVALID_SIZE_STRING_BUFFER_TYPE">
+
+		<description>
+		    <format>
+		    Invalid size specification: expression must be of pointer or array type: annotation '%ls' on function '%ls' %ls.
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36526.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36527"
+	  name="X_NEEDSRELEASE_ON_VOID">
+
+		<description>
+		    <format>
+		    Invalid annotation: 'NeedsRelease' property may not be used on values of void type
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36527.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36530"
+	  name="X_UNRECOGNIZED_FORMAT_STRING_STYLE">
+
+		<description>
+		    <format>
+		    Unrecognized format string style '%ls': Function '%ls' %ls
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36530.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36535"
+	  name="X_BUFFERSIZE_INFEASIBLE">
+
+		<description>
+		    <format>
+		    Buffer size cannot be of type '%ls', bigger than size_t
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36535.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36540"
+	  name="X_OVERRIDING_OLD_MODEL">
+
+		<description>
+		    <format>
+		    The use of attribute annotations on this function will invalidate all of its existing __declspec annotations
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36540.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36551"
+	  name="X_INVALID_SIZE_STRING_EXPRESSION">
+
+		<description>
+		    <format>
+		    Invalid size specification: expression not parsable
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36551.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="36552"
+	  name="X_INVALID_DEREF_EXPRESSION">
+
+		<description>
+		    <format>
+		    Invalid Deref=: expression not parsable
+
+		    </format>
+		</description>
+
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_36552.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6701"
+	  name="LIB_BADYESNO">
+
+		<description>
+		    <format>
+		    The value is not a valid Yes/No/Maybe value: '%ls'
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6701.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6702"
+	  name="LIB_BADSTRING">
+
+		<description>
+		    <format>
+		    The value is not a string value: '%ls'
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6702.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6703"
+	  name="LIB_BADNUMBER">
+
+		<description>
+		    <format>
+		    The value is not a number: '%ls'
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6703.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6704"
+	  name="LIB_EXP_MISC">
+
+		<description>
+		    <format>
+		    Unexpected Annotation Expression Error: %ls [%ls]
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6704.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6705"
+	  name="LIB_ANNOTE_ARITY">
+
+		<description>
+		    <format>
+		    Annotation error expected %d arguments for annotation %ls found %d.
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6705.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6706"
+	  name="LIB_ANNOTE_MISC">
+
+		<description>
+		    <format>
+		    Unexpected Annotation Error for annotation %ls: %ls
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6706.htm</helpURL>
+	</DefectDef>
+
+	<DefectDef guid="12345678-9012-3456-7890-123456789012"
+	  id="6707"
+	  name="LIB_MODEL_MISC">
+
+		<description>
+		    <format>
+		    Unexpected Model Error: %ls
+
+		    </format>
+		</description>
+
+		<additionalInfo>
+		    <format>
+		    This is an error in the annotations
+		    </format>
+		</additionalInfo>
+
+		<helpURL>http://winweb/cse/tools/plugins/pfd/warnings/warning_6707.htm</helpURL>
+	</DefectDef>
+
+	</DefectDefGroup>
+
+</DefectDefs>

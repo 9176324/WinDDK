@@ -1,0 +1,76 @@
+;=-------------------------------------------------------------------------=
+; Copyright (c) 2002-2003, Microsoft Corp.
+;                 All Rights Reserved
+; Information Contained Herein Is Proprietary and Confidential.
+;---------------------------------------------------------------------------
+;
+; IoSpy driver Installer File
+;
+;=--------------------------------------------------------------------------=
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%MSFT%
+LayoutFile=layout.inf
+DriverVer=01/02/2005, 5.00.2064
+CatalogFile=IoSpy.cat    
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[Manufacturer]
+%IoSpy_MFG%=IoSpy_SYS,NT
+%IoSpy_MFG%=IoSpy_SYS,NTamd64
+%IoSpy_MFG%=IoSpy_SYS,NTia64
+
+[IoSpy_SYS.NT]
+%IoSpy.DeviceDesc% = IoSpy_DRV, ROOT\IoSpy
+
+[IoSpy_SYS.NTia64]
+%IoSpy.DeviceDesc% = IoSpy_DRV, ROOT\IoSpy
+
+[IoSpy_SYS.NTamd64]
+%IoSpy.DeviceDesc% = IoSpy_DRV, ROOT\IoSpy
+
+
+[IoSpy.Install.HW]
+AddReg=IoSpy.AddReg
+ 
+[IoSpy.AddReg] 
+HKR,,"UpperFilters",0x00010000,"IoSpy" ; REG_MULTI_SZ value 
+
+
+[IoSpy.AddService]
+DisplayName    = %IoSpy.DeviceDesc%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_CRITICAL%
+ServiceBinary  = %12%\IoSpy.sys
+LoadOrderGroup = Boot Bus Extender
+
+
+[IoSpy.Files]
+CopyFiles=@IoSpy.sys
+
+[IoSpy.Service]
+AddService=%SERVICE_NAME%,0x1,IoSpy.AddService
+
+[SourceDisksNames]
+1 = %CURRENT_DIR%
+
+[SourceDisksFiles]
+C.sys = 1
+
+;------------------------------------------------------------------------------
+;  String Definitions
+;------------------------------------------------------------------------------
+[Strings]
+MSFT                   = "Microsoft"
+IoSpy_MFG          = "(Standard system devices)"
+IoSpy.DeviceDesc   = "I/O Spy , a test data gathering driver.
+CURRENT_DIR            = "In the current directory!"
+SERVICE_NAME           = "IoSpy"
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_CRITICAL = 3

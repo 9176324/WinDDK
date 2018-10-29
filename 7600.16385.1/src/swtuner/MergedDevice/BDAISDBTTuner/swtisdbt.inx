@@ -1,0 +1,99 @@
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+[Version]
+signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Msft%
+DriverVer=06/21/2006,6.0.5314.0
+CatalogFile=SWTISDBT.cat
+
+[ControlFlags]
+;ExcludeFromSelect=*
+
+[SourceDisksNames]
+1 = %BDA_DISK%,"",
+
+[SourceDisksFiles]
+SWTISDBT.sys     = 1
+
+[DestinationDirs]
+SWTISDBT.CopyFiles=10,system32\drivers
+
+[Manufacturer]
+%Msft%=Microsoft,NTx86,NTamd64
+
+[Microsoft.NTx86]
+;;%SWTISDBT.DeviceDesc%=SWTISDBT,SW\{0E7E99D8-8A1C-11DB-BDA1-00123F758252}
+%SWTISDBT.DeviceDesc%=SWTISDBT,ms_swtisdbt
+
+[Microsoft.NTamd64]
+;;%SWTISDBT.DeviceDesc%=SWTISDBT,SW\{0E7E99D8-8A1C-11DB-BDA1-00123F758252}
+%SWTISDBT.DeviceDesc%=SWTISDBT,ms_swtisdbt
+
+[SWTISDBT.NTx86]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTISDBT.inf
+CopyFiles=SWTISDBT.CopyFiles
+
+[SWTISDBT.NTamd64]
+Include     = ks.inf, kscaptur.inf, bda.inf
+needs=KS.Registration, KSCAPTUR.Registration, BDA.Installation.NT
+CopyInf=SWTISDBT.inf
+CopyFiles=SWTISDBT.CopyFiles
+
+;---------------------------------------------------------------
+;                I n t e r f a c e s
+;---------------------------------------------------------------
+
+[SWTISDBT.NTx86.Interfaces]
+AddInterface=%KSCATEGORY_SWTISDBT%,%KSSTRING_SWTISDBTFilter%,TunerInterface.NT,
+
+[SWTISDBT.NTamd64.Interfaces]
+AddInterface=%KSCATEGORY_SWTISDBT%,%KSSTRING_SWTISDBTFilter%,TunerInterface.NT,
+
+[TunerInterface.NT]
+AddReg=SWTISDBT.Reader.AddReg
+
+
+;---------------------------------------------------------------
+;                A d d R e g
+;---------------------------------------------------------------
+[SWTISDBT.Reader.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%SWTISDBT.FriendlyName%
+
+[SWTISDBT.CopyFiles]
+SWTISDBT.sys
+
+[SWTISDBT.NTx86.Services]
+AddService=SWTISDBT, 0x00000002, SWTISDBT.ServiceInstall
+
+[SWTISDBT.NTamd64.Services]
+AddService=SWTISDBT, 0x00000002, SWTISDBT.ServiceInstall
+
+[SWTISDBT.ServiceInstall]
+DisplayName=%SWTISDBT.DeviceDesc%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%10%\system32\drivers\SWTISDBT.sys
+LoadOrderGroup=Extended Base
+
+[Strings]
+; non-localizeable
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSSTRING_SWTISDBTFilter="{0E7E99D9-8A1C-11DB-BDA1-00123F758252}"
+KSCATEGORY_SWTISDBT="{71985F48-1CA1-11d3-9CC8-00C04F7971E0}"
+
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+
+;localizeable
+Msft="Microsoft"
+SWTISDBT.DeviceDesc="BDA ISDBT Sample Tuner Device"
+SWTISDBT.FilterDesc="BDA ISDBT Sample Tuner Filter"
+BDA_DISK = "S/W BDA ISDBT Sample Tuners Drivers disk"
+SWTISDBT.FriendlyName="BDA ISDBT Sample Tuner"
+

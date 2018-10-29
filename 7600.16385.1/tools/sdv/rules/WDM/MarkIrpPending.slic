@@ -1,0 +1,37 @@
+/*
+	Copyright (c) Microsoft Corporation.  All rights reserved.
+
+	Description:
+
+	This rule specifies that if a dispatch routine calls
+	IoMarkIrpPending it should return STATUS_PENDING.  See
+	MarkIrpPending2 for a complimentary specification.
+*/
+
+#include "ntddk_slic.h"
+
+state {
+    int pended = 0;              
+} with guard(sdv_main,sdv_irp) 
+
+sdv_stub_dispatch_end.entry [guard $2]
+{
+	if (pended && $1 != STATUS_PENDING) 
+	{
+        abort "The dispatch routine has marked the incoming IRP with IoMarkIrpPending, but it is not returning STATUS_PENDING.";
+    }
+	else
+	{
+		halt;
+	}
+}
+
+[RemoveHeadList,RemoveEntryList,sdv_containing_record].entry
+{
+	halt;
+}
+
+IoMarkIrpPending.entry[guard $1]
+{        
+    pended = 1;
+}

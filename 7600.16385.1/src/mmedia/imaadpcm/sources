@@ -1,0 +1,59 @@
+#==========================================================================;
+#
+#  THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+#  KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+#  IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+#  PURPOSE.
+#
+#  Copyright (c) 1992-2000 Microsoft Corporation
+#
+#--------------------------------------------------------------------------;
+#
+#  sources
+#
+#  Description:
+#      This file tells "build" how to build the codec for NT.
+#
+#
+#==========================================================================;
+
+#
+#   Define target file.
+#
+TARGETNAME=imaadp32
+DLLDEF    =imaadpcm.def
+TARGETTYPE=DYNLINK
+TARGETEXT =acm
+UMTYPE    =windows
+
+
+USE_MSVCRT=1
+
+TARGETLIBS=\
+    $(SDK_LIB_PATH)\kernel32.lib \
+    $(SDK_LIB_PATH)\user32.lib       \
+           $(SDK_LIB_PATH)\gdi32.lib        \
+           $(SDK_LIB_PATH)\advapi32.lib     \
+           $(SDK_LIB_PATH)\winmm.lib        
+
+INCLUDES=..\..\verinfo\usa
+
+!if $(FREEBUILD)
+ACM_DEBUG_DEFS=
+!else
+ACM_DEBUG_DEFS=-DRDEBUG
+!endif
+
+C_DEFINES=$(ACM_DEBUG_DEFS) -Dusa -DACM -DUNICODE -D_UNICODE
+ 
+MSC_WARNING_LEVEL=/W4 /WX
+
+SOURCES=codec.c     \
+        imaadpcm.c  \
+        debug.c     \
+        config.c    \
+        codec.rc
+
+
+TARGET_DESTINATION=retail
+

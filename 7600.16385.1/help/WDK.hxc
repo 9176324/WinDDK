@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE HelpCollection>
+
+<HelpCollection 
+	DTDVersion="1.0"
+        FileVersion="1.0.0.0"
+        LangId="1033"
+	Title="Windows Driver Development Kit">
+
+   <!-- Optional, Multiple -->
+   <AttributeDef File="WDK.HxA"/> <!-- No path is needed, get the full path from namespace -->
+
+   <!-- Optional, Multiple -->
+   <TOCDef File="WDK_Col.HxT"/> <!-- No path is needed, get the full path from namespace -->
+
+   <KeywordIndexDef File="WDK_Alinks.HxK"/>
+   <KeywordIndexDef File="WDK_Klinks.HxK"/>
+   <KeywordIndexDef File="WDK_Flinks.HxK"/>
+   <KeywordIndexDef File="WDK_NamedUrl.HxK"/>
+
+   <!-- Optional, Multiple -->
+   <ItemMoniker Name="!DefaultToc" ProgId="HxDs.HxHierarchy" InitData=""/>
+   <ItemMoniker Name="!DefaultFullTextSearch" ProgId="HxDs.HxFullTextSearch" InitData="AnyString"/>
+   <ItemMoniker Name="!DefaultAssociativeIndex" ProgId="HxDs.HxIndex" InitData="A"/>
+   <ItemMoniker Name="!DefaultKeywordIndex" ProgId="HxDs.HxIndex" InitData="K"/>
+   <ItemMoniker Name="!DefaultContextWindowIndex" ProgId="HxDs.HxIndex" InitData="F"/>
+   <ItemMoniker Name="!DefaultNamedUrlIndex" ProgId="HxDs.HxIndex" InitData="NamedUrlIndex"/>
+   <ItemMoniker Name="!SampleInfo" ProgId="HxDS.HxSampleCollection" InitData="AnyString"/>
+
+</HelpCollection>
+

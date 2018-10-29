@@ -1,0 +1,453 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Arial Narrow";
+	panose-1:2 11 6 6 2 2 2 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:5.75pt;
+	margin-bottom:6.0pt;
+	margin-left:5.75pt;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:10.0pt;
+	margin-right:6.0pt;
+	margin-bottom:4.0pt;
+	margin-left:6.0pt;
+	line-height:22.0pt;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:20.0pt;
+	font-family:"Arial Narrow","sans-serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:7.0pt;
+	margin-right:6.0pt;
+	margin-bottom:3.0pt;
+	margin-left:6.0pt;
+	line-height:19.0pt;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:17.0pt;
+	font-family:"Arial Narrow","sans-serif";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Arial Narrow","sans-serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Arial Narrow","sans-serif";
+	font-weight:bold;}
+p.Ln1, li.Ln1, div.Ln1
+	{mso-style-name:Ln1;
+	margin-top:0in;
+	margin-right:5.75pt;
+	margin-bottom:3.0pt;
+	margin-left:.25in;
+	text-indent:-.25in;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";}
+p.Le, li.Le, div.Le
+	{mso-style-name:Le;
+	margin-top:0in;
+	margin-right:5.75pt;
+	margin-bottom:0in;
+	margin-left:5.75pt;
+	margin-bottom:.0001pt;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:6.0pt;
+	font-family:"Arial","sans-serif";}
+p.Th, li.Th, div.Th
+	{mso-style-name:Th;
+	margin-top:0in;
+	margin-right:5.75pt;
+	margin-bottom:3.0pt;
+	margin-left:5.75pt;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	font-weight:bold;}
+p.Tp, li.Tp, div.Tp
+	{mso-style-name:Tp;
+	margin-top:0in;
+	margin-right:5.75pt;
+	margin-bottom:3.0pt;
+	margin-left:5.75pt;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";}
+p.Thf, li.Thf, div.Thf
+	{mso-style-name:Thf;
+	margin-top:0in;
+	margin-right:5.75pt;
+	margin-bottom:3.0pt;
+	margin-left:5.75pt;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	font-weight:bold;}
+p.Tpf, li.Tpf, div.Tpf
+	{mso-style-name:Tpf;
+	margin-top:0in;
+	margin-right:5.75pt;
+	margin-bottom:3.0pt;
+	margin-left:5.75pt;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h1>Sensor Driver Skeleton Sample</h1>
+
+<p class=MsoNormal>The Sensor Driver Skeleton Sample demonstrates how to write
+a minimal sensor driver and shows best practices, including how to use the
+sensor class extension. You can use this driver as a template from which you
+can start your own sensor driver projects. </p>
+
+<h2>Theory of Operation</h2>
+
+<p class=MsoNormal>The sensor Skeleton driver is based upon the UMDF Skeleton
+driver sample. The sample uses Active Template Library (ATL) to provide COM functionality.
+The Skeleton driver defines and uses the following classes.</p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=609
+ style='width:456.5pt;margin-left:23.4pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=156 valign=top style='width:117.35pt;border:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Thf>Class</p>
+  </td>
+  <td width=182 valign=top style='width:136.25pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Th>Files</p>
+  </td>
+  <td width=271 valign=top style='width:202.9pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Th>Description</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=156 valign=top style='width:117.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tpf>CMyDriver</p>
+  </td>
+  <td width=182 valign=top style='width:136.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tp><i>Driver.h</i></p>
+  <p class=Tp><i>Driver.cpp</i></p>
+  </td>
+  <td width=271 valign=top style='width:202.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tp>Provides an implementation for <b>IDriverEntry</b>. The <b>OnDeviceAdd</b>
+  method creates an instance of the CMyDevice class.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=156 valign=top style='width:117.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tpf>CMyDevice</p>
+  </td>
+  <td width=182 valign=top style='width:136.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tp><i>Device.h</i></p>
+  <p class=Tp><i>Device.cpp</i></p>
+  </td>
+  <td width=271 valign=top style='width:202.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tp>Provides an implementation for <b>IPnPCallbackHardware</b>. The <b>OnPrepareHardware</b>
+  method creates and initializes the sensor class extension and creates an
+  instance of the CSensorDdi class. The <b>OnReleaseHardware</b> method uninitializes
+  and frees the class extension object.</p>
+  <p class=Tp>Implements <b>IFileCallbackCleanup::OnCleanupFile</b>, which
+  notifies the sensor class extension when the file handle to the device is
+  closed.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=156 valign=top style='width:117.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tpf>CSensorDdi</p>
+  </td>
+  <td width=182 valign=top style='width:136.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tp><i><span lang=DE-LI>SensorDdi.h</span></i></p>
+  <p class=Tp><i><span lang=DE-LI>Defines.h</span></i></p>
+  <p class=Tp><i><span lang=DE-LI>SensorDdi.cpp</span></i></p>
+  </td>
+  <td width=271 valign=top style='width:202.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tp>Provides an implementation for the sensor driver callback
+  interface, <b>ISensorDriver</b>. This class emulates accessing a device that
+  includes a temperatue sensor and a GPS sensor.</p>
+  <p class=Tp>The header file named <i>Defines.h </i>contains defined constants
+  that correspond to device property values, such as the friendly name string
+  that displays in Control Panel. You should change these values to contain
+  your own values. You should also change the implementation in the .cpp file
+  to handle your device's values.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=156 valign=top style='width:117.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tpf>CMyQueue</p>
+  </td>
+  <td width=182 valign=top style='width:136.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tp><i>Queue.h</i></p>
+  <p class=Tp><i>Queue.cpp</i></p>
+  </td>
+  <td width=271 valign=top style='width:202.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tp>Provides an implementation for <b>IQueueCallbackDeviceIoControl</b>.
+  The <b>Initialize</b> method creates an instance of the I/O queue for the
+  device. The <b>OnDeviceIoControl</b> method manages forwarding WPD I/O
+  requests to the sensor class extension.</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>Customizing the Sample</h2>
+
+<p class=MsoNormal>To create a new driver that is based on the sensor Skeleton
+sample, do the following:</p>
+
+<p class=Ln1 style='margin-left:.5in'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Copy all the project files to a new directory.</p>
+
+<p class=Ln1 style='margin-left:.5in'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Rename <i>SensorSkeleton.rc</i>, <i>SensorSkeleton.ctl</i>, <i>SensorSkeleton.idl</i>,
+<i>SensorSkelton.def</i>, and <i>SensorSkeleton.inx</i> to appropriate names
+for your driver.</p>
+
+<p class=Ln1 style='margin-left:.5in'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Update the sources file as follows:</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>Change the TARGETNAME to
+the name of the new driver. </p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>In the SOURCES variable,
+change <i>SensorSkeleton.rc</i> to match the new RC file name and change <i>SensorSkeleton.idl
+</i>to match the new IDL file name.</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>In the NTTARGETFILES
+variable, change the INF file name to match the new name.</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>Change value for DLLDEF
+to match the new DEF file name.</p>
+
+<p class=Ln1 style='margin-left:.5in'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Update the strings in the RC file to match the new driver name.</p>
+
+<p class=Ln1 style='margin-left:.5in'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>In the DEF file, change the LIBRARY value to the new driver library name.
+This name must match the value you provided for TARGETNAME.</p>
+
+<p class=Ln1 style='margin-left:.5in'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>In <i>Internal.h</i>:</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>Update the WPP tracing
+control GUID at WPP_DEFINE_CONTROL_GUID. You can generate a new GUID by using
+the uuidgen or guidgen tools in the Microsoft Windows SDK. Be sure to match the
+format for the new GUID to the existing one.</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>Change the SensorsSkeletonDriverTraceControl
+string to use the name of your driver.</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>Change the driver tracing
+ID (choose a string that should be unique to your driver) at MYDRIVER_TRACING_ID.</p>
+
+<p class=Ln1 style='margin-left:.5in'>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Update the IDL file as follows:</p>
+
+<p class=Ln1 style='margin-left:30.0pt;text-indent:0in'>Generate a new GUID and
+change the type library GUID.</p>
+
+<p class=Ln1 style='margin-left:30.0pt;text-indent:0in'>Generate a new GUID and
+change the driver class ID. You must use this class ID again (in registry
+format) in later steps.</p>
+
+<p class=Ln1 style='margin-left:30.0pt;text-indent:0in'>Change the name of the
+library.</p>
+
+<p class=Ln1 style='margin-left:30.0pt;text-indent:0in'>Change the name of the
+coclass.</p>
+
+<p class=Ln1 style='margin-left:30.0pt;text-indent:0in'>Change the help
+strings.</p>
+
+<p class=Ln1 style='margin-left:.5in'>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>In <i>SensorSkeleton.ctl</i>, change the WPP tracing control GUID and
+tracing ID to match the changes you made in step 6.</p>
+
+<p class=Ln1 style='margin-left:.5in'>9.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Update the constant definitions in <i>Defines.h</i> to contain the
+correct values for your device. Update the code in <i>SensorDdi.cpp</i> to
+handle the correct values for your device.</p>
+
+<p class=Ln1 style='margin-left:.5in'>10.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Update the INX file, as follows:</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>Change the device's
+hardware ID in the <b>[Microsoft.NT$ARCH$] </b>section.</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>Change the binary name
+from <i>SensorSkeleton.dll</i> to the name for your driver everywhere it
+appears in the file.</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>Change the DriverCLSID
+value set in the <b>UMDFSensorSkeleton_Install</b> section to match your new
+driver's class ID.</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>Update the strings at the
+bottom of the file to contain descriptions of your new driver.</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>Change the provider name
+in the <b>[Version]</b> section to match your company, and update the device's
+class ID to the installation class of your device.</p>
+
+<p class=Ln1 style='margin-left:.5in;text-indent:0in'>(Optional) Replace SensorSkeleton
+with the name of your driver in all of the INF section names and strings names.
+For example, you can replace <b>SensorSkeletonDeviceName</b> with <b>MySensorDriverDeviceName</b>.</p>
+
+<p class=Ln1 style='margin-left:.5in'>11.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Change the name of the driver module in <i>DllMain.cpp</i>.</p>
+
+<p class=Ln1 style='margin-left:.5in'>12.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Update <i>Driver.h</i> as follows:</p>
+
+<p class=Ln1 style='margin-left:30.0pt;text-indent:0in'>Change public
+CComCoClass&lt;CMyDriver, &amp;CLSID_SensorsSkeletonDriver&gt; to contain the
+correct constant for your driver's class. The MIDL compiler generates this
+constant from the coclass name you provided in the IDL file. </p>
+
+<p class=Ln1 style='margin-left:30.0pt;text-indent:0in'>Change the first
+parameter to OBJECT_ENTRY_AUTO to contain the new driver's class name.</p>
+
+<p class=Ln1 style='margin-left:.5in'>13.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Update <i>Driver.cpp </i> to reference the new header file name that is
+generated by the IDL instead of <i>SensorSkeleton.h</i>.</p>
+
+<p class=Le>&nbsp;</p>
+
+<h2>Implementation and Design</h2>
+
+<p class=MsoNormal>This sample can be used as the basis for a new sensor
+driver.</p>
+
+<h2>Building the Sample</h2>
+
+<p class=Ln1 style='margin-left:.5in'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>At the command prompt, change to the directory that contains the device
+source code.   </p>
+
+<p class=Ln1 style='margin-left:.5in'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Run <b>build -ceZ</b>, or use the <b>BLD</b> macro.</p>
+
+<p class=Le>&nbsp;</p>
+
+<p class=MsoNormal>If the build succeeds, you will find the driver DLL and INF
+files in a subdirectory of your project directory. For example, if you build by
+using an x86fre build, the DLL and INF files will be placed in <i>projectDirectory</i>\.objfre_win7_x86\i386.</p>
+
+<p class=MsoNormal>If the build fails, you can find errors and warnings in the
+log file (for example, buildfre_win7_x86.log).</p>
+
+<h2>Installation</h2>
+
+<p class=MsoNormal>You can install the sensor Skeleton sample for testing in
+the same way as you installed the UMDF Skeleton sample driver. For more
+information, see Installing UMDF Drivers.</p>
+
+<p class=MsoNormal>To install the sensor Skeleton sample driver:</p>
+
+<p class=Ln1 style='margin-left:.5in'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Ensure that the driver builds without errors.</p>
+
+<p class=Ln1 style='margin-left:.5in'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Copy the DLL and INF files to a separate folder.</p>
+
+<p class=Ln1 style='margin-left:.5in'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Locate the co-installer DLL file (either checked or free) from the
+redist/wdf/<i>processor_type</i> folder where you installed the WDK. Copy this
+file to the folder you created in step 2. For example, if you installed the WDK
+on your C: drive, you might copy <i>WUDFUpdate_01009.dll</i> from <i>C:\WinDDK\build#\redist\wdf\x86</i>.</p>
+
+<p class=Ln1 style='margin-left:.5in'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Run <b>devcon.exe</b>. You can find this program in the <i>tools\devcon</i>
+folder where you installed the WDK. Type the following command in the command
+window: </p>
+
+<p class=MsoNormal style='margin-left:.5in'><b>devcon.exe install SensorSkeleton.inf
+&quot;Sensors\SensorSkeleton&quot;</b></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span>Enable the driver in the <b>Location
+and Other Sensors</b> control panel.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Copyright © Microsoft Corporation. All rights reserved.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>
+

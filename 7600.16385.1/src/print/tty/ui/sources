@@ -1,0 +1,34 @@
+TARGETNAME=TTYUI
+TARGETTYPE=DYNLINK
+
+DLLBASE=0x50000000
+DLLENTRY=_DllMainCRTStartup
+
+USE_MSVCRT=1
+
+C_DEFINES=$(C_DEFINES) -D_UNICODE -DUNICODE
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+TARGETLIBS=$(SDK_LIB_PATH)\kernel32.lib        \
+           $(SDK_LIB_PATH)\user32.lib  \
+           $(SDK_LIB_PATH)\ole32.lib  \
+           $(SDK_LIB_PATH)\winspool.lib  \
+           $(SDK_LIB_PATH)\uuid.lib
+
+INCLUDES=  ..\inc
+
+SOURCES= TTYUI.cpp   \
+         oemcom.cpp  \
+         debug.cpp   \
+         TTYUI.rc
+
+!IF "$(BUILD_PASS)" == "PASS2" || "$(BUILD_PASS)" == "PASSALL"
+NTTARGETFILES=COPYDLL
+!ENDIF
+
+# Build with Vista libs but make sure sample can still run downlevel
+_NT_TARGET_VERSION=$(_NT_TARGET_VERSION_WINXP)
+WIN32_WINNT_VERSION =$(LATEST_WIN32_WINNT_VERSION)
+NTDDI_VERSION=$(LATEST_NTDDI_VERSION)
+
